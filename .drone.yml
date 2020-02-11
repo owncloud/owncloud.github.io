@@ -10,12 +10,6 @@ concurrency:
   limit: 1
 
 steps:
-- name: assets
-  image: byrnedo/alpine-curl
-  commands:
-  - mkdir -p themes/hugo-geekdoc/
-  - curl -L https://github.com/xoxys/hugo-geekdoc/releases/download/v0.1.7/hugo-geekdoc.tar.gz | tar -xz -C themes/hugo-geekdoc/ --strip-components=1
-
 - name: sync
   image: xoxys/git-batch:latest
   commands:
