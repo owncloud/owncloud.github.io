@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="ocis-accounts">
+<meta name="description" content="Building">
 
-<title>ocis-accounts | owncloud</title>
+<title>Building | owncloud</title>
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
 <link rel="stylesheet" href="/main.min.css">
@@ -22,7 +22,6 @@
 
 
 
-<link rel="alternate" type="application/rss+xml" href="https://owncloud.github.io/extensions/ocis_accounts/index.xml" title="owncloud" />
 <!--
     Made with Geekdoc theme
     https://github.com/xoxys/hugo-geekdoc
@@ -186,7 +185,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis_accounts/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/ocis_accounts/" class="gdoc-nav__entry ">
                         ocis-accounts
                     </a>
                 </span>
@@ -369,7 +368,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis_proxy/building/" class="gdoc-nav__entry ">
+                    <a href="/extensions/ocis_proxy/building/" class="gdoc-nav__entry is-active">
                         Building
                     </a>
                 </span>
@@ -443,7 +442,7 @@
         
     
     
-        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / ocis-accounts
+        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / Building
     
 
     
@@ -458,9 +457,24 @@
     </span>
 </div>
 
+
     <article class="gdoc-markdown">
-        <h1>ocis-accounts</h1>
-        <p>This service provides an inter-operable accounts service that operates on the filesystem by default.</p>
+        <h1>Building</h1>
+        
+
+<p>As this project is built with Go, so you need to install that first. The installation of Go is out of the scope of this document, please follow the official documentation for <a href="https://golang.org/doc/install">Go</a>, to build this project you have to install Go &gt;= v1.13. After the installation of the required tools you need to get the sources:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">git clone https://github.com/owncloud/ocis-proxy.git
+cd ocis-proxy</code></pre></div>
+
+<p>All required tool besides Go itself and make are bundled or getting automatically installed within the <code>GOPATH</code>. All commands to build this project are part of our <code>Makefile</code>.</p>
+
+<h3 id="backend">Backend</h3>
+
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">make generate
+make build</code></pre></div>
+
+<p>Finally you should have the binary within the <code>bin/</code> folder now, give it a try with <code>./bin/ocis-proxy -h</code> to see all available options and subcommands.</p>
 
     </article>
 
