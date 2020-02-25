@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Building">
+<meta name="description" content="Users">
 
-<title>Building | owncloud</title>
+<title>Users | owncloud</title>
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
 <link rel="stylesheet" href="/main.min.css">
@@ -351,7 +351,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis_hello/building/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/ocis_hello/building/" class="gdoc-nav__entry ">
                         Building
                     </a>
                 </span>
@@ -575,7 +575,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis_reva/users/" class="gdoc-nav__entry ">
+                    <a href="/extensions/ocis_reva/users/" class="gdoc-nav__entry is-active">
                         Users
                     </a>
                 </span>
@@ -670,7 +670,7 @@
         
     
     
-        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_hello/'>Hello</a> / Building
+        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_reva/'>Reva</a> / Users
     
 
     
@@ -689,29 +689,51 @@
 
 
     <article class="gdoc-markdown">
-        <h1>Building</h1>
+        <h1>Users</h1>
         
 
-<p>As this project is built with Go and NodeJS, so you need to install that first. The installation of Go and NodeJS is out of the scope of this document, please follow the official documentation for <a href="https://golang.org/doc/install">Go</a>, <a href="https://nodejs.org/en/download/package-manager/">NodeJS</a> and <a href="https://yarnpkg.com/lang/en/docs/install/">Yarn</a>, to build this project you have to install Go &gt;= v1.13. After the installation of the required tools you need to get the sources:</p>
+<h3 id="demo-driver">Demo driver</h3>
 
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">git clone https://github.com/owncloud/ocis-hello.git
-cd ocis-hello</code></pre></div>
+<p>This is the default user driver.It contains three users:</p>
 
-<p>All required tool besides Go itself and make are bundled or getting automatically installed within the <code>GOPATH</code>. All commands to build this project are part of our <code>Makefile</code> and respectively our <code>package.json</code>.</p>
+<pre><code>einstein:relativity
+marie:radioactivty
+richard:superfluidity
+</code></pre>
 
-<h3 id="frontend">Frontend</h3>
+<h3 id="json-driver">JSON driver</h3>
 
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">yarn install
-yarn build</code></pre></div>
+<p>In order to switch from the <code>demo</code> driver to JSON based users you need to export the relevant environment variables:</p>
 
-<p>The above commands will install the required build dependencies and build the whole frontend bundle. This bundle will we embeded into the binary later on.</p>
+<pre><code>export REVA_USERS_DRIVER=json
+export REVA_USERS_JSON=/path/to/users.json
+</code></pre>
 
-<h3 id="backend">Backend</h3>
+<p>For the format of the users.json have a look at the <a href="https://github.com/cs3org/reva/blob/master/examples/separate/users.demo.json">reva examples</a></p>
 
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">make generate
-make build</code></pre></div>
+<h3 id="ldap-driver">LDAP driver</h3>
 
-<p>The above commands will embed the frontend bundle into the binary. Finally you should have the binary within the <code>bin/</code> folder now, give it a try with <code>./bin/ocis-hello -h</code> to see all available options.</p>
+<p>In order to switch from the <code>demo</code> driver to LDAP you need to export the relevant environment variable:</p>
+
+<pre><code>export REVA_USERS_DRIVER=ldap
+</code></pre>
+
+<p>If the below defaults don&rsquo;t match your environment change them accordingly:</p>
+
+<pre><code>export REVA_LDAP_HOSTNAME=localhost
+export REVA_LDAP_PORT=636
+export REVA_LDAP_BASE_DN='dc=owncloud,dc=com'
+export REVA_LDAP_USERFILTER='(&amp;(objectclass=posixAccount)(cn=%s))'
+export REVA_LDAP_GROUPFILTER='(&amp;(objectclass=posixGroup)(cn=%s))'
+export REVA_LDAP_BIND_DN='cn=admin,dc=owncloud,dc=com'
+export REVA_LDAP_BIND_PASSWORD=admin
+export REVA_LDAP_SCHEMA_UID=uid
+export REVA_LDAP_SCHEMA_MAIL=mail
+export REVA_LDAP_SCHEMA_DISPLAYNAME=displayName
+export REVA_LDAP_SCHEMA_CN=cn
+</code></pre>
+
+<p>Then restart the <code>bin/ocis-reva users</code> and <code>bin/ocis-reva auth-basic</code> services for the changes to take effect.</p>
 
     </article>
 
