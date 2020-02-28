@@ -6,7 +6,7 @@
     <description>Recent content in Documentation on owncloud</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 21 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 27 Feb 2020 20:35:00 +0100</lastBuildDate>
     
 	<atom:link href="https://owncloud.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -54,6 +54,19 @@ Configuration We provide overall three different variants of configuration. The 
 Docker TBD
 Binaries TBD
 Configuration We provide overall three different variants of configuration. The variant based on environment variables and commandline flags are split up into global values and command-specific values.</description>
+    </item>
+    
+    <item>
+      <title>Getting Started</title>
+      <link>https://owncloud.github.io/ocis/getting-started/</link>
+      <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
+      
+      <guid>https://owncloud.github.io/ocis/getting-started/</guid>
+      <description>Installation So far we are offering two different variants for the installation. You can choose between Docker or pre-built binaries which are stored on our download mirrors and GitHub releases. Maybe we will also provide system packages for the major distributions later if we see the need for it.
+Docker TBD
+Binaries TBD
+Quickstart Following https://github.com/owncloud/ocis#development
+git clone https://github.com/owncloud/ocis.git cd ocis make build mkdir /var/tmp/reva/root/{home,oc} Open http://localhost:9100 and login using one of the demo accounts:</description>
     </item>
     
     <item>
@@ -113,27 +126,14 @@ Configuration We provide overall three different variants of configuration. The 
     </item>
     
     <item>
-      <title>Getting Started</title>
-      <link>https://owncloud.github.io/ocis/getting-started/</link>
-      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
+      <title>Bridge</title>
+      <link>https://owncloud.github.io/ocis/bridge/</link>
+      <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
       
-      <guid>https://owncloud.github.io/ocis/getting-started/</guid>
-      <description>Installation So far we are offering two different variants for the installation. You can choose between Docker or pre-built binaries which are stored on our download mirrors and GitHub releases. Maybe we will also provide system packages for the major distributions later if we see the need for it.
-Docker TBD
-Binaries TBD
-Quickstart Following https://github.com/owncloud/ocis#development
-git clone https://github.com/owncloud/ocis.git cd ocis make build mkdir /var/tmp/reva/root/{home,oc} Open http://localhost:9100 and login using one of the demo accounts:</description>
-    </item>
-    
-    <item>
-      <title>Extensions</title>
-      <link>https://owncloud.github.io/ocis/extensions/</link>
-      <pubDate>Fri, 31 Jan 2020 17:20:00 +0000</pubDate>
-      
-      <guid>https://owncloud.github.io/ocis/extensions/</guid>
-      <description>How to build and run ocis-simple ocis uses build tags to build different flavors of the binary. In order to work on a new extension we are going to reduce the scope a little and use the simple tag. Let us begin by creating a dedicated folder:
-mkdir ocis-extension-workshop &amp;amp;&amp;amp; ocis-extension-workshop Following https://github.com/owncloud/ocis
-git clone https://github.com/owncloud/ocis.git cd ocis TAGS=simple make generate build Q: Can you specify which version of phoenix to use?</description>
+      <guid>https://owncloud.github.io/ocis/bridge/</guid>
+      <description>We are planning to build a bridge from ownCloud 10 to ocis. The idea is to have a reverse proxy infront of ownCloud 10 that will forward requests to ownCloud 10 or ocis-reva, depending on the migration status of the logged in user.
+This document is a work in progress of the current setup.
+Current status Using ocis and the ownCloud 10 openidconnect and graphapi plugins it is possible today to introduce openid connect based authentication to existing instances.</description>
     </item>
     
     <item>
@@ -177,16 +177,6 @@ git clone https://github.com/owncloud/ocis-reva.git cd ocis-reva All required to
     </item>
     
     <item>
-      <title>Building</title>
-      <link>https://owncloud.github.io/ocis/building/</link>
-      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://owncloud.github.io/ocis/building/</guid>
-      <description>As this project is built with Go, so you need to install that first. The installation of Go is out of the scope of this document, please follow the official documentation for Go, to build this project you have to install Go &amp;gt;= v1.13. After the installation of the required tools you need to get the sources:
-git clone https://github.com/owncloud/ocis.git cd ocis All required tool besides Go itself and make are bundled or getting automatically installed within the GOPATH.</description>
-    </item>
-    
-    <item>
       <title>Users</title>
       <link>https://owncloud.github.io/extensions/ocis_reva/users/</link>
       <pubDate>Thu, 16 Jan 2020 00:00:00 +0000</pubDate>
@@ -196,6 +186,17 @@ git clone https://github.com/owncloud/ocis.git cd ocis All required tool besides
 einstein:relativity marie:radioactivty richard:superfluidity  JSON driver In order to switch from the demo driver to JSON based users you need to export the relevant environment variables:
 export REVA_USERS_DRIVER=json export REVA_USERS_JSON=/path/to/users.json  For the format of the users.json have a look at the reva examples
 LDAP driver In order to switch from the demo driver to LDAP you need to export the relevant environment variable:</description>
+    </item>
+    
+    <item>
+      <title>Extensions</title>
+      <link>https://owncloud.github.io/ocis/extensions/</link>
+      <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
+      
+      <guid>https://owncloud.github.io/ocis/extensions/</guid>
+      <description>How to build and run ocis-simple ocis uses build tags to build different flavors of the binary. In order to work on a new extension we are going to reduce the scope a little and use the simple tag. Let us begin by creating a dedicated folder:
+mkdir ocis-extension-workshop &amp;amp;&amp;amp; ocis-extension-workshop Following https://github.com/owncloud/ocis
+git clone https://github.com/owncloud/ocis.git cd ocis TAGS=simple make generate build Q: Can you specify which version of phoenix to use?</description>
     </item>
     
     <item>
@@ -217,12 +218,13 @@ LDAP driver In order to switch from the demo driver to LDAP you need to export t
     </item>
     
     <item>
-      <title>License</title>
-      <link>https://owncloud.github.io/ocis/license/</link>
-      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
+      <title>Building</title>
+      <link>https://owncloud.github.io/ocis/building/</link>
+      <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
       
-      <guid>https://owncloud.github.io/ocis/license/</guid>
-      <description>This project is licensed under the Apache 2.0 license. For the license of the used libraries you have to check the respective sources.</description>
+      <guid>https://owncloud.github.io/ocis/building/</guid>
+      <description>As this project is built with Go, so you need to install that first. The installation of Go is out of the scope of this document, please follow the official documentation for Go, to build this project you have to install Go &amp;gt;= v1.13. After the installation of the required tools you need to get the sources:
+git clone https://github.com/owncloud/ocis.git cd ocis All required tool besides Go itself and make are bundled or getting automatically installed within the GOPATH.</description>
     </item>
     
     <item>
@@ -231,6 +233,15 @@ LDAP driver In order to switch from the demo driver to LDAP you need to export t
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.github.io/extensions/ocis_hello/license/</guid>
+      <description>This project is licensed under the Apache 2.0 license. For the license of the used libraries you have to check the respective sources.</description>
+    </item>
+    
+    <item>
+      <title>License</title>
+      <link>https://owncloud.github.io/ocis/license/</link>
+      <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
+      
+      <guid>https://owncloud.github.io/ocis/license/</guid>
       <description>This project is licensed under the Apache 2.0 license. For the license of the used libraries you have to check the respective sources.</description>
     </item>
     
