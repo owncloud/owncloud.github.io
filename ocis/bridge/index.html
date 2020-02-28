@@ -730,7 +730,7 @@ $ composer install
 
 <p>No configuration necessary. You can test with <code>curl</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">$ curl https://cloud.example.com/index.php/apps/graphapi/v1.0/users -u admin | jq
-Enter host password for user &#39;jfd&#39;:
+Enter host password for user &#39;admin&#39;:
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100   694  100   694    0     0   4283      0 --:--:-- --:--:-- --:--:--  4283
@@ -757,7 +757,9 @@ Enter host password for user &#39;jfd&#39;:
 
 <h3 id="start-ocis-glauth"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#start-ocis-glauth" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#start-ocis-glauth"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Start ocis-glauth</h3>
 
-<p>We are going to use the above ownCloud 10 and graphapi app to turn it into the datastore for an LDAP proxy. Grab it while it is hot:</p>
+<p>We are going to use the above ownCloud 10 and graphapi app to turn it into the datastore for an LDAP proxy.</p>
+
+<h4 id="grab-it"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#grab-it" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#grab-it"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Grab it!</h4>
 
 <p>In an <code>ocis</code> folder</p>
 
@@ -767,13 +769,19 @@ $ git checkout start-glauth
 $ make
 </code></pre>
 
+<p>This should give you a <code>bin/ocis-glauth</code> binary. Try listing the help with <code>bin/ocis-glauth --help</code>.</p>
+
 <p>TODO merge glauth PR <a href="https://github.com/owncloud/ocis-glauth/pull/1">https://github.com/owncloud/ocis-glauth/pull/1</a></p>
+
+<h4 id="run-it"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#run-it" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-it"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run it!</h4>
 
 <p>You need to point <code>ocis-glauth</code> to your owncloud domain:</p>
 <div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">$ bin/ocis-glauth --log-level debug server --backend-server https://cloud.example.com --backend-basedn dc=example,dc=com</code></pre></div>
 <p><code>--log-level debug</code> is only used to generate more verbose output
 <code>--backend-server https://cloud.example.com</code> is the url to an ownCloud instance with an enabled graphapi app
 <code>--backend-basedn dc=example,dc=com</code> is used to construct the LDAP dn. The user <code>admin</code> will become <code>cn=admin,dc=example,dc=com</code>.</p>
+
+<h4 id="check-it-is-up-and-running"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#check-it-is-up-and-running" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#check-it-is-up-and-running"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Check it is up and running</h4>
 
 <p>You should now be able to list accounts from your ownCloud 10 oc_accounts table using:</p>
 <div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">$ ldapsearch -x -H ldap://localhost:9125 -b dc=example,dc=com -D &#34;cn=admin,dc=example,dc=com&#34; -W &#39;(objectclass=posixaccount)&#39;</code></pre></div>
@@ -783,9 +791,32 @@ $ make
 <p>Note: This is currently a readonly implementation and minimal to the usecase of authenticating users with konnectd.</p>
 </blockquote>
 
+<h3 id="start-ocis-phoenix"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#start-ocis-phoenix" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#start-ocis-phoenix"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Start ocis-phoenix</h3>
+
+<h4 id="get-it"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#get-it" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#get-it"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Get it!</h4>
+
+<p>In an <code>ocis</code> folder</p>
+
+<pre><code>$ git clone git@github.com:owncloud/ocis-phoenix.git
+$ cd ocis-phoenix
+$ make
+</code></pre>
+
+<p>This should give you a <code>bin/ocis-phoenix</code> binary. Try listing the help with <code>bin/ocis-phoenix --help</code>.</p>
+
+<h4 id="run-it-1"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#run-it-1" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-it-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run it!</h4>
+
+<p>Point <code>ocis-phoenix</code> to your owncloud domain and tell it where to find the openid connect issuing authority:</p>
+<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">$ bin/ocis-phoenix server --web-config-server https://cloud.example.com --oidc-authority https://192.168.1.100:9130 --oidc-metadata-url https://192.168.1.100:9130/.well-known/openid-configuration --oidc-client-id ocis</code></pre></div>
+<p><code>ocis-phoenix</code> needs to know
+- <code>--web-config-server https://cloud.example.com</code> is ownCloud url with webdav and ocs endpoints (oc10 or ocis)
+- <code>--oidc-authority https://192.168.1.100:9130</code> the openid connect issuing authority, in our case <code>oidc-konnectd</code>, running on port 9130
+- <code>--oidc-metadata-url https://192.168.1.100:9130/.well-known/openid-configuration</code> the openid connect configuration endpoint, typically the issuer host with <code>.well-known/openid-configuration</code>, but there are cases when another endpoint is used, eg. ping identity provides multiple endpoints to separate domains
+- <code>--oidc-client-id ocis</code> the client id we will register later with <code>ocis-konnectd</code> in the <code>identifier-registration.yaml</code></p>
+
 <h3 id="start-ocis-konnectd"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#start-ocis-konnectd" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#start-ocis-konnectd"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Start ocis-konnectd</h3>
 
-<h4 id="get-it"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#get-it" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#get-it"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Get it</h4>
+<h4 id="get-it-1"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#get-it-1" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#get-it-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Get it!</h4>
 
 <p>In an <code>ocis</code> folder</p>
 
@@ -794,10 +825,12 @@ $ cd ocis-konnectd
 $ make
 </code></pre>
 
-<h4 id="environment-variables"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#environment-variables" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#environment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Environment variables</h4>
+<p>This should give you a <code>bin/ocis-konnectd</code> binary. Try listing the help with <code>bin/ocis-konnectd --help</code>.</p>
+
+<h4 id="set-environment-variables"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#set-environment-variables" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#set-environment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Set environment variables</h4>
 
 <p>Konnectd needs environment variables to configure the LDAP server:</p>
-<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">export LDAP_URI=ldap://192.168.1.173:9125
+<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">export LDAP_URI=ldap://192.168.1.100:9125
 export LDAP_BINDDN=&#34;cn=admin,dc=example,dc=com&#34;
 export LDAP_BINDPW=&#34;its-a-secret&#34;
 export LDAP_BASEDN=&#34;dc=example,dc=com&#34;
@@ -817,26 +850,30 @@ export LDAP_FILTER=&#34;(objectClass=posixaccount)&#34;</code></pre></div>
 </span><span class="sd">
 </span><span class="sd"># OpenID Connect client registry.</span><span class="w">
 </span><span class="w"></span>clients<span class="p">:</span><span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>id<span class="p">:</span><span class="w"> </span>oc10-openidconnect-app<span class="w">
-</span><span class="w">    </span>name<span class="p">:</span><span class="w"> </span>openidconnect<span class="w"> </span>ownCloud<span class="w"> </span>app<span class="w">
+</span><span class="w">  </span>-<span class="w"> </span>id<span class="p">:</span><span class="w"> </span>ocis<span class="w">
+</span><span class="w">    </span>name<span class="p">:</span><span class="w"> </span>ownCloud<span class="w"> </span>Infinite<span class="w"> </span>Scale<span class="w">
 </span><span class="w">    </span>insecure<span class="p">:</span><span class="w"> </span>yes<span class="w">
 </span><span class="w">    </span>application_type<span class="p">:</span><span class="w"> </span>web<span class="w">
 </span><span class="w">    </span>redirect_uris<span class="p">:</span><span class="w">
-</span><span class="w">      </span>-<span class="w"> </span>https<span class="p">:</span>//cloud.example.com/apps/openidconnect/redirect</code></pre></div>
+</span><span class="w">      </span>-<span class="w"> </span>https<span class="p">:</span>//cloud.example.com/apps/openidconnect/redirect<span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>http<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9100</span>/oidc-callback.html<span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>http<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9100</span><span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>http<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9100</span>/</code></pre></div>
 <p>You will need the <code>insecure: yes</code> if you are using self signed certificates.</p>
 
-<p>Replace the host in the redirect URI with your ownCloud 10 host and port.</p>
+<p>Replace <code>cloud.example.com</code> in the redirect URI with your ownCloud 10 host and port.
+Replace <code>localhost:9100</code> in the redirect URIs with your the <code>ocis-phoenix</code> host and port.</p>
 
-<h4 id="run-it"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#run-it" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-it"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run it!</h4>
+<h4 id="run-it-2"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#run-it-2" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-it-2"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run it!</h4>
 
+<p>You can now bring up <code>ocis-connectd</code> with:</p>
+<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">$ bin/ocis-konnectd server --iss https://192.168.1.100:9130 --identifier-registration-conf assets/identifier-registration.yaml --signing-kid gen1-2020-02-27</code></pre></div>
 <p><code>ocis-konnectd</code> needs to know
-- the issuer, which must be a reachable https endpoint. For testing an ip works. HTTPS is NOT optional.
-- the identifier-registration.yaml you created
-- a signature key id, otherwise the jwks key has no name, which might cause problems with clients. a random key is ok, but it should change when the actual signing key changes.</p>
+- <code>--iss https://192.168.1.100:9130</code> the issuer, which must be a reachable https endpoint. For testing an ip works. HTTPS is NOT optional. This url is exposed in the <code>https://192.168.1.100:9130/.well-known/openid-configuration</code> endpoint and clients need to be able to connect to it
+- <code>--identifier-registration-conf assets/identifier-registration.yaml</code> the identifier-registration.yaml you created
+- <code>--signing-kid gen1-2020-02-27</code> a signature key id, otherwise the jwks key has no name, which might cause problems with clients. a random key is ok, but it should change when the actual signing key changes.</p>
 
-<p>On the cli it looks like this</p>
-<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">$ bin/ocis-konnectd server -iss https://192.168.1.100:9130 --identifier-registration-conf assets/identifier-registration.yaml --signing-kid gen1-2020-02-27</code></pre></div>
-<h4 id="check-it-is-up-and-running"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#check-it-is-up-and-running" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#check-it-is-up-and-running"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Check it is up and running</h4>
+<h4 id="check-it-is-up-and-running-1"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#check-it-is-up-and-running-1" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#check-it-is-up-and-running-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Check it is up and running</h4>
 
 <ol>
 <li><p>Try getting the configuration:</p>
@@ -872,13 +909,20 @@ $ composer install
 <div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">$CONFIG = [
   &#39;openid-connect&#39; =&gt; [
     &#39;provider-url&#39; =&gt; &#39;https://192.168.1.100:9130&#39;,
-    &#39;client-id&#39; =&gt; &#39;oc10-openidconnect-app&#39;,
+    &#39;client-id&#39; =&gt; &#39;ocis&#39;,
     &#39;loginButtonName&#39; =&gt; &#39;OpenId Connect @ Konnectd&#39;,
   ],
-  &#39;debug&#39; =&gt; true // if using self signed certificates
+  &#39;debug&#39; =&gt; true, // if using self signed certificates
+  // allow the different domains access to the ocs and wabdav endpoints:
+  &#39;cors.allowed-domains&#39; =&gt; [
+    &#39;https://cloud.example.com&#39;,
+    &#39;http://localhost:9100&#39;,
+  ],
 ];</code></pre></div>
 <p>In the above configuration replace
-- <code>provider-url</code> with the url to your <code>ocis-konnectd</code> issuer</p>
+- <code>provider-url</code> with the URL to your <code>ocis-konnectd</code> issuer
+- <code>https://cloud.example.com</code> with the URL to your ownCloud 10 instance
+- <code>http://localhost:9100</code> with the URL to your phoenix instance</p>
 
 <blockquote>
 <p>Note: By default the openidconnect app will use the email of the user to match the user from the oidc userinfo endpoint with the ownCloud account. So make sure your users have a unique primary email.</p>
@@ -887,7 +931,6 @@ $ composer install
 <h2 id="next-steps"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#next-steps" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#next-steps"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Next steps</h2>
 
 <p>Aside from the above todos these are the next stepo
-- get <code>ocis-phoenix</code> configured to authenticate against <code>ocis-konnectd</code> and use the webdav endpoint from owncloud 10.
 - tie it all together behind <code>ocis-proxy</code>
 - create an <code>ocis bridge</code> command that runs all the ocis services in one step with a properly preconfigured <code>ocis-konnectd</code> <code>identifier-registration.yaml</code> file for <code>phoenix</code> and the owncloud 10 <code>openidconnect</code> app, as well as a randomized <code>--signing-kid</code>.</p>
 
