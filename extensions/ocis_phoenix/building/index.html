@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Accounts">
+<meta name="description" content="Building">
 
-<title>Accounts | owncloud</title>
+<title>Building | owncloud</title>
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
 <link rel="stylesheet" href="/main.min.css">
@@ -14,7 +14,6 @@
 <link rel="stylesheet" href="/custom.css">
 
 
-<link rel="alternate" type="application/rss+xml" href="https://owncloud.github.io/extensions/ocis_accounts/index.xml" title="owncloud" />
 <!--
     Made with Geekdoc theme
     https://github.com/xoxys/hugo-geekdoc
@@ -404,7 +403,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis_accounts/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/ocis_accounts/" class="gdoc-nav__entry ">
                         Accounts
                     </a>
                 </span>
@@ -570,7 +569,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis_phoenix/building/" class="gdoc-nav__entry ">
+                    <a href="/extensions/ocis_phoenix/building/" class="gdoc-nav__entry is-active">
                         Building
                     </a>
                 </span>
@@ -751,7 +750,14 @@
         
     
     
-        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / Accounts
+        
+        
+        
+    
+    
+        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_phoenix/'>Phoenix</a> / Building
+    
+
     
 
     
@@ -764,15 +770,16 @@
     <span>
         
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis-accounts/edit/master/docs/_index.md">
+            <a href="https://github.com/owncloud/ocis-phoenix/edit/master/docs/building.md">
                 Edit this page
             </a>
         
     </span>
 </div>
 
+
     <article class="gdoc-markdown">
-        <h1>Accounts</h1>
+        <h1>Building</h1>
         
 
 
@@ -781,7 +788,21 @@
     
 
 
-<p>This service provides an inter-operable accounts service that operates on the filesystem by default.</p>
+
+
+<p>As this project is built with Go, so you need to install that first. The installation of Go is out of the scope of this document, please follow the official documentation for <a href="https://golang.org/doc/install">Go</a>, to build this project you have to install Go &gt;= v1.12. After the installation of the required tools you need to get the sources:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">git clone https://github.com/owncloud/ocis-phoenix.git
+cd ocis-phoenix</code></pre></div>
+
+<p>All required tool besides Go itself and make are bundled or getting automatically installed within the <code>GOPATH</code>. All commands to build this project are part of our <code>Makefile</code>.</p>
+
+<h2 id="backend"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_phoenix/building/#backend" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#backend"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Backend</h2>
+
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">make generate
+make build</code></pre></div>
+
+<p>The above commands will download a <a href="https://github.com/owncloud/phoenix">Phoenix</a> release and embed it into the binary. Finally you should have the binary within the <code>bin/</code> folder now, give it a try with <code>./bin/ocis-phoenix -h</code> to see all available options.</p>
 
 
     </article>
