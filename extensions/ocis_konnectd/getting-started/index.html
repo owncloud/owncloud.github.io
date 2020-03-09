@@ -884,10 +884,58 @@
 <dd>Enable zpages debugging, defaults to <code>false</code></dd>
 <dt>KONNECTD_HTTP_ADDR</dt>
 <dd>Address to bind http server, defaults to <code>0.0.0.0:9130</code></dd>
-<dt>KONNECTD_HTTP_NAMESPACE</dt>
-<dd>The http namespace</dd>
 <dt>KONNECTD_HTTP_ROOT</dt>
 <dd>Root path of http server, defaults to <code>/</code></dd>
+<dt>KONNECTD_HTTP_NAMESPACE</dt>
+<dd>Set the base namespace for service discovery, defaults to <code>com.owncloud.web</code></dd>
+<dt>KONNECTD_IDENTITY_MANAGER</dt>
+<dd>Identity manager (one of ldap,kc,cookie,dummy), defaults to <code>ldap</code></dd>
+<dt>KONNECTD_TRANSPORT_TLS_CERT</dt>
+<dd>Certificate file for transport encryption, uses a temporary dev-cert if empty</dd>
+<dt>KONNECTD_TRANSPORT_TLS_KEY</dt>
+<dd>Secret file for transport encryption, uses a temporary dev-cert if empty</dd>
+<dt>KONNECTD_ISS</dt>
+<dd>OIDC issuer URL, defaults to <code>https://localhost:9130</code></dd>
+<dt>KONNECTD_SIGNING_PRIVATE_KEY</dt>
+<dd>Full path to PEM encoded private key file (must match the &ndash;signing-method algorithm)</dd>
+<dt>KONNECTD_SIGNING_KID</dt>
+<dd>Value of kid field to use in created tokens (uniquely identifying the signing-private-key), empty default value</dd>
+<dt>KONNECTD_VALIDATION_KEYS_PATH</dt>
+<dd>Full path to a folder containg PEM encoded private or public key files used for token validaton (file name without extension is used as kid), empty default value</dd>
+<dt>KONNECTD_ENCRYPTION_SECRET</dt>
+<dd>Full path to a file containing a %d bytes secret key, empty default value</dd>
+<dt>KONNECTD_SIGNING_METHOD</dt>
+<dd>JWT default signing method, defaults to <code>PS256</code></dd>
+<dt>KONNECTD_URI_BASE_PATH</dt>
+<dd>Custom base path for URI endpoints, empty default value</dd>
+<dt>KONNECTD_SIGN_IN_URI</dt>
+<dd>Custom redirection URI to sign-in form, empty default value</dd>
+<dt>KONNECTD_SIGN_OUT_URI</dt>
+<dd>Custom redirection URI to signed-out goodbye page, empty default value</dd>
+<dt>KONNECTD_ENDPOINT_URI</dt>
+<dd>Custom authorization endpoint URI, empty default value</dd>
+<dt>KONNECTD_ENDSESSION_ENDPOINT_URI</dt>
+<dd>Custom endsession endpoint URI, empty default value</dd>
+<dt>KONNECTD_ASSET_PATH</dt>
+<dd>Path to custom assets, empty default value</dd>
+<dt>KONNECTD_IDENTIFIER_CLIENT_PATH</dt>
+<dd>Path to the identifier web client base folder, defaults to <code>/var/tmp/konnectd</code></dd>
+<dt>KONNECTD_IDENTIFIER_REGISTRATION_CONF</dt>
+<dd>Path to a identifier-registration.yaml configuration file, defaults to <code>./config/identifier-registration.yaml</code></dd>
+<dt>KONNECTD_IDENTIFIER_SCOPES_CONF</dt>
+<dd>Path to a scopes.yaml configuration file, empty default value</dd>
+<dt>KONNECTD_INSECURE</dt>
+<dd>Disable TLS certificate and hostname validation</dd>
+<dt>KONNECTD_TLS</dt>
+<dd>Use TLS (disable only if konnectd is behind a TLS-terminating reverse-proxy), defaults to <code>true</code></dd>
+<dt>KONNECTD_TRUSTED_PROXY</dt>
+<dd>List of trusted proxy IP or IP network(s) (usage: KONNECTD_TRUSTED_PROXY=x.x.x.x y.y.y.y)</dd>
+<dt>KONNECTD_ALLOW_SCOPE</dt>
+<dd>Allow OAuth 2 scope(s) (usage: KONNECTD_ALLOW_SCOPE=A B C)</dd>
+<dt>KONNECTD_ALLOW_CLIENT_GUESTS</dt>
+<dd>Allow sign in of client controlled guest users</dd>
+<dt>KONNECTD_ALLOW_DYNAMIC_CLIENT_REGISTRATION</dt>
+<dd>Allow dynamic OAuth2 client registration</dd>
 </dl>
 
 <h4 id="health"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#health" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#health"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Health</h4>
@@ -937,10 +985,58 @@
 <dd>Enable zpages debugging, defaults to <code>false</code></dd>
 <dt>&ndash;http-addr</dt>
 <dd>Address to bind http server, defaults to <code>0.0.0.0:9130</code></dd>
-<dt>&ndash;http-namespace</dt>
-<dd>Namespace for internal services communication, defaults to <code>com.owncloud.web</code></dd>
 <dt>&ndash;http-root</dt>
 <dd>Root path of http server, defaults to <code>/</code></dd>
+<dt>&ndash;http-namespace</dt>
+<dd>Set the base namespace for service discovery, defaults to <code>com.owncloud.web</code></dd>
+<dt>&ndash;identity-manager</dt>
+<dd>Identity manager (one of ldap,kc,cookie,dummy), defaults to <code>ldap</code></dd>
+<dt>&ndash;transport-tls-cert</dt>
+<dd>Certificate file for transport encryption, uses a temporary dev-cert if empty</dd>
+<dt>&ndash;transport-tls-key</dt>
+<dd>Key file for transport encryption, uses a temporary dev-cert if empty</dd>
+<dt>&ndash;iss</dt>
+<dd>OIDC issuer URL, defaults to <code>https://localhost:9130</code></dd>
+<dt>&ndash;signing-private-key</dt>
+<dd>Full path to PEM encoded private key file (must match the &ndash;signing-method algorithm)</dd>
+<dt>&ndash;signing-kid</dt>
+<dd>Value of kid field to use in created tokens (uniquely identifying the signing-private-key), empty default value</dd>
+<dt>&ndash;validation-keys-path</dt>
+<dd>Full path to a folder containg PEM encoded private or public key files used for token validaton (file name without extension is used as kid), empty default value</dd>
+<dt>&ndash;encryption-secret</dt>
+<dd>Full path to a file containing a 32 bytes secret key, empty default value</dd>
+<dt>&ndash;signing-method</dt>
+<dd>JWT default signing method, defaults to <code>PS256</code></dd>
+<dt>&ndash;uri-base-path</dt>
+<dd>Custom base path for URI endpoints, empty default value</dd>
+<dt>&ndash;sign-in-uri</dt>
+<dd>Custom redirection URI to sign-in form, empty default value</dd>
+<dt>&ndash;signed-out-uri</dt>
+<dd>Custom redirection URI to signed-out goodbye page, empty default value</dd>
+<dt>&ndash;authorization-endpoint-uri</dt>
+<dd>Custom authorization endpoint URI, empty default value</dd>
+<dt>&ndash;endsession-endpoint-uri</dt>
+<dd>Custom endsession endpoint URI, empty default value</dd>
+<dt>&ndash;asset-path</dt>
+<dd>Path to custom assets, empty default value</dd>
+<dt>&ndash;identifier-client-path</dt>
+<dd>Path to the identifier web client base folder, defaults to <code>/var/tmp/konnectd</code></dd>
+<dt>&ndash;identifier-registration-conf</dt>
+<dd>Path to a identifier-registration.yaml configuration file, defaults to <code>./config/identifier-registration.yaml</code></dd>
+<dt>&ndash;identifier-scopes-conf</dt>
+<dd>Path to a scopes.yaml configuration file, empty default value</dd>
+<dt>&ndash;insecure</dt>
+<dd>Disable TLS certificate and hostname validation</dd>
+<dt>&ndash;tls</dt>
+<dd>Use TLS (disable only if konnectd is behind a TLS-terminating reverse-proxy), defaults to <code>true</code></dd>
+<dt>&ndash;trusted-proxy</dt>
+<dd>List of trusted proxy IP or IP network (usage: &ndash;trusted-proxy x.x.x.x &ndash;trusted-proxy y.y.y.y)</dd>
+<dt>&ndash;allow-scope</dt>
+<dd>Allow OAuth 2 scope (usage: &ndash;allow-scope a &ndash;allow-scope b &hellip;)</dd>
+<dt>&ndash;allow-client-guests</dt>
+<dd>Allow sign in of client controlled guest users</dd>
+<dt>&ndash;allow-dynamic-client-registration</dt>
+<dd>Allow dynamic OAuth2 client registration</dd>
 </dl>
 
 <h4 id="health-1"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#health-1" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#health-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Health</h4>
