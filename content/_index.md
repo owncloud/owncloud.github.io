@@ -2,4 +2,6 @@
 title: Documentation
 ---
 
-Developer docs for ownCloud Infinite Scale.
+Developer Docs for ownCloud Infinite Scale
+
+{{< figure class="page-image" src="/media/is.png" width="50%" height="auto">}}
