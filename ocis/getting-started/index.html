@@ -166,6 +166,23 @@
             <li>
             
                 <span class="flex">
+                    <a href="/ocis/configuration/" class="gdoc-nav__entry ">
+                        Configuration
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+            
+            
+            <li>
+            
+                <span class="flex">
                     <a href="/ocis/bridge/" class="gdoc-nav__entry ">
                         Bridge
                     </a>
@@ -849,34 +866,18 @@
         <nav id="TableOfContents"><ul>
 <li><a href="#installation">Installation</a>
 <ul>
-<li><a href="#docker">Docker</a></li>
-<li><a href="#binaries">Binaries</a></li>
+<li><a href="#docker">Docker</a>
+<ul>
+<li><a href="#dependencies">Dependencies</a></li>
+<li><a href="#docker-compose">Docker compose</a></li>
 </ul></li>
-<li><a href="#quickstart">Quickstart</a></li>
+<li><a href="#binaries">Binaries</a>
+<ul>
+<li><a href="#dependencies-1">Dependencies</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#quickstart-for-developers">Quickstart for Developers</a></li>
 <li><a href="#runtime">Runtime</a></li>
-<li><a href="#configuration">Configuration</a>
-<ul>
-<li><a href="#configuration-using-config-files">Configuration using config files</a></li>
-<li><a href="#envrionment-variables">Envrionment variables</a>
-<ul>
-<li><a href="#global">Global</a></li>
-<li><a href="#server">Server</a></li>
-<li><a href="#health">Health</a></li>
-</ul></li>
-<li><a href="#commandline-flags">Commandline flags</a>
-<ul>
-<li><a href="#global-1">Global</a></li>
-<li><a href="#server-1">Server</a></li>
-<li><a href="#health-1">Health</a></li>
-</ul></li>
-<li><a href="#configuration-file">Configuration file</a></li>
-</ul></li>
-<li><a href="#usage">Usage</a>
-<ul>
-<li><a href="#server-2">Server</a></li>
-<li><a href="#health-2">Health</a></li>
-</ul></li>
-<li><a href="#metrics">Metrics</a></li>
 </ul></nav>
         <hr>
     </div>
@@ -889,20 +890,43 @@
 
 <div class="gdoc-page__anchorwrap"><h3 id="docker"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#docker" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#docker"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Docker</h3></div>
 
-<p>TBD</p>
+<p>Docker images for ocis are hosted on <a href="https://hub.docker.com/r/owncloud/ocis">https://hub.docker.com/r/owncloud/ocis</a>.</p>
 
+<p>The <code>latest</code> tag always reflects the current master branch.</p>
+<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">docker pull owncloud/ocis</code></pre></div>
+<div class="gdoc-page__anchorwrap"><h4 id="dependencies"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#dependencies" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#dependencies"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Dependencies</h4></div>
+
+<ul>
+<li>Running ocis currently needs a working Redis caching server</li>
+<li>The default storage location in the container is <code>/var/tmp/reva/data</code>. You may want to create a volume to persist the files in the primary storage</li>
+</ul>
+
+<div class="gdoc-page__anchorwrap"><h4 id="docker-compose"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#docker-compose" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#docker-compose"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Docker compose</h4></div>
+
+<p>You can use our docker-compose <a href="https://github.com/owncloud-docker/compose-playground/tree/master/ocis">playground example</a> to run ocis with dependencies with a single command in a docker network.</p>
+<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">git clone git@github.com:owncloud-docker/compose-playground.git
+cd compose-playground/ocis
+docker-compose -f ocis.yml -f ../cache/redis-ocis.yml up</code></pre></div>
 <div class="gdoc-page__anchorwrap"><h3 id="binaries"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#binaries" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#binaries"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Binaries</h3></div>
 
-<p>TBD</p>
+<p>The pre-built binaries for different platforms are downloadable at <a href="https://download.owncloud.com/ocis/ocis/">https://download.owncloud.com/ocis/ocis/</a> . Specific releases are organized in separate folders. They are in sync which every release tag on GitHub. The binaries from the current master branch can be found in <a href="https://download.owncloud.com/ocis/ocis/testing/">https://download.owncloud.com/ocis/ocis/testing/</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">curl https://download.owncloud.com/ocis/ocis/1.0.0-beta1/ocis-1.0.0-beta1-darwin-amd64 --output ocis
+chmod +x ocis
+./ocis server</code></pre></div>
+<div class="gdoc-page__anchorwrap"><h4 id="dependencies-1"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#dependencies-1" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#dependencies-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Dependencies</h4></div>
 
-<div class="gdoc-page__anchorwrap"><h2 id="quickstart"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#quickstart" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#quickstart"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Quickstart</h2></div>
+<ul>
+<li>Running ocis currently needs a working Redis caching server</li>
+<li>The default promary storage location is <code>/var/tmp/reva/data</code>. You can change that value by configuration.</li>
+</ul>
+
+<div class="gdoc-page__anchorwrap"><h2 id="quickstart-for-developers"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#quickstart-for-developers" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#quickstart-for-developers"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Quickstart for Developers</h2></div>
 
 <p>Following <a href="https://github.com/owncloud/ocis#development">https://github.com/owncloud/ocis#development</a></p>
 <div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">git clone https://github.com/owncloud/ocis.git
 cd ocis
-make build
-mkdir /var/tmp/reva/root/{home,oc}</code></pre></div>
-<p>Open <a href="http://localhost:9100">http://localhost:9100</a> and login using one of the demo accounts:</p>
+make generate build</code></pre></div>
+<p>Open <a href="https://localhost:9200">https://localhost:9200</a> and login using one of the demo accounts:</p>
 <div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">einstein:relativity
 marie:radioactivty
 richard:superfluidity</code></pre></div>
@@ -925,195 +949,6 @@ go.micro.http.broker</code></pre></div>
 <div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">com.owncloud.web.hello
 com.owncloud.api.hello</code></pre></div>
 <p>To the list of available services.</p>
-
-<div class="gdoc-page__anchorwrap"><h2 id="configuration"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#configuration" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#configuration"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Configuration</h2></div>
-
-<p>oCIS Single Binary is not responsible for configuring extensions. Instead, each extension could either be configured by environment variables, cli flags or config files.</p>
-
-<div class="gdoc-page__anchorwrap"><h3 id="configuration-using-config-files"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#configuration-using-config-files" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#configuration-using-config-files"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Configuration using config files</h3></div>
-
-<p>Out of the box extensions will attempt to read configuration details from:</p>
-<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">/etc/ocis
-$HOME/.ocis
-./config</code></pre></div>
-<p>For this configuration to be picked up, have a look at your extension <code>root</code> command and look for which default config name it has assigned. <em>i.e: ocis-proxy reads <code>ocis.json | yaml | toml ...</code></em>.</p>
-
-<blockquote>
-<p>Important note: As per the time of this writing, Viper does not play nice with urfave/cli flags, this results in values defined on config files taking precedence over cli flags. This behavior is different with environment variables, these will ALWAYS override any value, as they are the most explicit.</p>
-</blockquote>
-
-<div class="gdoc-page__anchorwrap"><h3 id="envrionment-variables"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#envrionment-variables" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#envrionment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Envrionment variables</h3></div>
-
-<p>If you prefer to configure the service with environment variables you can see the available variables below.</p>
-
-<div class="gdoc-page__anchorwrap"><h4 id="global"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#global" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#global"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Global</h4></div>
-
-<dl>
-<dt>OCIS_LOG_LEVEL</dt>
-<dd>Set logging level, defaults to <code>info</code></dd>
-<dt>OCIS_LOG_COLOR</dt>
-<dd>Enable colored logging, defaults to <code>true</code></dd>
-<dt>OCIS_LOG_PRETTY</dt>
-<dd>Enable pretty logging, defaults to <code>true</code></dd>
-</dl>
-
-<div class="gdoc-page__anchorwrap"><h4 id="server"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Server</h4></div>
-
-<dl>
-<dt>OCIS_DEBUG_ADDR</dt>
-<dd>Address to bind debug server, defaults to <code>0.0.0.0:9010</code></dd>
-<dt>OCIS_DEBUG_TOKEN</dt>
-<dd>Token to grant metrics access, empty default value</dd>
-<dt>OCIS_DEBUG_PPROF</dt>
-<dd>Enable pprof debugging, defaults to <code>false</code></dd>
-<dt>OCIS_HTTP_ADDR</dt>
-<dd>Address to bind http server, defaults to <code>0.0.0.0:9000</code></dd>
-<dt>OCIS_HTTP_ROOT</dt>
-<dd>Root path for http endpoint, defaults to <code>/</code></dd>
-<dt>OCIS_GRPC_ADDR</dt>
-<dd>Address to bind grpc server, defaults to <code>0.0.0.0:9001</code></dd>
-<dt>OCIS_SERVICES_ENABLED</dt>
-<dd>List of enabled services, defaults to <code>phoenix,konnectd,graph,ocs,webdav,hello</code></dd>
-</dl>
-
-<div class="gdoc-page__anchorwrap"><h4 id="health"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#health" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#health"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Health</h4></div>
-
-<dl>
-<dt>OCIS_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint, defaults to <code>0.0.0.0:9010</code></dd>
-</dl>
-
-<div class="gdoc-page__anchorwrap"><h3 id="commandline-flags"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#commandline-flags" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#commandline-flags"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Commandline flags</h3></div>
-
-<p>If you prefer to configure the service with commandline flags you can see the available variables below.</p>
-
-<div class="gdoc-page__anchorwrap"><h4 id="global-1"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#global-1" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#global-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Global</h4></div>
-
-<dl>
-<dt>&ndash;log-level</dt>
-<dd>Set logging level, defaults to <code>info</code></dd>
-<dt>&ndash;log-color</dt>
-<dd>Enable colored logging, defaults to <code>true</code></dd>
-<dt>&ndash;log-pretty</dt>
-<dd>Enable pretty logging, defaults to <code>true</code></dd>
-</dl>
-
-<div class="gdoc-page__anchorwrap"><h4 id="server-1"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#server-1" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#server-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Server</h4></div>
-
-<dl>
-<dt>&ndash;debug-addr</dt>
-<dd>Address to bind debug server, defaults to <code>0.0.0.0:9010</code></dd>
-<dt>&ndash;debug-token</dt>
-<dd>Token to grant metrics access, empty default value</dd>
-<dt>&ndash;debug-pprof</dt>
-<dd>Enable pprof debugging, defaults to <code>false</code></dd>
-<dt>&ndash;http-addr</dt>
-<dd>Address to bind http server, defaults to <code>0.0.0.0:9000</code></dd>
-<dt>&ndash;http-root</dt>
-<dd>Root path for http endpoint, defaults to <code>/</code></dd>
-<dt>&ndash;grpc-addr</dt>
-<dd>Address to bind grpc server, defaults to <code>0.0.0.0:9001</code></dd>
-<dt>&ndash;services-enabled</dt>
-<dd>List of enabled services, defaults to <code>hello,phoenix,graph,graph-explorer,ocs,webdav,reva-frontend,reva-gateway,reva-users,reva-auth-basic,reva-auth-bearer,reva-sharing,reva-storage-root,reva-storage-home,reva-storage-home-data,reva-storage-oc,reva-storage-oc-data,devldap</code></dd>
-</dl>
-
-<div class="gdoc-page__anchorwrap"><h4 id="health-1"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#health-1" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#health-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Health</h4></div>
-
-<dl>
-<dt>&ndash;debug-addr</dt>
-<dd>Address to debug endpoint, defaults to <code>0.0.0.0:9010</code></dd>
-</dl>
-
-<div class="gdoc-page__anchorwrap"><h3 id="configuration-file"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#configuration-file" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#configuration-file"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Configuration file</h3></div>
-
-<p>So far we support the file formats <code>JSON</code> and <code>YAML</code>, if you want to get a full example configuration just take a look at <a href="https://github.com/owncloud/ocis/tree/master/config">our repository</a>, there you can always see the latest configuration format. These example configurations include all available options and the default values. The configuration file will be automatically loaded if it&rsquo;s placed at <code>/etc/ocis/ocis.yml</code>, <code>${HOME}/.ocis/ocis.yml</code> or <code>$(pwd)/config/ocis.yml</code>.</p>
-
-<div class="gdoc-page__anchorwrap"><h2 id="usage"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#usage" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#usage"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Usage</h2></div>
-
-<p>The program provides a few sub-commands on execution. The available configuration methods have already been mentioned above. Generally you can always see a formated help output if you execute the binary via <code>ocis --help</code>.</p>
-
-<div class="gdoc-page__anchorwrap"><h3 id="server-2"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#server-2" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#server-2"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Server</h3></div>
-
-<p>The server command is used to start the http and debug server on two addresses within a single process. The http server is serving the general webservice while the debug server is used for health check, readiness check and to server the metrics mentioned below. For further help please execute:</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">ocis server --help</code></pre></div>
-
-<div class="gdoc-page__anchorwrap"><h3 id="health-2"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#health-2" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#health-2"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Health</h3></div>
-
-<p>The health command is used to execute a health check, if the exit code equals zero the service should be up and running, if the exist code is greater than zero the service is not in a healthy state. Generally this command is used within our Docker containers, it could also be used within Kubernetes.</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">ocis health --help</code></pre></div>
-
-<div class="gdoc-page__anchorwrap"><h2 id="metrics"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#metrics" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#metrics"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Metrics</h2></div>
-
-<p>This service provides some <a href="https://prometheus.io/">Prometheus</a> metrics through the debug endpoint, you can optionally secure the metrics endpoint by some random token, which got to be configured through one of the flag <code>--debug-token</code> or the environment variable <code>OCIS_DEBUG_TOKEN</code> mentioned above. By default the metrics endpoint is bound to <code>http://0.0.0.0:8001/metrics</code>.</p>
-
-<dl>
-<dt>go_gc_duration_seconds</dt>
-<dd>A summary of the GC invocation durations</dd>
-<dt>go_gc_duration_seconds_sum</dt>
-<dd>A summary of the GC invocation durations</dd>
-<dt>go_gc_duration_seconds_count</dt>
-<dd>A summary of the GC invocation durations</dd>
-<dt>go_goroutines</dt>
-<dd>Number of goroutines that currently exist</dd>
-<dt>go_info</dt>
-<dd>Information about the Go environment</dd>
-<dt>go_memstats_alloc_bytes</dt>
-<dd>Number of bytes allocated and still in use</dd>
-<dt>go_memstats_alloc_bytes_total</dt>
-<dd>Total number of bytes allocated, even if freed</dd>
-<dt>go_memstats_buck_hash_sys_bytes</dt>
-<dd>Number of bytes used by the profiling bucket hash table</dd>
-<dt>go_memstats_frees_total</dt>
-<dd>Total number of frees</dd>
-<dt>go_memstats_gc_cpu_fraction</dt>
-<dd>The fraction of this program&rsquo;s available CPU time used by the GC since the program started</dd>
-<dt>go_memstats_gc_sys_bytes</dt>
-<dd>Number of bytes used for garbage collection system metadata</dd>
-<dt>go_memstats_heap_alloc_bytes</dt>
-<dd>Number of heap bytes allocated and still in use</dd>
-<dt>go_memstats_heap_idle_bytes</dt>
-<dd>Number of heap bytes waiting to be used</dd>
-<dt>go_memstats_heap_inuse_bytes</dt>
-<dd>Number of heap bytes that are in use</dd>
-<dt>go_memstats_heap_objects</dt>
-<dd>Number of allocated objects</dd>
-<dt>go_memstats_heap_released_bytes</dt>
-<dd>Number of heap bytes released to OS</dd>
-<dt>go_memstats_heap_sys_bytes</dt>
-<dd>Number of heap bytes obtained from system</dd>
-<dt>go_memstats_last_gc_time_seconds</dt>
-<dd>Number of seconds since 1970 of last garbage collection</dd>
-<dt>go_memstats_lookups_total</dt>
-<dd>Total number of pointer lookups</dd>
-<dt>go_memstats_mallocs_total</dt>
-<dd>Total number of mallocs</dd>
-<dt>go_memstats_mcache_inuse_bytes</dt>
-<dd>Number of bytes in use by mcache structures</dd>
-<dt>go_memstats_mcache_sys_bytes</dt>
-<dd>Number of bytes used for mcache structures obtained from system</dd>
-<dt>go_memstats_mspan_inuse_bytes</dt>
-<dd>Number of bytes in use by mspan structures</dd>
-<dt>go_memstats_mspan_sys_bytes</dt>
-<dd>Number of bytes used for mspan structures obtained from system</dd>
-<dt>go_memstats_next_gc_bytes</dt>
-<dd>Number of heap bytes when next garbage collection will take place</dd>
-<dt>go_memstats_other_sys_bytes</dt>
-<dd>Number of bytes used for other system allocations</dd>
-<dt>go_memstats_stack_inuse_bytes</dt>
-<dd>Number of bytes in use by the stack allocator</dd>
-<dt>go_memstats_stack_sys_bytes</dt>
-<dd>Number of bytes obtained from system for stack allocator</dd>
-<dt>go_memstats_sys_bytes</dt>
-<dd>Number of bytes obtained from system</dd>
-<dt>go_threads</dt>
-<dd>Number of OS threads created</dd>
-<dt>promhttp_metric_handler_requests_in_flight</dt>
-<dd>Current number of scrapes being served</dd>
-<dt>promhttp_metric_handler_requests_total</dt>
-<dd>Total number of scrapes by HTTP status code</dd>
-</dl>
 
 
     </article>
