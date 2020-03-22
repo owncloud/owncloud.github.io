@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Building">
+<meta name="description" content="Testing">
 
-<title>Building | ownCloud</title>
+<title>Testing | ownCloud</title>
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
 <link rel="stylesheet" href="/main.min.css">
@@ -719,7 +719,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis_reva/building/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/ocis_reva/building/" class="gdoc-nav__entry ">
                         Building
                     </a>
                 </span>
@@ -753,7 +753,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis_reva/testing/" class="gdoc-nav__entry ">
+                    <a href="/extensions/ocis_reva/testing/" class="gdoc-nav__entry is-active">
                         Testing
                     </a>
                 </span>
@@ -848,7 +848,7 @@
         
     
     
-        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_reva/'>Reva</a> / Building
+        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_reva/'>Reva</a> / Testing
     
 
     
@@ -863,7 +863,7 @@
     <span>
         
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis-reva/edit/master/docs/building.md">
+            <a href="https://github.com/owncloud/ocis-reva/edit/master/docs/testing.md">
                 Edit this page
             </a>
         
@@ -872,7 +872,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>Building</h1>
+        <h1>Testing</h1>
         
 
 
@@ -883,18 +883,81 @@
 
 
 
-<p>As this project is built with Go, so you need to install that first. The installation of Go is out of the scope of this document, please follow the official documentation for <a href="https://golang.org/doc/install">Go</a>.To build this project you have to install Go &gt;= v1.13. After the installation of the required tools you need to get the sources:</p>
+<div class="gdoc-page__anchorwrap"><h2 id="acceptance-tests"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/testing/#acceptance-tests" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#acceptance-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Acceptance tests</h2></div>
 
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">git clone https://github.com/owncloud/ocis-reva.git
-cd ocis-reva</code></pre></div>
+<p>We are using the ownCloud 10 acceptance testsuite against ocis. To set this up you need the owncloud 10 core repo, an ldap server that the acceptance tests can use to manage users and the ocis-reva code.</p>
 
-<p>All required tool besides Go itself and make are bundled or getting automatically installed within the <code>GOPATH</code>. All commands to build this project are part of our <code>Makefile</code>.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="getting-the-tests"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/testing/#getting-the-tests" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#getting-the-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Getting the tests</h3></div>
 
-<div class="gdoc-page__anchorwrap"><h3 id="backend"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/building/#backend" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#backend"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Backend</h3></div>
+<p>All you need to do to get the acceptance tests is check out the core repo:</p>
 
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">make build</code></pre></div>
+<pre><code>git clone https://github.com/owncloud/core.git
+</code></pre>
 
-<p>The above command should produce the binary within the <code>bin/</code> folder now, give it a try with <code>./bin/ocis-reva -h</code> to see all available options.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="run-an-ldap-server-in-a-docker-container"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/testing/#run-an-ldap-server-in-a-docker-container" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-an-ldap-server-in-a-docker-container"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run an ldap server in a docker container</h3></div>
+
+<p>The ownCloud 10 acceptance tests will need write permission. You can start a suitable ldap server in a docker container with:</p>
+
+<pre><code>docker run --hostname ldap.my-company.com \
+    -e LDAP_TLS_VERIFY_CLIENT=never \
+    -e LDAP_DOMAIN=owncloud.com \
+    -e LDAP_ORGANISATION=ownCloud \
+    -e LDAP_ADMIN_PASSWORD=admin \
+    --name docker-slapd \
+    -p 127.0.0.1:389:389 \
+    -p 636:636 -d osixia/openldap
+</code></pre>
+
+<div class="gdoc-page__anchorwrap"><h3 id="run-ocis-reva-with-that-ldap-server"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/testing/#run-ocis-reva-with-that-ldap-server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-ocis-reva-with-that-ldap-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run ocis-reva with that ldap server</h3></div>
+
+<p><code>ocis-reva</code> provides multiple subcommands. To configure them all via env vars you can export these environment variables.</p>
+
+<pre><code>export REVA_USERS_DRIVER=ldap
+export REVA_LDAP_HOSTNAME=localhost
+export REVA_LDAP_PORT=636
+export REVA_LDAP_BASE_DN='dc=owncloud,dc=com'
+export REVA_LDAP_USERFILTER='(&amp;(objectclass=posixAccount)(cn=%s))'
+export REVA_LDAP_GROUPFILTER='(&amp;(objectclass=posixGroup)(cn=%s))'
+export REVA_LDAP_BIND_DN='cn=admin,dc=owncloud,dc=com'
+export REVA_LDAP_BIND_PASSWORD=admin
+export REVA_LDAP_SCHEMA_UID=uid
+export REVA_LDAP_SCHEMA_MAIL=mail
+export REVA_LDAP_SCHEMA_DISPLAYNAME=displayName
+export REVA_LDAP_SCHEMA_CN=cn
+</code></pre>
+
+<p>Then you need to start the ocis-reva services</p>
+
+<pre><code>bin/ocis-reva frontend &amp; \
+bin/ocis-reva gateway &amp; \
+bin/ocis-reva auth-basic &amp; \
+bin/ocis-reva auth-bearer &amp; \
+bin/ocis-reva sharing &amp; \
+bin/ocis-reva storage-home &amp; \
+bin/ocis-reva storage-home-data &amp; \
+bin/ocis-reva storage-oc &amp; \
+bin/ocis-reva storage-oc-data &amp; \
+bin/ocis-reva users &amp;
+</code></pre>
+
+<div class="gdoc-page__anchorwrap"><h3 id="run-the-acceptance-tests"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/testing/#run-the-acceptance-tests" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-the-acceptance-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run the acceptance tests</h3></div>
+
+<p>In the ownCloud 10 core repo run</p>
+
+<pre><code>make test-acceptance-api \
+TEST_SERVER_URL=http://localhost:9140 \
+TEST_EXTERNAL_USER_BACKENDS=true \
+TEST_OCIS=true \
+OCIS_REVA_DATA_ROOT=/var/tmp/reva/ \
+BEHAT_FILTER_TAGS='~@skipOnOcis&amp;&amp;~@skipOnLDAP&amp;&amp;@TestAlsoOnExternalUserBackend&amp;&amp;~@local_storage'
+</code></pre>
+
+<div class="gdoc-page__anchorwrap"><h3 id="notes"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/testing/#notes" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#notes"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Notes</h3></div>
+
+<ul>
+<li>rerunning the tests requires wiping the users in the ldap server, otherwise the tests will fail when trying to populate the users</li>
+<li>users are created with usernames like <code>user0</code>, the default password is <code>123456</code></li>
+</ul>
 
 
     </article>
