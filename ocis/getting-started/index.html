@@ -201,7 +201,7 @@
             
                 <span class="flex">
                     <a href="/ocis/extensions/" class="gdoc-nav__entry ">
-                        Extensions
+                        Extension
                     </a>
                 </span>
             
@@ -999,8 +999,14 @@
 <li><a href="#dependencies-1">Dependencies</a></li>
 </ul></li>
 </ul></li>
+<li><a href="#usage">Usage</a>
+<ul>
+<li><a href="#server">Server</a></li>
+<li><a href="#health">Health</a></li>
+</ul></li>
 <li><a href="#quickstart-for-developers">Quickstart for Developers</a></li>
 <li><a href="#runtime">Runtime</a></li>
+<li><a href="#metrics">Metrics</a></li>
 </ul></nav>
         <hr>
     </div>
@@ -1043,6 +1049,22 @@ chmod +x ocis
 <li>The default promary storage location is <code>/var/tmp/reva/data</code>. You can change that value by configuration.</li>
 </ul>
 
+<div class="gdoc-page__anchorwrap"><h2 id="usage"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#usage" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#usage"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Usage</h2></div>
+
+<p>The program provides a few sub-commands on execution. The available configuration methods have already been mentioned above. Generally you can always see a formated help output if you execute the binary via <code>ocis --help</code>.</p>
+
+<div class="gdoc-page__anchorwrap"><h3 id="server"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Server</h3></div>
+
+<p>The server command is used to start the http and debug server on two addresses within a single process. The http server is serving the general webservice while the debug server is used for health check, readiness check and to server the metrics mentioned below. For further help please execute:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">ocis server --help</code></pre></div>
+
+<div class="gdoc-page__anchorwrap"><h3 id="health"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#health" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#health"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Health</h3></div>
+
+<p>The health command is used to execute a health check, if the exit code equals zero the service should be up and running, if the exist code is greater than zero the service is not in a healthy state. Generally this command is used within our Docker containers, it could also be used within Kubernetes.</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">ocis health --help</code></pre></div>
+
 <div class="gdoc-page__anchorwrap"><h2 id="quickstart-for-developers"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#quickstart-for-developers" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#quickstart-for-developers"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Quickstart for Developers</h2></div>
 
 <p>Following <a href="https://github.com/owncloud/ocis#development">https://github.com/owncloud/ocis#development</a></p>
@@ -1072,6 +1094,77 @@ go.micro.http.broker</code></pre></div>
 <div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">com.owncloud.web.hello
 com.owncloud.api.hello</code></pre></div>
 <p>To the list of available services.</p>
+
+<div class="gdoc-page__anchorwrap"><h2 id="metrics"><a data-clipboard-text="https://owncloud.github.io/ocis/getting-started/#metrics" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#metrics"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Metrics</h2></div>
+
+<p>This service provides some <a href="https://prometheus.io/">Prometheus</a> metrics through the debug endpoint, you can optionally secure the metrics endpoint by some random token, which got to be configured through one of the flag <code>--debug-token</code> or the environment variable <code>OCIS_DEBUG_TOKEN</code> mentioned above. By default the metrics endpoint is bound to <code>http://0.0.0.0:8001/metrics</code>.</p>
+
+<dl>
+<dt>go_gc_duration_seconds</dt>
+<dd>A summary of the GC invocation durations</dd>
+<dt>go_gc_duration_seconds_sum</dt>
+<dd>A summary of the GC invocation durations</dd>
+<dt>go_gc_duration_seconds_count</dt>
+<dd>A summary of the GC invocation durations</dd>
+<dt>go_goroutines</dt>
+<dd>Number of goroutines that currently exist</dd>
+<dt>go_info</dt>
+<dd>Information about the Go environment</dd>
+<dt>go_memstats_alloc_bytes</dt>
+<dd>Number of bytes allocated and still in use</dd>
+<dt>go_memstats_alloc_bytes_total</dt>
+<dd>Total number of bytes allocated, even if freed</dd>
+<dt>go_memstats_buck_hash_sys_bytes</dt>
+<dd>Number of bytes used by the profiling bucket hash table</dd>
+<dt>go_memstats_frees_total</dt>
+<dd>Total number of frees</dd>
+<dt>go_memstats_gc_cpu_fraction</dt>
+<dd>The fraction of this program&rsquo;s available CPU time used by the GC since the program started</dd>
+<dt>go_memstats_gc_sys_bytes</dt>
+<dd>Number of bytes used for garbage collection system metadata</dd>
+<dt>go_memstats_heap_alloc_bytes</dt>
+<dd>Number of heap bytes allocated and still in use</dd>
+<dt>go_memstats_heap_idle_bytes</dt>
+<dd>Number of heap bytes waiting to be used</dd>
+<dt>go_memstats_heap_inuse_bytes</dt>
+<dd>Number of heap bytes that are in use</dd>
+<dt>go_memstats_heap_objects</dt>
+<dd>Number of allocated objects</dd>
+<dt>go_memstats_heap_released_bytes</dt>
+<dd>Number of heap bytes released to OS</dd>
+<dt>go_memstats_heap_sys_bytes</dt>
+<dd>Number of heap bytes obtained from system</dd>
+<dt>go_memstats_last_gc_time_seconds</dt>
+<dd>Number of seconds since 1970 of last garbage collection</dd>
+<dt>go_memstats_lookups_total</dt>
+<dd>Total number of pointer lookups</dd>
+<dt>go_memstats_mallocs_total</dt>
+<dd>Total number of mallocs</dd>
+<dt>go_memstats_mcache_inuse_bytes</dt>
+<dd>Number of bytes in use by mcache structures</dd>
+<dt>go_memstats_mcache_sys_bytes</dt>
+<dd>Number of bytes used for mcache structures obtained from system</dd>
+<dt>go_memstats_mspan_inuse_bytes</dt>
+<dd>Number of bytes in use by mspan structures</dd>
+<dt>go_memstats_mspan_sys_bytes</dt>
+<dd>Number of bytes used for mspan structures obtained from system</dd>
+<dt>go_memstats_next_gc_bytes</dt>
+<dd>Number of heap bytes when next garbage collection will take place</dd>
+<dt>go_memstats_other_sys_bytes</dt>
+<dd>Number of bytes used for other system allocations</dd>
+<dt>go_memstats_stack_inuse_bytes</dt>
+<dd>Number of bytes in use by the stack allocator</dd>
+<dt>go_memstats_stack_sys_bytes</dt>
+<dd>Number of bytes obtained from system for stack allocator</dd>
+<dt>go_memstats_sys_bytes</dt>
+<dd>Number of bytes obtained from system</dd>
+<dt>go_threads</dt>
+<dd>Number of OS threads created</dd>
+<dt>promhttp_metric_handler_requests_in_flight</dt>
+<dd>Current number of scrapes being served</dd>
+<dt>promhttp_metric_handler_requests_total</dt>
+<dd>Total number of scrapes by HTTP status code</dd>
+</dl>
 
 
     </article>
