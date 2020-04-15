@@ -987,23 +987,41 @@
 
     <div class="gdoc-toc gdoc-toc__level--3">
         <nav id="TableOfContents"><ul>
-<li><a href="#configuration">Configuration</a></li>
-<li><a href="#configuration-of-extensions">Configuration of extensions</a></li>
-<li><a href="#configuration-using-config-files">Configuration using config files</a>
+<li><a href="#configuration">Configuration</a>
 <ul>
-<li><a href="#configuration-file">Configuration file</a></li>
+<li><a href="#configuration-using-config-files">Configuration using config files</a></li>
+<li><a href="#envrionment-variables">Envrionment variables</a></li>
+<li><a href="#commandline-flags">Commandline flags</a></li>
 </ul></li>
-<li><a href="#envrionment-variables">Envrionment variables</a>
-<ul>
-<li><a href="#server">Server</a></li>
 <li><a href="#root-command">Root Command</a></li>
-<li><a href="#health">Health</a></li>
-</ul></li>
-<li><a href="#commandline-flags">Commandline flags</a>
+<li><a href="#sub-commands">Sub Commands</a>
 <ul>
-<li><a href="#server-1">Server</a></li>
-<li><a href="#root-command-1">Root Command</a></li>
-<li><a href="#health-1">Health</a></li>
+<li><a href="#ocis-health">ocis health</a></li>
+<li><a href="#ocis-server">ocis server</a></li>
+<li><a href="#list-of-available-extension-subcommands">List of available Extension subcommands</a>
+<ul>
+<li><a href="#ocis-proxy">ocis proxy</a></li>
+<li><a href="#ocis-reva-storage-oc-data">ocis reva-storage-oc-data</a></li>
+<li><a href="#ocis-reva-auth-bearer">ocis reva-auth-bearer</a></li>
+<li><a href="#ocis-webdav">ocis webdav</a></li>
+<li><a href="#ocis-reva-sharing">ocis reva-sharing</a></li>
+<li><a href="#ocis-reva-gateway">ocis reva-gateway</a></li>
+<li><a href="#ocis-graph-explorer">ocis graph-explorer</a></li>
+<li><a href="#ocis-reva-auth-basic">ocis reva-auth-basic</a></li>
+<li><a href="#ocis-hello">ocis hello</a></li>
+<li><a href="#ocis-reva-storage-home">ocis reva-storage-home</a></li>
+<li><a href="#ocis-reva-storage-oc">ocis reva-storage-oc</a></li>
+<li><a href="#ocis-reva-frontend">ocis reva-frontend</a></li>
+<li><a href="#ocis-reva-storage-home-data">ocis reva-storage-home-data</a></li>
+<li><a href="#ocis-graph">ocis graph</a></li>
+<li><a href="#ocis-konnectd">ocis konnectd</a></li>
+<li><a href="#ocis-thumbnails">ocis thumbnails</a></li>
+<li><a href="#ocis-glauth">ocis glauth</a></li>
+<li><a href="#ocis-phoenix">ocis phoenix</a></li>
+<li><a href="#ocis-ocs">ocis ocs</a></li>
+<li><a href="#ocis-reva-users">ocis reva-users</a></li>
+<li><a href="#ocis-reva-storage-root">ocis reva-storage-root</a></li>
+</ul></li>
 </ul></li>
 </ul></nav>
         <hr>
@@ -1013,13 +1031,11 @@
 
 <div class="gdoc-page__anchorwrap"><h2 id="configuration"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#configuration" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#configuration"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Configuration</h2></div>
 
-<div class="gdoc-page__anchorwrap"><h2 id="configuration-of-extensions"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#configuration-of-extensions" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#configuration-of-extensions"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Configuration of extensions</h2></div>
-
 <p>oCIS Single Binary is not responsible for configuring extensions. Instead, each extension could either be configured by environment variables, cli flags or config files.</p>
 
 <p>Each extension has its dedicated documentation page (e.g. <a href="https://owncloud.github.io/extensions/ocis_proxy/configuration">https://owncloud.github.io/extensions/ocis_proxy/configuration</a>) which lists all possible configurations. Config files and environment variables are picked up if you use the <code>./bin/ocis server</code> command within the oCIS single binary. Command line flags must be set explicitly on the extensions subcommands.</p>
 
-<div class="gdoc-page__anchorwrap"><h2 id="configuration-using-config-files"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#configuration-using-config-files" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#configuration-using-config-files"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Configuration using config files</h2></div>
+<div class="gdoc-page__anchorwrap"><h3 id="configuration-using-config-files"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#configuration-using-config-files" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#configuration-using-config-files"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Configuration using config files</h3></div>
 
 <p>Out of the box extensions will attempt to read configuration details from:</p>
 <div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">/etc/ocis
@@ -1027,115 +1043,166 @@ $HOME/.ocis
 ./config</code></pre></div>
 <p>For this configuration to be picked up, have a look at your extension <code>root</code> command and look for which default config name it has assigned. <em>i.e: ocis-proxy reads <code>proxy.json | yaml | toml ...</code></em>.</p>
 
-<div class="gdoc-page__anchorwrap"><h3 id="configuration-file"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#configuration-file" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#configuration-file"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Configuration file</h3></div>
-
 <p>So far we support the file formats <code>JSON</code> and <code>YAML</code>, if you want to get a full example configuration just take a look at <a href="https://github.com/owncloud/ocis/tree/master/config">our repository</a>, there you can always see the latest configuration format. These example configurations include all available options and the default values. The configuration file will be automatically loaded if it&rsquo;s placed at <code>/etc/ocis/ocis.yml</code>, <code>${HOME}/.ocis/ocis.yml</code> or <code>$(pwd)/config/ocis.yml</code>.</p>
 
-<div class="gdoc-page__anchorwrap"><h2 id="envrionment-variables"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#envrionment-variables" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#envrionment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Envrionment variables</h2></div>
+<div class="gdoc-page__anchorwrap"><h3 id="envrionment-variables"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#envrionment-variables" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#envrionment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Envrionment variables</h3></div>
 
 <p>If you prefer to configure the service with environment variables you can see the available variables below.</p>
 
-<div class="gdoc-page__anchorwrap"><h3 id="server"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Server</h3></div>
+<div class="gdoc-page__anchorwrap"><h3 id="commandline-flags"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#commandline-flags" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#commandline-flags"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Commandline flags</h3></div>
+
+<p>If you prefer to configure the service with commandline flags you can see the available variables below. Command line flags are only working when calling the subcommand directly.</p>
+
+<div class="gdoc-page__anchorwrap"><h2 id="root-command"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#root-command" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#root-command"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Root Command</h2></div>
+
+<p>ownCloud Infinite Scale Stack</p>
+
+<p>Usage: <code>ocis [global options] command [command options] [arguments...]</code></p>
 
 <dl>
-<dt>OCIS_TRACING_ENABLED</dt>
-<dd>Enable sending traces.</dd>
-<dt>OCIS_TRACING_TYPE</dt>
-<dd>Tracing backend type. Default: <code>jaeger</code>.</dd>
-<dt>OCIS_TRACING_ENDPOINT</dt>
-<dd>Endpoint for the agent.</dd>
-<dt>OCIS_TRACING_COLLECTOR</dt>
-<dd>Endpoint for the collector.</dd>
-<dt>OCIS_TRACING_SERVICE</dt>
-<dd>Service name for tracing. Default: <code>ocis</code>.</dd>
-<dt>OCIS_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>0.0.0.0:9010</code>.</dd>
-<dt>OCIS_DEBUG_TOKEN</dt>
-<dd>Token to grant metrics access.</dd>
-<dt>OCIS_DEBUG_PPROF</dt>
-<dd>Enable pprof debugging.</dd>
-<dt>OCIS_DEBUG_ZPAGES</dt>
-<dd>Enable zpages debugging.</dd>
-<dt>OCIS_HTTP_ADDR</dt>
-<dd>Address to bind http server. Default: <code>0.0.0.0:9000</code>.</dd>
-<dt>OCIS_HTTP_ROOT</dt>
-<dd>Root path of http server. Default: <code>/</code>.</dd>
-<dt>OCIS_GRPC_ADDR</dt>
-<dd>Address to bind grpc server. Default: <code>0.0.0.0:9001</code>.</dd>
-</dl>
-
-<div class="gdoc-page__anchorwrap"><h3 id="root-command"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#root-command" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#root-command"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Root Command</h3></div>
-
-<dl>
-<dt>OCIS_CONFIG_FILE</dt>
+<dt>&ndash;config-file | $OCIS_CONFIG_FILE<br /></dt>
 <dd>Path to config file.</dd>
-<dt>OCIS_LOG_LEVEL</dt>
+<dt>&ndash;log-level | $OCIS_LOG_LEVEL<br /></dt>
 <dd>Set logging level. Default: <code>info</code>.</dd>
-<dt>OCIS_LOG_PRETTY</dt>
+<dt>&ndash;log-pretty | $OCIS_LOG_PRETTY<br /></dt>
 <dd>Enable pretty logging. Default: <code>true</code>.</dd>
-<dt>OCIS_LOG_COLOR</dt>
+<dt>&ndash;log-color | $OCIS_LOG_COLOR<br /></dt>
 <dd>Enable colored logging. Default: <code>true</code>.</dd>
 </dl>
 
-<div class="gdoc-page__anchorwrap"><h3 id="health"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#health" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#health"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Health</h3></div>
+<div class="gdoc-page__anchorwrap"><h2 id="sub-commands"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#sub-commands" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#sub-commands"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Sub Commands</h2></div>
+
+<div class="gdoc-page__anchorwrap"><h3 id="ocis-health"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-health" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis health</h3></div>
+
+<p>Check health status</p>
+
+<p>Usage: <code>ocis health [command options] [arguments...]</code></p>
 
 <dl>
-<dt>OCIS_DEBUG_ADDR</dt>
+<dt>&ndash;debug-addr | $OCIS_DEBUG_ADDR<br /></dt>
 <dd>Address to debug endpoint. Default: <code>0.0.0.0:9010</code>.</dd>
 </dl>
 
-<div class="gdoc-page__anchorwrap"><h2 id="commandline-flags"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#commandline-flags" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#commandline-flags"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Commandline flags</h2></div>
+<div class="gdoc-page__anchorwrap"><h3 id="ocis-server"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis server</h3></div>
 
-<p>If you prefer to configure the service with commandline flags you can see the available variables below.</p>
+<p>Start fullstack server</p>
 
-<div class="gdoc-page__anchorwrap"><h3 id="server-1"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#server-1" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#server-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Server</h3></div>
+<p>Usage: <code>ocis server [command options] [arguments...]</code></p>
 
 <dl>
-<dt>&ndash;tracing-enabled</dt>
+<dt>&ndash;tracing-enabled | $OCIS_TRACING_ENABLED<br /></dt>
 <dd>Enable sending traces.</dd>
-<dt>&ndash;tracing-type</dt>
+<dt>&ndash;tracing-type | $OCIS_TRACING_TYPE<br /></dt>
 <dd>Tracing backend type. Default: <code>jaeger</code>.</dd>
-<dt>&ndash;tracing-endpoint</dt>
+<dt>&ndash;tracing-endpoint | $OCIS_TRACING_ENDPOINT<br /></dt>
 <dd>Endpoint for the agent.</dd>
-<dt>&ndash;tracing-collector</dt>
+<dt>&ndash;tracing-collector | $OCIS_TRACING_COLLECTOR<br /></dt>
 <dd>Endpoint for the collector.</dd>
-<dt>&ndash;tracing-service</dt>
+<dt>&ndash;tracing-service | $OCIS_TRACING_SERVICE<br /></dt>
 <dd>Service name for tracing. Default: <code>ocis</code>.</dd>
-<dt>&ndash;debug-addr</dt>
+<dt>&ndash;debug-addr | $OCIS_DEBUG_ADDR<br /></dt>
 <dd>Address to bind debug server. Default: <code>0.0.0.0:9010</code>.</dd>
-<dt>&ndash;debug-token</dt>
+<dt>&ndash;debug-token | $OCIS_DEBUG_TOKEN<br /></dt>
 <dd>Token to grant metrics access.</dd>
-<dt>&ndash;debug-pprof</dt>
+<dt>&ndash;debug-pprof | $OCIS_DEBUG_PPROF<br /></dt>
 <dd>Enable pprof debugging.</dd>
-<dt>&ndash;debug-zpages</dt>
+<dt>&ndash;debug-zpages | $OCIS_DEBUG_ZPAGES<br /></dt>
 <dd>Enable zpages debugging.</dd>
-<dt>&ndash;http-addr</dt>
+<dt>&ndash;http-addr | $OCIS_HTTP_ADDR<br /></dt>
 <dd>Address to bind http server. Default: <code>0.0.0.0:9000</code>.</dd>
-<dt>&ndash;http-root</dt>
+<dt>&ndash;http-root | $OCIS_HTTP_ROOT<br /></dt>
 <dd>Root path of http server. Default: <code>/</code>.</dd>
-<dt>&ndash;grpc-addr</dt>
+<dt>&ndash;grpc-addr | $OCIS_GRPC_ADDR<br /></dt>
 <dd>Address to bind grpc server. Default: <code>0.0.0.0:9001</code>.</dd>
 </dl>
 
-<div class="gdoc-page__anchorwrap"><h3 id="root-command-1"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#root-command-1" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#root-command-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Root Command</h3></div>
+<div class="gdoc-page__anchorwrap"><h3 id="list-of-available-extension-subcommands"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#list-of-available-extension-subcommands" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#list-of-available-extension-subcommands"><svg class="icon link"><use xlink:href="#link"></use></svg></a>List of available Extension subcommands</h3></div>
 
-<dl>
-<dt>&ndash;config-file</dt>
-<dd>Path to config file.</dd>
-<dt>&ndash;log-level</dt>
-<dd>Set logging level. Default: <code>info</code>.</dd>
-<dt>&ndash;log-pretty</dt>
-<dd>Enable pretty logging. Default: <code>true</code>.</dd>
-<dt>&ndash;log-color</dt>
-<dd>Enable colored logging. Default: <code>true</code>.</dd>
-</dl>
+<p>There are more subcommands to start the individual extensions. Please check the documentation about their usage and options in the dedicated section of the documentation.</p>
 
-<div class="gdoc-page__anchorwrap"><h3 id="health-1"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#health-1" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#health-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Health</h3></div>
+<div class="gdoc-page__anchorwrap"><h4 id="ocis-proxy"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-proxy" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-proxy"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis proxy</h4></div>
 
-<dl>
-<dt>&ndash;debug-addr</dt>
-<dd>Address to debug endpoint. Default: <code>0.0.0.0:9010</code>.</dd>
-</dl>
+<p>Start proxy server</p>
+
+<div class="gdoc-page__anchorwrap"><h4 id="ocis-reva-storage-oc-data"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-reva-storage-oc-data" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-storage-oc-data"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis reva-storage-oc-data</h4></div>
+
+<p>Start reva oc storage dataprovider</p>
+
+<div class="gdoc-page__anchorwrap"><h4 id="ocis-reva-auth-bearer"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-reva-auth-bearer" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-auth-bearer"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis reva-auth-bearer</h4></div>
+
+<p>Start reva auth-bearer service</p>
+
+<div class="gdoc-page__anchorwrap"><h4 id="ocis-webdav"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-webdav" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-webdav"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis webdav</h4></div>
+
+<p>Start webdav server</p>
+
+<div class="gdoc-page__anchorwrap"><h4 id="ocis-reva-sharing"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-reva-sharing" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-sharing"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis reva-sharing</h4></div>
+
+<p>Start reva sharing service</p>
+
+<div class="gdoc-page__anchorwrap"><h4 id="ocis-reva-gateway"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-reva-gateway" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-gateway"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis reva-gateway</h4></div>
+
+<p>Start reva gateway</p>
+
+<div class="gdoc-page__anchorwrap"><h4 id="ocis-graph-explorer"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-graph-explorer" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-graph-explorer"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis graph-explorer</h4></div>
+
+<p>Start graph explorer</p>
+
+<div class="gdoc-page__anchorwrap"><h4 id="ocis-reva-auth-basic"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-reva-auth-basic" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-auth-basic"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis reva-auth-basic</h4></div>
+
+<p>Start reva auth-basic service</p>
+
+<div class="gdoc-page__anchorwrap"><h4 id="ocis-hello"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-hello" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-hello"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis hello</h4></div>
+
+<p>Start hello server</p>
+
+<div class="gdoc-page__anchorwrap"><h4 id="ocis-reva-storage-home"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-reva-storage-home" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-storage-home"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis reva-storage-home</h4></div>
+
+<p>Start reva home storage</p>
+
+<div class="gdoc-page__anchorwrap"><h4 id="ocis-reva-storage-oc"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-reva-storage-oc" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-storage-oc"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis reva-storage-oc</h4></div>
+
+<p>Start reva oc storage</p>
+
+<div class="gdoc-page__anchorwrap"><h4 id="ocis-reva-frontend"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-reva-frontend" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-frontend"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis reva-frontend</h4></div>
+
+<p>Start reva frontend</p>
+
+<div class="gdoc-page__anchorwrap"><h4 id="ocis-reva-storage-home-data"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-reva-storage-home-data" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-storage-home-data"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis reva-storage-home-data</h4></div>
+
+<p>Start reva home storage dataprovider</p>
+
+<div class="gdoc-page__anchorwrap"><h4 id="ocis-graph"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-graph" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-graph"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis graph</h4></div>
+
+<p>Start graph server</p>
+
+<div class="gdoc-page__anchorwrap"><h4 id="ocis-konnectd"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-konnectd" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-konnectd"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis konnectd</h4></div>
+
+<p>Start konnectd server</p>
+
+<div class="gdoc-page__anchorwrap"><h4 id="ocis-thumbnails"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-thumbnails" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-thumbnails"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis thumbnails</h4></div>
+
+<p>Start thumbnails server</p>
+
+<div class="gdoc-page__anchorwrap"><h4 id="ocis-glauth"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-glauth" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-glauth"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis glauth</h4></div>
+
+<p>Start glauth server</p>
+
+<div class="gdoc-page__anchorwrap"><h4 id="ocis-phoenix"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-phoenix" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-phoenix"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis phoenix</h4></div>
+
+<p>Start phoenix server</p>
+
+<div class="gdoc-page__anchorwrap"><h4 id="ocis-ocs"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-ocs" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-ocs"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis ocs</h4></div>
+
+<p>Start ocs server</p>
+
+<div class="gdoc-page__anchorwrap"><h4 id="ocis-reva-users"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-reva-users" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-users"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis reva-users</h4></div>
+
+<p>Start reva users service</p>
+
+<div class="gdoc-page__anchorwrap"><h4 id="ocis-reva-storage-root"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-reva-storage-root" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-storage-root"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis reva-storage-root</h4></div>
+
+<p>Start reva root storage</p>
 
 
     </article>
