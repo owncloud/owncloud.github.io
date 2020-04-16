@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Extension">
+<meta name="description" content="Phoenix">
 
-<title>Extension | ownCloud</title>
+<title>Phoenix | ownCloud</title>
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
 <link rel="stylesheet" href="/main.min.css">
@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="/custom.css">
 
 
+<link rel="alternate" type="application/rss+xml" href="https://owncloud.github.io/clients/web/index.xml" title="ownCloud" />
 <!--
     Made with Geekdoc theme
     https://github.com/xoxys/hugo-geekdoc
@@ -141,7 +142,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/ocis/extensions/" class="gdoc-nav__entry is-active">
+                    <a href="/ocis/extensions/" class="gdoc-nav__entry ">
                         Extension
                     </a>
                 </span>
@@ -228,7 +229,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/clients/web/" class="gdoc-nav__entry ">
+                    <a href="/clients/web/" class="gdoc-nav__entry is-active">
                         Phoenix
                     </a>
                 </span>
@@ -985,7 +986,7 @@
         
     
     
-        <a href='/'>Documentation</a> / <a href='/ocis/'>Infinite Scale</a> / Extension
+        <a href='/'>Documentation</a> / <a href='/clients/'>Clients</a> / Phoenix
     
 
     
@@ -998,16 +999,15 @@
     <span>
         
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/docs/extensions.md">
+            <a href="https://github.com/owncloud/phoenix/edit/master/docs/_index.md">
                 Edit this page
             </a>
         
     </span>
 </div>
 
-
     <article class="gdoc-markdown">
-        <h1>Extension</h1>
+        <h1>Phoenix</h1>
         
 
 
@@ -1016,245 +1016,7 @@
     
 
 
-
-
-
-
-
-    <div class="gdoc-toc gdoc-toc__level--3">
-        <nav id="TableOfContents"><ul>
-<li><a href="#how-to-build-and-run-ocis-simple">How to build and run ocis-simple</a></li>
-<li><a href="#hacking-ocis-hello">Hacking ocis-hello</a>
-<ul>
-<li><a href="#option-1">Option 1:</a></li>
-</ul></li>
-<li><a href="#hacking-phoenix-and-ocis-phoenix">Hacking phoenix (and ocis-phoenix)</a></li>
-<li><a href="#the-owncloud-design-system">The ownCloud design system</a></li>
-<li><a href="#external-phoenix-apps">External phoenix apps</a></li>
-<li><a href="#phoenix-extension-points">Phoenix extension points</a>
-<ul>
-<li><a href="#phoenix-core">Phoenix core</a></li>
-<li><a href="#files-app">Files app</a></li>
-</ul></li>
-<li><a href="#api-driven-development">API driven development</a></li>
-</ul></nav>
-        <hr>
-    </div>
-
-
-
-<div class="gdoc-page__anchorwrap"><h2 id="how-to-build-and-run-ocis-simple"><a data-clipboard-text="https://owncloud.github.io/ocis/extensions/#how-to-build-and-run-ocis-simple" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#how-to-build-and-run-ocis-simple"><svg class="icon link"><use xlink:href="#link"></use></svg></a>How to build and run ocis-simple</h2></div>
-
-<p>ocis uses build tags to build different flavors of the binary. In order to work on a new extension we are going to reduce the scope a little and use the <code>simple</code> tag. Let us begin by creating a dedicated folder:</p>
-<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">mkdir ocis-extension-workshop &amp;&amp; ocis-extension-workshop</code></pre></div>
-<p>Following <a href="https://github.com/owncloud/ocis">https://github.com/owncloud/ocis</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">git clone https://github.com/owncloud/ocis.git
-cd ocis
-
-TAGS=simple make generate build</code></pre></div>
-<p><em>Q: Can you specify which version of phoenix to use?</em>
-<em>A: No, the phoenix that is used is compiled into the <a href="https://github.com/owncloud/ocis-phoenix/blob/master/pkg/assets/embed.go">assets of ocis-phoenix</a> which is currently not automatically updated. We&rsquo;ll see how to use a custom phoenix later.</em></p>
-
-<p><code>bin/ocis server</code></p>
-
-<p>Open the browser at <a href="http://localhost:9100">http://localhost:9100</a></p>
-
-<ol>
-<li>You land on the login screen. click login</li>
-<li>You are redirected to an idp at <a href="http://localhost:9140/oauth2/auth">http://localhost:9140/oauth2/auth</a> with a login mask. Use <code>einstein:relativity</code>to login (one of the three demo users)</li>
-<li>You are redirected to <a href="http://localhost:9100/#/hello">http://localhost:9100/#/hello</a> the ocis-hello app</li>
-<li>Replace <code>World</code> with something else and submit. You should see <code>Hello %something else%</code></li>
-</ol>
-
-<p><em>Q: One of the required ports is already in use. Ocis seems to be trying to restart the service over and over. What gives?</em>
-<em>A: Using the ocis binary to start the server will case ocis to keep track of the different services and restart them in case they crash.</em></p>
-
-<div class="gdoc-page__anchorwrap"><h2 id="hacking-ocis-hello"><a data-clipboard-text="https://owncloud.github.io/ocis/extensions/#hacking-ocis-hello" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#hacking-ocis-hello"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Hacking ocis-hello</h2></div>
-
-<p>go back to the ocis-extension-workshop folder</p>
-<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">cd ..</code></pre></div>
-<p>Following <a href="https://github.com/owncloud/ocis-hello">https://github.com/owncloud/ocis-hello</a></p>
-
-<pre><code>git clone https://github.com/owncloud/ocis-hello.git
-cd ocis-hello
-
-yarn install
-# this actually creates the assets
-yarn build
-
-# this will compile the assets into the binary
-make generate build
-</code></pre>
-
-<p>Two options:
-1. run only the necessery services from ocis and ocis-hello independently
-2. compile ocis with the updated ocis-hello</p>
-
-<div class="gdoc-page__anchorwrap"><h3 id="option-1"><a data-clipboard-text="https://owncloud.github.io/ocis/extensions/#option-1" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#option-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Option 1:</h3></div>
-
-<p>get a list of ocis services:</p>
-<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">ps ax | grep ocis</code></pre></div>
-<p>Try to kill <code>ocis hello</code></p>
-
-<p>Remember: for now, killing a service will cause ocis to restart it. This is subject to change.</p>
-
-<p>In order to be able to manage the processes ourselves we need to start them independently:</p>
-
-<p><code>bin/ocis server</code> starts the same services as:</p>
-
-<pre><code>bin/ocis micro &amp;
-bin/ocis phoenix &amp;
-bin/ocis hello &amp;
-bin/ocis reva &amp;
-</code></pre>
-
-<p>Now we can kill the <code>ocis hello</code> and use our custom built ocis-hello binary:</p>
-<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">cd ../ocis-hello
-bin/ocis-hello server</code></pre></div>
-<div class="gdoc-page__anchorwrap"><h2 id="hacking-phoenix-and-ocis-phoenix"><a data-clipboard-text="https://owncloud.github.io/ocis/extensions/#hacking-phoenix-and-ocis-phoenix" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#hacking-phoenix-and-ocis-phoenix"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Hacking phoenix (and ocis-phoenix)</h2></div>
-
-<p>Following <a href="https://github.com/owncloud/phoenix">https://github.com/owncloud/phoenix</a> we are going to build the current phoenix</p>
-
-<pre><code>git clone https://github.com/owncloud/phoenix.git
-cd phoenix
-
-yarn install
-yarn dist
-</code></pre>
-
-<p>We can tell ocis to use the compiled assets:</p>
-
-<p>Kill <code>ocis phoenix</code>, then use the compiled assets when starting phoenix.</p>
-<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">cd ../ocis
-PHOENIX_ASSET_PATH=&#34;`pwd`/../phoenix/dist&#34; bin/ocis phoenix</code></pre></div>
-<div class="gdoc-page__anchorwrap"><h2 id="the-owncloud-design-system"><a data-clipboard-text="https://owncloud.github.io/ocis/extensions/#the-owncloud-design-system" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#the-owncloud-design-system"><svg class="icon link"><use xlink:href="#link"></use></svg></a>The ownCloud design system</h2></div>
-
-<p>The owncloud design system contains a set of ownCloud vue components for phoenix or your own ocis extensions. Use it for a consistent look and feel.</p>
-
-<p>Point your browser to <a href="https://owncloud.github.io/owncloud-design-system">https://owncloud.github.io/owncloud-design-system</a> and check the available components. Live editing the examples in the browser is supported.</p>
-
-<p>note: There is a bug with navigation sub items: either click a nav item twice or refresh the page</p>
-
-<div class="gdoc-page__anchorwrap"><h2 id="external-phoenix-apps"><a data-clipboard-text="https://owncloud.github.io/ocis/extensions/#external-phoenix-apps" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#external-phoenix-apps"><svg class="icon link"><use xlink:href="#link"></use></svg></a>External phoenix apps</h2></div>
-
-<p>This is what hello is: copy and extend!</p>
-
-<ol>
-<li><p>Phoenix is configured using the config.json which is served by the phoenix service (either <code>bin/ocis phoenix</code> or <code>bin/ocis-phoenix server</code>)</p></li>
-
-<li><p>point ocis phoenix to the web config which you extended with an external app:
-<code>PHOENIX_WEB_CONFIG=&quot;</code>pwd<code>/../phoenix/config.json&quot; PHOENIX_ASSET_PATH=&quot;</code>pwd<code>/../phoenix/dist&quot; bin/ocis phoenix</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-<span class="nt">&#34;server&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:9140&#34;</span><span class="p">,</span>
-<span class="nt">&#34;theme&#34;</span><span class="p">:</span> <span class="s2">&#34;owncloud&#34;</span><span class="p">,</span>
-<span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;0.1.0&#34;</span><span class="p">,</span>
-<span class="nt">&#34;openIdConnect&#34;</span><span class="p">:</span> <span class="p">{</span>
-<span class="nt">&#34;metadata_url&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:9140/.well-known/openid-configuration&#34;</span><span class="p">,</span>
-<span class="nt">&#34;authority&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:9140&#34;</span><span class="p">,</span>
-<span class="nt">&#34;client_id&#34;</span><span class="p">:</span> <span class="s2">&#34;phoenix&#34;</span><span class="p">,</span>
-<span class="nt">&#34;response_type&#34;</span><span class="p">:</span> <span class="s2">&#34;code&#34;</span><span class="p">,</span>
-<span class="nt">&#34;scope&#34;</span><span class="p">:</span> <span class="s2">&#34;openid profile email&#34;</span>
-<span class="p">},</span>
-<span class="nt">&#34;apps&#34;</span><span class="p">:</span> <span class="p">[],</span>
-<span class="nt">&#34;external_apps&#34;</span><span class="p">:</span> <span class="p">[</span>
-<span class="p">{</span>
-  <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;hello&#34;</span><span class="p">,</span>
-  <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:9105/hello.js&#34;</span><span class="p">,</span>
-  <span class="nt">&#34;config&#34;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:9105&#34;</span>
-  <span class="p">}</span>
-<span class="p">},</span>
-<span class="p">{</span>
-  <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;myapp&#34;</span><span class="p">,</span>
-  <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:6789/superapp.js&#34;</span><span class="p">,</span>
-  <span class="nt">&#34;config&#34;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&#34;backend&#34;</span><span class="p">:</span> <span class="s2">&#34;http://someserver:1234&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;myconfig&#34;</span><span class="p">:</span> <span class="s2">&#34;is awesome&#34;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-<span class="p">]</span>
-<span class="p">}</span></code></pre></div></li>
-</ol>
-
-<div class="gdoc-page__anchorwrap"><h2 id="phoenix-extension-points"><a data-clipboard-text="https://owncloud.github.io/ocis/extensions/#phoenix-extension-points" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#phoenix-extension-points"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Phoenix extension points</h2></div>
-
-<blockquote>
-<p>Note: For an up to date list check out <a href="https://github.com/owncloud/phoenix/issues/2423">the phoenix documentation</a>.</p>
-</blockquote>
-
-<p>Several ones available:</p>
-
-<div class="gdoc-page__anchorwrap"><h3 id="phoenix-core"><a data-clipboard-text="https://owncloud.github.io/ocis/extensions/#phoenix-core" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#phoenix-core"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Phoenix core</h3></div>
-
-<ul>
-<li>App switcher (defined in config.json)</li>
-<li>App container (loads UI of your extension)</li>
-</ul>
-
-<div class="gdoc-page__anchorwrap"><h3 id="files-app"><a data-clipboard-text="https://owncloud.github.io/ocis/extensions/#files-app" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#files-app"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Files app</h3></div>
-
-<ul>
-<li>File action</li>
-<li>Create new file action</li>
-<li>Sidebar</li>
-<li>Quick access for sidebar inside of file actions (in the file row)</li>
-</ul>
-
-<p>Example of a file action in the <code>app.js</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">appInfo</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;MarkdownEditor&#39;</span><span class="p">,</span>
-  <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;markdown-editor&#39;</span><span class="p">,</span>
-  <span class="nx">icon</span><span class="o">:</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span>
-  <span class="nx">isFileEditor</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="nx">extensions</span><span class="o">:</span> <span class="p">[{</span>
-    <span class="nx">extension</span><span class="o">:</span> <span class="s1">&#39;txt&#39;</span><span class="p">,</span>
-    <span class="nx">newFileMenu</span><span class="o">:</span> <span class="p">{</span>
-      <span class="nx">menuTitle</span> <span class="p">(</span><span class="nx">$gettext</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">$gettext</span><span class="p">(</span><span class="s1">&#39;Create new plain text file…&#39;</span><span class="p">)</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">},</span>
-  <span class="p">{</span>
-    <span class="nx">extension</span><span class="o">:</span> <span class="s1">&#39;md&#39;</span><span class="p">,</span>
-    <span class="nx">newFileMenu</span><span class="o">:</span> <span class="p">{</span>
-      <span class="nx">menuTitle</span> <span class="p">(</span><span class="nx">$gettext</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">$gettext</span><span class="p">(</span><span class="s1">&#39;Create new mark-down file…&#39;</span><span class="p">)</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">}]</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>For the side bar have a look at the files app, <code>defaults.js</code> &amp; <code>fileSideBars</code></p>
-
-<div class="gdoc-page__anchorwrap"><h2 id="api-driven-development"><a data-clipboard-text="https://owncloud.github.io/ocis/extensions/#api-driven-development" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#api-driven-development"><svg class="icon link"><use xlink:href="#link"></use></svg></a>API driven development</h2></div>
-
-<p>Until now we only had a look at the ui and how the extensions are managed on the cli. But how do apps actually talk to the server?</p>
-
-<p>Short answer: any way you like</p>
-
-<p>Long answer: micro and ocis-hello follow a protocol driven development:</p>
-
-<ul>
-<li>specify the API using protobuf</li>
-<li>generate client and server code</li>
-
-<li><p>evolve based on the protocol</p></li>
-
-<li><p>CS3 api uses protobuf as well and uses GRPC</p></li>
-
-<li><p>ocis uses go-micro, which provides http and grpc gateways</p></li>
-
-<li><p>the gateways and protocols are optional</p></li>
-
-<li><p>owncloud and kopano are looking into a <a href="https://developer.microsoft.com/de-de/graph">MS graph</a> like api to handle phoenix requests.</p>
-
-<ul>
-<li>they might be about user, contacrs, calendars &hellip; which is covered by the graph api</li>
-<li>we want to integrate with eg. kopano and provide a commen api (file sync and share is covered as well)</li>
-</ul></li>
-
-<li><p>as an example for protobuf take a look at <a href="https://github.com/owncloud/ocis-hello/tree/master/pkg/proto/v0">ocis-hello</a></p></li>
-</ul>
+<p>This is the next generation ownCloud frontend.</p>
 
 
     </article>
