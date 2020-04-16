@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Reva">
+<meta name="description" content="EOS">
 
-<title>Reva | ownCloud</title>
+<title>EOS | ownCloud</title>
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
 <link rel="stylesheet" href="/main.min.css">
@@ -14,7 +14,6 @@
 <link rel="stylesheet" href="/custom.css">
 
 
-<link rel="alternate" type="application/rss+xml" href="https://owncloud.github.io/extensions/ocis_reva/index.xml" title="ownCloud" />
 <!--
     Made with Geekdoc theme
     https://github.com/xoxys/hugo-geekdoc
@@ -140,7 +139,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/ocis/eos/" class="gdoc-nav__entry ">
+                    <a href="/ocis/eos/" class="gdoc-nav__entry is-active">
                         EOS
                     </a>
                 </span>
@@ -734,7 +733,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis_reva/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/ocis_reva/" class="gdoc-nav__entry ">
                         Reva
                     </a>
                 </span>
@@ -1001,7 +1000,7 @@
         
     
     
-        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / Reva
+        <a href='/'>Documentation</a> / <a href='/ocis/'>Infinite Scale</a> / EOS
     
 
     
@@ -1014,15 +1013,16 @@
     <span>
         
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis-reva/edit/master/docs/_index.md">
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/eos.md">
                 Edit this page
             </a>
         
     </span>
 </div>
 
+
     <article class="gdoc-markdown">
-        <h1>Reva</h1>
+        <h1>EOS</h1>
         
 
 
@@ -1031,7 +1031,86 @@
     
 
 
-<p>This service provides an ocis extension that wraps <a href="https://github.com/cs3org/reva/">reva</a> and adds an opinionated configuration to it.</p>
+
+
+
+
+
+    <div class="gdoc-toc gdoc-toc__level--3">
+        <nav id="TableOfContents"><ul>
+<li><a href="#current-status">Current status</a></li>
+<li><a href="#how-to-do-it">How to do it</a>
+<ul>
+<li><a href="#grab-it">Grab it!</a></li>
+<li><a href="#run-it">Run it!</a></li>
+<li><a href="#test-it">Test it!</a></li>
+</ul></li>
+<li><a href="#next-steps">Next steps</a></li>
+</ul></nav>
+        <hr>
+    </div>
+
+
+
+<p>OCIS can be configured to run on top of <a href="https://eos.web.cern.ch/">eos</a>. While the <a href="http://eos-docs.web.cern.ch/">eos documentation</a> does cover a lot of topics it leaves out some details that you may have to either pull from various <a href="https://gitlab.cern.ch/eos/eos-docker">docker containers</a>, the <a href="https://eos-community.web.cern.ch/">forums</a> or even the <a href="https://github.com/cern-eos/eos">source</a> itself.</p>
+
+<p>This document is a work in progress of the current setup.</p>
+
+<div class="gdoc-page__anchorwrap"><h2 id="current-status"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#current-status" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#current-status"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Current status</h2></div>
+
+<p>Using ocis and eos it is possible today to manage folders. Sharing is <a href="https://github.com/cs3org/reva/pull/523">heavily</a> <a href="https://github.com/cs3org/reva/pull/585">under</a> <a href="https://github.com/cs3org/reva/pull/482">development</a>. FIle up and download needs proper configuration of the dataprovider to also use eos.</p>
+
+<div class="gdoc-page__anchorwrap"><h2 id="how-to-do-it"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#how-to-do-it" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#how-to-do-it"><svg class="icon link"><use xlink:href="#link"></use></svg></a>How to do it</h2></div>
+
+<div class="gdoc-page__anchorwrap"><h3 id="grab-it"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#grab-it" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#grab-it"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Grab it!</h3></div>
+
+<pre><code>$ git clone git@github.com:owncloud/ocis.git
+$ cd ocis
+</code></pre>
+
+<div class="gdoc-page__anchorwrap"><h3 id="run-it"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#run-it" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-it"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run it!</h3></div>
+
+<p>We poured the nitty gritty details of setting up ocis into Makefile destinations. After running</p>
+
+<pre><code>$ make eos-start
+</code></pre>
+
+<p>the eos related docker containers will be created, started and setup to authenticate a gainst the ocis-glauth service.</p>
+
+<p>It will also copy the ocis binary tho the <code>eos-cli1</code> container and start <code>ocis reva-storage-home</code> with the necessary environment variables to use the eos storage driver.</p>
+
+<p>For details have a look at the <code>Makefile</code>.</p>
+
+<div class="gdoc-page__anchorwrap"><h3 id="test-it"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#test-it" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#test-it"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Test it!</h3></div>
+
+<p>You should now be able to point your browser to <a href="https://localhost:9200">https://localhost:9200</a> and login using the demo user credentials, eg <code>einstein:relativity</code>.</p>
+
+<blockquote class="gdoc-hint info">
+    If you encounter an error when the IdP redirects you back to phoenix, just reload the page and it should be gone &hellip; or debug it. PR welcome!
+</blockquote>
+
+
+<p>Create a folder in the ui. Then check it was created in eos:</p>
+
+<pre><code>$ docker exec -it eos-mgm1 eos ls /eos/dockertest/einstein
+</code></pre>
+
+<p>Now create a new folder in eos (using eos-mgm1 you will be logged in as admin, see the <code>whoami</code>, which is why we <code>chown</code> the folder to the uid and gid of einstein afterwards):</p>
+
+<pre><code>$ docker exec -it eos-mgm1 eos whoami
+$ docker exec -it eos-mgm1 eos mkdir /eos/dockertest/einstein/rocks
+$ docker exec -it eos-mgm1 eos chown 20000:30000 /eos/dockertest/einstein/rocks
+</code></pre>
+
+<p>Check that the folder exists in the web ui.</p>
+
+<div class="gdoc-page__anchorwrap"><h2 id="next-steps"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#next-steps" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#next-steps"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Next steps</h2></div>
+
+<ul>
+<li>configure storage-home-data to enable file upload, PRs against <code>ocis-reva</code> welcome</li>
+<li>get sharing implemented, PRs against <code>reva</code> welcome</li>
+<li>simplify home logic, see <a href="https://github.com/cs3org/reva/issues/601">https://github.com/cs3org/reva/issues/601</a> and <a href="https://github.com/cs3org/reva/issues/578">https://github.com/cs3org/reva/issues/578</a></li>
+</ul>
 
 
     </article>
