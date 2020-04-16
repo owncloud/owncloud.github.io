@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Building">
+<meta name="description" content="Building the documentation">
 
-<title>Building | ownCloud</title>
+<title>Building the documentation | ownCloud</title>
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
 <link rel="stylesheet" href="/main.min.css">
@@ -346,7 +346,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/clients/web/building-docs/" class="gdoc-nav__entry ">
+                    <a href="/clients/web/building-docs/" class="gdoc-nav__entry is-active">
                         Building the documentation
                     </a>
                 </span>
@@ -498,7 +498,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis_konnectd/building/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/ocis_konnectd/building/" class="gdoc-nav__entry ">
                         Building
                     </a>
                 </span>
@@ -1073,7 +1073,7 @@
         
     
     
-        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_konnectd/'>Konnectd</a> / Building
+        <a href='/'>Documentation</a> / <a href='/clients/'>Clients</a> / <a href='/clients/web/'>Phoenix</a> / Building the documentation
     
 
     
@@ -1088,7 +1088,7 @@
     <span>
         
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis-konnectd/edit/master/docs/building.md">
+            <a href="https://github.com/owncloud/phoenix/edit/master/docs/building-docs.md">
                 Edit this page
             </a>
         
@@ -1097,7 +1097,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>Building</h1>
+        <h1>Building the documentation</h1>
         
 
 
@@ -1113,26 +1113,39 @@
 
     <div class="gdoc-toc gdoc-toc__level--3">
         <nav id="TableOfContents"><ul>
-<li><a href="#backend">Backend</a></li>
+<li><a href="#buildling-the-documentation">Buildling the documentation</a>
+<ul>
+<li><a href="#setting-up">Setting up</a></li>
+<li><a href="#viewing-the-documentation">Viewing the documentation</a></li>
+<li><a href="#deploying-the-documentation">Deploying the documentation</a></li>
+</ul></li>
 </ul></nav>
         <hr>
     </div>
 
 
 
-<p>As this project is built with Go, so you need to install that first. The installation of Go is out of the scope of this document, please follow the official documentation for <a href="https://golang.org/doc/install">Go</a>, to build this project you have to install Go &gt;= v1.13. After the installation of the required tools you need to get the sources:</p>
+<div class="gdoc-page__anchorwrap"><h2 id="buildling-the-documentation"><a data-clipboard-text="https://owncloud.github.io/clients/web/building-docs/#buildling-the-documentation" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#buildling-the-documentation"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Buildling the documentation</h2></div>
 
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">git clone https://github.com/owncloud/ocis-konnectd.git
-cd ocis-konnectd</code></pre></div>
+<div class="gdoc-page__anchorwrap"><h3 id="setting-up"><a data-clipboard-text="https://owncloud.github.io/clients/web/building-docs/#setting-up" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#setting-up"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Setting up</h3></div>
 
-<p>All required tool besides Go itself and make are bundled or getting automatically installed within the <code>GOPATH</code>. All commands to build this project are part of our <code>Makefile</code>.</p>
+<ul>
+<li>Install <a href="https://gohugo.io/getting-started/installing/">hugo</a></li>
+<li>Run <code>make docs</code></li>
+</ul>
 
-<div class="gdoc-page__anchorwrap"><h2 id="backend"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/building/#backend" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#backend"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Backend</h2></div>
+<div class="gdoc-page__anchorwrap"><h3 id="viewing-the-documentation"><a data-clipboard-text="https://owncloud.github.io/clients/web/building-docs/#viewing-the-documentation" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#viewing-the-documentation"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Viewing the documentation</h3></div>
 
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">make generate
-make build</code></pre></div>
+<p>To view the rendered docs in the browser run:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> hugo
+hugo -D server</code></pre></div>
+<p>Then open &ldquo;<a href="http://localhost:1313/&quot;">http://localhost:1313/&quot;</a></p>
 
-<p>Finally you should have the binary within the <code>bin/</code> folder now, give it a try with <code>./bin/ocis-konnectd -h</code> to see all available options and subcommands.</p>
+<p>When making changes to the docs, run <code>make docs</code> again and the server will pick up the changes and reload the page automatically</p>
+
+<div class="gdoc-page__anchorwrap"><h3 id="deploying-the-documentation"><a data-clipboard-text="https://owncloud.github.io/clients/web/building-docs/#deploying-the-documentation" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#deploying-the-documentation"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Deploying the documentation</h3></div>
+
+<p>The documentation is automatically deployed from the master branch to <a href="https://owncloud.github.io/phoenix/">https://owncloud.github.io/phoenix/</a></p>
 
 
     </article>

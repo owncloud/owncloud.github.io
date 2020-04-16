@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Building">
+<meta name="description" content="Setup with OCIS">
 
-<title>Building | ownCloud</title>
+<title>Setup with OCIS | ownCloud</title>
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
 <link rel="stylesheet" href="/main.min.css">
@@ -312,7 +312,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/clients/web/backend-ocis/" class="gdoc-nav__entry ">
+                    <a href="/clients/web/backend-ocis/" class="gdoc-nav__entry is-active">
                         Setup with OCIS
                     </a>
                 </span>
@@ -498,7 +498,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis_konnectd/building/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/ocis_konnectd/building/" class="gdoc-nav__entry ">
                         Building
                     </a>
                 </span>
@@ -1073,7 +1073,7 @@
         
     
     
-        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_konnectd/'>Konnectd</a> / Building
+        <a href='/'>Documentation</a> / <a href='/clients/'>Clients</a> / <a href='/clients/web/'>Phoenix</a> / Setup with OCIS
     
 
     
@@ -1088,7 +1088,7 @@
     <span>
         
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis-konnectd/edit/master/docs/building.md">
+            <a href="https://github.com/owncloud/phoenix/edit/master/docs/backend-ocis.md">
                 Edit this page
             </a>
         
@@ -1097,7 +1097,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>Building</h1>
+        <h1>Setup with OCIS</h1>
         
 
 
@@ -1113,26 +1113,56 @@
 
     <div class="gdoc-toc gdoc-toc__level--3">
         <nav id="TableOfContents"><ul>
-<li><a href="#backend">Backend</a></li>
+<li><a href="#setting-up-ocis-services">Setting up OCIS services</a></li>
+<li><a href="#setting-up-ocis-phoenix-service">Setting up ocis-phoenix service</a></li>
+<li><a href="#setting-up-phoenix">Setting up Phoenix</a></li>
+<li><a href="#running-phoenix">Running Phoenix</a></li>
+<li><a href="#running-acceptance-tests">Running acceptance tests</a></li>
 </ul></nav>
         <hr>
     </div>
 
 
 
-<p>As this project is built with Go, so you need to install that first. The installation of Go is out of the scope of this document, please follow the official documentation for <a href="https://golang.org/doc/install">Go</a>, to build this project you have to install Go &gt;= v1.13. After the installation of the required tools you need to get the sources:</p>
+<div class="gdoc-page__anchorwrap"><h2 id="setting-up-ocis-services"><a data-clipboard-text="https://owncloud.github.io/clients/web/backend-ocis/#setting-up-ocis-services" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#setting-up-ocis-services"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Setting up OCIS services</h2></div>
 
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">git clone https://github.com/owncloud/ocis-konnectd.git
-cd ocis-konnectd</code></pre></div>
+<ul>
+<li>Setup OCIS by cloning the <a href="https://github.com/owncloud/ocis">ocis repository</a> and following the setup instructions there.</li>
+<li>Do not start the whole server but run <code>./bin/ocis --log-level debug $EXTENSION</code> for all the existing extensions <strong>except the phoenix service</strong>. A list of extensions can be found by running <code>./bin/ocis</code> without arguments and looking at the &ldquo;Extensions&rdquo; section.</li>
+</ul>
 
-<p>All required tool besides Go itself and make are bundled or getting automatically installed within the <code>GOPATH</code>. All commands to build this project are part of our <code>Makefile</code>.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="setting-up-ocis-phoenix-service"><a data-clipboard-text="https://owncloud.github.io/clients/web/backend-ocis/#setting-up-ocis-phoenix-service" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#setting-up-ocis-phoenix-service"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Setting up ocis-phoenix service</h2></div>
 
-<div class="gdoc-page__anchorwrap"><h2 id="backend"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/building/#backend" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#backend"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Backend</h2></div>
+<ul>
+<li>Clone the <a href="https://github.com/owncloud/ocis-phoenix">ocis-phoenix repository</a> and follow the setup instructions there.</li>
+</ul>
 
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">make generate
-make build</code></pre></div>
+<div class="gdoc-page__anchorwrap"><h2 id="setting-up-phoenix"><a data-clipboard-text="https://owncloud.github.io/clients/web/backend-ocis/#setting-up-phoenix" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#setting-up-phoenix"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Setting up Phoenix</h2></div>
 
-<p>Finally you should have the binary within the <code>bin/</code> folder now, give it a try with <code>./bin/ocis-konnectd -h</code> to see all available options and subcommands.</p>
+<ul>
+<li>Copy &ldquo;config.json.sample-ocis&rdquo; to &ldquo;config.json&rdquo; and change the URLs accordingly if <code>localhost</code> is not suitable.</li>
+<li>Set the environment variables as follows:
+
+<ul>
+<li><code>export PHOENIX_CHECKOUT=...</code> and specify the path to the local git checkout of the <a href="https://github.com/owncloud/phoenix">Phoenix repository</a></li>
+<li><code>export PHOENIX_ASSET_PATH=$PHOENIX_CHECKOUT/dist</code></li>
+<li><code>export PHOENIX_WEB_CONFIG=$PHOENIX_CHECKOUT/config.json</code></li>
+</ul></li>
+<li>Run &ldquo;ocis-phoenix&rdquo;: <code>./bin/ocis-phoenix --log-level debug server</code></li>
+</ul>
+
+<div class="gdoc-page__anchorwrap"><h2 id="running-phoenix"><a data-clipboard-text="https://owncloud.github.io/clients/web/backend-ocis/#running-phoenix" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#running-phoenix"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Running Phoenix</h2></div>
+
+<ul>
+<li>in the Phoenix checkout folder, run <code>yarn watch-all-ocis</code></li>
+<li>open <a href="https://localhost:9200">https://localhost:9200</a> and accept the certificate.</li>
+<li>when signing in, use one of the <a href="https://github.com/owncloud/ocis#quickstart">available test users</a></li>
+<li>whenever code changes are made, you need to manually reload the browser page (no hot reload)</li>
+</ul>
+
+<div class="gdoc-page__anchorwrap"><h2 id="running-acceptance-tests"><a data-clipboard-text="https://owncloud.github.io/clients/web/backend-ocis/#running-acceptance-tests" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#running-acceptance-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Running acceptance tests</h2></div>
+
+<p>For testing, please refer to the <a href="https://owncloud.github.io/clients/web/testing/#running-acceptance-tests-using-ocis-backend">OCIS testing section</a></p>
 
 
     </article>

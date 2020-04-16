@@ -22,6 +22,19 @@
     
     <item>
       <title>Getting Started</title>
+      <link>https://owncloud.github.io/clients/web/getting-started/</link>
+      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://owncloud.github.io/clients/web/getting-started/</guid>
+      <description>   Installation Docker TBD
+Binaries TBD
+Source code The source code is hosted at https://github.com/owncloud/phoenix Please refer to the build documentation for Phoenix.
+Setting up backend and running Phoenix can run against either ownCloud 10 as backend or OCIS. Depending which one you chose, please check the matching section:
+ Setting up with ownCloud as backend Setting up with OCIS as backend  Running  Running with ownCloud as backend Running with OCIS as backend  </description>
+    </item>
+    
+    <item>
+      <title>Getting Started</title>
       <link>https://owncloud.github.io/extensions/ocis_hello/getting-started/</link>
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
@@ -97,17 +110,12 @@ git clone https://github.com/owncloud/ocis-hello.git cd ocis-hello All required 
     </item>
     
     <item>
-      <title>Getting Started</title>
-      <link>https://owncloud.github.io/clients/web/getting-started/</link>
+      <title>Building from source</title>
+      <link>https://owncloud.github.io/clients/web/building/</link>
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://owncloud.github.io/clients/web/getting-started/</guid>
-      <description>Installation Setting up the ownCloud Server Make sure you have an ownCloud Server already installed.
-Adjusting config.php Add the following entries to config/config.php:
- tell ownCloud where Phoenix is located:
-&#39;phoenix.baseUrl&#39; =&amp;gt; &#39;&amp;lt;phoenix-url&amp;gt;&#39;,  add a CORS domain entry for Phoenix in config.php:
-&#39;cors.allowed-domains&#39; =&amp;gt; [&#39;&amp;lt;phoenix-domain&amp;gt;&#39;],  optional: when developing against unstable APIs (technical preview), these need to be enabled in the server core:
-dav.enable.tech_preview =&amp;gt; true,   Setting up OAuth2 To connect to the ownCloud server, it is necessary to set it up with OAuth2.</description>
+      <guid>https://owncloud.github.io/clients/web/building/</guid>
+      <description>Building Phoenix  Run yarn install to install core dependencies Run yarn install-all to install dependencies of all apps and core Run yarn dist to build Phoenix and all apps included in the apps folder  Updating dependencies  Run yarn upgrade-all to update core and app dependencies  Cleaning up the workspace  Run yarn clean-all to remove node_modules and dist folder  Buildling the documentation Setting up  Install hugo Run make docs  Viewing the documentation To view the rendered docs in the browser run:</description>
     </item>
     
     <item>
@@ -204,15 +212,6 @@ git clone https://github.com/owncloud/ocis-konnectd.git cd ocis-konnectd All req
     
     <item>
       <title>Building</title>
-      <link>https://owncloud.github.io/clients/web/building/</link>
-      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://owncloud.github.io/clients/web/building/</guid>
-      <description>   Building Phoenix  Run yarn install to install core dependencies Run yarn install-all to install dependencies of all apps and core Run yarn dist to build Phoenix and all apps included in the apps folder  </description>
-    </item>
-    
-    <item>
-      <title>Building</title>
       <link>https://owncloud.github.io/extensions/ocis_accounts/building/</link>
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
@@ -295,6 +294,18 @@ git clone https://github.com/owncloud/core.git  Run an ldap server in a docker c
     </item>
     
     <item>
+      <title>Setup with ownCloud 10</title>
+      <link>https://owncloud.github.io/clients/web/backend-oc10/</link>
+      <pubDate>Wed, 15 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://owncloud.github.io/clients/web/backend-oc10/</guid>
+      <description>Prerequisites Decide on which host and port Phoenix will be served, for example https://phoenix-host:8300/phoenix-path/. In this document, we will refer to the following: - &amp;lt;phoenix-url&amp;gt; as the full URL, for example https://phoenix-host:8300/phoenix-path/ - &amp;lt;phoenix-domain&amp;gt; as the protocol, domain and port, for example: https://phoenix-host:8300
+Setting up the ownCloud Server Make sure you have an ownCloud Server already installed.
+Adjusting config.php Add the following entries to config/config.php:
+ tell ownCloud where Phoenix is located:</description>
+    </item>
+    
+    <item>
       <title>Extension</title>
       <link>https://owncloud.github.io/ocis/extensions/</link>
       <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
@@ -343,6 +354,15 @@ git clone https://github.com/owncloud/ocis.git cd ocis TAGS=simple make generate
     </item>
     
     <item>
+      <title>Setup with OCIS</title>
+      <link>https://owncloud.github.io/clients/web/backend-ocis/</link>
+      <pubDate>Wed, 15 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://owncloud.github.io/clients/web/backend-ocis/</guid>
+      <description>Setting up OCIS services  Setup OCIS by cloning the ocis repository and following the setup instructions there. Do not start the whole server but run ./bin/ocis --log-level debug $EXTENSION for all the existing extensions except the phoenix service. A list of extensions can be found by running ./bin/ocis without arguments and looking at the &amp;ldquo;Extensions&amp;rdquo; section.  Setting up ocis-phoenix service  Clone the ocis-phoenix repository and follow the setup instructions there.</description>
+    </item>
+    
+    <item>
       <title>Debugging</title>
       <link>https://owncloud.github.io/ocis/debugging/</link>
       <pubDate>Thu, 19 Mar 2020 08:21:00 +0100</pubDate>
@@ -369,6 +389,29 @@ git clone https://github.com/owncloud/ocis.git cd ocis All required tool besides
       
       <guid>https://owncloud.github.io/extensions/ocis_thumbnails/license/</guid>
       <description>This project is licensed under the Apache 2.0 license. For the license of the used libraries you have to check the respective sources.</description>
+    </item>
+    
+    <item>
+      <title>Running acceptance tests</title>
+      <link>https://owncloud.github.io/clients/web/testing/</link>
+      <pubDate>Wed, 15 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://owncloud.github.io/clients/web/testing/</guid>
+      <description>Setting up Selenium There are multiple ways to run Selenium:
+ Setup using Docker Setup using Docker Desktop for Mac Setup using a standalone Selenium server  Setup using Docker  Set the environment variables SELENIUM_HOST as localhost and SERVER_HOST in the format http://&amp;lt;ip_addr&amp;gt;:9100. Run yarn run selenium Find the IP address of the docker host with:
+docker inspect -f &amp;#34;{{ .NetworkSettings.Gateway }}&amp;#34; selenium`  Alternatively, you can run this command which is equivalen to yarn run selenium:</description>
+    </item>
+    
+    <item>
+      <title>Building the documentation</title>
+      <link>https://owncloud.github.io/clients/web/building-docs/</link>
+      <pubDate>Wed, 15 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://owncloud.github.io/clients/web/building-docs/</guid>
+      <description>Buildling the documentation Setting up  Install hugo Run make docs  Viewing the documentation To view the rendered docs in the browser run:
+cd hugo hugo -D server Then open &amp;ldquo;http://localhost:1313/&amp;quot;
+When making changes to the docs, run make docs again and the server will pick up the changes and reload the page automatically
+Deploying the documentation The documentation is automatically deployed from the master branch to https://owncloud.</description>
     </item>
     
     <item>
