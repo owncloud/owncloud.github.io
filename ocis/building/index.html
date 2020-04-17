@@ -1106,29 +1106,32 @@
 <div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">git clone https://github.com/owncloud/ocis.git
 cd ocis</code></pre></div>
 
-<p>All required tool besides Go itself and make are bundled or getting automatically installed within the <code>GOPATH</code>. All commands to build this project are part of our <code>Makefile</code>.</p>
+<p>All required tools besides Go itself and make are bundled or getting automatically installed within the <code>GOPATH</code>. All commands to build this project are part of our <code>Makefile</code>. To build the <code>ocis</code> binary run:</p>
 
-<div class="gdoc-page__anchorwrap"><h2 id="simple-ocis"><a data-clipboard-text="https://owncloud.github.io/ocis/building/#simple-ocis" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#simple-ocis"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Simple Ocis</h2></div>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">make generate
+make build</code></pre></div>
 
-<p>Building the simple ocis binary:</p>
+<p>Finally, you should have the binary within the <code>bin/</code> folder now, give it a try with <code>./bin/ocis -h</code> to see all available options.</p>
+
+<div class="gdoc-page__anchorwrap"><h2 id="simple-ocis-fo-extonsions-example"><a data-clipboard-text="https://owncloud.github.io/ocis/building/#simple-ocis-fo-extonsions-example" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#simple-ocis-fo-extonsions-example"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Simple Ocis fo extonsions example</h2></div>
+
+<p>Currently, we are using a go build tag to allow building a more simple set of the binary. It was intended to let extension developers focus on only the necessary services.</p>
+
+<blockquote class="gdoc-hint info">
+    While it the tag based simple build demonstrates how to use ocis as a framework for a micro service architecture, we may change to an approach that uses an explicit command to run only a subset of the services.
+</blockquote>
+
 <div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">TAGS=simple make build</code></pre></div>
 <p>The artifact lives in <code>/bin/ocis</code></p>
 
 <p>The generated simple ocis binary is a subset of the ocis command with a restricted set of services meant for ease up development. The services included are</p>
 
 <pre><code>ocis-hello
-phoenix
-konnectd
-devldap
+ocis-phoenix
+ocis-konnectd
+ocis-glauth
 micro's own services
 </code></pre>
-
-<div class="gdoc-page__anchorwrap"><h2 id="backend"><a data-clipboard-text="https://owncloud.github.io/ocis/building/#backend" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#backend"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Backend</h2></div>
-
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">make generate
-make build</code></pre></div>
-
-<p>Finally you should have the binary within the <code>bin/</code> folder now, give it a try with <code>./bin/ocis -h</code> to see all available options.</p>
 
 
     </article>
