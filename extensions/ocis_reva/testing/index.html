@@ -1177,11 +1177,17 @@ OCIS_REVA_DATA_ROOT=/var/tmp/reva/ \
 BEHAT_FILTER_TAGS='~@skipOnOcis&amp;&amp;~@skipOnLDAP&amp;&amp;@TestAlsoOnExternalUserBackend&amp;&amp;~@local_storage'
 </code></pre>
 
+<p>Make sure to adjust the settings <code>TEST_SERVER_URL</code> and <code>OCIS_REVA_DATA_ROOT</code> according to your environment</p>
+
+<p>This will run all tests that can work with LDAP and are not skipped on OCIS</p>
+
+<p>To run a single test add <code>BEHAT_FEATURE=&lt;feature file&gt;</code></p>
+
 <div class="gdoc-page__anchorwrap"><h3 id="notes"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/testing/#notes" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#notes"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Notes</h3></div>
 
 <ul>
-<li>rerunning the tests requires wiping the users in the ldap server, otherwise the tests will fail when trying to populate the users</li>
-<li>users are created with usernames like <code>user0</code>, the default password is <code>123456</code></li>
+<li>in a normal case the test-code cleans up users after the test-run, but if a test-run is interrupted (e.g. by CTRL+C) users might have been left on the LDAP server. In that case rerunning the tests requires wiping the users in the ldap server, otherwise the tests will fail when trying to populate the users.</li>
+<li>the tests usually create users in the OU <code>TestUsers</code> with usernames specified in the feature file. If not defined in the feature file, most users have the password <code>123456</code>, defined by <code>regularUserPassword</code> in <code>behat.yml</code>, but other passwords are also used, see <a href="https://github.com/owncloud/core/blob/master/tests/acceptance/features/bootstrap/FeatureContext.php#L386"><code>\FeatureContext::getPasswordForUser()</code></a> for mapping and <a href="https://github.com/owncloud/core/blob/master/tests/acceptance/features/bootstrap/FeatureContext.php#L1668"><code>\FeatureContext::__construct</code></a> for the password definitions.</li>
 </ul>
 
 
