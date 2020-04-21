@@ -1110,16 +1110,21 @@
 
 <div class="gdoc-page__anchorwrap"><h3 id="demo-driver"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/users/#demo-driver" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#demo-driver"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Demo driver</h3></div>
 
-<p>This is the default user driver.It contains three users:</p>
+<p>This is a simple user driver for testing. It contains three users:</p>
 
 <pre><code>einstein:relativity
 marie:radioactivty
 richard:superfluidity
 </code></pre>
 
+<p>In order to use the <code>demo</code> driver you need to export the relevant environment variable:</p>
+
+<pre><code>export REVA_USERS_DRIVER=demo
+</code></pre>
+
 <div class="gdoc-page__anchorwrap"><h3 id="json-driver"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/users/#json-driver" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#json-driver"><svg class="icon link"><use xlink:href="#link"></use></svg></a>JSON driver</h3></div>
 
-<p>In order to switch from the <code>demo</code> driver to JSON based users you need to export the relevant environment variables:</p>
+<p>In order to switch from the <code>ldap</code> driver to JSON based users you need to export the relevant environment variables:</p>
 
 <pre><code>export REVA_USERS_DRIVER=json
 export REVA_USERS_JSON=/path/to/users.json
@@ -1129,23 +1134,20 @@ export REVA_USERS_JSON=/path/to/users.json
 
 <div class="gdoc-page__anchorwrap"><h3 id="ldap-driver"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/users/#ldap-driver" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ldap-driver"><svg class="icon link"><use xlink:href="#link"></use></svg></a>LDAP driver</h3></div>
 
-<p>In order to switch from the <code>demo</code> driver to LDAP you need to export the relevant environment variable:</p>
-
-<pre><code>export REVA_USERS_DRIVER=ldap
-</code></pre>
+<p>This is the default user driver.</p>
 
 <p>If the below defaults don&rsquo;t match your environment change them accordingly:</p>
 
 <pre><code>export REVA_LDAP_HOSTNAME=localhost
-export REVA_LDAP_PORT=636
-export REVA_LDAP_BASE_DN='dc=owncloud,dc=com'
+export REVA_LDAP_PORT=9126
+export REVA_LDAP_BASE_DN='dc=example,dc=org'
 export REVA_LDAP_USERFILTER='(&amp;(objectclass=posixAccount)(cn=%s))'
 export REVA_LDAP_GROUPFILTER='(&amp;(objectclass=posixGroup)(cn=%s))'
-export REVA_LDAP_BIND_DN='cn=admin,dc=owncloud,dc=com'
-export REVA_LDAP_BIND_PASSWORD=admin
+export REVA_LDAP_BIND_DN='cn=reva,ou=sysusers,dc=example,dc=org'
+export REVA_LDAP_BIND_PASSWORD=reva
 export REVA_LDAP_SCHEMA_UID=uid
 export REVA_LDAP_SCHEMA_MAIL=mail
-export REVA_LDAP_SCHEMA_DISPLAYNAME=displayName
+export REVA_LDAP_SCHEMA_DISPLAYNAME=sn
 export REVA_LDAP_SCHEMA_CN=cn
 </code></pre>
 
