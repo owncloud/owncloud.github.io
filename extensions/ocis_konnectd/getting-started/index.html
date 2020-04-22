@@ -498,6 +498,23 @@
             <li>
             
                 <span class="flex">
+                    <a href="/extensions/ocis_konnectd/configuration/" class="gdoc-nav__entry ">
+                        Configuration
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+            
+            
+            <li>
+            
+                <span class="flex">
                     <a href="/extensions/ocis_konnectd/building/" class="gdoc-nav__entry ">
                         Building
                     </a>
@@ -1135,26 +1152,10 @@
 <li><a href="#docker">Docker</a></li>
 <li><a href="#binaries">Binaries</a></li>
 </ul></li>
-<li><a href="#configuration">Configuration</a>
-<ul>
-<li><a href="#envrionment-variables">Envrionment variables</a>
-<ul>
-<li><a href="#global">Global</a></li>
-<li><a href="#server">Server</a></li>
-<li><a href="#health">Health</a></li>
-</ul></li>
-<li><a href="#commandline-flags">Commandline flags</a>
-<ul>
-<li><a href="#global-1">Global</a></li>
-<li><a href="#server-1">Server</a></li>
-<li><a href="#health-1">Health</a></li>
-</ul></li>
-<li><a href="#configuration-file">Configuration file</a></li>
-</ul></li>
 <li><a href="#usage">Usage</a>
 <ul>
-<li><a href="#server-2">Server</a></li>
-<li><a href="#health-2">Health</a></li>
+<li><a href="#server">Server</a></li>
+<li><a href="#health">Health</a></li>
 </ul></li>
 <li><a href="#metrics">Metrics</a></li>
 </ul></nav>
@@ -1169,237 +1170,27 @@
 
 <div class="gdoc-page__anchorwrap"><h3 id="docker"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#docker" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#docker"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Docker</h3></div>
 
-<p>TBD</p>
+<p>Docker images for ocis-reva are hosted on <a href="https://hub.docker.com/r/owncloud/ocis-konnectd">https://hub.docker.com/r/owncloud/ocis-konnectd</a>.</p>
 
+<p>The <code>latest</code> tag always reflects the current master branch.</p>
+<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">docker pull owncloud/ocis-konnectd</code></pre></div>
 <div class="gdoc-page__anchorwrap"><h3 id="binaries"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#binaries" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#binaries"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Binaries</h3></div>
 
-<p>TBD</p>
-
-<div class="gdoc-page__anchorwrap"><h2 id="configuration"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#configuration" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#configuration"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Configuration</h2></div>
-
-<p>We provide overall three different variants of configuration. The variant based on environment variables and commandline flags are split up into global values and command-specific values.</p>
-
-<div class="gdoc-page__anchorwrap"><h3 id="envrionment-variables"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#envrionment-variables" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#envrionment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Envrionment variables</h3></div>
-
-<p>If you prefer to configure the service with environment variables you can see the available variables below.</p>
-
-<div class="gdoc-page__anchorwrap"><h4 id="global"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#global" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#global"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Global</h4></div>
-
-<dl>
-<dt>KONNECTD_CONFIG_FILE</dt>
-<dd>Path to config file, empty default value</dd>
-<dt>KONNECTD_LOG_LEVEL</dt>
-<dd>Set logging level, defaults to <code>info</code></dd>
-<dt>KONNECTD_LOG_COLOR</dt>
-<dd>Enable colored logging, defaults to <code>true</code></dd>
-<dt>KONNECTD_LOG_PRETTY</dt>
-<dd>Enable pretty logging, defaults to <code>true</code></dd>
-</dl>
-
-<div class="gdoc-page__anchorwrap"><h4 id="server"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Server</h4></div>
-
-<dl>
-<dt>KONNECTD_TRACING_ENABLED</dt>
-<dd>Enable sending traces, defaults to <code>false</code></dd>
-<dt>KONNECTD_TRACING_TYPE</dt>
-<dd>Tracing backend type, defaults to <code>jaeger</code></dd>
-<dt>KONNECTD_TRACING_ENDPOINT</dt>
-<dd>Endpoint for the agent, empty default value</dd>
-<dt>KONNECTD_TRACING_COLLECTOR</dt>
-<dd>Endpoint for the collector, empty default value</dd>
-<dt>KONNECTD_TRACING_SERVICE</dt>
-<dd>Service name for tracing, defaults to <code>konnectd</code></dd>
-<dt>KONNECTD_DEBUG_ADDR</dt>
-<dd>Address to bind debug server, defaults to <code>0.0.0.0:9134</code></dd>
-<dt>KONNECTD_DEBUG_TOKEN</dt>
-<dd>Token to grant metrics access, empty default value</dd>
-<dt>KONNECTD_DEBUG_PPROF</dt>
-<dd>Enable pprof debugging, defaults to <code>false</code></dd>
-<dt>KONNECTD_DEBUG_ZPAGES</dt>
-<dd>Enable zpages debugging, defaults to <code>false</code></dd>
-<dt>KONNECTD_HTTP_ADDR</dt>
-<dd>Address to bind http server, defaults to <code>0.0.0.0:9130</code></dd>
-<dt>KONNECTD_HTTP_ROOT</dt>
-<dd>Root path of http server, defaults to <code>/</code></dd>
-<dt>KONNECTD_HTTP_NAMESPACE</dt>
-<dd>Set the base namespace for service discovery, defaults to <code>com.owncloud.web</code></dd>
-<dt>KONNECTD_IDENTITY_MANAGER</dt>
-<dd>Identity manager (one of ldap,kc,cookie,dummy), defaults to <code>ldap</code></dd>
-<dt>KONNECTD_TRANSPORT_TLS_CERT</dt>
-<dd>Certificate file for transport encryption, uses a temporary dev-cert if empty</dd>
-<dt>KONNECTD_TRANSPORT_TLS_KEY</dt>
-<dd>Secret file for transport encryption, uses a temporary dev-cert if empty</dd>
-<dt>KONNECTD_ISS</dt>
-<dd>OIDC issuer URL, defaults to <code>https://localhost:9130</code></dd>
-<dt>KONNECTD_SIGNING_PRIVATE_KEY</dt>
-<dd>Full path to PEM encoded private key file (must match the &ndash;signing-method algorithm)</dd>
-<dt>KONNECTD_SIGNING_KID</dt>
-<dd>Value of kid field to use in created tokens (uniquely identifying the signing-private-key), empty default value</dd>
-<dt>KONNECTD_VALIDATION_KEYS_PATH</dt>
-<dd>Full path to a folder containg PEM encoded private or public key files used for token validaton (file name without extension is used as kid), empty default value</dd>
-<dt>KONNECTD_ENCRYPTION_SECRET</dt>
-<dd>Full path to a file containing a %d bytes secret key, empty default value</dd>
-<dt>KONNECTD_SIGNING_METHOD</dt>
-<dd>JWT default signing method, defaults to <code>PS256</code></dd>
-<dt>KONNECTD_URI_BASE_PATH</dt>
-<dd>Custom base path for URI endpoints, empty default value</dd>
-<dt>KONNECTD_SIGN_IN_URI</dt>
-<dd>Custom redirection URI to sign-in form, empty default value</dd>
-<dt>KONNECTD_SIGN_OUT_URI</dt>
-<dd>Custom redirection URI to signed-out goodbye page, empty default value</dd>
-<dt>KONNECTD_ENDPOINT_URI</dt>
-<dd>Custom authorization endpoint URI, empty default value</dd>
-<dt>KONNECTD_ENDSESSION_ENDPOINT_URI</dt>
-<dd>Custom endsession endpoint URI, empty default value</dd>
-<dt>KONNECTD_ASSET_PATH</dt>
-<dd>Path to custom assets, empty default value</dd>
-<dt>KONNECTD_IDENTIFIER_CLIENT_PATH</dt>
-<dd>Path to the identifier web client base folder, defaults to <code>/var/tmp/konnectd</code></dd>
-<dt>KONNECTD_IDENTIFIER_REGISTRATION_CONF</dt>
-<dd>Path to a identifier-registration.yaml configuration file, defaults to <code>./config/identifier-registration.yaml</code></dd>
-<dt>KONNECTD_IDENTIFIER_SCOPES_CONF</dt>
-<dd>Path to a scopes.yaml configuration file, empty default value</dd>
-<dt>KONNECTD_INSECURE</dt>
-<dd>Disable TLS certificate and hostname validation</dd>
-<dt>KONNECTD_TLS</dt>
-<dd>Use TLS (disable only if konnectd is behind a TLS-terminating reverse-proxy), defaults to <code>true</code></dd>
-<dt>KONNECTD_TRUSTED_PROXY</dt>
-<dd>List of trusted proxy IP or IP network(s) (usage: KONNECTD_TRUSTED_PROXY=x.x.x.x y.y.y.y)</dd>
-<dt>KONNECTD_ALLOW_SCOPE</dt>
-<dd>Allow OAuth 2 scope(s) (usage: KONNECTD_ALLOW_SCOPE=A B C)</dd>
-<dt>KONNECTD_ALLOW_CLIENT_GUESTS</dt>
-<dd>Allow sign in of client controlled guest users</dd>
-<dt>KONNECTD_ALLOW_DYNAMIC_CLIENT_REGISTRATION</dt>
-<dd>Allow dynamic OAuth2 client registration</dd>
-<dt>KONNECTD_DISABLE_IDENTIFIER_WEBAPP</dt>
-<dd>Disable built-in identifier-webapp to use a frontend hosted elsewhere. Per default we use the built-in webapp. If set to false &ndash;identifier-client-path must be provided, defaults to <code>true</code></dd>
-</dl>
-
-<div class="gdoc-page__anchorwrap"><h4 id="health"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#health" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#health"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Health</h4></div>
-
-<dl>
-<dt>KONNECTD_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint, defaults to <code>0.0.0.0:9134</code></dd>
-</dl>
-
-<div class="gdoc-page__anchorwrap"><h3 id="commandline-flags"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#commandline-flags" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#commandline-flags"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Commandline flags</h3></div>
-
-<p>If you prefer to configure the service with commandline flags you can see the available variables below.</p>
-
-<div class="gdoc-page__anchorwrap"><h4 id="global-1"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#global-1" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#global-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Global</h4></div>
-
-<dl>
-<dt>&ndash;config-file</dt>
-<dd>Path to config file, empty default value</dd>
-<dt>&ndash;log-level</dt>
-<dd>Set logging level, defaults to <code>info</code></dd>
-<dt>&ndash;log-color</dt>
-<dd>Enable colored logging, defaults to <code>true</code></dd>
-<dt>&ndash;log-pretty</dt>
-<dd>Enable pretty logging, defaults to <code>true</code></dd>
-</dl>
-
-<div class="gdoc-page__anchorwrap"><h4 id="server-1"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#server-1" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#server-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Server</h4></div>
-
-<dl>
-<dt>&ndash;tracing-enabled</dt>
-<dd>Enable sending traces, defaults to <code>false</code></dd>
-<dt>&ndash;tracing-type</dt>
-<dd>Tracing backend type, defaults to <code>jaeger</code></dd>
-<dt>&ndash;tracing-endpoint</dt>
-<dd>Endpoint for the agent, empty default value</dd>
-<dt>&ndash;tracing-collector</dt>
-<dd>Endpoint for the collector, empty default value</dd>
-<dt>&ndash;tracing-service</dt>
-<dd>Service name for tracing, defaults to <code>konnectd</code></dd>
-<dt>&ndash;debug-addr</dt>
-<dd>Address to bind debug server, defaults to <code>0.0.0.0:9134</code></dd>
-<dt>&ndash;debug-token</dt>
-<dd>Token to grant metrics access, empty default value</dd>
-<dt>&ndash;debug-pprof</dt>
-<dd>Enable pprof debugging, defaults to <code>false</code></dd>
-<dt>&ndash;debug-zpages</dt>
-<dd>Enable zpages debugging, defaults to <code>false</code></dd>
-<dt>&ndash;http-addr</dt>
-<dd>Address to bind http server, defaults to <code>0.0.0.0:9130</code></dd>
-<dt>&ndash;http-root</dt>
-<dd>Root path of http server, defaults to <code>/</code></dd>
-<dt>&ndash;http-namespace</dt>
-<dd>Set the base namespace for service discovery, defaults to <code>com.owncloud.web</code></dd>
-<dt>&ndash;identity-manager</dt>
-<dd>Identity manager (one of ldap,kc,cookie,dummy), defaults to <code>ldap</code></dd>
-<dt>&ndash;transport-tls-cert</dt>
-<dd>Certificate file for transport encryption, uses a temporary dev-cert if empty</dd>
-<dt>&ndash;transport-tls-key</dt>
-<dd>Key file for transport encryption, uses a temporary dev-cert if empty</dd>
-<dt>&ndash;iss</dt>
-<dd>OIDC issuer URL, defaults to <code>https://localhost:9130</code></dd>
-<dt>&ndash;signing-private-key</dt>
-<dd>Full path to PEM encoded private key file (must match the &ndash;signing-method algorithm)</dd>
-<dt>&ndash;signing-kid</dt>
-<dd>Value of kid field to use in created tokens (uniquely identifying the signing-private-key), empty default value</dd>
-<dt>&ndash;validation-keys-path</dt>
-<dd>Full path to a folder containg PEM encoded private or public key files used for token validaton (file name without extension is used as kid), empty default value</dd>
-<dt>&ndash;encryption-secret</dt>
-<dd>Full path to a file containing a 32 bytes secret key, empty default value</dd>
-<dt>&ndash;signing-method</dt>
-<dd>JWT default signing method, defaults to <code>PS256</code></dd>
-<dt>&ndash;uri-base-path</dt>
-<dd>Custom base path for URI endpoints, empty default value</dd>
-<dt>&ndash;sign-in-uri</dt>
-<dd>Custom redirection URI to sign-in form, empty default value</dd>
-<dt>&ndash;signed-out-uri</dt>
-<dd>Custom redirection URI to signed-out goodbye page, empty default value</dd>
-<dt>&ndash;authorization-endpoint-uri</dt>
-<dd>Custom authorization endpoint URI, empty default value</dd>
-<dt>&ndash;endsession-endpoint-uri</dt>
-<dd>Custom endsession endpoint URI, empty default value</dd>
-<dt>&ndash;asset-path</dt>
-<dd>Path to custom assets, empty default value</dd>
-<dt>&ndash;identifier-client-path</dt>
-<dd>Path to the identifier web client base folder, defaults to <code>/var/tmp/konnectd</code></dd>
-<dt>&ndash;identifier-registration-conf</dt>
-<dd>Path to a identifier-registration.yaml configuration file, defaults to <code>./config/identifier-registration.yaml</code></dd>
-<dt>&ndash;identifier-scopes-conf</dt>
-<dd>Path to a scopes.yaml configuration file, empty default value</dd>
-<dt>&ndash;insecure</dt>
-<dd>Disable TLS certificate and hostname validation</dd>
-<dt>&ndash;tls</dt>
-<dd>Use TLS (disable only if konnectd is behind a TLS-terminating reverse-proxy), defaults to <code>true</code></dd>
-<dt>&ndash;trusted-proxy</dt>
-<dd>List of trusted proxy IP or IP network (usage: &ndash;trusted-proxy x.x.x.x &ndash;trusted-proxy y.y.y.y)</dd>
-<dt>&ndash;allow-scope</dt>
-<dd>Allow OAuth 2 scope (usage: &ndash;allow-scope a &ndash;allow-scope b &hellip;)</dd>
-<dt>&ndash;allow-client-guests</dt>
-<dd>Allow sign in of client controlled guest users</dd>
-<dt>&ndash;allow-dynamic-client-registration</dt>
-<dd>Allow dynamic OAuth2 client registration</dd>
-<dt>&ndash;disable-identifier-webapp</dt>
-<dd>Disable built-in identifier-webapp to use a frontend hosted elsewhere. Per default we use the built-in webapp. If set to false &ndash;identifier-client-path must be provided, defaults to <code>true</code></dd>
-</dl>
-
-<div class="gdoc-page__anchorwrap"><h4 id="health-1"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#health-1" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#health-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Health</h4></div>
-
-<dl>
-<dt>&ndash;debug-addr</dt>
-<dd>Address to debug endpoint, defaults to <code>0.0.0.0:9134</code></dd>
-</dl>
-
-<div class="gdoc-page__anchorwrap"><h3 id="configuration-file"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#configuration-file" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#configuration-file"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Configuration file</h3></div>
-
-<p>So far we support the file formats <code>JSON</code> and <code>YAML</code>, if you want to get a full example configuration just take a look at <a href="https://github.com/owncloud/ocis-konnectd/tree/master/config">our repository</a>, there you can always see the latest configuration format. These example configurations include all available options and the default values. The configuration file will be automatically loaded if it&rsquo;s placed at <code>/etc/ocis/konnectd.yml</code>, <code>${HOME}/.ocis/konnectd.yml</code> or <code>$(pwd)/config/konnectd.yml</code>.</p>
-
+<p>The pre-built binaries for different platforms are downloadable at <a href="https://download.owncloud.com/ocis/ocis-konnectd/">https://download.owncloud.com/ocis/ocis-konnectd/</a> . Specific releases are organized in separate folders. They are in sync which every release tag on GitHub. The binaries from the current master branch can be found in <a href="https://download.owncloud.com/ocis/ocis-konnectd/testing/">https://download.owncloud.com/ocis/ocis-konnectd/testing/</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">curl https://download.owncloud.com/ocis/ocis-konnectd/1.0.0-beta1/ocis-konnectd-1.0.0-beta1-darwin-amd64 --output ocis-konnectd
+chmod +x ocis-konnectd
+./ocis-konnectd server</code></pre></div>
 <div class="gdoc-page__anchorwrap"><h2 id="usage"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#usage" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#usage"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Usage</h2></div>
 
 <p>The program provides a few sub-commands on execution. The available configuration methods have already been mentioned above. Generally you can always see a formated help output if you execute the binary via <code>ocis-konnectd --help</code>.</p>
 
-<div class="gdoc-page__anchorwrap"><h3 id="server-2"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#server-2" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#server-2"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Server</h3></div>
+<div class="gdoc-page__anchorwrap"><h3 id="server"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Server</h3></div>
 
 <p>The server command is used to start the http and debug server on two addresses within a single process. The http server is serving the general webservice while the debug server is used for health check, readiness check and to server the metrics mentioned below. For further help please execute:</p>
 
 <div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">ocis-konnectd server --help</code></pre></div>
 
-<div class="gdoc-page__anchorwrap"><h3 id="health-2"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#health-2" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#health-2"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Health</h3></div>
+<div class="gdoc-page__anchorwrap"><h3 id="health"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#health" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#health"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Health</h3></div>
 
 <p>The health command is used to execute a health check, if the exit code equals zero the service should be up and running, if the exist code is greater than zero the service is not in a healthy state. Generally this command is used within our Docker containers, it could also be used within Kubernetes.</p>
 
