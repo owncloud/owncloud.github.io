@@ -1110,7 +1110,7 @@
 
 <div class="gdoc-page__anchorwrap"><h2 id="acceptance-tests"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/testing/#acceptance-tests" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#acceptance-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Acceptance tests</h2></div>
 
-<p>We are using the ownCloud 10 acceptance testsuite against ocis. To set this up you need the owncloud 10 core repo, an ldap server that the acceptance tests can use to manage users and the ocis-reva code.</p>
+<p>We are using the ownCloud 10 acceptance testsuite against ocis. To set this up you need the owncloud 10 core repo, a ldap server that the acceptance tests can use to manage users, a redis server for file-versions and the ocis-reva code.</p>
 
 <div class="gdoc-page__anchorwrap"><h3 id="getting-the-tests"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/testing/#getting-the-tests" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#getting-the-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Getting the tests</h3></div>
 
@@ -1119,7 +1119,7 @@
 <pre><code>git clone https://github.com/owncloud/core.git
 </code></pre>
 
-<div class="gdoc-page__anchorwrap"><h3 id="run-an-ldap-server-in-a-docker-container"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/testing/#run-an-ldap-server-in-a-docker-container" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-an-ldap-server-in-a-docker-container"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run an ldap server in a docker container</h3></div>
+<div class="gdoc-page__anchorwrap"><h3 id="run-a-ldap-server-in-a-docker-container"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/testing/#run-a-ldap-server-in-a-docker-container" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-a-ldap-server-in-a-docker-container"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run a ldap server in a docker container</h3></div>
 
 <p>The ownCloud 10 acceptance tests will need write permission. You can start a suitable ldap server in a docker container with:</p>
 
@@ -1132,6 +1132,12 @@
     -p 127.0.0.1:389:389 \
     -p 636:636 -d osixia/openldap
 </code></pre>
+
+<div class="gdoc-page__anchorwrap"><h3 id="run-a-redis-server-in-a-docker-container"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/testing/#run-a-redis-server-in-a-docker-container" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-a-redis-server-in-a-docker-container"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run a redis server in a docker container</h3></div>
+
+<p>File versions need a redis server. Start one with docker by using:</p>
+
+<p><code>docker run -e REDIS_DATABASES=1 -p 6379:6379 -d webhippie/redis:latest</code></p>
 
 <div class="gdoc-page__anchorwrap"><h3 id="run-ocis-reva-with-that-ldap-server"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/testing/#run-ocis-reva-with-that-ldap-server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-ocis-reva-with-that-ldap-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run ocis-reva with that ldap server</h3></div>
 
