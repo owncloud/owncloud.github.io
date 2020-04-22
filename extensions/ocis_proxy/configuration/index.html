@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="License">
+<meta name="description" content="Configuration">
 
-<title>License | ownCloud</title>
+<title>Configuration | ownCloud</title>
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
 <link rel="stylesheet" href="/main.min.css">
@@ -205,7 +205,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/ocis/license/" class="gdoc-nav__entry is-active">
+                    <a href="/ocis/license/" class="gdoc-nav__entry ">
                         License
                     </a>
                 </span>
@@ -572,7 +572,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis_proxy/configuration/" class="gdoc-nav__entry ">
+                    <a href="/extensions/ocis_proxy/configuration/" class="gdoc-nav__entry is-active">
                         Configuration
                     </a>
                 </span>
@@ -1085,7 +1085,14 @@
         
     
     
-        <a href='/'>Documentation</a> / <a href='/ocis/'>Infinite Scale</a> / License
+        
+        
+        
+    
+    
+        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_proxy/'>Proxy</a> / Configuration
+    
+
     
 
     
@@ -1098,7 +1105,7 @@
     <span>
         
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/docs/license.md">
+            <a href="https://github.com/owncloud/ocis-proxy/edit/master/docs/configuration.md">
                 Edit this page
             </a>
         
@@ -1107,7 +1114,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>License</h1>
+        <h1>Configuration</h1>
         
 
 
@@ -1116,7 +1123,123 @@
     
 
 
-<p>This project is licensed under the <a href="https://github.com/owncloud/ocis/blob/master/LICENSE">Apache 2.0</a> license. For the license of the used libraries you have to check the respective sources.</p>
+
+
+
+
+
+    <div class="gdoc-toc gdoc-toc__level--3">
+        <nav id="TableOfContents"><ul>
+<li><a href="#configuration">Configuration</a>
+<ul>
+<li><a href="#configuration-using-config-files">Configuration using config files</a></li>
+<li><a href="#envrionment-variables">Envrionment variables</a></li>
+<li><a href="#commandline-flags">Commandline flags</a></li>
+</ul></li>
+<li><a href="#root-command">Root Command</a></li>
+<li><a href="#sub-commands">Sub Commands</a>
+<ul>
+<li><a href="#ocis-proxy-server">ocis-proxy server</a></li>
+<li><a href="#ocis-proxy-health">ocis-proxy health</a></li>
+</ul></li>
+</ul></nav>
+        <hr>
+    </div>
+
+
+
+<div class="gdoc-page__anchorwrap"><h2 id="configuration"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_proxy/configuration/#configuration" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#configuration"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Configuration</h2></div>
+
+<p>oCIS Single Binary is not responsible for configuring extensions. Instead, each extension could either be configured by environment variables, cli flags or config files.</p>
+
+<p>Each extension has its dedicated documentation page (e.g. <a href="https://owncloud.github.io/extensions/ocis_proxy/configuration">https://owncloud.github.io/extensions/ocis_proxy/configuration</a>) which lists all possible configurations. Config files and environment variables are picked up if you use the <code>./bin/ocis server</code> command within the oCIS single binary. Command line flags must be set explicitly on the extensions subcommands.</p>
+
+<div class="gdoc-page__anchorwrap"><h3 id="configuration-using-config-files"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_proxy/configuration/#configuration-using-config-files" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#configuration-using-config-files"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Configuration using config files</h3></div>
+
+<p>Out of the box extensions will attempt to read configuration details from:</p>
+<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">/etc/ocis
+$HOME/.ocis
+./config</code></pre></div>
+<p>For this configuration to be picked up, have a look at your extension <code>root</code> command and look for which default config name it has assigned. <em>i.e: ocis-proxy reads <code>proxy.json | yaml | toml ...</code></em>.</p>
+
+<p>So far we support the file formats <code>JSON</code> and <code>YAML</code>, if you want to get a full example configuration just take a look at <a href="https://github.com/owncloud/ocis/tree/master/config">our repository</a>, there you can always see the latest configuration format. These example configurations include all available options and the default values. The configuration file will be automatically loaded if it&rsquo;s placed at <code>/etc/ocis/ocis.yml</code>, <code>${HOME}/.ocis/ocis.yml</code> or <code>$(pwd)/config/ocis.yml</code>.</p>
+
+<div class="gdoc-page__anchorwrap"><h3 id="envrionment-variables"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_proxy/configuration/#envrionment-variables" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#envrionment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Envrionment variables</h3></div>
+
+<p>If you prefer to configure the service with environment variables you can see the available variables below.</p>
+
+<div class="gdoc-page__anchorwrap"><h3 id="commandline-flags"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_proxy/configuration/#commandline-flags" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#commandline-flags"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Commandline flags</h3></div>
+
+<p>If you prefer to configure the service with commandline flags you can see the available variables below. Command line flags are only working when calling the subcommand directly.</p>
+
+<div class="gdoc-page__anchorwrap"><h2 id="root-command"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_proxy/configuration/#root-command" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#root-command"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Root Command</h2></div>
+
+<p>proxy for Reva/oCIS</p>
+
+<p>Usage: <code>ocis-proxy [global options] command [command options] [arguments...]</code></p>
+
+<dl>
+<dt>&ndash;config-file | $PROXY_CONFIG_FILE<br /></dt>
+<dd>Path to config file.</dd>
+<dt>&ndash;log-level | $PROXY_LOG_LEVEL<br /></dt>
+<dd>Set logging level. Default: <code>info</code>.</dd>
+<dt>&ndash;log-pretty | $PROXY_LOG_PRETTY<br /></dt>
+<dd>Enable pretty logging. Default: <code>true</code>.</dd>
+<dt>&ndash;log-color | $PROXY_LOG_COLOR<br /></dt>
+<dd>Enable colored logging. Default: <code>true</code>.</dd>
+</dl>
+
+<div class="gdoc-page__anchorwrap"><h2 id="sub-commands"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_proxy/configuration/#sub-commands" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#sub-commands"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Sub Commands</h2></div>
+
+<div class="gdoc-page__anchorwrap"><h3 id="ocis-proxy-server"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_proxy/configuration/#ocis-proxy-server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-proxy-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-proxy server</h3></div>
+
+<p>Start integrated server</p>
+
+<p>Usage: <code>ocis-proxy server [command options] [arguments...]</code></p>
+
+<dl>
+<dt>&ndash;tracing-enabled | $PROXY_TRACING_ENABLED<br /></dt>
+<dd>Enable sending traces.</dd>
+<dt>&ndash;tracing-type | $PROXY_TRACING_TYPE<br /></dt>
+<dd>Tracing backend type. Default: <code>jaeger</code>.</dd>
+<dt>&ndash;tracing-endpoint | $PROXY_TRACING_ENDPOINT<br /></dt>
+<dd>Endpoint for the agent.</dd>
+<dt>&ndash;tracing-collector | $PROXY_TRACING_COLLECTOR<br /></dt>
+<dd>Endpoint for the collector.</dd>
+<dt>&ndash;tracing-service | $PROXY_TRACING_SERVICE<br /></dt>
+<dd>Service name for tracing. Default: <code>proxy</code>.</dd>
+<dt>&ndash;debug-addr | $PROXY_DEBUG_ADDR<br /></dt>
+<dd>Address to bind debug server. Default: <code>0.0.0.0:9205</code>.</dd>
+<dt>&ndash;debug-token | $PROXY_DEBUG_TOKEN<br /></dt>
+<dd>Token to grant metrics access.</dd>
+<dt>&ndash;debug-pprof | $PROXY_DEBUG_PPROF<br /></dt>
+<dd>Enable pprof debugging.</dd>
+<dt>&ndash;debug-zpages | $PROXY_DEBUG_ZPAGES<br /></dt>
+<dd>Enable zpages debugging.</dd>
+<dt>&ndash;http-addr | $PROXY_HTTP_ADDR<br /></dt>
+<dd>Address to bind http server. Default: <code>0.0.0.0:9200</code>.</dd>
+<dt>&ndash;http-root | $PROXY_HTTP_ROOT<br /></dt>
+<dd>Root path of http server. Default: <code>/</code>.</dd>
+<dt>&ndash;asset-path | $PROXY_ASSET_PATH<br /></dt>
+<dd>Path to custom assets.</dd>
+<dt>&ndash;http-namespace | $PROXY_HTTP_NAMESPACE<br /></dt>
+<dd>Set the base namespace for the http namespace. Default: <code>com.owncloud</code>.</dd>
+<dt>&ndash;transport-tls-cert | $PROXY_TRANSPORT_TLS_CERT<br /></dt>
+<dd>Certificate file for transport encryption.</dd>
+<dt>&ndash;transport-tls-key | $PROXY_TRANSPORT_TLS_KEY<br /></dt>
+<dd>Secret file for transport encryption.</dd>
+</dl>
+
+<div class="gdoc-page__anchorwrap"><h3 id="ocis-proxy-health"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_proxy/configuration/#ocis-proxy-health" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-proxy-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-proxy health</h3></div>
+
+<p>Check health status</p>
+
+<p>Usage: <code>ocis-proxy health [command options] [arguments...]</code></p>
+
+<dl>
+<dt>&ndash;debug-addr | $PROXY_DEBUG_ADDR<br /></dt>
+<dd>Address to debug endpoint. Default: <code>0.0.0.0:9109</code>.</dd>
+</dl>
 
 
     </article>
