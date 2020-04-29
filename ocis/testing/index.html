@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Accounts">
+<meta name="description" content="Testing">
 
-<title>Accounts | ownCloud</title>
+<title>Testing | ownCloud</title>
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
 <link rel="stylesheet" href="/main.min.css">
@@ -14,7 +14,6 @@
 <link rel="stylesheet" href="/custom.css">
 
 
-<link rel="alternate" type="application/rss+xml" href="https://owncloud.github.io/extensions/ocis_accounts/index.xml" title="ownCloud" />
 <!--
     Made with Geekdoc theme
     https://github.com/xoxys/hugo-geekdoc
@@ -157,7 +156,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/ocis/testing/" class="gdoc-nav__entry ">
+                    <a href="/ocis/testing/" class="gdoc-nav__entry is-active">
                         Testing
                     </a>
                 </span>
@@ -665,7 +664,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis_accounts/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/ocis_accounts/" class="gdoc-nav__entry ">
                         Accounts
                     </a>
                 </span>
@@ -1137,7 +1136,7 @@
         
     
     
-        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / Accounts
+        <a href='/'>Documentation</a> / <a href='/ocis/'>Infinite Scale</a> / Testing
     
 
     
@@ -1150,15 +1149,16 @@
     <span>
         
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis-accounts/edit/master/docs/_index.md">
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/testing.md">
                 Edit this page
             </a>
         
     </span>
 </div>
 
+
     <article class="gdoc-markdown">
-        <h1>Accounts</h1>
+        <h1>Testing</h1>
         
 
 
@@ -1167,7 +1167,152 @@
     
 
 
-<p>This service provides an inter-operable accounts service that operates on the filesystem by default.</p>
+
+
+<div class="gdoc-page__anchorwrap"><h2 id="acceptance-tests"><a data-clipboard-text="https://owncloud.github.io/ocis/testing/#acceptance-tests" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#acceptance-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Acceptance tests</h2></div>
+
+<p>We are using the ownCloud 10 acceptance testsuite against ocis. To set this up you need the owncloud 10 core repo, a ldap server that the acceptance tests can use to manage users, a redis server for file-versions and the ocis code.</p>
+
+<div class="gdoc-page__anchorwrap"><h3 id="getting-the-tests"><a data-clipboard-text="https://owncloud.github.io/ocis/testing/#getting-the-tests" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#getting-the-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Getting the tests</h3></div>
+
+<p>All you need to do to get the acceptance tests is check out the core repo:</p>
+
+<pre><code>git clone https://github.com/owncloud/core.git
+</code></pre>
+
+<div class="gdoc-page__anchorwrap"><h3 id="run-a-ldap-server-in-a-docker-container"><a data-clipboard-text="https://owncloud.github.io/ocis/testing/#run-a-ldap-server-in-a-docker-container" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-a-ldap-server-in-a-docker-container"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run a ldap server in a docker container</h3></div>
+
+<p>The ownCloud 10 acceptance tests will need write permission. You can start a suitable ldap server in a docker container with:</p>
+
+<pre><code>docker run --hostname ldap.my-company.com \
+    -e LDAP_TLS_VERIFY_CLIENT=never \
+    -e LDAP_DOMAIN=owncloud.com \
+    -e LDAP_ORGANISATION=ownCloud \
+    -e LDAP_ADMIN_PASSWORD=admin \
+    --name docker-slapd \
+    -p 127.0.0.1:389:389 \
+    -p 636:636 -d osixia/openldap
+</code></pre>
+
+<div class="gdoc-page__anchorwrap"><h3 id="run-a-redis-server-in-a-docker-container"><a data-clipboard-text="https://owncloud.github.io/ocis/testing/#run-a-redis-server-in-a-docker-container" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-a-redis-server-in-a-docker-container"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run a redis server in a docker container</h3></div>
+
+<p>File versions need a redis server. Start one with docker by using:</p>
+
+<p><code>docker run -e REDIS_DATABASES=1 -p 6379:6379 -d webhippie/redis:latest</code></p>
+
+<div class="gdoc-page__anchorwrap"><h3 id="run-ocis-with-that-ldap-server"><a data-clipboard-text="https://owncloud.github.io/ocis/testing/#run-ocis-with-that-ldap-server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-ocis-with-that-ldap-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run ocis with that ldap server</h3></div>
+
+<p><code>ocis</code> provides multiple subcommands. To configure them all via env vars you can export these environment variables.</p>
+
+<pre><code>export REVA_USERS_DRIVER=ldap
+export REVA_LDAP_HOSTNAME=localhost
+export REVA_LDAP_PORT=636
+export REVA_LDAP_BASE_DN='dc=owncloud,dc=com'
+export REVA_LDAP_USERFILTER='(&amp;(objectclass=posixAccount)(cn=%s))'
+export REVA_LDAP_GROUPFILTER='(&amp;(objectclass=posixGroup)(cn=%s))'
+export REVA_LDAP_BIND_DN='cn=admin,dc=owncloud,dc=com'
+export REVA_LDAP_BIND_PASSWORD=admin
+export REVA_LDAP_SCHEMA_UID=uid
+export REVA_LDAP_SCHEMA_MAIL=mail
+export REVA_LDAP_SCHEMA_DISPLAYNAME=displayName
+export REVA_LDAP_SCHEMA_CN=cn
+export LDAP_URI=ldap://localhost
+export LDAP_BINDDN='cn=admin,dc=owncloud,dc=com'
+export LDAP_BINDPW=admin
+export LDAP_BASEDN='dc=owncloud,dc=com'
+</code></pre>
+
+<p>Then you need to start ocis</p>
+
+<pre><code>bin/ocis server
+</code></pre>
+
+<div class="gdoc-page__anchorwrap"><h3 id="run-the-acceptance-tests"><a data-clipboard-text="https://owncloud.github.io/ocis/testing/#run-the-acceptance-tests" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-the-acceptance-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run the acceptance tests</h3></div>
+
+<p>In the ownCloud 10 core repo run</p>
+
+<pre><code>make test-acceptance-api \
+TEST_SERVER_URL=http://localhost:9140 \
+TEST_EXTERNAL_USER_BACKENDS=true \
+TEST_OCIS=true \
+OCIS_REVA_DATA_ROOT=/var/tmp/reva/ \
+BEHAT_FILTER_TAGS='~@skipOnOcis&amp;&amp;~@skipOnLDAP&amp;&amp;@TestAlsoOnExternalUserBackend&amp;&amp;~@local_storage'
+</code></pre>
+
+<p>Make sure to adjust the settings <code>TEST_SERVER_URL</code> and <code>OCIS_REVA_DATA_ROOT</code> according to your environment</p>
+
+<p>This will run all tests that can work with LDAP and are not skipped on ocis</p>
+
+<p>To run a single test add <code>BEHAT_FEATURE=&lt;feature file&gt;</code></p>
+
+<div class="gdoc-page__anchorwrap"><h3 id="use-existing-tests-for-bdd"><a data-clipboard-text="https://owncloud.github.io/ocis/testing/#use-existing-tests-for-bdd" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#use-existing-tests-for-bdd"><svg class="icon link"><use xlink:href="#link"></use></svg></a>use existing tests for BDD</h3></div>
+
+<p>As a lot of scenarios are written for oC10, we can use those tests for Behaviour driven development in ocis.
+Every scenario that does not work in ocis, is tagged with <code>@skipOnOcis</code> and additionally should be marked with an issue number e.g. <code>@issue-ocis-20</code>.
+This tag means that this particular scenario is skipped because of <a href="https://github.com/owncloud/ocis/issues/20">issue no 20 in the ocis repository</a>.
+Additionally, some issues have scenarios that demonstrate the current buggy behaviour in ocis(reva) and are skipped on oC10.
+Have a look into the <a href="https://doc.owncloud.com/server/developer_manual/testing/acceptance-tests.html#writing-scenarios-for-bugs">documentation</a> to understand why we are writing those tests.</p>
+
+<p>If you want to work on a specific issue</p>
+
+<ol>
+<li><p>run the tests marked with that issue tag</p>
+
+<p>E.g.:</p>
+
+<pre><code>make test-acceptance-api \
+TEST_SERVER_URL=http://localhost:9140 \
+TEST_EXTERNAL_USER_BACKENDS=true \
+TEST_OCIS=true \
+OCIS_REVA_DATA_ROOT=/var/tmp/reva/ \
+BEHAT_FILTER_TAGS='~@skipOnOcV10&amp;&amp;~@skipOnLDAP&amp;&amp;@TestAlsoOnExternalUserBackend&amp;&amp;~@local_storage&amp;&amp;@issue-ocis-20'
+</code></pre>
+
+<p>Note that the <code>~@skipOnOcis</code> tag is replaced by <code>~@skipOnOcV10</code> and the issue tag <code>@issue-ocis-20</code> is added.
+We want to run all tests that are skipped in CI because of this particular bug, but we don&rsquo;t want to run the tests
+that demonstrate the current buggy behaviour.</p></li>
+
+<li><p>the tests will fail, try to understand how and why they are failing</p></li>
+
+<li><p>fix the code</p></li>
+
+<li><p>go back to 1. and repeat till the tests are passing.</p></li>
+
+<li><p>adjust tests that demonstrate the <strong>buggy</strong> behaviour</p>
+
+<p>delete the tests in core that are tagged with that particular issue and <code>@skipOnOcV10</code>, but be careful because a lot of tests are tagged with multiple issues.
+Only delete tests that demonstrate the buggy behaviour if you fixed all bugs related to that test. If not you might have to adjust the test.</p></li>
+
+<li><p>unskip tests that demonstrate the <strong>correct</strong> behaviour</p>
+
+<p>The <code>@skipOnOcis</code> tag should not be needed now, so delete it, but leave the issue tag for future reference.</p></li>
+
+<li><p>make a PR to core with the changed tests</p></li>
+
+<li><p>make a PR to ocis running the adjusted tests</p>
+
+<p>To confirm that all tests (old and changed) run fine make a PR to ocis with your code changes and point drone to your branch in core to get the changed tests.
+For that change this line in the <code>acceptance-tests</code> section</p>
+
+<p><code>'git clone -b master --depth=1 https://github.com/owncloud/core.git /srv/app/testrunner',</code></p>
+
+<p>to clone your core branch e.g.</p>
+
+<p><code>'git clone -b fixRevaIssue122 --depth=1 https://github.com/owncloud/core.git /srv/app/testrunner',</code></p></li>
+
+<li><p>merge PRs</p>
+
+<p>After you have confirmed that the tests pass everywhere merge the core PR and immediately revert the change in 8. and merge the ocis PR</p>
+
+<p>If the changes also affect the <code>ocis-reva</code> repository make sure the changes get ported over there immediately, otherwise the tests will start failing there.</p></li>
+</ol>
+
+<div class="gdoc-page__anchorwrap"><h3 id="notes"><a data-clipboard-text="https://owncloud.github.io/ocis/testing/#notes" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#notes"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Notes</h3></div>
+
+<ul>
+<li>in a normal case the test-code cleans up users after the test-run, but if a test-run is interrupted (e.g. by CTRL+C) users might have been left on the LDAP server. In that case rerunning the tests requires wiping the users in the ldap server, otherwise the tests will fail when trying to populate the users.</li>
+<li>the tests usually create users in the OU <code>TestUsers</code> with usernames specified in the feature file. If not defined in the feature file, most users have the password <code>123456</code>, defined by <code>regularUserPassword</code> in <code>behat.yml</code>, but other passwords are also used, see <a href="https://github.com/owncloud/core/blob/master/tests/acceptance/features/bootstrap/FeatureContext.php#L386"><code>\FeatureContext::getPasswordForUser()</code></a> for mapping and <a href="https://github.com/owncloud/core/blob/master/tests/acceptance/features/bootstrap/FeatureContext.php#L1668"><code>\FeatureContext::__construct</code></a> for the password definitions.</li>
+</ul>
 
 
     </article>
