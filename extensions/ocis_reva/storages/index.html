@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Configuration">
+<meta name="description" content="Storages">
 
-<title>Configuration | ownCloud</title>
+<title>Storages | ownCloud</title>
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
 <link rel="stylesheet" href="/main.min.css">
@@ -623,7 +623,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis_proxy/configuration/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/ocis_proxy/configuration/" class="gdoc-nav__entry ">
                         Configuration
                     </a>
                 </span>
@@ -955,7 +955,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis_reva/storages/" class="gdoc-nav__entry ">
+                    <a href="/extensions/ocis_reva/storages/" class="gdoc-nav__entry is-active">
                         Storages
                     </a>
                 </span>
@@ -1156,7 +1156,7 @@
         
     
     
-        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_proxy/'>Proxy</a> / Configuration
+        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_reva/'>Reva</a> / Storages
     
 
     
@@ -1171,7 +1171,7 @@
     <span>
         
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis-proxy/edit/master/docs/configuration.md">
+            <a href="https://github.com/owncloud/ocis-reva/edit/master/docs/storages.md">
                 Edit this page
             </a>
         
@@ -1180,7 +1180,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>Configuration</h1>
+        <h1>Storages</h1>
         
 
 
@@ -1191,121 +1191,90 @@
 
 
 
+<div class="gdoc-page__anchorwrap"><h2 id="storage-commands"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/storages/#storage-commands" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#storage-commands"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Storage commands</h2></div>
+
+<p><code>ocis-reva</code> has multiple storage provider commands to preconfigure different default configurations for the reva <em>storage provider</em> service. While you could rerun <code>ocis-reva storage-oc</code> multiple times with different flags to get multiple instances we are giving the different commands the necessary default configuration to allow the <code>ocis</code> binary to simply start them and not deal with configuration.</p>
+
+<div class="gdoc-page__anchorwrap"><h2 id="storage-providers"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/storages/#storage-providers" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#storage-providers"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Storage providers</h2></div>
+
+<p>To manage the file tree ocis uses reva <em>storage providers</em> that are accessing the underlying storage using a <em>storage driver</em>. The driver can be used to change the implementation of a storage aspect to better reflect the actual underying storage capabilities. As an example a move operation on a POSIX filesystem (<a href="https://danluu.com/deconstruct-files/">theoretically</a>) is an atomic operation. When trying to implement a file tree on top S3 there is no native move operation that can be used. A naive implementation might fall bak on a COPY and DELETE. Some S3 implementations provide a COPY operation that uses an existing key as the source, so the file at least does not need to be reuploaded. In the worst case scenario, the rename of a folder with hundreds of thousands of objects, a reupload for every file has to be made. Instead of hiding this complexity a better choice might be to disable renaming of files or at least folders on S3. There are however implemetations of filesystems on top of S3 that store the tree metadata in dedicated objects or use a completely different persistance mechanism like a distributed key value store to implement the file tree aspect of a storage.</p>
+
+<blockquote class="gdoc-hint info">
+    While the <em>storage provider</em> is responsible for managing the tree, file up and download is delegated to a dedicated <em>data provider</em>. See below.
+</blockquote>
 
 
+<div class="gdoc-page__anchorwrap"><h2 id="storage-aspects"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/storages/#storage-aspects" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#storage-aspects"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Storage aspects</h2></div>
 
-    <div class="gdoc-toc gdoc-toc__level--3">
-        <nav id="TableOfContents"><ul>
-<li><a href="#configuration">Configuration</a>
-<ul>
-<li><a href="#configuration-using-config-files">Configuration using config files</a></li>
-<li><a href="#envrionment-variables">Envrionment variables</a></li>
-<li><a href="#commandline-flags">Commandline flags</a></li>
-</ul></li>
-<li><a href="#root-command">Root Command</a></li>
-<li><a href="#sub-commands">Sub Commands</a>
-<ul>
-<li><a href="#ocis-proxy-server">ocis-proxy server</a></li>
-<li><a href="#ocis-proxy-health">ocis-proxy health</a></li>
-</ul></li>
-</ul></nav>
-        <hr>
-    </div>
+<p>Unfortunately, no POSIX filesystem natively supports all storage aspects that ownCloud 10 requires:
+- a hierarchical file tree
+  - id based lookup
+  - etag propagation
+  - subtree size accounting (size of all files in a folder and all its sub folders)
+- sharing
+  - share expiry
+- trash or undelete (trash can be done by wrapping rm)
+- versions (only snapshots, which is a different concept)</p>
+
+<p>A more extensive description of the storage aspects can be found in the <a href="https://reva.link/docs/concepts/storages/#aspects-of-storage-drivers">upstream documentation</a></p>
+
+<div class="gdoc-page__anchorwrap"><h2 id="storage-drivers"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/storages/#storage-drivers" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#storage-drivers"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Storage drivers</h2></div>
+
+<p>Reva currently has four storage driver implementations that can be used for <em>storage providers</em> an well as <em>data providers</em>.</p>
+
+<div class="gdoc-page__anchorwrap"><h3 id="local-storage-driver"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/storages/#local-storage-driver" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#local-storage-driver"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Local Storage Driver</h3></div>
+
+<p>The <em>minimal</em> storage driver for a POSIX based filesystem. It literally supports none of the storage aspect other than basic file tree management. Sharing can - to a degree - be implemented using POSIX ACLs, which is scheduled after finishing the eos storage driver.</p>
+
+<p>To provide the other storage aspects we plan to implement a FUSE overlay filesystem which will add the different aspects on top of local filesystems like ext4, btrfs or xfs. It should work on NFSv45 as well, although NFSv4 supports RichACLs and we will explore how to leverage them to implement sharing at a future date.</p>
+
+<div class="gdoc-page__anchorwrap"><h3 id="owncloud-storage-driver"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/storages/#owncloud-storage-driver" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#owncloud-storage-driver"><svg class="icon link"><use xlink:href="#link"></use></svg></a>OwnCloud Storage Driver</h3></div>
+
+<p>This is the current default storage driver. While it implements the file tree (using redis, including id based lookup), etag propagation, trash, versions and sharing (including expiry) using the data directory layout of ownCloud 10 it has <a href="https://github.com/owncloud/core/issues/28095">known limitations</a> that cannot be fixed without changing the actual layout on disk.</p>
+
+<p>We plan to deprecate it in favor of the local storage driver in combination with a FUSE based overlay filesystem when the migration path has been fully tested.</p>
+
+<div class="gdoc-page__anchorwrap"><h3 id="eos-storage-driver"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/storages/#eos-storage-driver" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#eos-storage-driver"><svg class="icon link"><use xlink:href="#link"></use></svg></a>EOS Storage Driver</h3></div>
+
+<p>The cern eos storage has evolved with ownCloud and natively supports id based lookup, etag propagation, subtree size accounting, sharing, trash and versions. To use it you need to change the default configuration of the <code>ocis-reva storage-home</code> command (or have a look at the Makefile ̀ eos-start` target):</p>
+
+<pre><code>export REVA_STORAGE_HOME_DRIVER=eos
+export REVA_STORAGE_EOS_NAMESPACE=/eos
+export REVA_STORAGE_EOS_MASTER_URL=&quot;root://eos-mgm1.eoscluster.cern.ch:1094&quot;
+export REVA_STORAGE_EOS_ENABLE_HOME=true
+export REVA_STORAGE_EOS_LAYOUT=&quot;dockertest/{{.Username}}&quot;
+</code></pre>
+
+<p>Running it locally also requires the <code>eos</code> and <code>xrootd</code> binaries. Running it using <code>make eos-start</code> will use CentOS based containers that already have the necessary packages installed.</p>
+
+<blockquote class="gdoc-hint info">
+    Pull requests to add explicit <code>reva storage-(s3|custom|...)</code> commands with working defaults are welcome.
+</blockquote>
 
 
+<div class="gdoc-page__anchorwrap"><h3 id="s3-storage-driver"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/storages/#s3-storage-driver" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#s3-storage-driver"><svg class="icon link"><use xlink:href="#link"></use></svg></a>S3 Storage Driver</h3></div>
 
-<div class="gdoc-page__anchorwrap"><h2 id="configuration"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_proxy/configuration/#configuration" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#configuration"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Configuration</h2></div>
+<p>A naive driver that treats the keys in an S3 cabaple storage as <code>/</code> delimited path names. While it does not support MOVE or etag propagation it can be used to read and write files. Better integration with native capabilities like versioning is possible but depends on the Use Case. Several storage solutions that provide an S3 interface also support some form of notifications that can be used to implement etag propagation.</p>
 
-<p>oCIS Single Binary is not responsible for configuring extensions. Instead, each extension could either be configured by environment variables, cli flags or config files.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="data-providers"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/storages/#data-providers" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#data-providers"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Data Providers</h2></div>
 
-<p>Each extension has its dedicated documentation page (e.g. <a href="https://owncloud.github.io/extensions/ocis_proxy/configuration">https://owncloud.github.io/extensions/ocis_proxy/configuration</a>) which lists all possible configurations. Config files and environment variables are picked up if you use the <code>./bin/ocis server</code> command within the oCIS single binary. Command line flags must be set explicitly on the extensions subcommands.</p>
+<p>Clients using the CS3 API use an <a href="https://cs3org.github.io/cs3apis/#cs3.storage.provider.v1beta1.InitiateFileDownloadRequest">InitiateFileDownload</a> and ]InitiateUpload](<a href="https://cs3org.github.io/cs3apis/#cs3.storage.provider.v1beta1.InitiateFileUploadRequest">https://cs3org.github.io/cs3apis/#cs3.storage.provider.v1beta1.InitiateFileUploadRequest</a>) request at the <a href="https://cs3org.github.io/cs3apis/#cs3.gateway.v1beta1.GatewayAPI">reva gateway</a> to obtain a URL endpoint that can be used to eiter GET the file content or upload content using the resumable <a href="https://tus.io">tus.io</a> protocol.</p>
 
-<div class="gdoc-page__anchorwrap"><h3 id="configuration-using-config-files"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_proxy/configuration/#configuration-using-config-files" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#configuration-using-config-files"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Configuration using config files</h3></div>
+<p>The <em>data provider</em> uses the same <em>storage driver</em> as the <em>storage provider</em> but can be scaled independently.</p>
 
-<p>Out of the box extensions will attempt to read configuration details from:</p>
-<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">/etc/ocis
-$HOME/.ocis
-./config</code></pre></div>
-<p>For this configuration to be picked up, have a look at your extension <code>root</code> command and look for which default config name it has assigned. <em>i.e: ocis-proxy reads <code>proxy.json | yaml | toml ...</code></em>.</p>
+<p>The dataprovider allows uploading the file to a quarantine area where further data analysis may happen before making the file accessible again. One use case for this is anti virus scanning for files coming from untrusted sources.</p>
 
-<p>So far we support the file formats <code>JSON</code> and <code>YAML</code>, if you want to get a full example configuration just take a look at <a href="https://github.com/owncloud/ocis/tree/master/config">our repository</a>, there you can always see the latest configuration format. These example configurations include all available options and the default values. The configuration file will be automatically loaded if it&rsquo;s placed at <code>/etc/ocis/ocis.yml</code>, <code>${HOME}/.ocis/ocis.yml</code> or <code>$(pwd)/config/ocis.yml</code>.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="future-work"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/storages/#future-work" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#future-work"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Future work</h2></div>
 
-<div class="gdoc-page__anchorwrap"><h3 id="envrionment-variables"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_proxy/configuration/#envrionment-variables" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#envrionment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Envrionment variables</h3></div>
+<div class="gdoc-page__anchorwrap"><h3 id="fuse-overlay-filesystem"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/storages/#fuse-overlay-filesystem" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#fuse-overlay-filesystem"><svg class="icon link"><use xlink:href="#link"></use></svg></a>FUSE overlay filesystem</h3></div>
 
-<p>If you prefer to configure the service with environment variables you can see the available variables below.</p>
+<p>We are planning to further separate the concerns and use a local storage provider with a FUSE filesystem overlaying the actual POSIX storage that can be used to capture deletes and writes that might happen outside of ocis/reva.</p>
 
-<div class="gdoc-page__anchorwrap"><h3 id="commandline-flags"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_proxy/configuration/#commandline-flags" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#commandline-flags"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Commandline flags</h3></div>
+<p>It would allow us to extend the local storage driver with missing storage aspects while keeping a tree like filesystem that end users are used to see when sshing into the machine.</p>
 
-<p>If you prefer to configure the service with commandline flags you can see the available variables below. Command line flags are only working when calling the subcommand directly.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="upload-to-quarantine-area"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/storages/#upload-to-quarantine-area" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#upload-to-quarantine-area"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Upload to Quarantine area</h3></div>
 
-<div class="gdoc-page__anchorwrap"><h2 id="root-command"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_proxy/configuration/#root-command" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#root-command"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Root Command</h2></div>
-
-<p>proxy for Reva/oCIS</p>
-
-<p>Usage: <code>ocis-proxy [global options] command [command options] [arguments...]</code></p>
-
-<dl>
-<dt>&ndash;config-file | $PROXY_CONFIG_FILE<br /></dt>
-<dd>Path to config file.</dd>
-<dt>&ndash;log-level | $PROXY_LOG_LEVEL<br /></dt>
-<dd>Set logging level. Default: <code>info</code>.</dd>
-<dt>&ndash;log-pretty | $PROXY_LOG_PRETTY<br /></dt>
-<dd>Enable pretty logging. Default: <code>true</code>.</dd>
-<dt>&ndash;log-color | $PROXY_LOG_COLOR<br /></dt>
-<dd>Enable colored logging. Default: <code>true</code>.</dd>
-</dl>
-
-<div class="gdoc-page__anchorwrap"><h2 id="sub-commands"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_proxy/configuration/#sub-commands" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#sub-commands"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Sub Commands</h2></div>
-
-<div class="gdoc-page__anchorwrap"><h3 id="ocis-proxy-server"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_proxy/configuration/#ocis-proxy-server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-proxy-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-proxy server</h3></div>
-
-<p>Start integrated server</p>
-
-<p>Usage: <code>ocis-proxy server [command options] [arguments...]</code></p>
-
-<dl>
-<dt>&ndash;tracing-enabled | $PROXY_TRACING_ENABLED<br /></dt>
-<dd>Enable sending traces.</dd>
-<dt>&ndash;tracing-type | $PROXY_TRACING_TYPE<br /></dt>
-<dd>Tracing backend type. Default: <code>jaeger</code>.</dd>
-<dt>&ndash;tracing-endpoint | $PROXY_TRACING_ENDPOINT<br /></dt>
-<dd>Endpoint for the agent.</dd>
-<dt>&ndash;tracing-collector | $PROXY_TRACING_COLLECTOR<br /></dt>
-<dd>Endpoint for the collector.</dd>
-<dt>&ndash;tracing-service | $PROXY_TRACING_SERVICE<br /></dt>
-<dd>Service name for tracing. Default: <code>proxy</code>.</dd>
-<dt>&ndash;debug-addr | $PROXY_DEBUG_ADDR<br /></dt>
-<dd>Address to bind debug server. Default: <code>0.0.0.0:9205</code>.</dd>
-<dt>&ndash;debug-token | $PROXY_DEBUG_TOKEN<br /></dt>
-<dd>Token to grant metrics access.</dd>
-<dt>&ndash;debug-pprof | $PROXY_DEBUG_PPROF<br /></dt>
-<dd>Enable pprof debugging.</dd>
-<dt>&ndash;debug-zpages | $PROXY_DEBUG_ZPAGES<br /></dt>
-<dd>Enable zpages debugging.</dd>
-<dt>&ndash;http-addr | $PROXY_HTTP_ADDR<br /></dt>
-<dd>Address to bind http server. Default: <code>0.0.0.0:9200</code>.</dd>
-<dt>&ndash;http-root | $PROXY_HTTP_ROOT<br /></dt>
-<dd>Root path of http server. Default: <code>/</code>.</dd>
-<dt>&ndash;asset-path | $PROXY_ASSET_PATH<br /></dt>
-<dd>Path to custom assets.</dd>
-<dt>&ndash;http-namespace | $PROXY_HTTP_NAMESPACE<br /></dt>
-<dd>Set the base namespace for the http namespace. Default: <code>com.owncloud</code>.</dd>
-<dt>&ndash;transport-tls-cert | $PROXY_TRANSPORT_TLS_CERT<br /></dt>
-<dd>Certificate file for transport encryption.</dd>
-<dt>&ndash;transport-tls-key | $PROXY_TRANSPORT_TLS_KEY<br /></dt>
-<dd>Secret file for transport encryption.</dd>
-</dl>
-
-<div class="gdoc-page__anchorwrap"><h3 id="ocis-proxy-health"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_proxy/configuration/#ocis-proxy-health" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-proxy-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-proxy health</h3></div>
-
-<p>Check health status</p>
-
-<p>Usage: <code>ocis-proxy health [command options] [arguments...]</code></p>
-
-<dl>
-<dt>&ndash;debug-addr | $PROXY_DEBUG_ADDR<br /></dt>
-<dd>Address to debug endpoint. Default: <code>0.0.0.0:9109</code>.</dd>
-</dl>
+<p>Antivirus scanning of random files uploaded from untrusted sources and executing metadata extraction or thumbnail generation should happen in a sandboxed system to prevent malicious users from gaining any information about the system. By spawning a new container with access to only the uploaded data we can further limit the attack surface.</p>
 
 
     </article>
