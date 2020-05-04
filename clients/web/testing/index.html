@@ -1192,109 +1192,94 @@
 
 
 
-
-
-    <div class="gdoc-toc gdoc-toc__level--3">
-        <nav id="TableOfContents"><ul>
-<li><a href="#setting-up-selenium">Setting up Selenium</a>
-<ul>
-<li><a href="#setup-using-docker">Setup using Docker</a></li>
-<li><a href="#setup-using-docker-desktop-for-mac">Setup using Docker Desktop for Mac</a></li>
-<li><a href="#setup-using-standalone-selenium-server">Setup using standalone Selenium server</a></li>
-</ul></li>
-<li><a href="#run-tests">run tests</a>
-<ul>
-<li><a href="#with-owncloud-10-backend">with ownCloud 10 backend</a></li>
-<li><a href="#with-ocis-backend">with OCIS backend</a></li>
-</ul></li>
-<li><a href="#available-settings-to-be-set-by-environment-variables">Available settings to be set by environment variables</a></li>
-</ul></nav>
-        <hr>
-    </div>
-
+  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
+        <li><a href="#setting-up-selenium">Setting up Selenium</a>
+          <ul>
+            <li><a href="#setup-using-docker">Setup using Docker</a></li>
+            <li><a href="#setup-using-docker-desktop-for-mac">Setup using Docker Desktop for Mac</a></li>
+            <li><a href="#setup-using-standalone-selenium-server">Setup using standalone Selenium server</a></li>
+          </ul>
+        </li>
+        <li><a href="#run-tests">run tests</a>
+          <ul>
+            <li><a href="#with-owncloud-10-backend">with ownCloud 10 backend</a></li>
+            <li><a href="#with-ocis-backend">with OCIS backend</a></li>
+          </ul>
+        </li>
+        <li><a href="#available-settings-to-be-set-by-environment-variables">Available settings to be set by environment variables</a></li>
+      </ul></nav><hr></div>
 
 
 <div class="gdoc-page__anchorwrap"><h2 id="setting-up-selenium"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#setting-up-selenium" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#setting-up-selenium"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Setting up Selenium</h2></div>
-
 <p>There are multiple ways to run Selenium:</p>
-
 <ul>
 <li><a href="#setup-using-docker">Setup using Docker</a></li>
 <li><a href="#setup-using-docker-desktop-for-mac">Setup using Docker Desktop for Mac</a></li>
 <li><a href="#setup-using-standalone-selenium-server">Setup using a standalone Selenium server</a></li>
 </ul>
-
 <div class="gdoc-page__anchorwrap"><h3 id="setup-using-docker"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#setup-using-docker" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#setup-using-docker"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Setup using Docker</h3></div>
-
 <ul>
 <li>Set the environment variables <code>SELENIUM_HOST</code> as <code>localhost</code> and <code>SERVER_HOST</code> in the format <code>http://&lt;ip_addr&gt;:9100</code>.</li>
 <li>Run <code>yarn run selenium</code></li>
 </ul>
-
 <div class="gdoc-page__anchorwrap"><h3 id="setup-using-docker-desktop-for-mac"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#setup-using-docker-desktop-for-mac" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#setup-using-docker-desktop-for-mac"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Setup using Docker Desktop for Mac</h3></div>
-
 <p>In order to run acceptance tests with selenium running in Docker Desktop for Mac while having ownCloud Server and Phoenix running as services
 on the host machine, <code>localhost</code> will not work as URL. Use the Docker host ip <code>172.17.0.1</code> or its alias <code>host.docker.internal</code> instead.
 This requires to adjust all relevant config files to use <code>host.docker.internal</code> instead of <code>localhost</code> (config.json in Phoenix and
 config/config.php in oC10) and to change the phoenix OIDC-callback url. Set the <code>SERVER_HOST</code> and <code>BACKEND_HOST</code> environment variables
 accordingly. In order to use the same url for development on the host machine, define it as an alias to <code>127.0.0.1</code> in <code>/etc/hosts</code>.
 After all these changes Phoenix will be accessible at <code>http://host.docker.internal:8300</code> for both development and acceptance tests.</p>
-
 <div class="gdoc-page__anchorwrap"><h3 id="setup-using-standalone-selenium-server"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#setup-using-standalone-selenium-server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#setup-using-standalone-selenium-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Setup using standalone Selenium server</h3></div>
-
 <p>When running a standalone Selenium server, make sure to set the environment variable <code>SELENIUM_HOST</code>, <code>SELENIUM_PORT</code> and <code>LOCAL_UPLOAD_DIR</code> accordingly.</p>
-
 <div class="gdoc-page__anchorwrap"><h2 id="run-tests"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#run-tests" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a>run tests</h2></div>
-
 <div class="gdoc-page__anchorwrap"><h3 id="with-owncloud-10-backend"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#with-owncloud-10-backend" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#with-owncloud-10-backend"><svg class="icon link"><use xlink:href="#link"></use></svg></a>with ownCloud 10 backend</h3></div>
-
 <ul>
 <li>setup the <a href="https://owncloud.github.io/clients/web/backend-oc10/">ownCloud 10 backend</a></li>
 <li>clone and install <a href="http://github.com/owncloud/testing">testing app</a> into ownCloud</li>
 <li><a href="https://owncloud.github.io/clients/web/building/">build Phoenix</a></li>
 <li><a href="https://owncloud.github.io/clients/web/backend-oc10/#running-phoenix">start the Phoenix server</a></li>
-<li>set <code>SERVER_HOST</code> to point at the URL where the Phoenix web pages are served, for example &ldquo;<a href="http://localhost:8300&quot;">http://localhost:8300&quot;</a></li>
-<li>set <code>BACKEND_HOST</code> to point to the URL of the backend, for example &ldquo;<a href="http://localhost/owncloud/&quot;">http://localhost/owncloud/&quot;</a></li>
+<li>set <code>SERVER_HOST</code> to point at the URL where the Phoenix web pages are served, for example &ldquo;http://localhost:8300&rdquo;</li>
+<li>set <code>BACKEND_HOST</code> to point to the URL of the backend, for example &ldquo;http://localhost/owncloud/&rdquo;</li>
 <li>to be able to run federation tests, additional setup is needed:
-
 <ol>
 <li>Install and setup a second ownCloud server-instance that is accessible by a different URL. That second server-instance must have its own database and data directory.</li>
 <li>clone and install testing app into the second ownCloud server-instance from <a href="http://github.com/owncloud/testing">http://github.com/owncloud/testing</a> .</li>
 <li>when running the acceptance tests use <code>REMOTE_BACKEND_HOST</code> environment variable to define its address. for e.g. <code>REMOTE_BACKEND_HOST=http://&lt;ip_address_of_second_ownCloud_server-instance&gt; yarn run acceptance-tests &lt;feature-files-to-test&gt;</code> .
 -set the <code>SELENIUM_HOST</code> environment variable to your host that runs selenium, mostly <code>localhost</code>
 -set the <code>SELENIUM_PORT</code> environment variable to your selenium port, mostly <code>4444</code></li>
-</ol></li>
+</ol>
+</li>
 </ul>
-
 <p>Run <code>yarn run acceptance-tests &lt;feature-files-to-test&gt;</code>.</p>
-
 <p>The feature files are located in the &ldquo;tests/acceptance/features&rdquo; subdirectories.</p>
-
 <p>see <a href="#available-settings-to-be-set-by-environment-variables">available settings</a> for further setup if needed</p>
-
 <div class="gdoc-page__anchorwrap"><h3 id="with-ocis-backend"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#with-ocis-backend" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#with-ocis-backend"><svg class="icon link"><use xlink:href="#link"></use></svg></a>with OCIS backend</h3></div>
-
 <ul>
-<li>clone and build <a href="https://github.com/owncloud/ocis">ocis</a></li>
-
-<li><p>clone the <a href="https://github.com/owncloud/testing">testing-app</a>, it&rsquo;s needed to have the skeleton folder for the tests</p></li>
-
-<li><p>Run ldap server and redis server using docker</p>
+<li>
+<p>clone and build <a href="https://github.com/owncloud/ocis">ocis</a></p>
+</li>
+<li>
+<p>clone the <a href="https://github.com/owncloud/testing">testing-app</a>, it&rsquo;s needed to have the skeleton folder for the tests</p>
+</li>
+<li>
+<p>Run ldap server and redis server using docker</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker run --hostname ldap.my-company.com <span class="se">\
 </span><span class="se"></span>-e <span class="nv">LDAP_TLS_VERIFY_CLIENT</span><span class="o">=</span>never <span class="se">\
 </span><span class="se"></span>-e <span class="nv">LDAP_DOMAIN</span><span class="o">=</span>owncloud.com <span class="se">\
 </span><span class="se"></span>-e <span class="nv">LDAP_ORGANISATION</span><span class="o">=</span>ownCloud <span class="se">\
 </span><span class="se"></span>-e <span class="nv">LDAP_ADMIN_PASSWORD</span><span class="o">=</span>admin <span class="se">\
 </span><span class="se"></span>--name docker-slapd <span class="se">\
-</span><span class="se"></span>-p <span class="m">127</span>.0.0.1:389:389 <span class="se">\
-</span><span class="se"></span>-p <span class="m">636</span>:636 -d osixia/openldap
+</span><span class="se"></span>-p 127.0.0.1:389:389 <span class="se">\
+</span><span class="se"></span>-p 636:636 -d osixia/openldap
 
-docker run -e <span class="nv">REDIS_DATABASES</span><span class="o">=</span><span class="m">1</span> -p <span class="m">6379</span>:6379 -d webhippie/redis:latest</code></pre></div></li>
-
-<li><p>create a new phoenix config.json file.
-Use <a href="https://github.com/owncloud/phoenix/blob/master/tests/drone/ocis-config.json">this config</a> and change the URLs to match your environment.</p></li>
-
-<li><p>Run the OCIS server with necessary configurations</p>
+docker run -e <span class="nv">REDIS_DATABASES</span><span class="o">=</span><span class="m">1</span> -p 6379:6379 -d webhippie/redis:latest
+</code></pre></div></li>
+<li>
+<p>create a new phoenix config.json file.
+Use <a href="https://github.com/owncloud/phoenix/blob/master/tests/drone/ocis-config.json">this config</a> and change the URLs to match your environment.</p>
+</li>
+<li>
+<p>Run the OCIS server with necessary configurations</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">export</span> <span class="nv">REVA_LDAP_HOSTNAME</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span>
 <span class="nb">export</span> <span class="nv">REVA_LDAP_PORT</span><span class="o">=</span><span class="m">636</span>
 <span class="nb">export</span> <span class="nv">REVA_LDAP_BIND_PASSWORD</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span>
@@ -1307,32 +1292,32 @@ Use <a href="https://github.com/owncloud/phoenix/blob/master/tests/drone/ocis-co
 <span class="nb">export</span> <span class="nv">LDAP_BINDDN</span><span class="o">=</span><span class="s1">&#39;cn=admin,dc=owncloud,dc=com&#39;</span>
 <span class="nb">export</span> <span class="nv">LDAP_BINDPW</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span>
 <span class="nb">export</span> <span class="nv">LDAP_BASEDN</span><span class="o">=</span><span class="s1">&#39;dc=owncloud,dc=com&#39;</span>
-    
-bin/ocis server</code></pre></div></li>
-
-<li><p>set the <code>SERVER_HOST</code> environment variable to point to the URL where ocis serves Phoenix, by default &ldquo;<a href="http://localhost:9100&quot;">http://localhost:9100&quot;</a></p></li>
-
-<li><p>set the <code>BACKEND_HOST</code> environment variable to point to the URL of the backend, by default &ldquo;<a href="http://localhost:9140&quot;">http://localhost:9140&quot;</a></p></li>
-
-<li><p>set the <code>RUN_ON_OCIS</code> environment variable to <code>true</code></p></li>
-
-<li><p>set the <code>OCIS_SKELETON_DIR</code> environment variable to the <code>data/webUISkeleton</code> folder inside the testing app</p></li>
-
-<li><p><a href="https://owncloud.github.io/clients/web/building/">setup and build Phoenix</a>
+  
+bin/ocis server
+</code></pre></div></li>
+<li>
+<p>set the <code>SERVER_HOST</code> environment variable to point to the URL where ocis serves Phoenix, by default &ldquo;http://localhost:9100&rdquo;</p>
+</li>
+<li>
+<p>set the <code>BACKEND_HOST</code> environment variable to point to the URL of the backend, by default &ldquo;http://localhost:9140&rdquo;</p>
+</li>
+<li>
+<p>set the <code>RUN_ON_OCIS</code> environment variable to <code>true</code></p>
+</li>
+<li>
+<p>set the <code>OCIS_SKELETON_DIR</code> environment variable to the <code>data/webUISkeleton</code> folder inside the testing app</p>
+</li>
+<li>
+<p><a href="https://owncloud.github.io/clients/web/building/">setup and build Phoenix</a>
 -set the <code>SELENIUM_HOST</code> environment variable to your host that runs selenium, mostly <code>localhost</code>
--set the <code>SELENIUM_PORT</code> environment variable to your selenium port, mostly <code>4444</code></p></li>
+-set the <code>SELENIUM_PORT</code> environment variable to your selenium port, mostly <code>4444</code></p>
+</li>
 </ul>
-
 <p>Run <code>yarn run acceptance-tests-ocis &lt;feature-files-to-test&gt;</code>.</p>
-
 <p>The feature files are located in the &ldquo;tests/acceptance/features&rdquo; subdirectories.</p>
-
 <p>see <a href="#available-settings-to-be-set-by-environment-variables">available settings</a> for further setup if needed</p>
-
 <div class="gdoc-page__anchorwrap"><h2 id="available-settings-to-be-set-by-environment-variables"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#available-settings-to-be-set-by-environment-variables" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#available-settings-to-be-set-by-environment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Available settings to be set by environment variables</h2></div>
-
 <p>These values can be set using the environment variables to match your local test environment.</p>
-
 <table>
 <thead>
 <tr>
@@ -1341,104 +1326,87 @@ bin/ocis server</code></pre></div></li>
 <th>default</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td><code>SERVER_HOST</code></td>
 <td>phoenix URL</td>
-<td><a href="http://localhost:8300">http://localhost:8300</a></td>
+<td>http://localhost:8300</td>
 </tr>
-
 <tr>
 <td><code>BACKEND_HOST</code></td>
 <td>ownCloud server URL (or reva service url for running with OCIS)</td>
-<td><a href="http://localhost:8080">http://localhost:8080</a></td>
+<td>http://localhost:8080</td>
 </tr>
-
 <tr>
 <td><code>BACKEND_USERNAME</code></td>
 <td>ownCloud administrator username</td>
 <td>admin</td>
 </tr>
-
 <tr>
 <td><code>BACKEND_PASSWORD</code></td>
 <td>ownCloud administrator password</td>
 <td>admin</td>
 </tr>
-
 <tr>
 <td><code>SELENIUM_HOST</code></td>
-<td>selenium server host, if not set yarn will start selenium automatically<br/>if running the selenium docker container as mentioned above set to <code>localhost</code></td>
+<td>selenium server host, if not set yarn will start selenium automatically<!-- raw HTML omitted -->if running the selenium docker container as mentioned above set to <code>localhost</code></td>
 <td></td>
 </tr>
-
 <tr>
 <td><code>SELENIUM_PORT</code></td>
 <td>port of selenium server</td>
 <td>4444</td>
 </tr>
-
 <tr>
 <td><code>SCREEN_RESOLUTION</code></td>
 <td>width and height in px to set the browser resolution to e.g. 375x812</td>
 <td>empty = fullscreen</td>
 </tr>
-
 <tr>
 <td><code>REMOTE_UPLOAD_DIR</code></td>
 <td>path to <code>filesForUpload</code> directory, used when uploading files through api</td>
 <td><code>./tests/acceptance/filesForUpload</code></td>
 </tr>
-
 <tr>
 <td><code>LOCAL_UPLOAD_DIR</code></td>
-<td><code>filesForUpload</code> directory available for selenium for direct uploads<br/>If using selenium-docker and example above, set it as <code>/uploads</code>.<br/>If running local selenium, set value same as <code>REMOTE_UPLOAD_DIR</code> (please, remember to use absolute path)</td>
+<td><code>filesForUpload</code> directory available for selenium for direct uploads<!-- raw HTML omitted -->If using selenium-docker and example above, set it as <code>/uploads</code>.<!-- raw HTML omitted -->If running local selenium, set value same as <code>REMOTE_UPLOAD_DIR</code> (please, remember to use absolute path)</td>
 <td><code>/uploads</code></td>
 </tr>
-
 <tr>
 <td><code>REMOTE_BACKEND_HOST</code></td>
 <td>ownCloud remote server URL</td>
-<td><a href="http://localhost:8080">http://localhost:8080</a></td>
+<td>http://localhost:8080</td>
 </tr>
-
 <tr>
 <td><code>RUN_ON_OCIS</code></td>
 <td>Running the tests using the OCIS backend</td>
 <td>false</td>
 </tr>
-
 <tr>
 <td><code>OCIS_REVA_DATA_ROOT</code></td>
 <td>Data directory of OCIS</td>
 <td>/var/tmp/reva</td>
 </tr>
-
 <tr>
 <td><code>LDAP_SERVER_URL</code></td>
 <td>LDAP server for openID provider</td>
 <td>ldap://127.0.0.1</td>
 </tr>
-
 <tr>
 <td><code>LDAP_BASE_DN</code></td>
 <td>bind dn for LDAP</td>
 <td>cn=admin,dc=owncloud,dc=com</td>
 </tr>
-
 <tr>
 <td><code>LDAP_ADMIN_PASSWORD</code></td>
 <td>Password for ldap bind dn</td>
 <td>cn=admin,dc=owncloud,dc=com</td>
 </tr>
-
 <tr>
 <td><code>OCIS_SKELETON_DIR</code></td>
 <td>Skeleton files directory for new users</td>
 <td>-</td>
 </tr>
-
 <tr>
 <td><code>OCIS_PHOENIX_CONFIG</code></td>
 <td>Path for the phoenix web config file used by OCIS</td>

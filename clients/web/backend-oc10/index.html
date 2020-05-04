@@ -1192,93 +1192,69 @@
 
 
 
-
-
-    <div class="gdoc-toc gdoc-toc__level--3">
-        <nav id="TableOfContents"><ul>
-<li><a href="#prerequisites">Prerequisites</a></li>
-<li><a href="#setting-up-the-owncloud-server">Setting up the ownCloud Server</a>
-<ul>
-<li><a href="#adjusting-config-php">Adjusting config.php</a></li>
-<li><a href="#setting-up-oauth2">Setting up OAuth2</a></li>
-<li><a href="#setting-up-phoenix">Setting up Phoenix</a></li>
-</ul></li>
-<li><a href="#running-phoenix">Running Phoenix</a></li>
-<li><a href="#running-acceptance-tests">Running acceptance tests</a></li>
-</ul></nav>
-        <hr>
-    </div>
-
+  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#setting-up-the-owncloud-server">Setting up the ownCloud Server</a>
+          <ul>
+            <li><a href="#adjusting-configphp">Adjusting config.php</a></li>
+            <li><a href="#setting-up-oauth2">Setting up OAuth2</a></li>
+            <li><a href="#setting-up-phoenix">Setting up Phoenix</a></li>
+          </ul>
+        </li>
+        <li><a href="#running-phoenix">Running Phoenix</a></li>
+        <li><a href="#running-acceptance-tests">Running acceptance tests</a></li>
+      </ul></nav><hr></div>
 
 
 <div class="gdoc-page__anchorwrap"><h2 id="prerequisites"><a data-clipboard-text="https://owncloud.github.io/clients/web/backend-oc10/#prerequisites" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#prerequisites"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Prerequisites</h2></div>
-
 <p>Decide on which host and port Phoenix will be served, for example <code>https://phoenix-host:8300/phoenix-path/</code>.
-In this document, we will refer to the following:
-- <code>&lt;phoenix-url&gt;</code> as the full URL, for example <code>https://phoenix-host:8300/phoenix-path/</code>
-- <code>&lt;phoenix-domain&gt;</code> as the protocol, domain and port, for example: <code>https://phoenix-host:8300</code></p>
-
-<div class="gdoc-page__anchorwrap"><h2 id="setting-up-the-owncloud-server"><a data-clipboard-text="https://owncloud.github.io/clients/web/backend-oc10/#setting-up-the-owncloud-server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#setting-up-the-owncloud-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Setting up the ownCloud Server</h2></div>
-
-<p>Make sure you have an <a href="https://owncloud.org/download/#owncloud-server">ownCloud Server</a> already installed.</p>
-
-<div class="gdoc-page__anchorwrap"><h3 id="adjusting-config-php"><a data-clipboard-text="https://owncloud.github.io/clients/web/backend-oc10/#adjusting-config-php" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#adjusting-config-php"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Adjusting config.php</h3></div>
-
-<p>Add the following entries to config/config.php:</p>
-
+In this document, we will refer to the following:</p>
 <ul>
-<li><p>tell ownCloud where Phoenix is located:</p>
-
-<pre><code>'phoenix.baseUrl' =&gt; '&lt;phoenix-url&gt;',
-</code></pre></li>
-
-<li><p>add a CORS domain entry for Phoenix in config.php:</p>
-
-<pre><code>'cors.allowed-domains' =&gt; ['&lt;phoenix-domain&gt;'],
-</code></pre></li>
-
-<li><p>optional: when developing against unstable APIs (technical preview), these need to be enabled in the server core:</p>
-
-<pre><code>dav.enable.tech_preview =&gt; true,
-</code></pre></li>
+<li><code>&lt;phoenix-url&gt;</code> as the full URL, for example <code>https://phoenix-host:8300/phoenix-path/</code></li>
+<li><code>&lt;phoenix-domain&gt;</code> as the protocol, domain and port, for example: <code>https://phoenix-host:8300</code></li>
 </ul>
-
-<div class="gdoc-page__anchorwrap"><h3 id="setting-up-oauth2"><a data-clipboard-text="https://owncloud.github.io/clients/web/backend-oc10/#setting-up-oauth2" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#setting-up-oauth2"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Setting up OAuth2</h3></div>
-
+<div class="gdoc-page__anchorwrap"><h2 id="setting-up-the-owncloud-server"><a data-clipboard-text="https://owncloud.github.io/clients/web/backend-oc10/#setting-up-the-owncloud-server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#setting-up-the-owncloud-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Setting up the ownCloud Server</h2></div>
+<p>Make sure you have an <a href="https://owncloud.org/download/#owncloud-server">ownCloud Server</a> already installed.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="adjusting-configphp"><a data-clipboard-text="https://owncloud.github.io/clients/web/backend-oc10/#adjusting-configphp" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#adjusting-configphp"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Adjusting config.php</h3></div>
+<p>Add the following entries to config/config.php:</p>
+<ul>
+<li>tell ownCloud where Phoenix is located:</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">&#39;phoenix.baseUrl&#39; =&gt; &#39;&lt;phoenix-url&gt;&#39;,
+</code></pre></div><ul>
+<li>add a CORS domain entry for Phoenix in config.php:</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">&#39;cors.allowed-domains&#39; =&gt; [&#39;&lt;phoenix-domain&gt;&#39;],
+</code></pre></div><ul>
+<li>optional: when developing against unstable APIs (technical preview), these need to be enabled in the server core:</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">dav.enable.tech_preview =&gt; true,
+</code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="setting-up-oauth2"><a data-clipboard-text="https://owncloud.github.io/clients/web/backend-oc10/#setting-up-oauth2" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#setting-up-oauth2"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Setting up OAuth2</h3></div>
 <p>To connect to the ownCloud server, it is necessary to set it up with OAuth2.</p>
-
 <p>Install and enable the <a href="https://marketplace.owncloud.com/apps/oauth2">oauth2 app</a>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">% occ market:install oauth2
-% occ app:enable oauth2</code></pre></div>
-<p>Login as administrator in the ownCloud Server web interface and go to the &ldquo;User Authentication&rdquo; section in the admin settings and add an entry for Phoenix as follows:</p>
-
+% occ app:enable oauth2
+</code></pre></div><p>Login as administrator in the ownCloud Server web interface and go to the &ldquo;User Authentication&rdquo; section in the admin settings and add an entry for Phoenix as follows:</p>
 <ul>
 <li>pick an arbitrary name for the client</li>
 <li>set the redirection URI to <code>&lt;phoenix-url&gt;/oidc-callback.html</code></li>
 <li>make sure to take note of the <strong>client identifier</strong> value as it will be needed in the Phoenix configuration later on</li>
 </ul>
-
 <div class="gdoc-page__anchorwrap"><h3 id="setting-up-phoenix"><a data-clipboard-text="https://owncloud.github.io/clients/web/backend-oc10/#setting-up-phoenix" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#setting-up-phoenix"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Setting up Phoenix</h3></div>
-
 <p>In the local Phoenix checkout, copy the <code>config.json.sample-oc10</code> file to <code>config.json</code> and adjust it accordingly:</p>
-
 <ul>
 <li>Set the &ldquo;server&rdquo; key to the URL of the ownCloud server including path. If the URL contains a path, please also add a <strong>trailing slash</strong> there.</li>
 <li>Set the &ldquo;clientId&rdquo; key to the <strong>client identifier</strong> as copied from the &ldquo;User Authentication&rdquo; section before.</li>
 <li>Adjust &ldquo;url&rdquo; and &ldquo;authUrl&rdquo; using the ownCloud server URL as prefix for both</li>
 <li>Optionally adjust &ldquo;apps&rdquo; for the list of apps to be loaded. These match the app names inside the &ldquo;apps&rdquo; folder.</li>
 </ul>
-
 <div class="gdoc-page__anchorwrap"><h2 id="running-phoenix"><a data-clipboard-text="https://owncloud.github.io/clients/web/backend-oc10/#running-phoenix" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#running-phoenix"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Running Phoenix</h2></div>
-
 <ul>
 <li>if running from source, make sure to <a href="https://owncloud.github.io/clients/web/building/">build Phoenix</a> first</li>
 <li>run by launching a webpack dev server <code>yarn watch-all</code></li>
 <li>when working on the Phoenix code, webpack will recompile the code automatically</li>
 </ul>
-
 <div class="gdoc-page__anchorwrap"><h2 id="running-acceptance-tests"><a data-clipboard-text="https://owncloud.github.io/clients/web/backend-oc10/#running-acceptance-tests" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#running-acceptance-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Running acceptance tests</h2></div>
-
 <p>For testing, please refer to the <a href="https://owncloud.github.io/clients/web/testing/#running-acceptance-tests-using-owncloud-10-backend">ownCloud 10 testing section</a></p>
 
 

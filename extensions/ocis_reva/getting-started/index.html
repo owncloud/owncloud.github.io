@@ -1192,69 +1192,54 @@
 
 
 
-
-
-    <div class="gdoc-toc gdoc-toc__level--3">
-        <nav id="TableOfContents"><ul>
-<li><a href="#installation">Installation</a>
-<ul>
-<li><a href="#docker">Docker</a>
-<ul>
-<li><a href="#dependencies">Dependencies</a></li>
-</ul></li>
-<li><a href="#binaries">Binaries</a>
-<ul>
-<li><a href="#dependencies-1">Dependencies</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#usage">Usage</a>
-<ul>
-<li><a href="#health">Health</a></li>
-</ul></li>
-</ul></nav>
-        <hr>
-    </div>
-
+  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
+        <li><a href="#installation">Installation</a>
+          <ul>
+            <li><a href="#docker">Docker</a>
+              <ul>
+                <li><a href="#dependencies">Dependencies</a></li>
+              </ul>
+            </li>
+            <li><a href="#binaries">Binaries</a>
+              <ul>
+                <li><a href="#dependencies-1">Dependencies</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#usage">Usage</a>
+          <ul>
+            <li><a href="#health">Health</a></li>
+          </ul>
+        </li>
+      </ul></nav><hr></div>
 
 
 <div class="gdoc-page__anchorwrap"><h2 id="installation"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/getting-started/#installation" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#installation"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Installation</h2></div>
-
 <p>So far we are offering two different variants for the installation. You can choose between <a href="https://www.docker.com/">Docker</a> or pre-built binaries which are stored on our download mirrors and GitHub releases. Maybe we will also provide system packages for the major distributions later if we see the need for it.</p>
-
 <div class="gdoc-page__anchorwrap"><h3 id="docker"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/getting-started/#docker" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#docker"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Docker</h3></div>
-
 <p>Docker images for ocis-reva are hosted on <a href="https://hub.docker.com/r/owncloud/ocis-reva">https://hub.docker.com/r/owncloud/ocis-reva</a>.</p>
-
 <p>The <code>latest</code> tag always reflects the current master branch.</p>
-<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">docker pull owncloud/ocis-reva</code></pre></div>
-<div class="gdoc-page__anchorwrap"><h4 id="dependencies"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/getting-started/#dependencies" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#dependencies"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Dependencies</h4></div>
-
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker pull owncloud/ocis-reva
+</code></pre></div><div class="gdoc-page__anchorwrap"><h4 id="dependencies"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/getting-started/#dependencies" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#dependencies"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Dependencies</h4></div>
 <ul>
 <li>Running ocis-reva currently needs a working Redis caching server</li>
 <li>The default storage location in the container is <code>/var/tmp/reva/data</code>. You may want to create a volume to persist the files in the primary storage</li>
 </ul>
-
 <div class="gdoc-page__anchorwrap"><h3 id="binaries"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/getting-started/#binaries" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#binaries"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Binaries</h3></div>
-
 <p>The pre-built binaries for different platforms are downloadable at <a href="https://download.owncloud.com/ocis/ocis-reva/">https://download.owncloud.com/ocis/ocis-reva/</a> . Specific releases are organized in separate folders. They are in sync which every release tag on GitHub. The binaries from the current master branch can be found in <a href="https://download.owncloud.com/ocis/ocis-reva/testing/">https://download.owncloud.com/ocis/ocis-reva/testing/</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">curl https://download.owncloud.com/ocis/ocis/1.0.0-beta1/ocis-reva-1.0.0-beta1-darwin-amd64 --output ocis-reva
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">curl https://download.owncloud.com/ocis/ocis/1.0.0-beta1/ocis-reva-1.0.0-beta1-darwin-amd64 --output ocis-reva
 chmod +x ocis
-./ocis-reva sharing</code></pre></div>
-<div class="gdoc-page__anchorwrap"><h4 id="dependencies-1"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/getting-started/#dependencies-1" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#dependencies-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Dependencies</h4></div>
-
+./ocis-reva sharing
+</code></pre></div><div class="gdoc-page__anchorwrap"><h4 id="dependencies-1"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/getting-started/#dependencies-1" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#dependencies-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Dependencies</h4></div>
 <ul>
 <li>Running ocis currently needs a working Redis caching server</li>
 <li>The default promary storage location is <code>/var/tmp/reva/data</code>. You can change that value by configuration.</li>
 </ul>
-
 <div class="gdoc-page__anchorwrap"><h2 id="usage"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/getting-started/#usage" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#usage"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Usage</h2></div>
-
 <p>The program provides a few sub-commands on execution. The available configuration methods have already been mentioned above. Generally you can always see a formated help output if you execute the binary via <code>ocis-reva --help</code>.</p>
-
 <div class="gdoc-page__anchorwrap"><h3 id="health"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/getting-started/#health" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#health"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Health</h3></div>
-
 <p>The health command is used to execute a health check, if the exit code equals zero the service should be up and running, if the exist code is greater than zero the service is not in a healthy state. Generally this command is used within our Docker containers, it could also be used within Kubernetes.</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">ocis-reva health --help</code></pre></div>
 
 

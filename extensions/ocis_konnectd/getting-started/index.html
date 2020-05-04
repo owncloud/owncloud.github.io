@@ -1192,63 +1192,44 @@
 
 
 
-
-
-    <div class="gdoc-toc gdoc-toc__level--3">
-        <nav id="TableOfContents"><ul>
-<li><a href="#installation">Installation</a>
-<ul>
-<li><a href="#docker">Docker</a></li>
-<li><a href="#binaries">Binaries</a></li>
-</ul></li>
-<li><a href="#usage">Usage</a>
-<ul>
-<li><a href="#server">Server</a></li>
-<li><a href="#health">Health</a></li>
-</ul></li>
-<li><a href="#metrics">Metrics</a></li>
-</ul></nav>
-        <hr>
-    </div>
-
+  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
+        <li><a href="#installation">Installation</a>
+          <ul>
+            <li><a href="#docker">Docker</a></li>
+            <li><a href="#binaries">Binaries</a></li>
+          </ul>
+        </li>
+        <li><a href="#usage">Usage</a>
+          <ul>
+            <li><a href="#server">Server</a></li>
+            <li><a href="#health">Health</a></li>
+          </ul>
+        </li>
+        <li><a href="#metrics">Metrics</a></li>
+      </ul></nav><hr></div>
 
 
 <div class="gdoc-page__anchorwrap"><h2 id="installation"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#installation" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#installation"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Installation</h2></div>
-
 <p>So far we are offering two different variants for the installation. You can choose between <a href="https://www.docker.com/">Docker</a> or pre-built binaries which are stored on our download mirrors and GitHub releases. Maybe we will also provide system packages for the major distributions later if we see the need for it.</p>
-
 <div class="gdoc-page__anchorwrap"><h3 id="docker"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#docker" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#docker"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Docker</h3></div>
-
 <p>Docker images for ocis-reva are hosted on <a href="https://hub.docker.com/r/owncloud/ocis-konnectd">https://hub.docker.com/r/owncloud/ocis-konnectd</a>.</p>
-
 <p>The <code>latest</code> tag always reflects the current master branch.</p>
-<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">docker pull owncloud/ocis-konnectd</code></pre></div>
-<div class="gdoc-page__anchorwrap"><h3 id="binaries"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#binaries" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#binaries"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Binaries</h3></div>
-
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker pull owncloud/ocis-konnectd
+</code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="binaries"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#binaries" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#binaries"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Binaries</h3></div>
 <p>The pre-built binaries for different platforms are downloadable at <a href="https://download.owncloud.com/ocis/ocis-konnectd/">https://download.owncloud.com/ocis/ocis-konnectd/</a> . Specific releases are organized in separate folders. They are in sync which every release tag on GitHub. The binaries from the current master branch can be found in <a href="https://download.owncloud.com/ocis/ocis-konnectd/testing/">https://download.owncloud.com/ocis/ocis-konnectd/testing/</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">curl https://download.owncloud.com/ocis/ocis-konnectd/1.0.0-beta1/ocis-konnectd-1.0.0-beta1-darwin-amd64 --output ocis-konnectd
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">curl https://download.owncloud.com/ocis/ocis-konnectd/1.0.0-beta1/ocis-konnectd-1.0.0-beta1-darwin-amd64 --output ocis-konnectd
 chmod +x ocis-konnectd
-./ocis-konnectd server</code></pre></div>
-<div class="gdoc-page__anchorwrap"><h2 id="usage"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#usage" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#usage"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Usage</h2></div>
-
+./ocis-konnectd server
+</code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="usage"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#usage" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#usage"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Usage</h2></div>
 <p>The program provides a few sub-commands on execution. The available configuration methods have already been mentioned above. Generally you can always see a formated help output if you execute the binary via <code>ocis-konnectd --help</code>.</p>
-
 <div class="gdoc-page__anchorwrap"><h3 id="server"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Server</h3></div>
-
 <p>The server command is used to start the http and debug server on two addresses within a single process. The http server is serving the general webservice while the debug server is used for health check, readiness check and to server the metrics mentioned below. For further help please execute:</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">ocis-konnectd server --help</code></pre></div>
-
 <div class="gdoc-page__anchorwrap"><h3 id="health"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#health" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#health"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Health</h3></div>
-
 <p>The health command is used to execute a health check, if the exit code equals zero the service should be up and running, if the exist code is greater than zero the service is not in a healthy state. Generally this command is used within our Docker containers, it could also be used within Kubernetes.</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">ocis-konnectd health --help</code></pre></div>
-
 <div class="gdoc-page__anchorwrap"><h2 id="metrics"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_konnectd/getting-started/#metrics" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#metrics"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Metrics</h2></div>
-
 <p>This service provides some <a href="https://prometheus.io/">Prometheus</a> metrics through the debug endpoint, you can optionally secure the metrics endpoint by some random token, which got to be configured through one of the flag <code>--debug-token</code> or the environment variable <code>KONNECTD_DEBUG_TOKEN</code> mentioned above. By default the metrics endpoint is bound to <code>http://0.0.0.0:9134/metrics</code>.</p>
-
 <dl>
 <dt>go_gc_duration_seconds</dt>
 <dd>A summary of the GC invocation durations</dd>

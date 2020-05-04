@@ -17,9 +17,7 @@
       <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
       
       <guid>https://owncloud.github.io/ocis/getting-started/</guid>
-      <description>Installation So far we are offering two different variants for the installation. You can choose between Docker or pre-built binaries which are stored on our download mirrors and GitHub releases. Maybe we will also provide system packages for the major distributions later if we see the need for it.
-Docker Docker images for ocis are hosted on https://hub.docker.com/r/owncloud/ocis.
-The latest tag always reflects the current master branch.</description>
+      <description>Installation  Docker  Dependencies Docker compose   Binaries  Dependencies     Usage  Server Health   Quickstart for Developers Runtime Metrics     Installation So far we are offering two different variants for the installation. You can choose between Docker or pre-built binaries which are stored on our download mirrors and GitHub releases. Maybe we will also provide system packages for the major distributions later if we see the need for it.</description>
     </item>
     
     <item>
@@ -28,8 +26,7 @@ The latest tag always reflects the current master branch.</description>
       <pubDate>Tue, 14 Apr 2020 22:00:52 +0200</pubDate>
       
       <guid>https://owncloud.github.io/ocis/configuration/</guid>
-      <description>Configuration oCIS Single Binary is not responsible for configuring extensions. Instead, each extension could either be configured by environment variables, cli flags or config files.
-Each extension has its dedicated documentation page (e.g. https://owncloud.github.io/extensions/ocis_proxy/configuration) which lists all possible configurations. Config files and environment variables are picked up if you use the ./bin/ocis server command within the oCIS single binary. Command line flags must be set explicitly on the extensions subcommands.</description>
+      <description>Configuration  Configuration using config files Envrionment variables Commandline flags   Root Command Sub Commands  ocis health ocis server List of available Extension subcommands  ocis proxy ocis reva-storage-oc-data ocis reva-auth-bearer ocis webdav ocis reva-sharing ocis reva-gateway ocis graph-explorer ocis reva-auth-basic ocis hello ocis reva-storage-home ocis reva-storage-oc ocis reva-frontend ocis reva-storage-home-data ocis graph ocis konnectd ocis thumbnails ocis glauth ocis phoenix ocis ocs ocis reva-users ocis reva-storage-root         Configuration oCIS Single Binary is not responsible for configuring extensions.</description>
     </item>
     
     <item>
@@ -38,9 +35,7 @@ Each extension has its dedicated documentation page (e.g. https://owncloud.githu
       <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
       
       <guid>https://owncloud.github.io/ocis/bridge/</guid>
-      <description>We are planning to build a bridge from ownCloud 10 to ocis. The idea is to have a reverse proxy infront of ownCloud 10 that will forward requests to ownCloud 10 or ocis-reva, depending on the migration status of the logged in user.
-This document is a work in progress of the current setup.
-Current status Using ocis and the ownCloud 10 openidconnect and graphapi plugins it is possible today to introduce openid connect based authentication to existing instances.</description>
+      <description>Current status How to do it  Install the owncloud 10 graphapi app Enable the graphapi app Start ocis-glauth  Grab it! Run it! Check it is up and running   Start ocis-phoenix  Get it! Run it!   Start ocis-konnectd  Get it! Set environment variables   Configure clients  Run it! Check it is up and running   Patch owncloud Install the owncloud 10 openidconnect app   Next steps     We are planning to build a bridge from ownCloud 10 to ocis.</description>
     </item>
     
     <item>
@@ -49,9 +44,8 @@ Current status Using ocis and the ownCloud 10 openidconnect and graphapi plugins
       <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
       
       <guid>https://owncloud.github.io/ocis/eos/</guid>
-      <description>OCIS can be configured to run on top of eos. While the eos documentation does cover a lot of topics it leaves out some details that you may have to either pull from various docker containers, the forums or even the source itself.
-This document is a work in progress of the current setup.
-Current status Using ocis and eos it is possible today to manage folders. Sharing is heavily under development.</description>
+      <description>Current status How to do it  Grab it! Run it! Test it!   Next steps     OCIS can be configured to run on top of eos. While the eos documentation does cover a lot of topics it leaves out some details that you may have to either pull from various docker containers, the forums or even the source itself.
+This document is a work in progress of the current setup.</description>
     </item>
     
     <item>
@@ -62,7 +56,7 @@ Current status Using ocis and eos it is possible today to manage folders. Sharin
       <guid>https://owncloud.github.io/ocis/testing/</guid>
       <description>Acceptance tests We are using the ownCloud 10 acceptance testsuite against ocis. To set this up you need the owncloud 10 core repo, a ldap server that the acceptance tests can use to manage users, a redis server for file-versions and the ocis code.
 Getting the tests All you need to do to get the acceptance tests is check out the core repo:
-git clone https://github.com/owncloud/core.git  Run a ldap server in a docker container The ownCloud 10 acceptance tests will need write permission.</description>
+git clone https://github.com/owncloud/core.git Run a ldap server in a docker container The ownCloud 10 acceptance tests will need write permission.</description>
     </item>
     
     <item>
@@ -71,9 +65,7 @@ git clone https://github.com/owncloud/core.git  Run a ldap server in a docker co
       <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
       
       <guid>https://owncloud.github.io/ocis/extensions/</guid>
-      <description>How to build and run ocis-simple ocis uses build tags to build different flavors of the binary. In order to work on a new extension we are going to reduce the scope a little and use the simple tag. Let us begin by creating a dedicated folder:
-mkdir ocis-extension-workshop &amp;amp;&amp;amp; ocis-extension-workshop Following https://github.com/owncloud/ocis
-git clone https://github.com/owncloud/ocis.git cd ocis TAGS=simple make generate build Q: Can you specify which version of phoenix to use?</description>
+      <description>How to build and run ocis-simple Hacking ocis-hello  Option 1:   Hacking phoenix (and ocis-phoenix) The ownCloud design system External phoenix apps Phoenix extension points  Phoenix core Files app   API driven development     How to build and run ocis-simple ocis uses build tags to build different flavors of the binary. In order to work on a new extension we are going to reduce the scope a little and use the simple tag.</description>
     </item>
     
     <item>
@@ -83,7 +75,7 @@ git clone https://github.com/owncloud/ocis.git cd ocis TAGS=simple make generate
       
       <guid>https://owncloud.github.io/ocis/request-flow/</guid>
       <description>Request Flow The following sequence diagram describes the general request flow:
-sequenceDiagram %% we have comments!! \o/ participant user as User participant client as Client participant proxy as ocis-proxy participant idp as IdP participant accounts as ocis-accounts participant ldap as corporate LDAP server user-+client: What is the content of my home? client-+proxy: PROPFIND Bearer auth using oidc auth token Note right of client: What is in a bearer token? The spec recommends opaque tokens.</description>
+  mermaid.initialize({ flowchart: { useMaxWidth: true } });  sequenceDiagram %% we have comments!! \o/ participant user as User participant client as Client participant proxy as ocis-proxy participant idp as IdP participant accounts as ocis-accounts participant ldap as corporate LDAP server user-+client: What is the content of my home? client-+proxy: PROPFIND Bearer auth using oidc auth token Note right of client: What is in a bearer token?</description>
     </item>
     
     <item>
