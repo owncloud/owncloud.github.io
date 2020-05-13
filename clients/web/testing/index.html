@@ -1367,7 +1367,12 @@
 <div class="gdoc-page__anchorwrap"><h3 id="setup-using-docker"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#setup-using-docker" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#setup-using-docker"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Setup using Docker</h3></div>
 <ul>
 <li>Set the environment variables <code>SELENIUM_HOST</code> as <code>localhost</code> and <code>SERVER_HOST</code> in the format <code>http://&lt;ip_addr&gt;:9100</code>.</li>
-<li>Run <code>yarn run selenium</code></li>
+<li>Run <code>yarn run selenium</code> (available only on Linux)</li>
+<li>If you are a Mac user, you can run <code>yarn run selenium:mac</code>
+<ul>
+<li>This command creates docker container which uses port forwarding instead of host networking <a href="https://docs.docker.com/network/host/">which is not supported on Mac</a></li>
+</ul>
+</li>
 </ul>
 <div class="gdoc-page__anchorwrap"><h3 id="setup-using-docker-desktop-for-mac"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#setup-using-docker-desktop-for-mac" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#setup-using-docker-desktop-for-mac"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Setup using Docker Desktop for Mac</h3></div>
 <p>In order to run acceptance tests with selenium running in Docker Desktop for Mac while having ownCloud Server and Phoenix running as services
