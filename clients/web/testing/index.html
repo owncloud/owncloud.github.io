@@ -1349,6 +1349,11 @@
           </ul>
         </li>
         <li><a href="#available-settings-to-be-set-by-environment-variables">Available settings to be set by environment variables</a></li>
+        <li><a href="#tipps">Tipps</a>
+          <ul>
+            <li><a href="#too-many-open-files">too many open files</a></li>
+          </ul>
+        </li>
       </ul></nav><hr></div>
 
 
@@ -1417,9 +1422,28 @@ After all these changes Phoenix will be accessible at <code>http://host.docker.i
 docker run -e <span class="nv">REDIS_DATABASES</span><span class="o">=</span><span class="m">1</span> -p 6379:6379 -d webhippie/redis:latest
 </code></pre></div></li>
 <li>
-<p>create a new phoenix config.json file.
-Use <a href="https://github.com/owncloud/phoenix/blob/master/tests/drone/ocis-config.json">this config</a> and change the URLs to match your environment.</p>
-</li>
+<p>create a new phoenix config.json file.</p>
+<p>Here an example that should work when running every service on localhost</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">{
+  &#34;server&#34;: &#34;https://localhost:9200&#34;,
+  &#34;theme&#34;: &#34;owncloud&#34;,
+  &#34;version&#34;: &#34;0.1.0&#34;,
+  &#34;openIdConnect&#34;: {
+    &#34;metadata_url&#34;: &#34;https://localhost:9200/.well-known/openid-configuration&#34;,
+    &#34;authority&#34;: &#34;https://localhost:9200&#34;,
+    &#34;client_id&#34;: &#34;phoenix&#34;,
+    &#34;response_type&#34;: &#34;code&#34;,
+    &#34;scope&#34;: &#34;openid profile email&#34;
+  },
+  &#34;apps&#34;: [
+    &#34;files&#34;,
+    &#34;draw-io&#34;,
+    &#34;pdf-viewer&#34;,
+    &#34;markdown-editor&#34;,
+    &#34;media-viewer&#34;
+  ]
+}
+</code></pre></div></li>
 <li>
 <p>Run the OCIS server with necessary configurations</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">export</span> <span class="nv">REVA_LDAP_HOSTNAME</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span>
@@ -1438,7 +1462,7 @@ Use <a href="https://github.com/owncloud/phoenix/blob/master/tests/drone/ocis-co
 bin/ocis server
 </code></pre></div></li>
 <li>
-<p>set the <code>SERVER_HOST</code> environment variable to point to the URL where ocis serves Phoenix, by default &ldquo;http://localhost:9100&rdquo;</p>
+<p>set the <code>SERVER_HOST</code> environment variable to point to the URL where ocis serves Phoenix, by default &ldquo;https://localhost:9200&rdquo;</p>
 </li>
 <li>
 <p>set the <code>BACKEND_HOST</code> environment variable to point to the URL of the backend, by default &ldquo;http://localhost:9140&rdquo;</p>
@@ -1450,9 +1474,13 @@ bin/ocis server
 <p>set the <code>OCIS_SKELETON_DIR</code> environment variable to the <code>data/webUISkeleton</code> folder inside the testing app</p>
 </li>
 <li>
-<p><a href="https://owncloud.github.io/clients/web/building/">setup and build Phoenix</a>
--set the <code>SELENIUM_HOST</code> environment variable to your host that runs selenium, mostly <code>localhost</code>
--set the <code>SELENIUM_PORT</code> environment variable to your selenium port, mostly <code>4444</code></p>
+<p><a href="https://owncloud.github.io/clients/web/building/">setup and build Phoenix</a></p>
+</li>
+<li>
+<p>set the <code>SELENIUM_HOST</code> environment variable to your host that runs selenium, mostly <code>localhost</code></p>
+</li>
+<li>
+<p>set the <code>SELENIUM_PORT</code> environment variable to your selenium port, mostly <code>4444</code></p>
 </li>
 </ul>
 <p>Run <code>yarn run acceptance-tests-ocis &lt;feature-files-to-test&gt;</code>.</p>
@@ -1556,6 +1584,12 @@ bin/ocis server
 </tr>
 </tbody>
 </table>
+<div class="gdoc-page__anchorwrap"><h2 id="tipps"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#tipps" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#tipps"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Tipps</h2></div>
+<div class="gdoc-page__anchorwrap"><h3 id="too-many-open-files"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#too-many-open-files" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#too-many-open-files"><svg class="icon link"><use xlink:href="#link"></use></svg></a>too many open files</h3></div>
+<p>If tests were running fine and then suddenly start to fail your system might run into open file limits.
+In that case you will see messages in the OCIS log output that look like this:
+<code>2020-05-12 11:33:43.974552 I | http: Accept error: accept tcp [::]:9200: accept4: too many open files; retrying in 1s</code></p>
+<p>In that case increase the open file limits, how to do that would be beyond the scope of this documentation.</p>
 
 
     </article>
