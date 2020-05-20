@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="License">
+<meta name="description" content="Releasing">
 
-<title>License | ownCloud</title>
+<title>Releasing | ownCloud</title>
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
 <link rel="stylesheet" href="/main.min.css">
@@ -290,7 +290,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/ocis/license/" class="gdoc-nav__entry is-active">
+                    <a href="/ocis/license/" class="gdoc-nav__entry ">
                         License
                     </a>
                 </span>
@@ -1220,7 +1220,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis_thumbnails/releasing/" class="gdoc-nav__entry ">
+                    <a href="/extensions/ocis_thumbnails/releasing/" class="gdoc-nav__entry is-active">
                         Releasing
                     </a>
                 </span>
@@ -1327,7 +1327,14 @@
         
     
     
-        <a href='/'>Documentation</a> / <a href='/ocis/'>Infinite Scale</a> / License
+        
+        
+        
+    
+    
+        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_thumbnails/'>Thumbnails</a> / Releasing
+    
+
     
 
     
@@ -1340,7 +1347,7 @@
     <span>
         
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/docs/license.md">
+            <a href="https://github.com/owncloud/ocis-thumbnails/edit/master/docs/releasing.md">
                 Edit this page
             </a>
         
@@ -1349,7 +1356,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>License</h1>
+        <h1>Releasing</h1>
         
 
 
@@ -1358,7 +1365,40 @@
     
 
 
-<p>This project is licensed under the <a href="https://github.com/owncloud/ocis/blob/master/LICENSE">Apache 2.0</a> license. For the license of the used libraries you have to check the respective sources.</p>
+
+
+
+  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
+        <li><a href="#preperation">Preperation</a></li>
+        <li><a href="#release">Release</a></li>
+      </ul></nav><hr></div>
+
+
+<p>To release a new version of ocis-thumbnails, you have to follow a few simple steps.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="preperation"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_thumbnails/releasing/#preperation" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#preperation"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Preperation</h2></div>
+<ol>
+<li>Create a new branch e.g. <code>release-x.x.x</code> where <code>x.x.x</code> is the version you want to release.</li>
+<li>Checkout the preparation branch.</li>
+<li>Create a new changelog folder and move the unreleased snippets there.
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">mkdir changelog/x.x.x_yyyy-MM-dd/ # yyyy-MM-dd is the current date
+mv changelog/unreleased/* changelog/x.x.x_yyyy-MM-dd/</code></pre></div></li>
+<li>Commit and push the changes
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">git add --all
+git commit -m &#34;prepare release x.x.x&#34;
+git push</code></pre></div></li>
+<li>Create a pull request to the master branch.</li>
+</ol>
+<div class="gdoc-page__anchorwrap"><h2 id="release"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_thumbnails/releasing/#release" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#release"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Release</h2></div>
+<ol>
+<li>After the preparation branch has been merged update your local master.
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">git checkout master
+git pull</code></pre></div></li>
+<li>Create a new tag (preferably signed).
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">git tag -s vx.x.x -m &#34;release vx.x.x&#34;
+git push --tags</code></pre></div></li>
+<li>Wait for CI and check that the GitHub release was published.</li>
+</ol>
+<p>Congratulations, you just released ocis-thumbnails!</p>
 
 
     </article>
