@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Building">
+<meta name="description" content="Updating reva">
 
-<title>Building | ownCloud</title>
+<title>Updating reva | ownCloud</title>
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
 <link rel="stylesheet" href="/main.min.css">
@@ -881,7 +881,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis_phoenix/building/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/ocis_phoenix/building/" class="gdoc-nav__entry ">
                         Building
                     </a>
                 </span>
@@ -1055,7 +1055,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis_reva/updating/" class="gdoc-nav__entry ">
+                    <a href="/extensions/ocis_reva/updating/" class="gdoc-nav__entry is-active">
                         Updating reva
                     </a>
                 </span>
@@ -1366,7 +1366,7 @@
         
     
     
-        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_phoenix/'>Phoenix</a> / Building
+        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_reva/'>Reva</a> / Updating reva
     
 
     
@@ -1381,7 +1381,7 @@
     <span>
         
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis-phoenix/edit/master/docs/building.md">
+            <a href="https://github.com/owncloud/ocis-reva/edit/master/docs/updating.md">
                 Edit this page
             </a>
         
@@ -1390,7 +1390,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>Building</h1>
+        <h1>Updating reva</h1>
         
 
 
@@ -1399,14 +1399,22 @@
     
 
 
-<p>As this project is built with Go, so you need to install that first. The installation of Go is out of the scope of this document, please follow the official documentation for <a href="https://golang.org/doc/install">Go</a>, to build this project you have to install Go &gt;= v1.12. After the installation of the required tools you need to get the sources:</p>
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">git clone https://github.com/owncloud/ocis-phoenix.git
-cd ocis-phoenix</code></pre></div>
-<p>All required tool besides Go itself and make are bundled or getting automatically installed within the <code>GOPATH</code>. All commands to build this project are part of our <code>Makefile</code>.</p>
-<div class="gdoc-page__anchorwrap"><h2 id="backend"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_phoenix/building/#backend" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#backend"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Backend</h2></div>
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">make generate
-make build</code></pre></div>
-<p>The above commands will download a <a href="https://github.com/owncloud/phoenix">Phoenix</a> release and embed it into the binary. Finally you should have the binary within the <code>bin/</code> folder now, give it a try with <code>./bin/ocis-phoenix -h</code> to see all available options.</p>
+
+
+
+  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
+        <li><a href="#updating-reva">Updating reva</a></li>
+      </ul></nav><hr></div>
+
+
+<div class="gdoc-page__anchorwrap"><h2 id="updating-reva"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/updating/#updating-reva" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#updating-reva"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Updating reva</h2></div>
+<ol>
+<li>Run <code>go get github.com/cs3org/reva@master</code></li>
+<li>Create a changelog entry containing changes that were done in <a href="https://github.com/cs3org/reva/commits/master">reva</a></li>
+<li>Create a Pull Request to ocis-reva master with those changes</li>
+<li>If test issues appear, you might need to <a href="https://owncloud.github.io/extensions/ocis_reva/testing/">adjust the tests</a></li>
+<li>After the PR is merged, consider doing a <a href="https://owncloud.github.io/extensions/ocis_reva/releasing/">release of ocis-reva</a></li>
+</ol>
 
 
     </article>

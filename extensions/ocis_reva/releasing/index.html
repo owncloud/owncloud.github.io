@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Building">
+<meta name="description" content="Releasing">
 
-<title>Building | ownCloud</title>
+<title>Releasing | ownCloud</title>
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
 <link rel="stylesheet" href="/main.min.css">
@@ -881,7 +881,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis_phoenix/building/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/ocis_phoenix/building/" class="gdoc-nav__entry ">
                         Building
                     </a>
                 </span>
@@ -1072,7 +1072,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis_reva/releasing/" class="gdoc-nav__entry ">
+                    <a href="/extensions/ocis_reva/releasing/" class="gdoc-nav__entry is-active">
                         Releasing
                     </a>
                 </span>
@@ -1366,7 +1366,7 @@
         
     
     
-        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_phoenix/'>Phoenix</a> / Building
+        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_reva/'>Reva</a> / Releasing
     
 
     
@@ -1381,7 +1381,7 @@
     <span>
         
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis-phoenix/edit/master/docs/building.md">
+            <a href="https://github.com/owncloud/ocis-reva/edit/master/docs/releasing.md">
                 Edit this page
             </a>
         
@@ -1390,7 +1390,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>Building</h1>
+        <h1>Releasing</h1>
         
 
 
@@ -1399,14 +1399,43 @@
     
 
 
-<p>As this project is built with Go, so you need to install that first. The installation of Go is out of the scope of this document, please follow the official documentation for <a href="https://golang.org/doc/install">Go</a>, to build this project you have to install Go &gt;= v1.12. After the installation of the required tools you need to get the sources:</p>
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">git clone https://github.com/owncloud/ocis-phoenix.git
-cd ocis-phoenix</code></pre></div>
-<p>All required tool besides Go itself and make are bundled or getting automatically installed within the <code>GOPATH</code>. All commands to build this project are part of our <code>Makefile</code>.</p>
-<div class="gdoc-page__anchorwrap"><h2 id="backend"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_phoenix/building/#backend" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#backend"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Backend</h2></div>
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">make generate
-make build</code></pre></div>
-<p>The above commands will download a <a href="https://github.com/owncloud/phoenix">Phoenix</a> release and embed it into the binary. Finally you should have the binary within the <code>bin/</code> folder now, give it a try with <code>./bin/ocis-phoenix -h</code> to see all available options.</p>
+
+
+
+  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
+        <li><a href="#preparation">Preparation</a></li>
+        <li><a href="#release">Release</a></li>
+      </ul></nav><hr></div>
+
+
+<p>To release a new version of ocis-reva, you have to follow a few simple steps.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="preparation"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/releasing/#preparation" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#preparation"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Preparation</h2></div>
+<ol>
+<li>Before releasing, make sure that reva has been <a href="https://owncloud.github.io/extensions/ocis_reva/updating/">updated to the desired version</a></li>
+<li>Create a new branch e.g. <code>release-x.x.x</code> where <code>x.x.x</code> is the version you want to release.</li>
+<li>Checkout the preparation branch.</li>
+<li>Create a new changelog folder and move the unreleased snippets there.
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">mkdir changelog/x.x.x_yyyy-MM-dd/ # yyyy-MM-dd is the current date
+mv changelog/unreleased/* changelog/x.x.x_yyyy-MM-dd/</code></pre></div></li>
+<li>Commit and push the changes
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">git add --all
+git commit -m &#34;prepare release x.x.x&#34;
+git push origin release-x.x.x</code></pre></div></li>
+<li>Create a pull request to the master branch.</li>
+</ol>
+<div class="gdoc-page__anchorwrap"><h2 id="release"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/releasing/#release" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#release"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Release</h2></div>
+<ol>
+<li>After the preparation branch has been merged update your local master.</li>
+<li><a href="https://cloud.drone.io/owncloud/ocis-reva">Wait for CI</a> to generate a commit for the changelog update</li>
+<li>Check out master (or make sure to check out the generated changelog commit in case of subsequent merges)
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">git checkout master
+git pull origin master</code></pre></div></li>
+<li>Create a new tag (preferably signed) and replace the version number accordingly.
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">git tag -s vx.x.x -m &#34;release vx.x.x&#34;
+git push origin vx.x.x</code></pre></div></li>
+<li>Wait for CI and check that the GitHub release was published.</li>
+</ol>
+<p>Congratulations, you just released ocis-reva!</p>
 
 
     </article>
