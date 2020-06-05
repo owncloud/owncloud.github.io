@@ -1413,7 +1413,12 @@
         <li><a href="#run-tests">run tests</a>
           <ul>
             <li><a href="#with-owncloud-10-backend">with ownCloud 10 backend</a></li>
-            <li><a href="#with-ocis-backend">with OCIS backend</a></li>
+            <li><a href="#with-ocis-backend">with OCIS backend</a>
+              <ul>
+                <li><a href="#the-quick-way-all-automated">the quick way (all automated)</a></li>
+                <li><a href="#the-manual-way-eg-to-run-from-an-existing-ocis-location">the manual way (e.g. to run from an existing ocis location)</a></li>
+              </ul>
+            </li>
           </ul>
         </li>
         <li><a href="#available-settings-to-be-set-by-environment-variables">Available settings to be set by environment variables</a></li>
@@ -1475,92 +1480,58 @@ After all these changes Phoenix will be accessible at <code>http://host.docker.i
 <p>see <a href="#available-settings-to-be-set-by-environment-variables">available settings</a> for further setup if needed</p>
 <div class="gdoc-page__anchorwrap"><h3 id="with-ocis-backend"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#with-ocis-backend" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#with-ocis-backend"><svg class="icon link"><use xlink:href="#link"></use></svg></a>with OCIS backend</h3></div>
 <ul>
+<li><a href="https://owncloud.github.io/clients/web/building/">setup and build Phoenix</a></li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h4 id="the-quick-way-all-automated"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#the-quick-way-all-automated" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#the-quick-way-all-automated"><svg class="icon link"><use xlink:href="#link"></use></svg></a>the quick way (all automated)</h4></div>
+<ol>
+<li>run <code>yarn run test-requirements:ocis</code> (<code>yarn run test-requirements:ocis:mac</code> for Mac users) to install, configure and run all ocis requirements</li>
+<li>run <code>yarn run acceptance-tests-ocis &lt;feature-files-to-test&gt;</code> to run the tests, the feature files are located in the &ldquo;tests/acceptance/features&rdquo; subdirectories.</li>
+<li>after the tests run <code>yarn run docker-kill</code> to stop all created docker containers</li>
+</ol>
+<div class="gdoc-page__anchorwrap"><h4 id="the-manual-way-eg-to-run-from-an-existing-ocis-location"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#the-manual-way-eg-to-run-from-an-existing-ocis-location" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#the-manual-way-eg-to-run-from-an-existing-ocis-location"><svg class="icon link"><use xlink:href="#link"></use></svg></a>the manual way (e.g. to run from an existing ocis location)</h4></div>
+<ol>
 <li>
 <p>clone and build <a href="https://github.com/owncloud/ocis">ocis</a></p>
 </li>
 <li>
-<p>clone the <a href="https://github.com/owncloud/testing">testing-app</a>, it&rsquo;s needed to have the skeleton folder for the tests</p>
+<p>run <code>yarn run testing-app</code> to get the <a href="https://github.com/owncloud/testing">testing-app</a>, it&rsquo;s needed to have the skeleton folder for the tests</p>
 </li>
 <li>
 <p>Run ldap server and redis server using docker</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">docker run --hostname ldap.my-company.com <span class="se">\
-</span><span class="se"></span>-e <span class="nv">LDAP_TLS_VERIFY_CLIENT</span><span class="o">=</span>never <span class="se">\
-</span><span class="se"></span>-e <span class="nv">LDAP_DOMAIN</span><span class="o">=</span>owncloud.com <span class="se">\
-</span><span class="se"></span>-e <span class="nv">LDAP_ORGANISATION</span><span class="o">=</span>ownCloud <span class="se">\
-</span><span class="se"></span>-e <span class="nv">LDAP_ADMIN_PASSWORD</span><span class="o">=</span>admin <span class="se">\
-</span><span class="se"></span>--name docker-slapd <span class="se">\
-</span><span class="se"></span>-p 127.0.0.1:389:389 <span class="se">\
-</span><span class="se"></span>-p 636:636 -d osixia/openldap
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">yarn run ldap-server
 
-docker run -e <span class="nv">REDIS_DATABASES</span><span class="o">=</span><span class="m">1</span> -p 6379:6379 -d webhippie/redis:latest
+yarn run redis-server
 </code></pre></div></li>
 <li>
-<p>create a new phoenix config.json file.</p>
-<p>Here an example that should work when running every service on localhost</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">{
-  &#34;server&#34;: &#34;https://localhost:9200&#34;,
-  &#34;theme&#34;: &#34;owncloud&#34;,
-  &#34;version&#34;: &#34;0.1.0&#34;,
-  &#34;openIdConnect&#34;: {
-    &#34;metadata_url&#34;: &#34;https://localhost:9200/.well-known/openid-configuration&#34;,
-    &#34;authority&#34;: &#34;https://localhost:9200&#34;,
-    &#34;client_id&#34;: &#34;phoenix&#34;,
-    &#34;response_type&#34;: &#34;code&#34;,
-    &#34;scope&#34;: &#34;openid profile email&#34;
-  },
-  &#34;apps&#34;: [
-    &#34;files&#34;,
-    &#34;draw-io&#34;,
-    &#34;pdf-viewer&#34;,
-    &#34;markdown-editor&#34;,
-    &#34;media-viewer&#34;
-  ]
-}
-</code></pre></div></li>
+<p>For Mac Users: create a new phoenix config.json file.
+As starting point and example that should work when running every service on localhost use <code>tests/acceptance/ocis-mac-config-local.json</code></p>
+</li>
 <li>
-<p>Run the OCIS server with necessary configurations</p>
+<p>Run the OCIS server with the necessary configurations</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">export</span> <span class="nv">REVA_LDAP_HOSTNAME</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span>
 <span class="nb">export</span> <span class="nv">REVA_LDAP_PORT</span><span class="o">=</span><span class="m">636</span>
 <span class="nb">export</span> <span class="nv">REVA_LDAP_BIND_PASSWORD</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span>
 <span class="nb">export</span> <span class="nv">REVA_LDAP_BIND_DN</span><span class="o">=</span><span class="s1">&#39;cn=admin,dc=owncloud,dc=com&#39;</span>
 <span class="nb">export</span> <span class="nv">REVA_LDAP_BASE_DN</span><span class="o">=</span><span class="s1">&#39;dc=owncloud,dc=com&#39;</span>
 <span class="nb">export</span> <span class="nv">REVA_STORAGE_OWNCLOUD_REDIS_ADDR</span><span class="o">=</span><span class="s1">&#39;localhost:6379&#39;</span>
-<span class="nb">export</span> <span class="nv">PHOENIX_WEB_CONFIG</span><span class="o">=</span><span class="s1">&#39;&lt;path-to-config-file&gt;/ocis-config.json&#39;</span>
 <span class="nb">export</span> <span class="nv">PHOENIX_ASSET_PATH</span><span class="o">=</span><span class="s1">&#39;&lt;path-to-phoenix-clone&gt;/dist&#39;</span>
 <span class="nb">export</span> <span class="nv">LDAP_URI</span><span class="o">=</span><span class="s1">&#39;ldap://localhost&#39;</span>
 <span class="nb">export</span> <span class="nv">LDAP_BINDDN</span><span class="o">=</span><span class="s1">&#39;cn=admin,dc=owncloud,dc=com&#39;</span>
 <span class="nb">export</span> <span class="nv">LDAP_BINDPW</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span>
 <span class="nb">export</span> <span class="nv">LDAP_BASEDN</span><span class="o">=</span><span class="s1">&#39;dc=owncloud,dc=com&#39;</span>
-  
-bin/ocis server
+</code></pre></div><p>for Mac users additionally:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"> <span class="nb">export</span> <span class="nv">PHOENIX_WEB_CONFIG</span><span class="o">=</span><span class="s1">&#39;&lt;path-to-config-file&gt;/ocis-mac-config.json&#39;</span>
+</code></pre></div><p>run the server:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">bin/ocis server
 </code></pre></div></li>
 <li>
-<p>set the <code>SERVER_HOST</code> environment variable to point to the URL where ocis serves Phoenix, by default &ldquo;https://localhost:9200&rdquo;</p>
+<p>Run <code>yarn run acceptance-tests-ocis &lt;feature-files-to-test&gt;</code>.
+The feature files are located in the &ldquo;tests/acceptance/features&rdquo; subdirectories.</p>
 </li>
-<li>
-<p>set the <code>BACKEND_HOST</code> environment variable to point to the URL of the backend, by default &ldquo;http://localhost:9140&rdquo;</p>
-</li>
-<li>
-<p>set the <code>RUN_ON_OCIS</code> environment variable to <code>true</code></p>
-</li>
-<li>
-<p>set the <code>OCIS_SKELETON_DIR</code> environment variable to the <code>data/webUISkeleton</code> folder inside the testing app</p>
-</li>
-<li>
-<p><a href="https://owncloud.github.io/clients/web/building/">setup and build Phoenix</a></p>
-</li>
-<li>
-<p>set the <code>SELENIUM_HOST</code> environment variable to your host that runs selenium, mostly <code>localhost</code></p>
-</li>
-<li>
-<p>set the <code>SELENIUM_PORT</code> environment variable to your selenium port, mostly <code>4444</code></p>
-</li>
-</ul>
-<p>Run <code>yarn run acceptance-tests-ocis &lt;feature-files-to-test&gt;</code>.</p>
-<p>The feature files are located in the &ldquo;tests/acceptance/features&rdquo; subdirectories.</p>
+</ol>
 <p>see <a href="#available-settings-to-be-set-by-environment-variables">available settings</a> for further setup if needed</p>
 <div class="gdoc-page__anchorwrap"><h2 id="available-settings-to-be-set-by-environment-variables"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#available-settings-to-be-set-by-environment-variables" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#available-settings-to-be-set-by-environment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Available settings to be set by environment variables</h2></div>
-<p>These values can be set using the environment variables to match your local test environment.</p>
+<p>These values can be set using the environment variables to configure <code>yarn run acceptance-tests</code> and <code>yarn run acceptance-tests-ocis</code> to match your local test environment.</p>
 <table>
 <thead>
 <tr>
@@ -1651,8 +1622,8 @@ bin/ocis server
 <td>-</td>
 </tr>
 <tr>
-<td><code>OCIS_PHOENIX_CONFIG</code></td>
-<td>Path for the phoenix web config file used by OCIS</td>
+<td><code>PHOENIX_CONFIG</code></td>
+<td>Path for the phoenix config file (usually in the dist folder)</td>
 <td>-</td>
 </tr>
 </tbody>
