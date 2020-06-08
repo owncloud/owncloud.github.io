@@ -1482,8 +1482,9 @@ $ make
 </code></pre></div><p>This should give you a <code>bin/ocis-glauth</code> binary. Try listing the help with <code>bin/ocis-glauth --help</code>.</p>
 <div class="gdoc-page__anchorwrap"><h4 id="run-it"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#run-it" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-it"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run it!</h4></div>
 <p>You need to point <code>ocis-glauth</code> to your owncloud domain:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ bin/ocis-glauth --log-level debug server --backend-server https://cloud.example.com --backend-basedn dc=example,dc=com
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ bin/ocis-glauth --log-level debug server --backend-datastore owncloud --backend-server https://cloud.example.com --backend-basedn dc=example,dc=com
 </code></pre></div><p><code>--log-level debug</code> is only used to generate more verbose output
+<code>--backend-datastore owncloud</code> switches to tho owncloud datastore
 <code>--backend-server https://cloud.example.com</code> is the url to an ownCloud instance with an enabled graphapi app
 <code>--backend-basedn dc=example,dc=com</code> is used to construct the LDAP dn. The user <code>admin</code> will become <code>cn=admin,dc=example,dc=com</code>.</p>
 <div class="gdoc-page__anchorwrap"><h4 id="check-it-is-up-and-running"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#check-it-is-up-and-running" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#check-it-is-up-and-running"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Check it is up and running</h4></div>
