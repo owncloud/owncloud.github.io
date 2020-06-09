@@ -1181,6 +1181,23 @@
             <li>
             
                 <span class="flex">
+                    <a href="/extensions/ocis_settings/values/" class="gdoc-nav__entry ">
+                        Settings Values
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+            
+            
+            <li>
+            
+                <span class="flex">
                     <a href="/extensions/ocis_settings/glossary/" class="gdoc-nav__entry ">
                         Glossary
                     </a>
@@ -1433,24 +1450,25 @@ graph TD
         ows[ocis-web-settings]
         owc[ocis-web-core]
     end
-    ows ---|"listSettingsBundles(),<br>listSettingsValues(),<br>saveSettingsValue(value)"| os[ocis-settings]
-    owc ---|"listSettingsValues()<br>getSettingsValue(id)"| sdk[oC SDK]
+    ows ---|"listSettingsBundles(),<br>saveSettingsValue(value)"| os[ocis-settings]
+    owc ---|"listSettingsValues()"| sdk[oC SDK]
     sdk --- sdks{ocis-settings<br>available?}
     sdks ---|"yes"| os
     sdks ---|"no"| defaults[Use set of<br>default values]
-    oa[oCIS extensions<br>e.g. ocis-accounts] ---|"saveSettingsBundle(bundle),<br>getSettingsValue(id)"| os
+    oa[oCIS extensions<br>e.g. ocis-accounts] ---|"saveSettingsBundle(bundle)"| os
 </p>
 
-<p>The diagram shows how the settings service integrates into oCIS:
-<strong>Settings management:</strong></p>
+<p>The diagram shows how the settings service integrates into oCIS:</p>
+<p><strong>Settings management:</strong></p>
 <ul>
-<li>oCIS extensions can register settings bundles with the ocis-settings service.</li>
-<li>The settings frontend can be plugged into ocis-web, showing generated forms for changing settings values as a user.</li>
+<li>oCIS extensions can register <em>settings bundles</em> with the ocis-settings service.</li>
+<li>The settings frontend can be plugged into ocis-web, showing forms for changing <em>settings values</em> as a user.
+The forms are generated from the registered <em>settings bundles</em>.</li>
 </ul>
 <p><strong>Settings usage:</strong></p>
 <ul>
-<li>Extensions can query ocis-settings for settings values of a user.</li>
-<li>The ownCloud SDK, used as a data abstraction layer for ocis-web, will query ocis-settings for settings values of a user,
+<li>Extensions can query ocis-settings for <em>settings values</em> of a user.</li>
+<li>The ownCloud SDK, used as a data abstraction layer for ocis-web, will query ocis-settings for <em>settings values</em> of a user,
 if it&rsquo;s available. The SDK uses sensible defaults when ocis-settings is not part of the setup.</li>
 </ul>
 <p>For compatibility with ownCloud 10, a migration of ownCloud 10 settings into the storage of ocis-settings will be available.</p>

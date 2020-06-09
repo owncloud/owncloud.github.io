@@ -2,12 +2,11 @@
 <html lang="en">
 
 <head>
-	<meta name="generator" content="Hugo 0.69.2" />
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Documentation">
+<meta name="description" content="Settings Values">
 
-<title>Documentation | ownCloud</title>
+<title>Settings Values | ownCloud</title>
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
 <link rel="stylesheet" href="/main.min.css">
@@ -15,7 +14,6 @@
 <link rel="stylesheet" href="/custom.css">
 
 
-<link rel="alternate" type="application/rss+xml" href="https://owncloud.github.io/index.xml" title="ownCloud" />
 <!--
     Made with Geekdoc theme
     https://github.com/xoxys/hugo-geekdoc
@@ -1182,7 +1180,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis_settings/values/" class="gdoc-nav__entry ">
+                    <a href="/extensions/ocis_settings/values/" class="gdoc-nav__entry is-active">
                         Settings Values
                     </a>
                 </span>
@@ -1378,7 +1376,7 @@
 
 
 
-<div class="gdoc-page__header flex flex-wrap justify-between hidden-mobile" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+<div class="gdoc-page__header flex flex-wrap justify-between" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
     <span>
         
             <span class="breadcrumb">
@@ -1387,7 +1385,28 @@
                 
     
     
-        Documentation
+        
+        
+        
+    
+    
+        
+        
+        
+    
+    
+        
+        
+        
+    
+    
+        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_settings/'>Settings</a> / Settings Values
+    
+
+    
+
+    
+
     
 
             </span>
@@ -1395,11 +1414,17 @@
     </span>
     <span>
         
+            <svg class="icon code"><use xlink:href="#code"></use></svg>
+            <a href="https://github.com/owncloud/ocis-settings/edit/master/docs/values.md">
+                Edit this page
+            </a>
+        
     </span>
 </div>
 
+
     <article class="gdoc-markdown">
-        <h1>Documentation</h1>
+        <h1>Settings Values</h1>
         
 
 
@@ -1408,11 +1433,67 @@
     
 
 
-<p>Developer Docs for ownCloud Infinite Scale</p>
-<figure class="page-image">
-    <img src="/media/is.png" width="50%" height="auto"/> 
-</figure>
+<p>A <strong>Settings Value</strong> is the value an authenticated user has chosen for a specific setting, defined in a
+<em>settings bundle</em>. For choosing settings values as a user the sole entry point is the ocis-web extension
+provided by this service.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="identifying-settings-values"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_settings/values/#identifying-settings-values" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#identifying-settings-values"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Identifying settings values</h2></div>
+<p>A <em>settings value</em> is uniquely identified by four attributes. Three of them are coming from the definition of
+the setting within it&rsquo;s settings bundle (see <a href="https://owncloud.github.io/extensions/ocis_settings/bundles/">Settings Bundles</a>
+for an example). The fourth identifies the user.</p>
+<ul>
+<li>extension: Key of the extension that registered the settings bundle,</li>
+<li>bundleKey: Key of the settings bundle,</li>
+<li>settingKey: Key of the setting as defined within the bundle,</li>
+<li>accountUuid: The UUID of the authenticated user who has saved the setting.</li>
+</ul>
+<blockquote class="gdoc-hint info">
+  When requests are going through <code>ocis-proxy</code>, the accountUuid attribute can be set to the static keyword <code>me</code>
+instead of using a real UUID. <code>ocis-proxy</code> will take care of minting the UUID of the authenticated user into
+a JWT, providing it in the HTTP header as <code>x-access-token</code>. That UUID is then used in this service, to replace
+<code>me</code> with the actual UUID of the authenticated user.
+</blockquote>
 
+<div class="gdoc-page__anchorwrap"><h2 id="example-of-stored-settings-values"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_settings/values/#example-of-stored-settings-values" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#example-of-stored-settings-values"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Example of stored settings values</h2></div>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;values&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;identifier&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;extension&#34;</span><span class="p">:</span> <span class="s2">&#34;ocis-accounts&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;bundleKey&#34;</span><span class="p">:</span> <span class="s2">&#34;profile&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;settingKey&#34;</span><span class="p">:</span> <span class="s2">&#34;language&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;accountUuid&#34;</span><span class="p">:</span> <span class="s2">&#34;5681371f-4a6e-43bc-8bb5-9c9237fa9c58&#34;</span>
+      <span class="p">},</span>
+      <span class="nt">&#34;listValue&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;values&#34;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="p">{</span>
+            <span class="nt">&#34;stringValue&#34;</span><span class="p">:</span> <span class="s2">&#34;de&#34;</span>
+          <span class="p">}</span>
+        <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;timezone&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;identifier&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;extension&#34;</span><span class="p">:</span> <span class="s2">&#34;ocis-accounts&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;bundleKey&#34;</span><span class="p">:</span> <span class="s2">&#34;profile&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;settingKey&#34;</span><span class="p">:</span> <span class="s2">&#34;timezone&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;accountUuid&#34;</span><span class="p">:</span> <span class="s2">&#34;5681371f-4a6e-43bc-8bb5-9c9237fa9c58&#34;</span>
+      <span class="p">},</span>
+      <span class="nt">&#34;listValue&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;values&#34;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="p">{</span>
+            <span class="nt">&#34;stringValue&#34;</span><span class="p">:</span> <span class="s2">&#34;Europe/Berlin&#34;</span>
+          <span class="p">}</span>
+        <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="grpc-endpoints"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_settings/values/#grpc-endpoints" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#grpc-endpoints"><svg class="icon link"><use xlink:href="#link"></use></svg></a>gRPC endpoints</h2></div>
+<p>The obvious way of modifying settings is the ocis-web extension, as described earlier. However, services can
+use the respective gRPC endpoints of the <code>ValueService</code> to query and modify <em>settings values</em> as well.
+The gRPC endpoints require the same identifier attributes as described above, so for making a request to
+the <code>ValueService</code> you will have to make sure that the accountUuid of the authenticated user is available in
+your service at the time of the request.</p>
 
 
     </article>
