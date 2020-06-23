@@ -1513,14 +1513,18 @@ After all these changes Phoenix will be accessible at <code>http://host.docker.i
 <p>The feature files are located in the &ldquo;tests/acceptance/features&rdquo; subdirectories.</p>
 <p>see <a href="#available-settings-to-be-set-by-environment-variables">available settings</a> for further setup if needed</p>
 <div class="gdoc-page__anchorwrap"><h3 id="with-ocis-backend"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#with-ocis-backend" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#with-ocis-backend"><svg class="icon link"><use xlink:href="#link"></use></svg></a>with OCIS backend</h3></div>
-<ul>
-<li><a href="https://owncloud.github.io/clients/web/building/">setup and build Phoenix</a></li>
-</ul>
+<ol>
+<li><a href="https://owncloud.github.io/clients/web/building/">build Phoenix</a></li>
+<li>create a new phoenix <code>config.json</code> file and copy it into the <code>dist</code> folder, even running phoenix in the default ocis environment does not need a <code>config.json</code> file, some tests rely on it being present.
+As starting point and example that should work when running every service on localhost use
+Linux: <code>config.json.sample-ocis</code>
+Mac: <code>tests/acceptance/ocis-mac-config.json</code></li>
+</ol>
 <div class="gdoc-page__anchorwrap"><h4 id="the-quick-way-all-automated"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#the-quick-way-all-automated" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#the-quick-way-all-automated"><svg class="icon link"><use xlink:href="#link"></use></svg></a>the quick way (all automated)</h4></div>
 <ol>
 <li>run <code>yarn run test-requirements:ocis</code> (<code>yarn run test-requirements:ocis:mac</code> for Mac users) to install, configure and run all ocis requirements</li>
 <li>run <code>yarn run acceptance-tests-ocis &lt;feature-files-to-test&gt;</code> to run the tests, the feature files are located in the &ldquo;tests/acceptance/features&rdquo; subdirectories.</li>
-<li>after the tests run <code>yarn run docker-kill</code> to stop all created docker containers</li>
+<li>after the tests run <code>yarn run killall</code> to stop all created docker containers, and the ocis services</li>
 </ol>
 <div class="gdoc-page__anchorwrap"><h4 id="the-manual-way-eg-to-run-from-an-existing-ocis-location"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#the-manual-way-eg-to-run-from-an-existing-ocis-location" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#the-manual-way-eg-to-run-from-an-existing-ocis-location"><svg class="icon link"><use xlink:href="#link"></use></svg></a>the manual way (e.g. to run from an existing ocis location)</h4></div>
 <ol>
@@ -1536,10 +1540,6 @@ After all these changes Phoenix will be accessible at <code>http://host.docker.i
 
 yarn run redis-server
 </code></pre></div></li>
-<li>
-<p>For Mac Users: create a new phoenix config.json file.
-As starting point and example that should work when running every service on localhost use <code>tests/acceptance/ocis-mac-config.json</code></p>
-</li>
 <li>
 <p>Run the OCIS server with the necessary configurations</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">export</span> <span class="nv">REVA_LDAP_HOSTNAME</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span>
