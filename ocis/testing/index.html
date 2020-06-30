@@ -1471,7 +1471,7 @@ TEST_SERVER_URL=http://localhost:9140 \
 TEST_EXTERNAL_USER_BACKENDS=true \
 TEST_OCIS=true \
 OCIS_REVA_DATA_ROOT=/var/tmp/reva/ \
-BEHAT_FILTER_TAGS=&#39;~@skipOnOcis&amp;&amp;~@skipOnLDAP&amp;&amp;@TestAlsoOnExternalUserBackend&amp;&amp;~@local_storage&#39;
+BEHAT_FILTER_TAGS=&#39;~@skipOnOcis&#39;
 </code></pre></div><p>Make sure to adjust the settings <code>TEST_SERVER_URL</code> and <code>OCIS_REVA_DATA_ROOT</code> according to your environment</p>
 <p>This will run all tests that can work with LDAP and are not skipped on ocis</p>
 <p>To run a single test add <code>BEHAT_FEATURE=&lt;feature file&gt;</code></p>
@@ -1491,7 +1491,7 @@ TEST_SERVER_URL=http://localhost:9140 \
 TEST_EXTERNAL_USER_BACKENDS=true \
 TEST_OCIS=true \
 OCIS_REVA_DATA_ROOT=/var/tmp/reva/ \
-BEHAT_FILTER_TAGS=&#39;~@skipOnOcV10&amp;&amp;~@skipOnLDAP&amp;&amp;@TestAlsoOnExternalUserBackend&amp;&amp;~@local_storage&amp;&amp;@issue-ocis-20&#39;
+BEHAT_FILTER_TAGS=&#39;~@skipOnOcV10&amp;&amp;@issue-ocis-20&#39;
 </code></pre></div><p>Note that the <code>~@skipOnOcis</code> tag is replaced by <code>~@skipOnOcV10</code> and the issue tag <code>@issue-ocis-20</code> is added.
 We want to run all tests that are skipped in CI because of this particular bug, but we don&rsquo;t want to run the tests
 that demonstrate the current buggy behaviour.</p>
