@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Bridge">
+<meta name="description" content="Configuration">
 
-<title>Bridge | ownCloud</title>
+<title>Configuration | ownCloud</title>
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
 <link rel="stylesheet" href="/main.min.css">
@@ -141,7 +141,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/ocis/bridge/" class="gdoc-nav__entry is-active">
+                    <a href="/ocis/bridge/" class="gdoc-nav__entry ">
                         Bridge
                     </a>
                 </span>
@@ -750,7 +750,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis_accounts/configuration/" class="gdoc-nav__entry ">
+                    <a href="/extensions/ocis_accounts/configuration/" class="gdoc-nav__entry is-active">
                         Configuration
                     </a>
                 </span>
@@ -1410,7 +1410,14 @@
         
     
     
-        <a href='/'>Documentation</a> / <a href='/ocis/'>Infinite Scale</a> / Bridge
+        
+        
+        
+    
+    
+        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_accounts/'>Accounts</a> / Configuration
+    
+
     
 
     
@@ -1423,7 +1430,7 @@
     <span>
         
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/docs/bridge.md">
+            <a href="https://github.com/owncloud/ocis-reva/edit/master/docs/configuration.md">
                 Edit this page
             </a>
         
@@ -1432,7 +1439,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>Bridge</h1>
+        <h1>Configuration</h1>
         
 
 
@@ -1445,221 +1452,64 @@
 
 
   <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
-        <li><a href="#current-status">Current status</a></li>
-        <li><a href="#how-to-do-it">How to do it</a>
+        <li><a href="#configuration">Configuration</a>
           <ul>
-            <li><a href="#install-the-owncloud-10-graphapi-app">Install the owncloud 10 graphapi app</a></li>
-            <li><a href="#enable-the-graphapi-app">Enable the graphapi app</a></li>
-            <li><a href="#start-ocis-glauth">Start ocis-glauth</a>
-              <ul>
-                <li><a href="#grab-it">Grab it!</a></li>
-                <li><a href="#run-it">Run it!</a></li>
-                <li><a href="#check-it-is-up-and-running">Check it is up and running</a></li>
-              </ul>
-            </li>
-            <li><a href="#start-ocis-phoenix">Start ocis-phoenix</a>
-              <ul>
-                <li><a href="#get-it">Get it!</a></li>
-                <li><a href="#run-it-1">Run it!</a></li>
-              </ul>
-            </li>
-            <li><a href="#start-ocis-konnectd">Start ocis-konnectd</a>
-              <ul>
-                <li><a href="#get-it-1">Get it!</a></li>
-                <li><a href="#set-environment-variables">Set environment variables</a></li>
-              </ul>
-            </li>
-            <li><a href="#configure-clients">Configure clients</a>
-              <ul>
-                <li><a href="#run-it-2">Run it!</a></li>
-                <li><a href="#check-it-is-up-and-running-1">Check it is up and running</a></li>
-              </ul>
-            </li>
-            <li><a href="#patch-owncloud">Patch owncloud</a></li>
-            <li><a href="#install-the-owncloud-10-openidconnect-app">Install the owncloud 10 openidconnect app</a></li>
+            <li><a href="#configuration-using-config-files">Configuration using config files</a></li>
+            <li><a href="#envrionment-variables">Envrionment variables</a></li>
+            <li><a href="#commandline-flags">Commandline flags</a></li>
+            <li><a href="#ocis-reva-server">ocis-reva server</a></li>
+            <li><a href="#ocis-reva-ocis-accounts">ocis-reva ocis-accounts</a></li>
           </ul>
         </li>
-        <li><a href="#next-steps">Next steps</a></li>
       </ul></nav><hr></div>
 
 
-<p>We are planning to build a bridge from ownCloud 10 to ocis. The idea is to have a reverse proxy infront of ownCloud 10 that will forward requests to ownCloud 10 or ocis-reva, depending on the migration status of the logged in user.</p>
-<p>This document is a work in progress of the current setup.</p>
-<div class="gdoc-page__anchorwrap"><h2 id="current-status"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#current-status" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#current-status"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Current status</h2></div>
-<p>Using ocis and the ownCloud 10 openidconnect and graphapi plugins it is possible today to introduce openid connect based authentication to existing instances. That is a prerequisite for migrating to ocis.</p>
-<div class="gdoc-page__anchorwrap"><h2 id="how-to-do-it"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#how-to-do-it" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#how-to-do-it"><svg class="icon link"><use xlink:href="#link"></use></svg></a>How to do it</h2></div>
-<div class="gdoc-page__anchorwrap"><h3 id="install-the-owncloud-10-graphapi-app"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#install-the-owncloud-10-graphapi-app" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#install-the-owncloud-10-graphapi-app"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Install the owncloud 10 graphapi app</h3></div>
-<p>In an owncloud 10 apps folder</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ git clone git@github.com:owncloud/graphapi.git
-$ cd graphapi
-$ composer install
-</code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="enable-the-graphapi-app"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#enable-the-graphapi-app" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#enable-the-graphapi-app"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Enable the graphapi app</h3></div>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">occ a:e graphapi
-</code></pre></div><p>No configuration necessary. You can test with <code>curl</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ curl https://cloud.example.com/index.php/apps/graphapi/v1.0/users -u admin | jq
-Enter host password for user &#39;admin&#39;:
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100   694  100   694    0     0   4283      0 --:--:-- --:--:-- --:--:--  4283
-{
-  &#34;value&#34;: [
-    {
-      &#34;id&#34;: &#34;admin&#34;,
-      &#34;displayName&#34;: &#34;admin&#34;,
-      &#34;mail&#34;: null
-    },
-    {
-      &#34;id&#34;: &#34;demo&#34;,
-      &#34;displayName&#34;: &#34;Demo&#34;,
-      &#34;mail&#34;: null
-    },
-    ...
-
-  ],
-  &#34;@odata.nextLink&#34;: &#34;https://oc.butonic.de/apps/graphapi/v1.0/users?$top=10&amp;$skip=10&#34;
-}
-</code></pre></div><blockquote>
-<p>Note: The MS graph api actually asks for <code>Bearer</code> auth, but in order to check users passwords during an LDAP bind we are exploiting ownClouds authentication implementation that will grant access when <code>Basic</code> auth is used. An LDAP Bind you may ask? Read on!</p>
-</blockquote>
-<div class="gdoc-page__anchorwrap"><h3 id="start-ocis-glauth"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#start-ocis-glauth" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#start-ocis-glauth"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Start ocis-glauth</h3></div>
-<p>We are going to use the above ownCloud 10 and graphapi app to turn it into the datastore for an LDAP proxy.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="grab-it"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#grab-it" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#grab-it"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Grab it!</h4></div>
-<p>In an <code>ocis</code> folder</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ git clone git@github.com:owncloud/ocis-glauth.git
-$ cd ocis-glauth
-$ make
-</code></pre></div><p>This should give you a <code>bin/ocis-glauth</code> binary. Try listing the help with <code>bin/ocis-glauth --help</code>.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="run-it"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#run-it" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-it"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run it!</h4></div>
-<p>You need to point <code>ocis-glauth</code> to your owncloud domain:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ bin/ocis-glauth --log-level debug server --backend-datastore owncloud --backend-server https://cloud.example.com --backend-basedn dc=example,dc=com
-</code></pre></div><p><code>--log-level debug</code> is only used to generate more verbose output
-<code>--backend-datastore owncloud</code> switches to tho owncloud datastore
-<code>--backend-server https://cloud.example.com</code> is the url to an ownCloud instance with an enabled graphapi app
-<code>--backend-basedn dc=example,dc=com</code> is used to construct the LDAP dn. The user <code>admin</code> will become <code>cn=admin,dc=example,dc=com</code>.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="check-it-is-up-and-running"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#check-it-is-up-and-running" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#check-it-is-up-and-running"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Check it is up and running</h4></div>
-<p>You should now be able to list accounts from your ownCloud 10 oc_accounts table using:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ ldapsearch -x -H ldap://localhost:9125 -b dc=example,dc=com -D &#34;cn=admin,dc=example,dc=com&#34; -W &#39;(objectclass=posixaccount)&#39;
-</code></pre></div><p>Groups should work as well:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ ldapsearch -x -H ldap://localhost:9125 -b dc=example,dc=com -D &#34;cn=admin,dc=example,dc=com&#34; -W &#39;(objectclass=posixgroup)&#39;
-</code></pre></div><blockquote>
-<p>Note: This is currently a readonly implementation and minimal to the usecase of authenticating users with konnectd.</p>
-</blockquote>
-<div class="gdoc-page__anchorwrap"><h3 id="start-ocis-phoenix"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#start-ocis-phoenix" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#start-ocis-phoenix"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Start ocis-phoenix</h3></div>
-<div class="gdoc-page__anchorwrap"><h4 id="get-it"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#get-it" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#get-it"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Get it!</h4></div>
-<p>In an <code>ocis</code> folder</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ git clone git@github.com:owncloud/ocis-phoenix.git
-$ cd ocis-phoenix
-$ make
-</code></pre></div><p>This should give you a <code>bin/ocis-phoenix</code> binary. Try listing the help with <code>bin/ocis-phoenix --help</code>.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="run-it-1"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#run-it-1" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-it-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run it!</h4></div>
-<p>Point <code>ocis-phoenix</code> to your owncloud domain and tell it where to find the openid connect issuing authority:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ bin/ocis-phoenix server --web-config-server https://cloud.example.com --oidc-authority https://192.168.1.100:9130 --oidc-metadata-url https://192.168.1.100:9130/.well-known/openid-configuration --oidc-client-id ocis
-</code></pre></div><p><code>ocis-phoenix</code> needs to know</p>
-<ul>
-<li><code>--web-config-server https://cloud.example.com</code> is ownCloud url with webdav and ocs endpoints (oc10 or ocis)</li>
-<li><code>--oidc-authority https://192.168.1.100:9130</code> the openid connect issuing authority, in our case <code>oidc-konnectd</code>, running on port 9130</li>
-<li><code>--oidc-metadata-url https://192.168.1.100:9130/.well-known/openid-configuration</code> the openid connect configuration endpoint, typically the issuer host with <code>.well-known/openid-configuration</code>, but there are cases when another endpoint is used, eg. ping identity provides multiple endpoints to separate domains</li>
-<li><code>--oidc-client-id ocis</code> the client id we will register later with <code>ocis-konnectd</code> in the <code>identifier-registration.yaml</code></li>
-</ul>
-<div class="gdoc-page__anchorwrap"><h3 id="start-ocis-konnectd"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#start-ocis-konnectd" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#start-ocis-konnectd"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Start ocis-konnectd</h3></div>
-<div class="gdoc-page__anchorwrap"><h4 id="get-it-1"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#get-it-1" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#get-it-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Get it!</h4></div>
-<p>In an <code>ocis</code> folder</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ git clone git@github.com:owncloud/ocis-konnectd.git
-$ cd ocis-konnectd
-$ make
-</code></pre></div><p>This should give you a <code>bin/ocis-konnectd</code> binary. Try listing the help with <code>bin/ocis-konnectd --help</code>.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="set-environment-variables"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#set-environment-variables" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#set-environment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Set environment variables</h4></div>
-<p>Konnectd needs environment variables to configure the LDAP server:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">export LDAP_URI=ldap://192.168.1.100:9125
-export LDAP_BINDDN=&#34;cn=admin,dc=example,dc=com&#34;
-export LDAP_BINDPW=&#34;its-a-secret&#34;
-export LDAP_BASEDN=&#34;dc=example,dc=com&#34;
-export LDAP_SCOPE=sub
-export LDAP_LOGIN_ATTRIBUTE=uid
-export LDAP_EMAIL_ATTRIBUTE=mail
-export LDAP_NAME_ATTRIBUTE=givenName
-export LDAP_UUID_ATTRIBUTE=uid
-export LDAP_UUID_ATTRIBUTE_TYPE=text
-export LDAP_FILTER=&#34;(objectClass=posixaccount)&#34;
-</code></pre></div><p>Don&rsquo;t forget to use an existing user and the correct password.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="configure-clients"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#configure-clients" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#configure-clients"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Configure clients</h3></div>
-<p>Now we need to configure a client we can later use to configure the ownCloud 10 openidconnect app. In the <code>assets/identifier-registration.yaml</code> have:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">---<span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c"># OpenID Connect client registry.</span><span class="w">
-</span><span class="w"></span><span class="k">clients</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="k">id</span><span class="p">:</span><span class="w"> </span>ocis<span class="w">
-</span><span class="w">    </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>ownCloud<span class="w"> </span>Infinite<span class="w"> </span>Scale<span class="w">
-</span><span class="w">    </span><span class="k">insecure</span><span class="p">:</span><span class="w"> </span>yes<span class="w">
-</span><span class="w">    </span><span class="k">application_type</span><span class="p">:</span><span class="w"> </span>web<span class="w">
-</span><span class="w">    </span><span class="k">redirect_uris</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- https<span class="p">:</span>//cloud.example.com/apps/openidconnect/redirect<span class="w">
-</span><span class="w">      </span>- http<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9100</span>/oidc-callback.html<span class="w">
-</span><span class="w">      </span>- http<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9100</span><span class="w">
-</span><span class="w">      </span>- http<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9100</span>/<span class="w">
-</span></code></pre></div><p>You will need the <code>insecure: yes</code> if you are using self signed certificates.</p>
-<p>Replace <code>cloud.example.com</code> in the redirect URI with your ownCloud 10 host and port.
-Replace <code>localhost:9100</code> in the redirect URIs with your the <code>ocis-phoenix</code> host and port.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="run-it-2"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#run-it-2" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-it-2"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run it!</h4></div>
-<p>You can now bring up <code>ocis-connectd</code> with:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ bin/ocis-konnectd server --iss https://192.168.1.100:9130 --identifier-registration-conf assets/identifier-registration.yaml --signing-kid gen1-2020-02-27
-</code></pre></div><p><code>ocis-konnectd</code> needs to know</p>
-<ul>
-<li><code>--iss https://192.168.1.100:9130</code> the issuer, which must be a reachable https endpoint. For testing an ip works. HTTPS is NOT optional. This url is exposed in the <code>https://192.168.1.100:9130/.well-known/openid-configuration</code> endpoint and clients need to be able to connect to it</li>
-<li><code>--identifier-registration-conf assets/identifier-registration.yaml</code> the identifier-registration.yaml you created</li>
-<li><code>--signing-kid gen1-2020-02-27</code> a signature key id, otherwise the jwks key has no name, which might cause problems with clients. a random key is ok, but it should change when the actual signing key changes.</li>
-</ul>
-<div class="gdoc-page__anchorwrap"><h4 id="check-it-is-up-and-running-1"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#check-it-is-up-and-running-1" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#check-it-is-up-and-running-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Check it is up and running</h4></div>
-<ol>
-<li>Try getting the configuration:</li>
-</ol>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ curl https://192.168.1.100:9130/.well-known/openid-configuration
-</code></pre></div><ol start="2">
-<li>Check if the login works at https://192.168.1.100:9130/signin/v1/identifier</li>
-</ol>
-<blockquote>
-<p>Note: If you later get a <code>Unable to find a key for (algorithm, kid):PS256, )</code> Error make sure you did set a <code>--signing-kid</code> when starting <code>ocis-konnectd</code> by checking it is present in https://192.168.1.100:9130/konnect/v1/jwks.json</p>
-</blockquote>
-<div class="gdoc-page__anchorwrap"><h3 id="patch-owncloud"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#patch-owncloud" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#patch-owncloud"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Patch owncloud</h3></div>
-<p>While the UserSession in ownCloud 10 is currently used to test all available IAuthModule implementations, it immediately logs out the user when an exception occurs. However, existing owncloud 10 instances use the oauth2 app to create Bearer tokens for mobile and desktop clients.</p>
-<p>To give the openidconnect app a chance to verify the tokens we need to change the code a bit. See <a href="https://github.com/owncloud/core/pull/37043">https://github.com/owncloud/core/pull/37043</a> for a possible solution.</p>
-<blockquote>
-<p>Note: The PR is hot &hellip; as in <em>younger than this list of steps</em>. And it messes with authentication. Use with caution.</p>
-</blockquote>
-<div class="gdoc-page__anchorwrap"><h3 id="install-the-owncloud-10-openidconnect-app"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#install-the-owncloud-10-openidconnect-app" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#install-the-owncloud-10-openidconnect-app"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Install the owncloud 10 openidconnect app</h3></div>
-<p>In an owncloud 10 apps folder</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ git clone git@github.com:owncloud/openidconnect.git
-$ cd openidconnect
-$ composer install
-</code></pre></div><p>After enabling the app configure it in <code>config/oidc.config.php</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">$CONFIG = [
-  &#39;openid-connect&#39; =&gt; [
-    &#39;provider-url&#39; =&gt; &#39;https://192.168.1.100:9130&#39;,
-    &#39;client-id&#39; =&gt; &#39;ocis&#39;,
-    &#39;loginButtonName&#39; =&gt; &#39;OpenId Connect @ Konnectd&#39;,
-  ],
-  &#39;debug&#39; =&gt; true, // if using self signed certificates
-  // allow the different domains access to the ocs and wabdav endpoints:
-  &#39;cors.allowed-domains&#39; =&gt; [
-    &#39;https://cloud.example.com&#39;,
-    &#39;http://localhost:9100&#39;,
-  ],
-];
-</code></pre></div><p>In the above configuration replace</p>
-<ul>
-<li><code>provider-url</code> with the URL to your <code>ocis-konnectd</code> issuer</li>
-<li><code>https://cloud.example.com</code> with the URL to your ownCloud 10 instance</li>
-<li><code>http://localhost:9100</code> with the URL to your phoenix instance</li>
-</ul>
-<blockquote>
-<p>Note: By default the openidconnect app will use the email of the user to match the user from the oidc userinfo endpoint with the ownCloud account. So make sure your users have a unique primary email.</p>
-</blockquote>
-<div class="gdoc-page__anchorwrap"><h2 id="next-steps"><a data-clipboard-text="https://owncloud.github.io/ocis/bridge/#next-steps" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#next-steps"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Next steps</h2></div>
-<p>Aside from the above todos these are the next stepo</p>
-<ul>
-<li>tie it all together behind <code>ocis-proxy</code></li>
-<li>create an <code>ocis bridge</code> command that runs all the ocis services in one step with a properly preconfigured <code>ocis-konnectd</code> <code>identifier-registration.yaml</code> file for <code>phoenix</code> and the owncloud 10 <code>openidconnect</code> app, as well as a randomized <code>--signing-kid</code>.</li>
-</ul>
+<div class="gdoc-page__anchorwrap"><h2 id="configuration"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_accounts/configuration/#configuration" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#configuration"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Configuration</h2></div>
+<p>oCIS Single Binary is not responsible for configuring extensions. Instead, each extension could either be configured by environment variables, cli flags or config files.</p>
+<p>Each extension has its dedicated documentation page (e.g. <a href="https://owncloud.github.io/extensions/ocis_proxy/configuration">https://owncloud.github.io/extensions/ocis_proxy/configuration</a>) which lists all possible configurations. Config files and environment variables are picked up if you use the <code>./bin/ocis server</code> command within the oCIS single binary. Command line flags must be set explicitly on the extensions subcommands.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="configuration-using-config-files"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_accounts/configuration/#configuration-using-config-files" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#configuration-using-config-files"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Configuration using config files</h3></div>
+<p>Out of the box extensions will attempt to read configuration details from:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">/etc/ocis
+$HOME/.ocis
+./config
+</code></pre></div><p>For this configuration to be picked up, have a look at your extension <code>root</code> command and look for which default config name it has assigned. <em>i.e: ocis-proxy reads <code>proxy.json | yaml | toml ...</code></em>.</p>
+<p>So far we support the file formats <code>JSON</code> and <code>YAML</code>, if you want to get a full example configuration just take a look at <a href="https://github.com/owncloud/ocis/tree/master/config">our repository</a>, there you can always see the latest configuration format. These example configurations include all available options and the default values. The configuration file will be automatically loaded if it&rsquo;s placed at <code>/etc/ocis/ocis.yml</code>, <code>${HOME}/.ocis/ocis.yml</code> or <code>$(pwd)/config/ocis.yml</code>.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="envrionment-variables"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_accounts/configuration/#envrionment-variables" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#envrionment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Envrionment variables</h3></div>
+<p>If you prefer to configure the service with environment variables you can see the available variables below.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="commandline-flags"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_accounts/configuration/#commandline-flags" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#commandline-flags"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Commandline flags</h3></div>
+<p>If you prefer to configure the service with commandline flags you can see the available variables below. Command line flags are only working when calling the subcommand directly.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="ocis-reva-server"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_accounts/configuration/#ocis-reva-server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-reva server</h3></div>
+<p>Start ocis accounts service</p>
+<p>Usage: <code>ocis-reva server [command options] [arguments...]</code></p>
+<dl>
+<dt>&ndash;http-namespace | $ACCOUNTS_HTTP_NAMESPACE</dt>
+<dd>Set the base namespace for the http namespace. Default: <code>com.owncloud.web</code>.</dd>
+<dt>&ndash;http-addr | $ACCOUNTS_HTTP_ADDR</dt>
+<dd>Address to bind http server. Default: <code>localhost:9181</code>.</dd>
+<dt>&ndash;http-root | $ACCOUNTS_HTTP_ROOT</dt>
+<dd>Root path of http server. Default: <code>/</code>.</dd>
+<dt>&ndash;grpc-namespace | $ACCOUNTS_GRPC_NAMESPACE</dt>
+<dd>Set the base namespace for the grpc namespace. Default: <code>com.owncloud.api</code>.</dd>
+<dt>&ndash;grpc-addr | $ACCOUNTS_GRPC_ADDR</dt>
+<dd>Address to bind grpc server. Default: <code>localhost:9180</code>.</dd>
+<dt>&ndash;name | $ACCOUNTS_NAME</dt>
+<dd>service name. Default: <code>accounts</code>.</dd>
+<dt>&ndash;accounts-data-path | $ACCOUNTS_DATA_PATH</dt>
+<dd>accounts folder. Default: <code>/var/tmp/ocis-accounts</code>.</dd>
+<dt>&ndash;asset-path | $HELLO_ASSET_PATH</dt>
+<dd>Path to custom assets.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap"><h3 id="ocis-reva-ocis-accounts"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_accounts/configuration/#ocis-reva-ocis-accounts" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-ocis-accounts"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-reva ocis-accounts</h3></div>
+<p>Provide accounts and groups for oCIS</p>
+<p>Usage: <code>ocis-reva ocis-accounts [command options] [arguments...]</code></p>
+<dl>
+<dt>&ndash;log-level | $ACCOUNTS_LOG_LEVEL</dt>
+<dd>Set logging level. Default: <code>info</code>.</dd>
+<dt>&ndash;log-pretty | $ACCOUNTS_LOG_PRETTY</dt>
+<dd>Enable pretty logging. Default: <code>true</code>.</dd>
+<dt>&ndash;log-color | $ACCOUNTS_LOG_COLOR</dt>
+<dd>Enable colored logging. Default: <code>true</code>.</dd>
+</dl>
 
 
     </article>
