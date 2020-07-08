@@ -101,6 +101,21 @@
             </li>
             
             
+            
+            <li>
+            
+                <span class="flex">
+                    <a href="/ocis/development/" class="gdoc-nav__entry ">
+                        Getting Started with Development
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
         
             
             
@@ -1475,56 +1490,138 @@
 
 
   <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
-        <li><a href="#current-status">Current status</a></li>
-        <li><a href="#how-to-do-it">How to do it</a>
+        <li><a href="#docker-dev-environment-for-eos-storage">Docker dev environment for eos storage</a>
           <ul>
-            <li><a href="#grab-it">Grab it!</a></li>
-            <li><a href="#run-it">Run it!</a></li>
-            <li><a href="#test-it">Test it!</a></li>
+            <li><a href="#1-start-eos--ocis-containers">1. Start eos &amp; ocis containers</a></li>
+            <li><a href="#2-ldap-support">2. LDAP support</a></li>
+            <li><a href="#3-home-storage">3. Home storage</a></li>
+            <li><a href="#4-home-data-provider">4. Home data provider</a></li>
+            <li><a href="#4-frontend-files-namespace">4. Frontend files namespace</a></li>
           </ul>
         </li>
-        <li><a href="#next-steps">Next steps</a></li>
+        <li><a href="#verification">Verification</a></li>
+        <li><a href="#further-exploration">Further exploration</a></li>
       </ul></nav><hr></div>
 
 
 <p>OCIS can be configured to run on top of <a href="https://eos.web.cern.ch/">eos</a>. While the <a href="http://eos-docs.web.cern.ch/">eos documentation</a> does cover a lot of topics it leaves out some details that you may have to either pull from various <a href="https://gitlab.cern.ch/eos/eos-docker">docker containers</a>, the <a href="https://eos-community.web.cern.ch/">forums</a> or even the <a href="https://github.com/cern-eos/eos">source</a> itself.</p>
 <p>This document is a work in progress of the current setup.</p>
-<div class="gdoc-page__anchorwrap"><h2 id="current-status"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#current-status" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#current-status"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Current status</h2></div>
-<p>Using ocis and eos it is possible today to manage folders. Sharing is <a href="https://github.com/cs3org/reva/pull/523">heavily</a> <a href="https://github.com/cs3org/reva/pull/585">under</a> <a href="https://github.com/cs3org/reva/pull/482">development</a>. File up and download needs proper configuration of the dataprovider to also use eos.</p>
-<div class="gdoc-page__anchorwrap"><h2 id="how-to-do-it"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#how-to-do-it" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#how-to-do-it"><svg class="icon link"><use xlink:href="#link"></use></svg></a>How to do it</h2></div>
-<div class="gdoc-page__anchorwrap"><h3 id="grab-it"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#grab-it" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#grab-it"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Grab it!</h3></div>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ git clone git@github.com:owncloud/ocis.git
-$ cd ocis
-</code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="run-it"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#run-it" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-it"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run it!</h3></div>
-<p>Preconditions</p>
-<ul>
-<li><code>go</code> (from golang.org/dl) and <code>gcc</code> (via e.g. <code>apt install build-essential</code>) are installed</li>
-<li>No eos components are running. If in doubt, begin with <code>make eos-stop</code></li>
-</ul>
-<p>We poured the nitty gritty details of setting up ocis into Makefile targets. After running</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ make eos-start
-</code></pre></div><p>the eos related docker containers will be created, started and setup to authenticate against the ocis-glauth service.</p>
-<p>It will also copy the ocis binary to the <code>eos-cli1</code> container and start <code>ocis reva-storage-home</code> with the necessary environment variables to use the eos storage driver.</p>
-<p>For details have a look at the <code>Makefile</code>.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="test-it"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#test-it" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#test-it"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Test it!</h3></div>
-<p>You should now be able to point your browser to https://localhost:9200 and login using the demo user credentials, eg <code>einstein:relativity</code>.</p>
-<blockquote class="gdoc-hint info">
-  If you encounter an error when the IdP redirects you back to phoenix, just reload the page and it should be gone &hellip; or debug it. PR welcome!
+<div class="gdoc-page__anchorwrap"><h2 id="docker-dev-environment-for-eos-storage"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#docker-dev-environment-for-eos-storage" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#docker-dev-environment-for-eos-storage"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Docker dev environment for eos storage</h2></div>
+<div class="gdoc-page__anchorwrap"><h3 id="1-start-eos--ocis-containers"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#1-start-eos--ocis-containers" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#1-start-eos--ocis-containers"><svg class="icon link"><use xlink:href="#link"></use></svg></a>1. Start eos &amp; ocis containers</h3></div>
+<p>Start the eos cluster and ocis via the compose stack</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose up -d
+</code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="2-ldap-support"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#2-ldap-support" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#2-ldap-support"><svg class="icon link"><use xlink:href="#link"></use></svg></a>2. LDAP support</h3></div>
+<p>Configure the os to resolve users and groups using ldap</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec -d ocis /start-ldap
+</code></pre></div><p>Check that the os in the ocis container can now resolve einstein or the other demo users</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ docker-compose exec ocis id einstein
+uid=20000(einstein) gid=30000(users) groups=30000(users),30001(sailing-lovers),30002(violin-haters),30007(physics-lovers)
+</code></pre></div><p>We also need to restart the reva-users service so it picks up the changed environment. Without a restart it is not able to resolve users from LDAP.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill reva-users
+docker-compose exec ocis ./bin/ocis run reva-users
+</code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="3-home-storage"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#3-home-storage" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#3-home-storage"><svg class="icon link"><use xlink:href="#link"></use></svg></a>3. Home storage</h3></div>
+<p>Kill the home storage. By default it uses the <code>owncloud</code> storage driver. We need to switch it to the <code>eoshome</code> driver and a new layout:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill reva-storage-home
+docker-compose exec -e REVA_STORAGE_EOS_LAYOUT=&#34;{{substr 0 1 .Username}}/{{.Username}}&#34; -e REVA_STORAGE_HOME_DRIVER=eoshome ocis ./bin/ocis run reva-storage-home
+</code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="4-home-data-provider"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#4-home-data-provider" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#4-home-data-provider"><svg class="icon link"><use xlink:href="#link"></use></svg></a>4. Home data provider</h3></div>
+<p>Kill the home data provider. By default it uses the <code>owncloud</code> storage driver. We need to switch it to the <code>eoshome</code> driver and a new layout:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill reva-storage-home-data
+docker-compose exec -e REVA_STORAGE_EOS_LAYOUT=&#34;{{substr 0 1 .Username}}/{{.Username}}&#34; -e REVA_STORAGE_HOME_DATA_DRIVER=eoshome ocis ./bin/ocis run reva-storage-home-data
+</code></pre></div><blockquote class="gdoc-hint info">
+  The difference between the <em>home storage</em> and the <em>home data provider</em> are that the former is responsible for metadata changes while the latter is responsible for actual data transfer. The <em>home storage</em> uses the cs3 api to manage a folder hierarchy, while the <em>home data provider</em> is responsible for moving bytes to and from the storage.
 </blockquote>
 
-<p>Create a folder in the ui. Then check it was created in eos:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ docker exec -it eos-mgm1 eos ls -l /eos/dockertest/reva/users/e/einstein
-</code></pre></div><p>Now create a new folder in eos (using eos-mgm1 you will be logged in as admin, see the <code>whoami</code>, which is why we <code>chown</code> the folder to the uid and gid of einstein afterwards):</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ docker exec -it eos-mgm1 eos whoami
-$ docker exec -it eos-mgm1 eos mkdir /eos/dockertest/reva/users/e/einstein/rocks
-$ docker exec -it eos-mgm1 eos chown 20000:30000 /eos/dockertest/reva/users/e/einstein/rocks
-</code></pre></div><p>Check that the folder exists in the web ui.</p>
-<div class="gdoc-page__anchorwrap"><h2 id="next-steps"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#next-steps" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#next-steps"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Next steps</h2></div>
-<ul>
-<li>configure storage-home-data to enable file upload, PRs against <code>ocis-reva</code> welcome</li>
-<li>get sharing implemented, PRs against <code>reva</code> welcome</li>
-<li>simplify home logic, see <a href="https://github.com/cs3org/reva/issues/601">https://github.com/cs3org/reva/issues/601</a> and <a href="https://github.com/cs3org/reva/issues/578">https://github.com/cs3org/reva/issues/578</a></li>
-</ul>
+<div class="gdoc-page__anchorwrap"><h3 id="4-frontend-files-namespace"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#4-frontend-files-namespace" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#4-frontend-files-namespace"><svg class="icon link"><use xlink:href="#link"></use></svg></a>4. Frontend files namespace</h3></div>
+<p>Restart the reva frontend with a new namespace (pointing to the eos storage provider) for the dav files endpoint</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill reva-frontend
+docker-compose exec -e DAV_FILES_NAMESPACE=&#34;/eos/&#34; ocis ./bin/ocis run reva-frontend
+</code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="verification"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#verification" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#verification"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Verification</h2></div>
+<p>Login with <code>einstein / relativity</code>, upload a file to einsteins home and verify the file is there using</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis eos ls -l /eos/dockertest/reva/users/e/einstein/
+-rw-r--r--   1 einstein users              10 Jul  1 15:24 newfile.txt
+</code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="further-exploration"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#further-exploration" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#further-exploration"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Further exploration</h2></div>
+<p>EOS has a built in shell that you can enter using</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ docker-compose exec mgm-master eos
+# ---------------------------------------------------------------------------
+# EOS  Copyright (C) 2011-2019 CERN/Switzerland
+# This program comes with ABSOLUTELY NO WARRANTY; for details type `license&#39;.
+# This is free software, and you are welcome to redistribute it
+# under certain conditions; type `license&#39; for details.
+# ---------------------------------------------------------------------------
+EOS_INSTANCE=eostest
+EOS_SERVER_VERSION=4.6.5 EOS_SERVER_RELEASE=1
+EOS_CLIENT_VERSION=4.6.5 EOS_CLIENT_RELEASE=1
+EOS Console [root://localhost] |/&gt; help
+access               Access Interface
+accounting           Accounting Interface
+acl                  Acl Interface
+archive              Archive Interface
+attr                 Attribute Interface
+backup               Backup Interface
+clear                Clear the terminal
+cd                   Change directory
+chmod                Mode Interface
+chown                Chown Interface
+config               Configuration System
+console              Run Error Console
+cp                   Cp command
+debug                Set debug level
+exit                 Exit from EOS console
+file                 File Handling
+fileinfo             File Information
+find                 Find files/directories
+newfind              Find files/directories (new implementation)
+fs                   File System configuration
+fsck                 File System Consistency Checking
+fuse                 Fuse Mounting
+fusex                Fuse(x) Administration
+geosched             Geoscheduler Interface
+group                Group configuration
+health               Health information about system
+help                 Display this text
+info                 Retrieve file or directory information
+inspector            Interact with File Inspector
+io                   IO Interface
+json                 Toggle JSON output flag for stdout
+license              Display Software License
+ls                   List a directory
+ln                   Create a symbolic link
+map                  Path mapping interface
+member               Check Egroup membership
+mkdir                Create a directory
+motd                 Message of the day
+mv                   Rename file or directory
+node                 Node configuration
+ns                   Namespace Interface
+pwd                  Print working directory
+quit                 Exit from EOS console
+quota                Quota System configuration
+reconnect            Forces a re-authentication of the shell
+recycle              Recycle Bin Functionality
+rmdir                Remove a directory
+rm                   Remove a file
+role                 Set the client role
+route                Routing interface
+rtlog                Get realtime log output from mgm &amp; fst servers
+silent               Toggle silent flag for stdout
+space                Space configuration
+stagerrm             Remove disk replicas of a file if it has tape replicas
+stat                 Run &#39;stat&#39; on a file or directory
+squash               Run &#39;squashfs&#39; utility function
+test                 Run performance test
+timing               Toggle timing flag for execution time measurement
+touch                Touch a file
+token                Token interface
+tracker              Interact with File Tracker
+transfer             Transfer Interface
+version              Verbose client/server version
+vid                  Virtual ID System Configuration
+whoami               Determine how we are mapped on server side
+who                  Statistics about connected users
+?                    Synonym for &#39;help&#39;
+.q                   Exit from EOS console
+EOS Console [root://localhost] |/&gt;
+</code></pre></div><p>But this is a different adventure. See the links at the top of this page for other sources of information on eos.</p>
 
 
     </article>
