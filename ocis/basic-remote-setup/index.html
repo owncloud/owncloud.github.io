@@ -1510,12 +1510,15 @@ This file <code>identifier-registration.yml</code> will only be generated if the
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
-</span><span class="hl"><span class="lnt">13
-</span></span><span class="hl"><span class="lnt">14
-</span></span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="hl"><span class="lnt">18
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="hl"><span class="lnt">15
+</span></span><span class="hl"><span class="lnt">16
+</span></span><span class="hl"><span class="lnt">17
+</span></span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="hl"><span class="lnt">21
 </span></span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># OpenID Connect client registry.</span><span class="w">
@@ -1526,26 +1529,29 @@ This file <code>identifier-registration.yml</code> will only be generated if the
 </span><span class="w">    </span><span class="k">insecure</span><span class="p">:</span><span class="w"> </span>yes<span class="w">
 </span><span class="w">    </span><span class="k">trusted</span><span class="p">:</span><span class="w"> </span>yes<span class="w">
 </span><span class="w">    </span><span class="k">redirect_uris</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- http<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9100</span>/oidc-callback.html<span class="w">
 </span><span class="w">      </span>- http<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9100</span>/<span class="w">
+</span><span class="w">      </span>- http<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9100</span>/oidc-callback.html<span class="w">
+</span><span class="w">      </span>- http<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9100</span>/oidc-silent-redirect.html<span class="w">
 </span><span class="w">      </span>- https<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9200</span>/<span class="w">
 </span><span class="w">      </span>- https<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9200</span>/oidc-callback.html<span class="w">
-</span><span class="hl"><span class="w">      </span>- https<span class="p">:</span>//your-host<span class="p">:</span><span class="m">9200</span>/<span class="w">
-</span></span><span class="hl"><span class="w">      </span>- https<span class="p">:</span>//your-host<span class="p">:</span><span class="m">9200</span>/oidc-callback.html<span class="w">
+</span><span class="w">      </span>- https<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9200</span>/oidc-silent-redirect.html<span class="w">
+</span><span class="hl"><span class="w">      </span>- https<span class="p">:</span>//your-server<span class="p">:</span><span class="m">9200</span>/<span class="w">
+</span></span><span class="hl"><span class="w">      </span>- https<span class="p">:</span>//your-server<span class="p">:</span><span class="m">9200</span>/oidc-callback.html<span class="w">
+</span></span><span class="hl"><span class="w">      </span>- https<span class="p">:</span>//your-server<span class="p">:</span><span class="m">9200</span>/oidc-silent-redirect.html<span class="w">
 </span></span><span class="w">    </span><span class="k">origins</span><span class="p">:</span><span class="w">
 </span><span class="w">      </span>- http<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9100</span><span class="w">
 </span><span class="w">      </span>- https<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9200</span><span class="w">
-</span><span class="hl"><span class="w">      </span>- https<span class="p">:</span>//your-host<span class="p">:</span><span class="m">9200</span>/<span class="w">
+</span><span class="hl"><span class="w">      </span>- https<span class="p">:</span>//your-server<span class="p">:</span><span class="m">9200</span><span class="w">
 </span></span></code></pre></td></tr></table>
 </div>
 </div><div class="gdoc-page__anchorwrap"><h3 id="start-the-ocis-fullstack-server"><a data-clipboard-text="https://owncloud.github.io/ocis/basic-remote-setup/#start-the-ocis-fullstack-server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#start-the-ocis-fullstack-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Start the ocis fullstack server</h3></div>
 <p>You need to configure <code>your-host</code> in some services to provide the needed public resources. oCIS currently needs a running Redis Server reachable locally on the machine at the default port (<code>localhost:6379</code>). You can change this using the following option <code>REVA_STORAGE_OWNCLOUD_REDIS_ADDR=some-host:6379</code>.</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">PROXY_HTTP_ADDR</span><span class="o">=</span>0.0.0.0:9200 <span class="se">\
-</span><span class="se"></span><span class="nv">KONNECTD_ISS</span><span class="o">=</span>https://your-host:9200 <span class="se">\
-</span><span class="se"></span><span class="nv">REVA_OIDC_ISSUER</span><span class="o">=</span>https://your-host:9200 <span class="se">\
-</span><span class="se"></span><span class="nv">PHOENIX_OIDC_AUTHORITY</span><span class="o">=</span>https://your-host:9200 <span class="se">\
-</span><span class="se"></span><span class="nv">PHOENIX_WEB_CONFIG_SERVER</span><span class="o">=</span>https://your-host:9200 <span class="se">\
-</span><span class="se"></span><span class="nv">PHOENIX_OIDC_METADATA_URL</span><span class="o">=</span>https://your-host:9200/.well-known/openid-configuration <span class="se">\
+</span><span class="se"></span><span class="nv">KONNECTD_ISS</span><span class="o">=</span>https://your-server:9200 <span class="se">\
+</span><span class="se"></span><span class="nv">REVA_OIDC_ISSUER</span><span class="o">=</span>https://your-server:9200 <span class="se">\
+</span><span class="se"></span><span class="nv">PHOENIX_OIDC_AUTHORITY</span><span class="o">=</span>https://your-server:9200 <span class="se">\
+</span><span class="se"></span><span class="nv">PHOENIX_WEB_CONFIG_SERVER</span><span class="o">=</span>https://your-server:9200 <span class="se">\
+</span><span class="se"></span><span class="nv">PHOENIX_OIDC_METADATA_URL</span><span class="o">=</span>https://your-server:9200/.well-known/openid-configuration <span class="se">\
 </span><span class="se"></span><span class="nv">REVA_DATAGATEWAY_URL</span><span class="o">=</span>https://your-server:9200/data <span class="se">\
 </span><span class="se"></span><span class="nv">REVA_FRONTEND_URL</span><span class="o">=</span>https://your-server:9200 <span class="se">\
 </span><span class="se"></span><span class="nv">PROXY_TRANSPORT_TLS_KEY</span><span class="o">=</span>./certs/your-host.key <span class="se">\
