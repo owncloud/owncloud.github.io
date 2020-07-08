@@ -1530,17 +1530,18 @@ TEST_SERVER_URL=http://localhost:9140 \
 TEST_EXTERNAL_USER_BACKENDS=true \
 TEST_OCIS=true \
 OCIS_REVA_DATA_ROOT=/var/tmp/reva/ \
-BEHAT_FILTER_TAGS=&#39;~@skipOnOcis&#39; \
+BEHAT_FILTER_TAGS=&#39;~@skipOnOcis&amp;&amp;~@skipOnOcis-OC-Storage&#39; \
 SKELETON_DIR=apps/testing/data/apiSkeleton
 </code></pre></div><p>Make sure to adjust the settings <code>TEST_SERVER_URL</code>,<code>OCIS_REVA_DATA_ROOT</code> and <code>SKELETON_DIR</code> according to your environment</p>
-<p>This will run all tests that can work with LDAP and are not skipped on OCIS</p>
+<p>This will run all tests that can work with LDAP, and are not skipped on OCIS or on OCIS with OC Storage.</p>
 <p>To run a single test add <code>BEHAT_FEATURE=&lt;feature file&gt;</code> and specify the path to the feature file and an optional line number. For example: <code>BEHAT_FEATURE='tests/acceptance/features/apiWebdavUpload1/uploadFile.feature:12'</code></p>
 <div class="gdoc-page__anchorwrap"><h3 id="use-existing-tests-for-bdd"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis_reva/testing/#use-existing-tests-for-bdd" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#use-existing-tests-for-bdd"><svg class="icon link"><use xlink:href="#link"></use></svg></a>use existing tests for BDD</h3></div>
 <p>As a lot of scenarios are written for oC10, we can use those tests for Behaviour driven development in ocis.
 Every scenario that does not work in OCIS, is tagged with <code>@skipOnOcis</code> and additionally should be marked with an issue number e.g. <code>@issue-ocis-reva-122</code>.
 This tag means that this particular scenario is skipped because of <a href="https://github.com/owncloud/ocis-reva/issues/122">issue no 122 in the ocis-reva repository</a>.
 Additionally, some issues have scenarios that demonstrate the current buggy behaviour in ocis(reva) and are skipped on oC10.
-Have a look into the <a href="https://doc.owncloud.com/server/developer_manual/testing/acceptance-tests.html#writing-scenarios-for-bugs">documentation</a> to understand why we are writing those tests.</p>
+Have a look into the <a href="https://doc.owncloud.com/server/developer_manual/testing/acceptance-tests.html#writing-scenarios-for-bugs">documentation</a> to understand why we are writing those tests.
+Also, ocis behaves partly differently with EOS-Storage and OC-Storage. There are scenarios that do not work in OCIS when run on EOS-storage, but works when on OC-Storage, and vice-versa. For those kind of scenarios, <code> @skipOnOcis-EOS-Storage</code> and <code>@skipOnOcis-OC-Storage</code> tags are used. For instance, for a scenario that fails on EOS-Storage but passes on OC-Storage, we use <code>@skipOnOcis-EOS-Storage</code> tag to let it run on OC-Storage, where it works as expected, instead of skipping on ocis with <code>@skipOnOcis</code> tag.</p>
 <p>If you want to work on a specific issue</p>
 <ol>
 <li>
@@ -1552,7 +1553,7 @@ TEST_EXTERNAL_USER_BACKENDS=true \
 TEST_OCIS=true \
 OCIS_REVA_DATA_ROOT=/var/tmp/reva/ \
 BEHAT_FILTER_TAGS=&#39;~@skipOnOcV10&amp;&amp;@issue-ocis-reva-122&#39;
-</code></pre></div><p>Note that the <code>~@skipOnOcis</code> tag is replaced by <code>~@skipOnOcV10</code> and the issue tag <code>@issue-ocis-reva-122</code> is added.
+</code></pre></div><p>Note that the <code>~@skipOnOcis</code> and <code>~@skipOnOcis-OC-Storage</code> tags are replaced by <code>~@skipOnOcV10</code> and the issue tag <code>@issue-ocis-reva-122</code> is added.
 We want to run all tests that are skipped in CI because of this particular bug, but we don&rsquo;t want to run the tests
 that demonstrate the current buggy behaviour.</p>
 </li>
