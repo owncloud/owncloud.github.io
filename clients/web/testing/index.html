@@ -1555,6 +1555,12 @@
             <li><a href="#too-many-open-files">too many open files</a></li>
           </ul>
         </li>
+        <li><a href="#acceptance-tests-in-ci">Acceptance Tests in CI</a>
+          <ul>
+            <li><a href="#1-phoenix-repo">1. phoenix Repo</a></li>
+            <li><a href="#2-ocis-repo">2. ocis Repo</a></li>
+          </ul>
+        </li>
       </ul></nav><hr></div>
 
 
@@ -1759,9 +1765,28 @@ The feature files are located in the &ldquo;tests/acceptance/features&rdquo; sub
 <div class="gdoc-page__anchorwrap"><h2 id="tipps"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#tipps" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#tipps"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Tipps</h2></div>
 <div class="gdoc-page__anchorwrap"><h3 id="too-many-open-files"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#too-many-open-files" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#too-many-open-files"><svg class="icon link"><use xlink:href="#link"></use></svg></a>too many open files</h3></div>
 <p>If tests were running fine and then suddenly start to fail your system might run into open file limits.
-In that case you will see messages in the OCIS log output that look like this:
-<code>2020-05-12 11:33:43.974552 I | http: Accept error: accept tcp [::]:9200: accept4: too many open files; retrying in 1s</code></p>
+In that case you will see messages in the OCIS log output that look like this:</p>
+<p><code>2020-05-12 11:33:43.974552 I | http: Accept error: accept tcp [::]:9200: accept4: too many open files; retrying in 1s</code></p>
 <p>In that case increase the open file limits, how to do that would be beyond the scope of this documentation.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="acceptance-tests-in-ci"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#acceptance-tests-in-ci" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#acceptance-tests-in-ci"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Acceptance Tests in CI</h2></div>
+<p>In the CI we run the UI tests using different backends on different repos. We use commit IDs to indicate the version of the backend or testrunner we want to use. These commit IDs should be regularly updated in the <code>.drone.star</code> file to keep the CI up to date.
+We run phoenix UI tests in following repos in the CI.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="1-phoenix-repo"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#1-phoenix-repo" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#1-phoenix-repo"><svg class="icon link"><use xlink:href="#link"></use></svg></a>1. phoenix Repo</h3></div>
+<p>In the <code>owncloud/phoenix</code> repo, we run the tests using both oc10 backend as well as the OCIS backend.
+For the oc10 backend, we use <code>owncloudci/core</code> docker image which runs the latest <code>daily-master-qa</code> version of owncloud.</p>
+<p>For the OCIS backend, we use the Commit ID from <code>owncloud/ocis</code> repo to indicate which version of backend to use. This can be specified in the <code>.drone.star</code> file in the <code>config.defaults</code> section.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">	&#39;defaults&#39;: {
+		&#39;acceptance&#39;: {
+			&#39;ocisBranch&#39;: &#39;master&#39;,
+			&#39;ocisCommit&#39;: &#39;284a9996dffa912cc1382e259b748c56ddc4aa0f&#39;,
+		}
+	},
+</code></pre></div><p>If the version you want to run is on a different branch from master, you also need to change the branch name.</p>
+<p>In order to check if new tests are compatible with OCIS, after changing the commit id and the branch name, we can create a draft PR in <code>owncloud/phoenix</code> which triggers the CI and we can see the result there.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="2-ocis-repo"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#2-ocis-repo" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#2-ocis-repo"><svg class="icon link"><use xlink:href="#link"></use></svg></a>2. ocis Repo</h3></div>
+<p>We follow the same approach in the <code>owncloud/ocis</code> repo too. In order to run the UI tests in CI we use commit IDs from phoenix which can be changed in the <code>.drone.star</code> file.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">acceptance(ctx, &#39;master&#39;, &#39;604e8b5e083c835308f147e51a850df643374107&#39;)
+</code></pre></div><p>This is the commit ID of phoenix indicating the version of testrunner we want to use. If the version is on a branch other than master, we will also need to change the branch name.</p>
 
 
     </article>
