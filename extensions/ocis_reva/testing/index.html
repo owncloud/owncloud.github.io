@@ -1647,10 +1647,12 @@ Only delete tests that demonstrate the buggy behaviour if you fixed all bugs rel
 <li>
 <p>make a PR to ocis-reva running the adjusted tests</p>
 <p>To confirm that all tests (old and changed) run fine make a PR to ocis-reva with your code changes and point drone to your branch in core to get the changed tests.
-For that change this line in the <code>acceptance-tests</code> section</p>
-<p><code>'git clone -b master --depth=1 https://github.com/owncloud/core.git /srv/app/testrunner',</code></p>
-<p>to clone your core branch e.g.</p>
-<p><code>'git clone -b fixRevaIssue122 --depth=1 https://github.com/owncloud/core.git /srv/app/testrunner',</code></p>
+For that change this line in the <code>main</code> function.</p>
+<p><code>apiTests(ctx, 'master', '9db442250583d3b71e633cf77fbcf643ed67e994'),</code></p>
+<p>In place of master use your branch name. If you dont specify the commit ID, you will run the tests using the HEAD of the branch you specified.</p>
+<p><code>apiTests(ctx, 'my-new-tests', '')</code></p>
+<p>Also make sure to change the commit ID if you want to run tests on any other commit. eg:</p>
+<p><code>apiTests(ctx, 'my-new-tests', '7d468c05414b1dc745ca713d9deb443bc4e5f333')</code></p>
 </li>
 <li>
 <p>merge PRs</p>
