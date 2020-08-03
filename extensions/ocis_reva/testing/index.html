@@ -1614,8 +1614,14 @@ Also, ocis behaves partly differently with EOS-Storage and OC-Storage. There are
 <ol>
 <li>
 <p>adjust the core commit id to the latest commit in core so that CI will run the latest test code and scenarios from core.
-For that change this line in the <code>main</code> function:</p>
-<pre><code>apiTests(ctx, 'master', 'a06b1bd5ba8e5244bfaf7fa04f441961e6fb0daa')
+For that change <code>coreCommit</code> in the <code>config</code> section:</p>
+<pre><code>config = {
+  'apiTests': {
+    'coreBranch': 'master',
+    'coreCommit': 'a06b1bd5ba8e5244bfaf7fa04f441961e6fb0daa',
+    'numberOfParts': 2
+  }
+}
 </code></pre>
 </li>
 <li>
