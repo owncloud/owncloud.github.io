@@ -1,0 +1,5 @@
+{{ with .Get "src" }}
+  {{ if (fileExists .) }}
+    {{ readFile . | safeHTML }}
+  {{ end }}
+{{ end }}
