@@ -1577,40 +1577,51 @@ export LDAP_BASEDN=&#39;dc=owncloud,dc=com&#39;
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">bin/ocis server
 </code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="run-the-acceptance-tests"><a data-clipboard-text="https://owncloud.github.io/ocis/testing/#run-the-acceptance-tests" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-the-acceptance-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run the acceptance tests</h3></div>
 <p>First we will need to clone the testing app in owncloud which contains the skeleton files required for running the tests.
-In the ownCloud 10 core clone testing app with following command</p>
+In the ownCloud 10 core clone the testing app with the following command:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">git clone https://github.com/owncloud/testing apps/testing
-</code></pre></div><p>Then run the api acceptance tests with following command.</p>
+</code></pre></div><p>Then run the api acceptance tests with the  following command:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">make test-acceptance-api \
 TEST_SERVER_URL=http://localhost:9140 \
 TEST_EXTERNAL_USER_BACKENDS=true \
 TEST_OCIS=true \
 OCIS_REVA_DATA_ROOT=/var/tmp/reva/ \
 SKELETON_DIR=apps/testing/data/apiSkeleton \
-BEHAT_FILTER_TAGS=&#39;~@skipOnOcis&#39;
-</code></pre></div><p>Make sure to adjust the settings <code>TEST_SERVER_URL</code> and <code>OCIS_REVA_DATA_ROOT</code> according to your environment</p>
-<p>This will run all tests that can work with LDAP and are not skipped on ocis</p>
+BEHAT_FILTER_TAGS=&#39;~@notToImplementOnOCIS&amp;&amp;~@toImplementOnOCIS&#39;
+</code></pre></div><p>Make sure to adjust the settings <code>TEST_SERVER_URL</code> and <code>OCIS_REVA_DATA_ROOT</code> according to your environment.</p>
+<p>This will run all tests that are relevant to OCIS.</p>
 <p>To run a single test add <code>BEHAT_FEATURE=&lt;feature file&gt;</code></p>
 <div class="gdoc-page__anchorwrap"><h3 id="use-existing-tests-for-bdd"><a data-clipboard-text="https://owncloud.github.io/ocis/testing/#use-existing-tests-for-bdd" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#use-existing-tests-for-bdd"><svg class="icon link"><use xlink:href="#link"></use></svg></a>use existing tests for BDD</h3></div>
 <p>As a lot of scenarios are written for oC10, we can use those tests for Behaviour driven development in ocis.
-Every scenario that does not work in ocis, is tagged with <code>@skipOnOcis</code> and additionally should be marked with an issue number e.g. <code>@issue-ocis-20</code>.
-This tag means that this particular scenario is skipped because of <a href="https://github.com/owncloud/ocis/issues/20">issue no 20 in the ocis repository</a>.
-Additionally, some issues have scenarios that demonstrate the current buggy behaviour in ocis(reva) and are skipped on oC10.
+Every scenario that does not work in ocis, is listed in <code>tests/acceptance/expected-failures.txt</code> with a link to the related issue.
+Those scenarios are run in the ordinary acceptance test pipeline in CI. The sccenarios that fail are checked against the
+expected failures. If there are any differences then the CI pipeline fails.</p>
+<p>Additionally, some issues have scenarios that demonstrate the current buggy behaviour in ocis(reva).
+Those scenarios are in this ocis repository in <code>tests/acceptance/features/apiOcisSpecific</code>.
 Have a look into the <a href="https://doc.owncloud.com/server/developer_manual/testing/acceptance-tests.html#writing-scenarios-for-bugs">documentation</a> to understand why we are writing those tests.</p>
 <p>If you want to work on a specific issue</p>
 <ol>
 <li>
-<p>run the tests marked with that issue tag</p>
+<p>adjust the core commit id to the latest commit in core so that CI will run the latest test code and scenarios from core.
+For that change <code>coreCommit</code> in the <code>config</code> section:</p>
+<pre><code>config = {
+  'apiTests': {
+    'coreBranch': 'master',
+    'coreCommit': 'a06b1bd5ba8e5244bfaf7fa04f441961e6fb0daa',
+    'numberOfParts': 2
+  }
+}
+</code></pre>
+</li>
+<li>
+<p>locally run each of the tests marked with that issue in the expected failures file</p>
 <p>E.g.:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">make test-acceptance-api \
 TEST_SERVER_URL=http://localhost:9140 \
 TEST_EXTERNAL_USER_BACKENDS=true \
 TEST_OCIS=true \
 OCIS_REVA_DATA_ROOT=/var/tmp/reva/ \
-BEHAT_FILTER_TAGS=&#39;~@skipOnOcV10&amp;&amp;@issue-ocis-20&#39;
-</code></pre></div><p>Note that the <code>~@skipOnOcis</code> tag is replaced by <code>~@skipOnOcV10</code> and the issue tag <code>@issue-ocis-20</code> is added.
-We want to run all tests that are skipped in CI because of this particular bug, but we don&rsquo;t want to run the tests
-that demonstrate the current buggy behaviour.</p>
-</li>
+BEHAT_FEATURE=&#39;tests/acceptance/features/apiComments/comments.feature:123&#39;
+</code></pre></div></li>
 <li>
 <p>the tests will fail, try to understand how and why they are failing</p>
 </li>
@@ -1618,38 +1629,20 @@ that demonstrate the current buggy behaviour.</p>
 <p>fix the code</p>
 </li>
 <li>
-<p>go back to 1. and repeat till the tests are passing.</p>
+<p>go back to 2. and repeat till the tests are passing.</p>
 </li>
 <li>
-<p>adjust tests that demonstrate the <strong>buggy</strong> behaviour</p>
-<p>delete the tests in core that are tagged with that particular issue and <code>@skipOnOcV10</code>, but be careful because a lot of tests are tagged with multiple issues.
-Only delete tests that demonstrate the buggy behaviour if you fixed all bugs related to that test. If not you might have to adjust the test.</p>
+<p>remove those tests from the expected failures file</p>
 </li>
 <li>
-<p>unskip tests that demonstrate the <strong>correct</strong> behaviour</p>
-<p>The <code>@skipOnOcis</code> tag should not be needed now, so delete it, but leave the issue tag for future reference.</p>
+<p>run each of the local tests that were demonstrating the <strong>buggy</strong> behavior. They should fail.</p>
 </li>
 <li>
-<p>make a PR to core with the changed tests</p>
+<p>delete each of the local tests that were demonstrating the <strong>buggy</strong> behavior.</p>
 </li>
 <li>
-<p>make a PR to ocis running the adjusted tests</p>
-<p>To confirm that all tests (old and changed) run fine make a PR to ocis with your code changes and point drone to your branch in core to get the changed tests.
-For that change this line in the <code>main</code> function</p>
-<pre><code>apiTests(ctx, 'master', 'a3cac3dad60348fc962d1d8743b202bc5f79596b')
-</code></pre>
-<p>In place of master use your branch name. If you dont specify the commit ID, you will run the tests using the HEAD of the branch you specified.</p>
-<pre><code>apiTests(ctx, 'my-new-tests', '')
-</code></pre>
-<p>Also make sure to change the commit ID if you want to run tests on any other commit.
-eg:</p>
-<pre><code>apiTests(ctx, 'my-new-tests', '7d468c05414b1dc745ca713d9deb443bc4e5f333')
-</code></pre>
-</li>
-<li>
-<p>merge PRs</p>
-<p>After you have confirmed that the tests pass everywhere merge the core PR and immediately revert the change in 8. and merge the ocis PR</p>
-<p>If the changes also affect the <code>ocis-reva</code> repository make sure the changes get ported over there immediately, otherwise the tests will start failing there.</p>
+<p>make a PR that has the fixed code, relevant lines removed from the expected failures file and bug demonstration tests deleted.</p>
+<p>If the changes also affect the <code>ocis-reva</code> repository make sure the changes get ported over there.</p>
 </li>
 </ol>
 <div class="gdoc-page__anchorwrap"><h3 id="notes"><a data-clipboard-text="https://owncloud.github.io/ocis/testing/#notes" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#notes"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Notes</h3></div>
