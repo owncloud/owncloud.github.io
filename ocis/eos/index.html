@@ -1552,6 +1552,7 @@
         </li>
         <li><a href="#verification">Verification</a></li>
         <li><a href="#further-exploration">Further exploration</a></li>
+        <li><a href="#troubleshooting">Troubleshooting</a></li>
       </ul></nav><hr></div>
 
 
@@ -1573,11 +1574,11 @@ docker-compose exec ocis ./bin/ocis run reva-users
 </code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="3-home-storage"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#3-home-storage" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#3-home-storage"><svg class="icon link"><use xlink:href="#link"></use></svg></a>3. Home storage</h3></div>
 <p>Kill the home storage. By default it uses the <code>owncloud</code> storage driver. We need to switch it to the <code>eoshome</code> driver and a new layout:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill reva-storage-home
-docker-compose exec -e REVA_STORAGE_EOS_LAYOUT=&#34;{{substr 0 1 .Username}}/{{.Username}}&#34; -e REVA_STORAGE_HOME_DRIVER=eoshome ocis ./bin/ocis run reva-storage-home
+docker-compose exec -e REVA_STORAGE_EOS_LAYOUT=&#34;{{substr 0 1 .Id.OpaqueId}}/{{.Id.OpaqueId}}&#34; -e REVA_STORAGE_HOME_DRIVER=eoshome ocis ./bin/ocis run reva-storage-home
 </code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="4-home-data-provider"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#4-home-data-provider" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#4-home-data-provider"><svg class="icon link"><use xlink:href="#link"></use></svg></a>4. Home data provider</h3></div>
 <p>Kill the home data provider. By default it uses the <code>owncloud</code> storage driver. We need to switch it to the <code>eoshome</code> driver and a new layout:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill reva-storage-home-data
-docker-compose exec -e REVA_STORAGE_EOS_LAYOUT=&#34;{{substr 0 1 .Username}}/{{.Username}}&#34; -e REVA_STORAGE_HOME_DATA_DRIVER=eoshome ocis ./bin/ocis run reva-storage-home-data
+docker-compose exec -e REVA_STORAGE_EOS_LAYOUT=&#34;{{substr 0 1 .Id.OpaqueId}}/{{.Id.OpaqueId}}&#34; -e REVA_STORAGE_HOME_DATA_DRIVER=eoshome ocis ./bin/ocis run reva-storage-home-data
 </code></pre></div><blockquote class="gdoc-hint info">
   The difference between the <em>home storage</em> and the <em>home data provider</em> are that the former is responsible for metadata changes while the latter is responsible for actual data transfer. The <em>home storage</em> uses the cs3 api to manage a folder hierarchy, while the <em>home data provider</em> is responsible for moving bytes to and from the storage.
 </blockquote>
@@ -1588,7 +1589,7 @@ docker-compose exec -e REVA_STORAGE_EOS_LAYOUT=&#34;{{substr 0 1 .Username}}/{{.
 docker-compose exec -e DAV_FILES_NAMESPACE=&#34;/eos/&#34; ocis ./bin/ocis run reva-frontend
 </code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="verification"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#verification" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#verification"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Verification</h2></div>
 <p>Login with <code>einstein / relativity</code>, upload a file to einsteins home and verify the file is there using</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis eos ls -l /eos/dockertest/reva/users/e/einstein/
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis eos ls -l /eos/dockertest/reva/users/4/4c510ada-c86b-4815-8820-42cdf82c3d51/
 -rw-r--r--   1 einstein users              10 Jul  1 15:24 newfile.txt
 </code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="further-exploration"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#further-exploration" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#further-exploration"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Further exploration</h2></div>
 <p>EOS has a built in shell that you can enter using</p>
@@ -1673,6 +1674,15 @@ who                  Statistics about connected users
 .q                   Exit from EOS console
 EOS Console [root://localhost] |/&gt;
 </code></pre></div><p>But this is a different adventure. See the links at the top of this page for other sources of information on eos.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="troubleshooting"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#troubleshooting" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#troubleshooting"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Troubleshooting</h2></div>
+<p>Q: When running <code>docker-compose up -d</code> ocis exits right away.
+A: You can check the error code using <code>docker-compose ps</code> and investigate further by running only ocis again using <code>docker-compose up ocis</code> (without <code>-d</code> so you can see what is going on in the foreground).
+One reason might be that the binary was already built but does not match the container env. Try running <code>make clean</code> before running <code>docker-compose up ocis</code> so it gets built inside the container.</p>
+<p>Q: How do I update a service in the ocis container?
+A: 1. <code>docker-compose exec ocis make clean build</code> to update the binary
+2. <code>docker-compose exec ocis ./bin/ocis kill &lt;service&gt;</code> to kill the service
+3. <code>docker-compose exec ocis ./bin/ocis run &lt;service&gt;</code> to start the service. Do not forget to set any env vars, eg.
+<code>docker-compose exec -e REVA_STORAGE_EOS_LAYOUT=&quot;{{substr 0 1 .Id.OpaqueId}}/{{.Id.OpaqueId}}&quot; -e REVA_STORAGE_HOME_DRIVER=eoshome ocis ./bin/ocis run reva-storage-home</code></p>
 
 
     </article>
