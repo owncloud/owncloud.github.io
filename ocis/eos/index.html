@@ -1552,7 +1552,17 @@
         </li>
         <li><a href="#verification">Verification</a></li>
         <li><a href="#further-exploration">Further exploration</a></li>
-        <li><a href="#troubleshooting">Troubleshooting</a></li>
+        <li><a href="#cleaning-up">Cleaning up</a></li>
+        <li><a href="#troubleshooting">Troubleshooting</a>
+          <ul>
+            <li><a href="#docker-compose-exits-right-away">Docker-compose exits right away</a></li>
+            <li><a href="#where-are-the-logs-">Where are the logs ?</a></li>
+            <li><a href="#how-do-i-update-a-service-in-the-ocis-container">How do I update a service in the ocis container?</a></li>
+            <li><a href="#creation-and-upload-of-files-does-not-work">Creation and upload of files does not work</a></li>
+            <li><a href="#uploading-big-files-appears-to-hang">Uploading big files appears to hang</a></li>
+            <li><a href="#running-out-of-space-quickly">Running out of space quickly</a></li>
+          </ul>
+        </li>
       </ul></nav><hr></div>
 
 
@@ -1562,13 +1572,22 @@
 <div class="gdoc-page__anchorwrap"><h3 id="1-start-eos--ocis-containers"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#1-start-eos--ocis-containers" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#1-start-eos--ocis-containers"><svg class="icon link"><use xlink:href="#link"></use></svg></a>1. Start eos &amp; ocis containers</h3></div>
 <p>Start the eos cluster and ocis via the compose stack</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose up -d
-</code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="2-ldap-support"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#2-ldap-support" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#2-ldap-support"><svg class="icon link"><use xlink:href="#link"></use></svg></a>2. LDAP support</h3></div>
-<p>Configure the os to resolve users and groups using ldap</p>
+</code></pre></div><blockquote class="gdoc-hint info">
+  The first time the <strong>ocis</strong> container starts up, it will compile ocis from scratch which can take a while.
+To follow progress, run <code>docker-compose logs -f --tail=10 ocis</code>
+</blockquote>
+
+<div class="gdoc-page__anchorwrap"><h3 id="2-ldap-support"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#2-ldap-support" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#2-ldap-support"><svg class="icon link"><use xlink:href="#link"></use></svg></a>2. LDAP support</h3></div>
+<p>Configure the OS to resolve users and groups using ldap</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec -d ocis /start-ldap
-</code></pre></div><p>Check that the os in the ocis container can now resolve einstein or the other demo users</p>
+</code></pre></div><p>Check that the OS in the ocis container can now resolve einstein or the other demo users</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ docker-compose exec ocis id einstein
 uid=20000(einstein) gid=30000(users) groups=30000(users),30001(sailing-lovers),30002(violin-haters),30007(physics-lovers)
-</code></pre></div><p>We also need to restart the reva-users service so it picks up the changed environment. Without a restart it is not able to resolve users from LDAP.</p>
+</code></pre></div><blockquote class="gdoc-hint info">
+  If the user is not found at first you might need to wait a few more minutes in case the ocis container is still compiling.
+</blockquote>
+
+<p>We also need to restart the reva-users service so it picks up the changed environment. Without a restart it is not able to resolve users from LDAP.</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill reva-users
 docker-compose exec ocis ./bin/ocis run reva-users
 </code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="3-home-storage"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#3-home-storage" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#3-home-storage"><svg class="icon link"><use xlink:href="#link"></use></svg></a>3. Home storage</h3></div>
@@ -1591,7 +1610,8 @@ docker-compose exec -e DAV_FILES_NAMESPACE=&#34;/eos/&#34; ocis ./bin/ocis run r
 <p>Login with <code>einstein / relativity</code>, upload a file to einsteins home and verify the file is there using</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis eos ls -l /eos/dockertest/reva/users/4/4c510ada-c86b-4815-8820-42cdf82c3d51/
 -rw-r--r--   1 einstein users              10 Jul  1 15:24 newfile.txt
-</code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="further-exploration"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#further-exploration" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#further-exploration"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Further exploration</h2></div>
+</code></pre></div><p>If the problem persists, please check the <a href="#creation-and-upload-of-files-does-not-work">troubleshooting section about uploads</a>.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="further-exploration"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#further-exploration" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#further-exploration"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Further exploration</h2></div>
 <p>EOS has a built in shell that you can enter using</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ docker-compose exec mgm-master eos
 # ---------------------------------------------------------------------------
@@ -1674,15 +1694,33 @@ who                  Statistics about connected users
 .q                   Exit from EOS console
 EOS Console [root://localhost] |/&gt;
 </code></pre></div><p>But this is a different adventure. See the links at the top of this page for other sources of information on eos.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="cleaning-up"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#cleaning-up" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#cleaning-up"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Cleaning up</h2></div>
+<p>To clean up and start completely from scratch, run <code>docker-compose down -v</code>.
+Then delete the local &ldquo;bin&rdquo; folder as root which contains the ocis binaries compiled by the &ldquo;ocis&rdquo; docker.</p>
 <div class="gdoc-page__anchorwrap"><h2 id="troubleshooting"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#troubleshooting" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#troubleshooting"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Troubleshooting</h2></div>
-<p>Q: When running <code>docker-compose up -d</code> ocis exits right away.
-A: You can check the error code using <code>docker-compose ps</code> and investigate further by running only ocis again using <code>docker-compose up ocis</code> (without <code>-d</code> so you can see what is going on in the foreground).
+<div class="gdoc-page__anchorwrap"><h3 id="docker-compose-exits-right-away"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#docker-compose-exits-right-away" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#docker-compose-exits-right-away"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Docker-compose exits right away</h3></div>
+<p>When running <code>docker-compose up -d</code> ocis exits right away.</p>
+<p>You can check the error code using <code>docker-compose ps</code> and investigate further by running only ocis again using <code>docker-compose up ocis</code> (without <code>-d</code> so you can see what is going on in the foreground).
 One reason might be that the binary was already built but does not match the container env. Try running <code>make clean</code> before running <code>docker-compose up ocis</code> so it gets built inside the container.</p>
-<p>Q: How do I update a service in the ocis container?
-A: 1. <code>docker-compose exec ocis make clean build</code> to update the binary
-2. <code>docker-compose exec ocis ./bin/ocis kill &lt;service&gt;</code> to kill the service
-3. <code>docker-compose exec ocis ./bin/ocis run &lt;service&gt;</code> to start the service. Do not forget to set any env vars, eg.
-<code>docker-compose exec -e REVA_STORAGE_EOS_LAYOUT=&quot;{{substr 0 1 .Id.OpaqueId}}/{{.Id.OpaqueId}}&quot; -e REVA_STORAGE_HOME_DRIVER=eoshome ocis ./bin/ocis run reva-storage-home</code></p>
+<div class="gdoc-page__anchorwrap"><h3 id="where-are-the-logs-"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#where-are-the-logs-" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#where-are-the-logs-"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Where are the logs ?</h3></div>
+<p>The ocis logs can be accessed using <code>docker-compose logs ocis</code>. Add <code>-f</code> for following.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="how-do-i-update-a-service-in-the-ocis-container"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#how-do-i-update-a-service-in-the-ocis-container" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#how-do-i-update-a-service-in-the-ocis-container"><svg class="icon link"><use xlink:href="#link"></use></svg></a>How do I update a service in the ocis container?</h3></div>
+<ol>
+<li><code>docker-compose exec ocis make clean build</code> to update the binary</li>
+<li><code>docker-compose exec ocis ./bin/ocis kill &lt;service&gt;</code> to kill the service</li>
+<li><code>docker-compose exec ocis ./bin/ocis run &lt;service&gt;</code> to start the service. Do not forget to set any env vars, eg.
+<code>docker-compose exec -e REVA_STORAGE_EOS_LAYOUT=&quot;{{substr 0 1 .Id.OpaqueId}}/{{.Id.OpaqueId}}&quot; -e REVA_STORAGE_HOME_DRIVER=eoshome ocis ./bin/ocis run reva-storage-home</code></li>
+</ol>
+<div class="gdoc-page__anchorwrap"><h3 id="creation-and-upload-of-files-does-not-work"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#creation-and-upload-of-files-does-not-work" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#creation-and-upload-of-files-does-not-work"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Creation and upload of files does not work</h3></div>
+<p>If the upload did not work, please check the status of the eos space using the command <code>docker-compose exec mgm-master eos fs ls</code>.
+In case the default space appears as offline, run <code>docker-compose exec mgm-master eos space set default on</code>.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="uploading-big-files-appears-to-hang"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#uploading-big-files-appears-to-hang" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#uploading-big-files-appears-to-hang"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Uploading big files appears to hang</h3></div>
+<p>Please note that the uploads first go into the &ldquo;ocis&rdquo; docker and land in its &ldquo;/tmp&rdquo; folder, then gets copied over to the EOS docker using <code>xrdcopy</code>.
+This is why uploading first transfers all bytes and then seem to hang for a while during the final copy.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="running-out-of-space-quickly"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#running-out-of-space-quickly" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#running-out-of-space-quickly"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Running out of space quickly</h3></div>
+<p>The EOS dockers are configured with replication, so every file uploaded there will be replicated 4 times,
+so make sure there is enough physical space on disk when testing.</p>
+<p>Also please note that older failed uploads might still be present in the &ldquo;/tmp&rdquo; directory of the &ldquo;ocis&rdquo; container.</p>
 
 
     </article>
