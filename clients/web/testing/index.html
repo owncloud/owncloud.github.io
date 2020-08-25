@@ -1652,24 +1652,14 @@ Mac: <code>tests/acceptance/ocis-mac-config.json</code></li>
 <p>run <code>yarn run testing-app</code> to get the <a href="https://github.com/owncloud/testing">testing-app</a>, it&rsquo;s needed to have the skeleton folder for the tests</p>
 </li>
 <li>
-<p>Run ldap server and redis server using docker</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">yarn run ldap-server
-
+<p>Run redis server using docker</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">
 yarn run redis-server
 </code></pre></div></li>
 <li>
 <p>Run the OCIS server with the necessary configurations</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">export</span> <span class="nv">REVA_LDAP_HOSTNAME</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span>
-<span class="nb">export</span> <span class="nv">REVA_LDAP_PORT</span><span class="o">=</span><span class="m">636</span>
-<span class="nb">export</span> <span class="nv">REVA_LDAP_BIND_PASSWORD</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span>
-<span class="nb">export</span> <span class="nv">REVA_LDAP_BIND_DN</span><span class="o">=</span><span class="s1">&#39;cn=admin,dc=owncloud,dc=com&#39;</span>
-<span class="nb">export</span> <span class="nv">REVA_LDAP_BASE_DN</span><span class="o">=</span><span class="s1">&#39;dc=owncloud,dc=com&#39;</span>
-<span class="nb">export</span> <span class="nv">REVA_STORAGE_OWNCLOUD_REDIS_ADDR</span><span class="o">=</span><span class="s1">&#39;localhost:6379&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">export</span> <span class="nv">REVA_STORAGE_OWNCLOUD_REDIS_ADDR</span><span class="o">=</span><span class="s1">&#39;localhost:6379&#39;</span>
 <span class="nb">export</span> <span class="nv">PHOENIX_ASSET_PATH</span><span class="o">=</span><span class="s1">&#39;&lt;path-to-phoenix-clone&gt;/dist&#39;</span>
-<span class="nb">export</span> <span class="nv">LDAP_URI</span><span class="o">=</span><span class="s1">&#39;ldap://localhost&#39;</span>
-<span class="nb">export</span> <span class="nv">LDAP_BINDDN</span><span class="o">=</span><span class="s1">&#39;cn=admin,dc=owncloud,dc=com&#39;</span>
-<span class="nb">export</span> <span class="nv">LDAP_BINDPW</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span>
-<span class="nb">export</span> <span class="nv">LDAP_BASEDN</span><span class="o">=</span><span class="s1">&#39;dc=owncloud,dc=com&#39;</span>
 </code></pre></div><p>for Mac users additionally:</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"> <span class="nb">export</span> <span class="nv">PHOENIX_WEB_CONFIG</span><span class="o">=</span><span class="s1">&#39;&lt;path-to-config-file&gt;/ocis-mac-config.json&#39;</span>
 </code></pre></div><p>run the server:</p>
@@ -1751,21 +1741,6 @@ The feature files are located in the &ldquo;tests/acceptance/features&rdquo; sub
 <td><code>OCIS_REVA_DATA_ROOT</code></td>
 <td>Data directory of OCIS</td>
 <td>/var/tmp/reva</td>
-</tr>
-<tr>
-<td><code>LDAP_SERVER_URL</code></td>
-<td>LDAP server for openID provider</td>
-<td>ldap://127.0.0.1</td>
-</tr>
-<tr>
-<td><code>LDAP_BASE_DN</code></td>
-<td>bind dn for LDAP</td>
-<td>cn=admin,dc=owncloud,dc=com</td>
-</tr>
-<tr>
-<td><code>LDAP_ADMIN_PASSWORD</code></td>
-<td>Password for ldap bind dn</td>
-<td>cn=admin,dc=owncloud,dc=com</td>
 </tr>
 <tr>
 <td><code>OCIS_SKELETON_DIR</code></td>
