@@ -1542,38 +1542,11 @@
 <div class="gdoc-page__anchorwrap"><h3 id="getting-the-tests"><a data-clipboard-text="https://owncloud.github.io/ocis/testing/#getting-the-tests" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#getting-the-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Getting the tests</h3></div>
 <p>All you need to do to get the acceptance tests is check out the core repo:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">git clone https://github.com/owncloud/core.git
-</code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="run-a-ldap-server-in-a-docker-container"><a data-clipboard-text="https://owncloud.github.io/ocis/testing/#run-a-ldap-server-in-a-docker-container" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-a-ldap-server-in-a-docker-container"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run a ldap server in a docker container</h3></div>
-<p>The ownCloud 10 acceptance tests will need write permission. You can start a suitable ldap server in a docker container with:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker run --hostname ldap.my-company.com \
-    -e LDAP_TLS_VERIFY_CLIENT=never \
-    -e LDAP_DOMAIN=owncloud.com \
-    -e LDAP_ORGANISATION=ownCloud \
-    -e LDAP_ADMIN_PASSWORD=admin \
-    --name docker-slapd \
-    -p 127.0.0.1:389:389 \
-    -p 636:636 -d osixia/openldap
 </code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="run-a-redis-server-in-a-docker-container"><a data-clipboard-text="https://owncloud.github.io/ocis/testing/#run-a-redis-server-in-a-docker-container" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-a-redis-server-in-a-docker-container"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run a redis server in a docker container</h3></div>
 <p>File versions need a redis server. Start one with docker by using:</p>
 <p><code>docker run -e REDIS_DATABASES=1 -p 6379:6379 -d webhippie/redis:latest</code></p>
-<div class="gdoc-page__anchorwrap"><h3 id="run-ocis-with-that-ldap-server"><a data-clipboard-text="https://owncloud.github.io/ocis/testing/#run-ocis-with-that-ldap-server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-ocis-with-that-ldap-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run ocis with that ldap server</h3></div>
-<p><code>ocis</code> provides multiple subcommands. To configure them all via env vars you can export these environment variables.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">export REVA_USERS_DRIVER=ldap
-export REVA_LDAP_HOSTNAME=localhost
-export REVA_LDAP_PORT=636
-export REVA_LDAP_BASE_DN=&#39;dc=owncloud,dc=com&#39;
-export REVA_LDAP_USERFILTER=&#39;(&amp;(objectclass=posixAccount)(cn=%s))&#39;
-export REVA_LDAP_GROUPFILTER=&#39;(&amp;(objectclass=posixGroup)(cn=%s))&#39;
-export REVA_LDAP_BIND_DN=&#39;cn=admin,dc=owncloud,dc=com&#39;
-export REVA_LDAP_BIND_PASSWORD=admin
-export REVA_LDAP_SCHEMA_UID=uid
-export REVA_LDAP_SCHEMA_MAIL=mail
-export REVA_LDAP_SCHEMA_DISPLAYNAME=displayName
-export REVA_LDAP_SCHEMA_CN=cn
-export LDAP_URI=ldap://localhost
-export LDAP_BINDDN=&#39;cn=admin,dc=owncloud,dc=com&#39;
-export LDAP_BINDPW=admin
-export LDAP_BASEDN=&#39;dc=owncloud,dc=com&#39;
-</code></pre></div><p>Then you need to start ocis</p>
+<div class="gdoc-page__anchorwrap"><h3 id="run-ocis"><a data-clipboard-text="https://owncloud.github.io/ocis/testing/#run-ocis" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-ocis"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run ocis</h3></div>
+<p>To start ocis:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">bin/ocis server
 </code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="run-the-acceptance-tests"><a data-clipboard-text="https://owncloud.github.io/ocis/testing/#run-the-acceptance-tests" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-the-acceptance-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run the acceptance tests</h3></div>
 <p>First we will need to clone the testing app in owncloud which contains the skeleton files required for running the tests.
@@ -1581,8 +1554,7 @@ In the ownCloud 10 core clone the testing app with the following command:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">git clone https://github.com/owncloud/testing apps/testing
 </code></pre></div><p>Then run the api acceptance tests with the  following command:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">make test-acceptance-api \
-TEST_SERVER_URL=http://localhost:9140 \
-TEST_EXTERNAL_USER_BACKENDS=true \
+TEST_SERVER_URL=https://localhost:9200 \
 TEST_OCIS=true \
 OCIS_REVA_DATA_ROOT=/var/tmp/reva/ \
 SKELETON_DIR=apps/testing/data/apiSkeleton \
@@ -1617,8 +1589,7 @@ For that change <code>coreCommit</code> in the <code>config</code> section:</p>
 <p>locally run each of the tests marked with that issue in the expected failures file</p>
 <p>E.g.:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">make test-acceptance-api \
-TEST_SERVER_URL=http://localhost:9140 \
-TEST_EXTERNAL_USER_BACKENDS=true \
+TEST_SERVER_URL=https://localhost:9200 \
 TEST_OCIS=true \
 OCIS_REVA_DATA_ROOT=/var/tmp/reva/ \
 BEHAT_FEATURE=&#39;tests/acceptance/features/apiComments/comments.feature:123&#39;
