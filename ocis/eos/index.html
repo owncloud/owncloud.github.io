@@ -1547,7 +1547,6 @@
             <li><a href="#2-ldap-support">2. LDAP support</a></li>
             <li><a href="#3-home-storage">3. Home storage</a></li>
             <li><a href="#4-home-data-provider">4. Home data provider</a></li>
-            <li><a href="#4-frontend-files-namespace">4. Frontend files namespace</a></li>
           </ul>
         </li>
         <li><a href="#verification">Verification</a></li>
@@ -1593,22 +1592,18 @@ uid=20000(einstein) gid=30000(users) groups=30000(users),30001(sailing-lovers),3
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill reva-users
 docker-compose exec ocis ./bin/ocis run reva-users
 </code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="3-home-storage"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#3-home-storage" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#3-home-storage"><svg class="icon link"><use xlink:href="#link"></use></svg></a>3. Home storage</h3></div>
-<p>Kill the home storage. By default it uses the <code>owncloud</code> storage driver. We need to switch it to the <code>eoshome</code> driver and a new layout:</p>
+<p>Kill the home storage. By default it uses the <code>owncloud</code> storage driver. We need to switch it to the <code>eoshome</code> driver and make it use the storage id of the eos storage provider:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill reva-storage-home
-docker-compose exec -e REVA_STORAGE_EOS_LAYOUT=&#34;{{substr 0 1 .Id.OpaqueId}}/{{.Id.OpaqueId}}&#34; -e REVA_STORAGE_HOME_DRIVER=eoshome ocis ./bin/ocis run reva-storage-home
+docker-compose exec -e REVA_STORAGE_HOME_DRIVER=eoshome -e REVA_STORAGE_HOME_MOUNT_ID=1284d238-aa92-42ce-bdc4-0b0000009158 ocis ./bin/ocis run reva-storage-home
 </code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="4-home-data-provider"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#4-home-data-provider" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#4-home-data-provider"><svg class="icon link"><use xlink:href="#link"></use></svg></a>4. Home data provider</h3></div>
-<p>Kill the home data provider. By default it uses the <code>owncloud</code> storage driver. We need to switch it to the <code>eoshome</code> driver and a new layout:</p>
+<p>Kill the home data provider. By default it uses the <code>owncloud</code> storage driver. We need to switch it to the <code>eoshome</code> driver and make it use the storage id of the eos storage provider:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill reva-storage-home-data
-docker-compose exec -e REVA_STORAGE_EOS_LAYOUT=&#34;{{substr 0 1 .Id.OpaqueId}}/{{.Id.OpaqueId}}&#34; -e REVA_STORAGE_HOME_DATA_DRIVER=eoshome ocis ./bin/ocis run reva-storage-home-data
+docker-compose exec -e REVA_STORAGE_HOME_DATA_DRIVER=eoshome ocis ./bin/ocis run reva-storage-home-data
 </code></pre></div><blockquote class="gdoc-hint info">
   The difference between the <em>home storage</em> and the <em>home data provider</em> are that the former is responsible for metadata changes while the latter is responsible for actual data transfer. The <em>home storage</em> uses the cs3 api to manage a folder hierarchy, while the <em>home data provider</em> is responsible for moving bytes to and from the storage.
 </blockquote>
 
-<div class="gdoc-page__anchorwrap"><h3 id="4-frontend-files-namespace"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#4-frontend-files-namespace" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#4-frontend-files-namespace"><svg class="icon link"><use xlink:href="#link"></use></svg></a>4. Frontend files namespace</h3></div>
-<p>Restart the reva frontend with a new namespace (pointing to the eos storage provider) for the dav files endpoint</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill reva-frontend
-docker-compose exec -e DAV_FILES_NAMESPACE=&#34;/eos/&#34; ocis ./bin/ocis run reva-frontend
-</code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="verification"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#verification" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#verification"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Verification</h2></div>
+<div class="gdoc-page__anchorwrap"><h2 id="verification"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#verification" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#verification"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Verification</h2></div>
 <p>Login with <code>einstein / relativity</code>, upload a file to einsteins home and verify the file is there using</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis eos ls -l /eos/dockertest/reva/users/4/4c510ada-c86b-4815-8820-42cdf82c3d51/
 -rw-r--r--   1 einstein users              10 Jul  1 15:24 newfile.txt
