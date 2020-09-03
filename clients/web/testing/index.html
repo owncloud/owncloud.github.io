@@ -1748,16 +1748,15 @@ Mac: <code>tests/acceptance/ocis-mac-config.json</code></li>
 </li>
 <li>
 <p>Run redis server using docker</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">
-yarn run redis-server
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">yarn run redis-server
 </code></pre></div></li>
 <li>
 <p>Run the OCIS server with the necessary configurations</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">export</span> <span class="nv">REVA_STORAGE_OWNCLOUD_REDIS_ADDR</span><span class="o">=</span><span class="s1">&#39;localhost:6379&#39;</span>
 <span class="nb">export</span> <span class="nv">PHOENIX_ASSET_PATH</span><span class="o">=</span><span class="s1">&#39;&lt;path-to-phoenix-clone&gt;/dist&#39;</span>
-</code></pre></div><p>for Mac users additionally:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"> <span class="nb">export</span> <span class="nv">PHOENIX_WEB_CONFIG</span><span class="o">=</span><span class="s1">&#39;&lt;path-to-config-file&gt;/ocis-mac-config.json&#39;</span>
-</code></pre></div><p>run the server:</p>
+<span class="nb">export</span> <span class="nv">PHOENIX_WEB_CONFIG</span><span class="o">=</span><span class="s1">&#39;&lt;path-to-phoenix-clone&gt;/dist/config.json&#39;</span>
+</code></pre></div><p>note: <code>PHOENIX_WEB_CONFIG</code> should point to the same config file you have created earlier.</p>
+<p>run the server:</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">bin/ocis server
 </code></pre></div></li>
 <li>
