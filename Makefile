@@ -7,7 +7,7 @@ theme-clean:
 .PHONY: theme-sync
 theme-sync:
 	mkdir -p themes/hugo-geekdoc; \
-  curl -sSL https://github.com/xoxys/hugo-geekdoc/releases/download/$(THEME_VERSION)/hugo-geekdoc.tar.gz | tar -xz -C themes/hugo-geekdoc/ --strip-components=1
+  curl -sSL https://github.com/thegeeklab/hugo-geekdoc/releases/download/$(THEME_VERSION)/hugo-geekdoc.tar.gz | tar -xz -C themes/hugo-geekdoc/ --strip-components=1
 
 .PHONY: theme
 theme: theme-clean theme-sync
