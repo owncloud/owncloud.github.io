@@ -11,3 +11,7 @@ theme-sync:
 
 .PHONY: theme
 theme: theme-clean theme-sync
+
+.PHONY: clean
+clean:
+	rm -rf content public
