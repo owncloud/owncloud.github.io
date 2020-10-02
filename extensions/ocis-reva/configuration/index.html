@@ -1874,21 +1874,21 @@
         <li><a href="#sub-commands">Sub Commands</a>
           <ul>
             <li><a href="#ocis-reva-storage-home">ocis-reva storage-home</a></li>
+            <li><a href="#ocis-reva-frontend">ocis-reva frontend</a></li>
+            <li><a href="#ocis-reva-storage-eos-data">ocis-reva storage-eos-data</a></li>
+            <li><a href="#ocis-reva-reva-storage-public-link">ocis-reva reva-storage-public-link</a></li>
+            <li><a href="#ocis-reva-storage-oc">ocis-reva storage-oc</a></li>
             <li><a href="#ocis-reva-storage-eos">ocis-reva storage-eos</a></li>
             <li><a href="#ocis-reva-sharing">ocis-reva sharing</a></li>
-            <li><a href="#ocis-reva-health">ocis-reva health</a></li>
-            <li><a href="#ocis-reva-reva-storage-public-link">ocis-reva reva-storage-public-link</a></li>
-            <li><a href="#ocis-reva-storage-root">ocis-reva storage-root</a></li>
-            <li><a href="#ocis-reva-frontend">ocis-reva frontend</a></li>
+            <li><a href="#ocis-reva-users">ocis-reva users</a></li>
             <li><a href="#ocis-reva-storage-home-data">ocis-reva storage-home-data</a></li>
-            <li><a href="#ocis-reva-reva-storage-metadata">ocis-reva reva-storage-metadata</a></li>
+            <li><a href="#ocis-reva-auth-bearer">ocis-reva auth-bearer</a></li>
             <li><a href="#ocis-reva-gateway">ocis-reva gateway</a></li>
             <li><a href="#ocis-reva-storage-oc-data">ocis-reva storage-oc-data</a></li>
-            <li><a href="#ocis-reva-auth-bearer">ocis-reva auth-bearer</a></li>
-            <li><a href="#ocis-reva-storage-oc">ocis-reva storage-oc</a></li>
+            <li><a href="#ocis-reva-reva-storage-metadata">ocis-reva reva-storage-metadata</a></li>
+            <li><a href="#ocis-reva-storage-root">ocis-reva storage-root</a></li>
             <li><a href="#ocis-reva-auth-basic">ocis-reva auth-basic</a></li>
-            <li><a href="#ocis-reva-users">ocis-reva users</a></li>
-            <li><a href="#ocis-reva-storage-eos-data">ocis-reva storage-eos-data</a></li>
+            <li><a href="#ocis-reva-health">ocis-reva health</a></li>
           </ul>
         </li>
       </ul></nav><hr></div>
@@ -1951,6 +1951,110 @@ $HOME/.ocis
 <dt>&ndash;users-url | $REVA_USERS_URL</dt>
 <dd>URL to use for the reva service. Default: <code>localhost:9144</code>.</dd>
 </dl>
+<div class="gdoc-page__anchorwrap"><h3 id="ocis-reva-frontend"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis-reva/configuration/#ocis-reva-frontend" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-frontend"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-reva frontend</h3></div>
+<p>Start reva frontend service</p>
+<p>Usage: <code>ocis-reva frontend [command options] [arguments...]</code></p>
+<dl>
+<dt>&ndash;debug-addr | $REVA_FRONTEND_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>0.0.0.0:9141</code>.</dd>
+<dt>&ndash;transfer-secret | $REVA_TRANSFER_SECRET</dt>
+<dd>Transfer secret for datagateway. Default: <code>replace-me-with-a-transfer-secret</code>.</dd>
+<dt>&ndash;webdav-namespace | $WEBDAV_NAMESPACE</dt>
+<dd>Namespace prefix for the /webdav endpoint. Default: <code>/home/</code>.</dd>
+<dt>&ndash;dav-files-namespace | $DAV_FILES_NAMESPACE</dt>
+<dd>Namespace prefix for the webdav /dav/files endpoint. Default: <code>/oc/</code>.</dd>
+<dt>&ndash;network | $REVA_FRONTEND_NETWORK</dt>
+<dd>Network to use for the reva service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>tcp</code>.</dd>
+<dt>&ndash;protocol | $REVA_FRONTEND_PROTOCOL</dt>
+<dd>protocol for reva service, can be &lsquo;http&rsquo; or &lsquo;grpc&rsquo;. Default: <code>http</code>.</dd>
+<dt>&ndash;addr | $REVA_FRONTEND_ADDR</dt>
+<dd>Address to bind reva service. Default: <code>0.0.0.0:9140</code>.</dd>
+<dt>&ndash;url | $REVA_FRONTEND_URL</dt>
+<dd>URL to use for the reva service. Default: <code>https://localhost:9200</code>.</dd>
+<dt>&ndash;datagateway-prefix | $REVA_FRONTEND_DATAGATEWAY_PREFIX</dt>
+<dd>datagateway prefix. Default: <code>data</code>.</dd>
+<dt>&ndash;ocdav-prefix | $REVA_FRONTEND_OCDAV_PREFIX</dt>
+<dd>owncloud webdav endpoint prefix.</dd>
+<dt>&ndash;ocs-prefix | $REVA_FRONTEND_OCS_PREFIX</dt>
+<dd>open collaboration services endpoint prefix. Default: <code>ocs</code>.</dd>
+<dt>&ndash;gateway-url | $REVA_GATEWAY_URL</dt>
+<dd>URL to use for the reva gateway service. Default: <code>localhost:9142</code>.</dd>
+<dt>&ndash;upload-disable-tus | $REVA_FRONTEND_UPLOAD_DISABLE_TUS</dt>
+<dd>Disables TUS upload mechanism. Default: <code>false</code>.</dd>
+<dt>&ndash;upload-http-method-override | $REVA_FRONTEND_UPLOAD_HTTP_METHOD_OVERRIDE</dt>
+<dd>Specify an HTTP method (ex: POST) that clients should to use when uploading instead of PATCH.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap"><h3 id="ocis-reva-storage-eos-data"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis-reva/configuration/#ocis-reva-storage-eos-data" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-storage-eos-data"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-reva storage-eos-data</h3></div>
+<p>Start reva storage-eos-data service</p>
+<p>Usage: <code>ocis-reva storage-eos-data [command options] [arguments...]</code></p>
+<dl>
+<dt>&ndash;debug-addr | $REVA_STORAGE_OC_DATA_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>0.0.0.0:9161</code>.</dd>
+<dt>&ndash;network | $REVA_STORAGE_EOS_DATA_NETWORK</dt>
+<dd>Network to use for the reva service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>tcp</code>.</dd>
+<dt>&ndash;protocol | $REVA_STORAGE_EOS_DATA_PROTOCOL</dt>
+<dd>protocol for reva service, can be &lsquo;http&rsquo; or &lsquo;grpc&rsquo;. Default: <code>http</code>.</dd>
+<dt>&ndash;addr | $REVA_STORAGE_EOS_DATA_ADDR</dt>
+<dd>Address to bind reva service. Default: <code>0.0.0.0:9160</code>.</dd>
+<dt>&ndash;url | $REVA_STORAGE_EOS_DATA_URL</dt>
+<dd>URL to use for the reva service. Default: <code>localhost:9160</code>.</dd>
+<dt>&ndash;driver | $REVA_STORAGE_EOS_DATA_DRIVER</dt>
+<dd>storage driver for eos data mount: eg. local, eos, owncloud, ocis or s3. Default: <code>eos</code>.</dd>
+<dt>&ndash;prefix | $REVA_STORAGE_EOS_DATA_PREFIX</dt>
+<dd>prefix for the http endpoint, without leading slash. Default: <code>data</code>.</dd>
+<dt>&ndash;temp-folder | $REVA_STORAGE_EOS_DATA_TEMP_FOLDER</dt>
+<dd>temp folder. Default: <code>/var/tmp/</code>.</dd>
+<dt>&ndash;gateway-url | $REVA_GATEWAY_URL</dt>
+<dd>URL to use for the reva gateway service. Default: <code>localhost:9142</code>.</dd>
+<dt>&ndash;users-url | $REVA_USERS_URL</dt>
+<dd>URL to use for the reva service. Default: <code>localhost:9144</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap"><h3 id="ocis-reva-reva-storage-public-link"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis-reva/configuration/#ocis-reva-reva-storage-public-link" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-reva-storage-public-link"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-reva reva-storage-public-link</h3></div>
+<p>Start reva storage-public-link service</p>
+<p>Usage: <code>ocis-reva reva-storage-public-link [command options] [arguments...]</code></p>
+<dl>
+<dt>&ndash;debug-addr | $REVA_STORAGE_PUBLIC_LINK_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>0.0.0.0:9179</code>.</dd>
+<dt>&ndash;network | $REVA_STORAGE_PUBLIC_LINK_NETWORK</dt>
+<dd>Network to use for the reva service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>tcp</code>.</dd>
+<dt>&ndash;protocol | $REVA_STORAGE_PUBLIC_LINK_PROTOCOL</dt>
+<dd>protocol for reva service, can be &lsquo;http&rsquo; or &lsquo;grpc&rsquo;. Default: <code>grpc</code>.</dd>
+<dt>&ndash;addr | $REVA_STORAGE_PUBLIC_LINK_ADDR</dt>
+<dd>Address to bind reva service. Default: <code>0.0.0.0:9178</code>.</dd>
+<dt>&ndash;url | $REVA_STORAGE_PUBLIC_LINK_URL</dt>
+<dd>Address to bind reva service. Default: <code>localhost:9178</code>.</dd>
+<dt>&ndash;mount-path | $REVA_STORAGE_PUBLIC_LINK_MOUNT_PATH</dt>
+<dd>mount path. Default: <code>/public/</code>.</dd>
+<dt>&ndash;gateway-url | $REVA_GATEWAY_URL</dt>
+<dd>URL to use for the reva gateway service. Default: <code>localhost:9142</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap"><h3 id="ocis-reva-storage-oc"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis-reva/configuration/#ocis-reva-storage-oc" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-storage-oc"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-reva storage-oc</h3></div>
+<p>Start reva storage-oc service</p>
+<p>Usage: <code>ocis-reva storage-oc [command options] [arguments...]</code></p>
+<dl>
+<dt>&ndash;debug-addr | $REVA_STORAGE_OC_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>0.0.0.0:9163</code>.</dd>
+<dt>&ndash;network | $REVA_STORAGE_OC_NETWORK</dt>
+<dd>Network to use for the reva service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>tcp</code>.</dd>
+<dt>&ndash;protocol | $REVA_STORAGE_OC_PROTOCOL</dt>
+<dd>protocol for reva service, can be &lsquo;http&rsquo; or &lsquo;grpc&rsquo;. Default: <code>grpc</code>.</dd>
+<dt>&ndash;addr | $REVA_STORAGE_OC_ADDR</dt>
+<dd>Address to bind reva service. Default: <code>0.0.0.0:9162</code>.</dd>
+<dt>&ndash;url | $REVA_STORAGE_OC_URL</dt>
+<dd>URL to use for the reva service. Default: <code>localhost:9162</code>.</dd>
+<dt>&ndash;driver | $REVA_STORAGE_OC_DRIVER</dt>
+<dd>storage driver for oc mount: eg. local, eos, owncloud, ocis or s3. Default: <code>owncloud</code>.</dd>
+<dt>&ndash;mount-path | $REVA_STORAGE_OC_MOUNT_PATH</dt>
+<dd>mount path. Default: <code>/oc</code>.</dd>
+<dt>&ndash;mount-id | $REVA_STORAGE_OC_MOUNT_ID</dt>
+<dd>mount id. Default: <code>1284d238-aa92-42ce-bdc4-0b0000009162</code>.</dd>
+<dt>&ndash;expose-data-server | $REVA_STORAGE_OC_EXPOSE_DATA_SERVER</dt>
+<dd>exposes a dedicated data server. Default: <code>false</code>.</dd>
+<dt>&ndash;data-server-url | $REVA_STORAGE_OC_DATA_SERVER_URL</dt>
+<dd>data server url. Default: <code>http://localhost:9164/data</code>.</dd>
+<dt>&ndash;users-url | $REVA_USERS_URL</dt>
+<dd>URL to use for the reva service. Default: <code>localhost:9144</code>.</dd>
+</dl>
 <div class="gdoc-page__anchorwrap"><h3 id="ocis-reva-storage-eos"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis-reva/configuration/#ocis-reva-storage-eos" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-storage-eos"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-reva storage-eos</h3></div>
 <p>Start reva storage-eos service</p>
 <p>Usage: <code>ocis-reva storage-eos [command options] [arguments...]</code></p>
@@ -1997,89 +2101,42 @@ $HOME/.ocis
 <dt>&ndash;public-driver | $REVA_SHARING_PUBLIC_DRIVER</dt>
 <dd>driver to use for the PublicShareProvider. Default: <code>json</code>.</dd>
 </dl>
-<div class="gdoc-page__anchorwrap"><h3 id="ocis-reva-health"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis-reva/configuration/#ocis-reva-health" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-reva health</h3></div>
-<p>Check health status</p>
-<p>Usage: <code>ocis-reva health [command options] [arguments...]</code></p>
+<div class="gdoc-page__anchorwrap"><h3 id="ocis-reva-users"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis-reva/configuration/#ocis-reva-users" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-users"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-reva users</h3></div>
+<p>Start reva users service</p>
+<p>Usage: <code>ocis-reva users [command options] [arguments...]</code></p>
 <dl>
-<dt>&ndash;debug-addr | $REVA_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>0.0.0.0:9109</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="ocis-reva-reva-storage-public-link"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis-reva/configuration/#ocis-reva-reva-storage-public-link" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-reva-storage-public-link"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-reva reva-storage-public-link</h3></div>
-<p>Start reva storage-public-link service</p>
-<p>Usage: <code>ocis-reva reva-storage-public-link [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;debug-addr | $REVA_STORAGE_PUBLIC_LINK_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>0.0.0.0:9179</code>.</dd>
-<dt>&ndash;network | $REVA_STORAGE_PUBLIC_LINK_NETWORK</dt>
+<dt>&ndash;debug-addr | $REVA_SHARING_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>0.0.0.0:9145</code>.</dd>
+<dt>&ndash;network | $REVA_USERS_NETWORK</dt>
 <dd>Network to use for the reva service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>tcp</code>.</dd>
-<dt>&ndash;protocol | $REVA_STORAGE_PUBLIC_LINK_PROTOCOL</dt>
+<dt>&ndash;protocol | $REVA_USERS_PROTOCOL</dt>
 <dd>protocol for reva service, can be &lsquo;http&rsquo; or &lsquo;grpc&rsquo;. Default: <code>grpc</code>.</dd>
-<dt>&ndash;addr | $REVA_STORAGE_PUBLIC_LINK_ADDR</dt>
-<dd>Address to bind reva service. Default: <code>0.0.0.0:9178</code>.</dd>
-<dt>&ndash;url | $REVA_STORAGE_PUBLIC_LINK_URL</dt>
-<dd>Address to bind reva service. Default: <code>localhost:9178</code>.</dd>
-<dt>&ndash;mount-path | $REVA_STORAGE_PUBLIC_LINK_MOUNT_PATH</dt>
-<dd>mount path. Default: <code>/public/</code>.</dd>
-<dt>&ndash;gateway-url | $REVA_GATEWAY_URL</dt>
-<dd>URL to use for the reva gateway service. Default: <code>localhost:9142</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="ocis-reva-storage-root"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis-reva/configuration/#ocis-reva-storage-root" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-storage-root"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-reva storage-root</h3></div>
-<p>Start reva storage-root service</p>
-<p>Usage: <code>ocis-reva storage-root [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;debug-addr | $REVA_STORAGE_ROOT_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>0.0.0.0:9153</code>.</dd>
-<dt>&ndash;network | $REVA_STORAGE_ROOT_NETWORK</dt>
-<dd>Network to use for the reva service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>tcp</code>.</dd>
-<dt>&ndash;protocol | $REVA_STORAGE_ROOT_PROTOCOL</dt>
-<dd>protocol for reva service, can be &lsquo;http&rsquo; or &lsquo;grpc&rsquo;. Default: <code>grpc</code>.</dd>
-<dt>&ndash;addr | $REVA_STORAGE_ROOT_ADDR</dt>
-<dd>Address to bind reva service. Default: <code>0.0.0.0:9152</code>.</dd>
-<dt>&ndash;url | $REVA_STORAGE_ROOT_URL</dt>
-<dd>URL to use for the reva service. Default: <code>localhost:9152</code>.</dd>
-<dt>&ndash;driver | $REVA_STORAGE_ROOT_DRIVER</dt>
-<dd>storage driver for root mount: eg. local, eos, owncloud, ocis or s3. Default: <code>local</code>.</dd>
-<dt>&ndash;mount-path | $REVA_STORAGE_ROOT_MOUNT_PATH</dt>
-<dd>mount path. Default: <code>/</code>.</dd>
-<dt>&ndash;mount-id | $REVA_STORAGE_ROOT_MOUNT_ID</dt>
-<dd>mount id. Default: <code>123e4567-e89b-12d3-a456-426655440001</code>.</dd>
-<dt>&ndash;expose-data-server | $REVA_STORAGE_ROOT_EXPOSE_DATA_SERVER</dt>
-<dd>exposes a dedicated data server.</dd>
-<dt>&ndash;data-server-url | $REVA_STORAGE_ROOT_DATA_SERVER_URL</dt>
-<dd>data server url.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="ocis-reva-frontend"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis-reva/configuration/#ocis-reva-frontend" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-frontend"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-reva frontend</h3></div>
-<p>Start reva frontend service</p>
-<p>Usage: <code>ocis-reva frontend [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;debug-addr | $REVA_FRONTEND_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>0.0.0.0:9141</code>.</dd>
-<dt>&ndash;transfer-secret | $REVA_TRANSFER_SECRET</dt>
-<dd>Transfer secret for datagateway. Default: <code>replace-me-with-a-transfer-secret</code>.</dd>
-<dt>&ndash;webdav-namespace | $WEBDAV_NAMESPACE</dt>
-<dd>Namespace prefix for the /webdav endpoint. Default: <code>/home/</code>.</dd>
-<dt>&ndash;dav-files-namespace | $DAV_FILES_NAMESPACE</dt>
-<dd>Namespace prefix for the webdav /dav/files endpoint. Default: <code>/oc/</code>.</dd>
-<dt>&ndash;network | $REVA_FRONTEND_NETWORK</dt>
-<dd>Network to use for the reva service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>tcp</code>.</dd>
-<dt>&ndash;protocol | $REVA_FRONTEND_PROTOCOL</dt>
-<dd>protocol for reva service, can be &lsquo;http&rsquo; or &lsquo;grpc&rsquo;. Default: <code>http</code>.</dd>
-<dt>&ndash;addr | $REVA_FRONTEND_ADDR</dt>
-<dd>Address to bind reva service. Default: <code>0.0.0.0:9140</code>.</dd>
-<dt>&ndash;url | $REVA_FRONTEND_URL</dt>
-<dd>URL to use for the reva service. Default: <code>https://localhost:9200</code>.</dd>
-<dt>&ndash;datagateway-prefix | $REVA_FRONTEND_DATAGATEWAY_PREFIX</dt>
-<dd>datagateway prefix. Default: <code>data</code>.</dd>
-<dt>&ndash;ocdav-prefix | $REVA_FRONTEND_OCDAV_PREFIX</dt>
-<dd>owncloud webdav endpoint prefix.</dd>
-<dt>&ndash;ocs-prefix | $REVA_FRONTEND_OCS_PREFIX</dt>
-<dd>open collaboration services endpoint prefix. Default: <code>ocs</code>.</dd>
-<dt>&ndash;gateway-url | $REVA_GATEWAY_URL</dt>
-<dd>URL to use for the reva gateway service. Default: <code>localhost:9142</code>.</dd>
-<dt>&ndash;upload-disable-tus | $REVA_FRONTEND_UPLOAD_DISABLE_TUS</dt>
-<dd>Disables TUS upload mechanism. Default: <code>false</code>.</dd>
-<dt>&ndash;upload-http-method-override | $REVA_FRONTEND_UPLOAD_HTTP_METHOD_OVERRIDE</dt>
-<dd>Specify an HTTP method (ex: POST) that clients should to use when uploading instead of PATCH.</dd>
+<dt>&ndash;addr | $REVA_USERS_ADDR</dt>
+<dd>Address to bind reva service. Default: <code>0.0.0.0:9144</code>.</dd>
+<dt>&ndash;url | $REVA_USERS_URL</dt>
+<dd>URL to use for the reva service. Default: <code>localhost:9144</code>.</dd>
+<dt>&ndash;driver | $REVA_USERS_DRIVER</dt>
+<dd>user driver: &lsquo;demo&rsquo;, &lsquo;json&rsquo;, &lsquo;ldap&rsquo;, or &lsquo;rest&rsquo;. Default: <code>ldap</code>.</dd>
+<dt>&ndash;json-config | $REVA_USERS_JSON</dt>
+<dd>Path to users.json file.</dd>
+<dt>&ndash;rest-client-id | $REVA_REST_CLIENT_ID</dt>
+<dd>User rest driver Client ID.</dd>
+<dt>&ndash;rest-client-secret | $REVA_REST_CLIENT_SECRET</dt>
+<dd>User rest driver Client Secret.</dd>
+<dt>&ndash;rest-redis-address | $REVA_REST_REDIS_ADDRESS</dt>
+<dd>Address for redis server. Default: <code>localhost:6379</code>.</dd>
+<dt>&ndash;rest-redis-username | $REVA_REST_REDIS_USERNAME</dt>
+<dd>Username for redis server.</dd>
+<dt>&ndash;rest-redis-password | $REVA_REST_REDIS_PASSWORD</dt>
+<dd>Password for redis server.</dd>
+<dt>&ndash;rest-id-provider | $REVA_REST_ID_PROVIDER</dt>
+<dd>The OIDC Provider.</dd>
+<dt>&ndash;rest-api-base-url | $REVA_REST_API_BASE_URL</dt>
+<dd>Base API Endpoint.</dd>
+<dt>&ndash;rest-oidc-token-endpoint | $REVA_REST_OIDC_TOKEN_ENDPOINT</dt>
+<dd>Endpoint to generate token to access the API.</dd>
+<dt>&ndash;rest-target-api | $REVA_REST_TARGET_API</dt>
+<dd>The target application.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h3 id="ocis-reva-storage-home-data"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis-reva/configuration/#ocis-reva-storage-home-data" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-storage-home-data"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-reva storage-home-data</h3></div>
 <p>Start reva storage-home-data service</p>
@@ -2108,26 +2165,30 @@ $HOME/.ocis
 <dt>&ndash;users-url | $REVA_USERS_URL</dt>
 <dd>URL to use for the reva service. Default: <code>localhost:9144</code>.</dd>
 </dl>
-<div class="gdoc-page__anchorwrap"><h3 id="ocis-reva-reva-storage-metadata"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis-reva/configuration/#ocis-reva-reva-storage-metadata" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-reva-storage-metadata"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-reva reva-storage-metadata</h3></div>
-<p>Start reva storage-metadata service</p>
-<p>Usage: <code>ocis-reva reva-storage-metadata [command options] [arguments...]</code></p>
+<div class="gdoc-page__anchorwrap"><h3 id="ocis-reva-auth-bearer"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis-reva/configuration/#ocis-reva-auth-bearer" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-auth-bearer"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-reva auth-bearer</h3></div>
+<p>Start reva authprovider for bearer auth</p>
+<p>Usage: <code>ocis-reva auth-bearer [command options] [arguments...]</code></p>
 <dl>
-<dt>&ndash;debug-addr | $REVA_STORAGE_METADATA_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>0.0.0.0:9217</code>.</dd>
-<dt>&ndash;network | $REVA_STORAGE_METADATA_NETWORK</dt>
+<dt>&ndash;debug-addr | $REVA_AUTH_BEARER_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>0.0.0.0:9149</code>.</dd>
+<dt>&ndash;oidc-issuer | $REVA_OIDC_ISSUER</dt>
+<dd>OIDC issuer. Default: <code>https://localhost:9200</code>.</dd>
+<dt>&ndash;oidc-insecure | $REVA_OIDC_INSECURE</dt>
+<dd>OIDC allow insecure communication. Default: <code>true</code>.</dd>
+<dt>&ndash;oidc-id-claim | $REVA_OIDC_ID_CLAIM</dt>
+<dd>OIDC id claim. Default: <code>preferred_username</code>.</dd>
+<dt>&ndash;oidc-uid-claim | $REVA_OIDC_UID_CLAIM</dt>
+<dd>OIDC uid claim.</dd>
+<dt>&ndash;oidc-gid-claim | $REVA_OIDC_GID_CLAIM</dt>
+<dd>OIDC gid claim.</dd>
+<dt>&ndash;network | $REVA_AUTH_BEARER_NETWORK</dt>
 <dd>Network to use for the reva service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>tcp</code>.</dd>
-<dt>&ndash;provider-addr | $REVA_STORAGE_METADATA_PROVIDER_ADDR</dt>
-<dd>Address to bind reva service. Default: <code>0.0.0.0:9215</code>.</dd>
-<dt>&ndash;data-server-url | $REVA_STORAGE_METADATA_DATA_SERVER_URL</dt>
-<dd>URL of the data-server the storage-provider uses. Default: <code>http://localhost:9216</code>.</dd>
-<dt>&ndash;data-server-addr | $REVA_STORAGE_METADATA_DATA_SERVER_ADDR</dt>
-<dd>Address to bind the metadata data-server to. Default: <code>0.0.0.0:9216</code>.</dd>
-<dt>&ndash;storage-provider-driver | $REVA_STORAGE_METADATA_PROVIDER_DRIVER</dt>
-<dd>storage driver for metadata mount: eg. local, eos, owncloud, ocis or s3. Default: <code>local</code>.</dd>
-<dt>&ndash;data-provider-driver | $REVA_STORAGE_METADATA_DATA_PROVIDER_DRIVER</dt>
-<dd>storage driver for data-provider mount: eg. local, eos, owncloud, ocis or s3. Default: <code>local</code>.</dd>
-<dt>&ndash;storage-root | $REVA_STORAGE_METADATA_ROOT</dt>
-<dd>the path to the metadata storage root. Default: <code>/var/tmp/ocis/metadata</code>.</dd>
+<dt>&ndash;protocol | $REVA_AUTH_BEARER_PROTOCOL</dt>
+<dd>protocol for reva service, can be &lsquo;http&rsquo; or &lsquo;grpc&rsquo;. Default: <code>grpc</code>.</dd>
+<dt>&ndash;addr | $REVA_AUTH_BEARER_ADDR</dt>
+<dd>Address to bind reva service. Default: <code>0.0.0.0:9148</code>.</dd>
+<dt>&ndash;url | $REVA_AUTH_BEARER_URL</dt>
+<dd>URL to use for the reva service. Default: <code>localhost:9148</code>.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h3 id="ocis-reva-gateway"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis-reva/configuration/#ocis-reva-gateway" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-gateway"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-reva gateway</h3></div>
 <p>Start reva gateway</p>
@@ -2223,57 +2284,51 @@ $HOME/.ocis
 <dt>&ndash;users-url | $REVA_USERS_URL</dt>
 <dd>URL to use for the reva service. Default: <code>localhost:9144</code>.</dd>
 </dl>
-<div class="gdoc-page__anchorwrap"><h3 id="ocis-reva-auth-bearer"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis-reva/configuration/#ocis-reva-auth-bearer" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-auth-bearer"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-reva auth-bearer</h3></div>
-<p>Start reva authprovider for bearer auth</p>
-<p>Usage: <code>ocis-reva auth-bearer [command options] [arguments...]</code></p>
+<div class="gdoc-page__anchorwrap"><h3 id="ocis-reva-reva-storage-metadata"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis-reva/configuration/#ocis-reva-reva-storage-metadata" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-reva-storage-metadata"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-reva reva-storage-metadata</h3></div>
+<p>Start reva storage-metadata service</p>
+<p>Usage: <code>ocis-reva reva-storage-metadata [command options] [arguments...]</code></p>
 <dl>
-<dt>&ndash;debug-addr | $REVA_AUTH_BEARER_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>0.0.0.0:9149</code>.</dd>
-<dt>&ndash;oidc-issuer | $REVA_OIDC_ISSUER</dt>
-<dd>OIDC issuer. Default: <code>https://localhost:9200</code>.</dd>
-<dt>&ndash;oidc-insecure | $REVA_OIDC_INSECURE</dt>
-<dd>OIDC allow insecure communication. Default: <code>true</code>.</dd>
-<dt>&ndash;oidc-id-claim | $REVA_OIDC_ID_CLAIM</dt>
-<dd>OIDC id claim. Default: <code>preferred_username</code>.</dd>
-<dt>&ndash;oidc-uid-claim | $REVA_OIDC_UID_CLAIM</dt>
-<dd>OIDC uid claim.</dd>
-<dt>&ndash;oidc-gid-claim | $REVA_OIDC_GID_CLAIM</dt>
-<dd>OIDC gid claim.</dd>
-<dt>&ndash;network | $REVA_AUTH_BEARER_NETWORK</dt>
+<dt>&ndash;debug-addr | $REVA_STORAGE_METADATA_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>0.0.0.0:9217</code>.</dd>
+<dt>&ndash;network | $REVA_STORAGE_METADATA_NETWORK</dt>
 <dd>Network to use for the reva service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>tcp</code>.</dd>
-<dt>&ndash;protocol | $REVA_AUTH_BEARER_PROTOCOL</dt>
-<dd>protocol for reva service, can be &lsquo;http&rsquo; or &lsquo;grpc&rsquo;. Default: <code>grpc</code>.</dd>
-<dt>&ndash;addr | $REVA_AUTH_BEARER_ADDR</dt>
-<dd>Address to bind reva service. Default: <code>0.0.0.0:9148</code>.</dd>
-<dt>&ndash;url | $REVA_AUTH_BEARER_URL</dt>
-<dd>URL to use for the reva service. Default: <code>localhost:9148</code>.</dd>
+<dt>&ndash;provider-addr | $REVA_STORAGE_METADATA_PROVIDER_ADDR</dt>
+<dd>Address to bind reva service. Default: <code>0.0.0.0:9215</code>.</dd>
+<dt>&ndash;data-server-url | $REVA_STORAGE_METADATA_DATA_SERVER_URL</dt>
+<dd>URL of the data-server the storage-provider uses. Default: <code>http://localhost:9216</code>.</dd>
+<dt>&ndash;data-server-addr | $REVA_STORAGE_METADATA_DATA_SERVER_ADDR</dt>
+<dd>Address to bind the metadata data-server to. Default: <code>0.0.0.0:9216</code>.</dd>
+<dt>&ndash;storage-provider-driver | $REVA_STORAGE_METADATA_PROVIDER_DRIVER</dt>
+<dd>storage driver for metadata mount: eg. local, eos, owncloud, ocis or s3. Default: <code>local</code>.</dd>
+<dt>&ndash;data-provider-driver | $REVA_STORAGE_METADATA_DATA_PROVIDER_DRIVER</dt>
+<dd>storage driver for data-provider mount: eg. local, eos, owncloud, ocis or s3. Default: <code>local</code>.</dd>
+<dt>&ndash;storage-root | $REVA_STORAGE_METADATA_ROOT</dt>
+<dd>the path to the metadata storage root. Default: <code>/var/tmp/ocis/metadata</code>.</dd>
 </dl>
-<div class="gdoc-page__anchorwrap"><h3 id="ocis-reva-storage-oc"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis-reva/configuration/#ocis-reva-storage-oc" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-storage-oc"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-reva storage-oc</h3></div>
-<p>Start reva storage-oc service</p>
-<p>Usage: <code>ocis-reva storage-oc [command options] [arguments...]</code></p>
+<div class="gdoc-page__anchorwrap"><h3 id="ocis-reva-storage-root"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis-reva/configuration/#ocis-reva-storage-root" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-storage-root"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-reva storage-root</h3></div>
+<p>Start reva storage-root service</p>
+<p>Usage: <code>ocis-reva storage-root [command options] [arguments...]</code></p>
 <dl>
-<dt>&ndash;debug-addr | $REVA_STORAGE_OC_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>0.0.0.0:9163</code>.</dd>
-<dt>&ndash;network | $REVA_STORAGE_OC_NETWORK</dt>
+<dt>&ndash;debug-addr | $REVA_STORAGE_ROOT_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>0.0.0.0:9153</code>.</dd>
+<dt>&ndash;network | $REVA_STORAGE_ROOT_NETWORK</dt>
 <dd>Network to use for the reva service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>tcp</code>.</dd>
-<dt>&ndash;protocol | $REVA_STORAGE_OC_PROTOCOL</dt>
+<dt>&ndash;protocol | $REVA_STORAGE_ROOT_PROTOCOL</dt>
 <dd>protocol for reva service, can be &lsquo;http&rsquo; or &lsquo;grpc&rsquo;. Default: <code>grpc</code>.</dd>
-<dt>&ndash;addr | $REVA_STORAGE_OC_ADDR</dt>
-<dd>Address to bind reva service. Default: <code>0.0.0.0:9162</code>.</dd>
-<dt>&ndash;url | $REVA_STORAGE_OC_URL</dt>
-<dd>URL to use for the reva service. Default: <code>localhost:9162</code>.</dd>
-<dt>&ndash;driver | $REVA_STORAGE_OC_DRIVER</dt>
-<dd>storage driver for oc mount: eg. local, eos, owncloud, ocis or s3. Default: <code>owncloud</code>.</dd>
-<dt>&ndash;mount-path | $REVA_STORAGE_OC_MOUNT_PATH</dt>
-<dd>mount path. Default: <code>/oc</code>.</dd>
-<dt>&ndash;mount-id | $REVA_STORAGE_OC_MOUNT_ID</dt>
-<dd>mount id. Default: <code>1284d238-aa92-42ce-bdc4-0b0000009162</code>.</dd>
-<dt>&ndash;expose-data-server | $REVA_STORAGE_OC_EXPOSE_DATA_SERVER</dt>
-<dd>exposes a dedicated data server. Default: <code>false</code>.</dd>
-<dt>&ndash;data-server-url | $REVA_STORAGE_OC_DATA_SERVER_URL</dt>
-<dd>data server url. Default: <code>http://localhost:9164/data</code>.</dd>
-<dt>&ndash;users-url | $REVA_USERS_URL</dt>
-<dd>URL to use for the reva service. Default: <code>localhost:9144</code>.</dd>
+<dt>&ndash;addr | $REVA_STORAGE_ROOT_ADDR</dt>
+<dd>Address to bind reva service. Default: <code>0.0.0.0:9152</code>.</dd>
+<dt>&ndash;url | $REVA_STORAGE_ROOT_URL</dt>
+<dd>URL to use for the reva service. Default: <code>localhost:9152</code>.</dd>
+<dt>&ndash;driver | $REVA_STORAGE_ROOT_DRIVER</dt>
+<dd>storage driver for root mount: eg. local, eos, owncloud, ocis or s3. Default: <code>local</code>.</dd>
+<dt>&ndash;mount-path | $REVA_STORAGE_ROOT_MOUNT_PATH</dt>
+<dd>mount path. Default: <code>/</code>.</dd>
+<dt>&ndash;mount-id | $REVA_STORAGE_ROOT_MOUNT_ID</dt>
+<dd>mount id. Default: <code>123e4567-e89b-12d3-a456-426655440001</code>.</dd>
+<dt>&ndash;expose-data-server | $REVA_STORAGE_ROOT_EXPOSE_DATA_SERVER</dt>
+<dd>exposes a dedicated data server.</dd>
+<dt>&ndash;data-server-url | $REVA_STORAGE_ROOT_DATA_SERVER_URL</dt>
+<dd>data server url.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h3 id="ocis-reva-auth-basic"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis-reva/configuration/#ocis-reva-auth-basic" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-auth-basic"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-reva auth-basic</h3></div>
 <p>Start reva authprovider for basic auth</p>
@@ -2294,67 +2349,12 @@ $HOME/.ocis
 <dt>&ndash;url | $REVA_AUTH_BASIC_URL</dt>
 <dd>URL to use for the reva service. Default: <code>localhost:9146</code>.</dd>
 </dl>
-<div class="gdoc-page__anchorwrap"><h3 id="ocis-reva-users"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis-reva/configuration/#ocis-reva-users" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-users"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-reva users</h3></div>
-<p>Start reva users service</p>
-<p>Usage: <code>ocis-reva users [command options] [arguments...]</code></p>
+<div class="gdoc-page__anchorwrap"><h3 id="ocis-reva-health"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis-reva/configuration/#ocis-reva-health" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-reva health</h3></div>
+<p>Check health status</p>
+<p>Usage: <code>ocis-reva health [command options] [arguments...]</code></p>
 <dl>
-<dt>&ndash;debug-addr | $REVA_SHARING_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>0.0.0.0:9145</code>.</dd>
-<dt>&ndash;network | $REVA_USERS_NETWORK</dt>
-<dd>Network to use for the reva service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>tcp</code>.</dd>
-<dt>&ndash;protocol | $REVA_USERS_PROTOCOL</dt>
-<dd>protocol for reva service, can be &lsquo;http&rsquo; or &lsquo;grpc&rsquo;. Default: <code>grpc</code>.</dd>
-<dt>&ndash;addr | $REVA_USERS_ADDR</dt>
-<dd>Address to bind reva service. Default: <code>0.0.0.0:9144</code>.</dd>
-<dt>&ndash;url | $REVA_USERS_URL</dt>
-<dd>URL to use for the reva service. Default: <code>localhost:9144</code>.</dd>
-<dt>&ndash;driver | $REVA_USERS_DRIVER</dt>
-<dd>user driver: &lsquo;demo&rsquo;, &lsquo;json&rsquo;, &lsquo;ldap&rsquo;, or &lsquo;rest&rsquo;. Default: <code>ldap</code>.</dd>
-<dt>&ndash;json-config | $REVA_USERS_JSON</dt>
-<dd>Path to users.json file.</dd>
-<dt>&ndash;rest-client-id | $REVA_REST_CLIENT_ID</dt>
-<dd>User rest driver Client ID.</dd>
-<dt>&ndash;rest-client-secret | $REVA_REST_CLIENT_SECRET</dt>
-<dd>User rest driver Client Secret.</dd>
-<dt>&ndash;rest-redis-address | $REVA_REST_REDIS_ADDRESS</dt>
-<dd>Address for redis server. Default: <code>localhost:6379</code>.</dd>
-<dt>&ndash;rest-redis-username | $REVA_REST_REDIS_USERNAME</dt>
-<dd>Username for redis server.</dd>
-<dt>&ndash;rest-redis-password | $REVA_REST_REDIS_PASSWORD</dt>
-<dd>Password for redis server.</dd>
-<dt>&ndash;rest-id-provider | $REVA_REST_ID_PROVIDER</dt>
-<dd>The OIDC Provider.</dd>
-<dt>&ndash;rest-api-base-url | $REVA_REST_API_BASE_URL</dt>
-<dd>Base API Endpoint.</dd>
-<dt>&ndash;rest-oidc-token-endpoint | $REVA_REST_OIDC_TOKEN_ENDPOINT</dt>
-<dd>Endpoint to generate token to access the API.</dd>
-<dt>&ndash;rest-target-api | $REVA_REST_TARGET_API</dt>
-<dd>The target application.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="ocis-reva-storage-eos-data"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis-reva/configuration/#ocis-reva-storage-eos-data" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-reva-storage-eos-data"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis-reva storage-eos-data</h3></div>
-<p>Start reva storage-eos-data service</p>
-<p>Usage: <code>ocis-reva storage-eos-data [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;debug-addr | $REVA_STORAGE_OC_DATA_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>0.0.0.0:9161</code>.</dd>
-<dt>&ndash;network | $REVA_STORAGE_EOS_DATA_NETWORK</dt>
-<dd>Network to use for the reva service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>tcp</code>.</dd>
-<dt>&ndash;protocol | $REVA_STORAGE_EOS_DATA_PROTOCOL</dt>
-<dd>protocol for reva service, can be &lsquo;http&rsquo; or &lsquo;grpc&rsquo;. Default: <code>http</code>.</dd>
-<dt>&ndash;addr | $REVA_STORAGE_EOS_DATA_ADDR</dt>
-<dd>Address to bind reva service. Default: <code>0.0.0.0:9160</code>.</dd>
-<dt>&ndash;url | $REVA_STORAGE_EOS_DATA_URL</dt>
-<dd>URL to use for the reva service. Default: <code>localhost:9160</code>.</dd>
-<dt>&ndash;driver | $REVA_STORAGE_EOS_DATA_DRIVER</dt>
-<dd>storage driver for eos data mount: eg. local, eos, owncloud, ocis or s3. Default: <code>eos</code>.</dd>
-<dt>&ndash;prefix | $REVA_STORAGE_EOS_DATA_PREFIX</dt>
-<dd>prefix for the http endpoint, without leading slash. Default: <code>data</code>.</dd>
-<dt>&ndash;temp-folder | $REVA_STORAGE_EOS_DATA_TEMP_FOLDER</dt>
-<dd>temp folder. Default: <code>/var/tmp/</code>.</dd>
-<dt>&ndash;gateway-url | $REVA_GATEWAY_URL</dt>
-<dd>URL to use for the reva gateway service. Default: <code>localhost:9142</code>.</dd>
-<dt>&ndash;users-url | $REVA_USERS_URL</dt>
-<dd>URL to use for the reva service. Default: <code>localhost:9144</code>.</dd>
+<dt>&ndash;debug-addr | $REVA_DEBUG_ADDR</dt>
+<dd>Address to debug endpoint. Default: <code>0.0.0.0:9109</code>.</dd>
 </dl>
 
 
