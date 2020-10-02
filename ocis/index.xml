@@ -43,10 +43,10 @@ If you need to access ocis on a VM or a remote machine e.g. when testing a mobil
     <item>
       <title>Configuration</title>
       <link>https://owncloud.github.io/ocis/configuration/</link>
-      <pubDate>Fri, 21 Aug 2020 17:50:21 +0200</pubDate>
+      <pubDate>Mon, 21 Sep 2020 13:14:56 +0200</pubDate>
       
       <guid>https://owncloud.github.io/ocis/configuration/</guid>
-      <description>Configuration  Configuration using config files Envrionment variables Commandline flags   Root Command Sub Commands  ocis server ocis health List of available Extension subcommands  ocis glauth ocis ocs ocis store ocis reva-auth-basic ocis reva-storage-oc ocis run ocis graph-explorer ocis hello ocis phoenix ocis reva-storage-eos-data ocis reva-frontend ocis reva-storage-home ocis webdav ocis konnectd ocis reva-auth-bearer ocis reva-storage-home-data ocis reva-users ocis accounts ocis graph ocis reva-storage-oc-data ocis proxy ocis reva-storage-eos ocis settings ocis kill ocis list ocis import ocis thumbnails ocis reva-gateway ocis reva-sharing ocis reva-storage-public-link ocis reva-storage-root         Configuration oCIS Single Binary is not responsible for configuring extensions.</description>
+      <description>Configuration  Configuration using config files Envrionment variables Commandline flags   Root Command Sub Commands  ocis health ocis server List of available Extension subcommands  ocis konnectd ocis run ocis store ocis glauth ocis ocs ocis reva-storage-eos-data ocis reva-storage-home-data ocis kill ocis proxy ocis reva-auth-bearer ocis reva-storage-oc-data ocis settings ocis accounts ocis phoenix ocis reva-storage-eos ocis reva-storage-home ocis reva-storage-oc ocis reva-storage-root ocis reva-gateway ocis reva-sharing ocis reva-users ocis list ocis reva-auth-basic ocis reva-frontend ocis reva-storage-public-link ocis thumbnails ocis webdav         Configuration oCIS Single Binary is not responsible for configuring extensions.</description>
     </item>
     
     <item>
@@ -113,7 +113,26 @@ git clone https://github.com/owncloud/core.git Run a redis server in a docker co
       <pubDate>Mon, 27 Jul 2020 14:16:00 +0100</pubDate>
       
       <guid>https://owncloud.github.io/ocis/public-upload-flow/</guid>
-      <description>Public Upload flow The following diagram describes the flow of requests:</description>
+      <description>Public Upload flow The following diagram describes the flow of requests:
+ocis-reva sharing
+REVA_SHARING_ADDR = 0.0.0.0:9150
+ocis-reva sharing...ocis-reva frontend
+REVA_FRONTEND_ADDR = 0.0.0.0:9140
+REVA_GATEWAY_URL = ocis:9142
+ocis-reva frontend...ocis-proxy
+PROXY_HTTP_ADDR = 0.0.0.0:9200
+ocis-proxy...2  POST http://ocis:9140/remote.php/dav/files/einstein/2 POST http:/...ocdav
+prefix = &#34;&#34;
+timeout = 86400
+ocdav...datagateway
+prefix = &#34;data&#34;
+timeout = 86400
+datagateway...client
+client&amp;#xa;22  PATCH https://oc.example.org/data/{token}
+Tus-Resumable: 1.0.022 PATCH http...ocis-reva gateway
+REVA_GATEWAY_ADDR = 0.0.0.0:9142
+ocis-reva gateway...storage-registry
+storage-registry&amp;#xa;Expose: trueExpose: true24  PATCH http://ocis:9156/data/u-u-i-d24 PATCH http.</description>
     </item>
     
     <item>
