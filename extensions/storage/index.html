@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Building">
+<meta name="description" content="Reva">
 
-<title>Building | ownCloud</title>
+<title>Reva | ownCloud</title>
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
 <link rel="stylesheet" href="/main.min.css">
@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="/custom.css">
 
 
+<link rel="alternate" type="application/rss+xml" href="https://owncloud.github.io/extensions/storage/index.xml" title="ownCloud" />
 <!--
     Made with Geekdoc theme
     https://github.com/xoxys/hugo-geekdoc
@@ -1122,7 +1123,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis-reva/" class="gdoc-nav__entry ">
+                    <a href="/extensions/storage/" class="gdoc-nav__entry is-active">
                         Reva
                     </a>
                 </span>
@@ -1140,24 +1141,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis-reva/getting-started/" class="gdoc-nav__entry ">
-                        Getting Started
-                    </a>
-                </span>
-            
-
-            
-            
-            </li>
-            
-            
-        
-            
-            
-            <li>
-            
-                <span class="flex">
-                    <a href="/extensions/ocis-reva/configuration/" class="gdoc-nav__entry ">
+                    <a href="/extensions/storage/configuration/" class="gdoc-nav__entry ">
                         Configuration
                     </a>
                 </span>
@@ -1174,7 +1158,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis-reva/building/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/storage/building/" class="gdoc-nav__entry ">
                         Building
                     </a>
                 </span>
@@ -1191,7 +1175,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis-reva/users/" class="gdoc-nav__entry ">
+                    <a href="/extensions/storage/users/" class="gdoc-nav__entry ">
                         Users
                     </a>
                 </span>
@@ -1208,7 +1192,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis-reva/storages/" class="gdoc-nav__entry ">
+                    <a href="/extensions/storage/storages/" class="gdoc-nav__entry ">
                         Storages
                     </a>
                 </span>
@@ -1223,7 +1207,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis-reva/testing/" class="gdoc-nav__entry ">
+                    <a href="/extensions/storage/testing/" class="gdoc-nav__entry ">
                         Testing
                     </a>
                 </span>
@@ -1240,7 +1224,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis-reva/license/" class="gdoc-nav__entry ">
+                    <a href="/extensions/storage/license/" class="gdoc-nav__entry ">
                         License
                     </a>
                 </span>
@@ -1257,7 +1241,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis-reva/updating/" class="gdoc-nav__entry ">
+                    <a href="/extensions/storage/updating/" class="gdoc-nav__entry ">
                         Updating reva
                     </a>
                 </span>
@@ -1274,7 +1258,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis-reva/releasing/" class="gdoc-nav__entry ">
+                    <a href="/extensions/storage/releasing/" class="gdoc-nav__entry ">
                         Releasing
                     </a>
                 </span>
@@ -1821,14 +1805,7 @@
         
     
     
-        
-        
-        
-    
-    
-        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis-reva/'>Reva</a> / Building
-    
-
+        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / Reva
     
 
     
@@ -1841,16 +1818,15 @@
     <span>
         
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis-reva/edit/master/docs/building.md">
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/extensions/storage/_index.md">
                 Edit this page
             </a>
         
     </span>
 </div>
 
-
     <article class="gdoc-markdown">
-        <h1>Building</h1>
+        <h1>Reva</h1>
         
 
 
@@ -1859,13 +1835,40 @@
     
 
 
-<p>As this project is built with Go, so you need to install that first. The installation of Go is out of the scope of this document, please follow the official documentation for <a href="https://golang.org/doc/install">Go</a>.To build this project you have to install Go &gt;= v1.13. After the installation of the required tools you need to get the sources:</p>
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">git clone https://github.com/owncloud/ocis-reva.git
-cd ocis-reva</code></pre></div>
-<p>All required tool besides Go itself and make are bundled or getting automatically installed within the <code>GOPATH</code>. All commands to build this project are part of our <code>Makefile</code>.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="backend"><a data-clipboard-text="https://owncloud.github.io/extensions/ocis-reva/building/#backend" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#backend"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Backend</h3></div>
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">make build</code></pre></div>
-<p>The above command should produce the binary within the <code>bin/</code> folder now, give it a try with <code>./bin/ocis-reva -h</code> to see all available options.</p>
+<p>This service provides an ocis extension that wraps <a href="https://github.com/cs3org/reva/">reva</a> and adds an opinionated configuration to it.</p>
+<p>It uses the port range 9140-9179 to preconfigure several services.</p>
+<p>| port | service |
++&mdash;&mdash;+&mdash;&mdash;&mdash;+
+| 9109 | health? |
+| 9140 | frontend        |
+| 9141 | frontend debug        |
+| 9142 | gateway        |
+| 9143 | gateway debug        |
+| 9144 | users        |
+| 9145 | users debug        |
+| 9146 | authbasic        |
+| 9147 | authbasic debug        |
+| 9148 | authbearer        |
+| 9149 | authbearer debug        |
+| 9150 | sharing        |
+| 9151 | sharing debug        |
+| 9152 | storage root        |
+| 9153 | storage root debug        |
+| 9154 | storage home        |
+| 9155 | storage home debug        |
+| 9156 | storage home data        |
+| 9157 | storage home data debug        |
+| 9158 | storage eos        |
+| 9159 | storage eos debug        |
+| 9160 | storage eos data        |
+| 9161 | storage eos data debug        |
+| 9162 | storage oc        |
+| 9163 | storage oc debug        |
+| 9164 | storage oc data        |
+| 9165 | storage oc data debug        |
+| 9166-9177 | reserved for s3, wnd, custom + data providers |
+| 9178 | storage public link        |
+| 9179 | storage public link data        |</p>
 
 
     </article>

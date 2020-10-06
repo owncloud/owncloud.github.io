@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Reva">
+<meta name="description" content="Updating reva">
 
-<title>Reva | ownCloud</title>
+<title>Updating reva | ownCloud</title>
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
 <link rel="stylesheet" href="/main.min.css">
@@ -14,7 +14,6 @@
 <link rel="stylesheet" href="/custom.css">
 
 
-<link rel="alternate" type="application/rss+xml" href="https://owncloud.github.io/extensions/ocis-reva/index.xml" title="ownCloud" />
 <!--
     Made with Geekdoc theme
     https://github.com/xoxys/hugo-geekdoc
@@ -1123,7 +1122,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis-reva/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/storage/" class="gdoc-nav__entry ">
                         Reva
                     </a>
                 </span>
@@ -1141,24 +1140,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis-reva/getting-started/" class="gdoc-nav__entry ">
-                        Getting Started
-                    </a>
-                </span>
-            
-
-            
-            
-            </li>
-            
-            
-        
-            
-            
-            <li>
-            
-                <span class="flex">
-                    <a href="/extensions/ocis-reva/configuration/" class="gdoc-nav__entry ">
+                    <a href="/extensions/storage/configuration/" class="gdoc-nav__entry ">
                         Configuration
                     </a>
                 </span>
@@ -1175,7 +1157,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis-reva/building/" class="gdoc-nav__entry ">
+                    <a href="/extensions/storage/building/" class="gdoc-nav__entry ">
                         Building
                     </a>
                 </span>
@@ -1192,7 +1174,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis-reva/users/" class="gdoc-nav__entry ">
+                    <a href="/extensions/storage/users/" class="gdoc-nav__entry ">
                         Users
                     </a>
                 </span>
@@ -1209,7 +1191,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis-reva/storages/" class="gdoc-nav__entry ">
+                    <a href="/extensions/storage/storages/" class="gdoc-nav__entry ">
                         Storages
                     </a>
                 </span>
@@ -1224,7 +1206,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis-reva/testing/" class="gdoc-nav__entry ">
+                    <a href="/extensions/storage/testing/" class="gdoc-nav__entry ">
                         Testing
                     </a>
                 </span>
@@ -1241,7 +1223,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis-reva/license/" class="gdoc-nav__entry ">
+                    <a href="/extensions/storage/license/" class="gdoc-nav__entry ">
                         License
                     </a>
                 </span>
@@ -1258,7 +1240,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis-reva/updating/" class="gdoc-nav__entry ">
+                    <a href="/extensions/storage/updating/" class="gdoc-nav__entry is-active">
                         Updating reva
                     </a>
                 </span>
@@ -1275,7 +1257,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/extensions/ocis-reva/releasing/" class="gdoc-nav__entry ">
+                    <a href="/extensions/storage/releasing/" class="gdoc-nav__entry ">
                         Releasing
                     </a>
                 </span>
@@ -1822,7 +1804,14 @@
         
     
     
-        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / Reva
+        
+        
+        
+    
+    
+        <a href='/'>Documentation</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/storage/'>Reva</a> / Updating reva
+    
+
     
 
     
@@ -1835,15 +1824,16 @@
     <span>
         
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis-reva/edit/master/docs/_index.md">
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/extensions/storage/updating.md">
                 Edit this page
             </a>
         
     </span>
 </div>
 
+
     <article class="gdoc-markdown">
-        <h1>Reva</h1>
+        <h1>Updating reva</h1>
         
 
 
@@ -1852,40 +1842,22 @@
     
 
 
-<p>This service provides an ocis extension that wraps <a href="https://github.com/cs3org/reva/">reva</a> and adds an opinionated configuration to it.</p>
-<p>It uses the port range 9140-9179 to preconfigure several services.</p>
-<p>| port | service |
-+&mdash;&mdash;+&mdash;&mdash;&mdash;+
-| 9109 | health? |
-| 9140 | frontend        |
-| 9141 | frontend debug        |
-| 9142 | gateway        |
-| 9143 | gateway debug        |
-| 9144 | users        |
-| 9145 | users debug        |
-| 9146 | authbasic        |
-| 9147 | authbasic debug        |
-| 9148 | authbearer        |
-| 9149 | authbearer debug        |
-| 9150 | sharing        |
-| 9151 | sharing debug        |
-| 9152 | storage root        |
-| 9153 | storage root debug        |
-| 9154 | storage home        |
-| 9155 | storage home debug        |
-| 9156 | storage home data        |
-| 9157 | storage home data debug        |
-| 9158 | storage eos        |
-| 9159 | storage eos debug        |
-| 9160 | storage eos data        |
-| 9161 | storage eos data debug        |
-| 9162 | storage oc        |
-| 9163 | storage oc debug        |
-| 9164 | storage oc data        |
-| 9165 | storage oc data debug        |
-| 9166-9177 | reserved for s3, wnd, custom + data providers |
-| 9178 | storage public link        |
-| 9179 | storage public link data        |</p>
+
+
+
+  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
+        <li><a href="#updating-reva">Updating reva</a></li>
+      </ul></nav><hr></div>
+
+
+<div class="gdoc-page__anchorwrap"><h2 id="updating-reva"><a data-clipboard-text="https://owncloud.github.io/extensions/storage/updating/#updating-reva" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#updating-reva"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Updating reva</h2></div>
+<ol>
+<li>Run <code>go get github.com/cs3org/reva@master</code></li>
+<li>Create a changelog entry containing changes that were done in <a href="https://github.com/cs3org/reva/commits/master">reva</a></li>
+<li>Create a Pull Request to ocis-reva master with those changes</li>
+<li>If test issues appear, you might need to <a href="https://owncloud.github.io/extensions/storage/testing/">adjust the tests</a></li>
+<li>After the PR is merged, consider doing a <a href="https://owncloud.github.io/extensions/storage/releasing/">release of the storage submodule</a></li>
+</ol>
 
 
     </article>
