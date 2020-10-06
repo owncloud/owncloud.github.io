@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Development on ownCloud</title>
+    <link>https://owncloud.github.io/ocis/development/</link>
+    <description>Recent content in Development on ownCloud</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 01 Oct 2020 20:35:00 +0100</lastBuildDate>
+    
+	<atom:link href="https://owncloud.github.io/ocis/development/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Getting Started with Development</title>
+      <link>https://owncloud.github.io/ocis/development/getting-started/</link>
+      <pubDate>Tue, 07 Jul 2020 20:35:00 +0100</pubDate>
+      
+      <guid>https://owncloud.github.io/ocis/development/getting-started/</guid>
+      <description>Docker dev environment  Option 1: Plain docker Option 2: Docker compose   Verification     Docker dev environment Option 1: Plain docker To build and run your local ocis code with default storage driver
+docker run --rm -ti --name ocis -v $PWD:/ocis -p 9200:9200 owncloud/eos-ocis-dev The eos-ocis-dev container will build and run ocis using the owncloud storage driver and store files in the container at /var/tmp/reva/data/&amp;lt;username&amp;gt;/files</description>
+    </item>
+    
+    <item>
+      <title>Build ocis</title>
+      <link>https://owncloud.github.io/ocis/development/building/</link>
+      <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
+      
+      <guid>https://owncloud.github.io/ocis/development/building/</guid>
+      <description>Build requirements All required tools besides go and make are bundled or getting automatically installed within the GOPATH. All commands to build this project are part of our Makefile.
+The installation of Go is out of the scope of this document, please follow the official documentation for Go, to build this project you have to install Go &amp;gt;= v1.13.
+Get the sources git clone https://github.com/owncloud/ocis.git cd ocis Build the ocis binary The ocis binary source is in the ocis/ocis folder.</description>
+    </item>
+    
+    <item>
+      <title>Testing</title>
+      <link>https://owncloud.github.io/ocis/development/testing/</link>
+      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://owncloud.github.io/ocis/development/testing/</guid>
+      <description>Acceptance tests We are using the ownCloud 10 acceptance testsuite against ocis. To set this up you need the owncloud 10 core repo, a ldap server that the acceptance tests can use to manage users, a redis server for file-versions and the ocis code.
+Getting the tests All you need to do to get the acceptance tests is check out the core repo:
+git clone https://github.com/owncloud/core.git Run a redis server in a docker container File versions need a redis server.</description>
+    </item>
+    
+    <item>
+      <title>Debugging</title>
+      <link>https://owncloud.github.io/ocis/development/debugging/</link>
+      <pubDate>Thu, 19 Mar 2020 08:21:00 +0100</pubDate>
+      
+      <guid>https://owncloud.github.io/ocis/development/debugging/</guid>
+      <description>Debugging As a single binary for easy deployment running ocis server just forks itself to start all the services, which makes debugging those processes a little harder.
+Ultimately, we want to be able to stop a single service using eg. ocis kill phoenix so that you can start the service you want to debug in debug mode. We need to change the way we fork processes though, otherwise the runtime will automatically restart a service if killed.</description>
+    </item>
+    
+    <item>
+      <title>Tracing</title>
+      <link>https://owncloud.github.io/ocis/development/tracing/</link>
+      <pubDate>Wed, 13 May 2020 12:09:00 +0100</pubDate>
+      
+      <guid>https://owncloud.github.io/ocis/development/tracing/</guid>
+      <description>By default, we use Jaeger for request tracing within oCIS. You can follow these steps to get started:
+ Start Jaeger by using the all-in-one docker image: docker run -d --name jaeger \ -e COLLECTOR_ZIPKIN_HTTP_PORT=9411 \ -p 5775:5775/udp \ -p 6831:6831/udp \ -p 6832:6832/udp \ -p 5778:5778 \ -p 16686:16686 \ -p 14268:14268 \ -p 14250:14250 \ -p 9411:9411 \ jaegertracing/all-in-one:1.17  Every single oCIS service has its own environment variables for enabling and configuring tracing.</description>
+    </item>
+    
+    <item>
+      <title>Build the documentation</title>
+      <link>https://owncloud.github.io/ocis/development/building-docs/</link>
+      <pubDate>Mon, 27 Jul 2020 08:39:38 +0000</pubDate>
+      
+      <guid>https://owncloud.github.io/ocis/development/building-docs/</guid>
+      <description>Buildling the documentation Following steps can be applied for every oCIS extension repository.
+Setting up  Install hugo Run make docs  Viewing the documentation To view the rendered docs in the browser run:
+cd hugo hugo -D server Then open &amp;ldquo;http://localhost:1313/&amp;rdquo;
+When making changes to the docs, run
+rsync -ax --delete ../docs/ content/ in the hugo folder and the server will pick up the changes and reload the page automatically.</description>
+    </item>
+    
+  </channel>
+</rss>
