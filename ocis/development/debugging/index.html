@@ -1880,7 +1880,7 @@
     <span>
         
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/docs/development/debugging.md">
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/development/debugging.md">
                 Edit this page
             </a>
         
@@ -2014,7 +2014,7 @@ error sending a grpc stat request</p>
 </blockquote>
 <p>This popped up when I tried to add <code>marie</code> as a collaborator in phoenix. That triggers a request to the server which I copied as curl. We can strip a lot of headers and the gist of it is:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"># curl &#39;https://localhost:9200/ocs/v1.php/apps/files_sharing/api/v1/shares&#39; -d &#39;shareType=0&amp;shareWith=marie&amp;path=%2FNeuer+Ordner&amp;permissions=1&#39; -u einstein:relativity -k -v | xmllint -format -
-[... headers ...] 
+[... headers ...]
 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;ocs&gt;
   &lt;meta&gt;
@@ -2043,7 +2043,7 @@ error sending a grpc stat request</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="mi">89</span><span class="p">:</span> <span class="c1">// WriteOCSResponse handles writing ocs responses in json and xml
 </span><span class="c1"></span><span class="mi">90</span><span class="p">:</span> <span class="kd">func</span> <span class="nf">WriteOCSResponse</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">res</span> <span class="o">*</span><span class="nx">Response</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
 <span class="mi">91</span><span class="p">:</span> 	<span class="kd">var</span> <span class="nx">encoded</span> <span class="p">[]</span><span class="kt">byte</span>
-<span class="mi">92</span><span class="p">:</span> 
+<span class="mi">92</span><span class="p">:</span>
 <span class="mi">93</span><span class="p">:</span> 	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
 <span class="mi">94</span><span class="p">:</span> 		<span class="nx">appctx</span><span class="p">.</span><span class="nf">GetLogger</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nf">Context</span><span class="p">()).</span><span class="nf">Error</span><span class="p">().</span><span class="nf">Err</span><span class="p">(</span><span class="nx">err</span><span class="p">).</span><span class="nf">Msg</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">OCS</span><span class="p">.</span><span class="nx">Meta</span><span class="p">.</span><span class="nx">Message</span><span class="p">)</span>
 <span class="mi">95</span><span class="p">:</span>     <span class="p">}</span>
