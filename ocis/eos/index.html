@@ -1942,17 +1942,17 @@ uid=20000(einstein) gid=30000(users) groups=30000(users),30001(sailing-lovers),3
   If the user is not found at first you might need to wait a few more minutes in case the ocis container is still compiling.
 </blockquote>
 
-<p>We also need to restart the reva-users service so it picks up the changed environment. Without a restart it is not able to resolve users from LDAP.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill reva-users
-docker-compose exec ocis ./bin/ocis run reva-users
+<p>We also need to restart the storage-users service, so it picks up the changed environment. Without a restart it is not able to resolve users from LDAP.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill storage-users
+docker-compose exec ocis ./bin/ocis run storage-users
 </code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="3-home-storage"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#3-home-storage" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#3-home-storage"><svg class="icon link"><use xlink:href="#link"></use></svg></a>3. Home storage</h3></div>
 <p>Kill the home storage. By default it uses the <code>owncloud</code> storage driver. We need to switch it to the <code>eoshome</code> driver and make it use the storage id of the eos storage provider:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill reva-storage-home
-docker-compose exec -e REVA_STORAGE_HOME_DRIVER=eoshome -e REVA_STORAGE_HOME_MOUNT_ID=1284d238-aa92-42ce-bdc4-0b0000009158 ocis ./bin/ocis run reva-storage-home
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill storage-storage-home
+docker-compose exec -e STORAGE_STORAGE_HOME_DRIVER=eoshome -e STORAGE_STORAGE_HOME_MOUNT_ID=1284d238-aa92-42ce-bdc4-0b0000009158 ocis ./bin/ocis run storage-storage-home
 </code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="4-home-data-provider"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#4-home-data-provider" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#4-home-data-provider"><svg class="icon link"><use xlink:href="#link"></use></svg></a>4. Home data provider</h3></div>
 <p>Kill the home data provider. By default it uses the <code>owncloud</code> storage driver. We need to switch it to the <code>eoshome</code> driver and make it use the storage id of the eos storage provider:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill reva-storage-home-data
-docker-compose exec -e REVA_STORAGE_HOME_DATA_DRIVER=eoshome ocis ./bin/ocis run reva-storage-home-data
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill storage-storage-home-data
+docker-compose exec -e STORAGE_STORAGE_HOME_DATA_DRIVER=eoshome ocis ./bin/ocis run storage-storage-home-data
 </code></pre></div><blockquote class="gdoc-hint info">
   The difference between the <em>home storage</em> and the <em>home data provider</em> are that the former is responsible for metadata changes while the latter is responsible for actual data transfer. The <em>home storage</em> uses the cs3 api to manage a folder hierarchy, while the <em>home data provider</em> is responsible for moving bytes to and from the storage.
 </blockquote>
@@ -2060,7 +2060,7 @@ One reason might be that the binary was already built but does not match the con
 <li><code>docker-compose exec ocis make clean build</code> to update the binary</li>
 <li><code>docker-compose exec ocis ./bin/ocis kill &lt;service&gt;</code> to kill the service</li>
 <li><code>docker-compose exec ocis ./bin/ocis run &lt;service&gt;</code> to start the service. Do not forget to set any env vars, eg.
-<code>docker-compose exec -e REVA_STORAGE_EOS_LAYOUT=&quot;{{substr 0 1 .Id.OpaqueId}}/{{.Id.OpaqueId}}&quot; -e REVA_STORAGE_HOME_DRIVER=eoshome ocis ./bin/ocis run reva-storage-home</code></li>
+<code>docker-compose exec -e STORAGE_STORAGE_EOS_LAYOUT=&quot;{{substr 0 1 .Id.OpaqueId}}/{{.Id.OpaqueId}}&quot; -e STORAGE_STORAGE_HOME_DRIVER=eoshome ocis ./bin/ocis run storage-storage-home</code></li>
 </ol>
 <div class="gdoc-page__anchorwrap"><h3 id="creation-and-upload-of-files-does-not-work"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#creation-and-upload-of-files-does-not-work" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#creation-and-upload-of-files-does-not-work"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Creation and upload of files does not work</h3></div>
 <p>If the upload did not work, please check the status of the eos space using the command <code>docker-compose exec mgm-master eos fs ls</code>.
