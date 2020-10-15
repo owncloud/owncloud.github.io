@@ -1917,7 +1917,7 @@ In the ownCloud 10 core clone the testing app with the following command:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">make test-acceptance-api \
 TEST_SERVER_URL=https://localhost:9200 \
 TEST_OCIS=true \
-OCIS_REVA_DATA_ROOT=/var/tmp/reva/ \
+OCIS_REVA_DATA_ROOT=/var/tmp/ocis/owncloud/ \
 SKELETON_DIR=apps/testing/data/apiSkeleton \
 BEHAT_FILTER_TAGS=&#39;~@notToImplementOnOCIS&amp;&amp;~@toImplementOnOCIS&#39;
 </code></pre></div><p>Make sure to adjust the settings <code>TEST_SERVER_URL</code> and <code>OCIS_REVA_DATA_ROOT</code> according to your environment.</p>
@@ -1925,12 +1925,13 @@ BEHAT_FILTER_TAGS=&#39;~@notToImplementOnOCIS&amp;&amp;~@toImplementOnOCIS&#39;
 <p>To run a single test add <code>BEHAT_FEATURE=&lt;feature file&gt;</code></p>
 <div class="gdoc-page__anchorwrap"><h3 id="use-existing-tests-for-bdd"><a data-clipboard-text="https://owncloud.github.io/ocis/development/testing/#use-existing-tests-for-bdd" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#use-existing-tests-for-bdd"><svg class="icon link"><use xlink:href="#link"></use></svg></a>use existing tests for BDD</h3></div>
 <p>As a lot of scenarios are written for oC10, we can use those tests for Behaviour driven development in ocis.
-Every scenario that does not work in OCIS with OC storage, is listed in <code>tests/acceptance/expected-failures-on-OC-storage.txt</code> with a link to the related issue.</p>
+Every scenario that does not work in OCIS with &ldquo;owncloud&rdquo; storage, is listed in <code>ocis/tests/acceptance/expected-failures-on-OWNCLOUD-storage.txt</code> with a link to the related issue.
+Every scenario that does not work in OCIS with &ldquo;ocis&rdquo; storage, is listed in <code>ocis/tests/acceptance/expected-failures-on-OCIS-storage.txt</code> with a link to the related issue.</p>
 <p>Those scenarios are run in the ordinary acceptance test pipeline in CI. The scenarios that fail are checked against the
 expected failures. If there are any differences then the CI pipeline fails.
-Similarly, scenarios that do not work in OCIS with EOS storage are listed in <code>tests/acceptance/expected-failures-on-EOS-storage.txt</code>.
+Similarly, scenarios that do not work in OCIS with EOS storage are listed in <code>ocis/tests/acceptance/expected-failures-on-EOS-storage.txt</code>.
 Additionally, some issues have scenarios that demonstrate the current buggy behaviour in ocis(reva).
-Those scenarios are in this ocis repository in <code>tests/acceptance/features/apiOcisSpecific</code>.
+Those scenarios are in this ocis repository in <code>ocis/tests/acceptance/features/apiOcisSpecific</code>.
 Have a look into the <a href="https://doc.owncloud.com/server/developer_manual/testing/acceptance-tests.html#writing-scenarios-for-bugs">documentation</a> to understand why we are writing those tests.</p>
 <p>If you want to work on a specific issue</p>
 <ol>
@@ -1941,7 +1942,7 @@ For that change <code>coreCommit</code> in the <code>config</code> section:</p>
   'apiTests': {
     'coreBranch': 'master',
     'coreCommit': 'a06b1bd5ba8e5244bfaf7fa04f441961e6fb0daa',
-    'numberOfParts': 2
+    'numberOfParts': 6
   }
 }
 </code></pre>
@@ -1952,7 +1953,7 @@ For that change <code>coreCommit</code> in the <code>config</code> section:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">make test-acceptance-api \
 TEST_SERVER_URL=https://localhost:9200 \
 TEST_OCIS=true \
-OCIS_REVA_DATA_ROOT=/var/tmp/reva/ \
+OCIS_REVA_DATA_ROOT=/var/tmp/ocis/owncloud/ \
 BEHAT_FEATURE=&#39;tests/acceptance/features/apiComments/comments.feature:123&#39;
 </code></pre></div></li>
 <li>
@@ -1975,14 +1976,8 @@ BEHAT_FEATURE=&#39;tests/acceptance/features/apiComments/comments.feature:123&#3
 </li>
 <li>
 <p>make a PR that has the fixed code, relevant lines removed from the expected failures file and bug demonstration tests deleted.</p>
-<p>If the changes also affect the <code>ocis-reva</code> repository make sure the changes get ported over there.</p>
 </li>
 </ol>
-<div class="gdoc-page__anchorwrap"><h3 id="notes"><a data-clipboard-text="https://owncloud.github.io/ocis/development/testing/#notes" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#notes"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Notes</h3></div>
-<ul>
-<li>in a normal case the test-code cleans up users after the test-run, but if a test-run is interrupted (e.g. by CTRL+C) users might have been left on the LDAP server. In that case rerunning the tests requires wiping the users in the ldap server, otherwise the tests will fail when trying to populate the users.</li>
-<li>the tests usually create users in the OU <code>TestUsers</code> with usernames specified in the feature file. If not defined in the feature file, most users have the password <code>123456</code>, defined by <code>regularUserPassword</code> in <code>behat.yml</code>, but other passwords are also used, see <a href="https://github.com/owncloud/core/blob/master/tests/acceptance/features/bootstrap/FeatureContext.php#L386"><code>\FeatureContext::getPasswordForUser()</code></a> for mapping and <a href="https://github.com/owncloud/core/blob/master/tests/acceptance/features/bootstrap/FeatureContext.php#L1668"><code>\FeatureContext::__construct</code></a> for the password definitions.</li>
-</ul>
 
 
     </article>
