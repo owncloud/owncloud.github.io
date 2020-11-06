@@ -269,6 +269,57 @@
             <li>
             
                 <span class="flex">
+                    <a href="/ocis/deployment/ocis_traefik/" class="gdoc-nav__entry ">
+                        ocis with traefik deployment scenario
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+            
+            
+            <li>
+            
+                <span class="flex">
+                    <a href="/ocis/deployment/ocis_oc10_backend/" class="gdoc-nav__entry ">
+                        ocis frontend with oc10 backend deployment scenario
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+            
+            
+            <li>
+            
+                <span class="flex">
+                    <a href="/ocis/deployment/ocis_external_konnectd/" class="gdoc-nav__entry ">
+                        ocis with konnectd on external node deployment scenario
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+            
+            
+            <li>
+            
+                <span class="flex">
                     <a href="/ocis/deployment/bridge/" class="gdoc-nav__entry ">
                         Bridge
                     </a>
@@ -283,23 +334,6 @@
         
     </ul>
 
-            
-            </li>
-            
-            
-        
-            
-            
-            <li>
-            
-                <span class="flex">
-                    <a href="/ocis/configuration/" class="gdoc-nav__entry ">
-                        Configuration
-                    </a>
-                </span>
-            
-
-            
             
             </li>
             
@@ -1258,21 +1292,6 @@
             </li>
             
             
-            
-            <li>
-            
-                <span class="flex">
-                    <a href="/extensions/storage/testing/" class="gdoc-nav__entry ">
-                        Testing
-                    </a>
-                </span>
-            
-
-            
-            
-            </li>
-            
-            
         
             
             
@@ -1900,7 +1919,9 @@
             <li><a href="#1-start-eos--ocis-containers">1. Start eos &amp; ocis containers</a></li>
             <li><a href="#2-ldap-support">2. LDAP support</a></li>
             <li><a href="#3-home-storage">3. Home storage</a></li>
-            <li><a href="#4-home-data-provider">4. Home data provider</a></li>
+            <li><a href="#4-users-storage">4. Users storage</a></li>
+            <li><a href="#5-metadata-storage">5. Metadata storage</a></li>
+            <li><a href="#6-accounts-service">6. Accounts service</a></li>
           </ul>
         </li>
         <li><a href="#verification">Verification</a></li>
@@ -1942,22 +1963,33 @@ uid=20000(einstein) gid=30000(users) groups=30000(users),30001(sailing-lovers),3
   If the user is not found at first you might need to wait a few more minutes in case the ocis container is still compiling.
 </blockquote>
 
-<p>We also need to restart the storage-users service, so it picks up the changed environment. Without a restart it is not able to resolve users from LDAP.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill storage-users
-docker-compose exec ocis ./bin/ocis run storage-users
+<p>We also need to restart the storage-userprovider service, so it picks up the changed environment. Without a restart it is not able to resolve users from LDAP.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill storage-userprovider
+docker-compose exec ocis ./bin/ocis run storage-userprovider
 </code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="3-home-storage"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#3-home-storage" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#3-home-storage"><svg class="icon link"><use xlink:href="#link"></use></svg></a>3. Home storage</h3></div>
-<p>Kill the home storage. By default it uses the <code>owncloud</code> storage driver. We need to switch it to the <code>eoshome</code> driver and make it use the storage id of the eos storage provider:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill storage-storage-home
-docker-compose exec -e STORAGE_STORAGE_HOME_DRIVER=eoshome -e STORAGE_STORAGE_HOME_MOUNT_ID=1284d238-aa92-42ce-bdc4-0b0000009158 ocis ./bin/ocis run storage-storage-home
-</code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="4-home-data-provider"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#4-home-data-provider" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#4-home-data-provider"><svg class="icon link"><use xlink:href="#link"></use></svg></a>4. Home data provider</h3></div>
-<p>Kill the home data provider. By default it uses the <code>owncloud</code> storage driver. We need to switch it to the <code>eoshome</code> driver and make it use the storage id of the eos storage provider:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill storage-storage-home-data
-docker-compose exec -e STORAGE_STORAGE_HOME_DATA_DRIVER=eoshome ocis ./bin/ocis run storage-storage-home-data
+<p>Kill the home storage. By default it uses the <code>ocis</code> storage driver. We need to switch it to the <code>eoshome</code> driver:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill storage-home
+docker-compose exec -e STORAGE_HOME_DRIVER=eoshome ocis ./bin/ocis run storage-home
+</code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="4-users-storage"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#4-users-storage" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#4-users-storage"><svg class="icon link"><use xlink:href="#link"></use></svg></a>4. Users storage</h3></div>
+<p>Kill the users storage. By default it uses the <code>ocis</code> storage driver. We need to switch it to the <code>eos</code> driver:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill storage-users
+docker-compose exec -e STORAGE_USERS_DRIVER=eos ocis ./bin/ocis run storage-users
+</code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="5-metadata-storage"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#5-metadata-storage" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#5-metadata-storage"><svg class="icon link"><use xlink:href="#link"></use></svg></a>5. Metadata storage</h3></div>
+<p>First we need to create the metadata root in eos and set an owner:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis eos mkdir -p /eos/dockertest/ocis/metadata
+docker-compose exec ocis eos chown 2:2 /eos/dockertest/ocis/metadata
 </code></pre></div><blockquote class="gdoc-hint info">
-  The difference between the <em>home storage</em> and the <em>home data provider</em> are that the former is responsible for metadata changes while the latter is responsible for actual data transfer. The <em>home storage</em> uses the cs3 api to manage a folder hierarchy, while the <em>home data provider</em> is responsible for moving bytes to and from the storage.
+  The uid and gid <code>2</code> are referencing the user <code>daemon</code> inside the ocis container. That user is also configured when restarting the accounts service later. For production systems you should create a dedicated user for the metadata storage.
 </blockquote>
 
-<div class="gdoc-page__anchorwrap"><h2 id="verification"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#verification" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#verification"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Verification</h2></div>
+<p>Kill the metadata storage. By default it uses the <code>ocis</code> storage driver. We need to switch it to the <code>eos</code> driver:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill storage-metadata
+docker-compose exec -e STORAGE_METADATA_DRIVER=eos -e STORAGE_METADATA_ROOT=/eos/dockertest/ocis/metadata ocis ./bin/ocis run storage-metadata
+</code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="6-accounts-service"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#6-accounts-service" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#6-accounts-service"><svg class="icon link"><use xlink:href="#link"></use></svg></a>6. Accounts service</h3></div>
+<p>Kill the accounts service. By default it uses the <code>ocis</code> storage driver. We need to switch it to the <code>eos</code> driver:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill accounts
+docker-compose exec -e ACCOUNTS_SERVICE_USER_USERNAME=daemon -e ACCOUNTS_SERVICE_USER_UID=2 -e ACCOUNTS_SERVICE_USER_GID=2 ocis ./bin/ocis run accounts
+</code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="verification"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#verification" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#verification"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Verification</h2></div>
 <p>Login with <code>einstein / relativity</code>, upload a file to einsteins home and verify the file is there using</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis eos ls -l /eos/dockertest/reva/users/4/4c510ada-c86b-4815-8820-42cdf82c3d51/
 -rw-r--r--   1 einstein users              10 Jul  1 15:24 newfile.txt
@@ -2060,7 +2092,7 @@ One reason might be that the binary was already built but does not match the con
 <li><code>docker-compose exec ocis make clean build</code> to update the binary</li>
 <li><code>docker-compose exec ocis ./bin/ocis kill &lt;service&gt;</code> to kill the service</li>
 <li><code>docker-compose exec ocis ./bin/ocis run &lt;service&gt;</code> to start the service. Do not forget to set any env vars, eg.
-<code>docker-compose exec -e STORAGE_STORAGE_EOS_LAYOUT=&quot;{{substr 0 1 .Id.OpaqueId}}/{{.Id.OpaqueId}}&quot; -e STORAGE_STORAGE_HOME_DRIVER=eoshome ocis ./bin/ocis run storage-storage-home</code></li>
+<code>docker-compose exec -e STORAGE_HOME_DRIVER=eoshome -e STORAGE_DRIVER_EOS_LAYOUT=&quot;{{substr 0 1 .Id.OpaqueId}}/{{.Id.OpaqueId}}&quot;  ocis ./bin/ocis run storage-home</code></li>
 </ol>
 <div class="gdoc-page__anchorwrap"><h3 id="creation-and-upload-of-files-does-not-work"><a data-clipboard-text="https://owncloud.github.io/ocis/eos/#creation-and-upload-of-files-does-not-work" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#creation-and-upload-of-files-does-not-work"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Creation and upload of files does not work</h3></div>
 <p>If the upload did not work, please check the status of the eos space using the command <code>docker-compose exec mgm-master eos fs ls</code>.

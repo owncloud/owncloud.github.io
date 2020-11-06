@@ -269,6 +269,57 @@
             <li>
             
                 <span class="flex">
+                    <a href="/ocis/deployment/ocis_traefik/" class="gdoc-nav__entry ">
+                        ocis with traefik deployment scenario
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+            
+            
+            <li>
+            
+                <span class="flex">
+                    <a href="/ocis/deployment/ocis_oc10_backend/" class="gdoc-nav__entry ">
+                        ocis frontend with oc10 backend deployment scenario
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+            
+            
+            <li>
+            
+                <span class="flex">
+                    <a href="/ocis/deployment/ocis_external_konnectd/" class="gdoc-nav__entry ">
+                        ocis with konnectd on external node deployment scenario
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+            
+            
+            <li>
+            
+                <span class="flex">
                     <a href="/ocis/deployment/bridge/" class="gdoc-nav__entry ">
                         Bridge
                     </a>
@@ -283,23 +334,6 @@
         
     </ul>
 
-            
-            </li>
-            
-            
-        
-            
-            
-            <li>
-            
-                <span class="flex">
-                    <a href="/ocis/configuration/" class="gdoc-nav__entry ">
-                        Configuration
-                    </a>
-                </span>
-            
-
-            
             
             </li>
             
@@ -1258,21 +1292,6 @@
             </li>
             
             
-            
-            <li>
-            
-                <span class="flex">
-                    <a href="/extensions/storage/testing/" class="gdoc-nav__entry ">
-                        Testing
-                    </a>
-                </span>
-            
-
-            
-            
-            </li>
-            
-            
         
             
             
@@ -2076,11 +2095,11 @@ For a simple docker-compose setup, you can create a volume which will be used by
 </ul>
 <div class="gdoc-page__anchorwrap"><h3 id="eos-storage-driver"><a data-clipboard-text="https://owncloud.github.io/extensions/storage/storages/#eos-storage-driver" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#eos-storage-driver"><svg class="icon link"><use xlink:href="#link"></use></svg></a>EOS Storage Driver</h3></div>
 <p>The CERN eos storage has evolved with ownCloud and natively supports id based lookup, ETag propagation, subtree size accounting, sharing, trash and versions. To use it you need to change the default configuration of the <code>storage storage-home</code> command (or have a look at the Makefile ̀ eos-start` target):</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">export STORAGE_STORAGE_HOME_DRIVER=eos
-export STORAGE_STORAGE_EOS_NAMESPACE=/eos
-export STORAGE_STORAGE_EOS_MASTER_URL=&#34;root://eos-mgm1.eoscluster.cern.ch:1094&#34;
-export STORAGE_STORAGE_EOS_ENABLE_HOME=true
-export STORAGE_STORAGE_EOS_LAYOUT=&#34;dockertest/{{.Username}}&#34;
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">export STORAGE_HOME_DRIVER=eos
+export STORAGE_DRIVER_EOS_NAMESPACE=/eos
+export STORAGE_DRIVER_EOS_MASTER_URL=&#34;root://eos-mgm1.eoscluster.cern.ch:1094&#34;
+export STORAGE_DRIVER_EOS_ENABLE_HOME=true
+export STORAGE_DRIVER_EOS_LAYOUT=&#34;dockertest/{{.Username}}&#34;
 </code></pre></div><p>Running it locally also requires the <code>eos</code> and <code>xrootd</code> binaries. Running it using <code>make eos-start</code> will use CentOS based containers that already have the necessary packages installed.</p>
 <blockquote class="gdoc-hint info">
   Pull requests to add explicit <code>storage storage-(s3|custom|...)</code> commands with working defaults are welcome.

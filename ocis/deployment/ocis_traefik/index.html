@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Testing">
+<meta name="description" content="ocis with traefik deployment scenario">
 
-<title>Testing | ownCloud</title>
+<title>ocis with traefik deployment scenario | ownCloud</title>
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
 <link rel="stylesheet" href="/main.min.css">
@@ -269,6 +269,57 @@
             <li>
             
                 <span class="flex">
+                    <a href="/ocis/deployment/ocis_traefik/" class="gdoc-nav__entry is-active">
+                        ocis with traefik deployment scenario
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+            
+            
+            <li>
+            
+                <span class="flex">
+                    <a href="/ocis/deployment/ocis_oc10_backend/" class="gdoc-nav__entry ">
+                        ocis frontend with oc10 backend deployment scenario
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+            
+            
+            <li>
+            
+                <span class="flex">
+                    <a href="/ocis/deployment/ocis_external_konnectd/" class="gdoc-nav__entry ">
+                        ocis with konnectd on external node deployment scenario
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+            
+            
+            <li>
+            
+                <span class="flex">
                     <a href="/ocis/deployment/bridge/" class="gdoc-nav__entry ">
                         Bridge
                     </a>
@@ -283,23 +334,6 @@
         
     </ul>
 
-            
-            </li>
-            
-            
-        
-            
-            
-            <li>
-            
-                <span class="flex">
-                    <a href="/ocis/configuration/" class="gdoc-nav__entry ">
-                        Configuration
-                    </a>
-                </span>
-            
-
-            
             
             </li>
             
@@ -1258,21 +1292,6 @@
             </li>
             
             
-            
-            <li>
-            
-                <span class="flex">
-                    <a href="/extensions/storage/testing/" class="gdoc-nav__entry is-active">
-                        Testing
-                    </a>
-                </span>
-            
-
-            
-            
-            </li>
-            
-            
         
             
             
@@ -1865,7 +1884,7 @@
         
     
     
-        <a href='/'>ownCloud</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/storage/'>Reva</a> / Testing
+        <a href='/'>ownCloud</a> / <a href='/ocis/'>oCIS</a> / <a href='/ocis/deployment/'>Deployment</a> / ocis with traefik deployment scenario
     
 
     
@@ -1880,7 +1899,7 @@
     <span>
         
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/docs/extensions/storage/testing.md">
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/deployment/ocis_traefik.md">
                 Edit this page
             </a>
         
@@ -1889,7 +1908,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>Testing</h1>
+        <h1>ocis with traefik deployment scenario</h1>
         
 
 
@@ -1898,127 +1917,152 @@
     
 
 
-<div class="gdoc-page__anchorwrap"><h2 id="api-acceptance-tests"><a data-clipboard-text="https://owncloud.github.io/extensions/storage/testing/#api-acceptance-tests" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#api-acceptance-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a>API Acceptance tests</h2></div>
-<p>We are using the ownCloud 10 API acceptance testsuite against ocis. To set this up you need the owncloud 10 core repo, a ldap server that the acceptance tests can use to manage users, a redis server for file-versions and the ocis-reva code.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="getting-the-tests"><a data-clipboard-text="https://owncloud.github.io/extensions/storage/testing/#getting-the-tests" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#getting-the-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Getting the tests</h3></div>
-<p>All you need to do to get the acceptance tests is check out the core repo:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">git clone https://github.com/owncloud/core.git
-</code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="run-a-ldap-server-in-a-docker-container"><a data-clipboard-text="https://owncloud.github.io/extensions/storage/testing/#run-a-ldap-server-in-a-docker-container" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-a-ldap-server-in-a-docker-container"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run a ldap server in a docker container</h3></div>
-<p>The ownCloud 10 acceptance tests will need write permission. You can start a suitable ldap server in a docker container with:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker run --hostname ldap.my-company.com \
-    -e LDAP_TLS_VERIFY_CLIENT=never \
-    -e LDAP_DOMAIN=owncloud.com \
-    -e LDAP_ORGANISATION=ownCloud \
-    -e LDAP_ADMIN_PASSWORD=admin \
-    --name docker-slapd \
-    -p 127.0.0.1:389:389 \
-    -p 636:636 -d osixia/openldap
-</code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="run-a-redis-server-in-a-docker-container"><a data-clipboard-text="https://owncloud.github.io/extensions/storage/testing/#run-a-redis-server-in-a-docker-container" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-a-redis-server-in-a-docker-container"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run a redis server in a docker container</h3></div>
-<p>File versions need a redis server. Start one with docker by using:</p>
-<p><code>docker run -e REDIS_DATABASES=1 -p 6379:6379 -d webhippie/redis:latest</code></p>
-<div class="gdoc-page__anchorwrap"><h3 id="run-ocis-reva-with-that-ldap-server"><a data-clipboard-text="https://owncloud.github.io/extensions/storage/testing/#run-ocis-reva-with-that-ldap-server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-ocis-reva-with-that-ldap-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run ocis-reva with that ldap server</h3></div>
-<p><code>storage</code> provides multiple subcommands. To configure them all via env vars you can export these environment variables.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">export STORAGE_USERS_DRIVER=ldap
-export STORAGE_LDAP_HOSTNAME=localhost
-export STORAGE_LDAP_PORT=636
-export STORAGE_LDAP_BASE_DN=&#39;dc=owncloud,dc=com&#39;
-export STORAGE_LDAP_USERFILTER=&#39;(&amp;(objectclass=posixAccount)(cn=%s))&#39;
-export STORAGE_LDAP_GROUPFILTER=&#39;(&amp;(objectclass=posixGroup)(cn=%s))&#39;
-export STORAGE_LDAP_BIND_DN=&#39;cn=admin,dc=owncloud,dc=com&#39;
-export STORAGE_LDAP_BIND_PASSWORD=admin
-export STORAGE_LDAP_SCHEMA_UID=uid
-export STORAGE_LDAP_SCHEMA_MAIL=mail
-export STORAGE_LDAP_SCHEMA_DISPLAYNAME=displayName
-export STORAGE_LDAP_SCHEMA_CN=cn
-export STORAGE_FRONTEND_URL=http://localhost:9140 # needed because the proxy is not started
-export STORAGE_DATAGATEWAY_URL=http://localhost:9140/data # needed because the proxy is not started
-</code></pre></div><p>Then you need to start the ocis-reva services</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">bin/storage frontend &amp; \
-bin/storage gateway &amp; \
-bin/storage auth-basic &amp; \
-bin/storage auth-bearer &amp; \
-bin/storage sharing &amp; \
-bin/storage storage-home &amp; \
-bin/storage storage-home-data &amp; \
-bin/storage storage-oc &amp; \
-bin/storage storage-oc-data &amp; \
-bin/storage users &amp;
-</code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="run-the-api-acceptance-tests"><a data-clipboard-text="https://owncloud.github.io/extensions/storage/testing/#run-the-api-acceptance-tests" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#run-the-api-acceptance-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Run the API acceptance tests</h3></div>
-<p>In the ownCloud 10 core repo run</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">make test-acceptance-api \
-TEST_SERVER_URL=https://localhost:9200 \
-TEST_EXTERNAL_USER_BACKENDS=true \
-TEST_OCIS=true \
-OCIS_REVA_DATA_ROOT=/var/tmp/ocis/owncloud/ \
-BEHAT_FILTER_TAGS=&#39;~@notToImplementOnOCIS&amp;&amp;~@toImplementOnOCIS&amp;&amp;~@preview-extension-required&#39; \
-SKELETON_DIR=apps/testing/data/apiSkeleton
-</code></pre></div><p>Make sure to adjust the settings <code>TEST_SERVER_URL</code>,<code>OCIS_REVA_DATA_ROOT</code> and <code>SKELETON_DIR</code> according to your environment.</p>
-<p>This will run all tests that are relevant to OCIS.</p>
-<p>To run a single test add <code>BEHAT_FEATURE=&lt;feature file&gt;</code> and specify the path to the feature file and an optional line number. For example: <code>BEHAT_FEATURE='tests/acceptance/features/apiWebdavUpload1/uploadFile.feature:12'</code></p>
-<div class="gdoc-page__anchorwrap"><h3 id="use-existing-tests-for-bdd"><a data-clipboard-text="https://owncloud.github.io/extensions/storage/testing/#use-existing-tests-for-bdd" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#use-existing-tests-for-bdd"><svg class="icon link"><use xlink:href="#link"></use></svg></a>use existing tests for BDD</h3></div>
-<p>As a lot of scenarios are written for oC10, we can use those tests for Behaviour driven development in ocis.
-Every scenario that does not work in OCIS with OC storage, is listed in <code>tests/acceptance/expected-failures-on-OC-storage.txt</code> with a link to the related issue.
-Similarly, scenarios that do not work in OCIS with EOS storage are listed in <code>tests/acceptance/expected-failures-on-EOS-storage.txt</code>.
-Scenarios from the oC10 API acceptance tests are run in the ordinary acceptance test pipeline in CI. The scenarios that fail are checked against the
-expected failures. If there are any differences then the CI pipeline fails.</p>
-<p>Additionally, some issues have scenarios that demonstrate the current buggy behaviour in ocis(reva).
-Those scenarios are in this ocis-reva repository in <code>tests/acceptance/features/apiOcisSpecific</code>.
-Have a look into the <a href="https://doc.owncloud.com/server/developer_manual/testing/acceptance-tests.html#writing-scenarios-for-bugs">documentation</a> to understand why we are writing those tests.
-Also, ocis behaves partly differently with EOS-Storage and OC-Storage. There are scenarios that do not work in OCIS when run on EOS-storage, but works when on OC-Storage, and vice-versa. For those kind of scenarios, <code> @skipOnOcis-EOS-Storage</code> and <code>@skipOnOcis-OC-Storage</code> tags are used. For instance, for a scenario that fails on EOS-Storage but passes on OC-Storage, we use <code>@skipOnOcis-EOS-Storage</code> tag to let it run on OC-Storage, where it works as expected, instead of skipping the test completely.</p>
-<p>If you want to work on a specific issue</p>
-<ol>
-<li>
-<p>adjust the core commit id to the latest commit in core so that CI will run the latest test code and scenarios from core.
-For that change <code>coreCommit</code> in the <code>config</code> section:</p>
-<pre><code>config = {
-  'apiTests': {
-    'coreBranch': 'master',
-    'coreCommit': 'a06b1bd5ba8e5244bfaf7fa04f441961e6fb0daa',
-    'numberOfParts': 2
-  }
-}
-</code></pre>
-</li>
-<li>
-<p>locally run each of the tests marked with that issue in the expected failures file:</p>
-<p>E.g.:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">make test-acceptance-api \
-TEST_SERVER_URL=https://localhost:9200 \
-TEST_EXTERNAL_USER_BACKENDS=true \
-TEST_OCIS=true \
-OCIS_REVA_DATA_ROOT=/var/tmp/ocis/owncloud/ \
-BEHAT_FEATURE=&#39;tests/acceptance/features/apiComments/comments.feature:123&#39;
-</code></pre></div></li>
-<li>
-<p>the tests will fail, try to understand how and why they are failing</p>
-</li>
-<li>
-<p>fix the code</p>
-</li>
-<li>
-<p>go back to 2. and repeat till the tests are passing.</p>
-</li>
-<li>
-<p>remove those tests from the expected failures file.</p>
-</li>
-<li>
-<p>run each of the local tests that were demonstrating the <strong>buggy</strong> behavior. They should fail.</p>
-</li>
-<li>
-<p>delete each of the local tests that were demonstrating the <strong>buggy</strong> behavior.</p>
-</li>
-<li>
-<p>make a PR that has the fixed code, relevant lines removed from the expected failures file and bug demonstration tests deleted.</p>
-<p>If the changes also affect the <code>ocis</code> repository make sure the changes get ported over there.
-That will need the fixed code in <code>storage</code> to be applied to <code>ocis</code> along with the test-related changes.</p>
-</li>
-</ol>
-<div class="gdoc-page__anchorwrap"><h3 id="notes"><a data-clipboard-text="https://owncloud.github.io/extensions/storage/testing/#notes" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#notes"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Notes</h3></div>
-<ul>
-<li>in a normal case the test-code cleans up users after the test-run, but if a test-run is interrupted (e.g. by CTRL+C) users might have been left on the LDAP server. In that case rerunning the tests requires wiping the users in the ldap server, otherwise the tests will fail when trying to populate the users. This can be done by simply running <code>docker stop docker-slapd &amp;&amp; docker rm docker-slapd</code> and <a href="#run-a-ldap-server-in-a-docker-container">restarting the LDAP server container</a></li>
-<li>the tests usually create users in the OU <code>TestUsers</code> with usernames specified in the feature file. If not defined in the feature file, most users have the password <code>123456</code>, defined by <code>regularUserPassword</code> in <code>behat.yml</code>, but other passwords are also used, see <a href="https://github.com/owncloud/core/blob/master/tests/acceptance/features/bootstrap/FeatureContext.php#L386"><code>\FeatureContext::getPasswordForUser()</code></a> for mapping and <a href="https://github.com/owncloud/core/blob/master/tests/acceptance/features/bootstrap/FeatureContext.php#L1668"><code>\FeatureContext::__construct</code></a> for the password definitions.</li>
-</ul>
 
+
+
+  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#node">Node</a>
+          <ul>
+            <li><a href="#requirements">Requirements</a></li>
+            <li><a href="#setup-on-server">Setup on server</a></li>
+            <li><a href="#stack">Stack</a></li>
+            <li><a href="#config">Config</a></li>
+          </ul>
+        </li>
+      </ul></nav><hr></div>
+
+
+<div class="gdoc-page__anchorwrap"><h2 id="overview"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_traefik/#overview" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#overview"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Overview</h2></div>
+<ul>
+<li>ocis running on a hcloud node behind traefik as reverse proxy</li>
+<li>Cloudflare DNS is resolving the domain</li>
+<li>Letsencrypt provides a ssl certificate for the domain</li>
+<li>Traefik docker container terminates ssl and forwards http requests to ocis</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h2 id="node"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_traefik/#node" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#node"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Node</h2></div>
+<div class="gdoc-page__anchorwrap"><h3 id="requirements"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_traefik/#requirements" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#requirements"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Requirements</h3></div>
+<ul>
+<li>
+<p>Server running Ubuntu 20.04 is public availible with a static ip address</p>
+</li>
+<li>
+<p>Two A-records for both domains are pointing on the servers ip address</p>
+</li>
+<li>
+<p>Create user</p>
+<p><code>$ sudo adduser username</code></p>
+</li>
+<li>
+<p>Add user to sudo group</p>
+<p><code>$ sudo usermod -aG sudo username</code></p>
+</li>
+<li>
+<p>Add users pub key to <code>~/.ssh/authorized_keys</code></p>
+</li>
+<li>
+<p>Setup ssh to permit authorisation only by ssh key</p>
+</li>
+<li>
+<p>Install docker</p>
+<p><code>$ sudo apt install docker.io</code></p>
+</li>
+<li>
+<p>Add user to docker group</p>
+<p><code>$ sudo usermod -aG docker username</code></p>
+</li>
+<li>
+<p>Install docker-compose via</p>
+<p><code>$ sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose</code></p>
+<p>(docker compose version 1.27.4 as of today)</p>
+</li>
+<li>
+<p>Make docker-compose executable</p>
+<p><code>$ sudo chmod +x /usr/local/bin/docker-compose</code></p>
+</li>
+<li>
+<p>Environment variables for OCIS Stack are provided by .env file</p>
+</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h3 id="setup-on-server"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_traefik/#setup-on-server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#setup-on-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Setup on server</h3></div>
+<ul>
+<li>
+<p>Clone ocis repository</p>
+<p><code>git clone https://github.com/owncloud/ocis.git</code></p>
+</li>
+<li>
+<p>Copy example folder to /opt</p>
+<p><code>cp deployment/examples/ocis_traefik /opt/</code></p>
+</li>
+<li>
+<p>Overwrite OCIS_DOMAIN in .env with your.domain.com</p>
+<p><code>sed -i 's/ocis.domain.com/your.domain.com/g' /opt/ocis_traefik/.env</code></p>
+</li>
+<li>
+<p>Overwrite redirect uri with your.domain.com in identifier-registration.yml</p>
+<p><code>sed -i 's/ocis.domain.com/your.domain.com/g' /opt/ocis_traefik/config/identifier-registration.yml</code></p>
+</li>
+<li>
+<p>Change into deployment folder</p>
+<p><code>cd /opt/ocis_traefik</code></p>
+</li>
+<li>
+<p>Start application stack</p>
+<p><code>docker-compose up -d</code></p>
+</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h3 id="stack"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_traefik/#stack" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#stack"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Stack</h3></div>
+<p>The application stack contains two containers. The first one is a traefik proxy which is terminating ssl and forwards the requests to the internal docker network. Additional, traefik is creating a certificate that is stored in <code>acme.json</code> in the folder <code>letsencrypt</code> inside the users home directory.
+The second one is th ocis server which is exposing the webservice on port 9200 to traefic.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="config"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_traefik/#config" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#config"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Config</h3></div>
+<p>Edit docker-compose.yml file to fit your domain setup</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">...<span class="w">
+</span><span class="w">  </span><span class="k">traefik</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">image</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;traefik:v2.2&#34;</span><span class="w">
+</span><span class="w">    </span>...<span class="w">
+</span><span class="w">    </span><span class="k">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>...<span class="w">
+</span><span class="w">      </span><span class="c"># Email address is neccesary for certificate creation</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;--certificatesresolvers.ocisresolver.acme.email=username@${OCIS_DOMAIN}&#34;</span><span class="w">
+</span><span class="w"></span>...<span class="w">
+</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="w">  </span><span class="k">ocis</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">container_name</span><span class="p">:</span><span class="w"> </span>ocis<span class="w">
+</span><span class="w">    </span>...<span class="w">
+</span><span class="w">    </span><span class="k">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>...<span class="w">
+</span><span class="w">      </span><span class="c"># This is the domain for which traefik is creating the certificate from letsencrypt</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;traefik.http.routers.ocis.rule=Host(`${OCIS_DOMAIN}`)&#34;</span><span class="w">
+</span><span class="w">      </span>...<span class="w">
+</span></code></pre></div><p>In this example, ssl is terminated from traefik while inside of the docker network the services are comunicating via http. For this <code>PROXY_TLS: &quot;false&quot;</code> as environment parameter for ocis has to be set.</p>
+<p>For ocis to work properly it&rsquo;s neccesary to provide one config file.
+Change identifier-registration.yml to match your domain.</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">---<span class="w">
+</span><span class="w"></span><span class="c"># OpenID Connect client registry.</span><span class="w">
+</span><span class="w"></span><span class="k">clients</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">id</span><span class="p">:</span><span class="w"> </span>phoenix<span class="w">
+</span><span class="w">    </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>OCIS<span class="w">
+</span><span class="w">    </span><span class="k">application_type</span><span class="p">:</span><span class="w"> </span>web<span class="w">
+</span><span class="w">    </span><span class="k">insecure</span><span class="p">:</span><span class="w"> </span>yes<span class="w">
+</span><span class="w">    </span><span class="k">trusted</span><span class="p">:</span><span class="w"> </span>yes<span class="w">
+</span><span class="w">    </span><span class="k">redirect_uris</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- http<span class="p">:</span>//ocis.domain.com/<span class="w">
+</span><span class="w">      </span>- https<span class="p">:</span>//ocis.domain.com/<span class="w">
+</span><span class="w">      </span>- http<span class="p">:</span>//ocis.domain.com/oidc-callback.html<span class="w">
+</span><span class="w">      </span>- https<span class="p">:</span>//ocis.domain.com/oidc-callback.html<span class="w">
+</span><span class="w">      </span>- http<span class="p">:</span>//ocis.domain.com/oidc-silent-redirect.html<span class="w">
+</span><span class="w">      </span>- https<span class="p">:</span>//ocis.domain.com/oidc-silent-redirect.html<span class="w">
+</span><span class="w">    </span><span class="k">origins</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- http<span class="p">:</span>//ocis.domain.com<span class="w">
+</span><span class="w">      </span>- https<span class="p">:</span>//ocis.domain.com<span class="w">
+</span></code></pre></div><p>To make it availible for ocis inside of the container, <code>config</code> hast to be mounted as volume.</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="w">    </span>...<span class="w">
+</span><span class="w">    </span><span class="k">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- ./config<span class="p">:</span>/etc/ocis<span class="w">
+</span><span class="w">    </span><span class="k">environment</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>...<span class="w">
+</span><span class="w">      </span><span class="k">KONNECTD_IDENTIFIER_REGISTRATION_CONF</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;/etc/ocis/identifier-registration.yml&#34;</span><span class="w">
+</span><span class="w">      </span>...<span class="w">
+</span></code></pre></div>
 
     </article>
 

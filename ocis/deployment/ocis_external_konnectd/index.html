@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Configuration">
+<meta name="description" content="ocis with konnectd on external node deployment scenario">
 
-<title>Configuration | ownCloud</title>
+<title>ocis with konnectd on external node deployment scenario | ownCloud</title>
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
 <link rel="stylesheet" href="/main.min.css">
@@ -269,6 +269,57 @@
             <li>
             
                 <span class="flex">
+                    <a href="/ocis/deployment/ocis_traefik/" class="gdoc-nav__entry ">
+                        ocis with traefik deployment scenario
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+            
+            
+            <li>
+            
+                <span class="flex">
+                    <a href="/ocis/deployment/ocis_oc10_backend/" class="gdoc-nav__entry ">
+                        ocis frontend with oc10 backend deployment scenario
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+            
+            
+            <li>
+            
+                <span class="flex">
+                    <a href="/ocis/deployment/ocis_external_konnectd/" class="gdoc-nav__entry is-active">
+                        ocis with konnectd on external node deployment scenario
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+            
+            
+            <li>
+            
+                <span class="flex">
                     <a href="/ocis/deployment/bridge/" class="gdoc-nav__entry ">
                         Bridge
                     </a>
@@ -283,23 +334,6 @@
         
     </ul>
 
-            
-            </li>
-            
-            
-        
-            
-            
-            <li>
-            
-                <span class="flex">
-                    <a href="/ocis/configuration/" class="gdoc-nav__entry is-active">
-                        Configuration
-                    </a>
-                </span>
-            
-
-            
             
             </li>
             
@@ -1258,21 +1292,6 @@
             </li>
             
             
-            
-            <li>
-            
-                <span class="flex">
-                    <a href="/extensions/storage/testing/" class="gdoc-nav__entry ">
-                        Testing
-                    </a>
-                </span>
-            
-
-            
-            
-            </li>
-            
-            
         
             
             
@@ -1860,7 +1879,14 @@
         
     
     
-        <a href='/'>ownCloud</a> / <a href='/ocis/'>oCIS</a> / Configuration
+        
+        
+        
+    
+    
+        <a href='/'>ownCloud</a> / <a href='/ocis/'>oCIS</a> / <a href='/ocis/deployment/'>Deployment</a> / ocis with konnectd on external node deployment scenario
+    
+
     
 
     
@@ -1873,7 +1899,7 @@
     <span>
         
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/configuration.md">
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/deployment/ocis_external_konnectd.md">
                 Edit this page
             </a>
         
@@ -1882,7 +1908,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>Configuration</h1>
+        <h1>ocis with konnectd on external node deployment scenario</h1>
         
 
 
@@ -1895,48 +1921,19 @@
 
 
   <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
-        <li><a href="#configuration">Configuration</a>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#nodes">Nodes</a>
           <ul>
-            <li><a href="#configuration-using-config-files">Configuration using config files</a></li>
-            <li><a href="#envrionment-variables">Envrionment variables</a></li>
-            <li><a href="#commandline-flags">Commandline flags</a></li>
-          </ul>
-        </li>
-        <li><a href="#root-command">Root Command</a></li>
-        <li><a href="#sub-commands">Sub Commands</a>
-          <ul>
-            <li><a href="#ocis-kill">ocis kill</a></li>
-            <li><a href="#ocis-server">ocis server</a></li>
-            <li><a href="#ocis-run">ocis run</a></li>
-            <li><a href="#ocis-health">ocis health</a></li>
-            <li><a href="#ocis-list">ocis list</a></li>
-            <li><a href="#list-of-available-extension-subcommands">List of available Extension subcommands</a>
+            <li><a href="#requirements">Requirements</a></li>
+            <li><a href="#setup-on-ocis-server">Setup on ocis server</a></li>
+            <li><a href="#setup-on-idp-server">Setup on idp server</a></li>
+            <li><a href="#stack">Stack</a></li>
+            <li><a href="#config">Config</a>
               <ul>
-                <li><a href="#ocis-konnectd">ocis konnectd</a></li>
-                <li><a href="#ocis-storage-frontend">ocis storage-frontend</a></li>
-                <li><a href="#ocis-accounts">ocis accounts</a></li>
-                <li><a href="#ocis-storage-storage-root">ocis storage-storage-root</a></li>
-                <li><a href="#ocis-storage-gateway">ocis storage-gateway</a></li>
-                <li><a href="#ocis-storage-storage-home">ocis storage-storage-home</a></li>
-                <li><a href="#ocis-storage-storage-public-link">ocis storage-storage-public-link</a></li>
-                <li><a href="#ocis-store">ocis store</a></li>
-                <li><a href="#ocis-glauth">ocis glauth</a></li>
-                <li><a href="#ocis-storage-auth-bearer">ocis storage-auth-bearer</a></li>
-                <li><a href="#ocis-storage-sharing">ocis storage-sharing</a></li>
-                <li><a href="#ocis-webdav">ocis webdav</a></li>
-                <li><a href="#ocis-storage-storage-oc-data">ocis storage-storage-oc-data</a></li>
-                <li><a href="#ocis-thumbnails">ocis thumbnails</a></li>
-                <li><a href="#ocis-proxy">ocis proxy</a></li>
-                <li><a href="#ocis-settings">ocis settings</a></li>
-                <li><a href="#ocis-storage-auth-basic">ocis storage-auth-basic</a></li>
-                <li><a href="#ocis-storage-storage-metadata">ocis storage-storage-metadata</a></li>
-                <li><a href="#ocis-ocs">ocis ocs</a></li>
-                <li><a href="#ocis-storage-storage-eos">ocis storage-storage-eos</a></li>
-                <li><a href="#ocis-storage-storage-eos-data">ocis storage-storage-eos-data</a></li>
-                <li><a href="#ocis-storage-storage-home-data">ocis storage-storage-home-data</a></li>
-                <li><a href="#ocis-storage-storage-oc">ocis storage-storage-oc</a></li>
-                <li><a href="#ocis-storage-users">ocis storage-users</a></li>
-                <li><a href="#ocis-phoenix">ocis phoenix</a></li>
+                <li><a href="#repository-structure">Repository structure</a></li>
+                <li><a href="#traefik">Traefik</a></li>
+                <li><a href="#konnectd">Konnectd</a></li>
+                <li><a href="#ocis">ocis</a></li>
               </ul>
             </li>
           </ul>
@@ -1944,132 +1941,171 @@
       </ul></nav><hr></div>
 
 
-<div class="gdoc-page__anchorwrap"><h2 id="configuration"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#configuration" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#configuration"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Configuration</h2></div>
-<p>oCIS Single Binary is not responsible for configuring extensions. Instead, each extension could either be configured by environment variables, cli flags or config files.</p>
-<p>Each extension has its dedicated documentation page (e.g. <a href="https://owncloud.github.io/extensions/ocis_proxy/configuration">https://owncloud.github.io/extensions/ocis_proxy/configuration</a>) which lists all possible configurations. Config files and environment variables are picked up if you use the <code>./bin/ocis server</code> command within the oCIS single binary. Command line flags must be set explicitly on the extensions subcommands.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="configuration-using-config-files"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#configuration-using-config-files" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#configuration-using-config-files"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Configuration using config files</h3></div>
-<p>Out of the box extensions will attempt to read configuration details from:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">/etc/ocis
-$HOME/.ocis
-./config
-</code></pre></div><p>For this configuration to be picked up, have a look at your extension <code>root</code> command and look for which default config name it has assigned. <em>i.e: ocis-proxy reads <code>proxy.json | yaml | toml ...</code></em>.</p>
-<p>So far we support the file formats <code>JSON</code> and <code>YAML</code>, if you want to get a full example configuration just take a look at <a href="https://github.com/owncloud/ocis/tree/master/config">our repository</a>, there you can always see the latest configuration format. These example configurations include all available options and the default values. The configuration file will be automatically loaded if it&rsquo;s placed at <code>/etc/ocis/ocis.yml</code>, <code>${HOME}/.ocis/ocis.yml</code> or <code>$(pwd)/config/ocis.yml</code>.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="envrionment-variables"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#envrionment-variables" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#envrionment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Envrionment variables</h3></div>
-<p>If you prefer to configure the service with environment variables you can see the available variables below.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="commandline-flags"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#commandline-flags" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#commandline-flags"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Commandline flags</h3></div>
-<p>If you prefer to configure the service with commandline flags you can see the available variables below. Command line flags are only working when calling the subcommand directly.</p>
-<div class="gdoc-page__anchorwrap"><h2 id="root-command"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#root-command" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#root-command"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Root Command</h2></div>
-<p>ownCloud Infinite Scale Stack</p>
-<p>Usage: <code>ocis [global options] command [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;config-file | $OCIS_CONFIG_FILE</dt>
-<dd>Path to config file.</dd>
-<dt>&ndash;log-level | $OCIS_LOG_LEVEL</dt>
-<dd>Set logging level. Default: <code>info</code>.</dd>
-<dt>&ndash;log-pretty | $OCIS_LOG_PRETTY</dt>
-<dd>Enable pretty logging. Default: <code>true</code>.</dd>
-<dt>&ndash;log-color | $OCIS_LOG_COLOR</dt>
-<dd>Enable colored logging. Default: <code>true</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h2 id="sub-commands"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#sub-commands" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#sub-commands"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Sub Commands</h2></div>
-<div class="gdoc-page__anchorwrap"><h3 id="ocis-kill"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-kill" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-kill"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis kill</h3></div>
-<p>Kill an extension by name</p>
-<p>Usage: <code>ocis kill [command options] [arguments...]</code></p>
-<div class="gdoc-page__anchorwrap"><h3 id="ocis-server"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis server</h3></div>
-<p>Start fullstack server</p>
-<p>Usage: <code>ocis server [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;tracing-enabled | $OCIS_TRACING_ENABLED</dt>
-<dd>Enable sending traces.</dd>
-<dt>&ndash;tracing-type | $OCIS_TRACING_TYPE</dt>
-<dd>Tracing backend type. Default: <code>jaeger</code>.</dd>
-<dt>&ndash;tracing-endpoint | $OCIS_TRACING_ENDPOINT</dt>
-<dd>Endpoint for the agent. Default: <code>localhost:6831</code>.</dd>
-<dt>&ndash;tracing-collector | $OCIS_TRACING_COLLECTOR</dt>
-<dd>Endpoint for the collector. Default: <code>http://localhost:14268/api/traces</code>.</dd>
-<dt>&ndash;tracing-service | $OCIS_TRACING_SERVICE</dt>
-<dd>Service name for tracing. Default: <code>ocis</code>.</dd>
-<dt>&ndash;debug-addr | $OCIS_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>0.0.0.0:9010</code>.</dd>
-<dt>&ndash;debug-token | $OCIS_DEBUG_TOKEN</dt>
-<dd>Token to grant metrics access.</dd>
-<dt>&ndash;debug-pprof | $OCIS_DEBUG_PPROF</dt>
-<dd>Enable pprof debugging.</dd>
-<dt>&ndash;debug-zpages | $OCIS_DEBUG_ZPAGES</dt>
-<dd>Enable zpages debugging.</dd>
-<dt>&ndash;http-addr | $OCIS_HTTP_ADDR</dt>
-<dd>Address to bind http server. Default: <code>0.0.0.0:9000</code>.</dd>
-<dt>&ndash;http-root | $OCIS_HTTP_ROOT</dt>
-<dd>Root path of http server. Default: <code>/</code>.</dd>
-<dt>&ndash;grpc-addr | $OCIS_GRPC_ADDR</dt>
-<dd>Address to bind grpc server. Default: <code>0.0.0.0:9001</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="ocis-run"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-run" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-run"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis run</h3></div>
-<p>Runs an extension</p>
-<p>Usage: <code>ocis run [command options] [arguments...]</code></p>
-<div class="gdoc-page__anchorwrap"><h3 id="ocis-health"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-health" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis health</h3></div>
-<p>Check health status</p>
-<p>Usage: <code>ocis health [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;debug-addr | $OCIS_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>0.0.0.0:9010</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="ocis-list"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-list" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-list"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis list</h3></div>
-<p>Lists running ocis extensions</p>
-<p>Usage: <code>ocis list [command options] [arguments...]</code></p>
-<div class="gdoc-page__anchorwrap"><h3 id="list-of-available-extension-subcommands"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#list-of-available-extension-subcommands" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#list-of-available-extension-subcommands"><svg class="icon link"><use xlink:href="#link"></use></svg></a>List of available Extension subcommands</h3></div>
-<p>There are more subcommands to start the individual extensions. Please check the documentation about their usage and options in the dedicated section of the documentation.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="ocis-konnectd"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-konnectd" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-konnectd"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis konnectd</h4></div>
-<p>Start konnectd server</p>
-<div class="gdoc-page__anchorwrap"><h4 id="ocis-storage-frontend"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-storage-frontend" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-storage-frontend"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis storage-frontend</h4></div>
-<p>Start storage frontend</p>
-<div class="gdoc-page__anchorwrap"><h4 id="ocis-accounts"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-accounts" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-accounts"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis accounts</h4></div>
-<p>Start accounts server</p>
-<div class="gdoc-page__anchorwrap"><h4 id="ocis-storage-storage-root"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-storage-storage-root" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-storage-storage-root"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis storage-storage-root</h4></div>
-<p>Start storage root storage</p>
-<div class="gdoc-page__anchorwrap"><h4 id="ocis-storage-gateway"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-storage-gateway" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-storage-gateway"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis storage-gateway</h4></div>
-<p>Start storage gateway</p>
-<div class="gdoc-page__anchorwrap"><h4 id="ocis-storage-storage-home"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-storage-storage-home" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-storage-storage-home"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis storage-storage-home</h4></div>
-<p>Start storage storage service for home mount</p>
-<div class="gdoc-page__anchorwrap"><h4 id="ocis-storage-storage-public-link"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-storage-storage-public-link" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-storage-storage-public-link"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis storage-storage-public-link</h4></div>
-<p>Start storage public link storage</p>
-<div class="gdoc-page__anchorwrap"><h4 id="ocis-store"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-store" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-store"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis store</h4></div>
-<p>Start a go-micro store</p>
-<div class="gdoc-page__anchorwrap"><h4 id="ocis-glauth"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-glauth" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-glauth"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis glauth</h4></div>
-<p>Start glauth server</p>
-<div class="gdoc-page__anchorwrap"><h4 id="ocis-storage-auth-bearer"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-storage-auth-bearer" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-storage-auth-bearer"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis storage-auth-bearer</h4></div>
-<p>Start storage auth-bearer service</p>
-<div class="gdoc-page__anchorwrap"><h4 id="ocis-storage-sharing"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-storage-sharing" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-storage-sharing"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis storage-sharing</h4></div>
-<p>Start storage sharing service</p>
-<div class="gdoc-page__anchorwrap"><h4 id="ocis-webdav"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-webdav" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-webdav"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis webdav</h4></div>
-<p>Start webdav server</p>
-<div class="gdoc-page__anchorwrap"><h4 id="ocis-storage-storage-oc-data"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-storage-storage-oc-data" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-storage-storage-oc-data"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis storage-storage-oc-data</h4></div>
-<p>Start storage storage data provider for oc mount</p>
-<div class="gdoc-page__anchorwrap"><h4 id="ocis-thumbnails"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-thumbnails" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-thumbnails"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis thumbnails</h4></div>
-<p>Start thumbnails server</p>
-<div class="gdoc-page__anchorwrap"><h4 id="ocis-proxy"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-proxy" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-proxy"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis proxy</h4></div>
-<p>Start proxy server</p>
-<div class="gdoc-page__anchorwrap"><h4 id="ocis-settings"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-settings" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-settings"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis settings</h4></div>
-<p>Start settings server</p>
-<div class="gdoc-page__anchorwrap"><h4 id="ocis-storage-auth-basic"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-storage-auth-basic" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-storage-auth-basic"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis storage-auth-basic</h4></div>
-<p>Start storage auth-basic service</p>
-<div class="gdoc-page__anchorwrap"><h4 id="ocis-storage-storage-metadata"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-storage-storage-metadata" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-storage-storage-metadata"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis storage-storage-metadata</h4></div>
-<p>Start storage storage service for metadata mount</p>
-<div class="gdoc-page__anchorwrap"><h4 id="ocis-ocs"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-ocs" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-ocs"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis ocs</h4></div>
-<p>Start ocs server</p>
-<div class="gdoc-page__anchorwrap"><h4 id="ocis-storage-storage-eos"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-storage-storage-eos" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-storage-storage-eos"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis storage-storage-eos</h4></div>
-<p>Start storage storage service for eos mount</p>
-<div class="gdoc-page__anchorwrap"><h4 id="ocis-storage-storage-eos-data"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-storage-storage-eos-data" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-storage-storage-eos-data"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis storage-storage-eos-data</h4></div>
-<p>Start storage storage data provider for eos mount</p>
-<div class="gdoc-page__anchorwrap"><h4 id="ocis-storage-storage-home-data"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-storage-storage-home-data" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-storage-storage-home-data"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis storage-storage-home-data</h4></div>
-<p>Start storage storage data provider for home mount</p>
-<div class="gdoc-page__anchorwrap"><h4 id="ocis-storage-storage-oc"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-storage-storage-oc" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-storage-storage-oc"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis storage-storage-oc</h4></div>
-<p>Start storage storage service for oc mount</p>
-<div class="gdoc-page__anchorwrap"><h4 id="ocis-storage-users"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-storage-users" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-storage-users"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis storage-users</h4></div>
-<p>Start storage users service</p>
-<div class="gdoc-page__anchorwrap"><h4 id="ocis-phoenix"><a data-clipboard-text="https://owncloud.github.io/ocis/configuration/#ocis-phoenix" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-phoenix"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis phoenix</h4></div>
-<p>Start phoenix server</p>
-
+<p>This scenario shows how to setup ocis with konnectd as idp running on a separate node. Both node are having separate domains pointing on the servers.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="overview"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_external_konnectd/#overview" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#overview"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Overview</h2></div>
+<ul>
+<li>ocis and konnectd running on linux nodes behind traefik as reverse proxy</li>
+<li>Cloudflare DNS is resolving the domains</li>
+<li>Letsencrypt provides ssl certificates for the domains</li>
+<li>Traefik docker container terminates ssl and forwards http requests to the services</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h2 id="nodes"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_external_konnectd/#nodes" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#nodes"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Nodes</h2></div>
+<div class="gdoc-page__anchorwrap"><h3 id="requirements"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_external_konnectd/#requirements" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#requirements"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Requirements</h3></div>
+<ul>
+<li>
+<p>Server running Ubuntu 20.04 is public availible with a static ip address</p>
+</li>
+<li>
+<p>Two A-records for both domains are pointing on the servers ip address</p>
+</li>
+<li>
+<p>Create user</p>
+<p><code>$ sudo adduser username</code></p>
+</li>
+<li>
+<p>Add user to sudo group</p>
+<p><code>$ sudo usermod -aG sudo username</code></p>
+</li>
+<li>
+<p>Add users pub key to <code>~/.ssh/authorized_keys</code></p>
+</li>
+<li>
+<p>Setup ssh to permit authorisation only by ssh key</p>
+</li>
+<li>
+<p>Install docker</p>
+<p><code>$ sudo apt install docker.io</code></p>
+</li>
+<li>
+<p>Add user to docker group</p>
+<p><code>$ sudo usermod -aG docker username</code></p>
+</li>
+<li>
+<p>Install docker-compose via</p>
+<p><code>$ sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose</code></p>
+<p>(docker compose version 1.27.4 as of today)</p>
+</li>
+<li>
+<p>Make docker-compose executable</p>
+<p><code>$ sudo chmod +x /usr/local/bin/docker-compose</code></p>
+</li>
+<li>
+<p>Environment variables for OCIS Stack are provided by .env file</p>
+</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h3 id="setup-on-ocis-server"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_external_konnectd/#setup-on-ocis-server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#setup-on-ocis-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Setup on ocis server</h3></div>
+<ul>
+<li>
+<p>Clone ocis repository</p>
+<p><code>git clone https://github.com/owncloud/ocis.git</code></p>
+</li>
+<li>
+<p>Copy example sub folder for ocisnode to /opt</p>
+<p><code>cp deployment/examples/ocis_external_konnectd/ocisnode /opt/</code></p>
+</li>
+<li>
+<p>Overwrite OCIS_DOMAIN and IDP_DOMAIN in .env with your-ocis.domain.com and your-idp.domain.com</p>
+<p><code>sed -i 's/ocis.domain.com/your-ocis.domain.com/g' /opt/ocisnode/.env</code></p>
+<p><code>sed -i 's/idp.domain.com/your-idp.domain.com/g' /opt/ocisnode/.env</code></p>
+</li>
+<li>
+<p>Change into deployment folder</p>
+<p><code>cd /opt/ocisnode</code></p>
+</li>
+<li>
+<p>Start application stack</p>
+<p><code>docker-compose up -d</code></p>
+</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h3 id="setup-on-idp-server"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_external_konnectd/#setup-on-idp-server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#setup-on-idp-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Setup on idp server</h3></div>
+<ul>
+<li>
+<p>Clone ocis repository</p>
+<p><code>git clone https://github.com/owncloud/ocis.git</code></p>
+</li>
+<li>
+<p>Copy example sub folder for idpnode to /opt</p>
+<p><code>cp deployment/examples/ocis_external_konnectd/idpnode /opt/</code></p>
+</li>
+<li>
+<p>Overwrite OCIS_DOMAIN and IDP_DOMAIN in .env with your-ocis.domain.com and your-idp.domain.com</p>
+<p><code>sed -i 's/ocis.domain.com/your-ocis.domain.com/g' /opt/idpnode/.env</code></p>
+<p><code>sed -i 's/idp.domain.com/your-idp.domain.com/g' /opt/idpnode/.env</code></p>
+</li>
+<li>
+<p>Overwrite redirect uri with your-ocis.domain.com in identifier-registration.yml</p>
+<p><code>sed -i 's/ocis.domain.com/your-ocis.domain.com/g' /opt/idpnode/config/identifier-registration.yml</code></p>
+</li>
+<li>
+<p>Change into deployment folder</p>
+<p><code>cd /opt/idpnode</code></p>
+</li>
+<li>
+<p>Start application stack</p>
+<p><code>docker-compose up -d</code></p>
+</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h3 id="stack"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_external_konnectd/#stack" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#stack"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Stack</h3></div>
+<p>On both nodes, a traefik dokcer container is terminating ssl and forwards the http requests to the services. The nodes are named according to their services.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="config"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_external_konnectd/#config" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#config"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Config</h3></div>
+<div class="gdoc-page__anchorwrap"><h4 id="repository-structure"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_external_konnectd/#repository-structure" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#repository-structure"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Repository structure</h4></div>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ocis_external_konnectd  <span class="c1"># rootfolder</span>
+└───ocisnode
+│   │   docker-compose.yml
+│   │   .env
+│
+└───idpnode
+    │   docker-compose.yml
+    │   .env
+    └───config
+        │   identifier-registration.yml
+</code></pre></div><p>Both subfolders contain the dockr-compose files including additionaly conf files if required. The content of both folders has to be deployed on each node.</p>
+<div class="gdoc-page__anchorwrap"><h4 id="traefik"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_external_konnectd/#traefik" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#traefik"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Traefik</h4></div>
+<p>Traefik is set up similar to the traefik example on both nodes.
+The certificate resolvers are named similar to their services and behave exactly like in the other examples.</p>
+<div class="gdoc-page__anchorwrap"><h4 id="konnectd"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_external_konnectd/#konnectd" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#konnectd"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Konnectd</h4></div>
+<p>Konnectd as Openid provider needs the redirect url&rsquo;s to point to ocis.</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">---<span class="w">
+</span><span class="w"></span><span class="c"># OpenID Connect client registry.</span><span class="w">
+</span><span class="w"></span><span class="k">clients</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">id</span><span class="p">:</span><span class="w"> </span>phoenix<span class="w">
+</span><span class="w">    </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>OCIS<span class="w">
+</span><span class="w">    </span><span class="k">application_type</span><span class="p">:</span><span class="w"> </span>web<span class="w">
+</span><span class="w">    </span><span class="k">insecure</span><span class="p">:</span><span class="w"> </span>yes<span class="w">
+</span><span class="w">    </span><span class="k">trusted</span><span class="p">:</span><span class="w"> </span>yes<span class="w">
+</span><span class="w">    </span><span class="k">redirect_uris</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- http<span class="p">:</span>//ocis.domain.com/<span class="w">
+</span><span class="w">      </span>- https<span class="p">:</span>//ocis.domain.com/<span class="w">
+</span><span class="w">      </span>- http<span class="p">:</span>//ocis.domain.com/oidc-callback.html<span class="w">
+</span><span class="w">      </span>- https<span class="p">:</span>//ocis.domain.com/oidc-callback.html<span class="w">
+</span><span class="w">      </span>- http<span class="p">:</span>//ocis.domain.com/oidc-silent-redirect.html<span class="w">
+</span><span class="w">      </span>- https<span class="p">:</span>//ocis.domain.com/oidc-silent-redirect.html<span class="w">
+</span><span class="w">    </span><span class="k">origins</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- http<span class="p">:</span>//ocis.domain.com<span class="w">
+</span><span class="w">      </span>- https<span class="p">:</span>//ocis.domain.com<span class="w">
+</span></code></pre></div><p>Behind traefik, http is used to communicate between the services. Setting KONNECTD_TLS enforces it.</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="w">      </span><span class="k">KONNECTD_TLS</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="w">
+</span></code></pre></div><p>In order to resolve users from glauth service on ocis node, Konnectd needs ldap settings to work properly.</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="w">      </span><span class="k">LDAP_URI</span><span class="p">:</span><span class="w"> </span>ldap<span class="p">:</span>//${OCIS_DOMAIN}<span class="p">:</span><span class="m">9125</span><span class="w">
+</span><span class="w">      </span><span class="k">LDAP_BINDDN</span><span class="p">:</span><span class="w"> </span>cn=konnectd<span class="p">,</span>ou=sysusers<span class="p">,</span>dc=example<span class="p">,</span>dc=org<span class="w">
+</span><span class="w">      </span><span class="k">LDAP_BINDPW</span><span class="p">:</span><span class="w"> </span>konnectd<span class="w">
+</span><span class="w">      </span><span class="k">LDAP_BASEDN</span><span class="p">:</span><span class="w"> </span>ou=users<span class="p">,</span>dc=example<span class="p">,</span>dc=org<span class="w">
+</span><span class="w">      </span><span class="k">LDAP_SCOPE</span><span class="p">:</span><span class="w"> </span>sub<span class="w">
+</span><span class="w">      </span><span class="k">LDAP_LOGIN_ATTRIBUTE</span><span class="p">:</span><span class="w"> </span>cn<span class="w">
+</span><span class="w">      </span><span class="k">LDAP_EMAIL_ATTRIBUTE</span><span class="p">:</span><span class="w"> </span>mail<span class="w">
+</span><span class="w">      </span><span class="k">LDAP_NAME_ATTRIBUTE=</span><span class="p">:</span><span class="w"> </span>n<span class="w">
+</span><span class="w">      </span><span class="k">LDAP_UUID_ATTRIBUTE</span><span class="p">:</span><span class="w"> </span>uid<span class="w">
+</span><span class="w">      </span><span class="k">LDAP_UUID_ATTRIBUTE_TYPE</span><span class="p">:</span><span class="w"> </span>text<span class="w">
+</span><span class="w">      </span><span class="k">LDAP_FILTER</span><span class="p">:</span><span class="w"> </span>(objectClass=posixaccount)<span class="w">
+</span></code></pre></div><div class="gdoc-page__anchorwrap"><h4 id="ocis"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_external_konnectd/#ocis" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ocis</h4></div>
+<p>On the ocis node, the setting is following a standard scenario, except, that port 9125 needs to be exposed for the idp node to resolve ldap querries from Konnectd.</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">ocis</span><span class="p">:</span><span class="w">
+</span><span class="w"></span>...<span class="w">
+</span><span class="w">    </span><span class="k">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="m">9200</span><span class="p">:</span><span class="m">9200</span><span class="w">
+</span><span class="w">      </span>- <span class="m">9125</span><span class="p">:</span><span class="m">9125</span><span class="w">
+</span><span class="w"></span>...<span class="w">
+</span></code></pre></div>
 
     </article>
 
