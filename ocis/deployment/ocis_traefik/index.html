@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="ocis with traefik deployment scenario">
+<meta name="description" content="oCIS with Traefik">
 
-<title>ocis with traefik deployment scenario | ownCloud</title>
+<title>oCIS with Traefik | ownCloud</title>
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
 <link rel="stylesheet" href="/main.min.css">
@@ -73,7 +73,7 @@
             
                 <span class="flex">
                     <a href="/ocis/" class="gdoc-nav__entry ">
-                        oCIS
+                        oCIS - ownCloud Infinite Scale
                     </a>
                 </span>
             
@@ -252,6 +252,23 @@
             <li>
             
                 <span class="flex">
+                    <a href="/ocis/deployment/preparing_server/" class="gdoc-nav__entry ">
+                        Preparing a server
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+            
+            
+            <li>
+            
+                <span class="flex">
                     <a href="/ocis/deployment/basic-remote-setup/" class="gdoc-nav__entry ">
                         Basic Remote Setup
                     </a>
@@ -270,7 +287,7 @@
             
                 <span class="flex">
                     <a href="/ocis/deployment/ocis_traefik/" class="gdoc-nav__entry is-active">
-                        ocis with traefik deployment scenario
+                        oCIS with Traefik
                     </a>
                 </span>
             
@@ -287,7 +304,7 @@
             
                 <span class="flex">
                     <a href="/ocis/deployment/ocis_oc10_backend/" class="gdoc-nav__entry ">
-                        ocis frontend with oc10 backend deployment scenario
+                        ownCloud Web with ownCloud 10
                     </a>
                 </span>
             
@@ -303,25 +320,8 @@
             <li>
             
                 <span class="flex">
-                    <a href="/ocis/deployment/ocis_external_konnectd/" class="gdoc-nav__entry ">
-                        ocis with konnectd on external node deployment scenario
-                    </a>
-                </span>
-            
-
-            
-            
-            </li>
-            
-            
-        
-            
-            
-            <li>
-            
-                <span class="flex">
-                    <a href="/ocis/deployment/bridge/" class="gdoc-nav__entry ">
-                        Bridge
+                    <a href="/ocis/deployment/ocis_external_idp/" class="gdoc-nav__entry ">
+                        oCIS with external IDP
                     </a>
                 </span>
             
@@ -380,6 +380,21 @@
                 <span class="flex">
                     <a href="/ocis/login-flow/" class="gdoc-nav__entry ">
                         Login Flow
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+            
+            <li>
+            
+                <span class="flex">
+                    <a href="/ocis/metrics/" class="gdoc-nav__entry ">
+                        Metrics
                     </a>
                 </span>
             
@@ -1884,7 +1899,7 @@
         
     
     
-        <a href='/'>ownCloud</a> / <a href='/ocis/'>oCIS</a> / <a href='/ocis/deployment/'>Deployment</a> / ocis with traefik deployment scenario
+        <a href='/'>ownCloud</a> / <a href='/ocis/'>oCIS - ownCloud Infinite Scale</a> / <a href='/ocis/deployment/'>Deployment</a> / oCIS with Traefik
     
 
     
@@ -1908,7 +1923,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>ocis with traefik deployment scenario</h1>
+        <h1>oCIS with Traefik</h1>
         
 
 
@@ -1922,69 +1937,33 @@
 
   <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
         <li><a href="#overview">Overview</a></li>
-        <li><a href="#node">Node</a>
+        <li><a href="#server-deployment">Server Deployment</a>
           <ul>
             <li><a href="#requirements">Requirements</a></li>
-            <li><a href="#setup-on-server">Setup on server</a></li>
-            <li><a href="#stack">Stack</a></li>
-            <li><a href="#config">Config</a></li>
+            <li><a href="#install-ocis-and-traefik">Install oCIS and Traefik</a></li>
+            <li><a href="#configuration">Configuration</a></li>
           </ul>
         </li>
+        <li><a href="#local-setup">Local setup</a></li>
       </ul></nav><hr></div>
 
 
 <div class="gdoc-page__anchorwrap"><h2 id="overview"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_traefik/#overview" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#overview"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Overview</h2></div>
 <ul>
-<li>ocis running on a hcloud node behind traefik as reverse proxy</li>
-<li>Cloudflare DNS is resolving the domain</li>
-<li>Letsencrypt provides a ssl certificate for the domain</li>
-<li>Traefik docker container terminates ssl and forwards http requests to ocis</li>
+<li>oCIS running behind traefik as reverse proxy</li>
+<li>Valid ssl certificates for the domains for ssl termination</li>
 </ul>
-<div class="gdoc-page__anchorwrap"><h2 id="node"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_traefik/#node" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#node"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Node</h2></div>
+<p><a href="https://github.com/owncloud/ocis/tree/master/deployments/examples/ocis_traefik">Find this example on GitHub</a></p>
+<div class="gdoc-page__anchorwrap"><h2 id="server-deployment"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_traefik/#server-deployment" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#server-deployment"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Server Deployment</h2></div>
 <div class="gdoc-page__anchorwrap"><h3 id="requirements"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_traefik/#requirements" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#requirements"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Requirements</h3></div>
 <ul>
-<li>
-<p>Server running Ubuntu 20.04 is public availible with a static ip address</p>
-</li>
-<li>
-<p>Two A-records for both domains are pointing on the servers ip address</p>
-</li>
-<li>
-<p>Create user</p>
-<p><code>$ sudo adduser username</code></p>
-</li>
-<li>
-<p>Add user to sudo group</p>
-<p><code>$ sudo usermod -aG sudo username</code></p>
-</li>
-<li>
-<p>Add users pub key to <code>~/.ssh/authorized_keys</code></p>
-</li>
-<li>
-<p>Setup ssh to permit authorisation only by ssh key</p>
-</li>
-<li>
-<p>Install docker</p>
-<p><code>$ sudo apt install docker.io</code></p>
-</li>
-<li>
-<p>Add user to docker group</p>
-<p><code>$ sudo usermod -aG docker username</code></p>
-</li>
-<li>
-<p>Install docker-compose via</p>
-<p><code>$ sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose</code></p>
-<p>(docker compose version 1.27.4 as of today)</p>
-</li>
-<li>
-<p>Make docker-compose executable</p>
-<p><code>$ sudo chmod +x /usr/local/bin/docker-compose</code></p>
-</li>
-<li>
-<p>Environment variables for OCIS Stack are provided by .env file</p>
-</li>
+<li>Linux server(s) with docker and docker-compose installed</li>
+<li>Two domains set up and pointing to your server(s)</li>
 </ul>
-<div class="gdoc-page__anchorwrap"><h3 id="setup-on-server"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_traefik/#setup-on-server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#setup-on-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Setup on server</h3></div>
+<p>See also <a href="https://owncloud.github.io/ocis/deployment/preparing_server/">example server setup</a></p>
+<div class="gdoc-page__anchorwrap"><h3 id="install-ocis-and-traefik"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_traefik/#install-ocis-and-traefik" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#install-ocis-and-traefik"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Install oCIS and Traefik</h3></div>
+<p>The application stack contains two containers. The first one is a traefik proxy which is terminating ssl and forwards the requests to the internal docker network. Additional, traefik is creating a certificate that is stored in <code>acme.json</code> in the folder <code>letsencrypt</code> inside the users home directory.
+The second one is th ocis server which is exposing the webservice on port 9200 to traefik.</p>
 <ul>
 <li>
 <p>Clone ocis repository</p>
@@ -2011,10 +1990,7 @@
 <p><code>docker-compose up -d</code></p>
 </li>
 </ul>
-<div class="gdoc-page__anchorwrap"><h3 id="stack"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_traefik/#stack" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#stack"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Stack</h3></div>
-<p>The application stack contains two containers. The first one is a traefik proxy which is terminating ssl and forwards the requests to the internal docker network. Additional, traefik is creating a certificate that is stored in <code>acme.json</code> in the folder <code>letsencrypt</code> inside the users home directory.
-The second one is th ocis server which is exposing the webservice on port 9200 to traefic.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="config"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_traefik/#config" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#config"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Config</h3></div>
+<div class="gdoc-page__anchorwrap"><h3 id="configuration"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_traefik/#configuration" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#configuration"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Configuration</h3></div>
 <p>Edit docker-compose.yml file to fit your domain setup</p>
 <div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">...<span class="w">
 </span><span class="w">  </span><span class="k">traefik</span><span class="p">:</span><span class="w">
@@ -2062,7 +2038,10 @@ Change identifier-registration.yml to match your domain.</p>
 </span><span class="w">      </span>...<span class="w">
 </span><span class="w">      </span><span class="k">KONNECTD_IDENTIFIER_REGISTRATION_CONF</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;/etc/ocis/identifier-registration.yml&#34;</span><span class="w">
 </span><span class="w">      </span>...<span class="w">
-</span></code></pre></div>
+</span></code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="local-setup"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_traefik/#local-setup" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#local-setup"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Local setup</h2></div>
+<p>For simple local ocis setup see <a href="https://owncloud.github.io/ocis/getting-started/">Getting started</a></p>
+<p>Local setup with Traefik coming soon</p>
+
 
     </article>
 

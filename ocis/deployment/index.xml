@@ -12,6 +12,17 @@
     
     
     <item>
+      <title>Preparing a server</title>
+      <link>https://owncloud.github.io/ocis/deployment/preparing_server/</link>
+      <pubDate>Mon, 12 Oct 2020 14:04:00 +0100</pubDate>
+      
+      <guid>https://owncloud.github.io/ocis/deployment/preparing_server/</guid>
+      <description>Example for Hetzner Cloud     Example for Hetzner Cloud   create server on Hetzner Cloud. Set labels &amp;ldquo;owner&amp;rdquo; and &amp;ldquo;for&amp;rdquo;. Example for hcloud cli: hcloud server create --type cx21 --image ubuntu-20.04 --ssh-key admin --name ocis-server --label owner=admin --label for=testing
+  Configure DNS A-records for needed domains pointing on the servers ip address, for example in CloudFlare
+  Access server via ssh as root</description>
+    </item>
+    
+    <item>
       <title>Basic Remote Setup</title>
       <link>https://owncloud.github.io/ocis/deployment/basic-remote-setup/</link>
       <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
@@ -22,40 +33,32 @@ If you need to access ocis on a VM or a remote machine e.g. when testing a mobil
     </item>
     
     <item>
-      <title>ocis with traefik deployment scenario</title>
+      <title>oCIS with Traefik</title>
       <link>https://owncloud.github.io/ocis/deployment/ocis_traefik/</link>
       <pubDate>Mon, 12 Oct 2020 14:04:00 +0100</pubDate>
       
       <guid>https://owncloud.github.io/ocis/deployment/ocis_traefik/</guid>
-      <description>Overview Node  Requirements Setup on server Stack Config       Overview  ocis running on a hcloud node behind traefik as reverse proxy Cloudflare DNS is resolving the domain Letsencrypt provides a ssl certificate for the domain Traefik docker container terminates ssl and forwards http requests to ocis  Node Requirements   Server running Ubuntu 20.04 is public availible with a static ip address</description>
+      <description>Overview Server Deployment  Requirements Install oCIS and Traefik Configuration   Local setup     Overview  oCIS running behind traefik as reverse proxy Valid ssl certificates for the domains for ssl termination  Find this example on GitHub
+Server Deployment Requirements  Linux server(s) with docker and docker-compose installed Two domains set up and pointing to your server(s)  See also example server setup</description>
     </item>
     
     <item>
-      <title>ocis frontend with oc10 backend deployment scenario</title>
+      <title>ownCloud Web with ownCloud 10</title>
       <link>https://owncloud.github.io/ocis/deployment/ocis_oc10_backend/</link>
       <pubDate>Mon, 12 Oct 2020 14:04:00 +0100</pubDate>
       
       <guid>https://owncloud.github.io/ocis/deployment/ocis_oc10_backend/</guid>
-      <description>Overview  Node Setup   Node Deployment  Requirements Setup on server Stack Config  Repository structure Traefik ocis  web/config.json identifier-registration.yaml proxy-config.json Environment variables in docker-compose.yaml   oc10     Local deployment  Domains Disable certificate checks       This deployment scenario shows how to use ocis as frontend for an existing ownCloud 10 production installation. It enables ownCloud 10 users to log in and work with their files using the new ocis-web UI.</description>
+      <description>Overview Server Deployment  Requirements Setup on server Config  Repository structure Traefik ocis  web/config.json identifier-registration.yaml proxy-config.json Environment variables in docker-compose.yaml   oc10     Local setup  Domains Disable certificate checks       This deployment scenario shows how to use ownCloud Web as frontend for an existing ownCloud 10 production installation. It enables ownCloud 10 users to log in and work with their files using the new ownCloud Web.</description>
     </item>
     
     <item>
-      <title>ocis with konnectd on external node deployment scenario</title>
-      <link>https://owncloud.github.io/ocis/deployment/ocis_external_konnectd/</link>
+      <title>oCIS with external IDP</title>
+      <link>https://owncloud.github.io/ocis/deployment/ocis_external_idp/</link>
       <pubDate>Mon, 12 Oct 2020 14:39:00 +0100</pubDate>
       
-      <guid>https://owncloud.github.io/ocis/deployment/ocis_external_konnectd/</guid>
-      <description>Overview Nodes  Requirements Setup on ocis server Setup on idp server Stack Config  Repository structure Traefik Konnectd ocis         This scenario shows how to setup ocis with konnectd as idp running on a separate node. Both node are having separate domains pointing on the servers.
-Overview  ocis and konnectd running on linux nodes behind traefik as reverse proxy Cloudflare DNS is resolving the domains Letsencrypt provides ssl certificates for the domains Traefik docker container terminates ssl and forwards http requests to the services  Nodes Requirements   Server running Ubuntu 20.</description>
-    </item>
-    
-    <item>
-      <title>Bridge</title>
-      <link>https://owncloud.github.io/ocis/deployment/bridge/</link>
-      <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
-      
-      <guid>https://owncloud.github.io/ocis/deployment/bridge/</guid>
-      <description>Current status How to do it  Install the owncloud 10 graphapi app Enable the graphapi app Start ocis-glauth  Grab it! Run it! Check it is up and running   Start ocis-phoenix  Get it! Run it!   Start ocis-konnectd  Get it! Set environment variables   Configure clients  Run it! Check it is up and running   Patch owncloud Install the owncloud 10 openidconnect app   Next steps     We are planning to build a bridge from ownCloud 10 to ocis.</description>
+      <guid>https://owncloud.github.io/ocis/deployment/ocis_external_idp/</guid>
+      <description>Overview Server Deployment  Requirements Install oCIS server Install IDP server Configuration  Repository structure Traefik Konnectd ocis     Local setup     This scenario shows how to setup oCIS and konnectd as external IDP (identity provider). Both have separate domains and will be configured to work together.
+Overview  Server 1: oCIS running behind traefik as reverse proxy Server 2: IDP running behind traefik as reverse proxy Valid ssl certificates for the domains for ssl termination  Find this example on GitHub</description>
     </item>
     
   </channel>

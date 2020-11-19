@@ -6,7 +6,7 @@
     <description>Recent content on ownCloud</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 19 Nov 2020 12:06:09 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 19 Nov 2020 13:27:47 +0000</lastBuildDate>
     
 	<atom:link href="https://owncloud.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -17,7 +17,9 @@
       <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
       
       <guid>https://owncloud.github.io/ocis/getting-started/</guid>
-      <description>Installation  Docker  Dependencies Docker compose   Binaries  Dependencies     Usage  Server Health   Quickstart for Developers Runtime Metrics     Installation So far we are offering two different variants for the installation. You can choose between Docker or pre-built binaries which are stored on our download mirrors and GitHub releases. Maybe we will also provide system packages for the major distributions later if we see the need for it.</description>
+      <description>Run oCIS  Binaries Docker   Usage  Login to oCIS Web Basic Commands       Run oCIS We are distributing oCIS as binaries and Docker images.
+You can find more deployments examples in the deployment section
+Binaries The binaries for different platforms are downloadable at our download mirror or on GitHub. Latest binaries from the master branch can be found at our download mirrors testing section.</description>
     </item>
     
     <item>
@@ -46,6 +48,17 @@
       <guid>https://owncloud.github.io/integration/file_picker/accessing-resources/</guid>
       <description>    Access resources     File picker is returning selected resources via event called selectResources. To access them, you need to set an event listener where you&amp;rsquo;ll be able to get them as part of the response of the callback function.
 Access resources &amp;lt;file-picker id=&amp;#34;file-picker&amp;#34; variation=&amp;#34;resource&amp;#34;&amp;gt;&amp;lt;/file-picker&amp;gt; &amp;lt;script&amp;gt; const item = document.getElementById(&amp;#39;file-picker&amp;#39;) let resources = [] item.addEventListener(&amp;#39;selectResources&amp;#39;, event =&amp;gt; { resources = event.detail[0] }) &amp;lt;/script&amp;gt; </description>
+    </item>
+    
+    <item>
+      <title>Preparing a server</title>
+      <link>https://owncloud.github.io/ocis/deployment/preparing_server/</link>
+      <pubDate>Mon, 12 Oct 2020 14:04:00 +0100</pubDate>
+      
+      <guid>https://owncloud.github.io/ocis/deployment/preparing_server/</guid>
+      <description>Example for Hetzner Cloud     Example for Hetzner Cloud   create server on Hetzner Cloud. Set labels &amp;ldquo;owner&amp;rdquo; and &amp;ldquo;for&amp;rdquo;. Example for hcloud cli: hcloud server create --type cx21 --image ubuntu-20.04 --ssh-key admin --name ocis-server --label owner=admin --label for=testing
+  Configure DNS A-records for needed domains pointing on the servers ip address, for example in CloudFlare
+  Access server via ssh as root</description>
     </item>
     
     <item>
@@ -103,7 +116,7 @@ Setting up backend and running Phoenix can run against either ownCloud 10 as bac
       
       <guid>https://owncloud.github.io/ocis/development/getting-started/</guid>
       <description>Docker dev environment  Option 1: Plain docker Option 2: Docker compose   Verification     Docker dev environment Option 1: Plain docker To build and run your local ocis code with default storage driver
-docker run --rm -ti --name ocis -v $PWD:/ocis -p 9200:9200 owncloud/eos-ocis-dev The eos-ocis-dev container will build and run ocis using the owncloud storage driver and store files in the container at /var/tmp/reva/data/&amp;lt;username&amp;gt;/files</description>
+docker run --rm -ti --name ocis -v $PWD:/ocis -p 9200:9200 owncloud/eos-ocis-dev The eos-ocis-dev container will build and run oCIS using the ownCloud storage driver and store files in the container at /var/tmp/reva/data/&amp;lt;username&amp;gt;/files</description>
     </item>
     
     <item>
@@ -129,49 +142,49 @@ If you need to access ocis on a VM or a remote machine e.g. when testing a mobil
     <item>
       <title>Configuration</title>
       <link>https://owncloud.github.io/extensions/webdav/configuration/</link>
-      <pubDate>Thu, 19 Nov 2020 12:06:09 +0000</pubDate>
+      <pubDate>Thu, 19 Nov 2020 13:27:47 +0000</pubDate>
       
       <guid>https://owncloud.github.io/extensions/webdav/configuration/</guid>
-      <description>Configuration  Configuration using config files Envrionment variables Commandline flags   Root Command Sub Commands  webdav health webdav server webdav version       Configuration oCIS Single Binary is not responsible for configuring extensions. Instead, each extension could either be configured by environment variables, cli flags or config files.
+      <description>Configuration  Configuration using config files Environment variables Commandline flags   Root Command Sub Commands  webdav health webdav server webdav version       Configuration oCIS Single Binary is not responsible for configuring extensions. Instead, each extension could either be configured by environment variables, cli flags or config files.
 Each extension has its dedicated documentation page (e.g. https://owncloud.github.io/extensions/proxy/configuration/) which lists all possible configurations.</description>
     </item>
     
     <item>
       <title>Configuration</title>
       <link>https://owncloud.github.io/extensions/proxy/configuration/</link>
-      <pubDate>Thu, 19 Nov 2020 12:06:05 +0000</pubDate>
+      <pubDate>Thu, 19 Nov 2020 13:27:43 +0000</pubDate>
       
       <guid>https://owncloud.github.io/extensions/proxy/configuration/</guid>
-      <description>Configuration  Configuration using config files Envrionment variables Commandline flags proxy server proxy version proxy health proxy ocis-proxy       Configuration oCIS Single Binary is not responsible for configuring extensions. Instead, each extension could either be configured by environment variables, cli flags or config files.
+      <description>Configuration  Configuration using config files Environment variables Commandline flags proxy version proxy health proxy ocis-proxy proxy server       Configuration oCIS Single Binary is not responsible for configuring extensions. Instead, each extension could either be configured by environment variables, cli flags or config files.
 Each extension has its dedicated documentation page (e.g. https://owncloud.github.io/extensions/proxy/configuration/) which lists all possible configurations. Config files and environment variables are picked up if you use the .</description>
     </item>
     
     <item>
       <title>Configuration</title>
       <link>https://owncloud.github.io/extensions/storage/configuration/</link>
-      <pubDate>Thu, 19 Nov 2020 12:06:02 +0000</pubDate>
+      <pubDate>Thu, 19 Nov 2020 13:27:40 +0000</pubDate>
       
       <guid>https://owncloud.github.io/extensions/storage/configuration/</guid>
-      <description>Configuration  Configuration using config files Envrionment variables Commandline flags   Root Command Sub Commands  storage storage-public-link storage storage-home storage storage-users storage auth-bearer storage auth-basic storage frontend storage health storage storage storage users storage sharing storage storage-metadata storage gateway   Config for the different Storage Drivers  Local Driver Eos Driver owCloud Driver Ocis Driver       Configuration oCIS Single Binary is not responsible for configuring extensions.</description>
+      <description>Configuration  Configuration using config files Environment variables Commandline flags   Root Command Sub Commands  storage auth-bearer storage auth-basic storage frontend storage health storage gateway storage sharing storage storage-users storage storage storage storage-public-link storage storage-home storage users storage storage-metadata   Config for the different Storage Drivers  Local Driver Eos Driver owCloud Driver Ocis Driver       Configuration oCIS Single Binary is not responsible for configuring extensions.</description>
     </item>
     
     <item>
       <title>Configuration</title>
       <link>https://owncloud.github.io/extensions/konnectd/configuration/</link>
-      <pubDate>Thu, 19 Nov 2020 12:06:01 +0000</pubDate>
+      <pubDate>Thu, 19 Nov 2020 13:27:38 +0000</pubDate>
       
       <guid>https://owncloud.github.io/extensions/konnectd/configuration/</guid>
-      <description>Configuration  Configuration using config files Envrionment variables Commandline flags konnectd server konnectd version konnectd health konnectd ocis-konnectd       Configuration oCIS Single Binary is not responsible for configuring extensions. Instead, each extension could either be configured by environment variables, cli flags or config files.
+      <description>Configuration  Configuration using config files Environment variables Commandline flags konnectd server konnectd version konnectd health konnectd ocis-konnectd       Configuration oCIS Single Binary is not responsible for configuring extensions. Instead, each extension could either be configured by environment variables, cli flags or config files.
 Each extension has its dedicated documentation page (e.g. https://owncloud.github.io/extensions/ocis_konnectd/configuration) which lists all possible configurations. Config files and environment variables are picked up if you use the .</description>
     </item>
     
     <item>
       <title>Configuration</title>
       <link>https://owncloud.github.io/extensions/accounts/configuration/</link>
-      <pubDate>Thu, 19 Nov 2020 12:05:57 +0000</pubDate>
+      <pubDate>Thu, 19 Nov 2020 13:27:35 +0000</pubDate>
       
       <guid>https://owncloud.github.io/extensions/accounts/configuration/</guid>
-      <description>Configuration  Configuration using config files Envrionment variables Commandline flags accounts list accounts remove accounts inspect accounts ocis-accounts accounts rebuildIndex accounts add accounts server accounts version accounts update       Configuration oCIS Single Binary is not responsible for configuring extensions. Instead, each extension could either be configured by environment variables, cli flags or config files.
+      <description>Configuration  Configuration using config files Environment variables Commandline flags accounts add accounts remove accounts update accounts list accounts version accounts inspect accounts ocis-accounts accounts rebuildIndex accounts server       Configuration oCIS Single Binary is not responsible for configuring extensions. Instead, each extension could either be configured by environment variables, cli flags or config files.
 Each extension has its dedicated documentation page (e.</description>
     </item>
     
@@ -199,7 +212,9 @@ Each extension has its dedicated documentation page (e.</description>
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.github.io/extensions/accounts/getting-started/</guid>
-      <description>Installation  Docker Binaries   Configuration  Envrionment variables  Server   Commandline flags Configuration file   Usage  Server Version       Installation So far we are offering two different variants for the installation. You can choose between Docker or pre-built binaries which are stored on our download mirrors and GitHub releases. Maybe we will also provide system packages for the major distributions later if we see the need for it.</description>
+      <description>Installation  Docker Binaries       Installation So far we are offering two different variants for the installation. You can choose between Docker or pre-built binaries which are stored on our download mirrors and GitHub releases. Maybe we will also provide system packages for the major distributions later if we see the need for it.
+Docker TBD
+Binaries TBD</description>
     </item>
     
     <item>
@@ -217,7 +232,7 @@ Each extension has its dedicated documentation page (e.</description>
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.github.io/extensions/ocis-phoenix/getting-started/</guid>
-      <description>Installation  Docker Binaries   Configuration  Envrionment variables  Global Server Health   Commandline flags  Global Server Health   Configuration file   Usage  Server Health   Metrics     Installation So far we are offering two different variants for the installation. You can choose between Docker or pre-built binaries which are stored on our download mirrors and GitHub releases.</description>
+      <description>Installation  Docker Binaries   Configuration  Environment variables  Global Server Health   Commandline flags  Global Server Health   Configuration file   Usage  Server Health   Metrics     Installation So far we are offering two different variants for the installation. You can choose between Docker or pre-built binaries which are stored on our download mirrors and GitHub releases.</description>
     </item>
     
     <item>
@@ -226,7 +241,7 @@ Each extension has its dedicated documentation page (e.</description>
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.github.io/extensions/store/getting-started/</guid>
-      <description>Installation  Docker Binaries   Configuration  Envrionment variables  Global Server Health   Commandline flags  Global Server Health   Configuration file   Usage  Server Health Version   Metrics     Installation So far we are offering two different variants for the installation. You can choose between Docker or pre-built binaries which are stored on our download mirrors and GitHub releases.</description>
+      <description>Installation  Docker Binaries   Configuration  Environment variables  Global Server Health   Commandline flags  Global Server Health   Configuration file   Usage  Server Health Version   Metrics     Installation So far we are offering two different variants for the installation. You can choose between Docker or pre-built binaries which are stored on our download mirrors and GitHub releases.</description>
     </item>
     
     <item>
@@ -235,7 +250,7 @@ Each extension has its dedicated documentation page (e.</description>
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.github.io/extensions/thumbnails/getting-started/</guid>
-      <description>Installation  Docker Binaries   Configuration  Envrionment variables  Global Server Health   Commandline flags  Global Server Health   Configuration file   Usage  Server Health Version   Metrics     Installation So far we are offering two different variants for the installation. You can choose between Docker or pre-built binaries which are stored on our download mirrors and GitHub releases.</description>
+      <description>Installation  Docker Binaries   Configuration  Environment variables  Global Server Health   Commandline flags  Global Server Health   Configuration file   Usage  Server Health Version   Metrics     Installation So far we are offering two different variants for the installation. You can choose between Docker or pre-built binaries which are stored on our download mirrors and GitHub releases.</description>
     </item>
     
     <item>
@@ -244,25 +259,26 @@ Each extension has its dedicated documentation page (e.</description>
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.github.io/extensions/webdav/getting-started/</guid>
-      <description>Installation  Docker Binaries   Configuration  Envrionment variables  Global Server Health   Commandline flags  Global Server Health   Configuration file   Usage  Server Health   Version Metrics       Installation So far we are offering two different variants for the installation. You can choose between Docker or pre-built binaries which are stored on our download mirrors and GitHub releases.</description>
+      <description>Installation  Docker Binaries   Configuration  Environment variables  Global Server Health   Commandline flags  Global Server Health   Configuration file   Usage  Server Health   Version Metrics       Installation So far we are offering two different variants for the installation. You can choose between Docker or pre-built binaries which are stored on our download mirrors and GitHub releases.</description>
     </item>
     
     <item>
-      <title>ocis with traefik deployment scenario</title>
+      <title>oCIS with Traefik</title>
       <link>https://owncloud.github.io/ocis/deployment/ocis_traefik/</link>
       <pubDate>Mon, 12 Oct 2020 14:04:00 +0100</pubDate>
       
       <guid>https://owncloud.github.io/ocis/deployment/ocis_traefik/</guid>
-      <description>Overview Node  Requirements Setup on server Stack Config       Overview  ocis running on a hcloud node behind traefik as reverse proxy Cloudflare DNS is resolving the domain Letsencrypt provides a ssl certificate for the domain Traefik docker container terminates ssl and forwards http requests to ocis  Node Requirements   Server running Ubuntu 20.04 is public availible with a static ip address</description>
+      <description>Overview Server Deployment  Requirements Install oCIS and Traefik Configuration   Local setup     Overview  oCIS running behind traefik as reverse proxy Valid ssl certificates for the domains for ssl termination  Find this example on GitHub
+Server Deployment Requirements  Linux server(s) with docker and docker-compose installed Two domains set up and pointing to your server(s)  See also example server setup</description>
     </item>
     
     <item>
-      <title>ocis frontend with oc10 backend deployment scenario</title>
+      <title>ownCloud Web with ownCloud 10</title>
       <link>https://owncloud.github.io/ocis/deployment/ocis_oc10_backend/</link>
       <pubDate>Mon, 12 Oct 2020 14:04:00 +0100</pubDate>
       
       <guid>https://owncloud.github.io/ocis/deployment/ocis_oc10_backend/</guid>
-      <description>Overview  Node Setup   Node Deployment  Requirements Setup on server Stack Config  Repository structure Traefik ocis  web/config.json identifier-registration.yaml proxy-config.json Environment variables in docker-compose.yaml   oc10     Local deployment  Domains Disable certificate checks       This deployment scenario shows how to use ocis as frontend for an existing ownCloud 10 production installation. It enables ownCloud 10 users to log in and work with their files using the new ocis-web UI.</description>
+      <description>Overview Server Deployment  Requirements Setup on server Config  Repository structure Traefik ocis  web/config.json identifier-registration.yaml proxy-config.json Environment variables in docker-compose.yaml   oc10     Local setup  Domains Disable certificate checks       This deployment scenario shows how to use ownCloud Web as frontend for an existing ownCloud 10 production installation. It enables ownCloud 10 users to log in and work with their files using the new ownCloud Web.</description>
     </item>
     
     <item>
@@ -271,7 +287,7 @@ Each extension has its dedicated documentation page (e.</description>
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.github.io/extensions/settings/getting-started/</guid>
-      <description>Installation  Docker Binaries   Configuration  Envrionment variables  Global Server Health   Commandline flags  Global Server Health   Configuration file   Usage  Server Health Version   Metrics     Installation So far we are offering two different variants for the installation. You can choose between Docker or pre-built binaries which are stored on our download mirrors and GitHub releases.</description>
+      <description>Installation  Docker Binaries   Configuration  Environment variables  Global Server Health   Commandline flags  Global Server Health   Configuration file   Usage  Server Health Version   Metrics     Installation So far we are offering two different variants for the installation. You can choose between Docker or pre-built binaries which are stored on our download mirrors and GitHub releases.</description>
     </item>
     
     <item>
@@ -286,22 +302,13 @@ Package Hierarchy  ocis  ocis-phoenix  ocis-pkg phoenix      Releasing Phoenix F
     </item>
     
     <item>
-      <title>ocis with konnectd on external node deployment scenario</title>
-      <link>https://owncloud.github.io/ocis/deployment/ocis_external_konnectd/</link>
+      <title>oCIS with external IDP</title>
+      <link>https://owncloud.github.io/ocis/deployment/ocis_external_idp/</link>
       <pubDate>Mon, 12 Oct 2020 14:39:00 +0100</pubDate>
       
-      <guid>https://owncloud.github.io/ocis/deployment/ocis_external_konnectd/</guid>
-      <description>Overview Nodes  Requirements Setup on ocis server Setup on idp server Stack Config  Repository structure Traefik Konnectd ocis         This scenario shows how to setup ocis with konnectd as idp running on a separate node. Both node are having separate domains pointing on the servers.
-Overview  ocis and konnectd running on linux nodes behind traefik as reverse proxy Cloudflare DNS is resolving the domains Letsencrypt provides ssl certificates for the domains Traefik docker container terminates ssl and forwards http requests to the services  Nodes Requirements   Server running Ubuntu 20.</description>
-    </item>
-    
-    <item>
-      <title>Bridge</title>
-      <link>https://owncloud.github.io/ocis/deployment/bridge/</link>
-      <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
-      
-      <guid>https://owncloud.github.io/ocis/deployment/bridge/</guid>
-      <description>Current status How to do it  Install the owncloud 10 graphapi app Enable the graphapi app Start ocis-glauth  Grab it! Run it! Check it is up and running   Start ocis-phoenix  Get it! Run it!   Start ocis-konnectd  Get it! Set environment variables   Configure clients  Run it! Check it is up and running   Patch owncloud Install the owncloud 10 openidconnect app   Next steps     We are planning to build a bridge from ownCloud 10 to ocis.</description>
+      <guid>https://owncloud.github.io/ocis/deployment/ocis_external_idp/</guid>
+      <description>Overview Server Deployment  Requirements Install oCIS server Install IDP server Configuration  Repository structure Traefik Konnectd ocis     Local setup     This scenario shows how to setup oCIS and konnectd as external IDP (identity provider). Both have separate domains and will be configured to work together.
+Overview  Server 1: oCIS running behind traefik as reverse proxy Server 2: IDP running behind traefik as reverse proxy Valid ssl certificates for the domains for ssl termination  Find this example on GitHub</description>
     </item>
     
     <item>
@@ -312,7 +319,7 @@ Overview  ocis and konnectd running on linux nodes behind traefik as reverse pro
       <guid>https://owncloud.github.io/ocis/development/building/</guid>
       <description>Build requirements All required tools besides go and make are bundled or getting automatically installed within the GOPATH. All commands to build this project are part of our Makefile.
 The installation of Go is out of the scope of this document, please follow the official documentation for Go, to build this project you have to install Go &amp;gt;= v1.13.
-Get the sources git clone https://github.com/owncloud/ocis.git cd ocis Build the ocis binary The ocis binary source is in the ocis/ocis folder.</description>
+Get the sources git clone https://github.com/owncloud/ocis.git cd ocis Build the oCIS binary The oCIS binary source is in the ocis/ocis folder.</description>
     </item>
     
     <item>
@@ -321,7 +328,7 @@ Get the sources git clone https://github.com/owncloud/ocis.git cd ocis Build the
       <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
       
       <guid>https://owncloud.github.io/ocis/eos/</guid>
-      <description>Docker dev environment for eos storage  1. Start eos &amp;amp; ocis containers 2. LDAP support 3. Home storage 4. Users storage 5. Metadata storage 6. Accounts service   Verification Further exploration Cleaning up Troubleshooting  Docker-compose exits right away Where are the logs ? How do I update a service in the ocis container? Creation and upload of files does not work Uploading big files appears to hang Running out of space quickly       OCIS can be configured to run on top of eos.</description>
+      <description>Docker dev environment for eos storage  1. Start eos &amp;amp; ocis containers 2. LDAP support 3. Home storage 4. Users storage 5. Metadata storage 6. Accounts service   Verification Further exploration Cleaning up Troubleshooting  Docker-compose exits right away Where are the logs ? How do I update a service in the ocis container? Creation and upload of files does not work Uploading big files appears to hang Running out of space quickly       oCIS can be configured to run on top of eos.</description>
     </item>
     
     <item>
@@ -460,7 +467,7 @@ Storage providers To manage the file tree ocis uses storage storage providers th
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.github.io/ocis/development/testing/</guid>
-      <description>Acceptance tests We are using the ownCloud 10 acceptance testsuite against ocis. To set this up you need the owncloud 10 core repo, a ldap server that the acceptance tests can use to manage users, a redis server for file-versions and the ocis code.
+      <description>Acceptance tests We are using the ownCloud 10 acceptance testsuite against ocis. To set this up you need the owncloud 10 core repo, a ldap server that the acceptance tests can use to manage users, a redis server for file-versions and the oCIS code.
 Getting the tests All you need to do to get the acceptance tests is check out the core repo:
 git clone https://github.com/owncloud/core.git Run a redis server in a docker container File versions need a redis server.</description>
     </item>
@@ -536,7 +543,7 @@ Preperation  Create a new branch e.g. release-x.x.x where x.x.x is the version y
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.github.io/extensions/ocis-phoenix/releasing/</guid>
-      <description>Releasing  Package Hierarchy  Prerequisites Updating ocis-phoenix Next steps         Releasing The next generation Web Frontend is shipped as an ocis Extension. The ocis-phoenix extension is also embedded in the single binary and part of the ocis server command.
+      <description>Releasing  Package Hierarchy  Prerequisites Updating ocis-phoenix Next steps         Releasing The next generation Web Frontend is shipped as an oCIS Extension. The ocis-phoenix extension is also embedded in the single binary and part of the ocis server command.
 To update this package within all the deliveries, we need to update the package in the following chain from the bottom to the top.</description>
     </item>
     
@@ -548,6 +555,16 @@ To update this package within all the deliveries, we need to update the package 
       <guid>https://owncloud.github.io/ocis/login-flow/</guid>
       <description>Login Flow The following sequence diagram describes the openid connect auth code flow. The eight numbered steps and notes correspond to the openid connect auth code flow steps. Example requests are based on the spec as well.:
   mermaid.initialize({ flowchart: { useMaxWidth: true } });  sequenceDiagram %% we have comments!! \o/ %% this documents the login workflow %% examples taken from the oidc spec https://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth %% TODO add PKCE, see https://developer.</description>
+    </item>
+    
+    <item>
+      <title>Metrics</title>
+      <link>https://owncloud.github.io/ocis/metrics/</link>
+      <pubDate>Mon, 04 May 2020 20:47:00 +0100</pubDate>
+      
+      <guid>https://owncloud.github.io/ocis/metrics/</guid>
+      <description>Metrics This service provides some Prometheus metrics through the debug endpoint, you can optionally secure the metrics endpoint by some random token, which got to be configured through one of the flag --debug-token or the environment variable OCIS_DEBUG_TOKEN mentioned above. By default the metrics endpoint is bound to http://0.0.0.0:8001/metrics.
+ go_gc_duration_seconds A summary of the GC invocation durations go_gc_duration_seconds_sum A summary of the GC invocation durations go_gc_duration_seconds_count A summary of the GC invocation durations go_goroutines Number of goroutines that currently exist go_info Information about the Go environment go_memstats_alloc_bytes Number of bytes allocated and still in use go_memstats_alloc_bytes_total Total number of bytes allocated, even if freed go_memstats_buck_hash_sys_bytes Number of bytes used by the profiling bucket hash table go_memstats_frees_total Total number of frees go_memstats_gc_cpu_fraction The fraction of this program&amp;rsquo;s available CPU time used by the GC since the program started go_memstats_gc_sys_bytes Number of bytes used for garbage collection system metadata go_memstats_heap_alloc_bytes Number of heap bytes allocated and still in use go_memstats_heap_idle_bytes Number of heap bytes waiting to be used go_memstats_heap_inuse_bytes Number of heap bytes that are in use go_memstats_heap_objects Number of allocated objects go_memstats_heap_released_bytes Number of heap bytes released to OS go_memstats_heap_sys_bytes Number of heap bytes obtained from system go_memstats_last_gc_time_seconds Number of seconds since 1970 of last garbage collection go_memstats_lookups_total Total number of pointer lookups go_memstats_mallocs_total Total number of mallocs go_memstats_mcache_inuse_bytes Number of bytes in use by mcache structures go_memstats_mcache_sys_bytes Number of bytes used for mcache structures obtained from system go_memstats_mspan_inuse_bytes Number of bytes in use by mspan structures go_memstats_mspan_sys_bytes Number of bytes used for mspan structures obtained from system go_memstats_next_gc_bytes Number of heap bytes when next garbage collection will take place go_memstats_other_sys_bytes Number of bytes used for other system allocations go_memstats_stack_inuse_bytes Number of bytes in use by the stack allocator go_memstats_stack_sys_bytes Number of bytes obtained from system for stack allocator go_memstats_sys_bytes Number of bytes obtained from system go_threads Number of OS threads created promhttp_metric_handler_requests_in_flight Current number of scrapes being served promhttp_metric_handler_requests_total Total number of scrapes by HTTP status code  </description>
     </item>
     
     <item>

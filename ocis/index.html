@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="oCIS">
+<meta name="description" content="oCIS - ownCloud Infinite Scale">
 
-<title>oCIS | ownCloud</title>
+<title>oCIS - ownCloud Infinite Scale | ownCloud</title>
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
 <link rel="stylesheet" href="/main.min.css">
@@ -74,7 +74,7 @@
             
                 <span class="flex">
                     <a href="/ocis/" class="gdoc-nav__entry is-active">
-                        oCIS
+                        oCIS - ownCloud Infinite Scale
                     </a>
                 </span>
             
@@ -253,6 +253,23 @@
             <li>
             
                 <span class="flex">
+                    <a href="/ocis/deployment/preparing_server/" class="gdoc-nav__entry ">
+                        Preparing a server
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+            
+            
+            <li>
+            
+                <span class="flex">
                     <a href="/ocis/deployment/basic-remote-setup/" class="gdoc-nav__entry ">
                         Basic Remote Setup
                     </a>
@@ -271,7 +288,7 @@
             
                 <span class="flex">
                     <a href="/ocis/deployment/ocis_traefik/" class="gdoc-nav__entry ">
-                        ocis with traefik deployment scenario
+                        oCIS with Traefik
                     </a>
                 </span>
             
@@ -288,7 +305,7 @@
             
                 <span class="flex">
                     <a href="/ocis/deployment/ocis_oc10_backend/" class="gdoc-nav__entry ">
-                        ocis frontend with oc10 backend deployment scenario
+                        ownCloud Web with ownCloud 10
                     </a>
                 </span>
             
@@ -304,25 +321,8 @@
             <li>
             
                 <span class="flex">
-                    <a href="/ocis/deployment/ocis_external_konnectd/" class="gdoc-nav__entry ">
-                        ocis with konnectd on external node deployment scenario
-                    </a>
-                </span>
-            
-
-            
-            
-            </li>
-            
-            
-        
-            
-            
-            <li>
-            
-                <span class="flex">
-                    <a href="/ocis/deployment/bridge/" class="gdoc-nav__entry ">
-                        Bridge
+                    <a href="/ocis/deployment/ocis_external_idp/" class="gdoc-nav__entry ">
+                        oCIS with external IDP
                     </a>
                 </span>
             
@@ -381,6 +381,21 @@
                 <span class="flex">
                     <a href="/ocis/login-flow/" class="gdoc-nav__entry ">
                         Login Flow
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+            
+            <li>
+            
+                <span class="flex">
+                    <a href="/ocis/metrics/" class="gdoc-nav__entry ">
+                        Metrics
                     </a>
                 </span>
             
@@ -1875,7 +1890,7 @@
         
     
     
-        <a href='/'>ownCloud</a> / oCIS
+        <a href='/'>ownCloud</a> / oCIS - ownCloud Infinite Scale
     
 
     
@@ -1894,7 +1909,7 @@
 </div>
 
     <article class="gdoc-markdown">
-        <h1>oCIS</h1>
+        <h1>oCIS - ownCloud Infinite Scale</h1>
         
 
 
@@ -1908,11 +1923,11 @@
 </figure>
 
 <div class="gdoc-page__anchorwrap"><h2 id="owncloud-infinite-scale"><a data-clipboard-text="https://owncloud.github.io/ocis/#owncloud-infinite-scale" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#owncloud-infinite-scale"><svg class="icon link"><use xlink:href="#link"></use></svg></a>ownCloud Infinite Scale</h2></div>
-<p>Welcome to oCIS! We develop a modern file-sync and share plattform, based on our knowledge and experience with the PHP ownCloud server project.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="ocis-server"><a data-clipboard-text="https://owncloud.github.io/ocis/#ocis-server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>oCIS Server</h3></div>
-<p>The oCIS server implementation follows go-lang best practices and is based on the <a href="https://go-micro.dev/">go-micro</a> framework and <a href="https://reva.link/">REVA</a>. We love and stick to <a href="https://12factor.net/">12 Factor</a>.
+<p>Welcome to oCIS, the modern file-sync and share platform, which is based on our knowledge and experience with the PHP based <a href="https://owncloud.com/#server">ownCloud server</a>.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="ocis-server"><a data-clipboard-text="https://owncloud.github.io/ocis/#ocis-server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#ocis-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>oCIS server</h3></div>
+<p>The oCIS server implementation follows <a href="https://golang.org/">Go</a> best practices and is based on the <a href="https://go-micro.dev/">go-micro</a> framework and <a href="https://reva.link/">REVA</a>. We love and stick to <a href="https://12factor.net/">12 Factor</a>.
 oCIS is a micro-service based server, which allows scale-out of individual services to meet your specific performance requirements.
-We run a huge test suite, which was originated in ownCloud 10 and continues to grow.</p>
+We run a huge <a href="https://github.com/owncloud/core/tree/master/tests">test suite</a>, which was originated in ownCloud 10 and continues to grow.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="architecture-overview"><a data-clipboard-text="https://owncloud.github.io/ocis/#architecture-overview" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#architecture-overview"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Architecture Overview</h3></div>
 
 
@@ -1927,22 +1942,13 @@ We run a huge test suite, which was originated in ownCloud 10 and continues to g
 
 <p class="mermaid text-center">
 graph TD
-ocis-proxy -->
-    ocis-konnectd & ocis-phoenix & ocis-thumbnails & ocis-ocs & ocis-webdav
+proxy -->
+    konnectd & ocis-phoenix & thumbnails & ocs & webdav & storage & accounts & store & settings
 
-ocis-phoenix --> ocis-reva-fronted
-ocis-reva-fronted --> ocis-reva-gateway
-ocis-konnectd --> ocis-glauth
+konnectd --> glauth
 
+storage --> REVA
 
-ocis-reva-gateway --> ocis-reva-users
-ocis-reva-gateway --> ocis-reva-authbasic
-ocis-reva-gateway --> ocis-reva-auth-bearer
-
-ocis-reva-gateway --> ocis-reva-sharing
-ocis-reva-gateway --> ocis-reva-storage-home-*
-ocis-reva-storage-home-* --> ocis-reva-storage-home-*-data
-ocis-reva-sharing --> redis
 </p>
 
 

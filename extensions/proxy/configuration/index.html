@@ -73,7 +73,7 @@
             
                 <span class="flex">
                     <a href="/ocis/" class="gdoc-nav__entry ">
-                        oCIS
+                        oCIS - ownCloud Infinite Scale
                     </a>
                 </span>
             
@@ -252,6 +252,23 @@
             <li>
             
                 <span class="flex">
+                    <a href="/ocis/deployment/preparing_server/" class="gdoc-nav__entry ">
+                        Preparing a server
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+            
+            
+            <li>
+            
+                <span class="flex">
                     <a href="/ocis/deployment/basic-remote-setup/" class="gdoc-nav__entry ">
                         Basic Remote Setup
                     </a>
@@ -270,7 +287,7 @@
             
                 <span class="flex">
                     <a href="/ocis/deployment/ocis_traefik/" class="gdoc-nav__entry ">
-                        ocis with traefik deployment scenario
+                        oCIS with Traefik
                     </a>
                 </span>
             
@@ -287,7 +304,7 @@
             
                 <span class="flex">
                     <a href="/ocis/deployment/ocis_oc10_backend/" class="gdoc-nav__entry ">
-                        ocis frontend with oc10 backend deployment scenario
+                        ownCloud Web with ownCloud 10
                     </a>
                 </span>
             
@@ -303,25 +320,8 @@
             <li>
             
                 <span class="flex">
-                    <a href="/ocis/deployment/ocis_external_konnectd/" class="gdoc-nav__entry ">
-                        ocis with konnectd on external node deployment scenario
-                    </a>
-                </span>
-            
-
-            
-            
-            </li>
-            
-            
-        
-            
-            
-            <li>
-            
-                <span class="flex">
-                    <a href="/ocis/deployment/bridge/" class="gdoc-nav__entry ">
-                        Bridge
+                    <a href="/ocis/deployment/ocis_external_idp/" class="gdoc-nav__entry ">
+                        oCIS with external IDP
                     </a>
                 </span>
             
@@ -380,6 +380,21 @@
                 <span class="flex">
                     <a href="/ocis/login-flow/" class="gdoc-nav__entry ">
                         Login Flow
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+            
+            <li>
+            
+                <span class="flex">
+                    <a href="/ocis/metrics/" class="gdoc-nav__entry ">
+                        Metrics
                     </a>
                 </span>
             
@@ -1899,7 +1914,7 @@
     <span>
         
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/docs/extensions/proxy/configuration.md">
+            <a href="https://github.com/owncloud/ocis/edit/master/proxy/templates/CONFIGURATION.tmpl">
                 Edit this page
             </a>
         
@@ -1924,12 +1939,12 @@
         <li><a href="#configuration">Configuration</a>
           <ul>
             <li><a href="#configuration-using-config-files">Configuration using config files</a></li>
-            <li><a href="#envrionment-variables">Envrionment variables</a></li>
+            <li><a href="#environment-variables">Environment variables</a></li>
             <li><a href="#commandline-flags">Commandline flags</a></li>
-            <li><a href="#proxy-server">proxy server</a></li>
             <li><a href="#proxy-version">proxy version</a></li>
             <li><a href="#proxy-health">proxy health</a></li>
             <li><a href="#proxy-ocis-proxy">proxy ocis-proxy</a></li>
+            <li><a href="#proxy-server">proxy server</a></li>
           </ul>
         </li>
       </ul></nav><hr></div>
@@ -1945,10 +1960,37 @@ $HOME/.ocis
 ./config
 </code></pre></div><p>For this configuration to be picked up, have a look at your extension <code>root</code> command and look for which default config name it has assigned. <em>i.e: ocis-proxy reads <code>proxy.json | yaml | toml ...</code></em>.</p>
 <p>So far we support the file formats <code>JSON</code> and <code>YAML</code>, if you want to get a full example configuration just take a look at <a href="https://github.com/owncloud/ocis/tree/master/config">our repository</a>, there you can always see the latest configuration format. These example configurations include all available options and the default values. The configuration file will be automatically loaded if it&rsquo;s placed at <code>/etc/ocis/ocis.yml</code>, <code>${HOME}/.ocis/ocis.yml</code> or <code>$(pwd)/config/ocis.yml</code>.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="envrionment-variables"><a data-clipboard-text="https://owncloud.github.io/extensions/proxy/configuration/#envrionment-variables" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#envrionment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Envrionment variables</h3></div>
+<div class="gdoc-page__anchorwrap"><h3 id="environment-variables"><a data-clipboard-text="https://owncloud.github.io/extensions/proxy/configuration/#environment-variables" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#environment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Environment variables</h3></div>
 <p>If you prefer to configure the service with environment variables you can see the available variables below.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="commandline-flags"><a data-clipboard-text="https://owncloud.github.io/extensions/proxy/configuration/#commandline-flags" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#commandline-flags"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Commandline flags</h3></div>
 <p>If you prefer to configure the service with commandline flags you can see the available variables below. Command line flags are only working when calling the subcommand directly.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="proxy-version"><a data-clipboard-text="https://owncloud.github.io/extensions/proxy/configuration/#proxy-version" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#proxy-version"><svg class="icon link"><use xlink:href="#link"></use></svg></a>proxy version</h3></div>
+<p>Print the versions of the running instances</p>
+<p>Usage: <code>proxy version [command options] [arguments...]</code></p>
+<dl>
+<dt>&ndash;service-namespace | $PROXY_SERVICE_NAMESPACE</dt>
+<dd>Set the base namespace for the service namespace. Default: <code>com.owncloud.web</code>.</dd>
+<dt>&ndash;service-name | $PROXY_SERVICE_NAME</dt>
+<dd>Service name. Default: <code>proxy</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap"><h3 id="proxy-health"><a data-clipboard-text="https://owncloud.github.io/extensions/proxy/configuration/#proxy-health" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#proxy-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a>proxy health</h3></div>
+<p>Check health status</p>
+<p>Usage: <code>proxy health [command options] [arguments...]</code></p>
+<dl>
+<dt>&ndash;debug-addr | $PROXY_DEBUG_ADDR</dt>
+<dd>Address to debug endpoint. Default: <code>0.0.0.0:9109</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap"><h3 id="proxy-ocis-proxy"><a data-clipboard-text="https://owncloud.github.io/extensions/proxy/configuration/#proxy-ocis-proxy" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#proxy-ocis-proxy"><svg class="icon link"><use xlink:href="#link"></use></svg></a>proxy ocis-proxy</h3></div>
+<p>proxy for Reva/oCIS</p>
+<p>Usage: <code>proxy ocis-proxy [command options] [arguments...]</code></p>
+<dl>
+<dt>&ndash;log-level | $PROXY_LOG_LEVEL</dt>
+<dd>Set logging level. Default: <code>info</code>.</dd>
+<dt>&ndash;log-pretty | $PROXY_LOG_PRETTY</dt>
+<dd>Enable pretty logging. Default: <code>true</code>.</dd>
+<dt>&ndash;log-color | $PROXY_LOG_COLOR</dt>
+<dd>Enable colored logging. Default: <code>true</code>.</dd>
+</dl>
 <div class="gdoc-page__anchorwrap"><h3 id="proxy-server"><a data-clipboard-text="https://owncloud.github.io/extensions/proxy/configuration/#proxy-server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#proxy-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>proxy server</h3></div>
 <p>Start integrated server</p>
 <p>Usage: <code>proxy server [command options] [arguments...]</code></p>
@@ -2001,33 +2043,6 @@ $HOME/.ocis
 <dd>create accounts from OIDC access tokens to learn new users. Default: <code>false</code>.</dd>
 <dt>&ndash;enable-basic-auth | $PROXY_ENABLE_BASIC_AUTH</dt>
 <dd>enable basic authentication. Default: <code>false</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="proxy-version"><a data-clipboard-text="https://owncloud.github.io/extensions/proxy/configuration/#proxy-version" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#proxy-version"><svg class="icon link"><use xlink:href="#link"></use></svg></a>proxy version</h3></div>
-<p>Print the versions of the running instances</p>
-<p>Usage: <code>proxy version [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;service-namespace | $PROXY_SERVICE_NAMESPACE</dt>
-<dd>Set the base namespace for the service namespace. Default: <code>com.owncloud.web</code>.</dd>
-<dt>&ndash;service-name | $PROXY_SERVICE_NAME</dt>
-<dd>Service name. Default: <code>proxy</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="proxy-health"><a data-clipboard-text="https://owncloud.github.io/extensions/proxy/configuration/#proxy-health" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#proxy-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a>proxy health</h3></div>
-<p>Check health status</p>
-<p>Usage: <code>proxy health [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;debug-addr | $PROXY_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>0.0.0.0:9109</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="proxy-ocis-proxy"><a data-clipboard-text="https://owncloud.github.io/extensions/proxy/configuration/#proxy-ocis-proxy" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#proxy-ocis-proxy"><svg class="icon link"><use xlink:href="#link"></use></svg></a>proxy ocis-proxy</h3></div>
-<p>proxy for Reva/oCIS</p>
-<p>Usage: <code>proxy ocis-proxy [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;log-level | $PROXY_LOG_LEVEL</dt>
-<dd>Set logging level. Default: <code>info</code>.</dd>
-<dt>&ndash;log-pretty | $PROXY_LOG_PRETTY</dt>
-<dd>Enable pretty logging. Default: <code>true</code>.</dd>
-<dt>&ndash;log-color | $PROXY_LOG_COLOR</dt>
-<dd>Enable colored logging. Default: <code>true</code>.</dd>
 </dl>
 
 
