@@ -1933,7 +1933,7 @@
 
 
 <div class="gdoc-page__anchorwrap"><h2 id="acceptance-tests"><a data-clipboard-text="https://owncloud.github.io/ocis/development/testing/#acceptance-tests" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#acceptance-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Acceptance tests</h2></div>
-<p>We are using the ownCloud 10 acceptance testsuite against ocis. To set this up you need the owncloud 10 core repo, a ldap server that the acceptance tests can use to manage users, a redis server for file-versions and the oCIS code.</p>
+<p>We are using the ownCloud 10 acceptance test suite against oCIS. To set this up you need the ownCloud 10 core repo, a LDAP server that the acceptance tests can use to manage users, a redis server for file-versions and the oCIS code.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="getting-the-tests"><a data-clipboard-text="https://owncloud.github.io/ocis/development/testing/#getting-the-tests" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#getting-the-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Getting the tests</h3></div>
 <p>All you need to do to get the acceptance tests is check out the core repo:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">git clone https://github.com/owncloud/core.git
@@ -1948,7 +1948,7 @@
 <p>First we will need to clone the testing app in owncloud which contains the skeleton files required for running the tests.
 In the ownCloud 10 core clone the testing app with the following command:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">git clone https://github.com/owncloud/testing apps/testing
-</code></pre></div><p>Then run the api acceptance tests with the  following command:</p>
+</code></pre></div><p>Then run the api acceptance tests with the following command inside the <code>./ocis</code> directory:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">make test-acceptance-api \
 TEST_SERVER_URL=https://localhost:9200 \
 TEST_OCIS=true \
@@ -1983,7 +1983,7 @@ For that change <code>coreCommit</code> in the <code>config</code> section:</p>
 </code></pre>
 </li>
 <li>
-<p>locally run each of the tests marked with that issue in the expected failures file</p>
+<p>locally run each of the tests marked with that issue in the expected failures file. This must be run inside the <code>./ocis</code> directory.</p>
 <p>E.g.:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">make test-acceptance-api \
 TEST_SERVER_URL=https://localhost:9200 \
