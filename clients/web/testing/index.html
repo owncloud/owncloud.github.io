@@ -2028,7 +2028,7 @@ Mac: <code>tests/acceptance/ocis-mac-config.json</code></li>
 <div class="gdoc-page__anchorwrap"><h4 id="the-quick-way-all-automated"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#the-quick-way-all-automated" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#the-quick-way-all-automated"><svg class="icon link"><use xlink:href="#link"></use></svg></a>the quick way (all automated)</h4></div>
 <ol>
 <li>run <code>yarn run test-requirements:ocis</code> (<code>yarn run test-requirements:ocis:mac</code> for Mac users) to install, configure and run all ocis requirements</li>
-<li>run <code>yarn run acceptance-tests-ocis &lt;feature-files-to-test&gt;</code> to run the tests. The feature files are located in the &ldquo;tests/acceptance/features&rdquo; subdirectories.</li>
+<li>run <code>yarn run acceptance-tests-ocis &lt;feature-files-to-test&gt;</code> to run the tests. The feature files are located in the &ldquo;tests/acceptance/features&rdquo; subdirectories. To separate ocis log output from the tests output, run the command in a separate console.</li>
 <li>after the tests finish, run <code>yarn run killall</code> to stop all created docker containers, and the ocis services</li>
 </ol>
 <div class="gdoc-page__anchorwrap"><h4 id="the-manual-way-eg-to-run-from-an-existing-ocis-location"><a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#the-manual-way-eg-to-run-from-an-existing-ocis-location" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#the-manual-way-eg-to-run-from-an-existing-ocis-location"><svg class="icon link"><use xlink:href="#link"></use></svg></a>the manual way (e.g. to run from an existing ocis location)</h4></div>
@@ -2045,10 +2045,13 @@ Mac: <code>tests/acceptance/ocis-mac-config.json</code></li>
 </code></pre></div></li>
 <li>
 <p>Run the OCIS server with the necessary configurations</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">export</span> <span class="nv">REVA_STORAGE_OWNCLOUD_REDIS_ADDR</span><span class="o">=</span><span class="s1">&#39;localhost:6379&#39;</span>
-<span class="nb">export</span> <span class="nv">PHOENIX_ASSET_PATH</span><span class="o">=</span><span class="s1">&#39;&lt;path-to-phoenix-clone&gt;/dist&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">export</span> <span class="nv">PHOENIX_ASSET_PATH</span><span class="o">=</span><span class="s1">&#39;&lt;path-to-phoenix-clone&gt;/dist&#39;</span>
 <span class="nb">export</span> <span class="nv">PHOENIX_WEB_CONFIG</span><span class="o">=</span><span class="s1">&#39;&lt;path-to-phoenix-clone&gt;/dist/config.json&#39;</span>
-</code></pre></div><p>note: <code>PHOENIX_WEB_CONFIG</code> should point to the same config file you have created earlier.</p>
+<span class="nb">export</span> <span class="nv">STORAGE_HOME_DRIVER</span><span class="o">=</span>owncloud
+<span class="nb">export</span> <span class="nv">STORAGE_USERS_DRIVER</span><span class="o">=</span>owncloud
+<span class="nb">export</span> <span class="nv">PROXY_ENABLE_BASIC_AUTH</span><span class="o">=</span><span class="nb">true</span>
+</code></pre></div><p>note: <code>PHOENIX_WEB_CONFIG</code> should point to the same config file you have created earlier.
+note: currently it&rsquo;s not possible to run the UI tests with OCIS &amp; OWNCLOUD storage-driver</p>
 <p>run the server:</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">bin/ocis server
 </code></pre></div></li>
