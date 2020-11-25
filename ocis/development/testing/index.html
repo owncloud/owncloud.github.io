@@ -1948,7 +1948,7 @@
 <p>First we will need to clone the testing app in owncloud which contains the skeleton files required for running the tests.
 In the ownCloud 10 core clone the testing app with the following command:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">git clone https://github.com/owncloud/testing apps/testing
-</code></pre></div><p>Then run the api acceptance tests with the following command inside the <code>./ocis</code> directory:</p>
+</code></pre></div><p>Then run the api acceptance tests with the following command from the root of the OCIS repo:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">make test-acceptance-api \
 TEST_SERVER_URL=https://localhost:9200 \
 TEST_OCIS=true \
@@ -1960,13 +1960,13 @@ BEHAT_FILTER_TAGS=&#39;~@notToImplementOnOCIS&amp;&amp;~@toImplementOnOCIS&#39;
 <p>To run a single test add <code>BEHAT_FEATURE=&lt;feature file&gt;</code></p>
 <div class="gdoc-page__anchorwrap"><h3 id="use-existing-tests-for-bdd"><a data-clipboard-text="https://owncloud.github.io/ocis/development/testing/#use-existing-tests-for-bdd" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#use-existing-tests-for-bdd"><svg class="icon link"><use xlink:href="#link"></use></svg></a>use existing tests for BDD</h3></div>
 <p>As a lot of scenarios are written for oC10, we can use those tests for Behaviour driven development in ocis.
-Every scenario that does not work in OCIS with &ldquo;owncloud&rdquo; storage, is listed in <code>ocis/tests/acceptance/expected-failures-on-OWNCLOUD-storage.txt</code> with a link to the related issue.
-Every scenario that does not work in OCIS with &ldquo;ocis&rdquo; storage, is listed in <code>ocis/tests/acceptance/expected-failures-on-OCIS-storage.txt</code> with a link to the related issue.</p>
+Every scenario that does not work in OCIS with &ldquo;owncloud&rdquo; storage, is listed in <code>tests/acceptance/expected-failures-on-OWNCLOUD-storage.txt</code> with a link to the related issue.
+Every scenario that does not work in OCIS with &ldquo;ocis&rdquo; storage, is listed in <code>tests/acceptance/expected-failures-on-OCIS-storage.txt</code> with a link to the related issue.</p>
 <p>Those scenarios are run in the ordinary acceptance test pipeline in CI. The scenarios that fail are checked against the
 expected failures. If there are any differences then the CI pipeline fails.
-Similarly, scenarios that do not work in OCIS with EOS storage are listed in <code>ocis/tests/acceptance/expected-failures-on-EOS-storage.txt</code>.
+Similarly, scenarios that do not work in OCIS with EOS storage are listed in <code>tests/acceptance/expected-failures-on-EOS-storage.txt</code>.
 Additionally, some issues have scenarios that demonstrate the current buggy behaviour in ocis(reva).
-Those scenarios are in this ocis repository in <code>ocis/tests/acceptance/features/apiOcisSpecific</code>.
+Those scenarios are in this ocis repository in <code>tests/acceptance/features/apiOcisSpecific</code>.
 Have a look into the <a href="https://doc.owncloud.com/server/developer_manual/testing/acceptance-tests.html#writing-scenarios-for-bugs">documentation</a> to understand why we are writing those tests.</p>
 <p>If you want to work on a specific issue</p>
 <ol>
@@ -1983,7 +1983,7 @@ For that change <code>coreCommit</code> in the <code>config</code> section:</p>
 </code></pre>
 </li>
 <li>
-<p>locally run each of the tests marked with that issue in the expected failures file. This must be run inside the <code>./ocis</code> directory.</p>
+<p>locally run each of the tests marked with that issue in the expected failures file.</p>
 <p>E.g.:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">make test-acceptance-api \
 TEST_SERVER_URL=https://localhost:9200 \
