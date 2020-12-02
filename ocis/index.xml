@@ -12,42 +12,12 @@
     
     
     <item>
-      <title>Getting Started</title>
-      <link>https://owncloud.github.io/ocis/getting-started/</link>
-      <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
+      <title>Configuration</title>
+      <link>https://owncloud.github.io/ocis/configuration/</link>
+      <pubDate>Wed, 02 Dec 2020 11:42:01 +0000</pubDate>
       
-      <guid>https://owncloud.github.io/ocis/getting-started/</guid>
-      <description>Run oCIS  Binaries Docker   Usage  Login to oCIS Web Basic Commands       Run oCIS We are distributing oCIS as binaries and Docker images.
-You can find more deployments examples in the deployment section
-Binaries The binaries for different platforms are downloadable at our download mirror or on GitHub. Latest binaries from the master branch can be found at our download mirrors testing section.</description>
-    </item>
-    
-    <item>
-      <title>EOS</title>
-      <link>https://owncloud.github.io/ocis/eos/</link>
-      <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
-      
-      <guid>https://owncloud.github.io/ocis/eos/</guid>
-      <description>Docker dev environment for eos storage  1. Start eos &amp;amp; ocis containers 2. LDAP support 3. Home storage 4. Users storage 5. Metadata storage 6. Accounts service   Verification Further exploration Cleaning up Troubleshooting  Docker-compose exits right away Where are the logs ? How do I update a service in the ocis container? Creation and upload of files does not work Uploading big files appears to hang Running out of space quickly       oCIS can be configured to run on top of eos.</description>
-    </item>
-    
-    <item>
-      <title>Extension</title>
-      <link>https://owncloud.github.io/ocis/extensions/</link>
-      <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
-      
-      <guid>https://owncloud.github.io/ocis/extensions/</guid>
-      <description>How to build and run ocis-simple Hacking ocis-hello  Option 1:   Hacking phoenix (and ocis-phoenix) The ownCloud design system External phoenix apps Phoenix extension points  Phoenix core Files app   API driven development     How to build and run ocis-simple ocis uses build tags to build different flavors of the binary. In order to work on a new extension we are going to reduce the scope a little and use the simple tag.</description>
-    </item>
-    
-    <item>
-      <title>Login Flow</title>
-      <link>https://owncloud.github.io/ocis/login-flow/</link>
-      <pubDate>Mon, 04 May 2020 20:47:00 +0100</pubDate>
-      
-      <guid>https://owncloud.github.io/ocis/login-flow/</guid>
-      <description>Login Flow The following sequence diagram describes the openid connect auth code flow. The eight numbered steps and notes correspond to the openid connect auth code flow steps. Example requests are based on the spec as well.:
-  mermaid.initialize({ flowchart: { useMaxWidth: true } });  sequenceDiagram %% we have comments!! \o/ %% this documents the login workflow %% examples taken from the oidc spec https://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth %% TODO add PKCE, see https://developer.</description>
+      <guid>https://owncloud.github.io/ocis/configuration/</guid>
+      <description>Configuration  Configuration using config files Environment variables Commandline flags   Root Command Sub Commands  ocis run ocis list ocis kill ocis server ocis health List of available Extension subcommands  ocis webdav ocis glauth ocis storage-public-link ocis storage-gateway ocis proxy ocis settings ocis storage-metadata ocis storage-home ocis thumbnails ocis accounts ocis onlyoffice ocis storage-users ocis phoenix ocis version ocis storage-auth-bearer ocis ocs ocis store ocis storage-frontend ocis storage-auth-basic ocis storage-sharing ocis konnectd ocis storage-userprovider         Configuration oCIS Single Binary is not responsible for configuring extensions.</description>
     </item>
     
     <item>
@@ -61,50 +31,23 @@ Binaries The binaries for different platforms are downloadable at our download m
     </item>
     
     <item>
-      <title>Request Flow</title>
-      <link>https://owncloud.github.io/ocis/request-flow/</link>
-      <pubDate>Mon, 27 Apr 2020 16:07:00 +0100</pubDate>
-      
-      <guid>https://owncloud.github.io/ocis/request-flow/</guid>
-      <description>Request Flow The following sequence diagram describes the general request flow. It shows where account provisioning and token minting are happening:
-  mermaid.initialize({ flowchart: { useMaxWidth: true } });  sequenceDiagram %% we have comments!! \o/ participant user as User participant client as Client participant proxy as ocis-proxy participant idp as IdP participant accounts as ocis-accounts participant ldap as corporate LDAP server user-+client: What is the content of my home?</description>
-    </item>
-    
-    <item>
-      <title>Public upload Flow</title>
-      <link>https://owncloud.github.io/ocis/public-upload-flow/</link>
-      <pubDate>Mon, 27 Jul 2020 14:16:00 +0100</pubDate>
-      
-      <guid>https://owncloud.github.io/ocis/public-upload-flow/</guid>
-      <description>Public Upload flow The following diagram describes the flow of requests:
-ocis-reva sharing
-REVA_SHARING_ADDR = 0.0.0.0:9150
-ocis-reva sharing...ocis-reva frontend
-REVA_FRONTEND_ADDR = 0.0.0.0:9140
-REVA_GATEWAY_URL = ocis:9142
-ocis-reva frontend...ocis-proxy
-PROXY_HTTP_ADDR = 0.0.0.0:9200
-ocis-proxy...2  POST http://ocis:9140/remote.php/dav/files/einstein/2 POST http:/...ocdav
-prefix = &#34;&#34;
-timeout = 86400
-ocdav...datagateway
-prefix = &#34;data&#34;
-timeout = 86400
-datagateway...client
-client&amp;#xa;22  PATCH https://oc.example.org/data/{token}
-Tus-Resumable: 1.0.022 PATCH http...ocis-reva gateway
-REVA_GATEWAY_ADDR = 0.0.0.0:9142
-ocis-reva gateway...storage-registry
-storage-registry&amp;#xa;Expose: trueExpose: true24  PATCH http://ocis:9156/data/u-u-i-d24 PATCH http.</description>
-    </item>
-    
-    <item>
       <title>License</title>
       <link>https://owncloud.github.io/ocis/license/</link>
       <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
       
       <guid>https://owncloud.github.io/ocis/license/</guid>
       <description>This project is licensed under the Apache 2.0 license. For the license of the used libraries you have to check the respective sources.</description>
+    </item>
+    
+    <item>
+      <title>Getting Started</title>
+      <link>https://owncloud.github.io/ocis/getting-started/</link>
+      <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
+      
+      <guid>https://owncloud.github.io/ocis/getting-started/</guid>
+      <description>Run oCIS  Binaries Docker   Usage  Login to oCIS Web Basic Management Commands       Run oCIS We are distributing oCIS as binaries and Docker images.
+You can find more deployments examples in the deployment section
+Binaries The binaries for different platforms are downloadable at our download mirror or on GitHub. Latest binaries from the master branch can be found at our download mirrors testing section.</description>
     </item>
     
   </channel>

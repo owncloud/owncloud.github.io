@@ -12,24 +12,24 @@
     
     
     <item>
-      <title>Getting Started with Development</title>
+      <title>Getting Started</title>
       <link>https://owncloud.github.io/ocis/development/getting-started/</link>
       <pubDate>Tue, 07 Jul 2020 20:35:00 +0100</pubDate>
       
       <guid>https://owncloud.github.io/ocis/development/getting-started/</guid>
-      <description>Docker dev environment  Option 1: Plain docker Option 2: Docker compose   Verification     Docker dev environment Option 1: Plain docker To build and run your local ocis code with default storage driver
-docker run --rm -ti --name ocis -v $PWD:/ocis -p 9200:9200 owncloud/eos-ocis-dev The eos-ocis-dev container will build and run oCIS using the ownCloud storage driver and store files in the container at /var/tmp/reva/data/&amp;lt;username&amp;gt;/files</description>
+      <description>Requirements Repository structure Starting points  Developing oCIS Developing extensions       Requirements We want contribution to oCIS and the creation of extensions to be as easy as possible. So we are trying to reflect this in the tooling. It should be kept simple and quick to be set up.
+Besides standard development tools like git and a text editor, you need the following software for development:</description>
     </item>
     
     <item>
-      <title>Build ocis</title>
-      <link>https://owncloud.github.io/ocis/development/building/</link>
+      <title>Build</title>
+      <link>https://owncloud.github.io/ocis/development/build/</link>
       <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
       
-      <guid>https://owncloud.github.io/ocis/development/building/</guid>
-      <description>Build requirements All required tools besides go and make are bundled or getting automatically installed within the GOPATH. All commands to build this project are part of our Makefile.
-The installation of Go is out of the scope of this document, please follow the official documentation for Go, to build this project you have to install Go &amp;gt;= v1.13.
-Get the sources git clone https://github.com/owncloud/ocis.git cd ocis Build the oCIS binary The oCIS binary source is in the ocis/ocis folder.</description>
+      <guid>https://owncloud.github.io/ocis/development/build/</guid>
+      <description>Build requirements Get the sources Build the oCIS binary Build a local oCIS docker image     Build requirements see Development - Getting Started
+Get the sources git clone https://github.com/owncloud/ocis.git cd ocis Build the oCIS binary The oCIS binary source is in the ocis folder inside the oCIS repository. In this folder you can build the oCIS binary:
+cd ocis make generate make build After building you have the binary within the bin/ folder.</description>
     </item>
     
     <item>
@@ -38,9 +38,16 @@ Get the sources git clone https://github.com/owncloud/ocis.git cd ocis Build the
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.github.io/ocis/development/testing/</guid>
-      <description>Acceptance tests We are using the ownCloud 10 acceptance test suite against oCIS. To set this up you need the ownCloud 10 core repo, a LDAP server that the acceptance tests can use to manage users, a redis server for file-versions and the oCIS code.
-Getting the tests All you need to do to get the acceptance tests is check out the core repo:
-git clone https://github.com/owncloud/core.git Run a redis server in a docker container File versions need a redis server.</description>
+      <description>Acceptance tests  Getting the tests Run a redis server in a docker container Run ocis Run the acceptance tests use existing tests for BDD       Acceptance tests We are using the ownCloud 10 acceptance test suite against oCIS. To set this up you need the ownCloud 10 core repo, a LDAP server that the acceptance tests can use to manage users, a redis server for file-versions and the oCIS code.</description>
+    </item>
+    
+    <item>
+      <title>Extensions</title>
+      <link>https://owncloud.github.io/ocis/development/extensions/</link>
+      <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
+      
+      <guid>https://owncloud.github.io/ocis/development/extensions/</guid>
+      <description>How to build and run ocis-simple Hacking ocis-hello  Option 1:   Hacking phoenix (and ocis-phoenix) The ownCloud design system External phoenix apps Phoenix extension points  Phoenix core Files app   API driven development     How to build and run ocis-simple ocis uses build tags to build different flavors of the binary. In order to work on a new extension we are going to reduce the scope a little and use the simple tag.</description>
     </item>
     
     <item>
@@ -49,8 +56,7 @@ git clone https://github.com/owncloud/core.git Run a redis server in a docker co
       <pubDate>Thu, 19 Mar 2020 08:21:00 +0100</pubDate>
       
       <guid>https://owncloud.github.io/ocis/development/debugging/</guid>
-      <description>Debugging As a single binary for easy deployment running ocis server just forks itself to start all the services, which makes debugging those processes a little harder.
-Ultimately, we want to be able to stop a single service using eg. ocis kill phoenix so that you can start the service you want to debug in debug mode. We need to change the way we fork processes though, otherwise the runtime will automatically restart a service if killed.</description>
+      <description>Debugging  Start ocis  Use the debug binary and attach to the process as needed Start all services independently to replace one of them with a debug process   Gather error messages Managing dependencies and testing changes       Debugging As a single binary for easy deployment running ocis server just forks itself to start all the services, which makes debugging those processes a little harder.</description>
     </item>
     
     <item>
@@ -64,16 +70,25 @@ Ultimately, we want to be able to stop a single service using eg. ocis kill phoe
     </item>
     
     <item>
-      <title>Build the documentation</title>
-      <link>https://owncloud.github.io/ocis/development/building-docs/</link>
+      <title>Documentation</title>
+      <link>https://owncloud.github.io/ocis/development/build-docs/</link>
       <pubDate>Mon, 27 Jul 2020 08:39:38 +0000</pubDate>
       
-      <guid>https://owncloud.github.io/ocis/development/building-docs/</guid>
-      <description>Buildling the documentation Following steps can be applied for every oCIS extension repository.
-Setting up  Install hugo Run make docs  Viewing the documentation To view the rendered docs in the browser run:
-cd hugo hugo -D server Then open &amp;ldquo;http://localhost:1313/&amp;rdquo;
-When making changes to the docs, run
-rsync -ax --delete ../docs/ content/ in the hugo folder and the server will pick up the changes and reload the page automatically.</description>
+      <guid>https://owncloud.github.io/ocis/development/build-docs/</guid>
+      <description>Build the documentation Add changes to the documentation     Build the documentation Just run make -C docs docs-serve from within the root level of the oCIS git repository.
+Add changes to the documentation Please keep this documentation in sync with the oCIS source code.
+Changes on the documentation are automatically applied to this site when merged to the master branch.</description>
+    </item>
+    
+    <item>
+      <title>Continuous Integration</title>
+      <link>https://owncloud.github.io/ocis/development/continuous-integration/</link>
+      <pubDate>Thu, 01 Oct 2020 20:35:00 +0100</pubDate>
+      
+      <guid>https://owncloud.github.io/ocis/development/continuous-integration/</guid>
+      <description>Concepts Things done in CI Flags in commit message and PR title  Knowledge base       oCIS uses DRONE as CI system. You can find the pipeline logs here or in your PR.
+Concepts The pipeline is defined in Starlark and transformed to YAML upon pipeline run. This enables us to do a highly dynamic and non repeating pipeline configuration.
+Upon running the pipeline, your branch gets merged to the master branch.</description>
     </item>
     
   </channel>
