@@ -333,6 +333,21 @@
             <li>
             
                 <span class="flex">
+                    <a href="/ocis/deployment/ocis_keycloak/" class="gdoc-nav__entry ">
+                        oCIS with Keycloak
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+            
+            <li>
+            
+                <span class="flex">
                     <a href="/ocis/deployment/ocis_traefik/" class="gdoc-nav__entry ">
                         oCIS with Traefik
                     </a>
@@ -350,25 +365,8 @@
             <li>
             
                 <span class="flex">
-                    <a href="/ocis/deployment/ocis_oc10_backend/" class="gdoc-nav__entry ">
-                        ownCloud Web with ownCloud 10
-                    </a>
-                </span>
-            
-
-            
-            
-            </li>
-            
-            
-        
-            
-            
-            <li>
-            
-                <span class="flex">
-                    <a href="/ocis/deployment/ocis_external_idp/" class="gdoc-nav__entry ">
-                        oCIS with external IDP
+                    <a href="/ocis/deployment/owncloud10_with_oc_web/" class="gdoc-nav__entry ">
+                        ownCloud 10 with ownCloud Web
                     </a>
                 </span>
             
@@ -1068,8 +1066,48 @@
             <li>
             
                 <span class="flex">
+                    <a href="/extensions/ocs/" class="gdoc-nav__entry ">
+                        Ocs
+                    </a>
+                </span>
+            
+
+            
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+            <li>
+            
+                <span class="flex">
+                    <a href="/extensions/ocs/configuration/" class="gdoc-nav__entry ">
+                        Configuration
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+            
+            <li>
+            
+                <span class="flex">
                     <a href="/extensions/ocis-phoenix/" class="gdoc-nav__entry ">
-                        oCIS Web
+                        ownCloud Web
                     </a>
                 </span>
             
@@ -1105,46 +1143,6 @@
                 <span class="flex">
                     <a href="/extensions/ocis-phoenix/releasing/" class="gdoc-nav__entry ">
                         Releasing
-                    </a>
-                </span>
-            
-
-            
-            
-            </li>
-            
-            
-        
-    </ul>
-
-            
-            </li>
-            
-            
-            
-            <li>
-            
-                <span class="flex">
-                    <a href="/extensions/ocs/" class="gdoc-nav__entry ">
-                        Ocs
-                    </a>
-                </span>
-            
-
-            
-            
-                
-    
-
-    <ul class="gdoc-nav__list">
-        
-            
-            
-            <li>
-            
-                <span class="flex">
-                    <a href="/extensions/ocs/configuration/" class="gdoc-nav__entry ">
-                        Configuration
                     </a>
                 </span>
             
@@ -1800,7 +1798,7 @@ The <code>identifier-registration.yml</code> file will only be generated if ther
 </div>
 </div><p>In this example we do not change the default port (<code>9200</code>). But this could be changed to another port.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="start-the-ocis-fullstack-server"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/basic-remote-setup/#start-the-ocis-fullstack-server" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#start-the-ocis-fullstack-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Start the ocis fullstack server</h3></div>
-<p>You need to configure <code>your-host</code> in some services to provide the needed public resources. When using the owncloud storage driver (which is the default) oCIS currently needs a running Redis Server reachable locally on the machine at the default port (<code>localhost:6379</code>). You can change this using the following option <code>STORAGE_DRIVER_OWNCLOUD_REDIS_ADDR=some-host:6379</code>.</p>
+<p>You need to configure <code>your-host</code> in some services to provide the needed public resources.</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">PROXY_HTTP_ADDR</span><span class="o">=</span>0.0.0.0:9200 <span class="se">\
 </span><span class="se"></span><span class="nv">KONNECTD_ISS</span><span class="o">=</span>https://your-server:9200 <span class="se">\
 </span><span class="se"></span><span class="nv">REVA_OIDC_ISSUER</span><span class="o">=</span>https://your-server:9200 <span class="se">\
@@ -1833,8 +1831,6 @@ cat <span class="s">&lt;&lt; EOF &gt; .env
 </span><span class="s">OCIS_HTTP_PORT=9200
 </span><span class="s">OCIS_DOCKER_TAG=latest
 </span><span class="s">EOF</span>
-
-docker-compose -f ocis.yml -f ../cache/redis-ocis.yml up -d
 
 curl -k https://192.168.103.195:9200/status.php
 </code></pre></div>

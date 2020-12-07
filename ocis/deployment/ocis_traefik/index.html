@@ -333,6 +333,21 @@
             <li>
             
                 <span class="flex">
+                    <a href="/ocis/deployment/ocis_keycloak/" class="gdoc-nav__entry ">
+                        oCIS with Keycloak
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+            
+            <li>
+            
+                <span class="flex">
                     <a href="/ocis/deployment/ocis_traefik/" class="gdoc-nav__entry is-active">
                         oCIS with Traefik
                     </a>
@@ -350,25 +365,8 @@
             <li>
             
                 <span class="flex">
-                    <a href="/ocis/deployment/ocis_oc10_backend/" class="gdoc-nav__entry ">
-                        ownCloud Web with ownCloud 10
-                    </a>
-                </span>
-            
-
-            
-            
-            </li>
-            
-            
-        
-            
-            
-            <li>
-            
-                <span class="flex">
-                    <a href="/ocis/deployment/ocis_external_idp/" class="gdoc-nav__entry ">
-                        oCIS with external IDP
+                    <a href="/ocis/deployment/owncloud10_with_oc_web/" class="gdoc-nav__entry ">
+                        ownCloud 10 with ownCloud Web
                     </a>
                 </span>
             
@@ -1068,8 +1066,48 @@
             <li>
             
                 <span class="flex">
+                    <a href="/extensions/ocs/" class="gdoc-nav__entry ">
+                        Ocs
+                    </a>
+                </span>
+            
+
+            
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+            <li>
+            
+                <span class="flex">
+                    <a href="/extensions/ocs/configuration/" class="gdoc-nav__entry ">
+                        Configuration
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+            
+            <li>
+            
+                <span class="flex">
                     <a href="/extensions/ocis-phoenix/" class="gdoc-nav__entry ">
-                        oCIS Web
+                        ownCloud Web
                     </a>
                 </span>
             
@@ -1105,46 +1143,6 @@
                 <span class="flex">
                     <a href="/extensions/ocis-phoenix/releasing/" class="gdoc-nav__entry ">
                         Releasing
-                    </a>
-                </span>
-            
-
-            
-            
-            </li>
-            
-            
-        
-    </ul>
-
-            
-            </li>
-            
-            
-            
-            <li>
-            
-                <span class="flex">
-                    <a href="/extensions/ocs/" class="gdoc-nav__entry ">
-                        Ocs
-                    </a>
-                </span>
-            
-
-            
-            
-                
-    
-
-    <ul class="gdoc-nav__list">
-        
-            
-            
-            <li>
-            
-                <span class="flex">
-                    <a href="/extensions/ocs/configuration/" class="gdoc-nav__entry ">
-                        Configuration
                     </a>
                 </span>
             
@@ -1734,7 +1732,6 @@
           <ul>
             <li><a href="#requirements">Requirements</a></li>
             <li><a href="#install-ocis-and-traefik">Install oCIS and Traefik</a></li>
-            <li><a href="#configuration">Configuration</a></li>
           </ul>
         </li>
         <li><a href="#local-setup">Local setup</a></li>
@@ -1743,97 +1740,79 @@
 
 <div class="gdoc-page__anchorwrap"><h2 id="overview"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_traefik/#overview" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#overview"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Overview</h2></div>
 <ul>
-<li>oCIS running behind traefik as reverse proxy</li>
-<li>Valid ssl certificates for the domains for ssl termination</li>
+<li>oCIS running behind Traefik as reverse proxy</li>
+<li>Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup</li>
 </ul>
 <p><a href="https://github.com/owncloud/ocis/tree/master/deployments/examples/ocis_traefik">Find this example on GitHub</a></p>
+<p>The docker stack consists of two containers. One of them is Traefik, a proxy which is terminating ssl and forwards the requests to oCIS in the internal docker network.</p>
+<p>The other one is oCIS itself running all extensions in one container. In this example oCIS uses its internal IDP <a href="https://owncloud.github.io/extensions/konnectd/">Konnectd</a> and the <a href="https://owncloud.github.io/extensions/storage/storages/#storage-drivers">oCIS storage driver</a></p>
 <div class="gdoc-page__anchorwrap"><h2 id="server-deployment"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_traefik/#server-deployment" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#server-deployment"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Server Deployment</h2></div>
 <div class="gdoc-page__anchorwrap"><h3 id="requirements"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_traefik/#requirements" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#requirements"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Requirements</h3></div>
 <ul>
-<li>Linux server(s) with docker and docker-compose installed</li>
-<li>Two domains set up and pointing to your server(s)</li>
+<li>Linux server with docker and docker-compose installed</li>
+<li>Two domains set up and pointing to your server
+<ul>
+<li>ocis.* for serving oCIS</li>
+<li>traefik.* for serving the Traefik dashboard</li>
+</ul>
+</li>
 </ul>
 <p>See also <a href="https://owncloud.github.io/ocis/deployment/preparing_server/">example server setup</a></p>
 <div class="gdoc-page__anchorwrap"><h3 id="install-ocis-and-traefik"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_traefik/#install-ocis-and-traefik" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#install-ocis-and-traefik"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Install oCIS and Traefik</h3></div>
-<p>The application stack contains two containers. The first one is a traefik proxy which is terminating ssl and forwards the requests to the internal docker network. Additional, traefik is creating a certificate that is stored in <code>acme.json</code> in the folder <code>letsencrypt</code> inside the users home directory.
-The second one is th ocis server which is exposing the webservice on port 9200 to traefik.</p>
 <ul>
 <li>
-<p>Clone ocis repository</p>
+<p>Clone oCIS repository</p>
 <p><code>git clone https://github.com/owncloud/ocis.git</code></p>
 </li>
 <li>
-<p>Copy example folder to /opt</p>
-<p><code>cp deployment/examples/ocis_traefik /opt/</code></p>
+<p>Go to the deployment example</p>
+<p><code>cd ocis/deployment/examples/ocis_traefik</code></p>
 </li>
 <li>
-<p>Overwrite OCIS_DOMAIN in .env with your.domain.com</p>
-<p><code>sed -i 's/ocis.domain.com/your.domain.com/g' /opt/ocis_traefik/.env</code></p>
+<p>Open the <code>.env</code> file in a text editor
+The file by default looks like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># If you&#39;re on a internet facing server please comment out following line.</span>
+<span class="c1"># It skips certificate validation for various parts of oCIS and is needed if you use self signed certificates.</span>
+<span class="nv">INSECURE</span><span class="o">=</span><span class="nb">true</span>
+
+<span class="c1">### Traefik settings ###</span>
+<span class="c1"># Domain of Traefik, where you can find the dashboard. Defaults to &#34;traefik.owncloud.test&#34;</span>
+<span class="nv">TRAEFIK_DOMAIN</span><span class="o">=</span>
+<span class="c1"># Basic authentication for the dashboard. Defaults to user &#34;admin&#34; and password &#34;admin&#34;</span>
+<span class="nv">TRAEFIK_BASIC_AUTH_USERS</span><span class="o">=</span>
+<span class="c1"># Email address for obtaining LetsEncrypt certificates, needs only be changed if this is a public facing server</span>
+<span class="nv">TRAEFIK_ACME_MAIL</span><span class="o">=</span>
+
+<span class="c1">### oCIS settings ###</span>
+<span class="c1"># oCIS version. Defaults to &#34;latest&#34;</span>
+<span class="nv">OCIS_DOCKER_TAG</span><span class="o">=</span>
+<span class="c1"># Domain of oCIS, where you can find the frontend. Defaults to &#34;ocis.owncloud.test&#34;</span>
+<span class="nv">OCIS_DOMAIN</span><span class="o">=</span>
+</code></pre></div><p>You are installing oCIS on a server and Traefik will obtain valid certificates for you so please remove <code>INSECURE=true</code> or set it to <code>false</code>.</p>
+<p>Set your domain for the Traefik dasboard in <code>TRAEFIK_DOMAIN=</code> eg. <code>TRAEFIK_DOMAIN=traefik.owncloud.test</code>.</p>
+<p>The Traefik dasboard is secured by basic auth. Default credentials are the user <code>admin</code> with the password <code>admin</code>. To set your own credentials, generate a htpasswd (eg. by using <a href="https://htpasswdgenerator.de/">an online tool</a> or a cli tool).</p>
+<p>Traefik will issue certificates with LetsEncrypt and therefore you must set an email address in <code>TRAEFIK_ACME_MAIL=</code>.</p>
+<p>By default ocis will be started in the <code>latest</code> version. If you want to start a specific version of oCIS set the version to <code>OCIS_DOCKER_TAG=</code>. Available versions can be found on <a href="https://hub.docker.com/r/owncloud/ocis/tags?page=1&amp;ordering=last_updated">Docker Hub</a>.</p>
+<p>Set your domain for the oCIS frontend in <code>OCIS_DOMAIN=</code>, eg. <code>OCIS_DOMAIN=ocis.owncloud.test</code>.</p>
+<p>Now you have configured everything and can save the file.</p>
 </li>
 <li>
-<p>Overwrite redirect uri with your.domain.com in identifier-registration.yml</p>
-<p><code>sed -i 's/ocis.domain.com/your.domain.com/g' /opt/ocis_traefik/config/identifier-registration.yml</code></p>
-</li>
-<li>
-<p>Change into deployment folder</p>
-<p><code>cd /opt/ocis_traefik</code></p>
-</li>
-<li>
-<p>Start application stack</p>
+<p>Start the docker stack</p>
 <p><code>docker-compose up -d</code></p>
 </li>
+<li>
+<p>You now can visit oCIS and Traefik dashboard on your configured domains</p>
+</li>
 </ul>
-<div class="gdoc-page__anchorwrap"><h3 id="configuration"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_traefik/#configuration" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#configuration"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Configuration</h3></div>
-<p>Edit docker-compose.yml file to fit your domain setup</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">...<span class="w">
-</span><span class="w">  </span><span class="k">traefik</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="k">image</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;traefik:v2.2&#34;</span><span class="w">
-</span><span class="w">    </span>...<span class="w">
-</span><span class="w">    </span><span class="k">labels</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>...<span class="w">
-</span><span class="w">      </span><span class="c"># Email address is neccesary for certificate creation</span><span class="w">
-</span><span class="w">      </span>- <span class="s2">&#34;--certificatesresolvers.ocisresolver.acme.email=username@${OCIS_DOMAIN}&#34;</span><span class="w">
-</span><span class="w"></span>...<span class="w">
-</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="w">  </span><span class="k">ocis</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="k">container_name</span><span class="p">:</span><span class="w"> </span>ocis<span class="w">
-</span><span class="w">    </span>...<span class="w">
-</span><span class="w">    </span><span class="k">labels</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>...<span class="w">
-</span><span class="w">      </span><span class="c"># This is the domain for which traefik is creating the certificate from letsencrypt</span><span class="w">
-</span><span class="w">      </span>- <span class="s2">&#34;traefik.http.routers.ocis.rule=Host(`${OCIS_DOMAIN}`)&#34;</span><span class="w">
-</span><span class="w">      </span>...<span class="w">
-</span></code></pre></div><p>In this example, ssl is terminated from traefik while inside of the docker network the services are comunicating via http. For this <code>PROXY_TLS: &quot;false&quot;</code> as environment parameter for ocis has to be set.</p>
-<p>For ocis to work properly it&rsquo;s neccesary to provide one config file.
-Change identifier-registration.yml to match your domain.</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">---<span class="w">
-</span><span class="w"></span><span class="c"># OpenID Connect client registry.</span><span class="w">
-</span><span class="w"></span><span class="k">clients</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="k">id</span><span class="p">:</span><span class="w"> </span>phoenix<span class="w">
-</span><span class="w">    </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>OCIS<span class="w">
-</span><span class="w">    </span><span class="k">application_type</span><span class="p">:</span><span class="w"> </span>web<span class="w">
-</span><span class="w">    </span><span class="k">insecure</span><span class="p">:</span><span class="w"> </span>yes<span class="w">
-</span><span class="w">    </span><span class="k">trusted</span><span class="p">:</span><span class="w"> </span>yes<span class="w">
-</span><span class="w">    </span><span class="k">redirect_uris</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- http<span class="p">:</span>//ocis.domain.com/<span class="w">
-</span><span class="w">      </span>- https<span class="p">:</span>//ocis.domain.com/<span class="w">
-</span><span class="w">      </span>- http<span class="p">:</span>//ocis.domain.com/oidc-callback.html<span class="w">
-</span><span class="w">      </span>- https<span class="p">:</span>//ocis.domain.com/oidc-callback.html<span class="w">
-</span><span class="w">      </span>- http<span class="p">:</span>//ocis.domain.com/oidc-silent-redirect.html<span class="w">
-</span><span class="w">      </span>- https<span class="p">:</span>//ocis.domain.com/oidc-silent-redirect.html<span class="w">
-</span><span class="w">    </span><span class="k">origins</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- http<span class="p">:</span>//ocis.domain.com<span class="w">
-</span><span class="w">      </span>- https<span class="p">:</span>//ocis.domain.com<span class="w">
-</span></code></pre></div><p>To make it availible for ocis inside of the container, <code>config</code> hast to be mounted as volume.</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="w">    </span>...<span class="w">
-</span><span class="w">    </span><span class="k">volumes</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- ./config<span class="p">:</span>/etc/ocis<span class="w">
-</span><span class="w">    </span><span class="k">environment</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>...<span class="w">
-</span><span class="w">      </span><span class="k">KONNECTD_IDENTIFIER_REGISTRATION_CONF</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;/etc/ocis/identifier-registration.yml&#34;</span><span class="w">
-</span><span class="w">      </span>...<span class="w">
-</span></code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="local-setup"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_traefik/#local-setup" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#local-setup"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Local setup</h2></div>
-<p>For simple local ocis setup see <a href="https://owncloud.github.io/ocis/getting-started/">Getting started</a></p>
-<p>Local setup with Traefik coming soon</p>
+<div class="gdoc-page__anchorwrap"><h2 id="local-setup"><a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_traefik/#local-setup" class="gdoc-page__anchor gdoc-page__anchor--left clip" href="#local-setup"><svg class="icon link"><use xlink:href="#link"></use></svg></a>Local setup</h2></div>
+<p>For a more simple local ocis setup see <a href="https://owncloud.github.io/ocis/getting-started/">Getting started</a></p>
+<p>This docker stack can also be run locally. One downside is that Traefik can not obtain valid SSL certificates and therefore will create self signed ones. This means that your browser will show scary warnings. Another downside is that you can not point DNS entries to your localhost. So you have to add static host entries to your computer.</p>
+<p>On Linux and macOS you can add them to your <code>/etc/hosts</code> files like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">127.0.0.1 ocis.owncloud.test
+127.0.0.1 traefik.owncloud.test
+</code></pre></div><p>After that you&rsquo;re ready to start the application stack:</p>
+<p><code>docker-compose up -d</code></p>
+<p>Open <a href="https://ocis.owncloud.test">https://ocis.owncloud.test</a> in your browser and accept the invalid certificate warning. You now can login to oCIS with the default users, which also can be found here: <a href="https://owncloud.github.io/ocis/getting-started/#login-to-ocis-web">Getting started</a></p>
 
 
     </article>
