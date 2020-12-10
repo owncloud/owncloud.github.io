@@ -14,7 +14,7 @@
     input.removeEventListener('focus', init); // init once
     input.required = true;
 
-    loadScript('{{ "js/flexsearch.min.js" | relURL }}');
+    loadScript('{{ index .Site.Data.assets "js/flexsearch.min.js" | relURL }}');
     loadScript('{{ $searchData.RelPermalink }}', function() {
       input.required = false;
       search();
@@ -46,7 +46,12 @@
             a = li.appendChild(document.createElement('a'));
 
       a.href = page.href;
+
+      {{ if .Site.Params.GeekdocSearchShowParent }}
+      a.textContent = page.parent ? page.parent + ' / ' + page.title : page.title;
+      {{ else }}
       a.textContent = page.title;
+      {{ end }}
 
       results.appendChild(li);
       results.classList.add("DUMMY");

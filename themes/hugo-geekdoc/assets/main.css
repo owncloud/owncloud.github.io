@@ -152,6 +152,9 @@ template {
 .flex-auto {
   flex: 1 1 auto
 }
+.flex-inline {
+  display: inline-flex
+}
 .flex-even {
   flex: 1 1
 }
@@ -181,6 +184,10 @@ template {
 }
 .hidden {
   display: none
+}
+.badge-placeholder {
+  display: inline-block;
+  min-width: 4rem
 }
 @font-face {
   font-family: "Liberation Sans";
@@ -280,19 +287,10 @@ h6 {
   display: flex;
   align-items: center
 }
-h1 > code,
-h2 > code,
-h3 > code,
-h4 > code,
-h5 > code,
-h6 > code {
-  border-top: 3px solid #dee2e6;
-  font-size: .75em!important
-}
-h4 > code,
-h5 > code,
-h6 > code {
-  font-size: .8rem!important
+h4,
+h5,
+h6 {
+  font-size: 1rem!important
 }
 a {
   text-decoration: none;
@@ -307,6 +305,13 @@ a:visited {
 img {
   vertical-align: middle
 }
+.fake-link:hover {
+  background-image: linear-gradient(#0a539a,#0a539a);
+  background-position: 0 100%;
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  text-decoration: none
+}
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -315,7 +320,8 @@ img {
 .container {
   width: 100%;
   max-width: 80rem;
-  margin: 0 auto
+  margin: 0 auto;
+  padding: 1rem
 }
 .icon {
   display: inline-block;
@@ -343,9 +349,6 @@ img {
   width: 2rem;
   height: 2rem
 }
-.gdoc-header .container {
-  padding: 1rem
-}
 .gdoc-brand {
   font-size: 2rem
 }
@@ -358,7 +361,7 @@ img {
 }
 .gdoc-nav nav {
   width: 16rem;
-  padding: 1.5rem 1rem
+  padding: 1rem 2rem 1rem 0
 }
 .gdoc-nav nav > ul > li > * {
   font-weight: 400
@@ -381,7 +384,11 @@ img {
   padding-left: 1em;
   margin: 0;
   padding: 0;
-  list-style: none
+  list-style: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none
 }
 .gdoc-nav__list ul {
   padding-left: 1rem
@@ -391,6 +398,29 @@ img {
 }
 .gdoc-nav__list .icon {
   margin-right: .25rem
+}
+.gdoc-nav__toggle {
+  display: none
+}
+.gdoc-nav__toggle ~ label {
+  cursor: pointer
+}
+.gdoc-nav__toggle ~ label .icon {
+  font-size: .7rem
+}
+.gdoc-nav__toggle:not(:checked) ~ label .icon.keyborad_arrow_down,
+.gdoc-nav__toggle:not(:checked) ~ ul {
+  display: none
+}
+.gdoc-nav__toggle:not(:checked) ~ label .icon.keyborad_arrow_left {
+  display: block
+}
+.gdoc-nav__toggle:checked ~ label .icon.keyborad_arrow_down,
+.gdoc-nav__toggle:checked ~ ul {
+  display: block
+}
+.gdoc-nav__toggle:checked ~ label .icon.keyborad_arrow_left {
+  display: none
 }
 .gdoc-nav__entry {
   flex: 1;
@@ -405,6 +435,8 @@ img {
 .gdoc-nav__entry:visited {
   color: #343a40
 }
+.gdoc-nav--main > ul > li > label,
+.gdoc-nav--main > ul > li > label > a,
 .gdoc-nav--main > ul > li > span,
 .gdoc-nav--main > ul > li > span > a {
   font-weight: 700
@@ -415,7 +447,7 @@ img {
 .gdoc-page {
   min-width: 20rem;
   flex-grow: 1;
-  padding: 1.5rem 1rem
+  padding: 1rem 0
 }
 .gdoc-page__footer,
 .gdoc-page__header {
@@ -478,29 +510,49 @@ img {
 .gdoc-post {
   word-wrap: break-word;
   border-top: 1px dashed #868e96;
-  padding-bottom: 1em;
+  padding: 2rem 0;
   line-height: 1.5
 }
-.gdoc-post__title a,
-.gdoc-post__title a:visited {
+.gdoc-post:first-of-type {
+  padding-top: 0
+}
+.gdoc-post__header h1 {
+  margin-top: 0
+}
+.gdoc-post__header a,
+.gdoc-post__header a:visited {
+  color: #343a40;
+  text-decoration: none
+}
+.gdoc-post__header a:hover {
+  background: 0 0;
+  text-decoration: underline;
   color: #343a40
+}
+.gdoc-post__date {
+  margin: 1em 0
+}
+.gdoc-post__date .icon {
+  font-size: 1.2em
 }
 .gdoc-post:first-child {
   border-top: 0
 }
 .gdoc-post:first-child h1 {
-  margin: 0
+  margin-top: 0
 }
 .gdoc-post__readmore {
-  margin: 1em 0;
+  margin: 1.5rem 0 2rem 0
+}
+.gdoc-post__readmore a:after {
+  font-family: GeekdocIcons;
+  content: "\ea02"
+}
+.gdoc-post__readmore a,
+.gdoc-post__readmore a:hover,
+.gdoc-post__readmore a:visited {
   color: #0a539a;
-  display: block
-}
-.gdoc-post__readmore:visited {
-  color: #0a539a
-}
-.gdoc-post__readmore:after {
-  content: "\1f82a"
+  text-decoration: none!important
 }
 .gdoc-footer {
   background: #2f333e;
@@ -508,16 +560,13 @@ img {
 }
 .gdoc-footer__item {
   margin-right: 1em;
-  line-height: 1.5em
+  line-height: 2em
 }
 .gdoc-footer__link {
   color: #ffa31e
 }
 .gdoc-footer__link:visited {
   color: #ffa31e
-}
-.gdoc-footer .container {
-  padding: 1rem
 }
 .gdoc-search {
   position: relative
@@ -631,90 +680,7 @@ img {
 .markdown {
   transition: .2s ease-in-out;
   transition-property: transform,margin-left,opacity;
-  will-change: transform !important,margin-left!important
-}
-@media screen and (max-width:36rem) {
-  .gdoc-nav {
-    margin-left: -16rem;
-    font-size: 16px
-  }
-  .gdoc-nav nav {
-    padding: 1.5rem 2rem
-  }
-  .gdoc-nav__control {
-    display: inline-block
-  }
-  .gdoc-header .container {
-    padding: 1rem 2rem
-  }
-  .gdoc-header .icon {
-    width: 1.5rem;
-    height: 1.5rem
-  }
-  .gdoc-brand {
-    font-size: 1.5rem
-  }
-  .gdoc-brand__img {
-    display: none
-  }
-  .gdoc-error {
-    padding: 6rem 1rem
-  }
-  .gdoc-error .icon {
-    width: 4rem;
-    height: 4rem
-  }
-  .gdoc-error__message {
-    padding-left: 2rem
-  }
-  .gdoc-error__line {
-    padding: .25rem 0
-  }
-  .gdoc-error__title {
-    font-size: 2rem
-  }
-  .gdoc-page__header .breadcrumb,
-  .hidden-mobile {
-    display: none
-  }
-  .gdoc-page {
-    padding: 1.5rem 2rem
-  }
-  .gdoc-footer .container {
-    padding: 1rem 2rem
-  }
-  .gdoc-footer__item {
-    width: 100%
-  }
-  #menu-control:checked ~ main .gdoc-nav nav,
-  #menu-control:checked ~ main .gdoc-page {
-    transform: translateX(16rem)
-  }
-  #menu-control:checked ~ main .gdoc-page {
-    opacity: .25
-  }
-  #menu-control:checked ~ .gdoc-header .gdoc-nav__control .icon.menu {
-    display: none
-  }
-  #menu-control:checked ~ .gdoc-header .gdoc-nav__control .icon.arrow-back {
-    display: inline-block
-  }
-}
-@media print {
-  .gdoc-footer,
-  .gdoc-nav {
-    display: none
-  }
-  main {
-    flex-direction: column-reverse
-  }
-  .gdoc-toc {
-    flex: none
-  }
-  .gdoc-toc nav {
-    position: relative;
-    width: auto
-  }
+  will-change: transform,margin-left
 }
 .gdoc-markdown {
   line-height: 1.6em
@@ -722,7 +688,7 @@ img {
 .gdoc-markdown > :first-child {
   margin-top: 0
 }
-.gdoc-markdown--nested > :first-child {
+.gdoc-markdown--nested :first-child {
   margin-top: 0
 }
 .gdoc-markdown--nested > :last-child {
@@ -734,21 +700,21 @@ img {
 .gdoc-markdown h4,
 .gdoc-markdown h5,
 .gdoc-markdown h6 {
-  font-weight: 400;
-  line-height: 1em;
-  margin-top: 1.5em;
-  margin-bottom: 1rem
+  font-weight: 600
 }
-.gdoc-markdown h4,
-.gdoc-markdown h5,
-.gdoc-markdown h6 {
-  font-weight: bolder
+.gdoc-markdown h1 > code,
+.gdoc-markdown h2 > code,
+.gdoc-markdown h3 > code,
+.gdoc-markdown h4 > code,
+.gdoc-markdown h5 > code,
+.gdoc-markdown h6 > code {
+  border-top: 3px solid #dee2e6;
+  font-size: .75em!important
 }
-.gdoc-markdown h5 {
-  font-size: .875em
-}
-.gdoc-markdown h6 {
-  font-size: .75em
+.gdoc-markdown h4 > code,
+.gdoc-markdown h5 > code,
+.gdoc-markdown h6 > code {
+  font-size: .8rem!important
 }
 .gdoc-markdown b,
 .gdoc-markdown optgroup,
@@ -1145,6 +1111,9 @@ img {
 .gdoc-expand__control:checked + .gdoc-expand__content {
   display: block
 }
+.gdoc-expand .gdoc-page__anchor {
+  display: none
+}
 .gdoc-tabs {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -1215,4 +1184,7 @@ img {
 .gdoc-hint.danger {
   border-left-color: #f66;
   background-color: rgba(255,102,102,.1)
+}
+.gdoc-mermaid {
+  font-family: "Liberation Sans",sans-serif
 }
