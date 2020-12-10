@@ -1,4 +1,4 @@
-THEME_VERSION ?= v0.2.2
+THEME_VERSION ?= v0.7.3
 
 .PHONY: theme-clean
 theme-clean:
