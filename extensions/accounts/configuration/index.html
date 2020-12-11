@@ -2485,15 +2485,15 @@
             <li><a href="#configuration-using-config-files">Configuration using config files</a></li>
             <li><a href="#environment-variables">Environment variables</a></li>
             <li><a href="#commandline-flags">Commandline flags</a></li>
-            <li><a href="#accounts-remove">accounts remove</a></li>
-            <li><a href="#accounts-add">accounts add</a></li>
+            <li><a href="#accounts-update">accounts update</a></li>
             <li><a href="#accounts-list">accounts list</a></li>
+            <li><a href="#accounts-server">accounts server</a></li>
+            <li><a href="#accounts-add">accounts add</a></li>
+            <li><a href="#accounts-rebuildindex">accounts rebuildIndex</a></li>
             <li><a href="#accounts-ocis-accounts">accounts ocis-accounts</a></li>
             <li><a href="#accounts-inspect">accounts inspect</a></li>
-            <li><a href="#accounts-server">accounts server</a></li>
-            <li><a href="#accounts-rebuildindex">accounts rebuildIndex</a></li>
             <li><a href="#accounts-version">accounts version</a></li>
-            <li><a href="#accounts-update">accounts update</a></li>
+            <li><a href="#accounts-remove">accounts remove</a></li>
           </ul>
         </li>
       </ul></nav><hr></div>
@@ -2511,41 +2511,12 @@ $HOME/.ocis
 <p>If you prefer to configure the service with environment variables you can see the available variables below.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="commandline-flags">Commandline flags<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#commandline-flags" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Commandline flags" href="#commandline-flags"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>If you prefer to configure the service with commandline flags you can see the available variables below. Command line flags are only working when calling the subcommand directly.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-remove">accounts remove<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#accounts-remove" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts remove" href="#accounts-remove"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Removes an existing account</p>
-<p>Usage: <code>accounts remove [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;grpc-namespace | $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>com.owncloud.api</code>.</dd>
-<dt>&ndash;name | $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>accounts</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-add">accounts add<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#accounts-add" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts add" href="#accounts-add"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Create a new account</p>
-<p>Usage: <code>accounts add [command options] [arguments...]</code></p>
+<div class="gdoc-page__anchorwrap"><h3 id="accounts-update">accounts update<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#accounts-update" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts update" href="#accounts-update"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Make changes to an existing account</p>
+<p>Usage: <code>accounts update [command options] [arguments...]</code></p>
 <div class="gdoc-page__anchorwrap"><h3 id="accounts-list">accounts list<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#accounts-list" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts list" href="#accounts-list"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>List existing accounts</p>
 <p>Usage: <code>accounts list [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;grpc-namespace | $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>com.owncloud.api</code>.</dd>
-<dt>&ndash;name | $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>accounts</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-ocis-accounts">accounts ocis-accounts<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#accounts-ocis-accounts" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts ocis-accounts" href="#accounts-ocis-accounts"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Provide accounts and groups for oCIS</p>
-<p>Usage: <code>accounts ocis-accounts [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;log-level | $ACCOUNTS_LOG_LEVEL</dt>
-<dd>Set logging level. Default: <code>info</code>.</dd>
-<dt>&ndash;log-pretty | $ACCOUNTS_LOG_PRETTY</dt>
-<dd>Enable pretty logging. Default: <code>true</code>.</dd>
-<dt>&ndash;log-color | $ACCOUNTS_LOG_COLOR</dt>
-<dd>Enable colored logging. Default: <code>true</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-inspect">accounts inspect<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#accounts-inspect" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts inspect" href="#accounts-inspect"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Show detailed data on an existing account</p>
-<p>Usage: <code>accounts inspect [command options] [arguments...]</code></p>
 <dl>
 <dt>&ndash;grpc-namespace | $ACCOUNTS_GRPC_NAMESPACE</dt>
 <dd>Set the base namespace for the grpc namespace. Default: <code>com.owncloud.api</code>.</dd>
@@ -2597,9 +2568,32 @@ $HOME/.ocis
 <dt>&ndash;service-user-username | $ACCOUNTS_SERVICE_USER_USERNAME</dt>
 <dd>username of the internal service user (required on EOS).</dd>
 </dl>
+<div class="gdoc-page__anchorwrap"><h3 id="accounts-add">accounts add<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#accounts-add" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts add" href="#accounts-add"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Create a new account</p>
+<p>Usage: <code>accounts add [command options] [arguments...]</code></p>
 <div class="gdoc-page__anchorwrap"><h3 id="accounts-rebuildindex">accounts rebuildIndex<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#accounts-rebuildindex" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts rebuildIndex" href="#accounts-rebuildindex"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Rebuilds the service&rsquo;s index, i.e. deleting and then re-adding all existing documents</p>
 <p>Usage: <code>accounts rebuildIndex [command options] [arguments...]</code></p>
+<div class="gdoc-page__anchorwrap"><h3 id="accounts-ocis-accounts">accounts ocis-accounts<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#accounts-ocis-accounts" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts ocis-accounts" href="#accounts-ocis-accounts"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Provide accounts and groups for oCIS</p>
+<p>Usage: <code>accounts ocis-accounts [command options] [arguments...]</code></p>
+<dl>
+<dt>&ndash;log-level | $ACCOUNTS_LOG_LEVEL</dt>
+<dd>Set logging level. Default: <code>info</code>.</dd>
+<dt>&ndash;log-pretty | $ACCOUNTS_LOG_PRETTY</dt>
+<dd>Enable pretty logging. Default: <code>true</code>.</dd>
+<dt>&ndash;log-color | $ACCOUNTS_LOG_COLOR</dt>
+<dd>Enable colored logging. Default: <code>true</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap"><h3 id="accounts-inspect">accounts inspect<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#accounts-inspect" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts inspect" href="#accounts-inspect"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Show detailed data on an existing account</p>
+<p>Usage: <code>accounts inspect [command options] [arguments...]</code></p>
+<dl>
+<dt>&ndash;grpc-namespace | $ACCOUNTS_GRPC_NAMESPACE</dt>
+<dd>Set the base namespace for the grpc namespace. Default: <code>com.owncloud.api</code>.</dd>
+<dt>&ndash;name | $ACCOUNTS_NAME</dt>
+<dd>service name. Default: <code>accounts</code>.</dd>
+</dl>
 <div class="gdoc-page__anchorwrap"><h3 id="accounts-version">accounts version<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#accounts-version" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts version" href="#accounts-version"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Print the versions of the running instances</p>
 <p>Usage: <code>accounts version [command options] [arguments...]</code></p>
@@ -2609,9 +2603,15 @@ $HOME/.ocis
 <dt>&ndash;name | $ACCOUNTS_NAME</dt>
 <dd>service name. Default: <code>accounts</code>.</dd>
 </dl>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-update">accounts update<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#accounts-update" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts update" href="#accounts-update"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Make changes to an existing account</p>
-<p>Usage: <code>accounts update [command options] [arguments...]</code></p>
+<div class="gdoc-page__anchorwrap"><h3 id="accounts-remove">accounts remove<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#accounts-remove" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts remove" href="#accounts-remove"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Removes an existing account</p>
+<p>Usage: <code>accounts remove [command options] [arguments...]</code></p>
+<dl>
+<dt>&ndash;grpc-namespace | $ACCOUNTS_GRPC_NAMESPACE</dt>
+<dd>Set the base namespace for the grpc namespace. Default: <code>com.owncloud.api</code>.</dd>
+<dt>&ndash;name | $ACCOUNTS_NAME</dt>
+<dd>service name. Default: <code>accounts</code>.</dd>
+</dl>
 
 
     </article>
@@ -2668,7 +2668,7 @@ $HOME/.ocis
 
 
 
-<script defer src="/js/en.search.min.e72c819934b04d3a4b34b1ab71fa450cd7011d783e9f02f71a584628171e489c.js"></script>
+<script defer src="/js/en.search.min.2e5558b0d96f430cf0fd65fdc3e8f1cfcb3a118a78e4d687aad9773e9ed9f036.js"></script>
 
 
 
