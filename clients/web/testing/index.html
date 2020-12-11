@@ -842,7 +842,7 @@
             
                 <span class="flex">
                     <a href="/clients/web/" class="gdoc-nav__entry ">
-                        Phoenix
+                        ownCloud Web
                     </a>
                 </span>
             
@@ -2561,7 +2561,7 @@
         
     
     
-        <a href='/'>ownCloud</a> / <a href='/clients/'>Clients</a> / <a href='/clients/web/'>Phoenix</a> / Running acceptance tests
+        <a href='/'>ownCloud</a> / <a href='/clients/'>Clients</a> / <a href='/clients/web/'>ownCloud Web</a> / Running acceptance tests
     
 
     
@@ -2577,7 +2577,7 @@
         
         <span class="editpage">
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/phoenix/edit/master/docs/testing.md">
+            <a href="https://github.com/owncloud/web/edit/master/docs/testing.md">
                 Edit this page
             </a>
         </span>
@@ -2625,7 +2625,7 @@
         </li>
         <li><a href="#acceptance-tests-in-ci">Acceptance Tests in CI</a>
           <ul>
-            <li><a href="#1-phoenix-repo">1. phoenix Repo</a></li>
+            <li><a href="#1-web-repo">1. web Repo</a></li>
             <li><a href="#2-ocis-repo">2. ocis Repo</a></li>
           </ul>
         </li>
@@ -2650,12 +2650,12 @@
 </li>
 </ul>
 <div class="gdoc-page__anchorwrap"><h3 id="setup-using-docker-desktop-for-mac">Setup using Docker Desktop for Mac<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#setup-using-docker-desktop-for-mac" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setup using Docker Desktop for Mac" href="#setup-using-docker-desktop-for-mac"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>In order to run acceptance tests with selenium running in Docker Desktop for Mac while having ownCloud Server and Phoenix running as services
+<p>In order to run acceptance tests with selenium running in Docker Desktop for Mac while having ownCloud Server and Web running as services
 on the host machine, <code>localhost</code> will not work as URL. Use the Docker host ip <code>172.17.0.1</code> or its alias <code>host.docker.internal</code> instead.
-This requires adjusting all relevant config files to use <code>host.docker.internal</code> instead of <code>localhost</code> (config.json in Phoenix and
-config/config.php in oC10) and changing the phoenix OIDC-callback url. Set the <code>SERVER_HOST</code> and <code>BACKEND_HOST</code> environment variables
+This requires adjusting all relevant config files to use <code>host.docker.internal</code> instead of <code>localhost</code> (config.json in Web and
+config/config.php in oC10) and changing the web OIDC-callback url. Set the <code>SERVER_HOST</code> and <code>BACKEND_HOST</code> environment variables
 accordingly. In order to use the same url for development on the host machine, define it as an alias to <code>127.0.0.1</code> in <code>/etc/hosts</code>.
-After all these changes Phoenix will be accessible at <code>http://host.docker.internal:8300</code> for both development and acceptance tests.</p>
+After all these changes Web will be accessible at <code>http://host.docker.internal:8300</code> for both development and acceptance tests.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="setup-using-standalone-selenium-server">Setup using standalone Selenium server<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#setup-using-standalone-selenium-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setup using standalone Selenium server" href="#setup-using-standalone-selenium-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>When running a standalone Selenium server, make sure to set the environment variable <code>SELENIUM_HOST</code>, <code>SELENIUM_PORT</code> and <code>LOCAL_UPLOAD_DIR</code> accordingly.</p>
 <div class="gdoc-page__anchorwrap"><h2 id="run-tests">Run tests<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#run-tests" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Run tests" href="#run-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
@@ -2663,9 +2663,9 @@ After all these changes Phoenix will be accessible at <code>http://host.docker.i
 <ul>
 <li>setup the <a href="https://owncloud.github.io/clients/web/backend-oc10/">ownCloud 10 backend</a></li>
 <li>clone and install the <a href="http://github.com/owncloud/testing">testing app</a> into ownCloud</li>
-<li><a href="https://owncloud.github.io/clients/web/building/">build Phoenix</a></li>
-<li><a href="https://owncloud.github.io/clients/web/backend-oc10/#running-phoenix">start the Phoenix server</a></li>
-<li>set <code>SERVER_HOST</code> to point at the URL where the Phoenix web pages are served, for example &ldquo;http://localhost:8300&rdquo;</li>
+<li><a href="https://owncloud.github.io/clients/web/building/">build Web</a></li>
+<li><a href="https://owncloud.github.io/clients/web/backend-oc10/#running-web">start the Web server</a></li>
+<li>set <code>SERVER_HOST</code> to point at the URL where the Web web pages are served, for example &ldquo;http://localhost:8300&rdquo;</li>
 <li>set <code>BACKEND_HOST</code> to point to the URL of the backend, for example &ldquo;http://localhost/owncloud/&rdquo;</li>
 <li>to be able to run federation tests, additional setup is needed:
 <ol>
@@ -2682,8 +2682,8 @@ After all these changes Phoenix will be accessible at <code>http://host.docker.i
 <p>see <a href="#available-settings-to-be-set-by-environment-variables">available settings</a> for further setup if needed</p>
 <div class="gdoc-page__anchorwrap"><h3 id="with-ocis-backend">with OCIS backend<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#with-ocis-backend" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor with OCIS backend" href="#with-ocis-backend"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <ol>
-<li><a href="https://owncloud.github.io/clients/web/building/">build Phoenix</a></li>
-<li>create a new phoenix <code>config.json</code> file and copy it into the <code>dist</code> folder, even though running phoenix in the default ocis environment does not need a <code>config.json</code> file, some tests rely on it being present.
+<li><a href="https://owncloud.github.io/clients/web/building/">build Web</a></li>
+<li>create a new web <code>config.json</code> file and copy it into the <code>dist</code> folder, even though running web in the default ocis environment does not need a <code>config.json</code> file, some tests rely on it being present.
 As a starting point and example that should work when running every service on localhost use
 Linux: <code>config.json.sample-ocis</code>
 Mac: <code>tests/acceptance/ocis-mac-config.json</code></li>
@@ -2700,7 +2700,7 @@ Mac: <code>tests/acceptance/ocis-mac-config.json</code></li>
 <p>clone and build <a href="https://github.com/owncloud/ocis">ocis</a></p>
 </li>
 <li>
-<p>From inside the <code>phoenix</code> directory run <code>yarn run testing-app</code> to get the <a href="https://github.com/owncloud/testing">testing-app</a>, it&rsquo;s needed to have the skeleton folder for the tests</p>
+<p>From inside the <code>web</code> directory run <code>yarn run testing-app</code> to get the <a href="https://github.com/owncloud/testing">testing-app</a>, it&rsquo;s needed to have the skeleton folder for the tests</p>
 </li>
 <li>
 <p>Run redis server using docker</p>
@@ -2708,12 +2708,12 @@ Mac: <code>tests/acceptance/ocis-mac-config.json</code></li>
 </code></pre></div></li>
 <li>
 <p>Run the OCIS server with the necessary configurations</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">export</span> <span class="nv">PHOENIX_ASSET_PATH</span><span class="o">=</span><span class="s1">&#39;&lt;path-to-phoenix-clone&gt;/dist&#39;</span>
-<span class="nb">export</span> <span class="nv">PHOENIX_WEB_CONFIG</span><span class="o">=</span><span class="s1">&#39;&lt;path-to-phoenix-clone&gt;/dist/config.json&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">export</span> <span class="nv">WEB_ASSET_PATH</span><span class="o">=</span><span class="s1">&#39;&lt;path-to-web-clone&gt;/dist&#39;</span>
+<span class="nb">export</span> <span class="nv">WEB_UI_CONFIG</span><span class="o">=</span><span class="s1">&#39;&lt;path-to-web-clone&gt;/dist/config.json&#39;</span>
 <span class="nb">export</span> <span class="nv">STORAGE_HOME_DRIVER</span><span class="o">=</span>owncloud
 <span class="nb">export</span> <span class="nv">STORAGE_USERS_DRIVER</span><span class="o">=</span>owncloud
 <span class="nb">export</span> <span class="nv">PROXY_ENABLE_BASIC_AUTH</span><span class="o">=</span><span class="nb">true</span>
-</code></pre></div><p>note: <code>PHOENIX_WEB_CONFIG</code> should point to the same config file you have created earlier.
+</code></pre></div><p>note: <code>WEB_UI_CONFIG</code> should point to the same config file you have created earlier.
 note: currently it&rsquo;s not possible to run the UI tests with OCIS &amp; OWNCLOUD storage-driver</p>
 <p>run the server:</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">bin/ocis server
@@ -2737,7 +2737,7 @@ The feature files are located in the &ldquo;tests/acceptance/features&rdquo; sub
 <tbody>
 <tr>
 <td><code>SERVER_HOST</code></td>
-<td>phoenix URL</td>
+<td>web URL</td>
 <td>http://localhost:8300</td>
 </tr>
 <tr>
@@ -2801,8 +2801,8 @@ The feature files are located in the &ldquo;tests/acceptance/features&rdquo; sub
 <td>-</td>
 </tr>
 <tr>
-<td><code>PHOENIX_CONFIG</code></td>
-<td>Path for the phoenix config file (usually in the dist folder)</td>
+<td><code>WEB_UI_CONFIG</code></td>
+<td>Path for the web config file (usually in the dist folder)</td>
 <td>-</td>
 </tr>
 </tbody>
@@ -2815,9 +2815,9 @@ In that case you will see messages in the OCIS log output that look like this:</
 <p>In that case increase the open file limits, how to do that would be beyond the scope of this documentation.</p>
 <div class="gdoc-page__anchorwrap"><h2 id="acceptance-tests-in-ci">Acceptance Tests in CI<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#acceptance-tests-in-ci" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Acceptance Tests in CI" href="#acceptance-tests-in-ci"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>In the CI we run the UI tests using different backends on different repos. We use commit IDs to indicate the version of the backend or testrunner we want to use. These commit IDs should be regularly updated in the <code>.drone.star</code> file to keep the CI up to date.
-We run phoenix UI tests in the following repos in the CI.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="1-phoenix-repo">1. phoenix Repo<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#1-phoenix-repo" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 1. phoenix Repo" href="#1-phoenix-repo"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>In the <code>owncloud/phoenix</code> repo, we run the tests using both the oc10 backend and the OCIS backend.
+We run web UI tests in the following repos in the CI.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="1-web-repo">1. web Repo<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#1-web-repo" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 1. web Repo" href="#1-web-repo"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>In the <code>owncloud/web</code> repo, we run the tests using both the oc10 backend and the OCIS backend.
 For the oc10 backend, we use the <code>owncloudci/core</code> docker image which runs the latest <code>daily-master-qa</code> version of owncloud.</p>
 <p>For the OCIS backend, we use the Commit ID from the <code>owncloud/ocis</code> repo to indicate which version of backend to use. This can be specified in the <code>.drone.star</code> file in the <code>config.defaults</code> section.</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">	&#39;defaults&#39;: {
@@ -2827,15 +2827,15 @@ For the oc10 backend, we use the <code>owncloudci/core</code> docker image which
 		}
 	},
 </code></pre></div><p>If the version you want to run is on a different branch from master, you also need to change the branch name.</p>
-<p>In order to check if new tests are compatible with OCIS, after changing the commit id and the branch name, we can create a draft PR in <code>owncloud/phoenix</code> which triggers the CI, and we can see the result there.</p>
+<p>In order to check if new tests are compatible with OCIS, after changing the commit id and the branch name, we can create a draft PR in <code>owncloud/web</code> which triggers the CI, and we can see the result there.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="2-ocis-repo">2. ocis Repo<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#2-ocis-repo" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 2. ocis Repo" href="#2-ocis-repo"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>We follow the same approach in the <code>owncloud/ocis</code> repo too. In order to run the UI tests in CI we use commit IDs from phoenix which can be changed in the <code>.drone.star</code> file.</p>
+<p>We follow the same approach in the <code>owncloud/ocis</code> repo too. In order to run the UI tests in CI we use commit IDs from web which can be changed in the <code>.drone.star</code> file.</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">  &#39;uiTests&#39;: {
-    &#39;phoenixBranch&#39;: &#39;master&#39;,
-    &#39;phoenixCommit&#39;: &#39;492e6a663efad67f770ba4ac405c4d9983d00cd3&#39;,
+    &#39;webBranch&#39;: &#39;master&#39;,
+    &#39;webCommit&#39;: &#39;492e6a663efad67f770ba4ac405c4d9983d00cd3&#39;,
 ...
   }
-</code></pre></div><p>This is the commit ID of phoenix indicating the version of testrunner we want to use. If the version is on a branch other than master, we will also need to change the branch name.</p>
+</code></pre></div><p>This is the commit ID of web indicating the version of testrunner we want to use. If the version is on a branch other than master, we will also need to change the branch name.</p>
 
 
     </article>
@@ -2892,7 +2892,7 @@ For the oc10 backend, we use the <code>owncloudci/core</code> docker image which
 
 
 
-<script defer src="/js/en.search.min.3c22b809ff79c7642290bbbda6666a9002f14f56475c86408472f1eea7fda8ac.js"></script>
+<script defer src="/js/en.search.min.4568a3dbea8a35fcfcb1c9dab0bc3697104b67ff255c0fa4c2a51ec3a852f4f5.js"></script>
 
 
 

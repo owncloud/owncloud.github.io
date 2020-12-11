@@ -842,7 +842,7 @@
             
                 <span class="flex">
                     <a href="/clients/web/" class="gdoc-nav__entry ">
-                        Phoenix
+                        ownCloud Web
                     </a>
                 </span>
             
@@ -2566,7 +2566,7 @@
         
     
     
-        <a href='/'>ownCloud</a> / <a href='/clients/'>Clients</a> / <a href='/clients/web/'>Phoenix</a> / <a href='/clients/web/deployments/'>Deployments</a> / Deploy as an app in ownCloud 10
+        <a href='/'>ownCloud</a> / <a href='/clients/'>Clients</a> / <a href='/clients/web/'>ownCloud Web</a> / <a href='/clients/web/deployments/'>Deployments</a> / Deploy as an app in ownCloud 10
     
 
     
@@ -2584,7 +2584,7 @@
         
         <span class="editpage">
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/phoenix/edit/master/docs/deployments/oc10-app.md">
+            <a href="https://github.com/owncloud/web/edit/master/docs/deployments/oc10-app.md">
                 Edit this page
             </a>
         </span>
@@ -2622,23 +2622,23 @@
 <li>Installed <a href="https://marketplace.owncloud.com/apps/oauth2">oauth2 app</a></li>
 </ul>
 <div class="gdoc-page__anchorwrap"><h2 id="deploying-owncloud-web">Deploying ownCloud Web<a data-clipboard-text="https://owncloud.github.io/clients/web/deployments/oc10-app/#deploying-owncloud-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Deploying ownCloud Web" href="#deploying-owncloud-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>To download the ownCloud Web, go to <a href="https://github.com/owncloud/phoenix/releases">https://github.com/owncloud/phoenix/releases</a> and pick your desired version. In the release, you will find a file called <code>phoenix-app.tar.gz</code>.
+<p>To download the ownCloud Web, go to <a href="https://github.com/owncloud/web/releases">https://github.com/owncloud/web/releases</a> and pick your desired version. In the release, you will find a file called <code>web-app.tar.gz</code>.
 Download this file and move it into the <code>apps</code> folder in your ownCloud 10 server.</p>
 <blockquote class="gdoc-hint info">
   The app bundle is provided only from version 1.0.0
 </blockquote>
 
 <p>To unpack the app, run the following command:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">tar -xzf phoenix.tar.gz <span class="o">&amp;&amp;</span> rm -Rf phoenix-app.tar.gz
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">tar -xzf web.tar.gz <span class="o">&amp;&amp;</span> rm -Rf web-app.tar.gz
 </code></pre></div><p>Next step is to enable the app:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ../ <span class="o">&amp;&amp;</span> occ apps:enable phoenix
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ../ <span class="o">&amp;&amp;</span> occ apps:enable web
 </code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="configure-oauth2">Configure oauth2<a data-clipboard-text="https://owncloud.github.io/clients/web/deployments/oc10-app/#configure-oauth2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configure oauth2" href="#configure-oauth2"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>In the <code>Admin</code> of ownCloud 10, head into <code>User Authentication</code> and add a new client with arbitrary name and redirection URL <code>https://&lt;your-owncloud-server&gt;/apps/phoenix/oidc-callback.html</code>.</p>
+<p>In the <code>Admin</code> of ownCloud 10, head into <code>User Authentication</code> and add a new client with arbitrary name and redirection URL <code>https://&lt;your-owncloud-server&gt;/apps/web/oidc-callback.html</code>.</p>
 <div class="gdoc-page__anchorwrap"><h2 id="configure-owncloud-10">Configure ownCloud 10<a data-clipboard-text="https://owncloud.github.io/clients/web/deployments/oc10-app/#configure-owncloud-10" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configure ownCloud 10" href="#configure-owncloud-10"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>To display ownCloud Web in the app switcher and to redirect all private and public links to the new WebUI, add the following config into <code>config/config.php</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">&#39;phoenix.baseUrl&#39; =&gt; &#39;https://<span class="p">&lt;</span><span class="nt">your-owncloud-server</span><span class="p">&gt;</span>/apps/phoenix&#39;,
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">&#39;web.baseUrl&#39; =&gt; &#39;https://<span class="p">&lt;</span><span class="nt">your-owncloud-server</span><span class="p">&gt;</span>/apps/web&#39;,
 </code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="configure-owncloud-web">Configure ownCloud Web<a data-clipboard-text="https://owncloud.github.io/clients/web/deployments/oc10-app/#configure-owncloud-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configure ownCloud Web" href="#configure-owncloud-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>There are a few config values which need to be set in order for ownCloud Web to work correctly. Navigate into <code>apps/phoenix</code> and adjust <code>config.json</code> according to the following example:</p>
+<p>There are a few config values which need to be set in order for ownCloud Web to work correctly. Navigate into <code>apps/web</code> and adjust <code>config.json</code> according to the following example:</p>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
   <span class="nt">&#34;server&#34;</span> <span class="p">:</span> <span class="s2">&#34;https://&lt;your-owncloud-server&gt;&#34;</span><span class="p">,</span> <span class="err">//</span> <span class="err">ownCloud</span> <span class="err">10</span> <span class="err">server</span> <span class="err">address</span>
   <span class="nt">&#34;theme&#34;</span><span class="p">:</span> <span class="s2">&#34;owncloud&#34;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Theme</span> <span class="err">to</span> <span class="err">be</span> <span class="err">used</span> <span class="err">in</span> <span class="err">ownCloud</span> <span class="err">Web</span> <span class="err">pointing</span> <span class="err">to</span> <span class="err">a</span> <span class="err">json</span> <span class="err">file</span> <span class="err">inside</span> <span class="err">of</span> <span class="err">`themes`</span> <span class="err">folder</span>
@@ -2655,7 +2655,7 @@ Download this file and move it into the <code>apps</code> folder in your ownClou
 </code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="accessing-owncloud-web">Accessing ownCloud Web<a data-clipboard-text="https://owncloud.github.io/clients/web/deployments/oc10-app/#accessing-owncloud-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Accessing ownCloud Web" href="#accessing-owncloud-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>After following all the steps, you should see a new entry in the application switcher called <code>New Design</code> which points to the ownCloud web.</p>
 <figure>
-    <img src="/phoenix/static/application-switcher-oc10.jpg"/> 
+    <img src="/web/static/application-switcher-oc10.jpg"/> 
 </figure>
 
 
@@ -2714,7 +2714,7 @@ Download this file and move it into the <code>apps</code> folder in your ownClou
 
 
 
-<script defer src="/js/en.search.min.3c22b809ff79c7642290bbbda6666a9002f14f56475c86408472f1eea7fda8ac.js"></script>
+<script defer src="/js/en.search.min.4568a3dbea8a35fcfcb1c9dab0bc3697104b67ff255c0fa4c2a51ec3a852f4f5.js"></script>
 
 
 

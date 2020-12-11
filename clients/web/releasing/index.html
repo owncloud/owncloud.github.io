@@ -842,7 +842,7 @@
             
                 <span class="flex">
                     <a href="/clients/web/" class="gdoc-nav__entry ">
-                        Phoenix
+                        ownCloud Web
                     </a>
                 </span>
             
@@ -2561,7 +2561,7 @@
         
     
     
-        <a href='/'>ownCloud</a> / <a href='/clients/'>Clients</a> / <a href='/clients/web/'>Phoenix</a> / Releasing
+        <a href='/'>ownCloud</a> / <a href='/clients/'>Clients</a> / <a href='/clients/web/'>ownCloud Web</a> / Releasing
     
 
     
@@ -2577,7 +2577,7 @@
         
         <span class="editpage">
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/phoenix/edit/master/docs/releasing.md">
+            <a href="https://github.com/owncloud/web/edit/master/docs/releasing.md">
                 Edit this page
             </a>
         </span>
@@ -2599,11 +2599,11 @@
 
 
   <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
-        <li><a href="#releasing-phoenix">Releasing Phoenix</a>
+        <li><a href="#releasing-owncloud-web">Releasing ownCloud Web</a>
           <ul>
             <li><a href="#package-hierarchy">Package Hierarchy</a>
               <ul>
-                <li><a href="#releasing-phoenix-frontend">Releasing Phoenix Frontend</a></li>
+                <li><a href="#releasing-web-frontend">Releasing Web Frontend</a></li>
                 <li><a href="#next-steps">Next steps</a></li>
               </ul>
             </li>
@@ -2612,35 +2612,35 @@
       </ul></nav><hr></div>
 
 
-<div class="gdoc-page__anchorwrap"><h2 id="releasing-phoenix">Releasing Phoenix<a data-clipboard-text="https://owncloud.github.io/clients/web/releasing/#releasing-phoenix" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Releasing Phoenix" href="#releasing-phoenix"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>The next generation Web Frontend is shipped as an ocis Extension. The <code>ocis-phoenix</code> extension is also embedded in the single binary and part of the <code>ocis server</code> command.</p>
-<p>This repository contains the assets and these must be released first before being bundled into <code>ocis-phoenix</code>.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="releasing-owncloud-web">Releasing ownCloud Web<a data-clipboard-text="https://owncloud.github.io/clients/web/releasing/#releasing-owncloud-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Releasing ownCloud Web" href="#releasing-owncloud-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>The ownCloud Web is shipped as an ocis Extension. The <code>ocis-web</code> extension is also embedded in the single binary and part of the <code>ocis server</code> command.</p>
+<p>This repository contains the assets and these must be released first before being bundled into <code>ocis-web</code>.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="package-hierarchy">Package Hierarchy<a data-clipboard-text="https://owncloud.github.io/clients/web/releasing/#package-hierarchy" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Package Hierarchy" href="#package-hierarchy"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <ul>
 <li><a href="https://github.com/owncloud/ocis">ocis</a>
 <ul>
-<li><a href="https://github.com/owncloud/ocis-phoenix">ocis-phoenix</a>
+<li><a href="https://github.com/owncloud/ocis-web">ocis-web</a>
 <ul>
 <li><a href="https://github.com/owncloud/ocis-pkg">ocis-pkg</a></li>
-<li><a href="https://github.com/owncloud/phoenix">phoenix</a></li>
+<li><a href="https://github.com/owncloud/web">web</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<div class="gdoc-page__anchorwrap"><h4 id="releasing-phoenix-frontend">Releasing Phoenix Frontend<a data-clipboard-text="https://owncloud.github.io/clients/web/releasing/#releasing-phoenix-frontend" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Releasing Phoenix Frontend" href="#releasing-phoenix-frontend"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<div class="gdoc-page__anchorwrap"><h4 id="releasing-web-frontend">Releasing Web Frontend<a data-clipboard-text="https://owncloud.github.io/clients/web/releasing/#releasing-web-frontend" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Releasing Web Frontend" href="#releasing-web-frontend"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
 <ol>
-<li>Create a branch <code>release-$version</code> in <a href="https://github.com/owncloud/phoenix">https://github.com/owncloud/phoenix</a>.</li>
+<li>Create a branch <code>release-$version</code> in <a href="https://github.com/owncloud/web">https://github.com/owncloud/web</a>.</li>
 <li>Create a folder in <code>changelog</code> for the release version and date <code>mkdir $major.$minor.$patchVersion_YYYY-MM-DD</code>.</li>
 <li>Move all changelog items from the <code>changelog/unreleased/</code> folder to the <code>$major.$minor.$patchVersion_YYYY-MM-DD</code> folder.</li>
 <li>Commit your changes.</li>
 <li>After merging, wait for the CI to run on the merge commit.</li>
-<li>Go to the <a href="https://github.com/owncloud/phoenix/releases">Releases section</a> and click &ldquo;Draft a new Release&rdquo;.</li>
+<li>Go to the <a href="https://github.com/owncloud/web/releases">Releases section</a> and click &ldquo;Draft a new Release&rdquo;.</li>
 <li>Use <code>v$major.$minor.$patch</code> as a tag (the <code>v</code> prefix is important) and publish it.</li>
 <li>The tag and the Release artifacts will be created automatically.</li>
 </ol>
 <div class="gdoc-page__anchorwrap"><h4 id="next-steps">Next steps<a data-clipboard-text="https://owncloud.github.io/clients/web/releasing/#next-steps" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Next steps" href="#next-steps"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>The next steps are usually to update the Phoenix assets in the <a href="https://github.com/owncloud/ocis-phoenix">ocis-phoenix</a> repository.</p>
+<p>The next steps are usually to update the Web assets in the <a href="https://github.com/owncloud/ocis-web">ocis-web</a> repository.</p>
 
 
     </article>
@@ -2697,7 +2697,7 @@
 
 
 
-<script defer src="/js/en.search.min.3c22b809ff79c7642290bbbda6666a9002f14f56475c86408472f1eea7fda8ac.js"></script>
+<script defer src="/js/en.search.min.4568a3dbea8a35fcfcb1c9dab0bc3697104b67ff255c0fa4c2a51ec3a852f4f5.js"></script>
 
 
 
