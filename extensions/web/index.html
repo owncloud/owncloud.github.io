@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Configuration">
+<meta name="description" content="ownCloud Web">
 
-<title>Configuration | ownCloud</title>
+<title>ownCloud Web | ownCloud</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -31,6 +31,7 @@
 <link rel="preload" href="/custom.css" as="style">
 <link rel="stylesheet" href="/custom.css" media="all">
 
+<link rel="alternate" type="application/rss+xml" href="https://owncloud.github.io/extensions/web/index.xml" title="ownCloud" />
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
 
 </head>
@@ -1717,20 +1718,13 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-28da549b" class="gdoc-nav__toggle" checked>
-            <label for="navtree-28da549b" class="flex justify-between">
-            
             
                 <span class="flex">
-                    <a href="/extensions/ocis-phoenix/" class="gdoc-nav__entry ">
+                    <a href="/extensions/web/" class="gdoc-nav__entry is-active">
                         ownCloud Web
                     </a>
                 </span>
             
-            
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
-            </label>
             
 
             
@@ -1752,7 +1746,7 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/ocis-phoenix/configuration/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/web/configuration/" class="gdoc-nav__entry ">
                         Configuration
                     </a>
                 </span>
@@ -1777,7 +1771,7 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/ocis-phoenix/releasing/" class="gdoc-nav__entry ">
+                    <a href="/extensions/web/releasing/" class="gdoc-nav__entry ">
                         Releasing
                     </a>
                 </span>
@@ -2563,14 +2557,7 @@
         
     
     
-        
-        
-        
-    
-    
-        <a href='/'>ownCloud</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis-phoenix/'>ownCloud Web</a> / Configuration
-    
-
+        <a href='/'>ownCloud</a> / <a href='/extensions/'>Extensions</a> / ownCloud Web
     
 
     
@@ -2584,7 +2571,7 @@
         
         <span class="editpage">
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/phoenix/templates/CONFIGURATION.tmpl">
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/extensions/web/_index.md">
                 Edit this page
             </a>
         </span>
@@ -2592,9 +2579,8 @@
     </span>
 </div>
 
-
     <article class="gdoc-markdown">
-        <h1>Configuration</h1>
+        <h1>ownCloud Web</h1>
         
 
 
@@ -2602,104 +2588,7 @@
     
 
 
-
-
-
-  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
-        <li><a href="#configuration">Configuration</a>
-          <ul>
-            <li><a href="#configuration-using-config-files">Configuration using config files</a></li>
-            <li><a href="#environment-variables">Environment variables</a></li>
-            <li><a href="#commandline-flags">Commandline flags</a></li>
-            <li><a href="#phoenix-health">phoenix health</a></li>
-            <li><a href="#phoenix-server">phoenix server</a></li>
-            <li><a href="#phoenix-ocis-phoenix">phoenix ocis-phoenix</a></li>
-          </ul>
-        </li>
-      </ul></nav><hr></div>
-
-
-<div class="gdoc-page__anchorwrap"><h2 id="configuration">Configuration<a data-clipboard-text="https://owncloud.github.io/extensions/ocis-phoenix/configuration/#configuration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configuration" href="#configuration"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<div class="gdoc-page__anchorwrap"><h3 id="configuration-using-config-files">Configuration using config files<a data-clipboard-text="https://owncloud.github.io/extensions/ocis-phoenix/configuration/#configuration-using-config-files" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configuration using config files" href="#configuration-using-config-files"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Out of the box extensions will attempt to read configuration details from:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">/etc/ocis
-$HOME/.ocis
-./config
-</code></pre></div><p>For this configuration to be picked up, have a look at your extension <code>root</code> command and look for which default config name it has assigned. <em>i.e: ocis-phoenix reads <code>phoenix.json | yaml | toml ...</code></em>.</p>
-<p>So far we support the file formats <code>JSON</code> and <code>YAML</code>, if you want to get a full example configuration just take a look at <a href="https://github.com/owncloud/ocis/tree/master/config">our repository</a>, there you can always see the latest configuration format. These example configurations include all available options and the default values. The configuration file will be automatically loaded if it&rsquo;s placed at <code>/etc/ocis/ocis.yml</code>, <code>${HOME}/.ocis/ocis.yml</code> or <code>$(pwd)/config/ocis.yml</code>.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="environment-variables">Environment variables<a data-clipboard-text="https://owncloud.github.io/extensions/ocis-phoenix/configuration/#environment-variables" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Environment variables" href="#environment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>If you prefer to configure the service with environment variables you can see the available variables below.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="commandline-flags">Commandline flags<a data-clipboard-text="https://owncloud.github.io/extensions/ocis-phoenix/configuration/#commandline-flags" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Commandline flags" href="#commandline-flags"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>If you prefer to configure the service with commandline flags you can see the available variables below. Command line flags are only working when calling the subcommand directly.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="phoenix-health">phoenix health<a data-clipboard-text="https://owncloud.github.io/extensions/ocis-phoenix/configuration/#phoenix-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor phoenix health" href="#phoenix-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Check health status</p>
-<p>Usage: <code>phoenix health [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;debug-addr | $PHOENIX_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>0.0.0.0:9104</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="phoenix-server">phoenix server<a data-clipboard-text="https://owncloud.github.io/extensions/ocis-phoenix/configuration/#phoenix-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor phoenix server" href="#phoenix-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Start integrated server</p>
-<p>Usage: <code>phoenix server [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;config-file | $PHOENIX_CONFIG_FILE</dt>
-<dd>Path to config file.</dd>
-<dt>&ndash;tracing-enabled | $PHOENIX_TRACING_ENABLED</dt>
-<dd>Enable sending traces.</dd>
-<dt>&ndash;tracing-type | $PHOENIX_TRACING_TYPE</dt>
-<dd>Tracing backend type. Default: <code>jaeger</code>.</dd>
-<dt>&ndash;tracing-endpoint | $PHOENIX_TRACING_ENDPOINT</dt>
-<dd>Endpoint for the agent.</dd>
-<dt>&ndash;tracing-collector | $PHOENIX_TRACING_COLLECTOR</dt>
-<dd>Endpoint for the collector.</dd>
-<dt>&ndash;tracing-service | $PHOENIX_TRACING_SERVICE</dt>
-<dd>Service name for tracing. Default: <code>phoenix</code>.</dd>
-<dt>&ndash;debug-addr | $PHOENIX_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>0.0.0.0:9104</code>.</dd>
-<dt>&ndash;debug-token | $PHOENIX_DEBUG_TOKEN</dt>
-<dd>Token to grant metrics access.</dd>
-<dt>&ndash;debug-pprof | $PHOENIX_DEBUG_PPROF</dt>
-<dd>Enable pprof debugging.</dd>
-<dt>&ndash;debug-zpages | $PHOENIX_DEBUG_ZPAGES</dt>
-<dd>Enable zpages debugging.</dd>
-<dt>&ndash;http-addr | $PHOENIX_HTTP_ADDR</dt>
-<dd>Address to bind http server. Default: <code>0.0.0.0:9100</code>.</dd>
-<dt>&ndash;http-root | $PHOENIX_HTTP_ROOT</dt>
-<dd>Root path of http server. Default: <code>/</code>.</dd>
-<dt>&ndash;http-namespace | $PHOENIX_NAMESPACE</dt>
-<dd>Set the base namespace for the http namespace. Default: <code>com.owncloud.web</code>.</dd>
-<dt>&ndash;asset-path | $PHOENIX_ASSET_PATH</dt>
-<dd>Path to custom assets.</dd>
-<dt>&ndash;web-config | $PHOENIX_WEB_CONFIG</dt>
-<dd>Path to phoenix config.</dd>
-<dt>&ndash;web-config-server | $PHOENIX_WEB_CONFIG_SERVER</dt>
-<dd>Server URL. Default: <code>https://localhost:9200</code>.</dd>
-<dt>&ndash;web-config-theme | $PHOENIX_WEB_CONFIG_THEME</dt>
-<dd>Theme. Default: <code>owncloud</code>.</dd>
-<dt>&ndash;web-config-version | $PHOENIX_WEB_CONFIG_VERSION</dt>
-<dd>Version. Default: <code>0.1.0</code>.</dd>
-<dt>&ndash;oidc-metadata-url | $PHOENIX_OIDC_METADATA_URL</dt>
-<dd>OpenID Connect metadata URL. Default: <code>https://localhost:9200/.well-known/openid-configuration</code>.</dd>
-<dt>&ndash;oidc-authority | $PHOENIX_OIDC_AUTHORITY</dt>
-<dd>OpenID Connect authority. Default: <code>https://localhost:9200</code>.</dd>
-<dt>&ndash;oidc-client-id | $PHOENIX_OIDC_CLIENT_ID</dt>
-<dd>OpenID Connect client ID. Default: <code>phoenix</code>.</dd>
-<dt>&ndash;oidc-response-type | $PHOENIX_OIDC_RESPONSE_TYPE</dt>
-<dd>OpenID Connect response type. Default: <code>code</code>.</dd>
-<dt>&ndash;oidc-scope | $PHOENIX_OIDC_SCOPE</dt>
-<dd>OpenID Connect scope. Default: <code>openid profile email</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="phoenix-ocis-phoenix">phoenix ocis-phoenix<a data-clipboard-text="https://owncloud.github.io/extensions/ocis-phoenix/configuration/#phoenix-ocis-phoenix" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor phoenix ocis-phoenix" href="#phoenix-ocis-phoenix"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Serve Phoenix for oCIS</p>
-<p>Usage: <code>phoenix ocis-phoenix [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;log-level | $PHOENIX_LOG_LEVEL</dt>
-<dd>Set logging level. Default: <code>info</code>.</dd>
-<dt>&ndash;log-pretty | $PHOENIX_LOG_PRETTY</dt>
-<dd>Enable pretty logging. Default: <code>true</code>.</dd>
-<dt>&ndash;log-color | $PHOENIX_LOG_COLOR</dt>
-<dd>Enable colored logging. Default: <code>true</code>.</dd>
-</dl>
+<p>This service embeds <a href="https://github.com/owncloud/web">ownCloud Web</a> to provide a UI for ownCloud Infinite Scale.</p>
 
 
     </article>
@@ -2756,7 +2645,7 @@ $HOME/.ocis
 
 
 
-<script defer src="/js/en.search.min.6665358cdeaf1122e41def92f5e84349abb4083892f8f5cd6a2c12597173f272.js"></script>
+<script defer src="/js/en.search.min.3f0dc403ead0a6d422ca2c54ec7c0522c20ab7fb900e3ac779b62d6496d6a28d.js"></script>
 
 
 

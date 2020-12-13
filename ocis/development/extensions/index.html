@@ -1717,20 +1717,13 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-28da549b" class="gdoc-nav__toggle" >
-            <label for="navtree-28da549b" class="flex justify-between">
-            
             
                 <span class="flex">
-                    <a href="/extensions/ocis-phoenix/" class="gdoc-nav__entry ">
+                    <a href="/extensions/web/" class="gdoc-nav__entry ">
                         ownCloud Web
                     </a>
                 </span>
             
-            
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
-            </label>
             
 
             
@@ -1752,7 +1745,7 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/ocis-phoenix/configuration/" class="gdoc-nav__entry ">
+                    <a href="/extensions/web/configuration/" class="gdoc-nav__entry ">
                         Configuration
                     </a>
                 </span>
@@ -1777,7 +1770,7 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/ocis-phoenix/releasing/" class="gdoc-nav__entry ">
+                    <a href="/extensions/web/releasing/" class="gdoc-nav__entry ">
                         Releasing
                     </a>
                 </span>
@@ -2612,12 +2605,12 @@
             <li><a href="#option-1">Option 1:</a></li>
           </ul>
         </li>
-        <li><a href="#hacking-phoenix-and-ocis-phoenix">Hacking phoenix (and ocis-phoenix)</a></li>
+        <li><a href="#hacking-owncloud-web-and-ocis-web">Hacking ownCloud Web (and ocis-web)</a></li>
         <li><a href="#the-owncloud-design-system">The ownCloud design system</a></li>
-        <li><a href="#external-phoenix-apps">External phoenix apps</a></li>
-        <li><a href="#phoenix-extension-points">Phoenix extension points</a>
+        <li><a href="#external-owncloud-web-apps">External ownCloud Web apps</a></li>
+        <li><a href="#owncloud-web-extension-points">ownCloud Web extension points</a>
           <ul>
-            <li><a href="#phoenix-core">Phoenix core</a></li>
+            <li><a href="#owncloud-web">ownCloud Web</a></li>
             <li><a href="#files-app">Files app</a></li>
           </ul>
         </li>
@@ -2633,8 +2626,8 @@
 cd ocis
 
 TAGS=simple make generate build
-</code></pre></div><p><em>Q: Can you specify which version of phoenix to use?</em>
-<em>A: No, the phoenix that is used is compiled into the <a href="https://github.com/owncloud/ocis-phoenix/blob/master/pkg/assets/embed.go">assets of ocis-phoenix</a> which is currently not automatically updated. We&rsquo;ll see how to use a custom phoenix later.</em></p>
+</code></pre></div><p><em>Q: Can you specify which version of ownCloud Web to use?</em>
+<em>A: No, the ownCloud Web that is used is compiled into the <a href="https://github.com/owncloud/ocis/blob/master/web/pkg/assets/embed.go">assets of ocis-web</a> which is currently not automatically updated. We&rsquo;ll see how to use a custom ownCloud Web later.</em></p>
 <p><code>bin/ocis server</code></p>
 <p>Open the browser at http://localhost:9100</p>
 <ol>
@@ -2671,34 +2664,34 @@ make generate build
 <p>In order to be able to manage the processes ourselves we need to start them independently:</p>
 <p><code>bin/ocis server</code> starts the same services as:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">bin/ocis micro &amp;
-bin/ocis phoenix &amp;
+bin/ocis web &amp;
 bin/ocis hello &amp;
 bin/ocis reva &amp;
 </code></pre></div><p>Now we can kill the <code>ocis hello</code> and use our custom built ocis-hello binary:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">cd ../ocis-hello
 bin/ocis-hello server
-</code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="hacking-phoenix-and-ocis-phoenix">Hacking phoenix (and ocis-phoenix)<a data-clipboard-text="https://owncloud.github.io/ocis/development/extensions/#hacking-phoenix-and-ocis-phoenix" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Hacking phoenix (and ocis-phoenix)" href="#hacking-phoenix-and-ocis-phoenix"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>Following <a href="https://github.com/owncloud/phoenix">https://github.com/owncloud/phoenix</a> we are going to build the current phoenix</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">git clone https://github.com/owncloud/phoenix.git
-cd phoenix
+</code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="hacking-owncloud-web-and-ocis-web">Hacking ownCloud Web (and ocis-web)<a data-clipboard-text="https://owncloud.github.io/ocis/development/extensions/#hacking-owncloud-web-and-ocis-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Hacking ownCloud Web (and ocis-web)" href="#hacking-owncloud-web-and-ocis-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>Following <a href="https://github.com/owncloud/web">https://github.com/owncloud/web</a> we are going to build the current ownCloud Web</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">git clone https://github.com/owncloud/web.git
+cd web
 
 yarn install
 yarn dist
 </code></pre></div><p>We can tell ocis to use the compiled assets:</p>
-<p>Kill <code>ocis phoenix</code>, then use the compiled assets when starting phoenix.</p>
+<p>Kill <code>ocis web</code>, then use the compiled assets when starting ownCloud Web.</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">cd ../ocis
-PHOENIX_ASSET_PATH=&#34;`pwd`/../phoenix/dist&#34; bin/ocis phoenix
+WEB_ASSET_PATH=&#34;`pwd`/../web/dist&#34; bin/ocis web
 </code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="the-owncloud-design-system">The ownCloud design system<a data-clipboard-text="https://owncloud.github.io/ocis/development/extensions/#the-owncloud-design-system" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor The ownCloud design system" href="#the-owncloud-design-system"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>The <a href="https://owncloud.design/">ownCloud design system</a> contains a set of ownCloud vue components for phoenix or your own ocis extensions. Please use it for a consistent look and feel.</p>
-<div class="gdoc-page__anchorwrap"><h2 id="external-phoenix-apps">External phoenix apps<a data-clipboard-text="https://owncloud.github.io/ocis/development/extensions/#external-phoenix-apps" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor External phoenix apps" href="#external-phoenix-apps"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>The <a href="https://owncloud.design/">ownCloud design system</a> contains a set of ownCloud vue components for ownCloud Web or your own ocis extensions. Please use it for a consistent look and feel.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="external-owncloud-web-apps">External ownCloud Web apps<a data-clipboard-text="https://owncloud.github.io/ocis/development/extensions/#external-owncloud-web-apps" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor External ownCloud Web apps" href="#external-owncloud-web-apps"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>This is what hello is: copy and extend!</p>
 <ol>
 <li>
-<p>Phoenix is configured using the config.json which is served by the phoenix service (either <code>bin/ocis phoenix</code> or <code>bin/ocis-phoenix server</code>)</p>
+<p>ownCloud Web is configured using the config.json which is served by the ocis-web service (either <code>bin/ocis web</code> or <code>bin/web server</code>)</p>
 </li>
 <li>
-<p>point ocis phoenix to the web config which you extended with an external app:
-<code>PHOENIX_WEB_CONFIG=&quot;</code>pwd<code>/../phoenix/config.json&quot; PHOENIX_ASSET_PATH=&quot;</code>pwd<code>/../phoenix/dist&quot; bin/ocis phoenix</code></p>
+<p>point ocis-web to the web config which you extended with an external app:
+<code>WEB_UI_CONFIG=&quot;</code>pwd<code>/../web/config.json&quot; ASSET_PATH=&quot;</code>pwd<code>/../web/dist&quot; bin/ocis web</code></p>
 </li>
 </ol>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
@@ -2708,7 +2701,7 @@ PHOENIX_ASSET_PATH=&#34;`pwd`/../phoenix/dist&#34; bin/ocis phoenix
   <span class="nt">&#34;openIdConnect&#34;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&#34;metadata_url&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:9140/.well-known/openid-configuration&#34;</span><span class="p">,</span>
     <span class="nt">&#34;authority&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:9140&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;client_id&#34;</span><span class="p">:</span> <span class="s2">&#34;phoenix&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;client_id&#34;</span><span class="p">:</span> <span class="s2">&#34;web&#34;</span><span class="p">,</span>
     <span class="nt">&#34;response_type&#34;</span><span class="p">:</span> <span class="s2">&#34;code&#34;</span><span class="p">,</span>
     <span class="nt">&#34;scope&#34;</span><span class="p">:</span> <span class="s2">&#34;openid profile email&#34;</span>
   <span class="p">},</span>
@@ -2731,13 +2724,13 @@ PHOENIX_ASSET_PATH=&#34;`pwd`/../phoenix/dist&#34; bin/ocis phoenix
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span>
-</code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="phoenix-extension-points">Phoenix extension points<a data-clipboard-text="https://owncloud.github.io/ocis/development/extensions/#phoenix-extension-points" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Phoenix extension points" href="#phoenix-extension-points"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+</code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="owncloud-web-extension-points">ownCloud Web extension points<a data-clipboard-text="https://owncloud.github.io/ocis/development/extensions/#owncloud-web-extension-points" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ownCloud Web extension points" href="#owncloud-web-extension-points"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <blockquote class="gdoc-hint info">
-  For an up to date list check out <a href="https://github.com/owncloud/phoenix/issues/2423">the phoenix documentation</a>.
+  For an up to date list check out <a href="https://github.com/owncloud/web/issues/2423">the ownCloud Web documentation</a>.
 </blockquote>
 
 <p>Several ones available:</p>
-<div class="gdoc-page__anchorwrap"><h3 id="phoenix-core">Phoenix core<a data-clipboard-text="https://owncloud.github.io/ocis/development/extensions/#phoenix-core" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Phoenix core" href="#phoenix-core"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<div class="gdoc-page__anchorwrap"><h3 id="owncloud-web">ownCloud Web<a data-clipboard-text="https://owncloud.github.io/ocis/development/extensions/#owncloud-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ownCloud Web" href="#owncloud-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <ul>
 <li>App switcher (defined in config.json)</li>
 <li>App container (loads UI of your extension)</li>
@@ -2797,7 +2790,7 @@ PHOENIX_ASSET_PATH=&#34;`pwd`/../phoenix/dist&#34; bin/ocis phoenix
 <p>the gateways and protocols are optional</p>
 </li>
 <li>
-<p>owncloud and kopano are looking into a <a href="https://developer.microsoft.com/de-de/graph">MS graph</a> like api to handle phoenix requests.</p>
+<p>owncloud and kopano are looking into a <a href="https://developer.microsoft.com/de-de/graph">MS graph</a> like api to handle ownCloud Web requests.</p>
 <ul>
 <li>they might be about user, contacrs, calendars &hellip; which is covered by the graph api</li>
 <li>we want to integrate with eg. kopano and provide a commen api (file sync and share is covered as well)</li>
@@ -2863,7 +2856,7 @@ PHOENIX_ASSET_PATH=&#34;`pwd`/../phoenix/dist&#34; bin/ocis phoenix
 
 
 
-<script defer src="/js/en.search.min.6665358cdeaf1122e41def92f5e84349abb4083892f8f5cd6a2c12597173f272.js"></script>
+<script defer src="/js/en.search.min.3f0dc403ead0a6d422ca2c54ec7c0522c20ab7fb900e3ac779b62d6496d6a28d.js"></script>
 
 
 

@@ -1717,20 +1717,13 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-28da549b" class="gdoc-nav__toggle" >
-            <label for="navtree-28da549b" class="flex justify-between">
-            
             
                 <span class="flex">
-                    <a href="/extensions/ocis-phoenix/" class="gdoc-nav__entry ">
+                    <a href="/extensions/web/" class="gdoc-nav__entry ">
                         ownCloud Web
                     </a>
                 </span>
             
-            
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
-            </label>
             
 
             
@@ -1752,7 +1745,7 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/ocis-phoenix/configuration/" class="gdoc-nav__entry ">
+                    <a href="/extensions/web/configuration/" class="gdoc-nav__entry ">
                         Configuration
                     </a>
                 </span>
@@ -1777,7 +1770,7 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/ocis-phoenix/releasing/" class="gdoc-nav__entry ">
+                    <a href="/extensions/web/releasing/" class="gdoc-nav__entry ">
                         Releasing
                     </a>
                 </span>
@@ -2623,7 +2616,7 @@
 
 <div class="gdoc-page__anchorwrap"><h2 id="debugging">Debugging<a data-clipboard-text="https://owncloud.github.io/ocis/development/debugging/#debugging" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Debugging" href="#debugging"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>As a single binary for easy deployment running <code>ocis server</code> just forks itself to start all the services, which makes debugging those processes a little harder.</p>
-<p>Ultimately, we want to be able to stop a single service using eg. <code>ocis kill phoenix</code> so that you can start the service you want to debug in debug mode. We need to <a href="https://github.com/owncloud/ocis/issues/77">change the way we fork processes</a> though, otherwise the runtime will automatically restart a service if killed.</p>
+<p>Ultimately, we want to be able to stop a single service using eg. <code>ocis kill web</code> so that you can start the service you want to debug in debug mode. We need to <a href="https://github.com/owncloud/ocis/issues/77">change the way we fork processes</a> though, otherwise the runtime will automatically restart a service if killed.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="start-ocis">Start ocis<a data-clipboard-text="https://owncloud.github.io/ocis/development/debugging/#start-ocis" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Start ocis" href="#start-ocis"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>For debugging there are two workflows that work well, depending on your preferences.</p>
 <div class="gdoc-page__anchorwrap"><h4 id="use-the-debug-binary-and-attach-to-the-process-as-needed">Use the debug binary and attach to the process as needed<a data-clipboard-text="https://owncloud.github.io/ocis/development/debugging/#use-the-debug-binary-and-attach-to-the-process-as-needed" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Use the debug binary and attach to the process as needed" href="#use-the-debug-binary-and-attach-to-the-process-as-needed"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
@@ -2650,7 +2643,7 @@
 12981 pts/1    Sl     0:00 bin/ocis-debug web
 12993 pts/1    Sl     0:00 bin/ocis-debug api
 12998 pts/1    Sl     0:00 bin/ocis-debug registry
-13004 pts/1    Sl     0:00 bin/ocis-debug phoenix
+13004 pts/1    Sl     0:00 bin/ocis-debug web
 13015 pts/1    Sl     0:00 bin/ocis-debug reva-auth-basic
 </code></pre></div><p>Then you can set a breakpoint in the service you need and attach to the process via processid. To debug the <code>reva-sharing</code> service the VS Code <code>launch.json</code> would look like this:</p>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
@@ -2680,7 +2673,7 @@ bin/ocis --log-level<span class="o">=</span><span class="nv">$LOG_LEVEL</span> g
 <span class="c1">#bin/ocis --log-level=$LOG_LEVEL hello &amp;</span>
 bin/ocis --log-level<span class="o">=</span><span class="nv">$LOG_LEVEL</span> konnectd <span class="p">&amp;</span>
 <span class="c1">#bin/ocis --log-level=$LOG_LEVEL ocs &amp;</span>
-bin/ocis --log-level<span class="o">=</span><span class="nv">$LOG_LEVEL</span> phoenix <span class="p">&amp;</span>
+bin/ocis --log-level<span class="o">=</span><span class="nv">$LOG_LEVEL</span> web <span class="p">&amp;</span>
 bin/ocis --log-level<span class="o">=</span><span class="nv">$LOG_LEVEL</span> reva-auth-basic <span class="p">&amp;</span>
 bin/ocis --log-level<span class="o">=</span><span class="nv">$LOG_LEVEL</span> reva-auth-bearer <span class="p">&amp;</span>
 bin/ocis --log-level<span class="o">=</span><span class="nv">$LOG_LEVEL</span> reva-frontend <span class="p">&amp;</span>
@@ -2720,7 +2713,7 @@ bin/ocis --log-level<span class="o">=</span><span class="nv">$LOG_LEVEL</span> p
 12981 pts/1    Sl     0:00 bin/ocis-debug web
 12993 pts/1    Sl     0:00 bin/ocis-debug api
 12998 pts/1    Sl     0:00 bin/ocis-debug registry
-13004 pts/1    Sl     0:00 bin/ocis-debug phoenix
+13004 pts/1    Sl     0:00 bin/ocis-debug web
 13015 pts/1    Sl     0:00 bin/ocis-debug reva-auth-basic
 </code></pre></div><ol start="3">
 <li>Kill the service you want to start in debug mode:</li>
@@ -2735,7 +2728,7 @@ bin/ocis --log-level<span class="o">=</span><span class="nv">$LOG_LEVEL</span> p
 <p>Error while sharing.
 error sending a grpc stat request</p>
 </blockquote>
-<p>This popped up when I tried to add <code>marie</code> as a collaborator in phoenix. That triggers a request to the server which I copied as curl. We can strip a lot of headers and the gist of it is:</p>
+<p>This popped up when I tried to add <code>marie</code> as a collaborator in ownCloud Web. That triggers a request to the server which I copied as curl. We can strip a lot of headers and the gist of it is:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"># curl &#39;https://localhost:9200/ocs/v1.php/apps/files_sharing/api/v1/shares&#39; -d &#39;shareType=0&amp;shareWith=marie&amp;path=%2FNeuer+Ordner&amp;permissions=1&#39; -u einstein:relativity -k -v | xmllint -format -
 [... headers ...]
 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
@@ -2843,7 +2836,7 @@ replace github.com/cs3org/reva =&gt; ../reva
 
 
 
-<script defer src="/js/en.search.min.6665358cdeaf1122e41def92f5e84349abb4083892f8f5cd6a2c12597173f272.js"></script>
+<script defer src="/js/en.search.min.3f0dc403ead0a6d422ca2c54ec7c0522c20ab7fb900e3ac779b62d6496d6a28d.js"></script>
 
 
 

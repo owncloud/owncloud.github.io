@@ -1717,20 +1717,13 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-28da549b" class="gdoc-nav__toggle" >
-            <label for="navtree-28da549b" class="flex justify-between">
-            
             
                 <span class="flex">
-                    <a href="/extensions/ocis-phoenix/" class="gdoc-nav__entry ">
+                    <a href="/extensions/web/" class="gdoc-nav__entry ">
                         ownCloud Web
                     </a>
                 </span>
             
-            
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
-            </label>
             
 
             
@@ -1752,7 +1745,7 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/ocis-phoenix/configuration/" class="gdoc-nav__entry ">
+                    <a href="/extensions/web/configuration/" class="gdoc-nav__entry ">
                         Configuration
                     </a>
                 </span>
@@ -1777,7 +1770,7 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/ocis-phoenix/releasing/" class="gdoc-nav__entry ">
+                    <a href="/extensions/web/releasing/" class="gdoc-nav__entry ">
                         Releasing
                     </a>
                 </span>
@@ -2618,7 +2611,7 @@
                 <li><a href="#check-it-is-up-and-running">Check it is up and running</a></li>
               </ul>
             </li>
-            <li><a href="#start-ocis-phoenix">Start ocis-phoenix</a>
+            <li><a href="#start-ocis-web">Start ocis-web</a>
               <ul>
                 <li><a href="#get-it">Get it!</a></li>
                 <li><a href="#run-it-1">Run it!</a></li>
@@ -2705,17 +2698,17 @@ $ make
 </code></pre></div><blockquote>
 <p>Note: This is currently a readonly implementation and minimal to the usecase of authenticating users with konnectd.</p>
 </blockquote>
-<div class="gdoc-page__anchorwrap"><h3 id="start-ocis-phoenix">Start ocis-phoenix<a data-clipboard-text="https://owncloud.github.io/ocis/deployment/bridge/#start-ocis-phoenix" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Start ocis-phoenix" href="#start-ocis-phoenix"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<div class="gdoc-page__anchorwrap"><h3 id="start-ocis-web">Start ocis-web<a data-clipboard-text="https://owncloud.github.io/ocis/deployment/bridge/#start-ocis-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Start ocis-web" href="#start-ocis-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <div class="gdoc-page__anchorwrap"><h4 id="get-it">Get it!<a data-clipboard-text="https://owncloud.github.io/ocis/deployment/bridge/#get-it" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Get it!" href="#get-it"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
 <p>In an <code>ocis</code> folder</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ git clone git@github.com:owncloud/ocis-phoenix.git
-$ cd ocis-phoenix
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ git clone git@github.com:owncloud/ocis.git
+$ cd web
 $ make
-</code></pre></div><p>This should give you a <code>bin/ocis-phoenix</code> binary. Try listing the help with <code>bin/ocis-phoenix --help</code>.</p>
+</code></pre></div><p>This should give you a <code>bin/web</code> binary. Try listing the help with <code>bin/web --help</code>.</p>
 <div class="gdoc-page__anchorwrap"><h4 id="run-it-1">Run it!<a data-clipboard-text="https://owncloud.github.io/ocis/deployment/bridge/#run-it-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Run it!" href="#run-it-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>Point <code>ocis-phoenix</code> to your owncloud domain and tell it where to find the openid connect issuing authority:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ bin/ocis-phoenix server --web-config-server https://cloud.example.com --oidc-authority https://192.168.1.100:9130 --oidc-metadata-url https://192.168.1.100:9130/.well-known/openid-configuration --oidc-client-id ocis
-</code></pre></div><p><code>ocis-phoenix</code> needs to know</p>
+<p>Point <code>ocis-web</code> to your owncloud domain and tell it where to find the openid connect issuing authority:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ bin/web server --web-config-server https://cloud.example.com --oidc-authority https://192.168.1.100:9130 --oidc-metadata-url https://192.168.1.100:9130/.well-known/openid-configuration --oidc-client-id ocis
+</code></pre></div><p><code>ocis-web</code> needs to know</p>
 <ul>
 <li><code>--web-config-server https://cloud.example.com</code> is ownCloud url with webdav and ocs endpoints (oc10 or ocis)</li>
 <li><code>--oidc-authority https://192.168.1.100:9130</code> the openid connect issuing authority, in our case <code>oidc-konnectd</code>, running on port 9130</li>
@@ -2760,9 +2753,9 @@ export LDAP_FILTER=&#34;(objectClass=posixaccount)&#34;
 </span><span class="w">      </span>- http<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9100</span>/<span class="w">
 </span></code></pre></div><p>You will need the <code>insecure: yes</code> if you are using self signed certificates.</p>
 <p>Replace <code>cloud.example.com</code> in the redirect URI with your ownCloud 10 host and port.
-Replace <code>localhost:9100</code> in the redirect URIs with your the <code>ocis-phoenix</code> host and port.</p>
+Replace <code>localhost:9100</code> in the redirect URIs with your <code>ocis-web</code> host and port.</p>
 <div class="gdoc-page__anchorwrap"><h4 id="run-it-2">Run it!<a data-clipboard-text="https://owncloud.github.io/ocis/deployment/bridge/#run-it-2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Run it!" href="#run-it-2"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>You can now bring up <code>ocis-connectd</code> with:</p>
+<p>You can now bring up <code>ocis-konnectd</code> with:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ bin/ocis-konnectd server --iss https://192.168.1.100:9130 --identifier-registration-conf assets/identifier-registration.yaml --signing-kid gen1-2020-02-27
 </code></pre></div><p><code>ocis-konnectd</code> needs to know</p>
 <ul>
@@ -2810,7 +2803,7 @@ $ composer install
 <ul>
 <li><code>provider-url</code> with the URL to your <code>ocis-konnectd</code> issuer</li>
 <li><code>https://cloud.example.com</code> with the URL to your ownCloud 10 instance</li>
-<li><code>http://localhost:9100</code> with the URL to your phoenix instance</li>
+<li><code>http://localhost:9100</code> with the URL to your ownCloud Web instance</li>
 </ul>
 <blockquote>
 <p>Note: By default the openidconnect app will use the email of the user to match the user from the oidc userinfo endpoint with the ownCloud account. So make sure your users have a unique primary email.</p>
@@ -2819,7 +2812,7 @@ $ composer install
 <p>Aside from the above todos these are the next stepo</p>
 <ul>
 <li>tie it all together behind <code>ocis-proxy</code></li>
-<li>create an <code>ocis bridge</code> command that runs all the ocis services in one step with a properly preconfigured <code>ocis-konnectd</code> <code>identifier-registration.yaml</code> file for <code>phoenix</code> and the owncloud 10 <code>openidconnect</code> app, as well as a randomized <code>--signing-kid</code>.</li>
+<li>create an <code>ocis bridge</code> command that runs all the ocis services in one step with a properly preconfigured <code>ocis-konnectd</code> <code>identifier-registration.yaml</code> file for <code>ownCloud Web</code> and the owncloud 10 <code>openidconnect</code> app, as well as a randomized <code>--signing-kid</code>.</li>
 </ul>
 
 
@@ -2877,7 +2870,7 @@ $ composer install
 
 
 
-<script defer src="/js/en.search.min.6665358cdeaf1122e41def92f5e84349abb4083892f8f5cd6a2c12597173f272.js"></script>
+<script defer src="/js/en.search.min.3f0dc403ead0a6d422ca2c54ec7c0522c20ab7fb900e3ac779b62d6496d6a28d.js"></script>
 
 
 
