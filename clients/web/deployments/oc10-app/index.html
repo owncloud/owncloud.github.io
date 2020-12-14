@@ -2615,30 +2615,31 @@
       </ul></nav><hr></div>
 
 
-<p>One of the build artifacts of the ownCloud Web is a ownCloud 10 app bundle.</p>
+<p>The ownCloud Web is being deployed as an app to <a href="https://market.owncloud.com">ownCloud marketplace</a> to enable easy early integration into existing ownCloud 10 instances.
+After completing this setup, ownCloud Web will be available on <code>https://&lt;your-owncloud-server&gt;/apps-external/web</code>.</p>
+<blockquote class="gdoc-hint info">
+  Depending on your setup, the name of <code>apps-external</code> folder can vary. It is important to use the correct name in all of the mentioned URLs.
+</blockquote>
+
 <div class="gdoc-page__anchorwrap"><h2 id="prerequisites">Prerequisites<a data-clipboard-text="https://owncloud.github.io/clients/web/deployments/oc10-app/#prerequisites" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Prerequisites" href="#prerequisites"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <ul>
 <li>Running <a href="https://owncloud.com/download-server/">ownCloud 10 server</a> with version 10.6</li>
 <li>Installed <a href="https://marketplace.owncloud.com/apps/oauth2">oauth2 app</a></li>
 </ul>
 <div class="gdoc-page__anchorwrap"><h2 id="deploying-owncloud-web">Deploying ownCloud Web<a data-clipboard-text="https://owncloud.github.io/clients/web/deployments/oc10-app/#deploying-owncloud-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Deploying ownCloud Web" href="#deploying-owncloud-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>To download the ownCloud Web, go to <a href="https://github.com/owncloud/web/releases">https://github.com/owncloud/web/releases</a> and pick your desired version. In the release, you will find a file called <code>web-app.tar.gz</code>.
-Download this file and move it into the <code>apps</code> folder in your ownCloud 10 server.</p>
-<blockquote class="gdoc-hint info">
-  The app bundle is provided only from version 1.0.0
-</blockquote>
+<p>Download <a href="https://marketplace.owncloud.com/apps/web">ownCloud Web app</a> from the marketplace and enable it.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="configure-oauth2">Configure oauth2<a data-clipboard-text="https://owncloud.github.io/clients/web/deployments/oc10-app/#configure-oauth2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configure oauth2" href="#configure-oauth2"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>In the <code>Admin</code> of ownCloud 10, head into <code>User Authentication</code> and add a new client with arbitrary name and redirection URL <code>https://&lt;your-owncloud-server&gt;/apps-external/web/oidc-callback.html</code>.</p>
+<figure>
+    <img src="/clients/web/static/oauth2.jpg"
+         alt="Example OAuth2 entry"/> 
+</figure>
 
-<p>To unpack the app, run the following command:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">tar -xzf web.tar.gz <span class="o">&amp;&amp;</span> rm -Rf web-app.tar.gz
-</code></pre></div><p>Next step is to enable the app:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ../ <span class="o">&amp;&amp;</span> occ apps:enable web
-</code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="configure-oauth2">Configure oauth2<a data-clipboard-text="https://owncloud.github.io/clients/web/deployments/oc10-app/#configure-oauth2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configure oauth2" href="#configure-oauth2"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>In the <code>Admin</code> of ownCloud 10, head into <code>User Authentication</code> and add a new client with arbitrary name and redirection URL <code>https://&lt;your-owncloud-server&gt;/apps/web/oidc-callback.html</code>.</p>
 <div class="gdoc-page__anchorwrap"><h2 id="configure-owncloud-10">Configure ownCloud 10<a data-clipboard-text="https://owncloud.github.io/clients/web/deployments/oc10-app/#configure-owncloud-10" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configure ownCloud 10" href="#configure-owncloud-10"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>To display ownCloud Web in the app switcher and to redirect all private and public links to the new WebUI, add the following config into <code>config/config.php</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">&#39;web.baseUrl&#39; =&gt; &#39;https://<span class="p">&lt;</span><span class="nt">your-owncloud-server</span><span class="p">&gt;</span>/apps/web&#39;,
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">&#39;web.baseUrl&#39; =&gt; &#39;https://<span class="p">&lt;</span><span class="nt">your-owncloud-server</span><span class="p">&gt;</span>/apps-external/web&#39;,
 </code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="configure-owncloud-web">Configure ownCloud Web<a data-clipboard-text="https://owncloud.github.io/clients/web/deployments/oc10-app/#configure-owncloud-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configure ownCloud Web" href="#configure-owncloud-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>There are a few config values which need to be set in order for ownCloud Web to work correctly. Navigate into <code>apps/web</code> and adjust <code>config.json</code> according to the following example:</p>
+<p>There are a few config values which need to be set in order for ownCloud Web to work correctly. Navigate into <code>apps-external/web</code> and adjust <code>config.json</code> according to the following example:</p>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
   <span class="nt">&#34;server&#34;</span> <span class="p">:</span> <span class="s2">&#34;https://&lt;your-owncloud-server&gt;&#34;</span><span class="p">,</span> <span class="err">//</span> <span class="err">ownCloud</span> <span class="err">10</span> <span class="err">server</span> <span class="err">address</span>
   <span class="nt">&#34;theme&#34;</span><span class="p">:</span> <span class="s2">&#34;owncloud&#34;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Theme</span> <span class="err">to</span> <span class="err">be</span> <span class="err">used</span> <span class="err">in</span> <span class="err">ownCloud</span> <span class="err">Web</span> <span class="err">pointing</span> <span class="err">to</span> <span class="err">a</span> <span class="err">json</span> <span class="err">file</span> <span class="err">inside</span> <span class="err">of</span> <span class="err">`themes`</span> <span class="err">folder</span>
@@ -2650,12 +2651,34 @@ Download this file and move it into the <code>apps</code> folder in your ownClou
   <span class="nt">&#34;apps&#34;</span> <span class="p">:</span> <span class="p">[</span> <span class="err">//</span> <span class="err">List</span> <span class="err">of</span> <span class="err">extensions</span> <span class="err">to</span> <span class="err">be</span> <span class="err">loaded</span>
     <span class="s2">&#34;files&#34;</span>
   <span class="p">],</span>
-  <span class="nt">&#34;applications&#34;</span> <span class="p">:</span> <span class="p">[]</span> <span class="err">//</span> <span class="err">Apps</span> <span class="err">to</span> <span class="err">be</span> <span class="err">displayed</span> <span class="err">in</span> <span class="err">the</span> <span class="err">application</span> <span class="err">switcher</span>
+  <span class="nt">&#34;applications&#34;</span> <span class="p">:</span> <span class="p">[</span> <span class="err">//</span> <span class="err">Apps</span> <span class="err">to</span> <span class="err">be</span> <span class="err">displayed</span> <span class="err">in</span> <span class="err">the</span> <span class="err">application</span> <span class="err">switcher</span> <span class="err">or</span> <span class="err">in</span> <span class="err">the</span> <span class="err">user</span> <span class="err">menu</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//</span> <span class="err">Item</span> <span class="err">in</span> <span class="err">apps</span> <span class="err">switcher</span> <span class="err">pointing</span> <span class="err">to</span> <span class="err">the</span> <span class="err">old</span> <span class="err">ownCloud</span> <span class="err">UI</span>
+        <span class="nt">&#34;en&#34;</span><span class="p">:</span> <span class="s2">&#34;Classic Design&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;de&#34;</span><span class="p">:</span> <span class="s2">&#34;Dateien&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;fr&#34;</span><span class="p">:</span> <span class="s2">&#34;Fichiers&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;zh_CN&#34;</span><span class="p">:</span> <span class="s2">&#34;文件&#34;</span>
+      <span class="p">},</span>
+      <span class="nt">&#34;icon&#34;</span><span class="p">:</span> <span class="s2">&#34;switch_ui&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;http://&lt;your-owncloud-server&gt;/index.php/apps/files&#34;</span>
+    <span class="p">},</span>
+    <span class="p">{</span> <span class="err">//</span> <span class="err">Item</span> <span class="err">in</span> <span class="err">user</span> <span class="err">menu</span> <span class="err">pointing</span> <span class="err">to</span> <span class="err">user</span> <span class="err">settings</span> <span class="err">in</span> <span class="err">the</span> <span class="err">old</span> <span class="err">ownCloud</span> <span class="err">UI</span>
+      <span class="nt">&#34;icon&#34;</span><span class="p">:</span> <span class="s2">&#34;application&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;menu&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;target&#34;</span><span class="p">:</span> <span class="s2">&#34;_self&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;de&#34;</span><span class="p">:</span> <span class="s2">&#34;Einstellungen&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;en&#34;</span><span class="p">:</span> <span class="s2">&#34;Settings&#34;</span>
+      <span class="p">},</span>
+      <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://&lt;your-owncloud-server&gt;/index.php/settings/personal&#34;</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="accessing-owncloud-web">Accessing ownCloud Web<a data-clipboard-text="https://owncloud.github.io/clients/web/deployments/oc10-app/#accessing-owncloud-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Accessing ownCloud Web" href="#accessing-owncloud-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>After following all the steps, you should see a new entry in the application switcher called <code>New Design</code> which points to the ownCloud web.</p>
 <figure>
-    <img src="/web/static/application-switcher-oc10.jpg"/> 
+    <img src="/clients/web/static/application-switcher-oc10.jpg"
+         alt="ownCloud 10 application switcher"/> 
 </figure>
 
 
@@ -2714,7 +2737,7 @@ Download this file and move it into the <code>apps</code> folder in your ownClou
 
 
 
-<script defer src="/js/en.search.min.f2dec280a42680f88a06db5fe3c7f63760f8dbe0ce1ae80156dabb39ea445c90.js"></script>
+<script defer src="/js/en.search.min.f9a5d9296ee5a78e0324bfe3bd3d3ffe4bb1bd6e7e1f933cb2f94ff455cffdcd.js"></script>
 
 
 
