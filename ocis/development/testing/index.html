@@ -2599,7 +2599,16 @@
 
 
   <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
-        <li><a href="#acceptance-tests">Acceptance tests</a>
+        <li><a href="#testing-with-test-suite-in-docker">Testing with test suite in docker</a>
+          <ul>
+            <li><a href="#run-full-test-suite">Run full test suite</a></li>
+            <li><a href="#run-single-feature-test">Run single feature test</a></li>
+            <li><a href="#ocis-image-to-be-tested-or-skip-build-and-take-existing-image">oCIS image to be tested (or: skip build and take existing image)</a></li>
+            <li><a href="#test-log-output">Test log output</a></li>
+            <li><a href="#cleanup">Cleanup</a></li>
+          </ul>
+        </li>
+        <li><a href="#testing-with-test-suite-natively-installed">Testing with test suite natively installed</a>
           <ul>
             <li><a href="#getting-the-tests">Getting the tests</a></li>
             <li><a href="#run-a-redis-server-in-a-docker-container">Run a redis server in a docker container</a></li>
@@ -2611,7 +2620,45 @@
       </ul></nav><hr></div>
 
 
-<div class="gdoc-page__anchorwrap"><h2 id="acceptance-tests">Acceptance tests<a data-clipboard-text="https://owncloud.github.io/ocis/development/testing/#acceptance-tests" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Acceptance tests" href="#acceptance-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>For running tests in the test suite you have two options. You may go the easy way and just run the test suite in docker. But for some tasks you could also need to install the test suite natively, which requires a little bit more setup since PHP and some dependencies need to be installed.</p>
+<p>Both ways to run tests with the test suites are described here.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="testing-with-test-suite-in-docker">Testing with test suite in docker<a data-clipboard-text="https://owncloud.github.io/ocis/development/testing/#testing-with-test-suite-in-docker" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Testing with test suite in docker" href="#testing-with-test-suite-in-docker"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>Let&rsquo;s see what is available. Invoke the following command from within the root of the oCIS repository.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">make -C tests/acceptance/docker help
+</code></pre></div><p>Basically we have two sources for feature tests and test suites:</p>
+<ul>
+<li><a href="https://github.com/owncloud/ocis/tree/master/tests/acceptance/features">oCIS feature test and test suites</a></li>
+<li><a href="https://github.com/owncloud/core/tree/master/tests/acceptance/features">ownCloud feature tests and test suites</a></li>
+</ul>
+<p>At the moment both can be applied to oCIS since the api of oCIS is designed to be compatible to ownCloud.</p>
+<p>Since we have to offer an migration path to existing users of ownCloud, you can use your existing ownCloud as storage backend for oCIS. As another storage backend we offer oCIS native storage, also called &ldquo;oCIS&rdquo;. This stores files directly on disk. Which storage backend is used is also reflected in the tests, there are always different tests for oCIS storage and ownCloud storage.</p>
+<p>You can invoke two types of test suite runs:</p>
+<ul>
+<li>run a full test suite, which consists of multiple feature tests</li>
+<li>run a single feature test</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h3 id="run-full-test-suite">Run full test suite<a data-clipboard-text="https://owncloud.github.io/ocis/development/testing/#run-full-test-suite" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Run full test suite" href="#run-full-test-suite"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>The names of the full test suite make targets have the same naming as in the CI pipeline.</p>
+<p>For example <code>make -C tests/acceptance/docker localApiTests-apiOcisSpecific-ocis</code> runs the same tests as the <code>localApiTests-apiOcisSpecific-ocis</code> CI pipeline, which runs the oCIS test suite &ldquo;apiOcisSpecific&rdquo; against an oCIS with oCIS storage.</p>
+<p>For example <code>make -C tests/acceptance/docker Core-API-Tests-owncloud-storage-3</code>runs the same tests as the <code>Core-API-Tests-owncloud-storage-3</code> CI pipline, which runs the third (out of ten) ownCloud test suite against an oCIS with owncloud storage.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="run-single-feature-test">Run single feature test<a data-clipboard-text="https://owncloud.github.io/ocis/development/testing/#run-single-feature-test" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Run single feature test" href="#run-single-feature-test"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>The single feature tests can also be run against the different storage backends. Therefore multiple make targets with the schema test-<!-- raw HTML omitted -->-feature-<!-- raw HTML omitted --> exists. For selecting a single feature test you have to add an additional <code>BEHAT_FEATURE=...</code> parameter when invoking the make command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">make -C tests/acceptance/docker test-ocis-feature-ocis BEHAT_FEATURE=&#39;tests/acceptance/features/apiOcisSpecific/apiAuthOcs-ocsDELETEAuth.feature&#39;
+</code></pre></div><p>This must be pointing to a valid feature definition.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="ocis-image-to-be-tested-or-skip-build-and-take-existing-image">oCIS image to be tested (or: skip build and take existing image)<a data-clipboard-text="https://owncloud.github.io/ocis/development/testing/#ocis-image-to-be-tested-or-skip-build-and-take-existing-image" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor oCIS image to be tested (or: skip build and take existing image)" href="#ocis-image-to-be-tested-or-skip-build-and-take-existing-image"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>By default the tests will be run against docker image built from your current working state of the oCIS repository. For some purposes it might also be handy to use a oCIS image from Docker Hub. Therefore you can provide the optional flag <code>OCIS_IMAGE_TAG=...</code> which must contain an available docker tag of the <a href="https://hub.docker.com/r/owncloud/ocis">owncloud/ocis registry on Docker Hub</a> (eg. &lsquo;latest&rsquo;).</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">make -C tests/acceptance/docker localApiTests-apiOcisSpecific-ocis OCIS_IMAGE_TAG=latest
+</code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="test-log-output">Test log output<a data-clipboard-text="https://owncloud.github.io/ocis/development/testing/#test-log-output" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Test log output" href="#test-log-output"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>While a test is running or when it is finished, you can attach to the logs generated by the tests.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">make -C tests/acceptance/docker show-test-logs
+</code></pre></div><blockquote class="gdoc-hint info">
+  The log output is opened in <code>less</code>. You can navigate up and down with your cursors. By pressing &ldquo;F&rdquo; you can follow the latest line of the output.
+</blockquote>
+
+<div class="gdoc-page__anchorwrap"><h3 id="cleanup">Cleanup<a data-clipboard-text="https://owncloud.github.io/ocis/development/testing/#cleanup" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Cleanup" href="#cleanup"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>During testing we start an redis and oCIS docker container. These will not be stopped automatically. You can stop them with:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">make -C tests/acceptance/docker clean
+</code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="testing-with-test-suite-natively-installed">Testing with test suite natively installed<a data-clipboard-text="https://owncloud.github.io/ocis/development/testing/#testing-with-test-suite-natively-installed" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Testing with test suite natively installed" href="#testing-with-test-suite-natively-installed"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>We are using the ownCloud 10 acceptance test suite against oCIS. To set this up you need the ownCloud 10 core repo, a LDAP server that the acceptance tests can use to manage users, a redis server for file-versions and the oCIS code.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="getting-the-tests">Getting the tests<a data-clipboard-text="https://owncloud.github.io/ocis/development/testing/#getting-the-tests" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Getting the tests" href="#getting-the-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>All you need to do to get the acceptance tests is check out the core repo:</p>
@@ -2748,7 +2795,7 @@ BEHAT_FEATURE=&#39;tests/acceptance/features/apiComments/comments.feature:123&#3
 
 
 
-<script defer src="/js/en.search.min.895fa1263286981ae3e776054005247054ee1532aca631853e362b78eb0da289.js"></script>
+<script defer src="/js/en.search.min.6cb26db8702db9f3f52a6c7ea182cb0fc8a99fe0ec8a71ad794cd3c05022d40c.js"></script>
 
 
 
