@@ -2609,18 +2609,18 @@
         <li><a href="#root-command">Root Command</a></li>
         <li><a href="#sub-commands">Sub Commands</a>
           <ul>
-            <li><a href="#storage-storage-public-link">storage storage-public-link</a></li>
             <li><a href="#storage-gateway">storage gateway</a></li>
-            <li><a href="#storage-auth-basic">storage auth-basic</a></li>
+            <li><a href="#storage-users">storage users</a></li>
             <li><a href="#storage-frontend">storage frontend</a></li>
-            <li><a href="#storage-storage-home">storage storage-home</a></li>
-            <li><a href="#storage-storage-metadata">storage storage-metadata</a></li>
-            <li><a href="#storage-storage-users">storage storage-users</a></li>
-            <li><a href="#storage-health">storage health</a></li>
             <li><a href="#storage-sharing">storage sharing</a></li>
             <li><a href="#storage-storage">storage storage</a></li>
+            <li><a href="#storage-storage-home">storage storage-home</a></li>
+            <li><a href="#storage-health">storage health</a></li>
+            <li><a href="#storage-storage-public-link">storage storage-public-link</a></li>
+            <li><a href="#storage-auth-basic">storage auth-basic</a></li>
             <li><a href="#storage-auth-bearer">storage auth-bearer</a></li>
-            <li><a href="#storage-users">storage users</a></li>
+            <li><a href="#storage-storage-metadata">storage storage-metadata</a></li>
+            <li><a href="#storage-storage-users">storage storage-users</a></li>
           </ul>
         </li>
         <li><a href="#config-for-the-different-storage-drivers">Config for the different Storage Drivers</a>
@@ -2660,21 +2660,6 @@ $HOME/.ocis
 <dd>Enable colored logging.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h2 id="sub-commands">Sub Commands<a data-clipboard-text="https://owncloud.github.io/extensions/storage/configuration/#sub-commands" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Sub Commands" href="#sub-commands"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<div class="gdoc-page__anchorwrap"><h3 id="storage-storage-public-link">storage storage-public-link<a data-clipboard-text="https://owncloud.github.io/extensions/storage/configuration/#storage-storage-public-link" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage storage-public-link" href="#storage-storage-public-link"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Start storage-public-link service</p>
-<p>Usage: <code>storage storage-public-link [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;debug-addr | $STORAGE_PUBLIC_LINK_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>0.0.0.0:9179</code>.</dd>
-<dt>&ndash;network | $STORAGE_PUBLIC_LINK_GRPC_NETWORK</dt>
-<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>tcp</code>.</dd>
-<dt>&ndash;addr | $STORAGE_PUBLIC_LINK_GRPC_ADDR</dt>
-<dd>Address to bind storage service. Default: <code>0.0.0.0:9178</code>.</dd>
-<dt>&ndash;mount-path | $STORAGE_PUBLIC_LINK_MOUNT_PATH</dt>
-<dd>mount path. Default: <code>/public</code>.</dd>
-<dt>&ndash;gateway-endpoint | $STORAGE_GATEWAY_ENDPOINT</dt>
-<dd>endpoint to use for the storage gateway service. Default: <code>localhost:9142</code>.</dd>
-</dl>
 <div class="gdoc-page__anchorwrap"><h3 id="storage-gateway">storage gateway<a data-clipboard-text="https://owncloud.github.io/extensions/storage/configuration/#storage-gateway" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage gateway" href="#storage-gateway"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Start gateway</p>
 <p>Usage: <code>storage gateway [command options] [arguments...]</code></p>
@@ -2730,20 +2715,40 @@ $HOME/.ocis
 <dt>&ndash;storage-public-link-mount-path | $STORAGE_PUBLIC_LINK_MOUNT_PATH</dt>
 <dd>mount path. Default: <code>/public</code>.</dd>
 </dl>
-<div class="gdoc-page__anchorwrap"><h3 id="storage-auth-basic">storage auth-basic<a data-clipboard-text="https://owncloud.github.io/extensions/storage/configuration/#storage-auth-basic" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage auth-basic" href="#storage-auth-basic"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Start authprovider for basic auth</p>
-<p>Usage: <code>storage auth-basic [command options] [arguments...]</code></p>
+<div class="gdoc-page__anchorwrap"><h3 id="storage-users">storage users<a data-clipboard-text="https://owncloud.github.io/extensions/storage/configuration/#storage-users" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage users" href="#storage-users"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Start users service</p>
+<p>Usage: <code>storage users [command options] [arguments...]</code></p>
 <dl>
-<dt>&ndash;debug-addr | $STORAGE_AUTH_BASIC_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>0.0.0.0:9147</code>.</dd>
-<dt>&ndash;auth-driver | $STORAGE_AUTH_DRIVER</dt>
-<dd>auth driver: &lsquo;demo&rsquo;, &lsquo;json&rsquo; or &lsquo;ldap&rsquo;. Default: <code>ldap</code>.</dd>
-<dt>&ndash;auth-json | $STORAGE_AUTH_JSON</dt>
+<dt>&ndash;debug-addr | $STORAGE_SHARING_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>0.0.0.0:9145</code>.</dd>
+<dt>&ndash;network | $STORAGE_USERPROVIDER_NETWORK</dt>
+<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>tcp</code>.</dd>
+<dt>&ndash;addr | $STORAGE_USERPROVIDER_ADDR</dt>
+<dd>Address to bind storage service. Default: <code>0.0.0.0:9144</code>.</dd>
+<dt>&ndash;endpoint | $STORAGE_USERPROVIDER_ENDPOINT</dt>
+<dd>URL to use for the storage service. Default: <code>localhost:9144</code>.</dd>
+<dt>&ndash;driver | $STORAGE_USERPROVIDER_DRIVER</dt>
+<dd>user driver: &lsquo;demo&rsquo;, &lsquo;json&rsquo;, &lsquo;ldap&rsquo;, or &lsquo;rest&rsquo;. Default: <code>ldap</code>.</dd>
+<dt>&ndash;json-config | $STORAGE_USERPROVIDER_JSON</dt>
 <dd>Path to users.json file.</dd>
-<dt>&ndash;network | $STORAGE_AUTH_BASIC_GRPC_NETWORK</dt>
-<dd>Network to use for the storage auth-basic service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>tcp</code>.</dd>
-<dt>&ndash;addr | $STORAGE_AUTH_BASIC_GRPC_ADDR</dt>
-<dd>Address to bind storage service. Default: <code>0.0.0.0:9146</code>.</dd>
+<dt>&ndash;rest-client-id | $STORAGE_REST_CLIENT_ID</dt>
+<dd>User rest driver Client ID.</dd>
+<dt>&ndash;rest-client-secret | $STORAGE_REST_CLIENT_SECRET</dt>
+<dd>User rest driver Client Secret.</dd>
+<dt>&ndash;rest-redis-address | $STORAGE_REST_REDIS_ADDRESS</dt>
+<dd>Address for redis server. Default: <code>localhost:6379</code>.</dd>
+<dt>&ndash;rest-redis-username | $STORAGE_REST_REDIS_USERNAME</dt>
+<dd>Username for redis server.</dd>
+<dt>&ndash;rest-redis-password | $STORAGE_REST_REDIS_PASSWORD</dt>
+<dd>Password for redis server.</dd>
+<dt>&ndash;rest-id-provider | $STORAGE_REST_ID_PROVIDER</dt>
+<dd>The OIDC Provider.</dd>
+<dt>&ndash;rest-api-base-url | $STORAGE_REST_API_BASE_URL</dt>
+<dd>Base API Endpoint.</dd>
+<dt>&ndash;rest-oidc-token-endpoint | $STORAGE_REST_OIDC_TOKEN_ENDPOINT</dt>
+<dd>Endpoint to generate token to access the API.</dd>
+<dt>&ndash;rest-target-api | $STORAGE_REST_TARGET_API</dt>
+<dd>The target application.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h3 id="storage-frontend">storage frontend<a data-clipboard-text="https://owncloud.github.io/extensions/storage/configuration/#storage-frontend" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage frontend" href="#storage-frontend"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Start frontend service</p>
@@ -2780,6 +2785,38 @@ $HOME/.ocis
 <dt>&ndash;upload-http-method-override | $STORAGE_FRONTEND_UPLOAD_HTTP_METHOD_OVERRIDE</dt>
 <dd>Specify an HTTP method (ex: POST) that clients should to use when uploading instead of PATCH.</dd>
 </dl>
+<div class="gdoc-page__anchorwrap"><h3 id="storage-sharing">storage sharing<a data-clipboard-text="https://owncloud.github.io/extensions/storage/configuration/#storage-sharing" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage sharing" href="#storage-sharing"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Start sharing service</p>
+<p>Usage: <code>storage sharing [command options] [arguments...]</code></p>
+<dl>
+<dt>&ndash;debug-addr | $STORAGE_SHARING_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>0.0.0.0:9151</code>.</dd>
+<dt>&ndash;network | $STORAGE_SHARING_GRPC_NETWORK</dt>
+<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>tcp</code>.</dd>
+<dt>&ndash;addr | $STORAGE_SHARING_GRPC_ADDR</dt>
+<dd>Address to bind storage service. Default: <code>0.0.0.0:9150</code>.</dd>
+<dt>&ndash;user-driver | $STORAGE_SHARING_USER_DRIVER</dt>
+<dd>driver to use for the UserShareProvider. Default: <code>json</code>.</dd>
+<dt>&ndash;user-json-file | $STORAGE_SHARING_USER_JSON_FILE</dt>
+<dd>file used to persist shares for the UserShareProvider. Default: <code>/var/tmp/ocis/storage/shares.json</code>.</dd>
+<dt>&ndash;public-driver | $STORAGE_SHARING_PUBLIC_DRIVER</dt>
+<dd>driver to use for the PublicShareProvider. Default: <code>json</code>.</dd>
+<dt>&ndash;public-json-file | $STORAGE_SHARING_PUBLIC_JSON_FILE</dt>
+<dd>file used to persist shares for the PublicShareProvider. Default: <code>/var/tmp/ocis/storage/publicshares.json</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap"><h3 id="storage-storage">storage storage<a data-clipboard-text="https://owncloud.github.io/extensions/storage/configuration/#storage-storage" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage storage" href="#storage-storage"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Storage service for oCIS</p>
+<p>Usage: <code>storage storage [command options] [arguments...]</code></p>
+<dl>
+<dt>&ndash;config-file | $STORAGE_CONFIG_FILE</dt>
+<dd>Path to config file.</dd>
+<dt>&ndash;log-level | $STORAGE_LOG_LEVEL</dt>
+<dd>Set logging level. Default: <code>info</code>.</dd>
+<dt>&ndash;log-pretty | $STORAGE_LOG_PRETTY</dt>
+<dd>Enable pretty logging.</dd>
+<dt>&ndash;log-color | $STORAGE_LOG_COLOR</dt>
+<dd>Enable colored logging.</dd>
+</dl>
 <div class="gdoc-page__anchorwrap"><h3 id="storage-storage-home">storage storage-home<a data-clipboard-text="https://owncloud.github.io/extensions/storage/configuration/#storage-storage-home" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage storage-home" href="#storage-storage-home"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Start storage-home service</p>
 <p>Usage: <code>storage storage-home [command options] [arguments...]</code></p>
@@ -2814,6 +2851,64 @@ $HOME/.ocis
 <dd>endpoint to use for the storage gateway service. Default: <code>localhost:9142</code>.</dd>
 <dt>&ndash;users-endpoint | $STORAGE_USERPROVIDER_ENDPOINT</dt>
 <dd>endpoint to use for the storage service. Default: <code>localhost:9144</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap"><h3 id="storage-health">storage health<a data-clipboard-text="https://owncloud.github.io/extensions/storage/configuration/#storage-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage health" href="#storage-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Check health status</p>
+<p>Usage: <code>storage health [command options] [arguments...]</code></p>
+<dl>
+<dt>&ndash;debug-addr | $STORAGE_DEBUG_ADDR</dt>
+<dd>Address to debug endpoint. Default: <code>0.0.0.0:9109</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap"><h3 id="storage-storage-public-link">storage storage-public-link<a data-clipboard-text="https://owncloud.github.io/extensions/storage/configuration/#storage-storage-public-link" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage storage-public-link" href="#storage-storage-public-link"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Start storage-public-link service</p>
+<p>Usage: <code>storage storage-public-link [command options] [arguments...]</code></p>
+<dl>
+<dt>&ndash;debug-addr | $STORAGE_PUBLIC_LINK_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>0.0.0.0:9179</code>.</dd>
+<dt>&ndash;network | $STORAGE_PUBLIC_LINK_GRPC_NETWORK</dt>
+<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>tcp</code>.</dd>
+<dt>&ndash;addr | $STORAGE_PUBLIC_LINK_GRPC_ADDR</dt>
+<dd>Address to bind storage service. Default: <code>0.0.0.0:9178</code>.</dd>
+<dt>&ndash;mount-path | $STORAGE_PUBLIC_LINK_MOUNT_PATH</dt>
+<dd>mount path. Default: <code>/public</code>.</dd>
+<dt>&ndash;gateway-endpoint | $STORAGE_GATEWAY_ENDPOINT</dt>
+<dd>endpoint to use for the storage gateway service. Default: <code>localhost:9142</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap"><h3 id="storage-auth-basic">storage auth-basic<a data-clipboard-text="https://owncloud.github.io/extensions/storage/configuration/#storage-auth-basic" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage auth-basic" href="#storage-auth-basic"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Start authprovider for basic auth</p>
+<p>Usage: <code>storage auth-basic [command options] [arguments...]</code></p>
+<dl>
+<dt>&ndash;debug-addr | $STORAGE_AUTH_BASIC_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>0.0.0.0:9147</code>.</dd>
+<dt>&ndash;auth-driver | $STORAGE_AUTH_DRIVER</dt>
+<dd>auth driver: &lsquo;demo&rsquo;, &lsquo;json&rsquo; or &lsquo;ldap&rsquo;. Default: <code>ldap</code>.</dd>
+<dt>&ndash;auth-json | $STORAGE_AUTH_JSON</dt>
+<dd>Path to users.json file.</dd>
+<dt>&ndash;network | $STORAGE_AUTH_BASIC_GRPC_NETWORK</dt>
+<dd>Network to use for the storage auth-basic service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>tcp</code>.</dd>
+<dt>&ndash;addr | $STORAGE_AUTH_BASIC_GRPC_ADDR</dt>
+<dd>Address to bind storage service. Default: <code>0.0.0.0:9146</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap"><h3 id="storage-auth-bearer">storage auth-bearer<a data-clipboard-text="https://owncloud.github.io/extensions/storage/configuration/#storage-auth-bearer" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage auth-bearer" href="#storage-auth-bearer"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Start authprovider for bearer auth</p>
+<p>Usage: <code>storage auth-bearer [command options] [arguments...]</code></p>
+<dl>
+<dt>&ndash;debug-addr | $STORAGE_AUTH_BEARER_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>0.0.0.0:9149</code>.</dd>
+<dt>&ndash;oidc-issuer | $STORAGE_OIDC_ISSUER</dt>
+<dd>OIDC issuer. Default: <code>https://localhost:9200</code>.</dd>
+<dt>&ndash;oidc-insecure | $STORAGE_OIDC_INSECURE</dt>
+<dd>OIDC allow insecure communication. Default: <code>true</code>.</dd>
+<dt>&ndash;oidc-id-claim | $STORAGE_OIDC_ID_CLAIM</dt>
+<dd>OIDC id claim. Default: <code>preferred_username</code>.</dd>
+<dt>&ndash;oidc-uid-claim | $STORAGE_OIDC_UID_CLAIM</dt>
+<dd>OIDC uid claim.</dd>
+<dt>&ndash;oidc-gid-claim | $STORAGE_OIDC_GID_CLAIM</dt>
+<dd>OIDC gid claim.</dd>
+<dt>&ndash;network | $STORAGE_AUTH_BEARER_GRPC_NETWORK</dt>
+<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>tcp</code>.</dd>
+<dt>&ndash;addr | $STORAGE_AUTH_BEARER_GRPC_ADDR</dt>
+<dd>Address to bind storage service. Default: <code>0.0.0.0:9148</code>.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h3 id="storage-storage-metadata">storage storage-metadata<a data-clipboard-text="https://owncloud.github.io/extensions/storage/configuration/#storage-storage-metadata" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage storage-metadata" href="#storage-storage-metadata"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Start storage-metadata service</p>
@@ -2874,101 +2969,6 @@ $HOME/.ocis
 <dd>endpoint to use for the storage gateway service. Default: <code>localhost:9142</code>.</dd>
 <dt>&ndash;users-endpoint | $STORAGE_USERPROVIDER_ENDPOINT</dt>
 <dd>endpoint to use for the storage service. Default: <code>localhost:9144</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="storage-health">storage health<a data-clipboard-text="https://owncloud.github.io/extensions/storage/configuration/#storage-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage health" href="#storage-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Check health status</p>
-<p>Usage: <code>storage health [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;debug-addr | $STORAGE_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>0.0.0.0:9109</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="storage-sharing">storage sharing<a data-clipboard-text="https://owncloud.github.io/extensions/storage/configuration/#storage-sharing" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage sharing" href="#storage-sharing"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Start sharing service</p>
-<p>Usage: <code>storage sharing [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;debug-addr | $STORAGE_SHARING_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>0.0.0.0:9151</code>.</dd>
-<dt>&ndash;network | $STORAGE_SHARING_GRPC_NETWORK</dt>
-<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>tcp</code>.</dd>
-<dt>&ndash;addr | $STORAGE_SHARING_GRPC_ADDR</dt>
-<dd>Address to bind storage service. Default: <code>0.0.0.0:9150</code>.</dd>
-<dt>&ndash;user-driver | $STORAGE_SHARING_USER_DRIVER</dt>
-<dd>driver to use for the UserShareProvider. Default: <code>json</code>.</dd>
-<dt>&ndash;user-json-file | $STORAGE_SHARING_USER_JSON_FILE</dt>
-<dd>file used to persist shares for the UserShareProvider. Default: <code>/var/tmp/ocis/storage/shares.json</code>.</dd>
-<dt>&ndash;public-driver | $STORAGE_SHARING_PUBLIC_DRIVER</dt>
-<dd>driver to use for the PublicShareProvider. Default: <code>json</code>.</dd>
-<dt>&ndash;public-json-file | $STORAGE_SHARING_PUBLIC_JSON_FILE</dt>
-<dd>file used to persist shares for the PublicShareProvider. Default: <code>/var/tmp/ocis/storage/publicshares.json</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="storage-storage">storage storage<a data-clipboard-text="https://owncloud.github.io/extensions/storage/configuration/#storage-storage" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage storage" href="#storage-storage"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Storage service for oCIS</p>
-<p>Usage: <code>storage storage [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;config-file | $STORAGE_CONFIG_FILE</dt>
-<dd>Path to config file.</dd>
-<dt>&ndash;log-level | $STORAGE_LOG_LEVEL</dt>
-<dd>Set logging level. Default: <code>info</code>.</dd>
-<dt>&ndash;log-pretty | $STORAGE_LOG_PRETTY</dt>
-<dd>Enable pretty logging.</dd>
-<dt>&ndash;log-color | $STORAGE_LOG_COLOR</dt>
-<dd>Enable colored logging.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="storage-auth-bearer">storage auth-bearer<a data-clipboard-text="https://owncloud.github.io/extensions/storage/configuration/#storage-auth-bearer" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage auth-bearer" href="#storage-auth-bearer"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Start authprovider for bearer auth</p>
-<p>Usage: <code>storage auth-bearer [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;debug-addr | $STORAGE_AUTH_BEARER_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>0.0.0.0:9149</code>.</dd>
-<dt>&ndash;oidc-issuer | $STORAGE_OIDC_ISSUER</dt>
-<dd>OIDC issuer. Default: <code>https://localhost:9200</code>.</dd>
-<dt>&ndash;oidc-insecure | $STORAGE_OIDC_INSECURE</dt>
-<dd>OIDC allow insecure communication. Default: <code>true</code>.</dd>
-<dt>&ndash;oidc-id-claim | $STORAGE_OIDC_ID_CLAIM</dt>
-<dd>OIDC id claim. Default: <code>preferred_username</code>.</dd>
-<dt>&ndash;oidc-uid-claim | $STORAGE_OIDC_UID_CLAIM</dt>
-<dd>OIDC uid claim.</dd>
-<dt>&ndash;oidc-gid-claim | $STORAGE_OIDC_GID_CLAIM</dt>
-<dd>OIDC gid claim.</dd>
-<dt>&ndash;network | $STORAGE_AUTH_BEARER_GRPC_NETWORK</dt>
-<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>tcp</code>.</dd>
-<dt>&ndash;addr | $STORAGE_AUTH_BEARER_GRPC_ADDR</dt>
-<dd>Address to bind storage service. Default: <code>0.0.0.0:9148</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="storage-users">storage users<a data-clipboard-text="https://owncloud.github.io/extensions/storage/configuration/#storage-users" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage users" href="#storage-users"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Start users service</p>
-<p>Usage: <code>storage users [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;debug-addr | $STORAGE_SHARING_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>0.0.0.0:9145</code>.</dd>
-<dt>&ndash;network | $STORAGE_USERPROVIDER_NETWORK</dt>
-<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>tcp</code>.</dd>
-<dt>&ndash;addr | $STORAGE_USERPROVIDER_ADDR</dt>
-<dd>Address to bind storage service. Default: <code>0.0.0.0:9144</code>.</dd>
-<dt>&ndash;endpoint | $STORAGE_USERPROVIDER_ENDPOINT</dt>
-<dd>URL to use for the storage service. Default: <code>localhost:9144</code>.</dd>
-<dt>&ndash;driver | $STORAGE_USERPROVIDER_DRIVER</dt>
-<dd>user driver: &lsquo;demo&rsquo;, &lsquo;json&rsquo;, &lsquo;ldap&rsquo;, or &lsquo;rest&rsquo;. Default: <code>ldap</code>.</dd>
-<dt>&ndash;json-config | $STORAGE_USERPROVIDER_JSON</dt>
-<dd>Path to users.json file.</dd>
-<dt>&ndash;rest-client-id | $STORAGE_REST_CLIENT_ID</dt>
-<dd>User rest driver Client ID.</dd>
-<dt>&ndash;rest-client-secret | $STORAGE_REST_CLIENT_SECRET</dt>
-<dd>User rest driver Client Secret.</dd>
-<dt>&ndash;rest-redis-address | $STORAGE_REST_REDIS_ADDRESS</dt>
-<dd>Address for redis server. Default: <code>localhost:6379</code>.</dd>
-<dt>&ndash;rest-redis-username | $STORAGE_REST_REDIS_USERNAME</dt>
-<dd>Username for redis server.</dd>
-<dt>&ndash;rest-redis-password | $STORAGE_REST_REDIS_PASSWORD</dt>
-<dd>Password for redis server.</dd>
-<dt>&ndash;rest-id-provider | $STORAGE_REST_ID_PROVIDER</dt>
-<dd>The OIDC Provider.</dd>
-<dt>&ndash;rest-api-base-url | $STORAGE_REST_API_BASE_URL</dt>
-<dd>Base API Endpoint.</dd>
-<dt>&ndash;rest-oidc-token-endpoint | $STORAGE_REST_OIDC_TOKEN_ENDPOINT</dt>
-<dd>Endpoint to generate token to access the API.</dd>
-<dt>&ndash;rest-target-api | $STORAGE_REST_TARGET_API</dt>
-<dd>The target application.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h2 id="config-for-the-different-storage-drivers">Config for the different Storage Drivers<a data-clipboard-text="https://owncloud.github.io/extensions/storage/configuration/#config-for-the-different-storage-drivers" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Config for the different Storage Drivers" href="#config-for-the-different-storage-drivers"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>You can set different storage drivers for the Storage Providers. Please check the storage provider configuration.</p>
@@ -3101,7 +3101,7 @@ $HOME/.ocis
 
 
 
-<script defer src="/js/en.search.min.330f8f74ed302ed48a6758b521f6ffe94057216cd9bfa8e2bdf4adc7a1f932a8.js"></script>
+<script defer src="/js/en.search.min.55ba101e2bdde9fbf4f512adbf3e51e0b0bd0c7e4b9bd8bd9cc5156138bcd0df.js"></script>
 
 
 
