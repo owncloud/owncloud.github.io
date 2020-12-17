@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Configuration">
+<meta name="description" content="Release Notes">
 
-<title>Configuration | ownCloud</title>
+<title>Release Notes | ownCloud</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -143,7 +143,7 @@
             
             
                 <span class="flex">
-                    <a href="/ocis/release_notes/" class="gdoc-nav__entry ">
+                    <a href="/ocis/release_notes/" class="gdoc-nav__entry is-active">
                         Release Notes
                     </a>
                 </span>
@@ -2248,7 +2248,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-87c2af1d" class="gdoc-nav__toggle" checked>
+            <input type="checkbox" id="navtree-87c2af1d" class="gdoc-nav__toggle" >
             <label for="navtree-87c2af1d" class="flex justify-between">
             
             
@@ -2283,7 +2283,7 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/thumbnails/configuration/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/thumbnails/configuration/" class="gdoc-nav__entry ">
                         Configuration
                     </a>
                 </span>
@@ -2579,14 +2579,7 @@
         
     
     
-        
-        
-        
-    
-    
-        <a href='/'>ownCloud</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/thumbnails/'>Thumbnails</a> / Configuration
-    
-
+        <a href='/'>ownCloud</a> / <a href='/ocis/'>oCIS - ownCloud Infinite Scale</a> / Release Notes
     
 
     
@@ -2600,7 +2593,7 @@
         
         <span class="editpage">
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/thumbnails/templates/CONFIGURATION.tmpl">
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/release_notes.md">
                 Edit this page
             </a>
         </span>
@@ -2610,7 +2603,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>Configuration</h1>
+        <h1>Release Notes</h1>
         
 
 
@@ -2618,100 +2611,395 @@
     
 
 
+<div class="gdoc-page__anchorwrap"><h2 id="owncloud-infinite-scale-100-technology-preview---initial-release-notes">ownCloud Infinite Scale 1.0.0 Technology Preview - Initial Release Notes<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#owncloud-infinite-scale-100-technology-preview---initial-release-notes" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ownCloud Infinite Scale 1.0.0 Technology Preview - Initial Release Notes" href="#owncloud-infinite-scale-100-technology-preview---initial-release-notes"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>We are pleased to announce the availability of ownCloud Infinite Scale 1.0.0 Technology Preview which is released as the first public version of the new Infinite Scale platform.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="microservice-architecture">Microservice architecture<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#microservice-architecture" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Microservice architecture" href="#microservice-architecture"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>ownCloud Infinite Scale is following the microservices architectural pattern. It is implemented as a set of microservices which are independent of each other. They are coupled with well-defined APIs. This architecture fosters a lot of benefits that we were aiming for with the new design for oCIS:</p>
+<ul>
+<li>Every service is independent, comparably small and brings it&rsquo;s own webserver, backend/APIs and frontend components</li>
+<li>Each service runs as a separate service on the system, increasing security and stability</li>
+<li>Scalability:  High performance demands can be fulfilled by scaling and distributing of services</li>
+<li>Testability: Each service can be tested on its own due to well-defined APIs and functionality</li>
+<li>Protocol-driven development using protobuf</li>
+<li>High-performance communication between services through gRPC</li>
+<li>Multi-platform support powered by Golang - only minimal dependency on platform packages</li>
+<li>Cloud-native deployment, update, monitoring, logging, tracing and orchestration strategies</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h3 id="key-figures">Key figures<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#key-figures" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Key figures" href="#key-figures"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>The all-new ownCloud Web frontend is shipped as part of the platform</li>
+<li>OpenID Connect is the future-proof technology choice for authentication</li>
+<li>An Identity Provider is bundled to ease deployment and operations. It can be replaced with an external OpenID IdP if desired</li>
+<li>Automatically built and fully maintained Docker containers are available</li>
+<li>Flexible configuration through environment variables, config files or command-line flags</li>
+<li>Database-less architecture - metadata and data are kept together in the storage as a single source of truth</li>
+<li>Native storage capabilities are used where like native versioning and trashbin</li>
+<li>Public APIs like WebDAV and OCS have been kept compatible with ownCloud 10</li>
+<li>A secure and flexible framework to create extensions</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h4 id="supported-platforms">Supported platforms<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#supported-platforms" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Supported platforms" href="#supported-platforms"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<ul>
+<li>Linux-amd64</li>
+<li>Darwin-amd64</li>
+<li>Experimental: Windows, ARM (e.g., Raspberry Pi, Termux on Android)</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h4 id="client-support">Client support<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#client-support" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Client support" href="#client-support"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<p>All official ownCloud Clients support the Infinite Scale server with the following versions:</p>
+<ul>
+<li>Desktop &gt;= 2.7</li>
+<li>Android &gt;= 2.15</li>
+<li>iOS &gt;= 1.2</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h3 id="architecture-components">Architecture components<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#architecture-components" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Architecture components" href="#architecture-components"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>ownCloud Infinite Scale is built as a modular framework in which components can be scaled individually. It consists of</p>
+<ul>
+<li>a user management service</li>
+<li>a settings service</li>
+<li>a storage backend service</li>
+<li>Built-in IdP</li>
+<li>Frontend</li>
+<li>Application gateway/proxy</li>
+</ul>
+<p>These components can be deployed in a multi-tier deployment architecture. See the <a href="https://owncloud.github.io/ocis/">documentation</a> for an overview of the services.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="operation-modes">Operation modes<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#operation-modes" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Operation modes" href="#operation-modes"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<div class="gdoc-page__anchorwrap"><h4 id="standalone-mode-with-ocis-storage-driver">Standalone mode (with oCIS storage driver)<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#standalone-mode-with-ocis-storage-driver" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Standalone mode (with oCIS storage driver)" href="#standalone-mode-with-ocis-storage-driver"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<p>In standalone mode oCIS uses its built-in orchestrator to start all necessary services. This allows you to run oCIS on a single node without any outside dependencies like docker-compose, kubernetes or even a webserver. It will start an OpenID IdP and create a self-signed certificate. You can start right away by navigating to <a href="https://localhost:9200">https://localhost:9200</a>.</p>
+<div class="gdoc-page__anchorwrap"><h4 id="single-services-scaleout">Single services scaleout<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#single-services-scaleout" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Single services scaleout" href="#single-services-scaleout"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<p>oCIS allows you to scale individual services using well-known orchestration frameworks like docker-compose, dockerSwarm and kubernetes.</p>
+<div class="gdoc-page__anchorwrap"><h4 id="bridge-mode-with-owncloud-10-backend">Bridge mode with ownCloud 10 backend<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#bridge-mode-with-owncloud-10-backend" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Bridge mode with ownCloud 10 backend" href="#bridge-mode-with-owncloud-10-backend"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<p>For the product transition phase, ownCloud Infinite Scale comes with an operation mode (&ldquo;bridge mode&rdquo;) that allows a hybrid deployment, between both server generations to operate the new web frontend with ownCloud 10 and Infinite Scale in parallel. This setup allows the ownCloud Web frontend to operate with both server generations and provides the foundation to migrate users gradually to the new backend.</p>
+<p><strong>Requirements for the bridge mode</strong></p>
+<ul>
+<li>ownCloud Server &gt;= 10.6</li>
+<li><a href="https://marketplace.owncloud.com/apps/openidconnect">Open ID Connect</a> is used for user authentication</li>
+<li>The <a href="https://marketplace.owncloud.com/apps/graphapi">Graph API</a> app is installed on ownCloud Server</li>
+<li>The latest client versions are rolled-out to users (required for OpenID Connect support). See the <a href="https://doc.owncloud.com/server/admin_manual/configuration/user/oidc/#owncloud-desktop-and-mobile-clients">ownCloud Documentation</a> for more information.</li>
+</ul>
+<p>See the <a href="https://owncloud.github.io/ocis/deployment/owncloud10_with_oc_web/">Documentation</a> on how to deploy Infinite Scale in bridge mode.</p>
+<blockquote class="gdoc-hint warning">
+  <p><strong>Technology Preview</strong></p>
+<p>ownCloud Infinite Scale is currently in Technology Preview. The bridge mode should only be used in non-production environments.</p>
+
+</blockquote>
+
+<div class="gdoc-page__anchorwrap"><h3 id="what-to-expect">What to expect?<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#what-to-expect" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor What to expect?" href="#what-to-expect"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>This is the first promoted public release of ownCloud Infinite Scale, released as &ldquo;Technical Preview&rdquo;. Infinite Scale is not yet ready for production installations. Technical audiences will be able to get a good understanding of the potential of ownCloud&rsquo;s new platform.</p>
+<p>Version 1.0.0 comes with the base functionality for sync and share with a much higher performance-, stability- and security-level compared to all available platforms. Based on ten years of experience in enterprise sync and share and a long standing collaboration with the biggest global science organizations this new platform will exceed what content collaboration is today.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="how-to-get-started">How to get started?<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#how-to-get-started" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor How to get started?" href="#how-to-get-started"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>One of the most important objectives for oCIS was to ease the setup of a working instance dramatically. Since oCIS is built with Google&rsquo;s powerful Go language it supports the single-file-deployment: Installing oCIS 1.0.0 is as easy as downloading a single file, applying execution permission to it and get started. No more fiddling around with complicated LAMP stacks.</p>
+<div class="gdoc-page__anchorwrap"><h4 id="deployment-options">Deployment Options<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#deployment-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Deployment Options" href="#deployment-options"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<p>Given the architecture of oCIS, there are various deployment options based on the users requirements. In our experience setting up the LAMP stack for ownCloud 10 was difficult for many users. Therefore a big emphasis was put on easy yet functional deployment strategies.</p>
 
 
 
-  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
-        <li><a href="#configuration">Configuration</a>
-          <ul>
-            <li><a href="#configuration-using-config-files">Configuration using config files</a></li>
-            <li><a href="#environment-variables">Environment variables</a></li>
-            <li><a href="#commandline-flags">Commandline flags</a></li>
-            <li><a href="#thumbnails-health">thumbnails health</a></li>
-            <li><a href="#thumbnails-server">thumbnails server</a></li>
-            <li><a href="#thumbnails-ocis-thumbnails">thumbnails ocis-thumbnails</a></li>
-            <li><a href="#thumbnails-version">thumbnails version</a></li>
-          </ul>
-        </li>
-      </ul></nav><hr></div>
+
+<div class="gdoc-tabs">
+  
+    <input type="radio" class="gdoc-tabs__control hidden" name="tabs-deployments" id="tabs-deployments-0"
+      checked="checked"  />
+    <label for="tabs-deployments-0" class="gdoc-tabs__label">
+      Single binary
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="gdoc-page__anchorwrap"><h4 id="delivery-as-single-binary">Delivery as single binary<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#delivery-as-single-binary" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Delivery as single binary" href="#delivery-as-single-binary"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<p>The single binary is the best option to test the new ownCloud Infinite Scale 1.0.0 Technical Preview release on a local machine. Follow these instructions to get the platform running in the most simple way:</p>
+<ol>
+<li>
+<p>Download the binary</p>
+<p><strong>Linux</strong>
+<code>curl https://download.owncloud.com/ocis/ocis/1.0.0/ocis-1.0.0-linux-amd64 -o ocis</code></p>
+<p><strong>MacOS</strong>
+<code>curl https://download.owncloud.com/ocis/ocis/1.0.0/ocis-1.0.0-darwin-amd64 -o ocis</code></p>
+</li>
+<li>
+<p>Make it executable
+<code>chmod +x ocis</code></p>
+</li>
+<li>
+<p>Run it
+<code>./ocis server</code></p>
+</li>
+<li>
+<p>Navigate to <a href="http://localhost:9200">http://localhost:9200</a> and log in to ownCloud Web (admin:admin)</p>
+</li>
+</ol>
+<p>Production environments will need a more sophisticated setup, see <a href="https://owncloud.github.io/ocis/deployment/">https://owncloud.github.io/ocis/deployment/</a> for more information.</p>
+
+    </div>
+  
+    <input type="radio" class="gdoc-tabs__control hidden" name="tabs-deployments" id="tabs-deployments-1"
+       />
+    <label for="tabs-deployments-1" class="gdoc-tabs__label">
+      Docker
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="gdoc-page__anchorwrap"><h4 id="containerized-setup">Containerized Setup<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#containerized-setup" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Containerized Setup" href="#containerized-setup"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<p>For more sophisticated setups we recommend using one of our docker setup examples. See the <a href="https://owncloud.github.io/ocis/deployment/ocis_traefik/">documentation</a> for a setup with <a href="https://traefik.io/traefik/">Traefik</a> as a reverse proxy which also includes automated SSL certificate provisioning using Letsencrypt tools.
+    </div>
+  
+</div>
+
+<div class="gdoc-page__anchorwrap"><h3 id="owncloud-web-features">ownCloud Web Features<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#owncloud-web-features" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ownCloud Web Features" href="#owncloud-web-features"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 
 
-<div class="gdoc-page__anchorwrap"><h2 id="configuration">Configuration<a data-clipboard-text="https://owncloud.github.io/extensions/thumbnails/configuration/#configuration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configuration" href="#configuration"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<div class="gdoc-page__anchorwrap"><h3 id="configuration-using-config-files">Configuration using config files<a data-clipboard-text="https://owncloud.github.io/extensions/thumbnails/configuration/#configuration-using-config-files" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configuration using config files" href="#configuration-using-config-files"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Out of the box extensions will attempt to read configuration details from:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">/etc/ocis
-$HOME/.ocis
-./config
-</code></pre></div><p>For this configuration to be picked up, have a look at your extension <code>root</code> command and look for which default config name it has assigned. <em>i.e: ocis-proxy reads <code>proxy.json | yaml | toml ...</code></em>.</p>
-<p>So far we support the file formats <code>JSON</code> and <code>YAML</code>, if you want to get a full example configuration just take a look at <a href="https://github.com/owncloud/ocis/tree/master/config">our repository</a>, there you can always see the latest configuration format. These example configurations include all available options and the default values. The configuration file will be automatically loaded if it&rsquo;s placed at <code>/etc/ocis/ocis.yml</code>, <code>${HOME}/.ocis/ocis.yml</code> or <code>$(pwd)/config/ocis.yml</code>.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="environment-variables">Environment variables<a data-clipboard-text="https://owncloud.github.io/extensions/thumbnails/configuration/#environment-variables" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Environment variables" href="#environment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>If you prefer to configure the service with environment variables you can see the available variables below.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="commandline-flags">Commandline flags<a data-clipboard-text="https://owncloud.github.io/extensions/thumbnails/configuration/#commandline-flags" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Commandline flags" href="#commandline-flags"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>If you prefer to configure the service with commandline flags you can see the available variables below. Command line flags are only working when calling the subcommand directly.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="thumbnails-health">thumbnails health<a data-clipboard-text="https://owncloud.github.io/extensions/thumbnails/configuration/#thumbnails-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor thumbnails health" href="#thumbnails-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Check health status</p>
-<p>Usage: <code>thumbnails health [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;debug-addr | $THUMBNAILS_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>0.0.0.0:9189</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="thumbnails-server">thumbnails server<a data-clipboard-text="https://owncloud.github.io/extensions/thumbnails/configuration/#thumbnails-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor thumbnails server" href="#thumbnails-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Start integrated server</p>
-<p>Usage: <code>thumbnails server [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;config-file | $THUMBNAILS_CONFIG_FILE</dt>
-<dd>Path to config file.</dd>
-<dt>&ndash;tracing-enabled | $THUMBNAILS_TRACING_ENABLED</dt>
-<dd>Enable sending traces.</dd>
-<dt>&ndash;tracing-type | $THUMBNAILS_TRACING_TYPE</dt>
-<dd>Tracing backend type. Default: <code>jaeger</code>.</dd>
-<dt>&ndash;tracing-endpoint | $THUMBNAILS_TRACING_ENDPOINT</dt>
-<dd>Endpoint for the agent.</dd>
-<dt>&ndash;tracing-collector | $THUMBNAILS_TRACING_COLLECTOR</dt>
-<dd>Endpoint for the collector.</dd>
-<dt>&ndash;tracing-service | $THUMBNAILS_TRACING_SERVICE</dt>
-<dd>Service name for tracing. Default: <code>thumbnails</code>.</dd>
-<dt>&ndash;debug-addr | $THUMBNAILS_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>0.0.0.0:9189</code>.</dd>
-<dt>&ndash;debug-token | $THUMBNAILS_DEBUG_TOKEN</dt>
-<dd>Token to grant metrics access.</dd>
-<dt>&ndash;debug-pprof | $THUMBNAILS_DEBUG_PPROF</dt>
-<dd>Enable pprof debugging.</dd>
-<dt>&ndash;debug-zpages | $THUMBNAILS_DEBUG_ZPAGES</dt>
-<dd>Enable zpages debugging.</dd>
-<dt>&ndash;grpc-name | $THUMBNAILS_GRPC_NAME</dt>
-<dd>Name of the service. Default: <code>thumbnails</code>.</dd>
-<dt>&ndash;grpc-addr | $THUMBNAILS_GRPC_ADDR</dt>
-<dd>Address to bind grpc server. Default: <code>0.0.0.0:9185</code>.</dd>
-<dt>&ndash;grpc-namespace | $THUMBNAILS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>com.owncloud.api</code>.</dd>
-<dt>&ndash;filesystemstorage-root | $THUMBNAILS_FILESYSTEMSTORAGE_ROOT</dt>
-<dd>Root path of the filesystem storage directory. Default: <code>filepath.Join(os.TempDir(), &quot;ocis-thumbnails/&quot;)</code>.</dd>
-<dt>&ndash;webdavsource-baseurl | $THUMBNAILS_WEBDAVSOURCE_BASEURL</dt>
-<dd>Base url for a webdav api. Default: <code>https://localhost:9200/remote.php/webdav/</code>.</dd>
-<dt>&ndash;webdavsource-insecure | $THUMBNAILS_WEBDAVSOURCE_INSECURE</dt>
-<dd>Whether to skip certificate checks. Default: <code>true</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="thumbnails-ocis-thumbnails">thumbnails ocis-thumbnails<a data-clipboard-text="https://owncloud.github.io/extensions/thumbnails/configuration/#thumbnails-ocis-thumbnails" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor thumbnails ocis-thumbnails" href="#thumbnails-ocis-thumbnails"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Example usage</p>
-<p>Usage: <code>thumbnails ocis-thumbnails [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;log-level | $THUMBNAILS_LOG_LEVEL</dt>
-<dd>Set logging level. Default: <code>info</code>.</dd>
-<dt>&ndash;log-pretty | $THUMBNAILS_LOG_PRETTY</dt>
-<dd>Enable pretty logging. Default: <code>true</code>.</dd>
-<dt>&ndash;log-color | $THUMBNAILS_LOG_COLOR</dt>
-<dd>Enable colored logging. Default: <code>true</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="thumbnails-version">thumbnails version<a data-clipboard-text="https://owncloud.github.io/extensions/thumbnails/configuration/#thumbnails-version" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor thumbnails version" href="#thumbnails-version"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Print the versions of the running instances</p>
-<p>Usage: <code>thumbnails version [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;grpc-name | $THUMBNAILS_GRPC_NAME</dt>
-<dd>Name of the service. Default: <code>thumbnails</code>.</dd>
-<dt>&ndash;grpc-namespace | $THUMBNAILS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>com.owncloud.api</code>.</dd>
-</dl>
+
+
+<div class="gdoc-tabs">
+  
+    <input type="radio" class="gdoc-tabs__control hidden" name="tabs-web-features" id="tabs-web-features-0"
+      checked="checked"  />
+    <label for="tabs-web-features-0" class="gdoc-tabs__label">
+      Framework
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="gdoc-page__anchorwrap"><h4 id="framework">Framework<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#framework" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Framework" href="#framework"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<ul>
+<li>User avatars (compatible with oC 10 API)</li>
+<li>Alerts for information/errors</li>
+<li>Notifications (bell icon, compatible with oC 10 API)</li>
+<li>Extension points</li>
+<li>Available extensions
+<ul>
+<li>Media Viewer (images and videos)</li>
+<li>Draw.io</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  
+    <input type="radio" class="gdoc-tabs__control hidden" name="tabs-web-features" id="tabs-web-features-1"
+       />
+    <label for="tabs-web-features-1" class="gdoc-tabs__label">
+      Files
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="gdoc-page__anchorwrap"><h4 id="files">Files<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#files" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Files" href="#files"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<ul>
+<li>Listing and browsing the hierarchy</li>
+<li>Sorting by columns (name/size/updated)</li>
+<li>Breadcrumb</li>
+<li>Thumbnail previews for images (compatible with oC 10 API and Thumbnails service API)</li>
+<li>Upload (file/folder), using the TUS protocol for reliable uploads</li>
+<li>Download (file)</li>
+<li>Rename</li>
+<li>Copy</li>
+<li>Move</li>
+<li>Delete</li>
+<li>Indicators for resources shared with people (including subfiles and subfolders)</li>
+<li>Indicators for resources shared by link (including subfiles and subfolders)</li>
+<li>Quick actions
+<ul>
+<li>Add people</li>
+<li>Create public link on-the-fly and copy it to the clipboard</li>
+</ul>
+</li>
+<li>Favorites (view + add/remove)</li>
+<li>Shared with me (view)</li>
+<li>Shared with others (view)</li>
+<li>Deleted files</li>
+<li>Versions (list/restore/download/delete)</li>
+<li>File/folder search</li>
+</ul>
+
+    </div>
+  
+    <input type="radio" class="gdoc-tabs__control hidden" name="tabs-web-features" id="tabs-web-features-2"
+       />
+    <label for="tabs-web-features-2" class="gdoc-tabs__label">
+      Sharing
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="gdoc-page__anchorwrap"><h4 id="sharing-with-people-usergroup-shares">Sharing with People (user/group shares)<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#sharing-with-people-usergroup-shares" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Sharing with People (user/group shares)" href="#sharing-with-people-usergroup-shares"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<ul>
+<li>Adding people to a resource
+<ul>
+<li>Adding multiple people at once (users and groups)</li>
+<li>Autocomplete search to find users</li>
+<li>Roles: Viewer / Editor (folder) / Advanced permissions (granular permissions)</li>
+<li>Expiration date</li>
+</ul>
+</li>
+<li>Listing people who have access to a resource
+<ul>
+<li>People can be listed when a resource is directly shared and when it&rsquo;s indirectly shared via a parent folder</li>
+<li>When listing people of an indirectly shared resource, there is a &ldquo;via&rdquo; indicator that guides to the directly shared parent</li>
+<li>Every person can recognize the owner of a resource</li>
+<li>Every person can recognize their role</li>
+<li>The owner of a resource can recognize persons that added other people (reshare indicator)</li>
+<li>Editing persons</li>
+<li>Removing persons</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  
+    <input type="radio" class="gdoc-tabs__control hidden" name="tabs-web-features" id="tabs-web-features-3"
+       />
+    <label for="tabs-web-features-3" class="gdoc-tabs__label">
+      Links
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="gdoc-page__anchorwrap"><h4 id="sharing-with-links">Sharing with Links<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#sharing-with-links" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Sharing with Links" href="#sharing-with-links"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<ul>
+<li>Private links (copy)</li>
+<li>Public links
+<ul>
+<li>Adding public links on single files and folders
+<ul>
+<li>Roles: Viewer / Editor (folder) / Contributor (folder) / Uploader (folder)</li>
+<li>Password-protection</li>
+<li>Expiration date</li>
+</ul>
+</li>
+<li>Listing public links
+<ul>
+<li>Public links can be listed when a resource is directly shared and when it&rsquo;s indirectly shared via a parent folder</li>
+<li>When listing public links of an indirectly shared resource, there is a &ldquo;via&rdquo; indicator that guides to the directly shared parent</li>
+<li>Copying existing public links</li>
+<li>Editing existing public links</li>
+<li>Removing existing public links</li>
+</ul>
+</li>
+<li>Viewing public links</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  
+    <input type="radio" class="gdoc-tabs__control hidden" name="tabs-web-features" id="tabs-web-features-4"
+       />
+    <label for="tabs-web-features-4" class="gdoc-tabs__label">
+      User Profile
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="gdoc-page__anchorwrap"><h4 id="user-profile">User Profile<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#user-profile" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor User Profile" href="#user-profile"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<ul>
+<li>Display basic profile information (user name, display name, e-mail, group memberships)</li>
+<li>&ldquo;Edit&rdquo; button guides to ownCloud 10 user settings (when used with oC 10)</li>
+</ul>
+
+    </div>
+  
+    <input type="radio" class="gdoc-tabs__control hidden" name="tabs-web-features" id="tabs-web-features-5"
+       />
+    <label for="tabs-web-features-5" class="gdoc-tabs__label">
+      User Settings
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="gdoc-page__anchorwrap"><h5 id="basic-user-settings">Basic user settings<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#basic-user-settings" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Basic user settings" href="#basic-user-settings"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h5></div>
+<ul>
+<li>Language of the web interface</li>
+</ul>
+
+    </div>
+  
+</div>
+
+<div class="gdoc-page__anchorwrap"><h3 id="ocis-backend-features">oCIS Backend Features<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#ocis-backend-features" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor oCIS Backend Features" href="#ocis-backend-features"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+
+
+
+
+<div class="gdoc-tabs">
+  
+    <input type="radio" class="gdoc-tabs__control hidden" name="tabs-backend-features" id="tabs-backend-features-0"
+      checked="checked"  />
+    <label for="tabs-backend-features-0" class="gdoc-tabs__label">
+      Storage
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="gdoc-page__anchorwrap"><h4 id="storage">Storage<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#storage" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Storage" href="#storage"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<p>The default OCIS storage driver deconstructs a filesystem to be able to efficiently look up files by fileid as well as path. It stores all folders and files by a uuid and persists share and other metadata using extended attributes. This allows using the linux VFS cache using stat syscalls instead of a database or key/value store. The driver implements trash, versions and sharing. It not only serves as the current default storage driver, but also as a blueprint for future storage driver implementations.
+    </div>
+  
+    <input type="radio" class="gdoc-tabs__control hidden" name="tabs-backend-features" id="tabs-backend-features-1"
+       />
+    <label for="tabs-backend-features-1" class="gdoc-tabs__label">
+      IDM
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="gdoc-page__anchorwrap"><h4 id="user-and-group-management">User and group management<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#user-and-group-management" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor User and group management" href="#user-and-group-management"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<ul>
+<li>Functionality available via API and frontend (&ldquo;Accounts&rdquo; extension)</li>
+<li>User listing (API/FE)</li>
+<li>User creation (API/FE)</li>
+<li>User deletion (API/FE)</li>
+<li>User activation/blocking (API/FE)</li>
+<li>Role assignment for users (API/FE)</li>
+<li>User editing (API)</li>
+<li>Multi-select in the frontend (delete &amp; block/activate)</li>
+<li>Group creation (API)</li>
+<li>Add/remove users to/from groups (API)</li>
+<li>Group deletion (API)</li>
+<li>Create/read/update/delete users and groups (CLI)</li>
+</ul>
+
+    </div>
+  
+    <input type="radio" class="gdoc-tabs__control hidden" name="tabs-backend-features" id="tabs-backend-features-2"
+       />
+    <label for="tabs-backend-features-2" class="gdoc-tabs__label">
+      Settings
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="gdoc-page__anchorwrap"><h5 id="settings">Settings<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#settings" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Settings" href="#settings"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h5></div>
+<p>The settings service provides APIs for other services for registering a set of settings as <code>Bundle</code>. It also provides a pluggable extension for ownCloud Web which provides dynamically built web forms, so that users can customize their own settings. Some well known settings are directly used by ownCloud Web for adapted user experience, e.g. the UI language. Services can query the users&rsquo; chosen settings for customized backend and frontend operations as needed.</p>
+<div class="gdoc-page__anchorwrap"><h5 id="roles--permissions-system">Roles &amp; Permissions System<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#roles--permissions-system" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Roles &amp; Permissions System" href="#roles--permissions-system"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h5></div>
+<p>Infinite Scale follows a role-based access control model. Based on permissions for actions which are provided by the system and by extensions, roles can be composed. Ultimately, these roles can be assigned to users to define what users are permitted to do. This model allows a segregation of duties for administration and allows granular control of how different types of users (e.g., Guests) can use the platform.</p>
+<ul>
+<li>Currently available permissions: Manage accounts (gives access to the internal user management)</li>
+<li>The current roles are exemplary default roles which are used for demonstration purposes
+<ul>
+<li>&ldquo;Admin&rdquo;: Has the permission to &ldquo;manage accounts&rdquo;</li>
+<li>&ldquo;User&rdquo;: Does not have any dedicated permission</li>
+<li>&ldquo;Guest&rdquo;: Does not have any dedicated permission</li>
+</ul>
+</li>
+<li>Currently a user can only have one role</li>
+<li>Users with the role &ldquo;Admin&rdquo; can assign/unassign roles to/from other users (as part of the permission to &ldquo;manage roles&rdquo;)</li>
+</ul>
+
+    </div>
+  
+    <input type="radio" class="gdoc-tabs__control hidden" name="tabs-backend-features" id="tabs-backend-features-3"
+       />
+    <label for="tabs-backend-features-3" class="gdoc-tabs__label">
+      APIs
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="gdoc-page__anchorwrap"><h4 id="apis">APIs<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#apis" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor APIs" href="#apis"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<ul>
+<li>WebDAV</li>
+<li>OCS</li>
+</ul>
+
+    </div>
+  
+</div>
+
+<div class="gdoc-page__anchorwrap"><h3 id="known-issues-for-ocis-standalone">Known issues for OCIS standalone<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#known-issues-for-ocis-standalone" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Known issues for OCIS standalone" href="#known-issues-for-ocis-standalone"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>There are feature differences depending on the operation mode, e.g., no user management with ownCloud Web and oC 10 backend</li>
+<li>Public links do not yet respect the given role (a recipient has full permissions no matter which role has been set)</li>
+<li>Resharing works but does not have necessary restrictions in place
+<ul>
+<li>Share recipients can add more people or create public links with higher permissions than they originally had</li>
+<li>Every person in a share can see all other people in the people list</li>
+</ul>
+</li>
+<li>Sharing indicators in the file list will only be shown after opening the right sidebar for a resource</li>
+<li>Users can&rsquo;t change their password yet</li>
+<li>Folder sizes will not be calculated</li>
+<li>Cleanups are not yet available (e.g., shares of a deleted user will not be removed)</li>
+<li>Sharing from the desktop client does not work yet</li>
+<li>There are no notifications yet</li>
+<li>There can be issues with tokens not being refreshed correctly, leading to interruptings, e.g., during uploads</li>
+<li>Deleting non-empty folders from the trash bin does not work</li>
+<li>Emptying the whole trash bin does not work</li>
+</ul>
 
 
     </article>
