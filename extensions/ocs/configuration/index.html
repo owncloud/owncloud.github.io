@@ -2627,10 +2627,10 @@
             <li><a href="#configuration-using-config-files">Configuration using config files</a></li>
             <li><a href="#environment-variables">Environment variables</a></li>
             <li><a href="#commandline-flags">Commandline flags</a></li>
-            <li><a href="#ocs-health">ocs health</a></li>
-            <li><a href="#ocs-server">ocs server</a></li>
             <li><a href="#ocs-ocis-ocs">ocs ocis-ocs</a></li>
+            <li><a href="#ocs-server">ocs server</a></li>
             <li><a href="#ocs-version">ocs version</a></li>
+            <li><a href="#ocs-health">ocs health</a></li>
           </ul>
         </li>
       </ul></nav><hr></div>
@@ -2648,12 +2648,16 @@ $HOME/.ocis
 <p>If you prefer to configure the service with environment variables you can see the available variables below.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="commandline-flags">Commandline flags<a data-clipboard-text="https://owncloud.github.io/extensions/ocs/configuration/#commandline-flags" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Commandline flags" href="#commandline-flags"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>If you prefer to configure the service with commandline flags you can see the available variables below. Command line flags are only working when calling the subcommand directly.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="ocs-health">ocs health<a data-clipboard-text="https://owncloud.github.io/extensions/ocs/configuration/#ocs-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ocs health" href="#ocs-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Check health status</p>
-<p>Usage: <code>ocs health [command options] [arguments...]</code></p>
+<div class="gdoc-page__anchorwrap"><h3 id="ocs-ocis-ocs">ocs ocis-ocs<a data-clipboard-text="https://owncloud.github.io/extensions/ocs/configuration/#ocs-ocis-ocs" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ocs ocis-ocs" href="#ocs-ocis-ocs"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Serve OCS API for oCIS</p>
+<p>Usage: <code>ocs ocis-ocs [command options] [arguments...]</code></p>
 <dl>
-<dt>&ndash;debug-addr | $OCS_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>0.0.0.0:9114</code>.</dd>
+<dt>&ndash;log-level | $OCS_LOG_LEVEL</dt>
+<dd>Set logging level. Default: <code>info</code>.</dd>
+<dt>&ndash;log-pretty | $OCS_LOG_PRETTY</dt>
+<dd>Enable pretty logging. Default: <code>true</code>.</dd>
+<dt>&ndash;log-color | $OCS_LOG_COLOR</dt>
+<dd>Enable colored logging. Default: <code>true</code>.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h3 id="ocs-server">ocs server<a data-clipboard-text="https://owncloud.github.io/extensions/ocs/configuration/#ocs-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ocs server" href="#ocs-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Start integrated server</p>
@@ -2690,17 +2694,6 @@ $HOME/.ocis
 <dt>&ndash;jwt-secret | $OCS_JWT_SECRET</dt>
 <dd>Used to dismantle the access token, should equal reva&rsquo;s jwt-secret. Default: <code>Pive-Fumkiu4</code>.</dd>
 </dl>
-<div class="gdoc-page__anchorwrap"><h3 id="ocs-ocis-ocs">ocs ocis-ocs<a data-clipboard-text="https://owncloud.github.io/extensions/ocs/configuration/#ocs-ocis-ocs" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ocs ocis-ocs" href="#ocs-ocis-ocs"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Serve OCS API for oCIS</p>
-<p>Usage: <code>ocs ocis-ocs [command options] [arguments...]</code></p>
-<dl>
-<dt>&ndash;log-level | $OCS_LOG_LEVEL</dt>
-<dd>Set logging level. Default: <code>info</code>.</dd>
-<dt>&ndash;log-pretty | $OCS_LOG_PRETTY</dt>
-<dd>Enable pretty logging. Default: <code>true</code>.</dd>
-<dt>&ndash;log-color | $OCS_LOG_COLOR</dt>
-<dd>Enable colored logging. Default: <code>true</code>.</dd>
-</dl>
 <div class="gdoc-page__anchorwrap"><h3 id="ocs-version">ocs version<a data-clipboard-text="https://owncloud.github.io/extensions/ocs/configuration/#ocs-version" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ocs version" href="#ocs-version"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Print the versions of the running instances</p>
 <p>Usage: <code>ocs version [command options] [arguments...]</code></p>
@@ -2709,6 +2702,13 @@ $HOME/.ocis
 <dd>Set the base namespace for the http namespace. Default: <code>com.owncloud.web</code>.</dd>
 <dt>&ndash;name | $OCS_NAME</dt>
 <dd>Service name. Default: <code>ocs</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap"><h3 id="ocs-health">ocs health<a data-clipboard-text="https://owncloud.github.io/extensions/ocs/configuration/#ocs-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ocs health" href="#ocs-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Check health status</p>
+<p>Usage: <code>ocs health [command options] [arguments...]</code></p>
+<dl>
+<dt>&ndash;debug-addr | $OCS_DEBUG_ADDR</dt>
+<dd>Address to debug endpoint. Default: <code>0.0.0.0:9114</code>.</dd>
 </dl>
 
 
@@ -2766,7 +2766,7 @@ $HOME/.ocis
 
 
 
-<script defer src="/js/en.search.min.7168e50e6874a5ffc6189a6fb0fda6da7183da16ae73f42016aa0208de42beeb.js"></script>
+<script defer src="/js/en.search.min.49e7737b2c009a74860239c0ef58f1ee8d50808be6aed457ed142f3aad47f846.js"></script>
 
 
 
