@@ -2842,22 +2842,17 @@ We run web UI tests in the following repos in the CI.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="1-web-repo">1. web Repo<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#1-web-repo" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 1. web Repo" href="#1-web-repo"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>In the <code>owncloud/web</code> repo, we run the tests using both the oc10 backend and the OCIS backend.
 For the oc10 backend, we use the <code>owncloudci/core</code> docker image which runs the latest <code>daily-master-qa</code> version of owncloud.</p>
-<p>For the OCIS backend, we use the Commit ID from the <code>owncloud/ocis</code> repo to indicate which version of backend to use. This can be specified in the <code>.drone.star</code> file in the <code>config.defaults</code> section.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">	&#39;defaults&#39;: {
-		&#39;acceptance&#39;: {
-			&#39;ocisBranch&#39;: &#39;master&#39;,
-			&#39;ocisCommit&#39;: &#39;284a9996dffa912cc1382e259b748c56ddc4aa0f&#39;,
-		}
-	},
+<p>For the OCIS backend, we use the Commit ID from the <code>owncloud/ocis</code> repo to indicate which version of backend to use. This can be specified in the <code>.drone.env</code> file.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">  # The version of OCIS to use in pipelines that test against OCIS
+  OCIS_COMMITID=352034d9eba8be8c4bc4b80421f3c0093e7d472c
+  OCIS_BRANCH=master
 </code></pre></div><p>If the version you want to run is on a different branch from master, you also need to change the branch name.</p>
 <p>In order to check if new tests are compatible with OCIS, after changing the commit id and the branch name, we can create a draft PR in <code>owncloud/web</code> which triggers the CI, and we can see the result there.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="2-ocis-repo">2. ocis Repo<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#2-ocis-repo" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 2. ocis Repo" href="#2-ocis-repo"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>We follow the same approach in the <code>owncloud/ocis</code> repo too. In order to run the UI tests in CI we use commit IDs from web which can be changed in the <code>.drone.star</code> file.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">  &#39;uiTests&#39;: {
-    &#39;webBranch&#39;: &#39;master&#39;,
-    &#39;webCommit&#39;: &#39;492e6a663efad67f770ba4ac405c4d9983d00cd3&#39;,
-...
-  }
+<p>We follow the same approach in the <code>owncloud/ocis</code> repo too. In order to run the UI tests in CI we use commit IDs from web which can be changed in the <code>.drone.env</code> file.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">  # The test runner source for UI tests
+  WEB_COMMITID=3cab4e32bca513f14f59127a0387b44a409763a3
+  WEB_BRANCH=master
 </code></pre></div><p>This is the commit ID of web indicating the version of testrunner we want to use. If the version is on a branch other than master, we will also need to change the branch name.</p>
 
 
@@ -2915,7 +2910,7 @@ For the oc10 backend, we use the <code>owncloudci/core</code> docker image which
 
 
 
-<script defer src="/js/en.search.min.91c58e54861020bac2184bea04097f36328b3fa327e990d8e766f96873473b13.js"></script>
+<script defer src="/js/en.search.min.6222af09781c5a8fe9a9a06c049345409d0b667fe8b36e16fbf5bc55cfa4db37.js"></script>
 
 
 
