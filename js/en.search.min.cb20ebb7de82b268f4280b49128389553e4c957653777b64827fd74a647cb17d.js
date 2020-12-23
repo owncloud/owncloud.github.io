@@ -1,4 +1,4 @@
-'use strict';(function(){const input=document.querySelector('#gdoc-search-input');const results=document.querySelector('#gdoc-search-results');input.addEventListener('focus',init);input.addEventListener('keyup',search);function init(){input.removeEventListener('focus',init);input.required=true;loadScript('/js/flexsearch-ad47a5e1ee.min.js');loadScript('/js/en.search-data.min.2fbd1da9b3d8f9145abf94083ada92f944e67ea63287126448ee91d10e605fdf.js',function(){input.required=false;search();});}
+'use strict';(function(){const input=document.querySelector('#gdoc-search-input');const results=document.querySelector('#gdoc-search-results');input.addEventListener('focus',init);input.addEventListener('keyup',search);function init(){input.removeEventListener('focus',init);input.required=true;loadScript('/js/flexsearch-ad47a5e1ee.min.js');loadScript('/js/en.search-data.min.84917992ac53b27b4123ab185ff05663c3bc1d503853ccf69bcca9a222a2e807.js',function(){input.required=false;search();});}
 function search(){while(results.firstChild){results.removeChild(results.firstChild);}
 if(!input.value){console.log("empty")
 results.classList.remove("has-hits");return;}
