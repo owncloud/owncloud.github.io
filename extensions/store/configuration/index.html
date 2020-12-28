@@ -2646,64 +2646,65 @@ $HOME/.ocis
 <p>So far we support the file formats <code>JSON</code> and <code>YAML</code>, if you want to get a full example configuration just take a look at <a href="https://github.com/owncloud/ocis/tree/master/config">our repository</a>, there you can always see the latest configuration format. These example configurations include all available options and the default values. The configuration file will be automatically loaded if it&rsquo;s placed at <code>/etc/ocis/ocis.yml</code>, <code>${HOME}/.ocis/ocis.yml</code> or <code>$(pwd)/config/ocis.yml</code>.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="environment-variables">Environment variables<a data-clipboard-text="https://owncloud.github.io/extensions/store/configuration/#environment-variables" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Environment variables" href="#environment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>If you prefer to configure the service with environment variables you can see the available variables below.</p>
+<p>If multiple variables are listed for one option, they are in order of precedence. This means the leftmost variable will always win if given.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="commandline-flags">Commandline flags<a data-clipboard-text="https://owncloud.github.io/extensions/store/configuration/#commandline-flags" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Commandline flags" href="#commandline-flags"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>If you prefer to configure the service with commandline flags you can see the available variables below. Command line flags are only working when calling the subcommand directly.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="store-health">store health<a data-clipboard-text="https://owncloud.github.io/extensions/store/configuration/#store-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor store health" href="#store-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Check health status</p>
 <p>Usage: <code>store health [command options] [arguments...]</code></p>
 <dl>
-<dt>&ndash;debug-addr | $STORE_DEBUG_ADDR</dt>
+<dt>-debug-addr |  $STORE_DEBUG_ADDR</dt>
 <dd>Address to debug endpoint. Default: <code>0.0.0.0:9460</code>.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h3 id="store-ocis-store">store ocis-store<a data-clipboard-text="https://owncloud.github.io/extensions/store/configuration/#store-ocis-store" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor store ocis-store" href="#store-ocis-store"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Service to store values for ocis extensions</p>
 <p>Usage: <code>store ocis-store [command options] [arguments...]</code></p>
 <dl>
-<dt>&ndash;config-file | $STORE_CONFIG_FILE</dt>
+<dt>-config-file |  $STORE_CONFIG_FILE</dt>
 <dd>Path to config file.</dd>
-<dt>&ndash;log-level | $STORE_LOG_LEVEL</dt>
+<dt>-log-level |  $STORE_LOG_LEVEL</dt>
 <dd>Set logging level. Default: <code>info</code>.</dd>
-<dt>&ndash;log-pretty | $STORE_LOG_PRETTY</dt>
+<dt>-log-pretty |  $STORE_LOG_PRETTY</dt>
 <dd>Enable pretty logging. Default: <code>true</code>.</dd>
-<dt>&ndash;log-color | $STORE_LOG_COLOR</dt>
+<dt>-log-color |  $STORE_LOG_COLOR</dt>
 <dd>Enable colored logging. Default: <code>true</code>.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h3 id="store-server">store server<a data-clipboard-text="https://owncloud.github.io/extensions/store/configuration/#store-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor store server" href="#store-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Start integrated server</p>
 <p>Usage: <code>store server [command options] [arguments...]</code></p>
 <dl>
-<dt>&ndash;tracing-enabled | $STORE_TRACING_ENABLED</dt>
+<dt>-tracing-enabled |  $STORE_TRACING_ENABLED</dt>
 <dd>Enable sending traces.</dd>
-<dt>&ndash;tracing-type | $STORE_TRACING_TYPE</dt>
+<dt>-tracing-type |  $STORE_TRACING_TYPE</dt>
 <dd>Tracing backend type. Default: <code>jaeger</code>.</dd>
-<dt>&ndash;tracing-endpoint | $STORE_TRACING_ENDPOINT</dt>
+<dt>-tracing-endpoint |  $STORE_TRACING_ENDPOINT</dt>
 <dd>Endpoint for the agent.</dd>
-<dt>&ndash;tracing-collector | $STORE_TRACING_COLLECTOR</dt>
+<dt>-tracing-collector |  $STORE_TRACING_COLLECTOR</dt>
 <dd>Endpoint for the collector.</dd>
-<dt>&ndash;tracing-service | $STORE_TRACING_SERVICE</dt>
+<dt>-tracing-service |  $STORE_TRACING_SERVICE</dt>
 <dd>Service name for tracing. Default: <code>store</code>.</dd>
-<dt>&ndash;debug-addr | $STORE_DEBUG_ADDR</dt>
+<dt>-debug-addr |  $STORE_DEBUG_ADDR</dt>
 <dd>Address to bind debug server. Default: <code>0.0.0.0:9460</code>.</dd>
-<dt>&ndash;debug-token | $STORE_DEBUG_TOKEN</dt>
+<dt>-debug-token |  $STORE_DEBUG_TOKEN</dt>
 <dd>Token to grant metrics access.</dd>
-<dt>&ndash;debug-pprof | $STORE_DEBUG_PPROF</dt>
+<dt>-debug-pprof |  $STORE_DEBUG_PPROF</dt>
 <dd>Enable pprof debugging.</dd>
-<dt>&ndash;debug-zpages | $STORE_DEBUG_ZPAGES</dt>
+<dt>-debug-zpages |  $STORE_DEBUG_ZPAGES</dt>
 <dd>Enable zpages debugging.</dd>
-<dt>&ndash;grpc-namespace | $STORE_GRPC_NAMESPACE</dt>
+<dt>-grpc-namespace |  $STORE_GRPC_NAMESPACE</dt>
 <dd>Set the base namespace for the grpc namespace. Default: <code>com.owncloud.api</code>.</dd>
-<dt>&ndash;name | $STORE_NAME</dt>
+<dt>-name |  $STORE_NAME</dt>
 <dd>Service name. Default: <code>store</code>.</dd>
-<dt>&ndash;data-path | $STORE_DATA_PATH</dt>
+<dt>-data-path |  $STORE_DATA_PATH</dt>
 <dd>location of the store data path. Default: <code>/var/tmp/ocis/store</code>.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h3 id="store-version">store version<a data-clipboard-text="https://owncloud.github.io/extensions/store/configuration/#store-version" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor store version" href="#store-version"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Print the versions of the running instances</p>
 <p>Usage: <code>store version [command options] [arguments...]</code></p>
 <dl>
-<dt>&ndash;grpc-namespace | $STORE_GRPC_NAMESPACE</dt>
+<dt>-grpc-namespace |  $STORE_GRPC_NAMESPACE</dt>
 <dd>Set the base namespace for the grpc namespace. Default: <code>com.owncloud.api</code>.</dd>
-<dt>&ndash;name | $STORE_NAME</dt>
+<dt>-name |  $STORE_NAME</dt>
 <dd>Service name. Default: <code>store</code>.</dd>
 </dl>
 
@@ -2762,7 +2763,7 @@ $HOME/.ocis
 
 
 
-<script defer src="/js/en.search.min.95c1cde7131d774619c760359cb1aaab97d11a36d80ef5b795f62cb782361919.js"></script>
+<script defer src="/js/en.search.min.ab7490325db549a0de5db8cc9a951f117d74758509e7a0f44343017f6cfcdfe4.js"></script>
 
 
 
