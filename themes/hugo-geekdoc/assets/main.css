@@ -422,19 +422,6 @@ img {
 .gdoc-nav__toggle:checked ~ label .icon.keyborad_arrow_left {
   display: none
 }
-.gdoc-nav__entry {
-  flex: 1;
-  color: #343a40
-}
-.gdoc-nav__entry.is-active,
-.gdoc-nav__entry:hover {
-  text-decoration: underline;
-  -webkit-text-decoration-style: dashed!important;
-  text-decoration-style: dashed!important
-}
-.gdoc-nav__entry:visited {
-  color: #343a40
-}
 .gdoc-nav--main > ul > li > label,
 .gdoc-nav--main > ul > li > label > a,
 .gdoc-nav--main > ul > li > span,
@@ -443,6 +430,23 @@ img {
 }
 .gdoc-nav--more {
   padding-top: .5rem
+}
+.gdoc-nav__entry,
+.gdoc-search__entry {
+  flex: 1;
+  color: #343a40
+}
+.gdoc-nav__entry.is-active,
+.gdoc-nav__entry:hover,
+.gdoc-search__entry.is-active,
+.gdoc-search__entry:hover {
+  text-decoration: underline;
+  -webkit-text-decoration-style: dashed!important;
+  text-decoration-style: dashed!important
+}
+.gdoc-nav__entry:visited,
+.gdoc-search__entry:visited {
+  color: #343a40
 }
 .gdoc-page {
   min-width: 20rem;
@@ -579,9 +583,6 @@ img {
   width: 1rem;
   height: 1rem
 }
-.gdoc-search .has-hits {
-  border-bottom: 1px dashed #868e96
-}
 .gdoc-search::after {
   display: block;
   content: "";
@@ -623,19 +624,39 @@ img {
   }
 }
 .gdoc-search__list {
-  padding-left: 1em;
+  display: none;
+  background: #fff;
+  border-radius: .15rem;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06);
+  position: absolute;
   margin: 0;
-  padding: .5rem 0;
-  list-style: none
+  padding: .5rem;
+  list-style: none;
+  left: 0;
+  top: calc(100% + .5rem);
+  width: 100%;
+  z-index: 2
 }
 .gdoc-search__list ul {
-  padding-left: 1rem
+  list-style: none;
+  margin-top: .5rem;
+  padding-left: 0
 }
 .gdoc-search__list li {
   margin: .25rem 0
 }
+.gdoc-search__list > li > span {
+  font-weight: 700;
+  color: #495057
+}
+.gdoc-search__list > li + li {
+  margin-top: .5rem
+}
 .gdoc-search__list .icon {
   margin-right: .25rem
+}
+.gdoc-search:focus-within .gdoc-search__list.has-hits {
+  display: block!important
 }
 .gdoc-error {
   padding: 6rem 1rem;
@@ -1176,6 +1197,10 @@ img {
 .gdoc-hint.info {
   border-left-color: #6bf;
   background-color: rgba(102,187,255,.1)
+}
+.gdoc-hint.ok {
+  border-left-color: #8bc34a;
+  background-color: rgba(139,195,74,.1)
 }
 .gdoc-hint.warning {
   border-left-color: #fd6;
