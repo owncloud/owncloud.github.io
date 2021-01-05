@@ -2662,11 +2662,7 @@
 
 
 <p>The ownCloud Web is being deployed as an app to <a href="https://market.owncloud.com">ownCloud marketplace</a> to enable easy early integration into existing ownCloud 10 instances.
-After completing this setup, ownCloud Web will be available on <code>https://&lt;your-owncloud-server&gt;/apps-external/web</code>.</p>
-<blockquote class="gdoc-hint info">
-  Depending on your setup, the name of <code>apps-external</code> folder can vary. It is important to use the correct name in all of the mentioned URLs.
-</blockquote>
-
+After completing this setup, ownCloud Web will be available on <code>https://&lt;your-owncloud-server&gt;/index.php/apps/web</code>.</p>
 <div class="gdoc-page__anchorwrap"><h2 id="prerequisites">Prerequisites<a data-clipboard-text="https://owncloud.github.io/clients/web/deployments/oc10-app/#prerequisites" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Prerequisites" href="#prerequisites"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <ul>
 <li>Running <a href="https://owncloud.com/download-server/">ownCloud 10 server</a> with version 10.6</li>
@@ -2675,7 +2671,7 @@ After completing this setup, ownCloud Web will be available on <code>https://&lt
 <div class="gdoc-page__anchorwrap"><h2 id="deploying-owncloud-web">Deploying ownCloud Web<a data-clipboard-text="https://owncloud.github.io/clients/web/deployments/oc10-app/#deploying-owncloud-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Deploying ownCloud Web" href="#deploying-owncloud-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>Download <a href="https://marketplace.owncloud.com/apps/web">ownCloud Web app</a> from the marketplace and enable it.</p>
 <div class="gdoc-page__anchorwrap"><h2 id="configure-oauth2">Configure oauth2<a data-clipboard-text="https://owncloud.github.io/clients/web/deployments/oc10-app/#configure-oauth2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configure oauth2" href="#configure-oauth2"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>In the <code>Admin</code> of ownCloud 10, head into <code>User Authentication</code> and add a new client with arbitrary name and redirection URL <code>https://&lt;your-owncloud-server&gt;/apps-external/web/oidc-callback.html</code>.</p>
+<p>Within the <code>Admin</code> page of ownCloud 10, head into <code>User Authentication</code> and add a new client with arbitrary name (e.g. <code>ownCloud Web</code>) and redirection URL <code>https://&lt;your-owncloud-server&gt;/index.php/apps/web/oidc-callback.html</code>.</p>
 <figure>
     <img src="/clients/web/static/oauth2.jpg"
          alt="Example OAuth2 entry"/> 
@@ -2683,23 +2679,23 @@ After completing this setup, ownCloud Web will be available on <code>https://&lt
 
 <div class="gdoc-page__anchorwrap"><h2 id="configure-owncloud-10">Configure ownCloud 10<a data-clipboard-text="https://owncloud.github.io/clients/web/deployments/oc10-app/#configure-owncloud-10" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configure ownCloud 10" href="#configure-owncloud-10"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>To display ownCloud Web in the app switcher and to redirect all private and public links to the new WebUI, add the following config into <code>config/config.php</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">&#39;web.baseUrl&#39; =&gt; &#39;https://<span class="p">&lt;</span><span class="nt">your-owncloud-server</span><span class="p">&gt;</span>/apps-external/web&#39;,
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">&#39;web.baseUrl&#39; =&gt; &#39;https://<span class="p">&lt;</span><span class="nt">your-owncloud-server</span><span class="p">&gt;</span>/index.php/apps/web&#39;,
 </code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="configure-owncloud-web">Configure ownCloud Web<a data-clipboard-text="https://owncloud.github.io/clients/web/deployments/oc10-app/#configure-owncloud-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configure ownCloud Web" href="#configure-owncloud-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>There are a few config values which need to be set in order for ownCloud Web to work correctly. Navigate into <code>apps-external/web</code> and adjust <code>config.json</code> according to the following example:</p>
+<p>There are a few config values which need to be set in order for ownCloud Web to work correctly. Please copy <code>config.json.dist</code> from the web app directory into <code>config/config.json</code> and adjust it according to the following example:</p>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-  <span class="nt">&#34;server&#34;</span> <span class="p">:</span> <span class="s2">&#34;https://&lt;your-owncloud-server&gt;&#34;</span><span class="p">,</span> <span class="err">//</span> <span class="err">ownCloud</span> <span class="err">10</span> <span class="err">server</span> <span class="err">address</span>
-  <span class="nt">&#34;theme&#34;</span><span class="p">:</span> <span class="s2">&#34;owncloud&#34;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Theme</span> <span class="err">to</span> <span class="err">be</span> <span class="err">used</span> <span class="err">in</span> <span class="err">ownCloud</span> <span class="err">Web</span> <span class="err">pointing</span> <span class="err">to</span> <span class="err">a</span> <span class="err">json</span> <span class="err">file</span> <span class="err">inside</span> <span class="err">of</span> <span class="err">`themes`</span> <span class="err">folder</span>
+  <span class="nt">&#34;server&#34;</span> <span class="p">:</span> <span class="s2">&#34;https://&lt;your-owncloud-server&gt;&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;theme&#34;</span><span class="p">:</span> <span class="s2">&#34;owncloud&#34;</span><span class="p">,</span>
   <span class="nt">&#34;auth&#34;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&#34;clientId&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;client-id-from-oauth2&gt;&#34;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Client</span> <span class="err">ID</span> <span class="err">received</span> <span class="err">when</span> <span class="err">adding</span> <span class="err">ownCloud</span> <span class="err">Web</span> <span class="err">in</span> <span class="err">the</span> <span class="err">`User</span> <span class="err">Authentication`</span> <span class="err">section</span> <span class="err">in</span> <span class="err">`Admin`</span>
+    <span class="nt">&#34;clientId&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;client-id-from-oauth2&gt;&#34;</span><span class="p">,</span>
     <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://&lt;your-owncloud-server&gt;/index.php/apps/oauth2/api/v1/token&#34;</span><span class="p">,</span>
     <span class="nt">&#34;authUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://&lt;your-owncloud-server&gt;/index.php/apps/oauth2/authorize&#34;</span>
   <span class="p">},</span>
-  <span class="nt">&#34;apps&#34;</span> <span class="p">:</span> <span class="p">[</span> <span class="err">//</span> <span class="err">List</span> <span class="err">of</span> <span class="err">extensions</span> <span class="err">to</span> <span class="err">be</span> <span class="err">loaded</span>
+  <span class="nt">&#34;apps&#34;</span> <span class="p">:</span> <span class="p">[</span>
     <span class="s2">&#34;files&#34;</span>
   <span class="p">],</span>
-  <span class="nt">&#34;applications&#34;</span> <span class="p">:</span> <span class="p">[</span> <span class="err">//</span> <span class="err">Apps</span> <span class="err">to</span> <span class="err">be</span> <span class="err">displayed</span> <span class="err">in</span> <span class="err">the</span> <span class="err">application</span> <span class="err">switcher</span> <span class="err">or</span> <span class="err">in</span> <span class="err">the</span> <span class="err">user</span> <span class="err">menu</span>
+  <span class="nt">&#34;applications&#34;</span> <span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//</span> <span class="err">Item</span> <span class="err">in</span> <span class="err">apps</span> <span class="err">switcher</span> <span class="err">pointing</span> <span class="err">to</span> <span class="err">the</span> <span class="err">old</span> <span class="err">ownCloud</span> <span class="err">UI</span>
+      <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;en&#34;</span><span class="p">:</span> <span class="s2">&#34;Classic Design&#34;</span><span class="p">,</span>
         <span class="nt">&#34;de&#34;</span><span class="p">:</span> <span class="s2">&#34;Dateien&#34;</span><span class="p">,</span>
         <span class="nt">&#34;fr&#34;</span><span class="p">:</span> <span class="s2">&#34;Fichiers&#34;</span><span class="p">,</span>
@@ -2708,7 +2704,7 @@ After completing this setup, ownCloud Web will be available on <code>https://&lt
       <span class="nt">&#34;icon&#34;</span><span class="p">:</span> <span class="s2">&#34;switch_ui&#34;</span><span class="p">,</span>
       <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;http://&lt;your-owncloud-server&gt;/index.php/apps/files&#34;</span>
     <span class="p">},</span>
-    <span class="p">{</span> <span class="err">//</span> <span class="err">Item</span> <span class="err">in</span> <span class="err">user</span> <span class="err">menu</span> <span class="err">pointing</span> <span class="err">to</span> <span class="err">user</span> <span class="err">settings</span> <span class="err">in</span> <span class="err">the</span> <span class="err">old</span> <span class="err">ownCloud</span> <span class="err">UI</span>
+    <span class="p">{</span>
       <span class="nt">&#34;icon&#34;</span><span class="p">:</span> <span class="s2">&#34;application&#34;</span><span class="p">,</span>
       <span class="nt">&#34;menu&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span>
       <span class="nt">&#34;target&#34;</span><span class="p">:</span> <span class="s2">&#34;_self&#34;</span><span class="p">,</span>
@@ -2720,7 +2716,49 @@ After completing this setup, ownCloud Web will be available on <code>https://&lt
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span>
-</code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="accessing-owncloud-web">Accessing ownCloud Web<a data-clipboard-text="https://owncloud.github.io/clients/web/deployments/oc10-app/#accessing-owncloud-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Accessing ownCloud Web" href="#accessing-owncloud-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+</code></pre></div><table>
+<thead>
+<tr>
+<th>config parameter</th>
+<th>explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>server</td>
+<td>ownCloud 10 server address</td>
+</tr>
+<tr>
+<td>theme</td>
+<td>Theme to be used in ownCloud Web pointing to a json file inside of <code>themes</code> folder</td>
+</tr>
+<tr>
+<td>auth.clientId</td>
+<td>Client ID received when adding ownCloud Web in the <code>User Authentication</code> section in <code>Admin</code></td>
+</tr>
+<tr>
+<td>apps</td>
+<td>List of internal extensions to be loaded</td>
+</tr>
+<tr>
+<td>applications</td>
+<td>Additional apps and links to be displayed in the application switcher or in the user menu</td>
+</tr>
+<tr>
+<td>applications[0].title</td>
+<td>Visible title in the application switcher or user menu, localizable</td>
+</tr>
+<tr>
+<td>applications[1].menu</td>
+<td>Use <code>user</code> to move the menu item into the user menu. Defaults to app switcher</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="gdoc-hint info">
+  It is important that you don&rsquo;t edit or place the <code>config.json</code> within the app folder. If you do, the integrity check of the app will fail and raise warnings.
+</blockquote>
+
+<div class="gdoc-page__anchorwrap"><h2 id="accessing-owncloud-web">Accessing ownCloud Web<a data-clipboard-text="https://owncloud.github.io/clients/web/deployments/oc10-app/#accessing-owncloud-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Accessing ownCloud Web" href="#accessing-owncloud-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>After following all the steps, you should see a new entry in the application switcher called <code>New Design</code> which points to the ownCloud web.</p>
 <figure>
     <img src="/clients/web/static/application-switcher-oc10.jpg"
@@ -2783,7 +2821,7 @@ After completing this setup, ownCloud Web will be available on <code>https://&lt
 
 
 
-<script defer src="/js/en.search.min.c9890c15fd621bcb4c7e7ae30c42c1b3b3e266448095032f00db7241a2cb81d5.js"></script>
+<script defer src="/js/en.search.min.c4d02bb543fce4bde460291710a04a628fe4875a97131849efd05a1de2939fc9.js"></script>
 
 
 
