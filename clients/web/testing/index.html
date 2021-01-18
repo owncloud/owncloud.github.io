@@ -2661,6 +2661,12 @@
                 <li><a href="#the-manual-way-eg-to-run-from-an-existing-ocis-location">the manual way (e.g. to run from an existing ocis location)</a></li>
               </ul>
             </li>
+            <li><a href="#visual-regression-testing">Visual Regression Testing</a>
+              <ul>
+                <li><a href="#running-the-visual-regression-tests">Running the visual regression tests</a></li>
+                <li><a href="#updating-the-snapshots">Updating the snapshots</a></li>
+              </ul>
+            </li>
           </ul>
         </li>
         <li><a href="#available-settings-to-be-set-by-environment-variables">Available settings to be set by environment variables</a></li>
@@ -2769,6 +2775,17 @@ note: currently it&rsquo;s not possible to run the UI tests with OCIS &amp; OWNC
 The feature files are located in the &ldquo;tests/acceptance/features&rdquo; subdirectories.</p>
 </li>
 </ol>
+<div class="gdoc-page__anchorwrap"><h3 id="visual-regression-testing">Visual Regression Testing<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#visual-regression-testing" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Visual Regression Testing" href="#visual-regression-testing"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>The test suite consists of snapshots of UI components which can be compared for visual regression testing when running the acceptance tests. These comparisions are done in the existing scenarios. You can check the existing snapshots of the components in the directory <code>/tests/vrt/baseline</code>.</p>
+<div class="gdoc-page__anchorwrap"><h4 id="running-the-visual-regression-tests">Running the visual regression tests<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#running-the-visual-regression-tests" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Running the visual regression tests" href="#running-the-visual-regression-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<p>When you run the acceptance tests as usual, all the visual regression comparisons are skipped. To run the acceptance test suite with the visual comparison enabled you need to set the env variable, <code>VISUAL_TEST</code> to <code>true</code></p>
+<p>eg.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">VISUAL_TEST=true SERVER_HOST=http://&lt;server_host&gt; BAKEND_HOST=http://&lt;backend_host&gt; yarn run acceptance-tests &lt;feature-file-to-test&gt;
+</code></pre></div><div class="gdoc-page__anchorwrap"><h4 id="updating-the-snapshots">Updating the snapshots<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#updating-the-snapshots" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Updating the snapshots" href="#updating-the-snapshots"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<p>If there is some change in the components and you want to update the snapshots of the components you can run the tests with <code>UPDATE_VRT_SCREENSHOTS</code> set to <code>true</code>. When this env variable is set, the testrunner will ignore if the visual comparision fails and updates the baseline images with the latest images if the comparision fails.</p>
+<p>eg.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">VISUAL_TEST=true UPDATE_VRT_SCREENSHOTS=true SERVER_HOST=http://&lt;server_host&gt; BAKEND_HOST=http://&lt;backend_host&gt; yarn run acceptance-tests &lt;feature-file-to-test&gt;
+</code></pre></div><p><strong>note</strong> Visual regression testing may not be completely reliable every time as small changes such as window size and screen resolutin may affect the result. For better results it is recommended that you run the tests using the <code>selenium/standalone-chrome-debug</code> image of selenium and window size of <code>1280x1024</code></p>
 <p>see <a href="#available-settings-to-be-set-by-environment-variables">available settings</a> for further setup if needed</p>
 <div class="gdoc-page__anchorwrap"><h2 id="available-settings-to-be-set-by-environment-variables">Available settings to be set by environment variables<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#available-settings-to-be-set-by-environment-variables" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Available settings to be set by environment variables" href="#available-settings-to-be-set-by-environment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>These values can be set using the environment variables to configure <code>yarn run acceptance-tests</code> and <code>yarn run acceptance-tests-ocis</code> to match your local test environment.</p>
@@ -2849,6 +2866,16 @@ The feature files are located in the &ldquo;tests/acceptance/features&rdquo; sub
 <tr>
 <td><code>WEB_UI_CONFIG</code></td>
 <td>Path for the web config file (usually in the dist folder)</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>VISUAL_TEST</code></td>
+<td>Run the visual regression comparision while running the acceptance tests</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>UPDATE_VRT_SCREENSHOTS</code></td>
+<td>Update the baseline snapshots with the latest images for visual regression tests</td>
 <td>-</td>
 </tr>
 </tbody>
