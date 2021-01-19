@@ -2661,16 +2661,18 @@
       </ul></nav><hr></div>
 
 
-<p>The ownCloud Web is being deployed as an app to <a href="https://market.owncloud.com">ownCloud marketplace</a> to enable easy early integration into existing ownCloud 10 instances.
+<p>The ownCloud Web is being deployed as an app to <a href="https://marketplace.owncloud.com/">ownCloud marketplace</a> to enable easy early integration into existing ownCloud 10 instances.
 After completing this setup, ownCloud Web will be available on <code>https://&lt;your-owncloud-server&gt;/index.php/apps/web</code>.</p>
 <div class="gdoc-page__anchorwrap"><h2 id="prerequisites">Prerequisites<a data-clipboard-text="https://owncloud.github.io/clients/web/deployments/oc10-app/#prerequisites" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Prerequisites" href="#prerequisites"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <ul>
 <li>Running <a href="https://owncloud.com/download-server/">ownCloud 10 server</a> with version 10.6</li>
 <li>Installed <a href="https://marketplace.owncloud.com/apps/oauth2">oauth2 app</a></li>
+<li>Command line access to your server</li>
 </ul>
 <div class="gdoc-page__anchorwrap"><h2 id="deploying-owncloud-web">Deploying ownCloud Web<a data-clipboard-text="https://owncloud.github.io/clients/web/deployments/oc10-app/#deploying-owncloud-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Deploying ownCloud Web" href="#deploying-owncloud-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>Download <a href="https://marketplace.owncloud.com/apps/web">ownCloud Web app</a> from the marketplace and enable it.</p>
-<div class="gdoc-page__anchorwrap"><h2 id="configure-oauth2">Configure oauth2<a data-clipboard-text="https://owncloud.github.io/clients/web/deployments/oc10-app/#configure-oauth2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configure oauth2" href="#configure-oauth2"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>Download the <a href="https://marketplace.owncloud.com/apps/web">ownCloud Web app</a> from the marketplace and enable it:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">occ market:install web
+</code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="configure-oauth2">Configure oauth2<a data-clipboard-text="https://owncloud.github.io/clients/web/deployments/oc10-app/#configure-oauth2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configure oauth2" href="#configure-oauth2"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>Within the <code>Admin</code> page of ownCloud 10, head into <code>User Authentication</code> and add a new client with arbitrary name (e.g. <code>ownCloud Web</code>) and redirection URL <code>https://&lt;your-owncloud-server&gt;/index.php/apps/web/oidc-callback.html</code>.</p>
 <figure>
     <img src="/clients/web/static/oauth2.jpg"
@@ -2681,7 +2683,7 @@ After completing this setup, ownCloud Web will be available on <code>https://&lt
 <p>To display ownCloud Web in the app switcher and to redirect all private and public links to the new WebUI, add the following config into <code>config/config.php</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">&#39;web.baseUrl&#39; =&gt; &#39;https://<span class="p">&lt;</span><span class="nt">your-owncloud-server</span><span class="p">&gt;</span>/index.php/apps/web&#39;,
 </code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="configure-owncloud-web">Configure ownCloud Web<a data-clipboard-text="https://owncloud.github.io/clients/web/deployments/oc10-app/#configure-owncloud-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configure ownCloud Web" href="#configure-owncloud-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>There are a few config values which need to be set in order for ownCloud Web to work correctly. Please copy <code>config.json.dist</code> from the web app directory into <code>config/config.json</code> and adjust it according to the following example:</p>
+<p>There are a few config values which need to be set in order for ownCloud Web to work correctly. Please copy the example config below into <code>config/config.json</code> and adjust it for your environment:</p>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
   <span class="nt">&#34;server&#34;</span> <span class="p">:</span> <span class="s2">&#34;https://&lt;your-owncloud-server&gt;&#34;</span><span class="p">,</span>
   <span class="nt">&#34;theme&#34;</span><span class="p">:</span> <span class="s2">&#34;owncloud&#34;</span><span class="p">,</span>
