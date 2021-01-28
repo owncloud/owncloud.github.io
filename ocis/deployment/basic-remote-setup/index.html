@@ -2648,17 +2648,17 @@
         <li><a href="#use-the-binary">Use the binary</a>
           <ul>
             <li><a href="#add-your-hostname-to-the-idp-config">Add your hostname to the idp config</a></li>
-            <li><a href="#start-the-ocis-fullstack-server">Start the ocis fullstack server</a></li>
+            <li><a href="#start-the-ocis-fullstack-server">Start the oCIS fullstack server</a></li>
           </ul>
         </li>
         <li><a href="#use-docker-compose">Use Docker Compose</a></li>
       </ul></nav><hr></div>
 
 
-<p>Out of the box the ocis single binary and the <code>owncloud/ocis</code> docker image are configured to run on localhost for quick testing and development.</p>
-<p>If you need to access ocis on a VM or a remote machine e.g. when testing a mobile client you need to configure ocis to run on a different host.</p>
+<p>Out of the box the oCIS single binary and the <code>owncloud/ocis</code> docker image are configured to run on localhost for quick testing and development.</p>
+<p>If you need to access oCIS on a VM or a remote machine e.g. when testing a mobile client you need to configure oCIS to run on a different host.</p>
 <div class="gdoc-page__anchorwrap"><h2 id="use-the-binary">Use the binary<a data-clipboard-text="https://owncloud.github.io/ocis/deployment/basic-remote-setup/#use-the-binary" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Use the binary" href="#use-the-binary"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>If you start the ocis fullstack for the first time with <code>./bin/ocis server</code> it will generate a file <code>identifier-registration.yml</code> in the config folder relative to its location. This file is used to configure the clients for the built-in Identity Provider.</p>
+<p>If you start the oCIS fullstack for the first time with <code>./bin/ocis server</code> it will generate a file <code>identifier-registration.yml</code> in the config folder relative to its location. This file is used to configure the clients for the built-in Identity Provider.</p>
 <blockquote class="gdoc-hint warning">
   <strong>Outdated version</strong><br>
 The <code>identifier-registration.yml</code> file will only be generated if there is no such file in place. You could miss updates on this file. Run <code>make clean</code> to delete the file and keep the development environment tidy otherwise as well.
@@ -2715,14 +2715,14 @@ The <code>identifier-registration.yml</code> file will only be generated if ther
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>In this example we do not change the default port (<code>9200</code>). But this could be changed to another port.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="start-the-ocis-fullstack-server">Start the ocis fullstack server<a data-clipboard-text="https://owncloud.github.io/ocis/deployment/basic-remote-setup/#start-the-ocis-fullstack-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Start the ocis fullstack server" href="#start-the-ocis-fullstack-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<div class="gdoc-page__anchorwrap"><h3 id="start-the-ocis-fullstack-server">Start the oCIS fullstack server<a data-clipboard-text="https://owncloud.github.io/ocis/deployment/basic-remote-setup/#start-the-ocis-fullstack-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Start the oCIS fullstack server" href="#start-the-ocis-fullstack-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>You need to configure <code>your-host</code> in some services to provide the needed public resources.</p>
-<p>This snippet will start the ocis server with auto generated self signed certificates:</p>
+<p>This snippet will start the oCIS server with auto generated self signed certificates:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">PROXY_HTTP_ADDR</span><span class="o">=</span>0.0.0.0:9200 <span class="se">\
 </span><span class="se"></span><span class="nv">OCIS_URL</span><span class="o">=</span>https://your-server:9200 <span class="se">\
 </span><span class="se"></span><span class="nv">KONNECTD_TLS</span><span class="o">=</span><span class="m">0</span> <span class="se">\
 </span><span class="se"></span>./bin/ocis server
-</code></pre></div><p>For more configuration options check the configuration section in <a href="https://owncloud.github.io/ocis/configuration/">ocis</a> and every ocis extension.</p>
+</code></pre></div><p>For more configuration options check the configuration section in <a href="https://owncloud.github.io/ocis/configuration/">ocis</a> and every oCIS extension.</p>
 <blockquote class="gdoc-hint info">
   <p><strong>TLS Certificate</strong><br>
 If you have a CA signed certificate for your domain, add the following configurations:</p>
