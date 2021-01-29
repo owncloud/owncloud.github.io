@@ -2717,7 +2717,7 @@ The file by default looks like this:</p>
 <span class="c1">### Keycloak ###</span>
 <span class="c1"># Domain of Keycloak, where you can find the management and authentication frontend. Defaults to &#34;keycloak.owncloud.test&#34;</span>
 <span class="nv">KEYCLOAK_DOMAIN</span><span class="o">=</span>
-<span class="c1"># Realm which to be used with oCIS. Defaults to &#34;master&#34;</span>
+<span class="c1"># Realm which to be used with oCIS. Defaults to &#34;oCIS&#34;</span>
 <span class="nv">KEYCLOAK_REALM</span><span class="o">=</span>
 <span class="c1"># Admin user login name. Defaults to &#34;admin&#34;</span>
 <span class="nv">KEYCLOAK_ADMIN_USER</span><span class="o">=</span>
@@ -2732,7 +2732,7 @@ The file by default looks like this:</p>
 <p>Set your domain for the oCIS frontend in <code>OCIS_DOMAIN=</code>, eg. <code>OCIS_DOMAIN=ocis.owncloud.test</code>.</p>
 <p>If you want to change the OIDC client id of th ownCloud Web frontend, you can do this by setting the name to <code>OCIS_OIDC_CLIENT_ID=</code>.</p>
 <p>Set your domain for the Keycloak administration panel and authentication endpoints to <code>KEYCLOAK_DOMAIN=</code> eg. <code>KEYCLOAK_DOMAIN=keycloak.owncloud.test</code>.</p>
-<p>Changing the used Keycloak realm can be done by setting <code>KEYCLOAK_REALM=</code>. This defaults to the master realm <code>KEYCLOAK_REALM=master</code>.</p>
+<p>Changing the used Keycloak realm can be done by setting <code>KEYCLOAK_REALM=</code>. This defaults to the oCIS realm <code>KEYCLOAK_REALM=oCIS</code>. The oCIS realm will be automatically imported on startup and includes our demo users.</p>
 <p>You probably should secure your Keycloak admin account by setting <code>KEYCLOAK_ADMIN_USER=</code> and <code>KEYCLOAK_ADMIN_PASSWORD=</code> to values other than <code>admin</code>.</p>
 <p>Now you have configured everything and can save the file.</p>
 </li>
@@ -2741,13 +2741,7 @@ The file by default looks like this:</p>
 <p><code>docker-compose up -d</code></p>
 </li>
 <li>
-<p>Visit the Keycloak administration console on your configured domain. Go to clients settings and add a client. The client id is <code>ocis-web</code> or the one you changed it to. The client protocol is openid-connect. The root url for the client is the url you selected for oCIS. Then save the client.</p>
-</li>
-<li>
-<p>You may also add users to Keycloak</p>
-</li>
-<li>
-<p>You now can visit oCIS and Traefik dashboard on your configured domains</p>
+<p>You now can visit oCIS, Keycloak and Traefik dashboard on your configured domains</p>
 </li>
 </ul>
 <div class="gdoc-page__anchorwrap"><h2 id="local-setup">Local setup<a data-clipboard-text="https://owncloud.github.io/ocis/deployment/ocis_keycloak/#local-setup" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Local setup" href="#local-setup"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
@@ -2759,12 +2753,8 @@ The file by default looks like this:</p>
 127.0.0.1 keycloak.owncloud.test
 </code></pre></div><p>After that you&rsquo;re ready to start the application stack:</p>
 <p><code>docker-compose up -d</code></p>
-<p>Open <a href="https://keycloak.owncloud.test">https://keycloak.owncloud.test</a> in your browser and accept the invalid certificate warning.
-Go to clients settings and add a client. The client id is <code>ocis-web</code> or the one you changed it to. The client protocol is openid-connect. THe root url for the client is <code>https://ocis.owncloud.test</code>. Then save the client.</p>
-<ul>
-<li>You may also add users to Keycloak</li>
-</ul>
-<p>Open <a href="https://ocis.owncloud.test">https://ocis.owncloud.test</a> in your browser and accept the invalid certificate warning. You now can login to oCIS with the admin user of keycloak and additional users you created.</p>
+<p>Open <a href="https://keycloak.owncloud.test">https://keycloak.owncloud.test</a> in your browser and accept the invalid certificate warning.</p>
+<p>Open <a href="https://ocis.owncloud.test">https://ocis.owncloud.test</a> in your browser and accept the invalid certificate warning. You now can login to oCIS with the demo users.</p>
 
 
     </article>
