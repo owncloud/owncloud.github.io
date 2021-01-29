@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Configuration">
+<meta name="description" content="Release Roadmap">
 
-<title>Configuration | ownCloud</title>
+<title>Release Roadmap | ownCloud</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -166,7 +166,7 @@
             
             
                 <span class="flex">
-                    <a href="/ocis/release_roadmap/" class="gdoc-nav__entry ">
+                    <a href="/ocis/release_roadmap/" class="gdoc-nav__entry is-active">
                         Release Roadmap
                     </a>
                 </span>
@@ -1511,7 +1511,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-8623fc11" class="gdoc-nav__toggle" checked>
+            <input type="checkbox" id="navtree-8623fc11" class="gdoc-nav__toggle" >
             <label for="navtree-8623fc11" class="flex justify-between">
             
             
@@ -1546,7 +1546,7 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/accounts/configuration/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/accounts/configuration/" class="gdoc-nav__entry ">
                         Configuration
                     </a>
                 </span>
@@ -2625,14 +2625,7 @@
         
     
     
-        
-        
-        
-    
-    
-        <a href='/'>ownCloud</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/accounts/'>Accounts</a> / Configuration
-    
-
+        <a href='/'>ownCloud</a> / <a href='/ocis/'>oCIS - ownCloud Infinite Scale</a> / Release Roadmap
     
 
     
@@ -2646,7 +2639,7 @@
         
         <span class="editpage">
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/accounts/templates/CONFIGURATION.tmpl">
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/release_roadmap.md">
                 Edit this page
             </a>
         </span>
@@ -2656,7 +2649,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>Configuration</h1>
+        <h1>Release Roadmap</h1>
         
 
 
@@ -2664,143 +2657,17 @@
     
 
 
-
-
-
-  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
-        <li><a href="#configuration">Configuration</a>
-          <ul>
-            <li><a href="#configuration-using-config-files">Configuration using config files</a></li>
-            <li><a href="#environment-variables">Environment variables</a></li>
-            <li><a href="#commandline-flags">Commandline flags</a></li>
-            <li><a href="#accounts-inspect">accounts inspect</a></li>
-            <li><a href="#accounts-list">accounts list</a></li>
-            <li><a href="#accounts-rebuildindex">accounts rebuildIndex</a></li>
-            <li><a href="#accounts-server">accounts server</a></li>
-            <li><a href="#accounts-version">accounts version</a></li>
-            <li><a href="#accounts-add">accounts add</a></li>
-            <li><a href="#accounts-remove">accounts remove</a></li>
-            <li><a href="#accounts-ocis-accounts">accounts ocis-accounts</a></li>
-            <li><a href="#accounts-update">accounts update</a></li>
-          </ul>
-        </li>
-      </ul></nav><hr></div>
-
-
-<div class="gdoc-page__anchorwrap"><h2 id="configuration">Configuration<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#configuration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configuration" href="#configuration"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<div class="gdoc-page__anchorwrap"><h3 id="configuration-using-config-files">Configuration using config files<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#configuration-using-config-files" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configuration using config files" href="#configuration-using-config-files"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Out of the box extensions will attempt to read configuration details from:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">/etc/ocis
-$HOME/.ocis
-./config
-</code></pre></div><p>For this configuration to be picked up, have a look at your extension <code>root</code> command and look for which default config name it has assigned. <em>i.e: ocis-accounts reads <code>accounts.json | yaml | toml ...</code></em>.</p>
-<p>So far we support the file formats <code>JSON</code> and <code>YAML</code>, if you want to get a full example configuration just take a look at <a href="https://github.com/owncloud/ocis/tree/master/accounts/config">our repository</a>, there you can always see the latest configuration format. These example configurations include all available options and the default values. The configuration file will be automatically loaded if it&rsquo;s placed at <code>/etc/ocis/ocis.yml</code>, <code>${HOME}/.ocis/ocis.yml</code> or <code>$(pwd)/config/ocis.yml</code>.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="environment-variables">Environment variables<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#environment-variables" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Environment variables" href="#environment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>If you prefer to configure the service with environment variables you can see the available variables below.</p>
-<p>If multiple variables are listed for one option, they are in order of precedence. This means the leftmost variable will always win if given.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="commandline-flags">Commandline flags<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#commandline-flags" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Commandline flags" href="#commandline-flags"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>If you prefer to configure the service with commandline flags you can see the available variables below. Command line flags are only working when calling the subcommand directly.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-inspect">accounts inspect<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#accounts-inspect" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts inspect" href="#accounts-inspect"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Show detailed data on an existing account</p>
-<p>Usage: <code>accounts inspect [command options] [arguments...]</code></p>
-<dl>
-<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>com.owncloud.api</code>.</dd>
-<dt>-name |  $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>accounts</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-list">accounts list<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#accounts-list" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts list" href="#accounts-list"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>List existing accounts</p>
-<p>Usage: <code>accounts list [command options] [arguments...]</code></p>
-<dl>
-<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>com.owncloud.api</code>.</dd>
-<dt>-name |  $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>accounts</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-rebuildindex">accounts rebuildIndex<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#accounts-rebuildindex" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts rebuildIndex" href="#accounts-rebuildindex"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Rebuilds the service&rsquo;s index, i.e. deleting and then re-adding all existing documents</p>
-<p>Usage: <code>accounts rebuildIndex [command options] [arguments...]</code></p>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-server">accounts server<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#accounts-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts server" href="#accounts-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Start ocis accounts service</p>
-<p>Usage: <code>accounts server [command options] [arguments...]</code></p>
-<dl>
-<dt>-tracing-enabled |  $ACCOUNTS_TRACING_ENABLED</dt>
-<dd>Enable sending traces.</dd>
-<dt>-tracing-type |  $ACCOUNTS_TRACING_TYPE</dt>
-<dd>Tracing backend type. Default: <code>jaeger</code>.</dd>
-<dt>-tracing-endpoint |  $ACCOUNTS_TRACING_ENDPOINT</dt>
-<dd>Endpoint for the agent.</dd>
-<dt>-tracing-collector |  $ACCOUNTS_TRACING_COLLECTOR</dt>
-<dd>Endpoint for the collector.</dd>
-<dt>-tracing-service |  $ACCOUNTS_TRACING_SERVICE</dt>
-<dd>Service name for tracing. Default: <code>accounts</code>.</dd>
-<dt>-http-namespace |  $ACCOUNTS_HTTP_NAMESPACE</dt>
-<dd>Set the base namespace for the http namespace. Default: <code>com.owncloud.web</code>.</dd>
-<dt>-http-addr |  $ACCOUNTS_HTTP_ADDR</dt>
-<dd>Address to bind http server. Default: <code>0.0.0.0:9181</code>.</dd>
-<dt>-http-root |  $ACCOUNTS_HTTP_ROOT</dt>
-<dd>Root path of http server. Default: <code>/</code>.</dd>
-<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>com.owncloud.api</code>.</dd>
-<dt>-grpc-addr |  $ACCOUNTS_GRPC_ADDR</dt>
-<dd>Address to bind grpc server. Default: <code>0.0.0.0:9180</code>.</dd>
-<dt>-name |  $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>accounts</code>.</dd>
-<dt>-asset-path |  $ACCOUNTS_ASSET_PATH</dt>
-<dd>Path to custom assets.</dd>
-<dt>-jwt-secret |  $ACCOUNTS_JWT_SECRET</dt>
-<dd>Used to create JWT to talk to reva, should equal reva&rsquo;s jwt-secret. Default: <code>Pive-Fumkiu4</code>.</dd>
-<dt>-storage-disk-path |  $ACCOUNTS_STORAGE_DISK_PATH</dt>
-<dd>Path on the local disk, e.g. /var/tmp/ocis/accounts.</dd>
-<dt>-storage-cs3-provider-addr |  $ACCOUNTS_STORAGE_CS3_PROVIDER_ADDR</dt>
-<dd>bind address for the metadata storage provider. Default: <code>localhost:9215</code>.</dd>
-<dt>-storage-cs3-data-url |  $ACCOUNTS_STORAGE_CS3_DATA_URL</dt>
-<dd>http endpoint of the metadata storage. Default: <code>http://localhost:9216</code>.</dd>
-<dt>-storage-cs3-data-prefix |  $ACCOUNTS_STORAGE_CS3_DATA_PREFIX</dt>
-<dd>path prefix for the http endpoint of the metadata storage, without leading slash. Default: <code>data</code>.</dd>
-<dt>-storage-cs3-jwt-secret |  $ACCOUNTS_STORAGE_CS3_JWT_SECRET</dt>
-<dd>Used to create JWT to talk to reva, should equal reva&rsquo;s jwt-secret. Default: <code>Pive-Fumkiu4</code>.</dd>
-<dt>-service-user-uuid |  $ACCOUNTS_SERVICE_USER_UUID</dt>
-<dd>uuid of the internal service user (required on EOS). Default: <code>95cb8724-03b2-11eb-a0a6-c33ef8ef53ad</code>.</dd>
-<dt>-service-user-username |  $ACCOUNTS_SERVICE_USER_USERNAME</dt>
-<dd>username of the internal service user (required on EOS).</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-version">accounts version<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#accounts-version" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts version" href="#accounts-version"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Print the versions of the running instances</p>
-<p>Usage: <code>accounts version [command options] [arguments...]</code></p>
-<dl>
-<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>com.owncloud.api</code>.</dd>
-<dt>-name |  $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>accounts</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-add">accounts add<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#accounts-add" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts add" href="#accounts-add"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Create a new account</p>
-<p>Usage: <code>accounts add [command options] [arguments...]</code></p>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-remove">accounts remove<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#accounts-remove" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts remove" href="#accounts-remove"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Removes an existing account</p>
-<p>Usage: <code>accounts remove [command options] [arguments...]</code></p>
-<dl>
-<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>com.owncloud.api</code>.</dd>
-<dt>-name |  $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>accounts</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-ocis-accounts">accounts ocis-accounts<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#accounts-ocis-accounts" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts ocis-accounts" href="#accounts-ocis-accounts"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Provide accounts and groups for oCIS</p>
-<p>Usage: <code>accounts ocis-accounts [command options] [arguments...]</code></p>
-<dl>
-<dt>-log-level |  $ACCOUNTS_LOG_LEVEL</dt>
-<dd>Set logging level. Default: <code>info</code>.</dd>
-<dt>-log-pretty |  $ACCOUNTS_LOG_PRETTY</dt>
-<dd>Enable pretty logging. Default: <code>true</code>.</dd>
-<dt>-log-color |  $ACCOUNTS_LOG_COLOR</dt>
-<dd>Enable colored logging. Default: <code>true</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-update">accounts update<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/configuration/#accounts-update" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts update" href="#accounts-update"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Make changes to an existing account</p>
-<p>Usage: <code>accounts update [command options] [arguments...]</code></p>
+<h1 id="release-roadmap">Release Roadmap</h1>
+<p>You may have asked yourself why there are major version 1 tags in our GitHub repository but the readme still states <code>ownCloud Infinite Scale is currently in a technical preview state. It will be subject to a lot of changes and is not yet ready for general production deployments.</code>. How can that be if its a major version 1?</p>
+<p>Our initial and also our current plan is to stick to SemVer as versioning scheme. But sometimes there are other factors which cross your plans. Therefore we started releasing oCIS with version <code>1.0.0 Tech Preview</code>.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="owncloud-infinite-scale-1x-technology-preview-releases">ownCloud Infinite Scale 1.x technology preview releases<a data-clipboard-text="https://owncloud.github.io/ocis/release_roadmap/#owncloud-infinite-scale-1x-technology-preview-releases" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ownCloud Infinite Scale 1.x technology preview releases" href="#owncloud-infinite-scale-1x-technology-preview-releases"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>All oCIS releases within major version 1 will be handled as technology previews. There will be no supported releases in terms of us guaranteeing production readiness. We will do releases every 3 weeks. They will sometimes only include bugfixes but also new features or optimizations.</p>
+<p>We will be fixing bugs if you report them and truly appreciate every report and contribution. We will then do bugfix releases or add the fix to the next minor release.</p>
+<p>We are going to stick to major version 1 until we feel confident about running oCIS in production environments. As a consequence of this we cannot raise the major version, like SemVer requires it, even if we need to introduce breaking changes. We will do our best to avoid breaking changes. If there is no way to circumvent this, we will add an automatic migration or at least point out manual migration steps, since we as oCIS developers are already using oCIS on a personal basis. The best place to see if a breaking change happens is our changelog which is available for every release. If things are not working out for you please contact us immediately. We want to know about this and solve it for you.</p>
+<p>It isn&rsquo;t our intention to scare you with our addendum &ldquo;Tech Preview&rdquo;. We want you to have a clear picture of what you can expect from oCIS. You could take it as a disclaimer or even compare it to running an Linux kernel in alpha stage. It can be very pleasing to be on the latest codebase but you could also find yourself with a lot of problems arising because of that.</p>
+<p>You clearly can expect a totally new experience of file-sync and share with oCIS and we want you to use it now - but with understanding and caution.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="owncloud-infinite-scale-2x-general-availability-releases">ownCloud Infinite Scale 2.x general availability releases<a data-clipboard-text="https://owncloud.github.io/ocis/release_roadmap/#owncloud-infinite-scale-2x-general-availability-releases" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ownCloud Infinite Scale 2.x general availability releases" href="#owncloud-infinite-scale-2x-general-availability-releases"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>Starting with oCIS 2.0.0 release we will strictly stick to SemVer, just as we do right now for ownCloud Server. The general availability release will also mean that we can recommend oCIS warmly to everyone. Use it to store your precious family pictures or you confidential company data!</p>
 
 
     </article>
