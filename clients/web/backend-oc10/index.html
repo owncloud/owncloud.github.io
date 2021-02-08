@@ -2705,11 +2705,11 @@
 
 
 <div class="gdoc-page__anchorwrap"><h2 id="prerequisites">Prerequisites<a data-clipboard-text="https://owncloud.github.io/clients/web/backend-oc10/#prerequisites" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Prerequisites" href="#prerequisites"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>Decide on which host and port Web will be served, for example <code>https://web-host:8300/web-path/</code>.
+<p>Decide on which host and port Web will be served, for example <code>https://web-host:9100/web-path/</code>.
 In this document, we will refer to the following:</p>
 <ul>
-<li><code>&lt;web-url&gt;</code> as the full URL, for example <code>https://web-host:8300/web-path/</code></li>
-<li><code>&lt;web-domain&gt;</code> as the protocol, domain and port, for example: <code>https://web-host:8300</code></li>
+<li><code>&lt;web-url&gt;</code> as the full URL, for example <code>https://web-host:9100/web-path/</code></li>
+<li><code>&lt;web-domain&gt;</code> as the protocol, domain and port, for example: <code>https://web-host:9100</code></li>
 </ul>
 <div class="gdoc-page__anchorwrap"><h2 id="setting-up-the-owncloud-server">Setting up the ownCloud Server<a data-clipboard-text="https://owncloud.github.io/clients/web/backend-oc10/#setting-up-the-owncloud-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setting up the ownCloud Server" href="#setting-up-the-owncloud-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>Make sure you have an <a href="https://owncloud.org/download/#owncloud-server">ownCloud Server</a> already installed.</p>
@@ -2739,7 +2739,7 @@ In this document, we will refer to the following:</p>
 <li>make sure to take note of the <strong>client identifier</strong> value as it will be needed in the Web configuration later on</li>
 </ul>
 <div class="gdoc-page__anchorwrap"><h3 id="setting-up-web">Setting up Web<a data-clipboard-text="https://owncloud.github.io/clients/web/backend-oc10/#setting-up-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setting up Web" href="#setting-up-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>In the local Web checkout, copy the <code>config.json.sample-oc10</code> file to <code>config.json</code> and adjust it accordingly:</p>
+<p>In the local Web checkout, copy the <code>config/config.json.sample-oc10</code> file to <code>config/config.json</code> and adjust it accordingly:</p>
 <ul>
 <li>Set the &ldquo;server&rdquo; key to the URL of the ownCloud server including path. If the URL contains a path, please also add a <strong>trailing slash</strong> there.</li>
 <li>Set the &ldquo;clientId&rdquo; key to the <strong>client identifier</strong> as copied from the &ldquo;User Authentication&rdquo; section before.</li>
@@ -2749,8 +2749,8 @@ In this document, we will refer to the following:</p>
 <div class="gdoc-page__anchorwrap"><h2 id="running-web">Running Web<a data-clipboard-text="https://owncloud.github.io/clients/web/backend-oc10/#running-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Running Web" href="#running-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <ul>
 <li>if running from source, make sure to <a href="https://owncloud.github.io/clients/web/building/">build Web</a> first</li>
-<li>run by launching a webpack dev server <code>yarn watch-all</code></li>
-<li>when working on the Web code, webpack will recompile the code automatically</li>
+<li>run by launching a rollup dev server <code>yarn serve</code></li>
+<li>when working on the Web code, rollup will recompile the code automatically</li>
 </ul>
 <div class="gdoc-page__anchorwrap"><h2 id="running-acceptance-tests">Running acceptance tests<a data-clipboard-text="https://owncloud.github.io/clients/web/backend-oc10/#running-acceptance-tests" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Running acceptance tests" href="#running-acceptance-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>For testing, please refer to the <a href="https://owncloud.github.io/clients/web/testing/#running-acceptance-tests-using-owncloud-10-backend">ownCloud 10 testing section</a></p>

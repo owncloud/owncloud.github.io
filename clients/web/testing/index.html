@@ -2691,22 +2691,24 @@
 
 
   <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
-        <li><a href="#setting-up-selenium">Setting up Selenium</a>
+        <li><a href="#setup-selenium">Setup Selenium</a>
           <ul>
             <li><a href="#setup-using-docker">Setup using Docker</a></li>
             <li><a href="#setup-using-docker-desktop-for-mac">Setup using Docker Desktop for Mac</a></li>
             <li><a href="#setup-using-standalone-selenium-server">Setup using standalone Selenium server</a></li>
           </ul>
         </li>
+        <li><a href="#setup-backend">Setup backend</a>
+          <ul>
+            <li><a href="#owncloud-10">ownCloud 10</a></li>
+            <li><a href="#ocis">oCIS</a></li>
+          </ul>
+        </li>
+        <li><a href="#setup-owncloud-web">Setup ownCloud Web</a></li>
         <li><a href="#run-tests">Run tests</a>
           <ul>
-            <li><a href="#with-owncloud-10-backend">with ownCloud 10 backend</a></li>
-            <li><a href="#with-ocis-backend">with OCIS backend</a>
-              <ul>
-                <li><a href="#the-quick-way-all-automated">the quick way (all automated)</a></li>
-                <li><a href="#the-manual-way-eg-to-run-from-an-existing-ocis-location">the manual way (e.g. to run from an existing ocis location)</a></li>
-              </ul>
-            </li>
+            <li><a href="#with-oc10-backend">with oC10 backend</a></li>
+            <li><a href="#with-ocis-backend">with oCIS backend</a></li>
             <li><a href="#visual-regression-testing">Visual Regression Testing</a>
               <ul>
                 <li><a href="#running-the-visual-regression-tests">Running the visual regression tests</a></li>
@@ -2730,7 +2732,7 @@
       </ul></nav><hr></div>
 
 
-<div class="gdoc-page__anchorwrap"><h2 id="setting-up-selenium">Setting up Selenium<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#setting-up-selenium" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setting up Selenium" href="#setting-up-selenium"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<div class="gdoc-page__anchorwrap"><h2 id="setup-selenium">Setup Selenium<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#setup-selenium" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setup Selenium" href="#setup-selenium"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>There are multiple ways to run Selenium:</p>
 <ul>
 <li><a href="#setup-using-docker">Setup using Docker</a></li>
@@ -2740,8 +2742,8 @@
 <div class="gdoc-page__anchorwrap"><h3 id="setup-using-docker">Setup using Docker<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#setup-using-docker" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setup using Docker" href="#setup-using-docker"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <ul>
 <li>Set the environment variables <code>SELENIUM_HOST</code> as <code>localhost</code> and <code>SERVER_HOST</code> in the format <code>http://&lt;ip_addr&gt;:9100</code>.</li>
-<li>Run <code>yarn run selenium</code> (available only on Linux)</li>
-<li>If you are a Mac user, you can run <code>yarn run selenium:mac</code>
+<li>If you are a Linux user, run <code>docker run --rm -d --network=\&quot;host\&quot; -v /dev/shm:/dev/shm -v ${REMOTE_UPLOAD_DIR:-$PWD/tests/acceptance/filesForUpload}:${LOCAL_UPLOAD_DIR:-/uploads}:ro --name web-tests-selenium selenium/standalone-chrome-debug</code></li>
+<li>If you are a Mac user, run <code>docker run --rm -d -p ${SELENIUM_PORT:-4444}:4444 -p 5900:5900 -v /dev/shm:/dev/shm -v ${REMOTE_UPLOAD_DIR:-$PWD/tests/acceptance/filesForUpload}:${LOCAL_UPLOAD_DIR:-/uploads}:ro --name web-tests-selenium selenium/standalone-chrome-debug</code>
 <ul>
 <li>This command creates a docker container which uses port forwarding instead of host networking <a href="https://docs.docker.com/network/host/">which is not supported on Mac</a></li>
 </ul>
@@ -2753,88 +2755,68 @@ on the host machine, <code>localhost</code> will not work as URL. Use the Docker
 This requires adjusting all relevant config files to use <code>host.docker.internal</code> instead of <code>localhost</code> (config.json in Web and
 config/config.php in oC10) and changing the web OIDC-callback url. Set the <code>SERVER_HOST</code> and <code>BACKEND_HOST</code> environment variables
 accordingly. In order to use the same url for development on the host machine, define it as an alias to <code>127.0.0.1</code> in <code>/etc/hosts</code>.
-After all these changes Web will be accessible at <code>http://host.docker.internal:8300</code> for both development and acceptance tests.</p>
+After all these changes Web will be accessible at <code>http://host.docker.internal:9100</code> for both development and acceptance tests.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="setup-using-standalone-selenium-server">Setup using standalone Selenium server<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#setup-using-standalone-selenium-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setup using standalone Selenium server" href="#setup-using-standalone-selenium-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>When running a standalone Selenium server, make sure to set the environment variable <code>SELENIUM_HOST</code>, <code>SELENIUM_PORT</code> and <code>LOCAL_UPLOAD_DIR</code> accordingly.</p>
-<div class="gdoc-page__anchorwrap"><h2 id="run-tests">Run tests<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#run-tests" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Run tests" href="#run-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<div class="gdoc-page__anchorwrap"><h3 id="with-owncloud-10-backend">with ownCloud 10 backend<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#with-owncloud-10-backend" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor with ownCloud 10 backend" href="#with-owncloud-10-backend"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<div class="gdoc-page__anchorwrap"><h2 id="setup-backend">Setup backend<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#setup-backend" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setup backend" href="#setup-backend"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<div class="gdoc-page__anchorwrap"><h3 id="owncloud-10">ownCloud 10<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#owncloud-10" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ownCloud 10" href="#owncloud-10"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <ul>
 <li>set up the <a href="https://owncloud.github.io/clients/web/backend-oc10/">ownCloud 10 backend</a></li>
 <li>clone and install the <a href="http://github.com/owncloud/testing">testing app</a> into ownCloud</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h3 id="ocis">oCIS<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#ocis" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor oCIS" href="#ocis"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>set up the <a href="https://owncloud.github.io/clients/web/backend-ocis/">oCIS backend</a>
+<ul>
+<li>if you are a Mac user, you need to start the server with additional environment variables: <code>STORAGE_HOME_DATA_SERVER_URL='http://host.docker.internal:9155/data' STORAGE_DATAGATEWAY_PUBLIC_URL='https://host.docker.internal:9200/data' STORAGE_USERS_DATA_SERVER_URL='http://host.docker.internal:9158/data' STORAGE_FRONTEND_PUBLIC_URL='https://host.docker.internal:9200' PROXY_ENABLE_BASIC_AUTH=true PROXY_OIDC_ISSUER='https://host.docker.internal:9200' IDP_INSECURE='true' IDP_IDENTIFIER_REGISTRATION_CONF='&lt;web-path&gt;/tests/acceptance/mac-identifier-registration.yml' IDP_ISS='https://host.docker.internal:9200' IDP_TLS='true'</code> (<code>&lt;web-path&gt;</code> needs to be replaced with the your local clone of ownCloud Web)</li>
+</ul>
+</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h2 id="setup-owncloud-web">Setup ownCloud Web<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#setup-owncloud-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setup ownCloud Web" href="#setup-owncloud-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<ul>
 <li><a href="https://owncloud.github.io/clients/web/building/">build Web</a></li>
 <li><a href="https://owncloud.github.io/clients/web/backend-oc10/#running-web">start the Web server</a></li>
-<li>set <code>SERVER_HOST</code> to point at the URL where the Web web pages are served, for example &ldquo;http://localhost:8300&rdquo;</li>
+<li>if you are running web against the oCIS backend, clone the testing app <code>git clone git@github.com:owncloud/testing.git tests/testing-app</code></li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h2 id="run-tests">Run tests<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#run-tests" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Run tests" href="#run-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<ul>
+<li>set <code>SERVER_HOST</code> to point at the URL where the Web web pages are served, for example &ldquo;http://localhost:9100&rdquo;</li>
 <li>set <code>BACKEND_HOST</code> to point to the URL of the backend, for example &ldquo;http://localhost/owncloud/&rdquo;</li>
 <li>to be able to run federation tests, additional setup is needed:
 <ol>
 <li>Install and set up a second ownCloud server-instance that is accessible by a different URL. That second server-instance must have its own database and data directory.</li>
 <li>clone and install the testing app into the second ownCloud server-instance from <a href="http://github.com/owncloud/testing">http://github.com/owncloud/testing</a> .</li>
-<li>when running the acceptance tests use <code>REMOTE_BACKEND_HOST</code> environment variable to define its address, for example, <code>REMOTE_BACKEND_HOST=http://&lt;ip_address_of_second_ownCloud_server-instance&gt; yarn run acceptance-tests &lt;feature-files-to-test&gt;</code> .
+<li>when running the acceptance tests use <code>REMOTE_BACKEND_HOST</code> environment variable to define its address, for example, <code>REMOTE_BACKEND_HOST=http://&lt;ip_address_of_second_ownCloud_server-instance&gt; yarn test:acceptance:oc10 &lt;feature-files-to-test&gt;</code> .
 -set the <code>SELENIUM_HOST</code> environment variable to your host that runs selenium, mostly <code>localhost</code>
 -set the <code>SELENIUM_PORT</code> environment variable to your selenium port, mostly <code>4444</code></li>
 </ol>
 </li>
 </ul>
-<p>Run <code>yarn run acceptance-tests &lt;feature-files-to-test&gt;</code>.</p>
 <p>The feature files are located in the &ldquo;tests/acceptance/features&rdquo; subdirectories.</p>
 <p>see <a href="#available-settings-to-be-set-by-environment-variables">available settings</a> for further setup if needed</p>
-<div class="gdoc-page__anchorwrap"><h3 id="with-ocis-backend">with OCIS backend<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#with-ocis-backend" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor with OCIS backend" href="#with-ocis-backend"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<ol>
-<li><a href="https://owncloud.github.io/clients/web/building/">build Web</a></li>
-<li>create a new web <code>config.json</code> file and copy it into the <code>dist</code> folder, even though running web in the default ocis environment does not need a <code>config.json</code> file, some tests rely on it being present.
-As a starting point and example that should work when running every service on localhost use
-Linux: <code>config.json.sample-ocis</code>
-Mac: <code>tests/acceptance/ocis-mac-config.json</code></li>
-</ol>
-<div class="gdoc-page__anchorwrap"><h4 id="the-quick-way-all-automated">the quick way (all automated)<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#the-quick-way-all-automated" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor the quick way (all automated)" href="#the-quick-way-all-automated"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<ol>
-<li>run <code>yarn run test-requirements:ocis</code> (<code>yarn run test-requirements:ocis:mac</code> for Mac users) to install, configure and run all ocis requirements</li>
-<li>run <code>yarn run acceptance-tests-ocis &lt;feature-files-to-test&gt;</code> to run the tests. The feature files are located in the &ldquo;tests/acceptance/features&rdquo; subdirectories. To separate ocis log output from the tests output, run the command in a separate console.</li>
-<li>after the tests finish, run <code>yarn run killall</code> to stop all created docker containers, and the ocis services</li>
-</ol>
-<div class="gdoc-page__anchorwrap"><h4 id="the-manual-way-eg-to-run-from-an-existing-ocis-location">the manual way (e.g. to run from an existing ocis location)<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#the-manual-way-eg-to-run-from-an-existing-ocis-location" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor the manual way (e.g. to run from an existing ocis location)" href="#the-manual-way-eg-to-run-from-an-existing-ocis-location"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<ol>
-<li>
-<p>clone and build <a href="https://github.com/owncloud/ocis">ocis</a></p>
-</li>
-<li>
-<p>From inside the <code>web</code> directory run <code>yarn run testing-app</code> to get the <a href="https://github.com/owncloud/testing">testing-app</a>, it&rsquo;s needed to have the skeleton folder for the tests</p>
-</li>
-<li>
-<p>Run redis server using docker</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">yarn run redis-server
-</code></pre></div></li>
-<li>
-<p>Run the OCIS server with the necessary configurations</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">export</span> <span class="nv">WEB_ASSET_PATH</span><span class="o">=</span><span class="s1">&#39;&lt;path-to-web-clone&gt;/dist&#39;</span>
-<span class="nb">export</span> <span class="nv">WEB_UI_CONFIG</span><span class="o">=</span><span class="s1">&#39;&lt;path-to-web-clone&gt;/dist/config.json&#39;</span>
-<span class="nb">export</span> <span class="nv">STORAGE_HOME_DRIVER</span><span class="o">=</span>owncloud
-<span class="nb">export</span> <span class="nv">STORAGE_USERS_DRIVER</span><span class="o">=</span>owncloud
-<span class="nb">export</span> <span class="nv">PROXY_ENABLE_BASIC_AUTH</span><span class="o">=</span><span class="nb">true</span>
-</code></pre></div><p>note: <code>WEB_UI_CONFIG</code> should point to the same config file you have created earlier.
-note: currently it&rsquo;s not possible to run the UI tests with OCIS &amp; OWNCLOUD storage-driver</p>
-<p>run the server:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">bin/ocis server
-</code></pre></div></li>
-<li>
-<p>Run <code>yarn run acceptance-tests-ocis &lt;feature-files-to-test&gt;</code>.
-The feature files are located in the &ldquo;tests/acceptance/features&rdquo; subdirectories.</p>
-</li>
-</ol>
+<div class="gdoc-page__anchorwrap"><h3 id="with-oc10-backend">with oC10 backend<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#with-oc10-backend" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor with oC10 backend" href="#with-oc10-backend"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>run <code>yarn test:acceptance:oc10 &lt;feature-files-to-test&gt;</code></li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h3 id="with-ocis-backend">with oCIS backend<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#with-ocis-backend" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor with oCIS backend" href="#with-ocis-backend"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>run <code>yarn test:acceptance:ocis &lt;feature-files-to-test&gt;</code></li>
+<li>If you are a mac user, run <code>STORAGE_HOME_DATA_SERVER_URL='http://host.docker.internal:9155/data' STORAGE_DATAGATEWAY_PUBLIC_URL='https://host.docker.internal:9200/data' STORAGE_USERS_DATA_SERVER_URL='http://host.docker.internal:9158/data' STORAGE_FRONTEND_PUBLIC_URL='https://host.docker.internal:9200' PROXY_ENABLE_BASIC_AUTH=true PROXY_OIDC_ISSUER='https://host.docker.internal:9200' IDP_INSECURE='true' IDP_IDENTIFIER_REGISTRATION_CONF='./tests/acceptance/mac-identifier-registration.yml' IDP_ISS='https://host.docker.internal:9200' IDP_TLS='true' yarn test:acceptance:ocis &lt;feature-files-to-test&gt;</code></li>
+</ul>
 <div class="gdoc-page__anchorwrap"><h3 id="visual-regression-testing">Visual Regression Testing<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#visual-regression-testing" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Visual Regression Testing" href="#visual-regression-testing"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>The test suite consists of snapshots of UI components which can be compared for visual regression testing when running the acceptance tests. These comparisons are done in the existing scenarios. You can check the existing snapshots of the components in the directory <code>/tests/vrt/baseline</code>.</p>
 <div class="gdoc-page__anchorwrap"><h4 id="running-the-visual-regression-tests">Running the visual regression tests<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#running-the-visual-regression-tests" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Running the visual regression tests" href="#running-the-visual-regression-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
 <p>When you run the acceptance tests as usual, all the visual regression comparisons are skipped. To run the acceptance test suite with the visual comparison enabled you need to set the env variable, <code>VISUAL_TEST</code> to <code>true</code></p>
 <p>eg.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">VISUAL_TEST=true SERVER_HOST=http://&lt;server_host&gt; BACKEND_HOST=http://&lt;backend_host&gt; yarn run acceptance-tests &lt;feature-file-to-test&gt;
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">VISUAL_TEST=true SERVER_HOST=http://&lt;server_host&gt; BACKEND_HOST=http://&lt;backend_host&gt; yarn test:acceptance:oc10 &lt;feature-file-to-test&gt;
 </code></pre></div><div class="gdoc-page__anchorwrap"><h4 id="updating-the-snapshots">Updating the snapshots<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#updating-the-snapshots" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Updating the snapshots" href="#updating-the-snapshots"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
 <p>If there is some change in the components, and you want to update the snapshots of the components you can run the tests with <code>UPDATE_VRT_SCREENSHOTS</code> set to <code>true</code>. When this env variable is set, the testrunner will ignore if the visual comparison fails and updates the baseline images with the latest images if the comparison fails.</p>
 <p>eg.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">VISUAL_TEST=true UPDATE_VRT_SCREENSHOTS=true SERVER_HOST=http://&lt;server_host&gt; BACKEND_HOST=http://&lt;backend_host&gt; yarn run acceptance-tests &lt;feature-file-to-test&gt;
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">VISUAL_TEST=true UPDATE_VRT_SCREENSHOTS=true SERVER_HOST=http://&lt;server_host&gt; BACKEND_HOST=http://&lt;backend_host&gt; yarn test:acceptance:oc10 &lt;feature-file-to-test&gt;
 </code></pre></div><p><strong>note</strong> Visual regression testing may not be completely reliable every time as small changes such as window size and screen resolution may affect the result. For better results it is recommended that you run the tests using the <code>selenium/standalone-chrome-debug</code> image of selenium and window size of <code>1280x1024</code></p>
 <p>see <a href="#available-settings-to-be-set-by-environment-variables">available settings</a> for further setup if needed</p>
 <div class="gdoc-page__anchorwrap"><h2 id="available-settings-to-be-set-by-environment-variables">Available settings to be set by environment variables<a data-clipboard-text="https://owncloud.github.io/clients/web/testing/#available-settings-to-be-set-by-environment-variables" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Available settings to be set by environment variables" href="#available-settings-to-be-set-by-environment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>These values can be set using the environment variables to configure <code>yarn run acceptance-tests</code> and <code>yarn run acceptance-tests-ocis</code> to match your local test environment.</p>
+<p>These values can be set using the environment variables to configure <code>yarn test:acceptance:oc10</code> and <code>yarn test:acceptance:ocis</code> to match your local test environment.</p>
 <table>
 <thead>
 <tr>
@@ -2847,7 +2829,7 @@ The feature files are located in the &ldquo;tests/acceptance/features&rdquo; sub
 <tr>
 <td><code>SERVER_HOST</code></td>
 <td>web URL</td>
-<td>http://localhost:8300</td>
+<td>http://localhost:9100</td>
 </tr>
 <tr>
 <td><code>BACKEND_HOST</code></td>
