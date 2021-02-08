@@ -2691,111 +2691,41 @@
 
 
   <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
-        <li><a href="#use-the-binary">Use the binary</a>
+        <li><a href="#start-the-ocis-fullstack-server-from-binary">Start the oCIS fullstack server from binary</a>
           <ul>
-            <li><a href="#add-your-hostname-to-the-idp-config">Add your hostname to the idp config</a></li>
-            <li><a href="#start-the-ocis-fullstack-server">Start the oCIS fullstack server</a></li>
+            <li><a href="#using-automatically-generated-certificates">Using automatically generated certificates</a></li>
+            <li><a href="#using-already-present-certificates">Using already present certificates</a></li>
           </ul>
         </li>
-        <li><a href="#use-docker-compose">Use Docker Compose</a></li>
+        <li><a href="#start-the-ocis-fullstack-server-with-docker-compose">Start the oCIS fullstack server with Docker Compose</a></li>
       </ul></nav><hr></div>
 
 
-<p>Out of the box the oCIS single binary and the <code>owncloud/ocis</code> docker image are configured to run on localhost for quick testing and development.</p>
-<p>If you need to access oCIS on a VM or a remote machine e.g. when testing a mobile client you need to configure oCIS to run on a different host.</p>
-<div class="gdoc-page__anchorwrap"><h2 id="use-the-binary">Use the binary<a data-clipboard-text="https://owncloud.github.io/ocis/deployment/basic-remote-setup/#use-the-binary" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Use the binary" href="#use-the-binary"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>If you start the oCIS fullstack for the first time with <code>./bin/ocis server</code> it will generate a file <code>identifier-registration.yml</code> in the config folder relative to its location. This file is used to configure the clients for the built-in Identity Provider.</p>
+<p>The default configuration of the oCIS binary and the <code>owncloud/ocis</code> docker image assume, that you access oCIS on <code>localhost</code>. This enables you to do quick testing and development without any configuration.</p>
+<p>If you need to access oCIS running in a docker container, on a VM or a remote machine via an other hostname than <code>localhost</code>, you need to configure this hostname in oCIS. The same applies if you are not using hostnames but instead an IP (eg. <code>192.168.178.25</code>).</p>
+<div class="gdoc-page__anchorwrap"><h2 id="start-the-ocis-fullstack-server-from-binary">Start the oCIS fullstack server from binary<a data-clipboard-text="https://owncloud.github.io/ocis/deployment/basic-remote-setup/#start-the-ocis-fullstack-server-from-binary" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Start the oCIS fullstack server from binary" href="#start-the-ocis-fullstack-server-from-binary"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>Upon first start of the oCIS fullstack server with <code>./bin/ocis server</code> it will generate a file <code>identifier-registration.yml</code> in the config folder in your current working directory. This file is used to configure the built-in identity provider and therefore contains the OpenID Connect issuer and also information about relying parties, for example ownCloud Web and our desktop and mobile applications.</p>
 <blockquote class="gdoc-hint warning">
-  <strong>Outdated version</strong><br>
-The <code>identifier-registration.yml</code> file will only be generated if there is no such file in place. You could miss updates on this file. Run <code>make clean</code> to delete the file and keep the development environment tidy otherwise as well.
+  The <code>identifier-registration.yml</code> file will only be generated if does not exist. If you want to change certain environment variables like <code>OCIS_URL</code>, please delete this file first before doing so. Otherwise your changes will not be applied correctly and you will run into errors.
 </blockquote>
 
-<div class="gdoc-page__anchorwrap"><h3 id="add-your-hostname-to-the-idp-config">Add your hostname to the idp config<a data-clipboard-text="https://owncloud.github.io/ocis/deployment/basic-remote-setup/#add-your-hostname-to-the-idp-config" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Add your hostname to the idp config" href="#add-your-hostname-to-the-idp-config"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Let us assume <code>your-host</code> is your remote domain name or IP address. Add your host to the <code>identifier-registration.yml</code> like this:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="hl"><span class="lnt">15
-</span></span><span class="hl"><span class="lnt">16
-</span></span><span class="hl"><span class="lnt">17
-</span></span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="hl"><span class="lnt">21
-</span></span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># OpenID Connect client registry.</span><span class="w">
-</span><span class="w"></span><span class="k">clients</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="k">id</span><span class="p">:</span><span class="w"> </span>web<span class="w">
-</span><span class="w">    </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>ownCloud<span class="w"> </span>web<span class="w"> </span>app<span class="w">
-</span><span class="w">    </span><span class="k">application_type</span><span class="p">:</span><span class="w"> </span>web<span class="w">
-</span><span class="w">    </span><span class="k">insecure</span><span class="p">:</span><span class="w"> </span>yes<span class="w">
-</span><span class="w">    </span><span class="k">trusted</span><span class="p">:</span><span class="w"> </span>yes<span class="w">
-</span><span class="w">    </span><span class="k">redirect_uris</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- http<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9100</span>/<span class="w">
-</span><span class="w">      </span>- http<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9100</span>/oidc-callback.html<span class="w">
-</span><span class="w">      </span>- http<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9100</span>/oidc-silent-redirect.html<span class="w">
-</span><span class="w">      </span>- https<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9200</span>/<span class="w">
-</span><span class="w">      </span>- https<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9200</span>/oidc-callback.html<span class="w">
-</span><span class="w">      </span>- https<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9200</span>/oidc-silent-redirect.html<span class="w">
-</span><span class="hl"><span class="w">      </span>- https<span class="p">:</span>//your-server<span class="p">:</span><span class="m">9200</span>/<span class="w">
-</span></span><span class="hl"><span class="w">      </span>- https<span class="p">:</span>//your-server<span class="p">:</span><span class="m">9200</span>/oidc-callback.html<span class="w">
-</span></span><span class="hl"><span class="w">      </span>- https<span class="p">:</span>//your-server<span class="p">:</span><span class="m">9200</span>/oidc-silent-redirect.html<span class="w">
-</span></span><span class="w">    </span><span class="k">origins</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- http<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9100</span><span class="w">
-</span><span class="w">      </span>- https<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9200</span><span class="w">
-</span><span class="hl"><span class="w">      </span>- https<span class="p">:</span>//your-server<span class="p">:</span><span class="m">9200</span><span class="w">
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>In this example we do not change the default port (<code>9200</code>). But this could be changed to another port.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="start-the-ocis-fullstack-server">Start the oCIS fullstack server<a data-clipboard-text="https://owncloud.github.io/ocis/deployment/basic-remote-setup/#start-the-ocis-fullstack-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Start the oCIS fullstack server" href="#start-the-ocis-fullstack-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>You need to configure <code>your-host</code> in some services to provide the needed public resources.</p>
-<p>This snippet will start the oCIS server with auto generated self signed certificates:</p>
+<p>For the following examples you need to have the oCIS binary in your current working directory, we assume it is named <code>ocis</code> and it needs to be marked as executable. See <a href="https://owncloud.github.io/ocis/getting-started/#binaries">Getting Started</a> for where to get the binary from.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="using-automatically-generated-certificates">Using automatically generated certificates<a data-clipboard-text="https://owncloud.github.io/ocis/deployment/basic-remote-setup/#using-automatically-generated-certificates" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Using automatically generated certificates" href="#using-automatically-generated-certificates"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>In order to run oCIS with automatically generated and self signed certificates please execute following command. You need to replace <code>your-host</code> with an IP or hostname.</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">PROXY_HTTP_ADDR</span><span class="o">=</span>0.0.0.0:9200 <span class="se">\
-</span><span class="se"></span><span class="nv">OCIS_URL</span><span class="o">=</span>https://your-server:9200 <span class="se">\
-</span><span class="se"></span><span class="nv">KONNECTD_TLS</span><span class="o">=</span><span class="m">0</span> <span class="se">\
+</span><span class="se"></span><span class="nv">OCIS_URL</span><span class="o">=</span>https://your-host:9200 <span class="se">\
+</span><span class="se"></span>./ocis server
+</code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="using-already-present-certificates">Using already present certificates<a data-clipboard-text="https://owncloud.github.io/ocis/deployment/basic-remote-setup/#using-already-present-certificates" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Using already present certificates" href="#using-already-present-certificates"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>If you have your own certificates already in place, you may want to make oCIS use them:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">PROXY_HTTP_ADDR</span><span class="o">=</span>0.0.0.0:9200 <span class="se">\
+</span><span class="se"></span><span class="nv">OCIS_URL</span><span class="o">=</span>https://your-host:9200 <span class="se">\
 </span><span class="se"></span><span class="nv">PROXY_TRANSPORT_TLS_KEY</span><span class="o">=</span>./certs/your-host.key <span class="se">\
 </span><span class="se"></span><span class="nv">PROXY_TRANSPORT_TLS_CERT</span><span class="o">=</span>./certs/your-host.crt <span class="se">\
-</span><span class="se"></span><span class="nv">IDP_TLS</span><span class="o">=</span><span class="m">0</span> <span class="se">\
-</span><span class="se"></span>./bin/ocis server
-</code></pre></div><p>For more configuration options check the configuration section in <a href="https://owncloud.github.io/ocis/configuration/">ocis</a> and every oCIS extension.</p>
-<blockquote class="gdoc-hint info">
-  <p><strong>TLS Certificate</strong><br>
-If you have a CA signed certificate for your domain, add the following configurations:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">PROXY_TRANSPORT_TLS_KEY=./certs/your-host.key \
-PROXY_TRANSPORT_TLS_CERT=./certs/your-host.crt \
-</code></pre></div>
-</blockquote>
+</span><span class="se"></span>./ocis server
+</code></pre></div><p>For more configuration options check the configuration section in <a href="https://owncloud.github.io/ocis/configuration/">oCIS</a> and the oCIS extensions.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="start-the-ocis-fullstack-server-with-docker-compose">Start the oCIS fullstack server with Docker Compose<a data-clipboard-text="https://owncloud.github.io/ocis/deployment/basic-remote-setup/#start-the-ocis-fullstack-server-with-docker-compose" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Start the oCIS fullstack server with Docker Compose" href="#start-the-ocis-fullstack-server-with-docker-compose"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>Please have a look at our other <a href="https://owncloud.github.io/ocis/deployment/">deployment examples</a>.</p>
 
-<div class="gdoc-page__anchorwrap"><h2 id="use-docker-compose">Use Docker Compose<a data-clipboard-text="https://owncloud.github.io/ocis/deployment/basic-remote-setup/#use-docker-compose" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Use Docker Compose" href="#use-docker-compose"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>We are using our <a href="https://github.com/owncloud-docker/compose-playground">docker compose playground</a> as a repository to share snippets that make our test setups easier and more aligned.</p>
-<p>You can start oCIS with docker very easily on a different host using this snippet.</p>
-<p>Let us assume your local IP is <code>192.168.103.195</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/owncloud-docker/compose-playground.git
-<span class="nb">cd</span> compose-playground/compose/ocis
-
-sed -i -e <span class="s1">&#39;s/your-url/192.168.103.195/g&#39;</span> config/identifier-registration.yml
-
-cat <span class="s">&lt;&lt; EOF &gt; .env
-</span><span class="s">OCIS_URL=https://192.168.103.195
-</span><span class="s">OCIS_DOCKER_TAG=latest
-</span><span class="s">EOF</span>
-
-curl -k https://192.168.103.195:9200/status.php
-</code></pre></div>
 
     </article>
 
