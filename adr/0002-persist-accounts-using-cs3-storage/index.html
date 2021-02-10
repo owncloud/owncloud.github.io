@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="File Picker">
+<meta name="description" content="0002 Persist Accounts Using Cs3 Storage">
 
-<title>File Picker | ownCloud</title>
+<title>0002 Persist Accounts Using Cs3 Storage | ownCloud</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -31,7 +31,6 @@
 <link rel="preload" href="/custom.css" as="style">
 <link rel="stylesheet" href="/custom.css" media="all">
 
-<link rel="alternate" type="application/rss+xml" href="https://owncloud.github.io/integration/file_picker/index.xml" title="ownCloud" />
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
 
 </head>
@@ -954,7 +953,7 @@
             
             
                 <span class="flex">
-                    <a href="/adr/0002-persist-accounts-using-cs3-storage/" class="gdoc-nav__entry ">
+                    <a href="/adr/0002-persist-accounts-using-cs3-storage/" class="gdoc-nav__entry is-active">
                         0002 Persist Accounts Using Cs3 Storage
                     </a>
                 </span>
@@ -2598,7 +2597,7 @@
             
             
                 <span class="flex">
-                    <a href="/integration/file_picker/" class="gdoc-nav__entry is-active">
+                    <a href="/integration/file_picker/" class="gdoc-nav__entry ">
                         File Picker
                     </a>
                 </span>
@@ -2728,7 +2727,7 @@
 
 
 
-<div class="gdoc-page__header flex flex-wrap justify-between" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+<div class="gdoc-page__header flex flex-wrap justify-between hidden-mobile" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
     <span>
         
         <span class="breadcrumb">
@@ -2747,7 +2746,7 @@
         
     
     
-        <a href='/'>ownCloud</a> / <a href='/integration/'>Integrations</a> / File Picker
+        <a href='/'>ownCloud</a> / <a href='/adr/'>Adrs</a> / 0002 Persist Accounts Using Cs3 Storage
     
 
     
@@ -2759,18 +2758,12 @@
     </span>
     <span>
         
-        <span class="editpage">
-            <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/file-picker/edit/master/docs/_index.md">
-                Edit this page
-            </a>
-        </span>
-        
     </span>
 </div>
 
+
     <article class="gdoc-markdown">
-        <h1>File Picker</h1>
+        <h1>0002 Persist Accounts Using Cs3 Storage</h1>
         
 
 
@@ -2778,7 +2771,31 @@
     
 
 
-<p>Easily integrate ownCloud into your own product.</p>
+<h1 id="2-persist-accounts-in-a-cs3-storage">2. Persist accounts in a CS3 storage</h1>
+<ul>
+<li>Status: accepted <!-- raw HTML omitted --></li>
+<li>Deciders: @butonic, @felixboehm <!-- raw HTML omitted --></li>
+<li>Date: 2020-08-21 <!-- raw HTML omitted --></li>
+</ul>
+<p>Technical Story: <a href="https://github.com/owncloud/ocis-accounts/pull/92">File system based indexing</a> <!-- raw HTML omitted --></p>
+<div class="gdoc-page__anchorwrap"><h2 id="context-and-problem-statement">Context and Problem Statement<a data-clipboard-text="https://owncloud.github.io/adr/0002-persist-accounts-using-cs3-storage/#context-and-problem-statement" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Context and Problem Statement" href="#context-and-problem-statement"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>To set up High Availability (HA) or a geo-replicated setup we need to persist accounts in a distributed way. To efficiently query the accounts by email or username, and not only by id, they need to be indexed. Unfortunately, the <a href="https://github.com/blevesearch/bleve">bleve</a> index we currently store locally on disk cannot be shared by multiple instances, preventing a scale out deployment.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="considered-options">Considered Options<a data-clipboard-text="https://owncloud.github.io/adr/0002-persist-accounts-using-cs3-storage/#considered-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Considered Options" href="#considered-options"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<ul>
+<li>Look into distributed bleve</li>
+<li>Persist users in a CS3 storage</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h2 id="decision-outcome">Decision Outcome<a data-clipboard-text="https://owncloud.github.io/adr/0002-persist-accounts-using-cs3-storage/#decision-outcome" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Decision Outcome" href="#decision-outcome"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>Chosen option: &ldquo;Persist users in a CS3 storage&rdquo;, because we have one service less running and can rely on the filesystem for geo-replication and HA.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="positive-consequences----optional---">Positive Consequences <!-- raw HTML omitted --><a data-clipboard-text="https://owncloud.github.io/adr/0002-persist-accounts-using-cs3-storage/#positive-consequences----optional---" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Positive Consequences <!-- raw HTML omitted -->" href="#positive-consequences----optional---"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>We can store accounts on the storage using the CS3 API, pushing geo-distribution to the storage layer.</li>
+<li>Backups of users and storage can be implemented without inconsistencies between using snapshots.</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h3 id="negative-consequences----optional---">Negative Consequences <!-- raw HTML omitted --><a data-clipboard-text="https://owncloud.github.io/adr/0002-persist-accounts-using-cs3-storage/#negative-consequences----optional---" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Negative Consequences <!-- raw HTML omitted -->" href="#negative-consequences----optional---"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>We need to spend time on implementing a reverse index based on files, and symlinks.</li>
+</ul>
 
 
     </article>
