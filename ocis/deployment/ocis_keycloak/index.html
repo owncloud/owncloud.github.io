@@ -519,29 +519,6 @@
             </li>
             
             
-            
-
-            
-            
-            
-            
-            
-
-            <li>
-            
-            
-                <span class="flex">
-                    <a href="/ocis/deployment/preparing_server/" class="gdoc-nav__entry ">
-                        Preparing a server
-                    </a>
-                </span>
-            
-            
-
-            
-            </li>
-            
-            
         
             
             
@@ -656,6 +633,31 @@
                 <span class="flex">
                     <a href="/ocis/deployment/bridge/" class="gdoc-nav__entry ">
                         Bridge
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/ocis/deployment/preparing_server/" class="gdoc-nav__entry ">
+                        Preparing a server
                     </a>
                 </span>
             
@@ -2857,6 +2859,12 @@ The file by default looks like this:</p>
 <span class="nv">OCIS_DOMAIN</span><span class="o">=</span>
 <span class="c1"># ownCloud Web openid connect client id. Defaults to &#34;ocis-web&#34;</span>
 <span class="nv">OCIS_OIDC_CLIENT_ID</span><span class="o">=</span>
+<span class="c1"># IDP LDAP bind password. Must be changed in order to have a secure oCIS. Defaults to &#34;idp&#34;.</span>
+<span class="nv">IDP_LDAP_BIND_PASSWORD</span><span class="o">=</span>
+<span class="c1"># Storage LDAP bind password. Must be changed in order to have a secure oCIS. Defaults to &#34;reva&#34;.</span>
+<span class="nv">STORAGE_LDAP_BIND_PASSWORD</span><span class="o">=</span>
+<span class="c1"># JWT secret which is used for the storage provider. Must be changed in order to have a secure oCIS. Defaults to &#34;Pive-Fumkiu4&#34;</span>
+<span class="nv">OCIS_JWT_SECRET</span><span class="o">=</span>
 
 <span class="c1">### Keycloak ###</span>
 <span class="c1"># Domain of Keycloak, where you can find the management and authentication frontend. Defaults to &#34;keycloak.owncloud.test&#34;</span>
@@ -2875,6 +2883,7 @@ The file by default looks like this:</p>
 <p>By default oCIS will be started in the <code>latest</code> version. If you want to start a specific version of oCIS set the version to <code>OCIS_DOCKER_TAG=</code>. Available versions can be found on <a href="https://hub.docker.com/r/owncloud/ocis/tags?page=1&amp;ordering=last_updated">Docker Hub</a>.</p>
 <p>Set your domain for the oCIS frontend in <code>OCIS_DOMAIN=</code>, eg. <code>OCIS_DOMAIN=ocis.owncloud.test</code>.</p>
 <p>If you want to change the OIDC client id of th ownCloud Web frontend, you can do this by setting the name to <code>OCIS_OIDC_CLIENT_ID=</code>.</p>
+<p>You also must override three default secrets in <code>IDP_LDAP_BIND_PASSWORD</code>, <code>STORAGE_LDAP_BIND_PASSWORD</code> and <code>OCIS_JWT_SECRET</code> in order to secure your oCIS instance. Choose some random strings eg. from the output of <code>openssl rand -base64 32</code>. For more information see <a href="https://owncloud.github.io/ocis/deployment/#secure-an-ocis-instance">secure an oCIS instance</a>.</p>
 <p>Set your domain for the Keycloak administration panel and authentication endpoints to <code>KEYCLOAK_DOMAIN=</code> eg. <code>KEYCLOAK_DOMAIN=keycloak.owncloud.test</code>.</p>
 <p>Changing the used Keycloak realm can be done by setting <code>KEYCLOAK_REALM=</code>. This defaults to the oCIS realm <code>KEYCLOAK_REALM=oCIS</code>. The oCIS realm will be automatically imported on startup and includes our demo users.</p>
 <p>You probably should secure your Keycloak admin account by setting <code>KEYCLOAK_ADMIN_USER=</code> and <code>KEYCLOAK_ADMIN_PASSWORD=</code> to values other than <code>admin</code>.</p>

@@ -519,29 +519,6 @@
             </li>
             
             
-            
-
-            
-            
-            
-            
-            
-
-            <li>
-            
-            
-                <span class="flex">
-                    <a href="/ocis/deployment/preparing_server/" class="gdoc-nav__entry ">
-                        Preparing a server
-                    </a>
-                </span>
-            
-            
-
-            
-            </li>
-            
-            
         
             
             
@@ -656,6 +633,31 @@
                 <span class="flex">
                     <a href="/ocis/deployment/bridge/" class="gdoc-nav__entry ">
                         Bridge
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/ocis/deployment/preparing_server/" class="gdoc-nav__entry ">
+                        Preparing a server
                     </a>
                 </span>
             
@@ -2852,12 +2854,19 @@ The file by default looks like this:</p>
 <span class="nv">OCIS_DOCKER_TAG</span><span class="o">=</span>
 <span class="c1"># Domain of oCIS, where you can find the frontend. Defaults to &#34;ocis.owncloud.test&#34;</span>
 <span class="nv">OCIS_DOMAIN</span><span class="o">=</span>
+<span class="c1"># IDP LDAP bind password. Must be changed in order to have a secure oCIS. Defaults to &#34;idp&#34;.</span>
+<span class="nv">IDP_LDAP_BIND_PASSWORD</span><span class="o">=</span>
+<span class="c1"># Storage LDAP bind password. Must be changed in order to have a secure oCIS. Defaults to &#34;reva&#34;.</span>
+<span class="nv">STORAGE_LDAP_BIND_PASSWORD</span><span class="o">=</span>
+<span class="c1"># JWT secret which is used for the storage provider. Must be changed in order to have a secure oCIS. Defaults to &#34;Pive-Fumkiu4&#34;</span>
+<span class="nv">OCIS_JWT_SECRET</span><span class="o">=</span>
 </code></pre></div><p>You are installing oCIS on a server and Traefik will obtain valid certificates for you so please remove <code>INSECURE=true</code> or set it to <code>false</code>.</p>
 <p>If you want to use the Traefik dashboard, set TRAEFIK_DASHBOARD to <code>true</code> (default is <code>false</code> and therefore not active). If you activate it, you must set a domain for the Traefik dashboard in <code>TRAEFIK_DOMAIN=</code> eg. <code>TRAEFIK_DOMAIN=traefik.owncloud.test</code>.</p>
 <p>The Traefik dashboard is secured by basic auth. Default credentials are the user <code>admin</code> with the password <code>admin</code>. To set your own credentials, generate a htpasswd (eg. by using <a href="https://htpasswdgenerator.de/">an online tool</a> or a cli tool).</p>
 <p>Traefik will issue certificates with LetsEncrypt and therefore you must set an email address in <code>TRAEFIK_ACME_MAIL=</code>.</p>
 <p>By default ocis will be started in the <code>latest</code> version. If you want to start a specific version of oCIS set the version to <code>OCIS_DOCKER_TAG=</code>. Available versions can be found on <a href="https://hub.docker.com/r/owncloud/ocis/tags?page=1&amp;ordering=last_updated">Docker Hub</a>.</p>
 <p>Set your domain for the oCIS frontend in <code>OCIS_DOMAIN=</code>, eg. <code>OCIS_DOMAIN=ocis.owncloud.test</code>.</p>
+<p>You also must override three default secrets in <code>IDP_LDAP_BIND_PASSWORD</code>, <code>STORAGE_LDAP_BIND_PASSWORD</code> and <code>OCIS_JWT_SECRET</code> in order to secure your oCIS instance. Choose some random strings eg. from the output of <code>openssl rand -base64 32</code>. For more information see <a href="https://owncloud.github.io/ocis/deployment/#secure-an-ocis-instance">secure an oCIS instance</a>.</p>
 <p>Now you have configured everything and can save the file.</p>
 </li>
 <li>
