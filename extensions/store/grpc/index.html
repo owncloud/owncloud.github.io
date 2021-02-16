@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Glossary">
+<meta name="description" content="GRPC API">
 
-<title>Glossary | ownCloud</title>
+<title>GRPC API | ownCloud</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -2218,7 +2218,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-1d52f55f" class="gdoc-nav__toggle" checked>
+            <input type="checkbox" id="navtree-1d52f55f" class="gdoc-nav__toggle" >
             <label for="navtree-1d52f55f" class="flex justify-between">
             
             
@@ -2351,7 +2351,7 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/settings/glossary/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/settings/glossary/" class="gdoc-nav__entry ">
                         Glossary
                     </a>
                 </span>
@@ -2542,7 +2542,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-c7cdab52" class="gdoc-nav__toggle" >
+            <input type="checkbox" id="navtree-c7cdab52" class="gdoc-nav__toggle" checked>
             <label for="navtree-c7cdab52" class="flex justify-between">
             
             
@@ -2602,7 +2602,7 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/store/grpc/" class="gdoc-nav__entry ">
+                    <a href="/extensions/store/grpc/" class="gdoc-nav__entry is-active">
                         GRPC API
                     </a>
                 </span>
@@ -2966,7 +2966,7 @@
         
     
     
-        <a href='/'>ownCloud</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/settings/'>Settings</a> / Glossary
+        <a href='/'>ownCloud</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/store/'>Store</a> / GRPC API
     
 
     
@@ -2982,7 +2982,7 @@
         
         <span class="editpage">
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/oci/edit/master/docs/extensions/settings/glossary.md">
+            <a href="https://github.com/owncloud/ocis-thumbnails/edit/master/docs/grpc.md">
                 Edit this page
             </a>
         </span>
@@ -2992,7 +2992,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>Glossary</h1>
+        <h1>GRPC API</h1>
         
 
 
@@ -3000,39 +3000,692 @@
     
 
 
-<p>In the context of this extension and oCIS in general, we are using the following terminology.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="configuration">Configuration<a data-clipboard-text="https://owncloud.github.io/extensions/settings/glossary/#configuration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configuration" href="#configuration"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<ul>
-<li>System configuration</li>
-<li>e.g. service host names and ports</li>
-<li>Changes need to be propagated to other services</li>
-<li>Typically modified on the CLI</li>
-</ul>
-<div class="gdoc-page__anchorwrap"><h3 id="settings">Settings<a data-clipboard-text="https://owncloud.github.io/extensions/settings/glossary/#settings" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Settings" href="#settings"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<ul>
-<li>Application level settings</li>
-<li>e.g. default language</li>
-<li>Can be modified at runtime without restarting the service</li>
-<li>Typically modified in the UI</li>
-</ul>
-<div class="gdoc-page__anchorwrap"><h3 id="preferences">Preferences<a data-clipboard-text="https://owncloud.github.io/extensions/settings/glossary/#preferences" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Preferences" href="#preferences"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<ul>
-<li>User settings</li>
-<li>Subset of &ldquo;Settings&rdquo;</li>
-<li>e.g. preferred language of a user</li>
-</ul>
-<div class="gdoc-page__anchorwrap"><h3 id="settings-bundle">Settings Bundle<a data-clipboard-text="https://owncloud.github.io/extensions/settings/glossary/#settings-bundle" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Settings Bundle" href="#settings-bundle"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<ul>
-<li>Collection of related settings</li>
-<li>Registered by an oCIS extension</li>
-</ul>
-<div class="gdoc-page__anchorwrap"><h3 id="settings-value">Settings Value<a data-clipboard-text="https://owncloud.github.io/extensions/settings/glossary/#settings-value" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Settings Value" href="#settings-value"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<ul>
-<li>Manifestation of a setting for a specific user</li>
-<li>E.g. used for customization (at runtime) in <code>ocis-web</code></li>
-<li><code>ocis-web-settings</code> extension for modifying settings values is provided by this service</li>
-<li>Can be queried and modified by other oCIS extensions</li>
-</ul>
+
+
+
+  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
+        <li><a href="#storeproto">store.proto</a>
+          <ul>
+            <li><a href="#databasesrequest">DatabasesRequest</a></li>
+            <li><a href="#databasesresponse">DatabasesResponse</a></li>
+            <li><a href="#deleteoptions">DeleteOptions</a></li>
+            <li><a href="#deleterequest">DeleteRequest</a></li>
+            <li><a href="#deleteresponse">DeleteResponse</a></li>
+            <li><a href="#field">Field</a></li>
+            <li><a href="#listoptions">ListOptions</a></li>
+            <li><a href="#listrequest">ListRequest</a></li>
+            <li><a href="#listresponse">ListResponse</a></li>
+            <li><a href="#readoptions">ReadOptions</a></li>
+            <li><a href="#readoptionswhereentry">ReadOptions.WhereEntry</a></li>
+            <li><a href="#readrequest">ReadRequest</a></li>
+            <li><a href="#readresponse">ReadResponse</a></li>
+            <li><a href="#record">Record</a></li>
+            <li><a href="#recordmetadataentry">Record.MetadataEntry</a></li>
+            <li><a href="#tablesrequest">TablesRequest</a></li>
+            <li><a href="#tablesresponse">TablesResponse</a></li>
+            <li><a href="#writeoptions">WriteOptions</a></li>
+            <li><a href="#writerequest">WriteRequest</a></li>
+            <li><a href="#writeresponse">WriteResponse</a></li>
+            <li><a href="#store">Store</a></li>
+          </ul>
+        </li>
+        <li><a href="#scalar-value-types">Scalar Value Types</a></li>
+      </ul></nav><hr></div>
+
+
+<div class="gdoc-page__anchorwrap"><h2 id="storeproto">store.proto<a data-clipboard-text="https://owncloud.github.io/extensions/store/grpc/#storeproto" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor store.proto" href="#storeproto"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<div class="gdoc-page__anchorwrap"><h3 id="databasesrequest">DatabasesRequest<a data-clipboard-text="https://owncloud.github.io/extensions/store/grpc/#databasesrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor DatabasesRequest" href="#databasesrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<div class="gdoc-page__anchorwrap"><h3 id="databasesresponse">DatabasesResponse<a data-clipboard-text="https://owncloud.github.io/extensions/store/grpc/#databasesresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor DatabasesResponse" href="#databasesresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>databases</td>
+<td><a href="#string">string</a></td>
+<td>repeated</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="deleteoptions">DeleteOptions<a data-clipboard-text="https://owncloud.github.io/extensions/store/grpc/#deleteoptions" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor DeleteOptions" href="#deleteoptions"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>database</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>table</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="deleterequest">DeleteRequest<a data-clipboard-text="https://owncloud.github.io/extensions/store/grpc/#deleterequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor DeleteRequest" href="#deleterequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>key</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>options</td>
+<td><a href="#deleteoptions">DeleteOptions</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="deleteresponse">DeleteResponse<a data-clipboard-text="https://owncloud.github.io/extensions/store/grpc/#deleteresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor DeleteResponse" href="#deleteresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<div class="gdoc-page__anchorwrap"><h3 id="field">Field<a data-clipboard-text="https://owncloud.github.io/extensions/store/grpc/#field" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Field" href="#field"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>type of value e.g string, int, int64, bool, float64</td>
+</tr>
+<tr>
+<td>value</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>the actual value</td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="listoptions">ListOptions<a data-clipboard-text="https://owncloud.github.io/extensions/store/grpc/#listoptions" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListOptions" href="#listoptions"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>database</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>table</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>prefix</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>suffix</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>limit</td>
+<td><a href="#uint64">uint64</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>offset</td>
+<td><a href="#uint64">uint64</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="listrequest">ListRequest<a data-clipboard-text="https://owncloud.github.io/extensions/store/grpc/#listrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListRequest" href="#listrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>options</td>
+<td><a href="#listoptions">ListOptions</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="listresponse">ListResponse<a data-clipboard-text="https://owncloud.github.io/extensions/store/grpc/#listresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListResponse" href="#listresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keys</td>
+<td><a href="#string">string</a></td>
+<td>repeated</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="readoptions">ReadOptions<a data-clipboard-text="https://owncloud.github.io/extensions/store/grpc/#readoptions" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ReadOptions" href="#readoptions"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>database</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>table</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>prefix</td>
+<td><a href="#bool">bool</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>suffix</td>
+<td><a href="#bool">bool</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>limit</td>
+<td><a href="#uint64">uint64</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>offset</td>
+<td><a href="#uint64">uint64</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>where</td>
+<td><a href="#readoptionswhereentry">ReadOptions.WhereEntry</a></td>
+<td>repeated</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="readoptionswhereentry">ReadOptions.WhereEntry<a data-clipboard-text="https://owncloud.github.io/extensions/store/grpc/#readoptionswhereentry" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ReadOptions.WhereEntry" href="#readoptionswhereentry"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>key</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>value</td>
+<td><a href="#field">Field</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="readrequest">ReadRequest<a data-clipboard-text="https://owncloud.github.io/extensions/store/grpc/#readrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ReadRequest" href="#readrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>key</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>options</td>
+<td><a href="#readoptions">ReadOptions</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="readresponse">ReadResponse<a data-clipboard-text="https://owncloud.github.io/extensions/store/grpc/#readresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ReadResponse" href="#readresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>records</td>
+<td><a href="#record">Record</a></td>
+<td>repeated</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="record">Record<a data-clipboard-text="https://owncloud.github.io/extensions/store/grpc/#record" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Record" href="#record"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>key</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>key of the recorda</td>
+</tr>
+<tr>
+<td>value</td>
+<td><a href="#bytes">bytes</a></td>
+<td></td>
+<td>value in the record</td>
+</tr>
+<tr>
+<td>expiry</td>
+<td><a href="#int64">int64</a></td>
+<td></td>
+<td>time.Duration (signed int64 nanoseconds)</td>
+</tr>
+<tr>
+<td>metadata</td>
+<td><a href="#recordmetadataentry">Record.MetadataEntry</a></td>
+<td>repeated</td>
+<td>the associated metadata</td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="recordmetadataentry">Record.MetadataEntry<a data-clipboard-text="https://owncloud.github.io/extensions/store/grpc/#recordmetadataentry" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Record.MetadataEntry" href="#recordmetadataentry"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>key</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>value</td>
+<td><a href="#field">Field</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="tablesrequest">TablesRequest<a data-clipboard-text="https://owncloud.github.io/extensions/store/grpc/#tablesrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor TablesRequest" href="#tablesrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>database</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="tablesresponse">TablesResponse<a data-clipboard-text="https://owncloud.github.io/extensions/store/grpc/#tablesresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor TablesResponse" href="#tablesresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tables</td>
+<td><a href="#string">string</a></td>
+<td>repeated</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="writeoptions">WriteOptions<a data-clipboard-text="https://owncloud.github.io/extensions/store/grpc/#writeoptions" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor WriteOptions" href="#writeoptions"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>database</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>table</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>expiry</td>
+<td><a href="#int64">int64</a></td>
+<td></td>
+<td>time.Time</td>
+</tr>
+<tr>
+<td>ttl</td>
+<td><a href="#int64">int64</a></td>
+<td></td>
+<td>time.Duration</td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="writerequest">WriteRequest<a data-clipboard-text="https://owncloud.github.io/extensions/store/grpc/#writerequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor WriteRequest" href="#writerequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>record</td>
+<td><a href="#record">Record</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>options</td>
+<td><a href="#writeoptions">WriteOptions</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="writeresponse">WriteResponse<a data-clipboard-text="https://owncloud.github.io/extensions/store/grpc/#writeresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor WriteResponse" href="#writeresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<div class="gdoc-page__anchorwrap"><h3 id="store">Store<a data-clipboard-text="https://owncloud.github.io/extensions/store/grpc/#store" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Store" href="#store"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Method Name</th>
+<th>Request Type</th>
+<th>Response Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read</td>
+<td><a href="#readrequest">ReadRequest</a></td>
+<td><a href="#readresponse">ReadResponse</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Write</td>
+<td><a href="#writerequest">WriteRequest</a></td>
+<td><a href="#writeresponse">WriteResponse</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Delete</td>
+<td><a href="#deleterequest">DeleteRequest</a></td>
+<td><a href="#deleteresponse">DeleteResponse</a></td>
+<td></td>
+</tr>
+<tr>
+<td>List</td>
+<td><a href="#listrequest">ListRequest</a></td>
+<td><a href="#listresponse">ListResponse</a> stream</td>
+<td></td>
+</tr>
+<tr>
+<td>Databases</td>
+<td><a href="#databasesrequest">DatabasesRequest</a></td>
+<td><a href="#databasesresponse">DatabasesResponse</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Tables</td>
+<td><a href="#tablesrequest">TablesRequest</a></td>
+<td><a href="#tablesresponse">TablesResponse</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h2 id="scalar-value-types">Scalar Value Types<a data-clipboard-text="https://owncloud.github.io/extensions/store/grpc/#scalar-value-types" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Scalar Value Types" href="#scalar-value-types"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<table>
+<thead>
+<tr>
+<th>.proto Type</th>
+<th>Notes</th>
+<th>C++</th>
+<th>Java</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><div  id="double">
+    double
+</div></td>
+<td></td>
+<td>double</td>
+<td>double</td>
+</tr>
+<tr>
+<td><div  id="float">
+    float
+</div></td>
+<td></td>
+<td>float</td>
+<td>float</td>
+</tr>
+<tr>
+<td><div  id="int32">
+    int32
+</div></td>
+<td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+<td>int32</td>
+<td>int</td>
+</tr>
+<tr>
+<td><div  id="int64">
+    int64
+</div></td>
+<td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+<td>int64</td>
+<td>long</td>
+</tr>
+<tr>
+<td><div  id="uint32">
+    uint32
+</div></td>
+<td>Uses variable-length encoding.</td>
+<td>uint32</td>
+<td>int</td>
+</tr>
+<tr>
+<td><div  id="uint64">
+    uint64
+</div></td>
+<td>Uses variable-length encoding.</td>
+<td>uint64</td>
+<td>long</td>
+</tr>
+<tr>
+<td><div  id="sint32">
+    sint32
+</div></td>
+<td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+<td>int32</td>
+<td>int</td>
+</tr>
+<tr>
+<td><div  id="sint64">
+    sint64
+</div></td>
+<td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+<td>int64</td>
+<td>long</td>
+</tr>
+<tr>
+<td><div  id="fixed32">
+    fixed32
+</div></td>
+<td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+<td>uint32</td>
+<td>int</td>
+</tr>
+<tr>
+<td><div  id="fixed64">
+    fixed64
+</div></td>
+<td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+<td>uint64</td>
+<td>long</td>
+</tr>
+<tr>
+<td><div  id="sfixed32">
+    sfixed32
+</div></td>
+<td>Always four bytes.</td>
+<td>int32</td>
+<td>int</td>
+</tr>
+<tr>
+<td><div  id="sfixed64">
+    sfixed64
+</div></td>
+<td>Always eight bytes.</td>
+<td>int64</td>
+<td>long</td>
+</tr>
+<tr>
+<td><div  id="bool">
+    bool
+</div></td>
+<td></td>
+<td>bool</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td><div  id="string">
+    string
+</div></td>
+<td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+<td>string</td>
+<td>String</td>
+</tr>
+<tr>
+<td><div  id="bytes">
+    bytes
+</div></td>
+<td>May contain any arbitrary sequence of bytes.</td>
+<td>string</td>
+<td>ByteString</td>
+</tr>
+</tbody>
+</table>
 
 
     </article>

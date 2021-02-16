@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Glossary">
+<meta name="description" content="GRPC API">
 
-<title>Glossary | ownCloud</title>
+<title>GRPC API | ownCloud</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -2278,7 +2278,7 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/settings/grpc/" class="gdoc-nav__entry ">
+                    <a href="/extensions/settings/grpc/" class="gdoc-nav__entry is-active">
                         GRPC API
                     </a>
                 </span>
@@ -2351,7 +2351,7 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/settings/glossary/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/settings/glossary/" class="gdoc-nav__entry ">
                         Glossary
                     </a>
                 </span>
@@ -2966,7 +2966,7 @@
         
     
     
-        <a href='/'>ownCloud</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/settings/'>Settings</a> / Glossary
+        <a href='/'>ownCloud</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/settings/'>Settings</a> / GRPC API
     
 
     
@@ -2982,7 +2982,7 @@
         
         <span class="editpage">
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/oci/edit/master/docs/extensions/settings/glossary.md">
+            <a href="https://github.com/owncloud/ocis-thumbnails/edit/master/docs/grpc.md">
                 Edit this page
             </a>
         </span>
@@ -2992,7 +2992,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>Glossary</h1>
+        <h1>GRPC API</h1>
         
 
 
@@ -3000,39 +3000,1574 @@
     
 
 
-<p>In the context of this extension and oCIS in general, we are using the following terminology.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="configuration">Configuration<a data-clipboard-text="https://owncloud.github.io/extensions/settings/glossary/#configuration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configuration" href="#configuration"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<ul>
-<li>System configuration</li>
-<li>e.g. service host names and ports</li>
-<li>Changes need to be propagated to other services</li>
-<li>Typically modified on the CLI</li>
-</ul>
-<div class="gdoc-page__anchorwrap"><h3 id="settings">Settings<a data-clipboard-text="https://owncloud.github.io/extensions/settings/glossary/#settings" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Settings" href="#settings"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<ul>
-<li>Application level settings</li>
-<li>e.g. default language</li>
-<li>Can be modified at runtime without restarting the service</li>
-<li>Typically modified in the UI</li>
-</ul>
-<div class="gdoc-page__anchorwrap"><h3 id="preferences">Preferences<a data-clipboard-text="https://owncloud.github.io/extensions/settings/glossary/#preferences" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Preferences" href="#preferences"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<ul>
-<li>User settings</li>
-<li>Subset of &ldquo;Settings&rdquo;</li>
-<li>e.g. preferred language of a user</li>
-</ul>
-<div class="gdoc-page__anchorwrap"><h3 id="settings-bundle">Settings Bundle<a data-clipboard-text="https://owncloud.github.io/extensions/settings/glossary/#settings-bundle" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Settings Bundle" href="#settings-bundle"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<ul>
-<li>Collection of related settings</li>
-<li>Registered by an oCIS extension</li>
-</ul>
-<div class="gdoc-page__anchorwrap"><h3 id="settings-value">Settings Value<a data-clipboard-text="https://owncloud.github.io/extensions/settings/glossary/#settings-value" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Settings Value" href="#settings-value"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<ul>
-<li>Manifestation of a setting for a specific user</li>
-<li>E.g. used for customization (at runtime) in <code>ocis-web</code></li>
-<li><code>ocis-web-settings</code> extension for modifying settings values is provided by this service</li>
-<li>Can be queried and modified by other oCIS extensions</li>
-</ul>
+
+
+
+  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
+        <li><a href="#settingsproto">settings.proto</a>
+          <ul>
+            <li><a href="#addsettingtobundlerequest">AddSettingToBundleRequest</a></li>
+            <li><a href="#addsettingtobundleresponse">AddSettingToBundleResponse</a></li>
+            <li><a href="#assignroletouserrequest">AssignRoleToUserRequest</a></li>
+            <li><a href="#assignroletouserresponse">AssignRoleToUserResponse</a></li>
+            <li><a href="#bool">Bool</a></li>
+            <li><a href="#bundle">Bundle</a></li>
+            <li><a href="#getbundlerequest">GetBundleRequest</a></li>
+            <li><a href="#getbundleresponse">GetBundleResponse</a></li>
+            <li><a href="#getpermissionbyidrequest">GetPermissionByIDRequest</a></li>
+            <li><a href="#getpermissionbyidresponse">GetPermissionByIDResponse</a></li>
+            <li><a href="#getvaluebyuniqueidentifiersrequest">GetValueByUniqueIdentifiersRequest</a></li>
+            <li><a href="#getvaluerequest">GetValueRequest</a></li>
+            <li><a href="#getvalueresponse">GetValueResponse</a></li>
+            <li><a href="#identifier">Identifier</a></li>
+            <li><a href="#int">Int</a></li>
+            <li><a href="#listbundlesrequest">ListBundlesRequest</a></li>
+            <li><a href="#listbundlesresponse">ListBundlesResponse</a></li>
+            <li><a href="#listoption">ListOption</a></li>
+            <li><a href="#listoptionvalue">ListOptionValue</a></li>
+            <li><a href="#listpermissionsbyresourcerequest">ListPermissionsByResourceRequest</a></li>
+            <li><a href="#listpermissionsbyresourceresponse">ListPermissionsByResourceResponse</a></li>
+            <li><a href="#listroleassignmentsrequest">ListRoleAssignmentsRequest</a></li>
+            <li><a href="#listroleassignmentsresponse">ListRoleAssignmentsResponse</a></li>
+            <li><a href="#listvalue">ListValue</a></li>
+            <li><a href="#listvaluesrequest">ListValuesRequest</a></li>
+            <li><a href="#listvaluesresponse">ListValuesResponse</a></li>
+            <li><a href="#multichoicelist">MultiChoiceList</a></li>
+            <li><a href="#permission">Permission</a></li>
+            <li><a href="#removerolefromuserrequest">RemoveRoleFromUserRequest</a></li>
+            <li><a href="#removesettingfrombundlerequest">RemoveSettingFromBundleRequest</a></li>
+            <li><a href="#resource">Resource</a></li>
+            <li><a href="#savebundlerequest">SaveBundleRequest</a></li>
+          </ul>
+        </li>
+        <li><a href="#requests-and-responses-for-settings-bundles">requests and responses for settings bundles</a>
+          <ul>
+            <li><a href="#savebundleresponse">SaveBundleResponse</a></li>
+            <li><a href="#savevaluerequest">SaveValueRequest</a></li>
+            <li><a href="#savevalueresponse">SaveValueResponse</a></li>
+            <li><a href="#setting">Setting</a></li>
+            <li><a href="#singlechoicelist">SingleChoiceList</a></li>
+            <li><a href="#string">String</a></li>
+            <li><a href="#userroleassignment">UserRoleAssignment</a></li>
+            <li><a href="#value">Value</a></li>
+            <li><a href="#valuewithidentifier">ValueWithIdentifier</a></li>
+            <li><a href="#bundletype">Bundle.Type</a></li>
+            <li><a href="#permissionconstraint">Permission.Constraint</a></li>
+            <li><a href="#permissionoperation">Permission.Operation</a></li>
+            <li><a href="#resourcetype">Resource.Type</a></li>
+            <li><a href="#bundleservice">BundleService</a></li>
+            <li><a href="#permissionservice">PermissionService</a></li>
+            <li><a href="#roleservice">RoleService</a></li>
+            <li><a href="#valueservice">ValueService</a></li>
+          </ul>
+        </li>
+        <li><a href="#scalar-value-types">Scalar Value Types</a></li>
+      </ul></nav><hr></div>
+
+
+<div class="gdoc-page__anchorwrap"><h2 id="settingsproto">settings.proto<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#settingsproto" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor settings.proto" href="#settingsproto"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<div class="gdoc-page__anchorwrap"><h3 id="addsettingtobundlerequest">AddSettingToBundleRequest<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#addsettingtobundlerequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor AddSettingToBundleRequest" href="#addsettingtobundlerequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bundle_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>setting</td>
+<td><a href="#setting">Setting</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="addsettingtobundleresponse">AddSettingToBundleResponse<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#addsettingtobundleresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor AddSettingToBundleResponse" href="#addsettingtobundleresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>setting</td>
+<td><a href="#setting">Setting</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="assignroletouserrequest">AssignRoleToUserRequest<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#assignroletouserrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor AssignRoleToUserRequest" href="#assignroletouserrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_uuid</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>role_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>the role_id is a bundle_id internally</td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="assignroletouserresponse">AssignRoleToUserResponse<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#assignroletouserresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor AssignRoleToUserResponse" href="#assignroletouserresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>assignment</td>
+<td><a href="#userroleassignment">UserRoleAssignment</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="bool">Bool<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#bool" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Bool" href="#bool"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>default</td>
+<td><a href="#bool">bool</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>label</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="bundle">Bundle<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#bundle" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Bundle" href="#bundle"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td><a href="#bundletype">Bundle.Type</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>extension</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>display_name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>settings</td>
+<td><a href="#setting">Setting</a></td>
+<td>repeated</td>
+<td></td>
+</tr>
+<tr>
+<td>resource</td>
+<td><a href="#resource">Resource</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="getbundlerequest">GetBundleRequest<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#getbundlerequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor GetBundleRequest" href="#getbundlerequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bundle_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="getbundleresponse">GetBundleResponse<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#getbundleresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor GetBundleResponse" href="#getbundleresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bundle</td>
+<td><a href="#bundle">Bundle</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="getpermissionbyidrequest">GetPermissionByIDRequest<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#getpermissionbyidrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor GetPermissionByIDRequest" href="#getpermissionbyidrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>permission_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="getpermissionbyidresponse">GetPermissionByIDResponse<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#getpermissionbyidresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor GetPermissionByIDResponse" href="#getpermissionbyidresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>permission</td>
+<td><a href="#permission">Permission</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="getvaluebyuniqueidentifiersrequest">GetValueByUniqueIdentifiersRequest<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#getvaluebyuniqueidentifiersrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor GetValueByUniqueIdentifiersRequest" href="#getvaluebyuniqueidentifiersrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_uuid</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>setting_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="getvaluerequest">GetValueRequest<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#getvaluerequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor GetValueRequest" href="#getvaluerequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="getvalueresponse">GetValueResponse<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#getvalueresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor GetValueResponse" href="#getvalueresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td><a href="#valuewithidentifier">ValueWithIdentifier</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="identifier">Identifier<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#identifier" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Identifier" href="#identifier"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>extension</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>bundle</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>setting</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="int">Int<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#int" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Int" href="#int"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>default</td>
+<td><a href="#int64">int64</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>min</td>
+<td><a href="#int64">int64</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>max</td>
+<td><a href="#int64">int64</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>step</td>
+<td><a href="#int64">int64</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>placeholder</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="listbundlesrequest">ListBundlesRequest<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#listbundlesrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListBundlesRequest" href="#listbundlesrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bundle_ids</td>
+<td><a href="#string">string</a></td>
+<td>repeated</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="listbundlesresponse">ListBundlesResponse<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#listbundlesresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListBundlesResponse" href="#listbundlesresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bundles</td>
+<td><a href="#bundle">Bundle</a></td>
+<td>repeated</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="listoption">ListOption<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#listoption" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListOption" href="#listoption"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td><a href="#listoptionvalue">ListOptionValue</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>default</td>
+<td><a href="#bool">bool</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>display_value</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="listoptionvalue">ListOptionValue<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#listoptionvalue" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListOptionValue" href="#listoptionvalue"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>string_value</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>int_value</td>
+<td><a href="#int64">int64</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="listpermissionsbyresourcerequest">ListPermissionsByResourceRequest<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#listpermissionsbyresourcerequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListPermissionsByResourceRequest" href="#listpermissionsbyresourcerequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>resource</td>
+<td><a href="#resource">Resource</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="listpermissionsbyresourceresponse">ListPermissionsByResourceResponse<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#listpermissionsbyresourceresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListPermissionsByResourceResponse" href="#listpermissionsbyresourceresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>permissions</td>
+<td><a href="#permission">Permission</a></td>
+<td>repeated</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="listroleassignmentsrequest">ListRoleAssignmentsRequest<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#listroleassignmentsrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListRoleAssignmentsRequest" href="#listroleassignmentsrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_uuid</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="listroleassignmentsresponse">ListRoleAssignmentsResponse<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#listroleassignmentsresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListRoleAssignmentsResponse" href="#listroleassignmentsresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>assignments</td>
+<td><a href="#userroleassignment">UserRoleAssignment</a></td>
+<td>repeated</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="listvalue">ListValue<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#listvalue" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListValue" href="#listvalue"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>values</td>
+<td><a href="#listoptionvalue">ListOptionValue</a></td>
+<td>repeated</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="listvaluesrequest">ListValuesRequest<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#listvaluesrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListValuesRequest" href="#listvaluesrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bundle_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>account_uuid</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="listvaluesresponse">ListValuesResponse<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#listvaluesresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListValuesResponse" href="#listvaluesresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>values</td>
+<td><a href="#valuewithidentifier">ValueWithIdentifier</a></td>
+<td>repeated</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="multichoicelist">MultiChoiceList<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#multichoicelist" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor MultiChoiceList" href="#multichoicelist"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>options</td>
+<td><a href="#listoption">ListOption</a></td>
+<td>repeated</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="permission">Permission<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#permission" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Permission" href="#permission"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>operation</td>
+<td><a href="#permissionoperation">Permission.Operation</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>constraint</td>
+<td><a href="#permissionconstraint">Permission.Constraint</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="removerolefromuserrequest">RemoveRoleFromUserRequest<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#removerolefromuserrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor RemoveRoleFromUserRequest" href="#removerolefromuserrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="removesettingfrombundlerequest">RemoveSettingFromBundleRequest<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#removesettingfrombundlerequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor RemoveSettingFromBundleRequest" href="#removesettingfrombundlerequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bundle_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>setting_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="resource">Resource<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#resource" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Resource" href="#resource"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td><a href="#resourcetype">Resource.Type</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="savebundlerequest">SaveBundleRequest<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#savebundlerequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor SaveBundleRequest" href="#savebundlerequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<hr>
+<div class="gdoc-page__anchorwrap"><h2 id="requests-and-responses-for-settings-bundles">requests and responses for settings bundles<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#requests-and-responses-for-settings-bundles" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor requests and responses for settings bundles" href="#requests-and-responses-for-settings-bundles"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bundle</td>
+<td><a href="#bundle">Bundle</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="savebundleresponse">SaveBundleResponse<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#savebundleresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor SaveBundleResponse" href="#savebundleresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bundle</td>
+<td><a href="#bundle">Bundle</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="savevaluerequest">SaveValueRequest<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#savevaluerequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor SaveValueRequest" href="#savevaluerequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td><a href="#value">Value</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="savevalueresponse">SaveValueResponse<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#savevalueresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor SaveValueResponse" href="#savevalueresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td><a href="#valuewithidentifier">ValueWithIdentifier</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="setting">Setting<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#setting" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setting" href="#setting"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>display_name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>description</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>int_value</td>
+<td><a href="#int">Int</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>string_value</td>
+<td><a href="#string">String</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>bool_value</td>
+<td><a href="#bool">Bool</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>single_choice_value</td>
+<td><a href="#singlechoicelist">SingleChoiceList</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>multi_choice_value</td>
+<td><a href="#multichoicelist">MultiChoiceList</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>permission_value</td>
+<td><a href="#permission">Permission</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>resource</td>
+<td><a href="#resource">Resource</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="singlechoicelist">SingleChoiceList<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#singlechoicelist" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor SingleChoiceList" href="#singlechoicelist"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>options</td>
+<td><a href="#listoption">ListOption</a></td>
+<td>repeated</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="string">String<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#string" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor String" href="#string"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>default</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>required</td>
+<td><a href="#bool">bool</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>min_length</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>max_length</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>placeholder</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="userroleassignment">UserRoleAssignment<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#userroleassignment" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor UserRoleAssignment" href="#userroleassignment"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>id is generated upon saving the assignment</td>
+</tr>
+<tr>
+<td>account_uuid</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>role_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>the role_id is a bundle_id internally</td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="value">Value<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#value" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Value" href="#value"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>id is the id of the Value. It is generated on saving it.</td>
+</tr>
+<tr>
+<td>bundle_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>setting_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>setting_id is the id of the setting from within its bundle.</td>
+</tr>
+<tr>
+<td>account_uuid</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>resource</td>
+<td><a href="#resource">Resource</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>bool_value</td>
+<td><a href="#bool">bool</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>int_value</td>
+<td><a href="#int64">int64</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>string_value</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>list_value</td>
+<td><a href="#listvalue">ListValue</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="valuewithidentifier">ValueWithIdentifier<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#valuewithidentifier" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ValueWithIdentifier" href="#valuewithidentifier"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>identifier</td>
+<td><a href="#identifier">Identifier</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>value</td>
+<td><a href="#value">Value</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="bundletype">Bundle.Type<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#bundletype" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Bundle.Type" href="#bundletype"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TYPE_UNKNOWN</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>TYPE_DEFAULT</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>TYPE_ROLE</td>
+<td>2</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="permissionconstraint">Permission.Constraint<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#permissionconstraint" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Permission.Constraint" href="#permissionconstraint"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CONSTRAINT_UNKNOWN</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>CONSTRAINT_OWN</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>CONSTRAINT_SHARED</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>CONSTRAINT_ALL</td>
+<td>3</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="permissionoperation">Permission.Operation<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#permissionoperation" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Permission.Operation" href="#permissionoperation"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OPERATION_UNKNOWN</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>OPERATION_CREATE</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>OPERATION_READ</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>OPERATION_UPDATE</td>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td>OPERATION_DELETE</td>
+<td>4</td>
+<td></td>
+</tr>
+<tr>
+<td>OPERATION_WRITE</td>
+<td>5</td>
+<td>WRITE is a combination of CREATE and UPDATE</td>
+</tr>
+<tr>
+<td>OPERATION_READWRITE</td>
+<td>6</td>
+<td>READWRITE is a combination of READ and WRITE</td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="resourcetype">Resource.Type<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#resourcetype" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Resource.Type" href="#resourcetype"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TYPE_UNKNOWN</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>TYPE_SYSTEM</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>TYPE_FILE</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>TYPE_SHARE</td>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td>TYPE_SETTING</td>
+<td>4</td>
+<td></td>
+</tr>
+<tr>
+<td>TYPE_BUNDLE</td>
+<td>5</td>
+<td></td>
+</tr>
+<tr>
+<td>TYPE_USER</td>
+<td>6</td>
+<td></td>
+</tr>
+<tr>
+<td>TYPE_GROUP</td>
+<td>7</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="bundleservice">BundleService<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#bundleservice" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor BundleService" href="#bundleservice"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Method Name</th>
+<th>Request Type</th>
+<th>Response Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SaveBundle</td>
+<td><a href="#savebundlerequest">SaveBundleRequest</a></td>
+<td><a href="#savebundleresponse">SaveBundleResponse</a></td>
+<td></td>
+</tr>
+<tr>
+<td>GetBundle</td>
+<td><a href="#getbundlerequest">GetBundleRequest</a></td>
+<td><a href="#getbundleresponse">GetBundleResponse</a></td>
+<td></td>
+</tr>
+<tr>
+<td>ListBundles</td>
+<td><a href="#listbundlesrequest">ListBundlesRequest</a></td>
+<td><a href="#listbundlesresponse">ListBundlesResponse</a></td>
+<td></td>
+</tr>
+<tr>
+<td>AddSettingToBundle</td>
+<td><a href="#addsettingtobundlerequest">AddSettingToBundleRequest</a></td>
+<td><a href="#addsettingtobundleresponse">AddSettingToBundleResponse</a></td>
+<td></td>
+</tr>
+<tr>
+<td>RemoveSettingFromBundle</td>
+<td><a href="#removesettingfrombundlerequest">RemoveSettingFromBundleRequest</a></td>
+<td><a href="#googleprotobufempty">.google.protobuf.Empty</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="permissionservice">PermissionService<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#permissionservice" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor PermissionService" href="#permissionservice"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Method Name</th>
+<th>Request Type</th>
+<th>Response Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ListPermissionsByResource</td>
+<td><a href="#listpermissionsbyresourcerequest">ListPermissionsByResourceRequest</a></td>
+<td><a href="#listpermissionsbyresourceresponse">ListPermissionsByResourceResponse</a></td>
+<td></td>
+</tr>
+<tr>
+<td>GetPermissionByID</td>
+<td><a href="#getpermissionbyidrequest">GetPermissionByIDRequest</a></td>
+<td><a href="#getpermissionbyidresponse">GetPermissionByIDResponse</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="roleservice">RoleService<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#roleservice" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor RoleService" href="#roleservice"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Method Name</th>
+<th>Request Type</th>
+<th>Response Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ListRoles</td>
+<td><a href="#listbundlesrequest">ListBundlesRequest</a></td>
+<td><a href="#listbundlesresponse">ListBundlesResponse</a></td>
+<td></td>
+</tr>
+<tr>
+<td>ListRoleAssignments</td>
+<td><a href="#listroleassignmentsrequest">ListRoleAssignmentsRequest</a></td>
+<td><a href="#listroleassignmentsresponse">ListRoleAssignmentsResponse</a></td>
+<td></td>
+</tr>
+<tr>
+<td>AssignRoleToUser</td>
+<td><a href="#assignroletouserrequest">AssignRoleToUserRequest</a></td>
+<td><a href="#assignroletouserresponse">AssignRoleToUserResponse</a></td>
+<td></td>
+</tr>
+<tr>
+<td>RemoveRoleFromUser</td>
+<td><a href="#removerolefromuserrequest">RemoveRoleFromUserRequest</a></td>
+<td><a href="#googleprotobufempty">.google.protobuf.Empty</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="valueservice">ValueService<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#valueservice" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ValueService" href="#valueservice"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Method Name</th>
+<th>Request Type</th>
+<th>Response Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SaveValue</td>
+<td><a href="#savevaluerequest">SaveValueRequest</a></td>
+<td><a href="#savevalueresponse">SaveValueResponse</a></td>
+<td></td>
+</tr>
+<tr>
+<td>GetValue</td>
+<td><a href="#getvaluerequest">GetValueRequest</a></td>
+<td><a href="#getvalueresponse">GetValueResponse</a></td>
+<td></td>
+</tr>
+<tr>
+<td>ListValues</td>
+<td><a href="#listvaluesrequest">ListValuesRequest</a></td>
+<td><a href="#listvaluesresponse">ListValuesResponse</a></td>
+<td></td>
+</tr>
+<tr>
+<td>GetValueByUniqueIdentifiers</td>
+<td><a href="#getvaluebyuniqueidentifiersrequest">GetValueByUniqueIdentifiersRequest</a></td>
+<td><a href="#getvalueresponse">GetValueResponse</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h2 id="scalar-value-types">Scalar Value Types<a data-clipboard-text="https://owncloud.github.io/extensions/settings/grpc/#scalar-value-types" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Scalar Value Types" href="#scalar-value-types"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<table>
+<thead>
+<tr>
+<th>.proto Type</th>
+<th>Notes</th>
+<th>C++</th>
+<th>Java</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><div  id="double">
+    double
+</div></td>
+<td></td>
+<td>double</td>
+<td>double</td>
+</tr>
+<tr>
+<td><div  id="float">
+    float
+</div></td>
+<td></td>
+<td>float</td>
+<td>float</td>
+</tr>
+<tr>
+<td><div  id="int32">
+    int32
+</div></td>
+<td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+<td>int32</td>
+<td>int</td>
+</tr>
+<tr>
+<td><div  id="int64">
+    int64
+</div></td>
+<td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+<td>int64</td>
+<td>long</td>
+</tr>
+<tr>
+<td><div  id="uint32">
+    uint32
+</div></td>
+<td>Uses variable-length encoding.</td>
+<td>uint32</td>
+<td>int</td>
+</tr>
+<tr>
+<td><div  id="uint64">
+    uint64
+</div></td>
+<td>Uses variable-length encoding.</td>
+<td>uint64</td>
+<td>long</td>
+</tr>
+<tr>
+<td><div  id="sint32">
+    sint32
+</div></td>
+<td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+<td>int32</td>
+<td>int</td>
+</tr>
+<tr>
+<td><div  id="sint64">
+    sint64
+</div></td>
+<td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+<td>int64</td>
+<td>long</td>
+</tr>
+<tr>
+<td><div  id="fixed32">
+    fixed32
+</div></td>
+<td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+<td>uint32</td>
+<td>int</td>
+</tr>
+<tr>
+<td><div  id="fixed64">
+    fixed64
+</div></td>
+<td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+<td>uint64</td>
+<td>long</td>
+</tr>
+<tr>
+<td><div  id="sfixed32">
+    sfixed32
+</div></td>
+<td>Always four bytes.</td>
+<td>int32</td>
+<td>int</td>
+</tr>
+<tr>
+<td><div  id="sfixed64">
+    sfixed64
+</div></td>
+<td>Always eight bytes.</td>
+<td>int64</td>
+<td>long</td>
+</tr>
+<tr>
+<td><div  id="bool">
+    bool
+</div></td>
+<td></td>
+<td>bool</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td><div  id="string">
+    string
+</div></td>
+<td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+<td>string</td>
+<td>String</td>
+</tr>
+<tr>
+<td><div  id="bytes">
+    bytes
+</div></td>
+<td>May contain any arbitrary sequence of bytes.</td>
+<td>string</td>
+<td>ByteString</td>
+</tr>
+</tbody>
+</table>
 
 
     </article>
