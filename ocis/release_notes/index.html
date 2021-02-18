@@ -3004,6 +3004,45 @@
 <li>Public link passwords are now stored as hashes to improve security <a href="https://github.com/cs3org/reva/issues/1462">https://github.com/cs3org/reva/issues/1462</a></li>
 </ul>
 <p>You can also read the full <a href="https://github.com/owncloud/ocis/blob/master/CHANGELOG.md">ownCloud Infinite Scale changelog</a> and <a href="https://github.com/owncloud/web/blob/master/CHANGELOG.md#changelog-for-owncloud-web-200-2021-02-16">ownCloud Web changelog</a> for further details on what has changed.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="breaking-changes">Breaking changes<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#breaking-changes" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Breaking changes" href="#breaking-changes"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<blockquote class="gdoc-hint warning">
+  We are currently in a Tech Preview state and breaking changes may occur at any time. For more information see our <a href="https://owncloud.github.io/ocis/release_roadmap/">release roadmap</a>
+</blockquote>
+
+<div class="gdoc-page__anchorwrap"><h4 id="fix-idp-service-user">Fix IDP service user<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#fix-idp-service-user" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Fix IDP service user" href="#fix-idp-service-user"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<p>Related: <a href="https://github.com/owncloud/ocis/pull/1390">#1390</a>, <a href="https://github.com/owncloud/ocis/issues/1569">#1569</a></p>
+<p>After upgrading oCIS from a previous version to oCIS 1.2.0 you will not be able to login in ownCloud Web</p>
+<p>Implications:</p>
+<ul>
+<li>manual action required</li>
+</ul>
+<p>Migration steps:</p>
+<ul>
+<li>Stop oCIS</li>
+<li>Open following file <code>/var/tmp/ocis/storage/metadata/nodes/root/accounts/820ba2a1-3f54-4538-80a4-2d73007e30bf</code></li>
+<li>Change password to <code>$2y$12$ywfGLDPsSlBTVZU0g.2GZOPO8Wap3rVOpm8e3192VlytNdGWH7x72</code></li>
+<li>Change onPremisesSamAccountName to <code>idp</code></li>
+<li>Change preferredName to <code>idp</code></li>
+<li>Save the changed file</li>
+<li>Start oCIS</li>
+<li>You now are able to lock back in again.</li>
+</ul>
+<p>Please have a look at <a href="https://owncloud.github.io/ocis/deployment/#secure-an-ocis-instance">how to secure an oCIS instance</a> since you seem to run it with default secrets.</p>
+<div class="gdoc-page__anchorwrap"><h4 id="reset-shares">Reset shares<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#reset-shares" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Reset shares" href="#reset-shares"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<p>Related: <a href="https://github.com/owncloud/ocis/pull/1626">#1626</a></p>
+<p>After upgrading oCIS from a previous version to oCIS 1.2.0 you will will not be able to use previous shares or create new shares.</p>
+<p>Implications:</p>
+<ul>
+<li>manual action required</li>
+<li>loss of shares (manual resharing is needed, files will not be lost)</li>
+</ul>
+<p>Migration steps:</p>
+<ul>
+<li>Stop oCIS</li>
+<li>Delete following file <code>/var/tmp/ocis/storage/shares.json</code></li>
+<li>Start oCIS</li>
+<li>Recreate shares manually</li>
+</ul>
 <div class="gdoc-page__anchorwrap"><h2 id="owncloud-infinite-scale-110-technology-preview">ownCloud Infinite Scale 1.1.0 Technology Preview<a data-clipboard-text="https://owncloud.github.io/ocis/release_notes/#owncloud-infinite-scale-110-technology-preview" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ownCloud Infinite Scale 1.1.0 Technology Preview" href="#owncloud-infinite-scale-110-technology-preview"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>Version 1.1.0 is a hardening and patch release. It ships with the latest version of ownCloud Web and brings a couple of minor improvements. The minor version increase is needed due to non-backwards compatible changes in configuration. The documentation has been updated to reflect the changes. Please note that this version is still a Technology Preview and not suited for production use.</p>
 <p>The most prominent changes in version 1.1.0 comprise</p>
