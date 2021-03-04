@@ -3020,19 +3020,18 @@
 So we are trying to reflect this in the tooling. It should be kept simple and quick to be set up.</p>
 <p>Besides standard development tools like git and a text editor, you need the following software for development:</p>
 <ul>
-<li>Go &gt;= v1.13 (<a href="https://golang.org/doc/install">install instructions</a>)</li>
+<li>Go &gt;= v1.15 (<a href="https://golang.org/doc/install">install instructions</a>)</li>
 <li>Yarn (<a href="https://classic.yarnpkg.com/en/docs/install">install instructions</a>)</li>
 <li>docker (<a href="https://docs.docker.com/get-docker/">install instructions</a>)</li>
 <li>docker-compose (<a href="https://docs.docker.com/compose/install/">install instructions</a>)</li>
 </ul>
 <p>If you find tools needed besides the mentioned above, please feel free to open an issue or open a PR.</p>
 <div class="gdoc-page__anchorwrap"><h2 id="repository-structure">Repository structure<a data-clipboard-text="https://owncloud.github.io/ocis/development/getting-started/#repository-structure" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Repository structure" href="#repository-structure"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>This repository follows the <a href="https://github.com/golang-standards/project-layout">golang-standard project-layout</a>.</p>
 <p>oCIS consists of multiple micro services, also called extensions. We started by having standalone repositories for each of them but quickly noticed, that this adds a time consuming overhead for developers. So we ended up with a monorepo housing all the extensions in one repository.</p>
-<p>Each of the extensions live in a subfolder (eg. <code>accounts</code> or <code>settings</code>) in this repository, technically creating independent Go modules.</p>
-<p>The <code>ocis</code> folder does also contain a Go module but is no extension at all. Instead this module is used to import all extensions and furthermore implement commands to start the extensions. With the resulting oCIS binary you can start single extensions or even all extensions at the same time.</p>
+<p>Each extension lives in a subfolder (eg. <code>accounts</code> or <code>settings</code>) in this respository as an independent Go module, following the <a href="https://github.com/golang-standards/project-layout">golang-standard project-layout</a>. They have common Makefile targets and can be used to change, build and run individual extensions.</p>
+<p>The <code>ocis</code> folder contains our <a href="https://github.com/asim/go-micro/">go-micro</a> and <a href="https://github.com/thejerf/suture">suture</a> based runtime. It is used to import all extensions and implements commands to manage them, similar to a small orchestrator. With the resulting oCIS binary you can start single extensions or even all extensions at the same time.</p>
 <p>The <code>docs</code> folder contains the source for the <a href="https://owncloud.github.io/ocis/">oCIS documentation</a>.</p>
-<p>The <code>deployments</code> folder contains documented deployment configurations and templates.</p>
+<p>The <code>deployments</code> folder contains documented deployment configurations and templates. On a single node, running a single ocis runtime is a resource efficient way to deploy ocis. For multiple nodes docker compose or helm charts for kubernetes examples can be found here.</p>
 <p>The <code>scripts</code> folder contains scripts to perform various build, install, analysis, etc operations.</p>
 <div class="gdoc-page__anchorwrap"><h2 id="starting-points">Starting points<a data-clipboard-text="https://owncloud.github.io/ocis/development/getting-started/#starting-points" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Starting points" href="#starting-points"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>Depending on what you want to develop there are different starting points. These will be described below.</p>
