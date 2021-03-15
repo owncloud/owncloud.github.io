@@ -3042,12 +3042,12 @@ $HOME/.ocis
 <dl>
 <dt>-config-file |  $ONLYOFFICE_CONFIG_FILE</dt>
 <dd>Path to config file.</dd>
-<dt>-log-level |  $ONLYOFFICE_LOG_LEVEL</dt>
-<dd>Set logging level. Default: <code>info</code>.</dd>
-<dt>-log-pretty |  $ONLYOFFICE_LOG_PRETTY</dt>
-<dd>Enable pretty logging. Default: <code>true</code>.</dd>
-<dt>-log-color |  $ONLYOFFICE_LOG_COLOR</dt>
-<dd>Enable colored logging. Default: <code>true</code>.</dd>
+<dt>-log-level |  $ONLYOFFICE_LOG_LEVEL , $OCIS_LOG_LEVEL</dt>
+<dd>Set logging level.</dd>
+<dt>-log-pretty |  $ONLYOFFICE_LOG_PRETTY , $OCIS_LOG_PRETTY</dt>
+<dd>Enable pretty logging.</dd>
+<dt>-log-color |  $ONLYOFFICE_LOG_COLOR , $OCIS_LOG_COLOR</dt>
+<dd>Enable colored logging.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h2 id="sub-commands">Sub Commands<a data-clipboard-text="https://owncloud.github.io/extensions/onlyoffice/configuration/#sub-commands" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Sub Commands" href="#sub-commands"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <div class="gdoc-page__anchorwrap"><h3 id="onlyoffice-health">onlyoffice health<a data-clipboard-text="https://owncloud.github.io/extensions/onlyoffice/configuration/#onlyoffice-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor onlyoffice health" href="#onlyoffice-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
@@ -3055,7 +3055,7 @@ $HOME/.ocis
 <p>Usage: <code>onlyoffice health [command options] [arguments...]</code></p>
 <dl>
 <dt>-debug-addr |  $ONLYOFFICE_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>0.0.0.0:9224</code>.</dd>
+<dd>Address to debug endpoint. Default: <code>flags.OverrideDefaultString(cfg.Debug.Addr, &quot;0.0.0.0:9224&quot;)</code>.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h3 id="onlyoffice-server">onlyoffice server<a data-clipboard-text="https://owncloud.github.io/extensions/onlyoffice/configuration/#onlyoffice-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor onlyoffice server" href="#onlyoffice-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Start integrated server</p>
@@ -3064,29 +3064,29 @@ $HOME/.ocis
 <dt>-tracing-enabled |  $ONLYOFFICE_TRACING_ENABLED</dt>
 <dd>Enable sending traces.</dd>
 <dt>-tracing-type |  $ONLYOFFICE_TRACING_TYPE</dt>
-<dd>Tracing backend type. Default: <code>jaeger</code>.</dd>
+<dd>Tracing backend type. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Type, &quot;jaeger&quot;)</code>.</dd>
 <dt>-tracing-endpoint |  $ONLYOFFICE_TRACING_ENDPOINT</dt>
-<dd>Endpoint for the agent.</dd>
+<dd>Endpoint for the agent. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Endpoint, &quot;&quot;)</code>.</dd>
 <dt>-tracing-collector |  $ONLYOFFICE_TRACING_COLLECTOR</dt>
-<dd>Endpoint for the collector.</dd>
+<dd>Endpoint for the collector. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Collector, &quot;&quot;)</code>.</dd>
 <dt>-tracing-service |  $ONLYOFFICE_TRACING_SERVICE</dt>
-<dd>Service name for tracing. Default: <code>onlyoffice</code>.</dd>
+<dd>Service name for tracing. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Service, &quot;onlyoffice&quot;)</code>.</dd>
 <dt>-debug-addr |  $ONLYOFFICE_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>0.0.0.0:9224</code>.</dd>
+<dd>Address to bind debug server. Default: <code>flags.OverrideDefaultString(cfg.Debug.Addr, &quot;0.0.0.0:9224&quot;)</code>.</dd>
 <dt>-debug-token |  $ONLYOFFICE_DEBUG_TOKEN</dt>
-<dd>Token to grant metrics access.</dd>
+<dd>Token to grant metrics access. Default: <code>flags.OverrideDefaultString(cfg.Debug.Token, &quot;&quot;)</code>.</dd>
 <dt>-debug-pprof |  $ONLYOFFICE_DEBUG_PPROF</dt>
 <dd>Enable pprof debugging.</dd>
 <dt>-debug-zpages |  $ONLYOFFICE_DEBUG_ZPAGES</dt>
 <dd>Enable zpages debugging.</dd>
 <dt>-http-addr |  $ONLYOFFICE_HTTP_ADDR</dt>
-<dd>Address to bind http server. Default: <code>0.0.0.0:9220</code>.</dd>
+<dd>Address to bind http server. Default: <code>flags.OverrideDefaultString(cfg.HTTP.Addr, &quot;0.0.0.0:9220&quot;)</code>.</dd>
 <dt>-http-namespace |  $ONLYOFFICE_HTTP_NAMESPACE</dt>
-<dd>Set the base namespace for the http namespace. Default: <code>com.owncloud.web</code>.</dd>
+<dd>Set the base namespace for the http namespace. Default: <code>flags.OverrideDefaultString(cfg.HTTP.Namespace, &quot;com.owncloud.web&quot;)</code>.</dd>
 <dt>-http-root |  $ONLYOFFICE_HTTP_ROOT</dt>
-<dd>Root path of http server. Default: <code>/</code>.</dd>
+<dd>Root path of http server. Default: <code>flags.OverrideDefaultString(cfg.HTTP.Root, &quot;/&quot;)</code>.</dd>
 <dt>-asset-path |  $ONLYOFFICE_ASSET_PATH</dt>
-<dd>Path to custom assets.</dd>
+<dd>Path to custom assets. Default: <code>flags.OverrideDefaultString(cfg.Asset.Path, &quot;&quot;)</code>.</dd>
 </dl>
 
 

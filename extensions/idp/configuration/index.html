@@ -3036,126 +3036,126 @@ $HOME/.ocis
 <p>Usage: <code>idp health [command options] [arguments...]</code></p>
 <dl>
 <dt>-debug-addr |  $IDP_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>0.0.0.0:9134</code>.</dd>
+<dd>Address to debug endpoint. Default: <code>flags.OverrideDefaultString(cfg.Debug.Addr, &quot;0.0.0.0:9134&quot;)</code>.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h3 id="idp-ocis-idp">idp ocis-idp<a data-clipboard-text="https://owncloud.github.io/extensions/idp/configuration/#idp-ocis-idp" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor idp ocis-idp" href="#idp-ocis-idp"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Serve IDP API for oCIS</p>
 <p>Usage: <code>idp ocis-idp [command options] [arguments...]</code></p>
 <dl>
-<dt>-log-level |  $IDP_LOG_LEVEL</dt>
-<dd>Set logging level. Default: <code>info</code>.</dd>
-<dt>-log-pretty |  $IDP_LOG_PRETTY</dt>
-<dd>Enable pretty logging. Default: <code>true</code>.</dd>
-<dt>-log-color |  $IDP_LOG_COLOR</dt>
-<dd>Enable colored logging. Default: <code>true</code>.</dd>
+<dt>-log-level |  $IDP_LOG_LEVEL , $OCIS_LOG_LEVEL</dt>
+<dd>Set logging level.</dd>
+<dt>-log-pretty |  $IDP_LOG_PRETTY , $OCIS_LOG_PRETTY</dt>
+<dd>Enable pretty logging.</dd>
+<dt>-log-color |  $IDP_LOG_COLOR , $OCIS_LOG_COLOR</dt>
+<dd>Enable colored logging.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h3 id="idp-server">idp server<a data-clipboard-text="https://owncloud.github.io/extensions/idp/configuration/#idp-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor idp server" href="#idp-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Start integrated server</p>
 <p>Usage: <code>idp server [command options] [arguments...]</code></p>
 <dl>
 <dt>-config-file |  $IDP_CONFIG_FILE</dt>
-<dd>Path to config file.</dd>
+<dd>Path to config file. Default: <code>flags.OverrideDefaultString(cfg.File, &quot;&quot;)</code>.</dd>
 <dt>-tracing-enabled |  $IDP_TRACING_ENABLED</dt>
 <dd>Enable sending traces.</dd>
 <dt>-tracing-type |  $IDP_TRACING_TYPE</dt>
-<dd>Tracing backend type. Default: <code>jaeger</code>.</dd>
+<dd>Tracing backend type. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Type, &quot;jaeger&quot;)</code>.</dd>
 <dt>-tracing-endpoint |  $IDP_TRACING_ENDPOINT</dt>
-<dd>Endpoint for the agent.</dd>
+<dd>Endpoint for the agent. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Endpoint, &quot;&quot;)</code>.</dd>
 <dt>-tracing-collector |  $IDP_TRACING_COLLECTOR</dt>
-<dd>Endpoint for the collector.</dd>
+<dd>Endpoint for the collector. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Collector, &quot;&quot;)</code>.</dd>
 <dt>-tracing-service |  $IDP_TRACING_SERVICE</dt>
-<dd>Service name for tracing. Default: <code>idp</code>.</dd>
+<dd>Service name for tracing. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Service, &quot;idp&quot;)</code>.</dd>
 <dt>-debug-addr |  $IDP_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>0.0.0.0:9134</code>.</dd>
+<dd>Address to bind debug server. Default: <code>flags.OverrideDefaultString(cfg.Debug.Addr, &quot;0.0.0.0:9134&quot;)</code>.</dd>
 <dt>-debug-token |  $IDP_DEBUG_TOKEN</dt>
-<dd>Token to grant metrics access.</dd>
+<dd>Token to grant metrics access. Default: <code>flags.OverrideDefaultString(cfg.Debug.Token, &quot;&quot;)</code>.</dd>
 <dt>-debug-pprof |  $IDP_DEBUG_PPROF</dt>
 <dd>Enable pprof debugging.</dd>
 <dt>-debug-zpages |  $IDP_DEBUG_ZPAGES</dt>
 <dd>Enable zpages debugging.</dd>
 <dt>-http-addr |  $IDP_HTTP_ADDR</dt>
-<dd>Address to bind http server. Default: <code>0.0.0.0:9130</code>.</dd>
+<dd>Address to bind http server. Default: <code>flags.OverrideDefaultString(cfg.HTTP.Addr, &quot;0.0.0.0:9130&quot;)</code>.</dd>
 <dt>-http-root |  $IDP_HTTP_ROOT</dt>
-<dd>Root path of http server. Default: <code>/</code>.</dd>
+<dd>Root path of http server. Default: <code>flags.OverrideDefaultString(cfg.HTTP.Root, &quot;/&quot;)</code>.</dd>
 <dt>-http-namespace |  $IDP_HTTP_NAMESPACE</dt>
-<dd>Set the base namespace for service discovery. Default: <code>com.owncloud.web</code>.</dd>
+<dd>Set the base namespace for service discovery. Default: <code>flags.OverrideDefaultString(cfg.Service.Namespace, &quot;com.owncloud.web&quot;)</code>.</dd>
 <dt>-name |  $IDP_NAME</dt>
-<dd>Service name. Default: <code>idp</code>.</dd>
+<dd>Service name. Default: <code>flags.OverrideDefaultString(cfg.Service.Name, &quot;idp&quot;)</code>.</dd>
 <dt>-identity-manager |  $IDP_IDENTITY_MANAGER</dt>
-<dd>Identity manager (one of ldap,kc,cookie,dummy). Default: <code>ldap</code>.</dd>
+<dd>Identity manager (one of ldap,kc,cookie,dummy). Default: <code>flags.OverrideDefaultString(cfg.IDP.IdentityManager, &quot;ldap&quot;)</code>.</dd>
 <dt>-ldap-uri |  $IDP_LDAP_URI</dt>
-<dd>URI of the LDAP server (glauth). Default: <code>ldap://localhost:9125</code>.</dd>
+<dd>URI of the LDAP server (glauth). Default: <code>flags.OverrideDefaultString(cfg.Ldap.URI, &quot;ldap://localhost:9125&quot;)</code>.</dd>
 <dt>-ldap-bind-dn |  $IDP_LDAP_BIND_DN</dt>
-<dd>Bind DN for the LDAP server (glauth). Default: <code>cn=idp,ou=sysusers,dc=example,dc=org</code>.</dd>
+<dd>Bind DN for the LDAP server (glauth). Default: <code>flags.OverrideDefaultString(cfg.Ldap.BindDN, &quot;cn=idp,ou=sysusers,dc=example,dc=org&quot;)</code>.</dd>
 <dt>-ldap-bind-password |  $IDP_LDAP_BIND_PASSWORD</dt>
-<dd>Password for the Bind DN of the LDAP server (glauth). Default: <code>idp</code>.</dd>
+<dd>Password for the Bind DN of the LDAP server (glauth). Default: <code>flags.OverrideDefaultString(cfg.Ldap.BindPassword, &quot;idp&quot;)</code>.</dd>
 <dt>-ldap-base-dn |  $IDP_LDAP_BASE_DN</dt>
-<dd>LDAP base DN of the oCIS users. Default: <code>ou=users,dc=example,dc=org</code>.</dd>
+<dd>LDAP base DN of the oCIS users. Default: <code>flags.OverrideDefaultString(cfg.Ldap.BaseDN, &quot;ou=users,dc=example,dc=org&quot;)</code>.</dd>
 <dt>-ldap-scope |  $IDP_LDAP_SCOPE</dt>
-<dd>LDAP scope of the oCIS users. Default: <code>sub</code>.</dd>
+<dd>LDAP scope of the oCIS users. Default: <code>flags.OverrideDefaultString(cfg.Ldap.Scope, &quot;sub&quot;)</code>.</dd>
 <dt>-ldap-login-attribute |  $IDP_LDAP_LOGIN_ATTRIBUTE</dt>
-<dd>LDAP login attribute of the oCIS users. Default: <code>cn</code>.</dd>
+<dd>LDAP login attribute of the oCIS users. Default: <code>flags.OverrideDefaultString(cfg.Ldap.LoginAttribute, &quot;cn&quot;)</code>.</dd>
 <dt>-ldap-email-attribute |  $IDP_LDAP_EMAIL_ATTRIBUTE</dt>
-<dd>LDAP email attribute of the oCIS users. Default: <code>mail</code>.</dd>
+<dd>LDAP email attribute of the oCIS users. Default: <code>flags.OverrideDefaultString(cfg.Ldap.EmailAttribute, &quot;mail&quot;)</code>.</dd>
 <dt>-ldap-name-attribute |  $IDP_LDAP_NAME_ATTRIBUTE</dt>
-<dd>LDAP name attribute of the oCIS users. Default: <code>sn</code>.</dd>
+<dd>LDAP name attribute of the oCIS users. Default: <code>flags.OverrideDefaultString(cfg.Ldap.NameAttribute, &quot;sn&quot;)</code>.</dd>
 <dt>-ldap-uuid-attribute |  $IDP_LDAP_UUID_ATTRIBUTE</dt>
-<dd>LDAP UUID attribute of the oCIS users. Default: <code>uid</code>.</dd>
+<dd>LDAP UUID attribute of the oCIS users. Default: <code>flags.OverrideDefaultString(cfg.Ldap.UUIDAttribute, &quot;uid&quot;)</code>.</dd>
 <dt>-ldap-uuid-attribute-type |  $IDP_LDAP_UUID_ATTRIBUTE_TYPE</dt>
-<dd>LDAP UUID attribute type of the oCIS users. Default: <code>text</code>.</dd>
+<dd>LDAP UUID attribute type of the oCIS users. Default: <code>flags.OverrideDefaultString(cfg.Ldap.UUIDAttributeType, &quot;text&quot;)</code>.</dd>
 <dt>-ldap-filter |  $IDP_LDAP_FILTER</dt>
-<dd>LDAP filter of the oCIS users. Default: <code>(objectClass=posixaccount)</code>.</dd>
+<dd>LDAP filter of the oCIS users. Default: <code>flags.OverrideDefaultString(cfg.Ldap.Filter, &quot;(objectClass=posixaccount)&quot;)</code>.</dd>
 <dt>-transport-tls-cert |  $IDP_TRANSPORT_TLS_CERT</dt>
-<dd>Certificate file for transport encryption.</dd>
+<dd>Certificate file for transport encryption. Default: <code>flags.OverrideDefaultString(cfg.HTTP.TLSCert, &quot;&quot;)</code>.</dd>
 <dt>-transport-tls-key |  $IDP_TRANSPORT_TLS_KEY</dt>
-<dd>Secret file for transport encryption.</dd>
+<dd>Secret file for transport encryption. Default: <code>flags.OverrideDefaultString(cfg.HTTP.TLSKey, &quot;&quot;)</code>.</dd>
 <dt>-iss |  $IDP_ISS , $OCIS_URL</dt>
-<dd>OIDC issuer URL. Default: <code>https://localhost:9200</code>.</dd>
+<dd>OIDC issuer URL. Default: <code>flags.OverrideDefaultString(cfg.IDP.Iss, &quot;https://localhost:9200&quot;)</code>.</dd>
 <dt>-signing-kid |  $IDP_SIGNING_KID</dt>
-<dd>Value of kid field to use in created tokens (uniquely identifying the signing-private-key).</dd>
+<dd>Value of kid field to use in created tokens (uniquely identifying the signing-private-key). Default: <code>flags.OverrideDefaultString(cfg.IDP.SigningKid, &quot;&quot;)</code>.</dd>
 <dt>-validation-keys-path |  $IDP_VALIDATION_KEYS_PATH</dt>
-<dd>Full path to a folder containg PEM encoded private or public key files used for token validaton (file name without extension is used as kid).</dd>
+<dd>Full path to a folder containg PEM encoded private or public key files used for token validaton (file name without extension is used as kid). Default: <code>flags.OverrideDefaultString(cfg.IDP.ValidationKeysPath, &quot;&quot;)</code>.</dd>
 <dt>-encryption-secret |  $IDP_ENCRYPTION_SECRET</dt>
-<dd>Full path to a file containing a %d bytes secret key.</dd>
+<dd>Full path to a file containing a %d bytes secret key. Default: <code>flags.OverrideDefaultString(cfg.IDP.EncryptionSecretFile, &quot;&quot;)</code>.</dd>
 <dt>-signing-method |  $IDP_SIGNING_METHOD</dt>
-<dd>JWT default signing method. Default: <code>PS256</code>.</dd>
+<dd>JWT default signing method. Default: <code>flags.OverrideDefaultString(cfg.IDP.SigningMethod, &quot;PS256&quot;)</code>.</dd>
 <dt>-uri-base-path |  $IDP_URI_BASE_PATH</dt>
-<dd>Custom base path for URI endpoints.</dd>
+<dd>Custom base path for URI endpoints. Default: <code>flags.OverrideDefaultString(cfg.IDP.URIBasePath, &quot;&quot;)</code>.</dd>
 <dt>-sign-in-uri |  $IDP_SIGN_IN_URI</dt>
-<dd>Custom redirection URI to sign-in form.</dd>
+<dd>Custom redirection URI to sign-in form. Default: <code>flags.OverrideDefaultString(cfg.IDP.SignInURI, &quot;&quot;)</code>.</dd>
 <dt>-signed-out-uri |  $IDP_SIGN_OUT_URI</dt>
-<dd>Custom redirection URI to signed-out goodbye page.</dd>
+<dd>Custom redirection URI to signed-out goodbye page. Default: <code>flags.OverrideDefaultString(cfg.IDP.SignedOutURI, &quot;&quot;)</code>.</dd>
 <dt>-authorization-endpoint-uri |  $IDP_ENDPOINT_URI</dt>
-<dd>Custom authorization endpoint URI.</dd>
+<dd>Custom authorization endpoint URI. Default: <code>flags.OverrideDefaultString(cfg.IDP.AuthorizationEndpointURI, &quot;&quot;)</code>.</dd>
 <dt>-endsession-endpoint-uri |  $IDP_ENDSESSION_ENDPOINT_URI</dt>
-<dd>Custom endsession endpoint URI.</dd>
+<dd>Custom endsession endpoint URI. Default: <code>flags.OverrideDefaultString(cfg.IDP.EndsessionEndpointURI, &quot;&quot;)</code>.</dd>
 <dt>-asset-path |  $IDP_ASSET_PATH</dt>
-<dd>Path to custom assets.</dd>
+<dd>Path to custom assets. Default: <code>flags.OverrideDefaultString(cfg.Asset.Path, &quot;&quot;)</code>.</dd>
 <dt>-identifier-client-path |  $IDP_IDENTIFIER_CLIENT_PATH</dt>
-<dd>Path to the identifier web client base folder. Default: <code>/var/tmp/ocis/idp</code>.</dd>
+<dd>Path to the identifier web client base folder. Default: <code>flags.OverrideDefaultString(cfg.IDP.IdentifierClientPath, &quot;/var/tmp/ocis/idp&quot;)</code>.</dd>
 <dt>-identifier-registration-conf |  $IDP_IDENTIFIER_REGISTRATION_CONF</dt>
-<dd>Path to a identifier-registration.yaml configuration file. Default: <code>./config/identifier-registration.yaml</code>.</dd>
+<dd>Path to a identifier-registration.yaml configuration file. Default: <code>flags.OverrideDefaultString(cfg.IDP.IdentifierRegistrationConf, &quot;./config/identifier-registration.yaml&quot;)</code>.</dd>
 <dt>-identifier-scopes-conf |  $IDP_IDENTIFIER_SCOPES_CONF</dt>
-<dd>Path to a scopes.yaml configuration file.</dd>
+<dd>Path to a scopes.yaml configuration file. Default: <code>flags.OverrideDefaultString(cfg.IDP.IdentifierScopesConf, &quot;&quot;)</code>.</dd>
 <dt>-insecure |  $IDP_INSECURE</dt>
 <dd>Disable TLS certificate and hostname validation.</dd>
 <dt>-tls |  $IDP_TLS</dt>
-<dd>Use TLS (disable only if idp is behind a TLS-terminating reverse-proxy).. Default: <code>false</code>.</dd>
+<dd>Use TLS (disable only if idp is behind a TLS-terminating reverse-proxy).. Default: <code>flags.OverrideDefaultBool(cfg.HTTP.TLS, false)</code>.</dd>
 <dt>-allow-client-guests |  $IDP_ALLOW_CLIENT_GUESTS</dt>
 <dd>Allow sign in of client controlled guest users.</dd>
 <dt>-allow-dynamic-client-registration |  $IDP_ALLOW_DYNAMIC_CLIENT_REGISTRATION</dt>
-<dd>Allow dynamic OAuth2 client registration. Default: <code>true</code>.</dd>
+<dd>Allow dynamic OAuth2 client registration. Default: <code>flags.OverrideDefaultBool(cfg.IDP.AllowDynamicClientRegistration, true)</code>.</dd>
 <dt>-disable-identifier-webapp |  $IDP_DISABLE_IDENTIFIER_WEBAPP</dt>
-<dd>Disable built-in identifier-webapp to use a frontend hosted elsewhere.. Default: <code>true</code>.</dd>
+<dd>Disable built-in identifier-webapp to use a frontend hosted elsewhere.. Default: <code>flags.OverrideDefaultBool(cfg.IDP.IdentifierClientDisabled, true)</code>.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h3 id="idp-version">idp version<a data-clipboard-text="https://owncloud.github.io/extensions/idp/configuration/#idp-version" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor idp version" href="#idp-version"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Print the versions of the running instances</p>
 <p>Usage: <code>idp version [command options] [arguments...]</code></p>
 <dl>
 <dt>-http-namespace |  $IDP_HTTP_NAMESPACE</dt>
-<dd>Set the base namespace for service discovery. Default: <code>com.owncloud.web</code>.</dd>
+<dd>Set the base namespace for service discovery. Default: <code>flags.OverrideDefaultString(cfg.Service.Namespace, &quot;com.owncloud.web&quot;)</code>.</dd>
 <dt>-name |  $IDP_NAME</dt>
-<dd>Service name. Default: <code>idp</code>.</dd>
+<dd>Service name. Default: <code>flags.OverrideDefaultString(cfg.Service.Name, &quot;idp&quot;)</code>.</dd>
 </dl>
 
 

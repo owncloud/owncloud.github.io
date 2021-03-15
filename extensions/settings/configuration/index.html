@@ -3036,18 +3036,18 @@ $HOME/.ocis
 <p>Usage: <code>settings health [command options] [arguments...]</code></p>
 <dl>
 <dt>-debug-addr |  $SETTINGS_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>0.0.0.0:9194</code>.</dd>
+<dd>Address to debug endpoint. Default: <code>flags.OverrideDefaultString(cfg.Debug.Addr, &quot;0.0.0.0:9194&quot;)</code>.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h3 id="settings-ocis-settings">settings ocis-settings<a data-clipboard-text="https://owncloud.github.io/extensions/settings/configuration/#settings-ocis-settings" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor settings ocis-settings" href="#settings-ocis-settings"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Provide settings and permissions for oCIS</p>
 <p>Usage: <code>settings ocis-settings [command options] [arguments...]</code></p>
 <dl>
-<dt>-log-level |  $SETTINGS_LOG_LEVEL</dt>
-<dd>Set logging level. Default: <code>info</code>.</dd>
-<dt>-log-pretty |  $SETTINGS_LOG_PRETTY</dt>
-<dd>Enable pretty logging. Default: <code>true</code>.</dd>
-<dt>-log-color |  $SETTINGS_LOG_COLOR</dt>
-<dd>Enable colored logging. Default: <code>true</code>.</dd>
+<dt>-log-level |  $SETTINGS_LOG_LEVEL , $OCIS_LOG_LEVEL</dt>
+<dd>Set logging level.</dd>
+<dt>-log-pretty |  $SETTINGS_LOG_PRETTY , $OCIS_LOG_PRETTY</dt>
+<dd>Enable pretty logging.</dd>
+<dt>-log-color |  $SETTINGS_LOG_COLOR , $OCIS_LOG_COLOR</dt>
+<dd>Enable colored logging.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h3 id="settings-server">settings server<a data-clipboard-text="https://owncloud.github.io/extensions/settings/configuration/#settings-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor settings server" href="#settings-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Start integrated server</p>
@@ -3058,48 +3058,48 @@ $HOME/.ocis
 <dt>-tracing-enabled |  $SETTINGS_TRACING_ENABLED</dt>
 <dd>Enable sending traces.</dd>
 <dt>-tracing-type |  $SETTINGS_TRACING_TYPE</dt>
-<dd>Tracing backend type. Default: <code>jaeger</code>.</dd>
+<dd>Tracing backend type. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Type, &quot;jaeger&quot;)</code>.</dd>
 <dt>-tracing-endpoint |  $SETTINGS_TRACING_ENDPOINT</dt>
-<dd>Endpoint for the agent.</dd>
+<dd>Endpoint for the agent. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Endpoint, &quot;&quot;)</code>.</dd>
 <dt>-tracing-collector |  $SETTINGS_TRACING_COLLECTOR</dt>
-<dd>Endpoint for the collector.</dd>
+<dd>Endpoint for the collector. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Collector, &quot;&quot;)</code>.</dd>
 <dt>-tracing-service |  $SETTINGS_TRACING_SERVICE</dt>
-<dd>Service name for tracing. Default: <code>settings</code>.</dd>
+<dd>Service name for tracing. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Service, &quot;settings&quot;)</code>.</dd>
 <dt>-debug-addr |  $SETTINGS_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>0.0.0.0:9194</code>.</dd>
+<dd>Address to bind debug server. Default: <code>flags.OverrideDefaultString(cfg.Debug.Addr, &quot;0.0.0.0:9194&quot;)</code>.</dd>
 <dt>-debug-token |  $SETTINGS_DEBUG_TOKEN</dt>
-<dd>Token to grant metrics access.</dd>
+<dd>Token to grant metrics access. Default: <code>flags.OverrideDefaultString(cfg.Debug.Token, &quot;&quot;)</code>.</dd>
 <dt>-debug-pprof |  $SETTINGS_DEBUG_PPROF</dt>
 <dd>Enable pprof debugging.</dd>
 <dt>-debug-zpages |  $SETTINGS_DEBUG_ZPAGES</dt>
 <dd>Enable zpages debugging.</dd>
 <dt>-http-addr |  $SETTINGS_HTTP_ADDR</dt>
-<dd>Address to bind http server. Default: <code>0.0.0.0:9190</code>.</dd>
+<dd>Address to bind http server. Default: <code>flags.OverrideDefaultString(cfg.HTTP.Addr, &quot;0.0.0.0:9190&quot;)</code>.</dd>
 <dt>-http-namespace |  $SETTINGS_HTTP_NAMESPACE</dt>
-<dd>Set the base namespace for the http namespace. Default: <code>com.owncloud.web</code>.</dd>
+<dd>Set the base namespace for the http namespace. Default: <code>flags.OverrideDefaultString(cfg.HTTP.Namespace, &quot;com.owncloud.web&quot;)</code>.</dd>
 <dt>-http-root |  $SETTINGS_HTTP_ROOT</dt>
-<dd>Root path of http server. Default: <code>/</code>.</dd>
+<dd>Root path of http server. Default: <code>flags.OverrideDefaultString(cfg.HTTP.Root, &quot;/&quot;)</code>.</dd>
 <dt>-grpc-addr |  $SETTINGS_GRPC_ADDR</dt>
-<dd>Address to bind grpc server. Default: <code>0.0.0.0:9191</code>.</dd>
+<dd>Address to bind grpc server. Default: <code>flags.OverrideDefaultString(cfg.GRPC.Addr, &quot;0.0.0.0:9191&quot;)</code>.</dd>
 <dt>-asset-path |  $SETTINGS_ASSET_PATH</dt>
-<dd>Path to custom assets.</dd>
+<dd>Path to custom assets. Default: <code>flags.OverrideDefaultString(cfg.Asset.Path, &quot;&quot;)</code>.</dd>
 <dt>-grpc-namespace |  $SETTINGS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>com.owncloud.api</code>.</dd>
+<dd>Set the base namespace for the grpc namespace. Default: <code>flags.OverrideDefaultString(cfg.GRPC.Namespace, &quot;com.owncloud.api&quot;)</code>.</dd>
 <dt>-name |  $SETTINGS_NAME</dt>
-<dd>service name. Default: <code>settings</code>.</dd>
+<dd>service name. Default: <code>flags.OverrideDefaultString(cfg.Service.Name, &quot;settings&quot;)</code>.</dd>
 <dt>-data-path |  $SETTINGS_DATA_PATH</dt>
-<dd>Mount path for the storage. Default: <code>/var/tmp/ocis/settings</code>.</dd>
+<dd>Mount path for the storage. Default: <code>flags.OverrideDefaultString(cfg.Service.DataPath, &quot;/var/tmp/ocis/settings&quot;)</code>.</dd>
 <dt>-jwt-secret |  $SETTINGS_JWT_SECRET , $OCIS_JWT_SECRET</dt>
-<dd>Used to create JWT to talk to reva, should equal reva&rsquo;s jwt-secret. Default: <code>Pive-Fumkiu4</code>.</dd>
+<dd>Used to create JWT to talk to reva, should equal reva&rsquo;s jwt-secret. Default: <code>flags.OverrideDefaultString(cfg.TokenManager.JWTSecret, &quot;Pive-Fumkiu4&quot;)</code>.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h3 id="settings-version">settings version<a data-clipboard-text="https://owncloud.github.io/extensions/settings/configuration/#settings-version" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor settings version" href="#settings-version"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Print the versions of the running instances</p>
 <p>Usage: <code>settings version [command options] [arguments...]</code></p>
 <dl>
 <dt>-grpc-namespace |  $SETTINGS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>com.owncloud.api</code>.</dd>
+<dd>Set the base namespace for the grpc namespace. Default: <code>flags.OverrideDefaultString(cfg.GRPC.Namespace, &quot;com.owncloud.api&quot;)</code>.</dd>
 <dt>-name |  $SETTINGS_NAME</dt>
-<dd>service name. Default: <code>settings</code>.</dd>
+<dd>service name. Default: <code>flags.OverrideDefaultString(cfg.Service.Name, &quot;settings&quot;)</code>.</dd>
 </dl>
 
 

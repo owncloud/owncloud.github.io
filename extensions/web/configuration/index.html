@@ -3014,8 +3014,8 @@
         <li><a href="#root-command">Root Command</a></li>
         <li><a href="#sub-commands">Sub Commands</a>
           <ul>
-            <li><a href="#web-health">web health</a></li>
             <li><a href="#web-server">web server</a></li>
+            <li><a href="#web-health">web health</a></li>
           </ul>
         </li>
       </ul></nav><hr></div>
@@ -3037,72 +3037,16 @@ $HOME/.ocis
 <div class="gdoc-page__anchorwrap"><h2 id="root-command">Root Command<a data-clipboard-text="https://owncloud.github.io/extensions/web/configuration/#root-command" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Root Command" href="#root-command"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>Serve ownCloud Web for oCIS</p>
 <p>Usage: <code>web [global options] command [command options] [arguments...]</code></p>
-<dl>
-<dt>-log-level |  $WEB_LOG_LEVEL</dt>
-<dd>Set logging level. Default: <code>info</code>.</dd>
-<dt>-log-pretty |  $WEB_LOG_PRETTY</dt>
-<dd>Enable pretty logging. Default: <code>true</code>.</dd>
-<dt>-log-color |  $WEB_LOG_COLOR</dt>
-<dd>Enable colored logging. Default: <code>true</code>.</dd>
-</dl>
 <div class="gdoc-page__anchorwrap"><h2 id="sub-commands">Sub Commands<a data-clipboard-text="https://owncloud.github.io/extensions/web/configuration/#sub-commands" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Sub Commands" href="#sub-commands"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<div class="gdoc-page__anchorwrap"><h3 id="web-server">web server<a data-clipboard-text="https://owncloud.github.io/extensions/web/configuration/#web-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor web server" href="#web-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Start integrated server</p>
+<p>Usage: <code>web server [command options] [arguments...]</code></p>
 <div class="gdoc-page__anchorwrap"><h3 id="web-health">web health<a data-clipboard-text="https://owncloud.github.io/extensions/web/configuration/#web-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor web health" href="#web-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Check health status</p>
 <p>Usage: <code>web health [command options] [arguments...]</code></p>
 <dl>
 <dt>-debug-addr |  $WEB_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>0.0.0.0:9104</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="web-server">web server<a data-clipboard-text="https://owncloud.github.io/extensions/web/configuration/#web-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor web server" href="#web-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Start integrated server</p>
-<p>Usage: <code>web server [command options] [arguments...]</code></p>
-<dl>
-<dt>-config-file |  $WEB_CONFIG_FILE</dt>
-<dd>Path to config file.</dd>
-<dt>-tracing-enabled |  $WEB_TRACING_ENABLED</dt>
-<dd>Enable sending traces.</dd>
-<dt>-tracing-type |  $WEB_TRACING_TYPE</dt>
-<dd>Tracing backend type. Default: <code>jaeger</code>.</dd>
-<dt>-tracing-endpoint |  $WEB_TRACING_ENDPOINT</dt>
-<dd>Endpoint for the agent.</dd>
-<dt>-tracing-collector |  $WEB_TRACING_COLLECTOR</dt>
-<dd>Endpoint for the collector.</dd>
-<dt>-tracing-service |  $WEB_TRACING_SERVICE</dt>
-<dd>Service name for tracing. Default: <code>web</code>.</dd>
-<dt>-debug-addr |  $WEB_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>0.0.0.0:9104</code>.</dd>
-<dt>-debug-token |  $WEB_DEBUG_TOKEN</dt>
-<dd>Token to grant metrics access.</dd>
-<dt>-debug-pprof |  $WEB_DEBUG_PPROF</dt>
-<dd>Enable pprof debugging.</dd>
-<dt>-debug-zpages |  $WEB_DEBUG_ZPAGES</dt>
-<dd>Enable zpages debugging.</dd>
-<dt>-http-addr |  $WEB_HTTP_ADDR</dt>
-<dd>Address to bind http server. Default: <code>0.0.0.0:9100</code>.</dd>
-<dt>-http-root |  $WEB_HTTP_ROOT</dt>
-<dd>Root path of http server. Default: <code>/</code>.</dd>
-<dt>-http-namespace |  $WEB_NAMESPACE</dt>
-<dd>Set the base namespace for the http namespace. Default: <code>com.owncloud.web</code>.</dd>
-<dt>-asset-path |  $WEB_ASSET_PATH</dt>
-<dd>Path to custom assets.</dd>
-<dt>-web-config |  $WEB_UI_CONFIG</dt>
-<dd>Path to web config.</dd>
-<dt>-web-config-server |  $WEB_UI_CONFIG_SERVER , $OCIS_URL</dt>
-<dd>Server URL. Default: <code>https://localhost:9200</code>.</dd>
-<dt>-web-config-theme |  $WEB_UI_CONFIG_THEME</dt>
-<dd>Theme. Default: <code>owncloud</code>.</dd>
-<dt>-web-config-version |  $WEB_UI_CONFIG_VERSION</dt>
-<dd>Version. Default: <code>0.1.0</code>.</dd>
-<dt>-oidc-metadata-url |  $WEB_OIDC_METADATA_URL</dt>
-<dd>OpenID Connect metadata URL, defaults to &lt;WEB_OIDC_AUTHORITY&gt;/.well-known/openid-configuration.</dd>
-<dt>-oidc-authority |  $WEB_OIDC_AUTHORITY , $OCIS_URL</dt>
-<dd>OpenID Connect authority. Default: <code>https://localhost:9200</code>.</dd>
-<dt>-oidc-client-id |  $WEB_OIDC_CLIENT_ID</dt>
-<dd>OpenID Connect client ID. Default: <code>web</code>.</dd>
-<dt>-oidc-response-type |  $WEB_OIDC_RESPONSE_TYPE</dt>
-<dd>OpenID Connect response type. Default: <code>code</code>.</dd>
-<dt>-oidc-scope |  $WEB_OIDC_SCOPE</dt>
-<dd>OpenID Connect scope. Default: <code>openid profile email</code>.</dd>
+<dd>Address to debug endpoint. Default: <code>flags.OverrideDefaultString(cfg.Debug.Addr, &quot;0.0.0.0:9104&quot;)</code>.</dd>
 </dl>
 
 

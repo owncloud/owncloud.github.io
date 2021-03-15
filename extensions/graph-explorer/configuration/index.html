@@ -3039,11 +3039,11 @@ $HOME/.ocis
 <p>Usage: <code>graph-explorer [global options] command [command options] [arguments...]</code></p>
 <dl>
 <dt>-log-level |  $GRAPH_EXPLORER_LOG_LEVEL</dt>
-<dd>Set logging level. Default: <code>info</code>.</dd>
+<dd>Set logging level.</dd>
 <dt>-log-pretty |  $GRAPH_EXPLORER_LOG_PRETTY</dt>
-<dd>Enable pretty logging. Default: <code>true</code>.</dd>
+<dd>Enable pretty logging.</dd>
 <dt>-log-color |  $GRAPH_EXPLORER_LOG_COLOR</dt>
-<dd>Enable colored logging. Default: <code>true</code>.</dd>
+<dd>Enable colored logging.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h2 id="sub-commands">Sub Commands<a data-clipboard-text="https://owncloud.github.io/extensions/graph-explorer/configuration/#sub-commands" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Sub Commands" href="#sub-commands"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <div class="gdoc-page__anchorwrap"><h3 id="graph-explorer-health">graph-explorer health<a data-clipboard-text="https://owncloud.github.io/extensions/graph-explorer/configuration/#graph-explorer-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor graph-explorer health" href="#graph-explorer-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
@@ -3051,7 +3051,7 @@ $HOME/.ocis
 <p>Usage: <code>graph-explorer health [command options] [arguments...]</code></p>
 <dl>
 <dt>-debug-addr |  $GRAPH_EXPLORER_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>0.0.0.0:9136</code>.</dd>
+<dd>Address to debug endpoint. Default: <code>flags.OverrideDefaultString(cfg.Debug.Addr, &quot;0.0.0.0:9136&quot;)</code>.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h3 id="graph-explorer-server">graph-explorer server<a data-clipboard-text="https://owncloud.github.io/extensions/graph-explorer/configuration/#graph-explorer-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor graph-explorer server" href="#graph-explorer-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Start integrated server</p>
@@ -3060,33 +3060,33 @@ $HOME/.ocis
 <dt>-tracing-enabled |  $GRAPH_EXPLORER_TRACING_ENABLED</dt>
 <dd>Enable sending traces.</dd>
 <dt>-tracing-type |  $GRAPH_EXPLORER_TRACING_TYPE</dt>
-<dd>Tracing backend type. Default: <code>jaeger</code>.</dd>
+<dd>Tracing backend type. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Type, &quot;jaeger&quot;)</code>.</dd>
 <dt>-tracing-endpoint |  $GRAPH_EXPLORER_TRACING_ENDPOINT</dt>
-<dd>Endpoint for the agent.</dd>
+<dd>Endpoint for the agent. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Endpoint, &quot;&quot;)</code>.</dd>
 <dt>-tracing-collector |  $GRAPH_EXPLORER_TRACING_COLLECTOR</dt>
-<dd>Endpoint for the collector.</dd>
+<dd>Endpoint for the collector. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Collector, &quot;&quot;)</code>.</dd>
 <dt>-tracing-service |  $GRAPH_EXPLORER_TRACING_SERVICE</dt>
-<dd>Service name for tracing. Default: <code>graph-explorer</code>.</dd>
+<dd>Service name for tracing. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Service, &quot;graph-explorer&quot;)</code>.</dd>
 <dt>-debug-addr |  $GRAPH_EXPLORER_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>0.0.0.0:9136</code>.</dd>
+<dd>Address to bind debug server. Default: <code>flags.OverrideDefaultString(cfg.Debug.Addr, &quot;0.0.0.0:9136&quot;)</code>.</dd>
 <dt>-debug-token |  $GRAPH_EXPLORER_DEBUG_TOKEN</dt>
-<dd>Token to grant metrics access.</dd>
+<dd>Token to grant metrics access. Default: <code>flags.OverrideDefaultString(cfg.Debug.Token, &quot;&quot;)</code>.</dd>
 <dt>-debug-pprof |  $GRAPH_EXPLORER_DEBUG_PPROF</dt>
 <dd>Enable pprof debugging.</dd>
 <dt>-debug-zpages |  $GRAPH_EXPLORER_DEBUG_ZPAGES</dt>
 <dd>Enable zpages debugging.</dd>
 <dt>-http-addr |  $GRAPH_EXPLORER_HTTP_ADDR</dt>
-<dd>Address to bind http server. Default: <code>0.0.0.0:9135</code>.</dd>
+<dd>Address to bind http server. Default: <code>flags.OverrideDefaultString(cfg.HTTP.Addr, &quot;0.0.0.0:9135&quot;)</code>.</dd>
 <dt>-http-root |  $GRAPH_EXPLORER_HTTP_ROOT</dt>
-<dd>Root path of http server. Default: <code>/</code>.</dd>
+<dd>Root path of http server. Default: <code>flags.OverrideDefaultString(cfg.HTTP.Root, &quot;/graph-explorer&quot;)</code>.</dd>
 <dt>-http-namespace |  $GRAPH_EXPLORER_NAMESPACE</dt>
-<dd>Set the base namespace for the http namespace. Default: <code>com.owncloud.web</code>.</dd>
-<dt>-issuer |  $GRAPH_EXPLORER_ISSUER</dt>
-<dd>Set the OpenID Connect Provider. Default: <code>https://localhost:9130</code>.</dd>
+<dd>Set the base namespace for the http namespace. Default: <code>flags.OverrideDefaultString(cfg.HTTP.Namespace, &quot;com.owncloud.web&quot;)</code>.</dd>
+<dt>-issuer |  $GRAPH_EXPLORER_ISSUER , $OCIS_URL</dt>
+<dd>Set the OpenID Connect Provider. Default: <code>flags.OverrideDefaultString(cfg.GraphExplorer.Issuer, &quot;https://localhost:9200&quot;)</code>.</dd>
 <dt>-client-id |  $GRAPH_EXPLORER_CLIENT_ID</dt>
-<dd>Set the OpenID Client ID to send to the issuer. Default: <code>ocis-explorer.js</code>.</dd>
+<dd>Set the OpenID Client ID to send to the issuer. Default: <code>flags.OverrideDefaultString(cfg.GraphExplorer.ClientID, &quot;ocis-explorer.js&quot;)</code>.</dd>
 <dt>-graph-url |  $GRAPH_EXPLORER_GRAPH_URL</dt>
-<dd>Set the url to the graph api service. Default: <code>http://localhost:9120</code>.</dd>
+<dd>Set the url to the graph api service. Default: <code>flags.OverrideDefaultString(cfg.GraphExplorer.GraphURL, &quot;https://localhost:9200/graph&quot;)</code>.</dd>
 </dl>
 
 
