@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Adrs">
+<meta name="description" content="3. Use external User Management">
 
-<title>Adrs | ownCloud</title>
+<title>3. Use external User Management | ownCloud</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -31,7 +31,6 @@
 <link rel="preload" href="/custom.css" as="style">
 <link rel="stylesheet" href="/custom.css" media="all">
 
-<link rel="alternate" type="application/rss+xml" href="https://owncloud.github.io/adr/index.xml" title="ownCloud" />
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
 
 </head>
@@ -423,6 +422,117 @@
                 <span class="flex">
                     <a href="/ocis/development/continuous-integration/" class="gdoc-nav__entry ">
                         Continuous Integration
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-8941f396" class="gdoc-nav__toggle" checked>
+            <label for="navtree-8941f396" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/ocis/adr/" class="gdoc-nav__entry ">
+                        Architecture Decisions
+                    </a>
+                </span>
+            
+            
+                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
+                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/ocis/adr/0001-introduce-accounts-service/" class="gdoc-nav__entry ">
+                        1. Introduce an accounts service
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/ocis/adr/0002-persist-accounts-using-cs3-storage/" class="gdoc-nav__entry ">
+                        2. Persist accounts in a CS3 storage
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/ocis/adr/0003-external-user-management/" class="gdoc-nav__entry is-active">
+                        3. Use external User Management
                     </a>
                 </span>
             
@@ -905,104 +1015,6 @@
             
             
         
-            
-            
-
-            
-            
-            
-            
-            
-
-            <li>
-            
-            
-                <span class="flex">Adrs</span>
-            
-            
-
-            
-                
-    
-
-    <ul class="gdoc-nav__list">
-        
-            
-            
-
-            
-            
-            
-            
-            
-
-            <li>
-            
-            
-                <span class="flex">
-                    <a href="/adr/0001-introduce-accounts-service/" class="gdoc-nav__entry ">
-                        0001 Introduce Accounts Service
-                    </a>
-                </span>
-            
-            
-
-            
-            </li>
-            
-            
-            
-
-            
-            
-            
-            
-            
-
-            <li>
-            
-            
-                <span class="flex">
-                    <a href="/adr/0002-persist-accounts-using-cs3-storage/" class="gdoc-nav__entry ">
-                        0002 Persist Accounts Using Cs3 Storage
-                    </a>
-                </span>
-            
-            
-
-            
-            </li>
-            
-            
-            
-
-            
-            
-            
-            
-            
-
-            <li>
-            
-            
-                <span class="flex">
-                    <a href="/adr/0003-external-user-management/" class="gdoc-nav__entry ">
-                        0003 External User Management
-                    </a>
-                </span>
-            
-            
-
-            
-            </li>
-            
-            
-        
-    </ul>
-
-            
-            </li>
-            
             
             
 
@@ -2943,7 +2955,7 @@
 
 
 
-<div class="gdoc-page__header flex flex-wrap justify-between hidden-mobile" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+<div class="gdoc-page__header flex flex-wrap justify-between" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
     <span>
         
         <span class="breadcrumb">
@@ -2957,7 +2969,21 @@
         
     
     
-        <a href='/'>ownCloud</a> / Adrs
+        
+        
+        
+    
+    
+        
+        
+        
+    
+    
+        <a href='/'>ownCloud</a> / <a href='/ocis/'>oCIS - ownCloud Infinite Scale</a> / <a href='/ocis/adr/'>Architecture Decisions</a> / 3. Use external User Management
+    
+
+    
+
     
 
     
@@ -2967,11 +2993,19 @@
     </span>
     <span>
         
+        <span class="editpage">
+            <svg class="icon code"><use xlink:href="#code"></use></svg>
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/adr/0003-external-user-management.md">
+                Edit this page
+            </a>
+        </span>
+        
     </span>
 </div>
 
+
     <article class="gdoc-markdown">
-        <h1>Adrs</h1>
+        <h1>3. Use external User Management</h1>
         
 
 
@@ -2979,6 +3013,139 @@
     
 
 
+<ul>
+<li>Status: accepted</li>
+<li>Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1</li>
+<li>Date: 2020-12-09</li>
+</ul>
+<p>Technical Story: <a href="https://github.com/owncloud/ocis/pull/1020">Skip account-service by talking to CS3 user-api</a></p>
+<div class="gdoc-page__anchorwrap"><h2 id="context-and-problem-statement">Context and Problem Statement<a data-clipboard-text="https://owncloud.github.io/ocis/adr/0003-external-user-management/#context-and-problem-statement" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Context and Problem Statement" href="#context-and-problem-statement"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>To attach metadata like shares to users ownCloud relies on persistent, non-reassignable, unique identifiers for users (and files). Email and username can change when a user changes his name. But even the OIDC sub+iss combination may change when the IdP changes. While there is <a href="https://openid.net/specs/openid-connect-account-porting-1_0.html">an account porting protocol</a> that describes how a relying party (RP) such as ownCloud should behave, it still requires the RP to maintain its own user identifiers.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="decision-drivers">Decision Drivers<a data-clipboard-text="https://owncloud.github.io/ocis/adr/0003-external-user-management/#decision-drivers" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Decision Drivers" href="#decision-drivers"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<ul>
+<li>oCIS should be a single binary that can run out of the box without external dependencies like an LDAP server.</li>
+<li>Time: we want to build a release candidate asap.</li>
+<li>oCIS should be able to be easily integrated with standard user management components</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h2 id="considered-options">Considered Options<a data-clipboard-text="https://owncloud.github.io/ocis/adr/0003-external-user-management/#considered-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Considered Options" href="#considered-options"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<ul>
+<li>Accounts service wraps LDAP</li>
+<li><a href="https://github.com/glauth/glauth">GLAuth</a> wraps accounts service</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h2 id="decision-outcome">Decision Outcome<a data-clipboard-text="https://owncloud.github.io/ocis/adr/0003-external-user-management/#decision-outcome" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Decision Outcome" href="#decision-outcome"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>Chosen option: &ldquo;Move accounts functionality to GLAuth and name it accounts&rdquo;, by moving the existing accounts service file based persistence to GLAuth and use it as a drop in replacement for an LDAP server. The reverse index and web UI existing in the accounts service will move as well in order to make GLAuth a standalone, small scale user management with write capabilities.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="product-summary">Product summary<a data-clipboard-text="https://owncloud.github.io/ocis/adr/0003-external-user-management/#product-summary" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Product summary" href="#product-summary"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>GLAuth is a drop in user management for small scale deployments that do not rely on an actual LDAP server.</li>
+<li>oCIS admins can either use the web UI to manage users in GLAuth or use existing tools in their IDM.</li>
+<li>We hide the complexity by embedding an OpenID Provider, an LDAP server and a user management web UI.</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h3 id="resulting-deployment-options">Resulting deployment options<a data-clipboard-text="https://owncloud.github.io/ocis/adr/0003-external-user-management/#resulting-deployment-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Resulting deployment options" href="#resulting-deployment-options"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>Use internal user management
+<ul>
+<li>Recommended for small scale use cases and simple deployments</li>
+<li>Users, groups and roles are stored and managed within GLAuth</li>
+</ul>
+</li>
+<li>Use external user management
+<ul>
+<li>Recommended for mid and large scale use cases</li>
+<li>Users, groups and roles are stored and managed within an external LDAP / AD / IDM</li>
+<li>Separate oCIS and LDAP admin: oCIS admin relies on the LDAP admin to manage users</li>
+</ul>
+</li>
+<li>User permissions for roles are always managed in oCIS (settings service) because they are specific to oCIS</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h3 id="resulting-technical-implications">Resulting technical implications<a data-clipboard-text="https://owncloud.github.io/ocis/adr/0003-external-user-management/#resulting-technical-implications" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Resulting technical implications" href="#resulting-technical-implications"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>Make the file based reverse index a standalone library</li>
+<li>Contribute to GLAuth
+<ul>
+<li>Add ms graph based rest API to manage users, groups and roles (the LDAP lib is currently readonly)</li>
+<li>Add web UI to glauth that uses the ms graph based rest API to manage users</li>
+<li>Add a backend that uses the file based reverse index, currently living in the oCIS accounts service</li>
+<li>Move fallback mechanism from ocis/glauth service to upstream GLAuth to support multiple LDAP servers
+<ul>
+<li>Make it a chain to support more than two LDAP servers</li>
+<li>Document the implications for merging result sets when searching for recipients</li>
+<li>At least one writeable backend is needed to support creating guest accounts</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Make all services currently using the accounts service talk to the CS3 userprovider</li>
+<li>To support multiple LDAP servers we need to move the fallback mechanism in ocis/glauth service to upstream GLAuth</li>
+<li>The current CS3 API for user management should be enriched with pagination, field mask and a query language as needed</li>
+<li>properly register an <a href="https://github.com/owncloud/ocis/blob/c8668e8cb171860c70fec29e5ae945bca44f1fb7/deployments/examples/cs3_users_ocis/config/ldap/ldif/10_owncloud_schema.ldif">auxiliary LDAP schema that adds an ownCloudUUID attribute to users and groups</a></li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h3 id="positive-consequences">Positive Consequences<a data-clipboard-text="https://owncloud.github.io/ocis/adr/0003-external-user-management/#positive-consequences" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Positive Consequences" href="#positive-consequences"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>The accounts service (which is our drop in LDAP solution) can be dropped. The CS3 userprovider service becomes the only service dealing with users.</li>
+<li>No sync</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h3 id="negative-consequences">Negative Consequences<a data-clipboard-text="https://owncloud.github.io/ocis/adr/0003-external-user-management/#negative-consequences" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Negative Consequences" href="#negative-consequences"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>If users want to store users in their IDM and at the same time guests in a seperate user management we need to implement GLAuth backends that support more than one LDAP server.</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h2 id="pros-and-cons-of-the-options">Pros and Cons of the Options<a data-clipboard-text="https://owncloud.github.io/ocis/adr/0003-external-user-management/#pros-and-cons-of-the-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Pros and Cons of the Options" href="#pros-and-cons-of-the-options"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<div class="gdoc-page__anchorwrap"><h3 id="glauth-wraps-accounts-service">GLAuth wraps accounts service<a data-clipboard-text="https://owncloud.github.io/ocis/adr/0003-external-user-management/#glauth-wraps-accounts-service" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor GLAuth wraps accounts service" href="#glauth-wraps-accounts-service"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Currently, the accounts service is the source of truth and we use it to implement user management.</p>
+<ul>
+<li>Good, because it solves the problem of storing and looking up an owncloud UUID for a user (and group)</li>
+<li>Good, because we can manage users out of the box</li>
+<li>Good, because we can persist accounts in a CS3 storage provider</li>
+<li>Bad, because it maintains a separate user repository: it needs to either learn or sync users.</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h3 id="move-accounts-functionality-to-glauth-and-name-it-accounts">Move accounts functionality to GLAuth and name it accounts<a data-clipboard-text="https://owncloud.github.io/ocis/adr/0003-external-user-management/#move-accounts-functionality-to-glauth-and-name-it-accounts" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Move accounts functionality to GLAuth and name it accounts" href="#move-accounts-functionality-to-glauth-and-name-it-accounts"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>We should use an existing LDAP server and make GLAuth a drop in replacement for it.</p>
+<ul>
+<li>Good, because we can use an existing user repository (an LDAP server), no need to sync or learn users.</li>
+<li>Good, because admins can rely on existing user management tools.</li>
+<li>Good, because we would have a clear separation of concerns:
+<ul>
+<li>users reside in whatever repository, typically an LDAP server
+<ul>
+<li>could be an existing LDAP server or AD</li>
+<li>could be our embeddable drop in glauth server</li>
+</ul>
+</li>
+<li>we use a service to wrap the LDAP server with other APIs:
+<ul>
+<li>ms graph API - ODATA based restful API,</li>
+<li><a href="http://www.simplecloud.info/">SCIM</a> - designed to manage user identities, supported by some IDPs,</li>
+<li>the current accounts API (which is a protobuf spec following the ms graph API)</li>
+</ul>
+</li>
+<li>our account management UI can use the ms graph based API service which can have different backends
+<ul>
+<li>an existing LDAP server</li>
+<li>our drop in glauth server (which might serve the ms graph based API itself)</li>
+<li>the CS3 API + a future guest provisioning API + a future CS3 user provisioning API (or <a href="https://github.com/cs3org/cs3apis/pull/95">generic space provisioning</a>)</li>
+</ul>
+</li>
+<li>all oCIS services can use the service registry to look up the accounts service that provides an internal API
+<ul>
+<li>could be the CS3 user provider (and API)</li>
+<li>could be the internal protobuf accounts API</li>
+</ul>
+</li>
+<li>introduce a new guest provisioning API to CS3 which properly captures our requirement to have them in the user repository
+<ul>
+<li>guests need to be made available to the firewall</li>
+<li>storages like EOS that integrate with the os for acl based file permissions need a numeric user and group id</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Good, because we can use the CS3 user provider with the existing LDAP / rest driver.</li>
+<li>Bad, because oCIS admins may not have the rights to manage role assignments. (But this is handled at a different department.)</li>
+<li>Bad, because oCIS admins may not have the rights to disable users if an external LDAP is used instead of the drop in GLAuth.</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h2 id="links">Links<a data-clipboard-text="https://owncloud.github.io/ocis/adr/0003-external-user-management/#links" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Links" href="#links"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<ul>
+<li>supersedes <a href="https://owncloud.github.io/ocis/adr/0001-introduce-accounts-service/">ADR-0001</a></li>
+</ul>
 
 
     </article>

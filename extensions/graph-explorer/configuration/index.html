@@ -450,6 +450,117 @@
 
             <li>
             
+            <input type="checkbox" id="navtree-8941f396" class="gdoc-nav__toggle" >
+            <label for="navtree-8941f396" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/ocis/adr/" class="gdoc-nav__entry ">
+                        Architecture Decisions
+                    </a>
+                </span>
+            
+            
+                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
+                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/ocis/adr/0001-introduce-accounts-service/" class="gdoc-nav__entry ">
+                        1. Introduce an accounts service
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/ocis/adr/0002-persist-accounts-using-cs3-storage/" class="gdoc-nav__entry ">
+                        2. Persist accounts in a CS3 storage
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/ocis/adr/0003-external-user-management/" class="gdoc-nav__entry ">
+                        3. Use external User Management
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
             <input type="checkbox" id="navtree-bc8e888a" class="gdoc-nav__toggle" >
             <label for="navtree-bc8e888a" class="flex justify-between">
             
@@ -904,104 +1015,6 @@
             
             
         
-            
-            
-
-            
-            
-            
-            
-            
-
-            <li>
-            
-            
-                <span class="flex">Adrs</span>
-            
-            
-
-            
-                
-    
-
-    <ul class="gdoc-nav__list">
-        
-            
-            
-
-            
-            
-            
-            
-            
-
-            <li>
-            
-            
-                <span class="flex">
-                    <a href="/adr/0001-introduce-accounts-service/" class="gdoc-nav__entry ">
-                        0001 Introduce Accounts Service
-                    </a>
-                </span>
-            
-            
-
-            
-            </li>
-            
-            
-            
-
-            
-            
-            
-            
-            
-
-            <li>
-            
-            
-                <span class="flex">
-                    <a href="/adr/0002-persist-accounts-using-cs3-storage/" class="gdoc-nav__entry ">
-                        0002 Persist Accounts Using Cs3 Storage
-                    </a>
-                </span>
-            
-            
-
-            
-            </li>
-            
-            
-            
-
-            
-            
-            
-            
-            
-
-            <li>
-            
-            
-                <span class="flex">
-                    <a href="/adr/0003-external-user-management/" class="gdoc-nav__entry ">
-                        0003 External User Management
-                    </a>
-                </span>
-            
-            
-
-            
-            </li>
-            
-            
-        
-    </ul>
-
-            
-            </li>
-            
             
             
 
@@ -3014,8 +3027,8 @@
         <li><a href="#root-command">Root Command</a></li>
         <li><a href="#sub-commands">Sub Commands</a>
           <ul>
-            <li><a href="#graph-explorer-server">graph-explorer server</a></li>
             <li><a href="#graph-explorer-health">graph-explorer health</a></li>
+            <li><a href="#graph-explorer-server">graph-explorer server</a></li>
           </ul>
         </li>
       </ul></nav><hr></div>
@@ -3046,6 +3059,13 @@ $HOME/.ocis
 <dd>Enable colored logging.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h2 id="sub-commands">Sub Commands<a data-clipboard-text="https://owncloud.github.io/extensions/graph-explorer/configuration/#sub-commands" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Sub Commands" href="#sub-commands"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<div class="gdoc-page__anchorwrap"><h3 id="graph-explorer-health">graph-explorer health<a data-clipboard-text="https://owncloud.github.io/extensions/graph-explorer/configuration/#graph-explorer-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor graph-explorer health" href="#graph-explorer-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Check health status</p>
+<p>Usage: <code>graph-explorer health [command options] [arguments...]</code></p>
+<dl>
+<dt>-debug-addr |  $GRAPH_EXPLORER_DEBUG_ADDR</dt>
+<dd>Address to debug endpoint. Default: <code>flags.OverrideDefaultString(cfg.Debug.Addr, &quot;0.0.0.0:9136&quot;)</code>.</dd>
+</dl>
 <div class="gdoc-page__anchorwrap"><h3 id="graph-explorer-server">graph-explorer server<a data-clipboard-text="https://owncloud.github.io/extensions/graph-explorer/configuration/#graph-explorer-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor graph-explorer server" href="#graph-explorer-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Start integrated server</p>
 <p>Usage: <code>graph-explorer server [command options] [arguments...]</code></p>
@@ -3082,13 +3102,6 @@ $HOME/.ocis
 <dd>Set the OpenID Client ID to send to the issuer. Default: <code>flags.OverrideDefaultString(cfg.GraphExplorer.ClientID, &quot;ocis-explorer.js&quot;)</code>.</dd>
 <dt>-graph-url |  $GRAPH_EXPLORER_GRAPH_URL</dt>
 <dd>Set the url to the graph api service. Default: <code>flags.OverrideDefaultString(cfg.GraphExplorer.GraphURL, &quot;https://localhost:9200/graph&quot;)</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="graph-explorer-health">graph-explorer health<a data-clipboard-text="https://owncloud.github.io/extensions/graph-explorer/configuration/#graph-explorer-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor graph-explorer health" href="#graph-explorer-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Check health status</p>
-<p>Usage: <code>graph-explorer health [command options] [arguments...]</code></p>
-<dl>
-<dt>-debug-addr |  $GRAPH_EXPLORER_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>flags.OverrideDefaultString(cfg.Debug.Addr, &quot;0.0.0.0:9136&quot;)</code>.</dd>
 </dl>
 
 

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Architecture Decisions on ownCloud</title>
+    <link>https://owncloud.github.io/ocis/adr/</link>
+    <description>Recent content in Architecture Decisions on ownCloud</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Feb 2021 20:21:00 +0100</lastBuildDate>
+    
+	<atom:link href="https://owncloud.github.io/ocis/adr/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>3. Use external User Management</title>
+      <link>https://owncloud.github.io/ocis/adr/0003-external-user-management/</link>
+      <pubDate>Wed, 09 Dec 2020 20:21:00 +0100</pubDate>
+      
+      <guid>https://owncloud.github.io/ocis/adr/0003-external-user-management/</guid>
+      <description>Status: accepted Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1 Date: 2020-12-09  Technical Story: Skip account-service by talking to CS3 user-api
+Context and Problem Statement To attach metadata like shares to users ownCloud relies on persistent, non-reassignable, unique identifiers for users (and files). Email and username can change when a user changes his name. But even the OIDC sub+iss combination may change when the IdP changes. While there is an account porting protocol that describes how a relying party (RP) such as ownCloud should behave, it still requires the RP to maintain its own user identifiers.</description>
+    </item>
+    
+    <item>
+      <title>2. Persist accounts in a CS3 storage</title>
+      <link>https://owncloud.github.io/ocis/adr/0002-persist-accounts-using-cs3-storage/</link>
+      <pubDate>Fri, 21 Aug 2020 20:21:00 +0100</pubDate>
+      
+      <guid>https://owncloud.github.io/ocis/adr/0002-persist-accounts-using-cs3-storage/</guid>
+      <description>Status: accepted Deciders: @butonic, @felixboehm Date: 2020-08-21  Technical Story: File system based indexing
+Context and Problem Statement To set up High Availability (HA) or a geo-replicated setup we need to persist accounts in a distributed way. To efficiently query the accounts by email or username, and not only by id, they need to be indexed. Unfortunately, the bleve index we currently store locally on disk cannot be shared by multiple instances, preventing a scale out deployment.</description>
+    </item>
+    
+    <item>
+      <title>1. Introduce an accounts service</title>
+      <link>https://owncloud.github.io/ocis/adr/0001-introduce-accounts-service/</link>
+      <pubDate>Mon, 15 Jun 2020 20:21:00 +0100</pubDate>
+      
+      <guid>https://owncloud.github.io/ocis/adr/0001-introduce-accounts-service/</guid>
+      <description>Status: superseded by ADR-0003 Deciders: @butonic, @felixboehm, @micbar, @pmaier1 Date: 2020-06-15  Technical Story: persist accounts
+Context and Problem Statement To attach metadata like shares to users ownCloud relies on persistent, non-reassignable, unique identifiers for users (and files). Email und username can change when a user changes his name. But even the OIDC sub+iss combination may change when the IdP changes. While there is an account porting protocol that describes how a relying party (RP) such as ownCloud should behave, it still requires the RP to maintain its own user identifiers.</description>
+    </item>
+    
+  </channel>
+</rss>

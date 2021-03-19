@@ -450,6 +450,117 @@
 
             <li>
             
+            <input type="checkbox" id="navtree-8941f396" class="gdoc-nav__toggle" >
+            <label for="navtree-8941f396" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/ocis/adr/" class="gdoc-nav__entry ">
+                        Architecture Decisions
+                    </a>
+                </span>
+            
+            
+                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
+                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/ocis/adr/0001-introduce-accounts-service/" class="gdoc-nav__entry ">
+                        1. Introduce an accounts service
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/ocis/adr/0002-persist-accounts-using-cs3-storage/" class="gdoc-nav__entry ">
+                        2. Persist accounts in a CS3 storage
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/ocis/adr/0003-external-user-management/" class="gdoc-nav__entry ">
+                        3. Use external User Management
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
             <input type="checkbox" id="navtree-bc8e888a" class="gdoc-nav__toggle" >
             <label for="navtree-bc8e888a" class="flex justify-between">
             
@@ -904,104 +1015,6 @@
             
             
         
-            
-            
-
-            
-            
-            
-            
-            
-
-            <li>
-            
-            
-                <span class="flex">Adrs</span>
-            
-            
-
-            
-                
-    
-
-    <ul class="gdoc-nav__list">
-        
-            
-            
-
-            
-            
-            
-            
-            
-
-            <li>
-            
-            
-                <span class="flex">
-                    <a href="/adr/0001-introduce-accounts-service/" class="gdoc-nav__entry ">
-                        0001 Introduce Accounts Service
-                    </a>
-                </span>
-            
-            
-
-            
-            </li>
-            
-            
-            
-
-            
-            
-            
-            
-            
-
-            <li>
-            
-            
-                <span class="flex">
-                    <a href="/adr/0002-persist-accounts-using-cs3-storage/" class="gdoc-nav__entry ">
-                        0002 Persist Accounts Using Cs3 Storage
-                    </a>
-                </span>
-            
-            
-
-            
-            </li>
-            
-            
-            
-
-            
-            
-            
-            
-            
-
-            <li>
-            
-            
-                <span class="flex">
-                    <a href="/adr/0003-external-user-management/" class="gdoc-nav__entry ">
-                        0003 External User Management
-                    </a>
-                </span>
-            
-            
-
-            
-            </li>
-            
-            
-        
-    </ul>
-
-            
-            </li>
-            
             
             
 
@@ -3009,10 +3022,10 @@
             <li><a href="#configuration-using-config-files">Configuration using config files</a></li>
             <li><a href="#environment-variables">Environment variables</a></li>
             <li><a href="#commandline-flags">Commandline flags</a></li>
+            <li><a href="#thumbnails-version">thumbnails version</a></li>
             <li><a href="#thumbnails-health">thumbnails health</a></li>
             <li><a href="#thumbnails-ocis-thumbnails">thumbnails ocis-thumbnails</a></li>
             <li><a href="#thumbnails-server">thumbnails server</a></li>
-            <li><a href="#thumbnails-version">thumbnails version</a></li>
           </ul>
         </li>
       </ul></nav><hr></div>
@@ -3031,6 +3044,15 @@ $HOME/.ocis
 <p>If multiple variables are listed for one option, they are in order of precedence. This means the leftmost variable will always win if given.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="commandline-flags">Commandline flags<a data-clipboard-text="https://owncloud.github.io/extensions/thumbnails/configuration/#commandline-flags" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Commandline flags" href="#commandline-flags"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>If you prefer to configure the service with commandline flags you can see the available variables below. Command line flags are only working when calling the subcommand directly.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="thumbnails-version">thumbnails version<a data-clipboard-text="https://owncloud.github.io/extensions/thumbnails/configuration/#thumbnails-version" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor thumbnails version" href="#thumbnails-version"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Print the versions of the running instances</p>
+<p>Usage: <code>thumbnails version [command options] [arguments...]</code></p>
+<dl>
+<dt>-grpc-name |  $THUMBNAILS_GRPC_NAME</dt>
+<dd>Name of the service. Default: <code>flags.OverrideDefaultString(cfg.Server.Name, &quot;thumbnails&quot;)</code>.</dd>
+<dt>-grpc-namespace |  $THUMBNAILS_GRPC_NAMESPACE</dt>
+<dd>Set the base namespace for the grpc namespace. Default: <code>flags.OverrideDefaultString(cfg.Server.Namespace, &quot;com.owncloud.api&quot;)</code>.</dd>
+</dl>
 <div class="gdoc-page__anchorwrap"><h3 id="thumbnails-health">thumbnails health<a data-clipboard-text="https://owncloud.github.io/extensions/thumbnails/configuration/#thumbnails-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor thumbnails health" href="#thumbnails-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Check health status</p>
 <p>Usage: <code>thumbnails health [command options] [arguments...]</code></p>
@@ -3085,15 +3107,6 @@ $HOME/.ocis
 <dd>Base url for a webdav api. Default: <code>flags.OverrideDefaultString(cfg.Thumbnail.WebDavSource.BaseURL, &quot;https://localhost:9200/remote.php/webdav/&quot;)</code>.</dd>
 <dt>-webdavsource-insecure |  $THUMBNAILS_WEBDAVSOURCE_INSECURE</dt>
 <dd>Whether to skip certificate checks. Default: <code>flags.OverrideDefaultBool(cfg.Thumbnail.WebDavSource.Insecure, true)</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="thumbnails-version">thumbnails version<a data-clipboard-text="https://owncloud.github.io/extensions/thumbnails/configuration/#thumbnails-version" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor thumbnails version" href="#thumbnails-version"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Print the versions of the running instances</p>
-<p>Usage: <code>thumbnails version [command options] [arguments...]</code></p>
-<dl>
-<dt>-grpc-name |  $THUMBNAILS_GRPC_NAME</dt>
-<dd>Name of the service. Default: <code>flags.OverrideDefaultString(cfg.Server.Name, &quot;thumbnails&quot;)</code>.</dd>
-<dt>-grpc-namespace |  $THUMBNAILS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>flags.OverrideDefaultString(cfg.Server.Namespace, &quot;com.owncloud.api&quot;)</code>.</dd>
 </dl>
 
 
