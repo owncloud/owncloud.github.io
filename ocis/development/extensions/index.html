@@ -3047,10 +3047,10 @@ TAGS=simple make generate build
 </code></pre></div><p><em>Q: Can you specify which version of ownCloud Web to use?</em>
 <em>A: No, the ownCloud Web that is used is compiled into the <a href="https://github.com/owncloud/ocis/blob/master/web/pkg/assets/embed.go">assets of ocis-web</a> which is currently not automatically updated. We&rsquo;ll see how to use a custom ownCloud Web later.</em></p>
 <p><code>bin/ocis server</code></p>
-<p>Open the browser at http://localhost:9100</p>
+<p>Open the browser at https://localhost:9200</p>
 <ol>
 <li>You land on the login screen. click login</li>
-<li>You are redirected to an idp at http://localhost:9140/oauth2/auth with a login mask. Use <code>einstein:relativity</code>to login (one of the three demo users)</li>
+<li>You are redirected to an idp at https://localhost:9200/signin/v1/identifier with a login mask. Use <code>einstein:relativity</code> (one of the three demo users) to log in</li>
 <li>You are redirected to http://localhost:9100/#/hello the ocis-hello app</li>
 <li>Replace <code>World</code> with something else and submit. You should see <code>Hello %something else%</code></li>
 </ol>
@@ -3113,12 +3113,12 @@ WEB_ASSET_PATH=&#34;`pwd`/../web/dist&#34; bin/ocis web
 </li>
 </ol>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-  <span class="nt">&#34;server&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:9140&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;server&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200&#34;</span><span class="p">,</span>
   <span class="nt">&#34;theme&#34;</span><span class="p">:</span> <span class="s2">&#34;owncloud&#34;</span><span class="p">,</span>
   <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;0.1.0&#34;</span><span class="p">,</span>
   <span class="nt">&#34;openIdConnect&#34;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&#34;metadata_url&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:9140/.well-known/openid-configuration&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;authority&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:9140&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;metadata_url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/.well-known/openid-configuration&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;authority&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200&#34;</span><span class="p">,</span>
     <span class="nt">&#34;client_id&#34;</span><span class="p">:</span> <span class="s2">&#34;web&#34;</span><span class="p">,</span>
     <span class="nt">&#34;response_type&#34;</span><span class="p">:</span> <span class="s2">&#34;code&#34;</span><span class="p">,</span>
     <span class="nt">&#34;scope&#34;</span><span class="p">:</span> <span class="s2">&#34;openid profile email&#34;</span>
