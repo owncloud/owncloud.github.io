@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="GRPC API">
+<meta name="description" content="4. Support Hot Migration">
 
-<title>GRPC API | ownCloud</title>
+<title>4. Support Hot Migration | ownCloud</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -450,7 +450,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-8941f396" class="gdoc-nav__toggle" >
+            <input type="checkbox" id="navtree-8941f396" class="gdoc-nav__toggle" checked>
             <label for="navtree-8941f396" class="flex justify-between">
             
             
@@ -554,7 +554,7 @@
             
             
                 <span class="flex">
-                    <a href="/ocis/adr/0004-support-hot-migration/" class="gdoc-nav__entry ">
+                    <a href="/ocis/adr/0004-support-hot-migration/" class="gdoc-nav__entry is-active">
                         4. Support Hot Migration
                     </a>
                 </span>
@@ -1702,7 +1702,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-8623fc11" class="gdoc-nav__toggle" checked>
+            <input type="checkbox" id="navtree-8623fc11" class="gdoc-nav__toggle" >
             <label for="navtree-8623fc11" class="flex justify-between">
             
             
@@ -1762,7 +1762,7 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/accounts/grpc/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/accounts/grpc/" class="gdoc-nav__entry ">
                         GRPC API
                     </a>
                 </span>
@@ -3027,7 +3027,7 @@
         
     
     
-        <a href='/'>ownCloud</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/accounts/'>Accounts</a> / GRPC API
+        <a href='/'>ownCloud</a> / <a href='/ocis/'>oCIS - ownCloud Infinite Scale</a> / <a href='/ocis/adr/'>Architecture Decisions</a> / 4. Support Hot Migration
     
 
     
@@ -3043,7 +3043,7 @@
         
         <span class="editpage">
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis-thumbnails/edit/master/docs/grpc.md">
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/adr/0004-support-hot-migration.md">
                 Edit this page
             </a>
         </span>
@@ -3053,7 +3053,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>GRPC API</h1>
+        <h1>4. Support Hot Migration</h1>
         
 
 
@@ -3061,1068 +3061,79 @@
     
 
 
-
-
-
-  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
-        <li><a href="#accountsproto">accounts.proto</a>
-          <ul>
-            <li><a href="#account">Account</a></li>
-            <li><a href="#addmemberrequest">AddMemberRequest</a></li>
-            <li><a href="#createaccountrequest">CreateAccountRequest</a></li>
-            <li><a href="#creategrouprequest">CreateGroupRequest</a></li>
-            <li><a href="#deleteaccountrequest">DeleteAccountRequest</a></li>
-            <li><a href="#deletegrouprequest">DeleteGroupRequest</a></li>
-            <li><a href="#getaccountrequest">GetAccountRequest</a></li>
-            <li><a href="#getgrouprequest">GetGroupRequest</a></li>
-            <li><a href="#group">Group</a></li>
-            <li><a href="#identities">Identities</a></li>
-            <li><a href="#listaccountsrequest">ListAccountsRequest</a></li>
-            <li><a href="#listaccountsresponse">ListAccountsResponse</a></li>
-            <li><a href="#listgroupsrequest">ListGroupsRequest</a></li>
-            <li><a href="#listgroupsresponse">ListGroupsResponse</a></li>
-            <li><a href="#listmembersrequest">ListMembersRequest</a></li>
-            <li><a href="#listmembersresponse">ListMembersResponse</a></li>
-            <li><a href="#onpremisesprovisioningerror">OnPremisesProvisioningError</a></li>
-            <li><a href="#passwordprofile">PasswordProfile</a></li>
-            <li><a href="#rebuildindexrequest">RebuildIndexRequest</a></li>
-            <li><a href="#rebuildindexresponse">RebuildIndexResponse</a></li>
-            <li><a href="#removememberrequest">RemoveMemberRequest</a></li>
-            <li><a href="#updateaccountrequest">UpdateAccountRequest</a></li>
-            <li><a href="#updategrouprequest">UpdateGroupRequest</a></li>
-            <li><a href="#accountsservice">AccountsService</a></li>
-            <li><a href="#groupsservice">GroupsService</a></li>
-            <li><a href="#indexservice">IndexService</a></li>
-          </ul>
-        </li>
-        <li><a href="#scalar-value-types">Scalar Value Types</a></li>
-      </ul></nav><hr></div>
-
-
-<div class="gdoc-page__anchorwrap"><h2 id="accountsproto">accounts.proto<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#accountsproto" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts.proto" href="#accountsproto"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<div class="gdoc-page__anchorwrap"><h3 id="account">Account<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#account" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Account" href="#account"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Account follows the properties of the ms graph api user resuorce.
-See <a href="https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0#properties">https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0#properties</a></p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Label</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>The unique identifier for the user. Key. Not nullable. Non reassignable. Read-only.</td>
-</tr>
-<tr>
-<td>account_enabled</td>
-<td><a href="#bool">bool</a></td>
-<td></td>
-<td>true* if the account is enabled; otherwise, *false*. This property is required when a user is created. Supports $filter.</td>
-</tr>
-<tr>
-<td>is_resource_account</td>
-<td><a href="#bool">bool</a></td>
-<td></td>
-<td>A resource account is also known as a /disabled user object/ in Azure AD, and can be used to represent resources in general. In Exchange it might be used to represent conference rooms, for example, and allow them to have a phone number. You could give printers or machines with a sync client resource accounts as well. A resource account can be homed in Microsoft 365 or on premises using Skype for Business Server 2019. <em>true</em> if the user is a resource account; otherwise, <em>false</em>. Null value should be considered false.</td>
-</tr>
-<tr>
-<td>creation_type</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>Indicates whether the account was created as - a regular school or work account (&rdquo;&rdquo; / emptystring), - a local account, fully managed by oCIS (LocalAccount), includes synced accounts or - an external account (Invitation), - self-service sign-up using email verification (EmailVerified). Read-only.</td>
-</tr>
-<tr>
-<td>identities</td>
-<td><a href="#identities">Identities</a></td>
-<td>repeated</td>
-<td>Represents the identities that can be used to sign in to this account. An identity can be provided by oCIS (also known as a local account), by organizations, or by social identity providers such as Facebook, Google, and Microsoft, and is tied to an account. May contain multiple items with the same signInType value. Supports $filter.</td>
-</tr>
-<tr>
-<td>display_name</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>The name displayed in the address book for the account. This is usually the combination of the user&rsquo;s first name, middle initial and last name. This property is required when a user is created and it cannot be cleared during updates. Supports $filter and $orderby. posixaccount MUST cn</td>
-</tr>
-<tr>
-<td>preferred_name</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>The username posixaccount MUST uid</td>
-</tr>
-<tr>
-<td>uid_number</td>
-<td><a href="#int64">int64</a></td>
-<td></td>
-<td>TODO rename to on_premise_? or move to extension? see <a href="https://docs.microsoft.com/en-us/graph/extensibility-open-users">https://docs.microsoft.com/en-us/graph/extensibility-open-users</a> used for exposing the user using ldap posixaccount MUST uidnumber</td>
-</tr>
-<tr>
-<td>gid_number</td>
-<td><a href="#int64">int64</a></td>
-<td></td>
-<td>used for exposing the user using ldap posixaccount MUST gidnumber</td>
-</tr>
-<tr>
-<td>mail</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>The SMTP address for the user, for example, &ldquo;<a href="mailto:jeff@contoso.onmicrosoft.com">jeff@contoso.onmicrosoft.com</a>&rdquo;. Read-Only. Supports $filter. inetorgperson MAY mail</td>
-</tr>
-<tr>
-<td>description</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>A description, useful for resource accounts posixaccount MAY description</td>
-</tr>
-<tr>
-<td>password_profile</td>
-<td><a href="#passwordprofile">PasswordProfile</a></td>
-<td></td>
-<td>Specifies the password profile for the user. The profile contains the user’s password. This property is required when a user is created. The password in the profile must satisfy minimum requirements as specified by the passwordPolicies property. By default, a strong password is required. posixaccount MAY authPassword</td>
-</tr>
-<tr>
-<td>memberOf</td>
-<td><a href="#group">Group</a></td>
-<td>repeated</td>
-<td>The groups, directory roles and administrative units that the user is a member of. Read-only. Nullable. should we only respond with repeated strings of ids? no clients should a proper filter mask!</td>
-</tr>
-<tr>
-<td>created_date_time</td>
-<td><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a></td>
-<td></td>
-<td>The created date of the account object.</td>
-</tr>
-<tr>
-<td>deleted_date_time</td>
-<td><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a></td>
-<td></td>
-<td>The date and time the user was deleted. Returned only on $select.</td>
-</tr>
-<tr>
-<td>on_premises_sync_enabled</td>
-<td><a href="#bool">bool</a></td>
-<td></td>
-<td>true* if this object is synced from an on-premises directory; *false* if this object was originally synced from an on-premises directory but is no longer synced; null if this object has never been synced from an on-premises directory (default). Read-only</td>
-</tr>
-<tr>
-<td>on_premises_immutable_id</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>This property is used to associate an on-premises LDAP user to the oCIS account object. This property must be specified when creating a new user account in the Graph if you are using a federated domain for the user’s userPrincipalName (UPN) property. Important: The $ and _ characters cannot be used when specifying this property. Supports $filter.</td>
-</tr>
-<tr>
-<td>on_premises_security_identifier</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>Contains the on-premises security identifier (SID) for the user that was synchronized from on-premises to the cloud. Read-only.</td>
-</tr>
-<tr>
-<td>on_premises_distinguished_name</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>Contains the on-premises LDAP <code>distinguished name</code> or <code>DN</code>. The property is only populated for customers who are synchronizing their on-premises directory to ocis-accounts. Read-only.</td>
-</tr>
-<tr>
-<td>on_premises_sam_account_name</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>Contains the on-premises <code>samAccountName</code> synchronized from the on-premises directory. The property is only populated for customers who are synchronizing their on-premises directory to ocis-accounts. Read-only.</td>
-</tr>
-<tr>
-<td>on_premises_domain_name</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>Contains the on-premises <code>domainFQDN</code>, also called <code>dnsDomainName</code> synchronized from the on-premises directory The property is only populated for customers who are synchronizing their on-premises directory to ocis-accounts. Read-only.</td>
-</tr>
-<tr>
-<td>on_premises_user_principal_name</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>Contains the on-premises userPrincipalName synchronized from the on-premises directory. The property is only populated for customers who are synchronizing their on-premises directory to ocis-accounts. Read-only.</td>
-</tr>
-<tr>
-<td>on_premises_last_sync_date_time</td>
-<td><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a></td>
-<td></td>
-<td>Indicates the last time at which the object was synced with the on-premises directory; Read-only.</td>
-</tr>
-<tr>
-<td>on_premises_provisioning_errors</td>
-<td><a href="#onpremisesprovisioningerror">OnPremisesProvisioningError</a></td>
-<td>repeated</td>
-<td>Errors when using synchronization during provisioning.</td>
-</tr>
-<tr>
-<td>external_user_state</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>For an external user invited to the tenant using the invitation API, this property represents the invited user&rsquo;s invitation status. For invited users, the state can be <code>PendingAcceptance</code> or <code>Accepted</code>, or &quot;&rdquo; / emptystring for all other users. Returned only on $select. Supports $filter with the supported values. For example: $filter=externalUserState eq &lsquo;PendingAcceptance&rsquo;.</td>
-</tr>
-<tr>
-<td>external_user_state_change_date_time</td>
-<td><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a></td>
-<td></td>
-<td>Shows the timestamp for the latest change to the externalUserState property. Returned only on $select.</td>
-</tr>
-<tr>
-<td>refresh_tokens_valid_from_date_time</td>
-<td><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a></td>
-<td></td>
-<td>Any refresh tokens or sessions tokens (session cookies) issued before this time are invalid, and applications will get an error when using an invalid refresh or sessions token to acquire a delegated access token (to access APIs such as Microsoft Graph). If this happens, the application will need to acquire a new refresh token by making a request to the authorize endpoint. Returned only on $select. Read-only. Use invalidateAllRefreshTokens to reset.</td>
-</tr>
-<tr>
-<td>sign_in_sessions_valid_from_date_time</td>
-<td><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a></td>
-<td></td>
-<td>Any refresh tokens or sessions tokens (session cookies) issued before this time are invalid, and applications will get an error when using an invalid refresh or sessions token to acquire a delegated access token (to access APIs such as Microsoft Graph). If this happens, the application will need to acquire a new refresh token by making a request to the authorize endpoint. Read-only. Use revokeSignInSessions to reset.</td>
-</tr>
-</tbody>
-</table>
-<div class="gdoc-page__anchorwrap"><h3 id="addmemberrequest">AddMemberRequest<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#addmemberrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor AddMemberRequest" href="#addmemberrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Label</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>group_id</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>The id of the group to add a member to</td>
-</tr>
-<tr>
-<td>account_id</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>The account id to add</td>
-</tr>
-</tbody>
-</table>
-<div class="gdoc-page__anchorwrap"><h3 id="createaccountrequest">CreateAccountRequest<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#createaccountrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor CreateAccountRequest" href="#createaccountrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Label</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>account</td>
-<td><a href="#account">Account</a></td>
-<td></td>
-<td>The account resource to create</td>
-</tr>
-</tbody>
-</table>
-<div class="gdoc-page__anchorwrap"><h3 id="creategrouprequest">CreateGroupRequest<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#creategrouprequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor CreateGroupRequest" href="#creategrouprequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Label</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>group</td>
-<td><a href="#group">Group</a></td>
-<td></td>
-<td>The account resource to create</td>
-</tr>
-</tbody>
-</table>
-<div class="gdoc-page__anchorwrap"><h3 id="deleteaccountrequest">DeleteAccountRequest<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#deleteaccountrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor DeleteAccountRequest" href="#deleteaccountrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Label</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<div class="gdoc-page__anchorwrap"><h3 id="deletegrouprequest">DeleteGroupRequest<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#deletegrouprequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor DeleteGroupRequest" href="#deletegrouprequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Label</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<div class="gdoc-page__anchorwrap"><h3 id="getaccountrequest">GetAccountRequest<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#getaccountrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor GetAccountRequest" href="#getaccountrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Label</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<div class="gdoc-page__anchorwrap"><h3 id="getgrouprequest">GetGroupRequest<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#getgrouprequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor GetGroupRequest" href="#getgrouprequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Label</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<div class="gdoc-page__anchorwrap"><h3 id="group">Group<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#group" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Group" href="#group"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Label</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>The unique identifier for the group. Returned by default. Inherited from directoryObject. Key. Not nullable. Read-only.</td>
-</tr>
-<tr>
-<td>display_name</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>The display name for the group. This property is required when a group is created and cannot be cleared during updates. Returned by default. Supports $filter and $orderby. groupofnames MUST cn</td>
-</tr>
-</tbody>
-</table>
-<p>groupofnames MUST/MAY member |
-| members | <a href="#account">Account</a> | repeated | Users, contacts, and groups that are members of this group. HTTP Methods: GET (supported for all groups), POST (supported for security groups and mail-enabled security groups), DELETE (supported only for security groups) Read-only. Nullable. TODO accounts (users) only for now, we can add groups with the dedicated message using oneof construct later |
-| owners | <a href="#account">Account</a> | repeated | groupofnames MAY businessCategory groupofnames MAY o groupofnames MAY ou groupofnames MAY owner, SINGLE-VALUE but there might be multiple owners |
-| description | <a href="#string">string</a> |  | An optional description for the group. Returned by default. groupofnames MAY description |
-| gid_number | <a href="#int64">int64</a> |  | used for exposing the user using ldap posixgroup MUST gidnumber</p>
-<p>posixgroup MAY authPassword posixgroup MAY userPassword posixgroup MAY memberUid -&gt; groupofnames member posixgroup MAY description -&gt; groupofnames |
-| created_date_time | <a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> |  | Timestamp of when the group was created. The value cannot be modified and is automatically populated when the group is created Returned by default. Read-only. |
-| deleted_date_time | <a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> |  | For some Azure Active Directory objects (user, group, application), if the object is deleted, it is first logically deleted, and this property is updated with the date and time when the object was deleted. Otherwise this property is null. If the object is restored, this property is updated to null. Returned by default. Read-only. |
-| expiration_date_time | <a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> |  | Timestamp of when the group is set to expire. The value cannot be modified and is automatically populated when the group is created. Returned by default. Read-only. |
-| hide_from_address_lists | <a href="#bool">bool</a> |  | True if the group is not displayed in certain parts of the Outlook user interface: in the Address Book, in address lists for selecting message recipients, and in the Browse Groups dialog for searching groups; false otherwise. Default value is false. Returned only on $select. |
-| visibility | <a href="#string">string</a> |  | Specifies the visibility of an Office 365 group. Possible values are: Private, Public, or Hiddenmembership; blank values are treated as public. See group visibility options to learn more. Visibility can be set only when a group is created; it is not editable. Returned by default. |
-| on_premises_sync_enabled | <a href="#bool">bool</a> |  | true* if this group is synced from an on-premises directory; *false* if this group was originally synced from an on-premises directory but is no longer synced; null if this object has never been synced from an on-premises directory (default). Returned by default. Read-only. Supports $filter. |
-| on_premises_immutable_id | <a href="#string">string</a> |  | This property is used to associate an on-premises LDAP user to the oCIS account object. This property must be specified when creating a new user account in the Graph if you are using a federated domain for the user’s userPrincipalName (UPN) property. Important: The $ and _ characters cannot be used when specifying this property. Supports $filter. |
-| on_premises_security_identifier | <a href="#string">string</a> |  | Contains the on-premises security identifier (SID) for the group that was synchronized from on-premises to the cloud. Returned by default. Read-only. |
-| on_premises_distinguished_name | <a href="#string">string</a> |  | Contains the on-premises LDAP <code>distinguished name</code> or <code>DN</code>. The property is only populated for customers who are synchronizing their on-premises directory to ocis-accounts. Read-only. |
-| on_premises_sam_account_name | <a href="#string">string</a> |  | Contains the on-premises <code>samAccountName</code> synchronized from the on-premises directory. The property is only populated for customers who are synchronizing their on-premises directory to ocis-accounts. Returned by default. Read-only. |
-| on_premises_domain_name | <a href="#string">string</a> |  | Contains the on-premises domain FQDN, also called dnsDomainName synchronized from the on-premises directory. The property is only populated for customers who are synchronizing their on-premises directory to Azure Active Directory via Azure AD Connect. Returned by default. Read-only. |
-| on_premises_net_bios_name | <a href="#string">string</a> |  | Contains the on-premises netBios name synchronized from the on-premises directory. The property is only populated for customers who are synchronizing their on-premises directory to Azure Active Directory via Azure AD Connect. Returned by default. Read-only. |
-| on_premises_last_sync_date_time | <a href="#string">string</a> |  | Indicates the last time at which the group was synced with the on-premises directory. Returned by default. Read-only. Supports $filter. |
-| on_premises_provisioning_errors | <a href="#onpremisesprovisioningerror">OnPremisesProvisioningError</a> | repeated | Errors when using synchronization during provisioning. |</p>
-<div class="gdoc-page__anchorwrap"><h3 id="identities">Identities<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#identities" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Identities" href="#identities"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Identities Represents an identity used to sign in to a user account.
-An identity can be provided by oCIS, by organizations, or by social identity providers such as Facebook, Google, or Microsoft, that are tied to a user account.
-This enables the user to sign in to the user account with any of those associated identities.
-They are also used to keep a history of old usernames.</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Label</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>sign_in_type</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>Specifies the user sign-in types in your directory, such as <code>emailAddress</code>, <code>userName</code> or <code>federated</code>. Here, federated represents a unique identifier for a user from an issuer, that can be in any format chosen by the issuer. Additional validation is enforced on <em>issuer_assigned_id</em> when the sign-in type is set to <code>emailAddress</code> or <code>userName</code>. This property can also be set to any custom string.</td>
-</tr>
-<tr>
-<td>issuer</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>Specifies the issuer of the identity, for example facebook.com. For local accounts (where signInType is not federated), this property is the local B2C tenant default domain name, for example contoso.onmicrosoft.com. For external users from other Azure AD organization, this will be the domain of the federated organization, for example contoso.com. Supports $filter. 512 character limit.</td>
-</tr>
-<tr>
-<td>issuer_assigned_id</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>Specifies the unique identifier assigned to the user by the issuer. The combination of <em>issuer</em> and <em>issuerAssignedId</em> must be unique within the organization. Represents the sign-in name for the user, when signInType is set to emailAddress or userName (also known as local accounts). When <em>signInType</em> is set to: * <code>emailAddress</code>, (or starts with <code>emailAddress</code> like <code>emailAddress1</code>) <em>issuerAssignedId</em> must be a valid email address * <code>userName</code>, issuer_assigned_id must be a valid local part of an email address Supports $filter. 512 character limit.</td>
-</tr>
-</tbody>
-</table>
-<div class="gdoc-page__anchorwrap"><h3 id="listaccountsrequest">ListAccountsRequest<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#listaccountsrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListAccountsRequest" href="#listaccountsrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Label</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>page_size</td>
-<td><a href="#int32">int32</a></td>
-<td></td>
-<td>Optional. The maximum number of accounts to return in the response</td>
-</tr>
-<tr>
-<td>page_token</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>Optional. A pagination token returned from a previous call to <code>Get</code> that indicates from where search should continue</td>
-</tr>
-<tr>
-<td>field_mask</td>
-<td><a href="#googleprotobuffieldmask">google.protobuf.FieldMask</a></td>
-<td></td>
-<td>Optional. Used to specify a subset of fields that should be returned by a get operation or modified by an update operation.</td>
-</tr>
-<tr>
-<td>query</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>Optional. Search criteria used to select the accounts to return. If no search criteria is specified then all accounts will be returned</td>
-</tr>
-</tbody>
-</table>
-<p>TODO update query language Query expressions can be used to restrict results based upon the account properties where the operators <code>=</code>, <code>NOT</code>, <code>AND</code> and <code>OR</code> can be used along with the suffix wildcard symbol <code>*</code>.</p>
-<p>The string properties in a query expression should use escaped quotes for values that include whitespace to prevent unexpected behavior.</p>
-<p>Some example queries are:</p>
+<h1 id="4-support-hot-migration">4. Support Hot Migration</h1>
 <ul>
-<li>Query <code>display_name=Th*</code> returns accounts whose display_name starts with &ldquo;Th&rdquo; * Query <code>email=foo@example.com</code> returns accounts with <code>email</code> set to <code>foo@example.com</code> * Query <code>display_name=\\&quot;Test String\\&quot;</code> returns accounts with display names that include both &ldquo;Test&rdquo; and &ldquo;String&rdquo; |</li>
+<li>Status: proposed</li>
+<li>Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1</li>
+<li>Date: 2021-03-16</li>
 </ul>
-<div class="gdoc-page__anchorwrap"><h3 id="listaccountsresponse">ListAccountsResponse<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#listaccountsresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListAccountsResponse" href="#listaccountsresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Label</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>accounts</td>
-<td><a href="#account">Account</a></td>
-<td>repeated</td>
-<td>The field name should match the noun &ldquo;accounts&rdquo; in the method name. There will be a maximum number of items returned based on the page_size field in the request</td>
-</tr>
-<tr>
-<td>next_page_token</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>Token to retrieve the next page of results, or empty if there are no more results in the list</td>
-</tr>
-</tbody>
-</table>
-<div class="gdoc-page__anchorwrap"><h3 id="listgroupsrequest">ListGroupsRequest<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#listgroupsrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListGroupsRequest" href="#listgroupsrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Label</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>page_size</td>
-<td><a href="#int32">int32</a></td>
-<td></td>
-<td>Optional. The maximum number of groups to return in the response</td>
-</tr>
-<tr>
-<td>page_token</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>Optional. A pagination token returned from a previous call to <code>Get</code> that indicates from where search should continue</td>
-</tr>
-<tr>
-<td>field_mask</td>
-<td><a href="#googleprotobuffieldmask">google.protobuf.FieldMask</a></td>
-<td></td>
-<td>Optional. Used to specify a subset of fields that should be returned by a get operation or modified by an update operation.</td>
-</tr>
-<tr>
-<td>query</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>Optional. Search criteria used to select the groups to return. If no search criteria is specified then all groups will be returned</td>
-</tr>
-</tbody>
-</table>
-<p>TODO update query language Query expressions can be used to restrict results based upon the account properties where the operators <code>=</code>, <code>NOT</code>, <code>AND</code> and <code>OR</code> can be used along with the suffix wildcard symbol <code>*</code>.</p>
-<p>The string properties in a query expression should use escaped quotes for values that include whitespace to prevent unexpected behavior.</p>
-<p>Some example queries are:</p>
+<p>Technical Story: [description | ticket/issue URL]</p>
+<div class="gdoc-page__anchorwrap"><h2 id="context-and-problem-statement">Context and Problem Statement<a data-clipboard-text="https://owncloud.github.io/ocis/adr/0004-support-hot-migration/#context-and-problem-statement" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Context and Problem Statement" href="#context-and-problem-statement"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>Migration is one of the most important topics of the oCIS story. We need to provide a concept how to migrate from oC10 to oCIS.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="decision-drivers">Decision Drivers<a data-clipboard-text="https://owncloud.github.io/ocis/adr/0004-support-hot-migration/#decision-drivers" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Decision Drivers" href="#decision-drivers"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <ul>
-<li>Query <code>display_name=Th*</code> returns accounts whose display_name starts with &ldquo;Th&rdquo; * Query <code>display_name=\\&quot;Test String\\&quot;</code> returns groups with display names that include both &ldquo;Test&rdquo; and &ldquo;String&rdquo; |</li>
-</ul>
-<div class="gdoc-page__anchorwrap"><h3 id="listgroupsresponse">ListGroupsResponse<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#listgroupsresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListGroupsResponse" href="#listgroupsresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Label</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>groups</td>
-<td><a href="#group">Group</a></td>
-<td>repeated</td>
-<td>The field name should match the noun &ldquo;group&rdquo; in the method name. There will be a maximum number of items returned based on the page_size field in the request</td>
-</tr>
-<tr>
-<td>next_page_token</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>Token to retrieve the next page of results, or empty if there are no more results in the list</td>
-</tr>
-</tbody>
-</table>
-<div class="gdoc-page__anchorwrap"><h3 id="listmembersrequest">ListMembersRequest<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#listmembersrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListMembersRequest" href="#listmembersrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Label</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>page_size</td>
-<td><a href="#int32">int32</a></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>page_token</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>Optional. A pagination token returned from a previous call to <code>Get</code> that indicates from where search should continue</td>
-</tr>
-<tr>
-<td>field_mask</td>
-<td><a href="#googleprotobuffieldmask">google.protobuf.FieldMask</a></td>
-<td></td>
-<td>Optional. Used to specify a subset of fields that should be returned by a get operation or modified by an update operation.</td>
-</tr>
-<tr>
-<td>query</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>Optional. Search criteria used to select the groups to return. If no search criteria is specified then all groups will be returned</td>
-</tr>
-</tbody>
-</table>
-<p>TODO update query language Query expressions can be used to restrict results based upon the account properties where the operators <code>=</code>, <code>NOT</code>, <code>AND</code> and <code>OR</code> can be used along with the suffix wildcard symbol <code>*</code>.</p>
-<p>The string properties in a query expression should use escaped quotes for values that include whitespace to prevent unexpected behavior.</p>
-<p>Some example queries are:</p>
+<li>Do not lose file blob or meta data.
 <ul>
-<li>Query <code>display_name=Th*</code> returns accounts whose display_name starts with &ldquo;Th&rdquo; * Query <code>display_name=\\&quot;Test String\\&quot;</code> returns groups with display names that include both &ldquo;Test&rdquo; and &ldquo;String&rdquo; |
-| id | <a href="#string">string</a> |  | The id of the group to list members from |</li>
+<li>To prevent a sync surge from clients the etag for files should be migrated.</li>
+<li>To prevent internal links from breaking or pointing to wrong files the file id of existing files needs to be migrated.</li>
+<li>To prevent data loss trash and version blobs should be migrated.</li>
 </ul>
-<div class="gdoc-page__anchorwrap"><h3 id="listmembersresponse">ListMembersResponse<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#listmembersresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListMembersResponse" href="#listmembersresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Label</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>members</td>
-<td><a href="#account">Account</a></td>
-<td>repeated</td>
-<td>The field name should match the noun &ldquo;members&rdquo; in the method name. There will be a maximum number of items returned based on the page_size field in the request</td>
-</tr>
-<tr>
-<td>next_page_token</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>Token to retrieve the next page of results, or empty if there are no more results in the list</td>
-</tr>
-</tbody>
-</table>
-<div class="gdoc-page__anchorwrap"><h3 id="onpremisesprovisioningerror">OnPremisesProvisioningError<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#onpremisesprovisioningerror" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor OnPremisesProvisioningError" href="#onpremisesprovisioningerror"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Label</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>category</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>Category of the provisioning error. Note: Currently, there is only one possible value. Possible value: PropertyConflict - indicates a property value is not unique. Other objects contain the same value for the property.</td>
-</tr>
-<tr>
-<td>occurred_date_time</td>
-<td><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a></td>
-<td></td>
-<td>The date and time at which the error occurred.</td>
-</tr>
-<tr>
-<td>property_causing_error</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>Name of the directory property causing the error. Current possible values: UserPrincipalName or ProxyAddress</td>
-</tr>
-<tr>
-<td>value</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>Value of the property causing the error.</td>
-</tr>
-</tbody>
-</table>
-<div class="gdoc-page__anchorwrap"><h3 id="passwordprofile">PasswordProfile<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#passwordprofile" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor PasswordProfile" href="#passwordprofile"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Label</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>password</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>The password for the user. This property is required when a user is created. It can be updated, but the user will be required to change the password on the next login. The password must satisfy minimum requirements as specified by the user’s passwordPolicies property. By default, a strong password is required.</td>
-</tr>
-<tr>
-<td>last_password_change_date_time</td>
-<td><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a></td>
-<td></td>
-<td>The time when this account last changed their password.</td>
-</tr>
-<tr>
-<td>password_policies</td>
-<td><a href="#string">string</a></td>
-<td>repeated</td>
-<td>Specifies password policies for the user. This value is an enumeration with one possible value being “DisableStrongPassword”, which allows weaker passwords than the default policy to be specified. “DisablePasswordExpiration” can also be specified.</td>
-</tr>
-<tr>
-<td>force_change_password_next_sign_in</td>
-<td><a href="#bool">bool</a></td>
-<td></td>
-<td>true* if the user must change her password on the next login; otherwise false.</td>
-</tr>
-<tr>
-<td>force_change_password_next_sign_in_with_mfa</td>
-<td><a href="#bool">bool</a></td>
-<td></td>
-<td>If <em>true</em>, at next sign-in, the user must perform a multi-factor authentication (MFA) before being forced to change their password. The behavior is identical to forceChangePasswordNextSignIn except that the user is required to first perform a multi-factor authentication before password change. After a password change, this property will be automatically reset to false. If not set, default is false.</td>
-</tr>
-</tbody>
-</table>
-<div class="gdoc-page__anchorwrap"><h3 id="rebuildindexrequest">RebuildIndexRequest<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#rebuildindexrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor RebuildIndexRequest" href="#rebuildindexrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<div class="gdoc-page__anchorwrap"><h3 id="rebuildindexresponse">RebuildIndexResponse<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#rebuildindexresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor RebuildIndexResponse" href="#rebuildindexresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<div class="gdoc-page__anchorwrap"><h3 id="removememberrequest">RemoveMemberRequest<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#removememberrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor RemoveMemberRequest" href="#removememberrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Label</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>group_id</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>The id of the group to remove a member from</td>
-</tr>
-<tr>
-<td>account_id</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>The account id to remove</td>
-</tr>
-</tbody>
-</table>
-<div class="gdoc-page__anchorwrap"><h3 id="updateaccountrequest">UpdateAccountRequest<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#updateaccountrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor UpdateAccountRequest" href="#updateaccountrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Label</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>account</td>
-<td><a href="#account">Account</a></td>
-<td></td>
-<td>The account resource which replaces the resource on the server</td>
-</tr>
-<tr>
-<td>update_mask</td>
-<td><a href="#googleprotobuffieldmask">google.protobuf.FieldMask</a></td>
-<td></td>
-<td>The update mask applies to the resource. For the <code>FieldMask</code> definition, see <a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask">https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask</a></td>
-</tr>
-</tbody>
-</table>
-<div class="gdoc-page__anchorwrap"><h3 id="updategrouprequest">UpdateGroupRequest<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#updategrouprequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor UpdateGroupRequest" href="#updategrouprequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Label</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>group</td>
-<td><a href="#group">Group</a></td>
-<td></td>
-<td>The group resource which replaces the resource on the server</td>
-</tr>
-<tr>
-<td>update_mask</td>
-<td><a href="#googleprotobuffieldmask">google.protobuf.FieldMask</a></td>
-<td></td>
-<td>The update mask applies to the resource. For the <code>FieldMask</code> definition, see <a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask">https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask</a></td>
-</tr>
-</tbody>
-</table>
-<div class="gdoc-page__anchorwrap"><h3 id="accountsservice">AccountsService<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#accountsservice" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor AccountsService" href="#accountsservice"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Follow recommended Methods for rpc APIs <a href="https://cloud.google.com/apis/design/resources?hl=de#methods">https://cloud.google.com/apis/design/resources?hl=de#methods</a>
-<a href="https://cloud.google.com/apis/design/standard_methods?hl=de#list">https://cloud.google.com/apis/design/standard_methods?hl=de#list</a>
-<a href="https://cloud.google.com/apis/design/naming_convention?hl=de">https://cloud.google.com/apis/design/naming_convention?hl=de</a></p>
-<table>
-<thead>
-<tr>
-<th>Method Name</th>
-<th>Request Type</th>
-<th>Response Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ListAccounts</td>
-<td><a href="#listaccountsrequest">ListAccountsRequest</a></td>
-<td><a href="#listaccountsresponse">ListAccountsResponse</a></td>
-<td>Lists accounts</td>
-</tr>
-<tr>
-<td>GetAccount</td>
-<td><a href="#getaccountrequest">GetAccountRequest</a></td>
-<td><a href="#account">Account</a></td>
-<td>Gets an account</td>
-</tr>
-<tr>
-<td>CreateAccount</td>
-<td><a href="#createaccountrequest">CreateAccountRequest</a></td>
-<td><a href="#account">Account</a></td>
-<td>Creates an account</td>
-</tr>
-<tr>
-<td>UpdateAccount</td>
-<td><a href="#updateaccountrequest">UpdateAccountRequest</a></td>
-<td><a href="#account">Account</a></td>
-<td>Updates an account</td>
-</tr>
-<tr>
-<td>DeleteAccount</td>
-<td><a href="#deleteaccountrequest">DeleteAccountRequest</a></td>
-<td><a href="#googleprotobufempty">.google.protobuf.Empty</a></td>
-<td>Deletes an account</td>
-</tr>
-</tbody>
-</table>
-<div class="gdoc-page__anchorwrap"><h3 id="groupsservice">GroupsService<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#groupsservice" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor GroupsService" href="#groupsservice"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
-<thead>
-<tr>
-<th>Method Name</th>
-<th>Request Type</th>
-<th>Response Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ListGroups</td>
-<td><a href="#listgroupsrequest">ListGroupsRequest</a></td>
-<td><a href="#listgroupsresponse">ListGroupsResponse</a></td>
-<td>Lists groups</td>
-</tr>
-<tr>
-<td>GetGroup</td>
-<td><a href="#getgrouprequest">GetGroupRequest</a></td>
-<td><a href="#group">Group</a></td>
-<td>Gets an groups</td>
-</tr>
-<tr>
-<td>CreateGroup</td>
-<td><a href="#creategrouprequest">CreateGroupRequest</a></td>
-<td><a href="#group">Group</a></td>
-<td>Creates a group</td>
-</tr>
-<tr>
-<td>UpdateGroup</td>
-<td><a href="#updategrouprequest">UpdateGroupRequest</a></td>
-<td><a href="#group">Group</a></td>
-<td>Updates a group</td>
-</tr>
-<tr>
-<td>DeleteGroup</td>
-<td><a href="#deletegrouprequest">DeleteGroupRequest</a></td>
-<td><a href="#googleprotobufempty">.google.protobuf.Empty</a></td>
-<td>Deletes a group</td>
-</tr>
-<tr>
-<td>AddMember</td>
-<td><a href="#addmemberrequest">AddMemberRequest</a></td>
-<td><a href="#group">Group</a></td>
-<td>group:addmember <a href="https://docs.microsoft.com/en-us/graph/api/group-post-members?view=graph-rest-1.0&amp;tabs=http">https://docs.microsoft.com/en-us/graph/api/group-post-members?view=graph-rest-1.0&amp;tabs=http</a></td>
-</tr>
-<tr>
-<td>RemoveMember</td>
-<td><a href="#removememberrequest">RemoveMemberRequest</a></td>
-<td><a href="#group">Group</a></td>
-<td>group:removemember <a href="https://docs.microsoft.com/en-us/graph/api/group-delete-members?view=graph-rest-1.0">https://docs.microsoft.com/en-us/graph/api/group-delete-members?view=graph-rest-1.0</a></td>
-</tr>
-<tr>
-<td>ListMembers</td>
-<td><a href="#listmembersrequest">ListMembersRequest</a></td>
-<td><a href="#listmembersresponse">ListMembersResponse</a></td>
-<td>group:listmembers <a href="https://docs.microsoft.com/en-us/graph/api/group-list-members?view=graph-rest-1.0">https://docs.microsoft.com/en-us/graph/api/group-list-members?view=graph-rest-1.0</a></td>
-</tr>
-</tbody>
-</table>
-<div class="gdoc-page__anchorwrap"><h3 id="indexservice">IndexService<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#indexservice" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor IndexService" href="#indexservice"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
-<thead>
-<tr>
-<th>Method Name</th>
-<th>Request Type</th>
-<th>Response Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>RebuildIndex</td>
-<td><a href="#rebuildindexrequest">RebuildIndexRequest</a></td>
-<td><a href="#rebuildindexresponse">RebuildIndexResponse</a></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<div class="gdoc-page__anchorwrap"><h2 id="scalar-value-types">Scalar Value Types<a data-clipboard-text="https://owncloud.github.io/extensions/accounts/grpc/#scalar-value-types" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Scalar Value Types" href="#scalar-value-types"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<table>
-<thead>
-<tr>
-<th>.proto Type</th>
-<th>Notes</th>
-<th>C++</th>
-<th>Java</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><div  id="double">
-    double
-</div></td>
-<td></td>
-<td>double</td>
-<td>double</td>
-</tr>
-<tr>
-<td><div  id="float">
-    float
-</div></td>
-<td></td>
-<td>float</td>
-<td>float</td>
-</tr>
-<tr>
-<td><div  id="int32">
-    int32
-</div></td>
-<td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
-<td>int32</td>
-<td>int</td>
-</tr>
-<tr>
-<td><div  id="int64">
-    int64
-</div></td>
-<td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
-<td>int64</td>
-<td>long</td>
-</tr>
-<tr>
-<td><div  id="uint32">
-    uint32
-</div></td>
-<td>Uses variable-length encoding.</td>
-<td>uint32</td>
-<td>int</td>
-</tr>
-<tr>
-<td><div  id="uint64">
-    uint64
-</div></td>
-<td>Uses variable-length encoding.</td>
-<td>uint64</td>
-<td>long</td>
-</tr>
-<tr>
-<td><div  id="sint32">
-    sint32
-</div></td>
-<td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
-<td>int32</td>
-<td>int</td>
-</tr>
-<tr>
-<td><div  id="sint64">
-    sint64
-</div></td>
-<td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
-<td>int64</td>
-<td>long</td>
-</tr>
-<tr>
-<td><div  id="fixed32">
-    fixed32
-</div></td>
-<td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
-<td>uint32</td>
-<td>int</td>
-</tr>
-<tr>
-<td><div  id="fixed64">
-    fixed64
-</div></td>
-<td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
-<td>uint64</td>
-<td>long</td>
-</tr>
-<tr>
-<td><div  id="sfixed32">
-    sfixed32
-</div></td>
-<td>Always four bytes.</td>
-<td>int32</td>
-<td>int</td>
-</tr>
-<tr>
-<td><div  id="sfixed64">
-    sfixed64
-</div></td>
-<td>Always eight bytes.</td>
-<td>int64</td>
-<td>long</td>
-</tr>
-<tr>
-<td><div  id="bool">
-    bool
-</div></td>
-<td></td>
-<td>bool</td>
-<td>boolean</td>
-</tr>
-<tr>
-<td><div  id="string">
-    string
-</div></td>
-<td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
-<td>string</td>
-<td>String</td>
-</tr>
-<tr>
-<td><div  id="bytes">
-    bytes
-</div></td>
-<td>May contain any arbitrary sequence of bytes.</td>
-<td>string</td>
-<td>ByteString</td>
-</tr>
-</tbody>
-</table>
+</li>
+<li>Existing shares like public links and federated shares must remain functional after the migration.
+<ul>
+<li>To prevent internal shares the share type, permissions and expiry needs to be migrated.</li>
+<li>To prevent public links from breaking the url token, permissions, expiry and password needs to be migrated.</li>
+<li><em>What about federated shares?</em></li>
+<li><em>What about additional share permissions, eg. comment on office files?</em></li>
+</ul>
+</li>
+<li>Legacy clients need to keep working
+<ul>
+<li>To keep existing clients working the <code>remote.php/webdav</code> and <code>dav/files/&lt;username&gt;</code> webdav endpoints as well as the ocs API need to be available.</li>
+</ul>
+</li>
+<li><em>What about <a href="https://doc.owncloud.com/server/user_manual/personal_settings/security.html#app-passwords-tokens">app passwords/tokens</a>?</em></li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h2 id="considered-options">Considered Options<a data-clipboard-text="https://owncloud.github.io/ocis/adr/0004-support-hot-migration/#considered-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Considered Options" href="#considered-options"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<ol>
+<li>Cold Migration: migrate data while systems are not online, so no user interaction happens in between.</li>
+<li>Hot Migration: one or both systems are online during migration.</li>
+</ol>
+<div class="gdoc-page__anchorwrap"><h2 id="decision-outcome">Decision Outcome<a data-clipboard-text="https://owncloud.github.io/ocis/adr/0004-support-hot-migration/#decision-outcome" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Decision Outcome" href="#decision-outcome"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>Chosen option: &ldquo;[option 1]&quot;, because [justification. e.g., only option, which meets k.o. criterion decision driver | which resolves force force | … | comes out best (see below)].</p>
+<div class="gdoc-page__anchorwrap"><h3 id="positive-consequences">Positive Consequences<a data-clipboard-text="https://owncloud.github.io/ocis/adr/0004-support-hot-migration/#positive-consequences" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Positive Consequences" href="#positive-consequences"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>[e.g., improvement of quality attribute satisfaction, follow-up decisions required, …]</li>
+<li>…</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h3 id="negative-consequences">Negative Consequences<a data-clipboard-text="https://owncloud.github.io/ocis/adr/0004-support-hot-migration/#negative-consequences" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Negative Consequences" href="#negative-consequences"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>[e.g., compromising quality attribute, follow-up decisions required, …]</li>
+<li>…</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h2 id="pros-and-cons-of-the-options">Pros and Cons of the Options<a data-clipboard-text="https://owncloud.github.io/ocis/adr/0004-support-hot-migration/#pros-and-cons-of-the-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Pros and Cons of the Options" href="#pros-and-cons-of-the-options"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<div class="gdoc-page__anchorwrap"><h3 id="cold-migration">Cold Migration<a data-clipboard-text="https://owncloud.github.io/ocis/adr/0004-support-hot-migration/#cold-migration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Cold Migration" href="#cold-migration"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>The migration happens while the service is offline. File metadata, blobs and share data is exported from ownCloud 10 and imported in oCIS. This can happen user by user, where every user export would contain the file blobs, their metadata, trash, versions, shares and all metadata that belongs to the users storage. To prevent group shares from breaking, users in the same groups must be migrated in batch. Depending on the actual group shares in an instance this may effectively require a complete migration in a single batch.</p>
+<ul>
+<li>Good, because oCIS can be tested in a staging system without writing to the production system.</li>
+<li>Good, because file layout on disk can be changed to support new storage driver capabilities.</li>
+<li>Bad, because the export and import might require significant amounts of storage.</li>
+<li>Bad, because a rollback to the state before the migration might cause data loss of the changes that happend in between.</li>
+<li>Bad, because the cold migration can mean significant downtime.</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h3 id="hot-migration">Hot Migration<a data-clipboard-text="https://owncloud.github.io/ocis/adr/0004-support-hot-migration/#hot-migration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Hot Migration" href="#hot-migration"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>The migration happens in subsequent stages while the service is online.</p>
+<ul>
+<li>Good, because the admin can migrate users from old to new backend in a controlled way.</li>
+<li>Good, because users and admins can learn to trust the new system.</li>
+<li>Good, because there can be preparations even long before the migrations happens in parallel on the oC10 codebase, ie. addition of metadata that is needed while the system operates.</li>
+<li>Good, because the downtime of the system can be fairly small.</li>
+<li>Bad, because it is more complex and might drag on for a long time.</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h2 id="links">Links<a data-clipboard-text="https://owncloud.github.io/ocis/adr/0004-support-hot-migration/#links" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Links" href="#links"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<ul>
+<li><a href="https://github.com/cs3org/reva/issues/1377">Clarify responsibilities of share providers and storage providers · Issue #1377 · cs3org/reva (github.com)</a> because the share manager for oCIS should store share information on the storage system. And <a href="https://github.com/cs3org/cs3apis/issues/93">storageprovider should persist share creator · Issue #93 · cs3org/cs3apis (github.com)</a> finally: <a href="https://github.com/cs3org/reva/issues/543">eos: store share id in inherited xattr · Issue #543 · cs3org/reva (github.com)</a></li>
+</ul>
 
 
     </article>
