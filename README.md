@@ -1,7 +1,7 @@
 # owncloud.github.io
 
 This repository is hosting the owncloud GitHub Page. You can find the latest version
-at [https://owncloud.github.io](https://owncloud.github.io)
+at [https://owncloud.dev](https://owncloud.dev)
 
 ## License
 
