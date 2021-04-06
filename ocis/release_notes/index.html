@@ -3073,6 +3073,33 @@
   We are currently in a Tech Preview state and breaking changes may occur at any time. For more information see our <a href="https://owncloud.dev/ocis/release_roadmap/">release roadmap</a>
 </blockquote>
 
+<div class="gdoc-page__anchorwrap"><h4 id="changed-ocis-storage-driver-file-layout">Changed oCIS storage driver file layout<a data-clipboard-text="https://owncloud.dev/ocis/release_notes/#changed-ocis-storage-driver-file-layout" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Changed oCIS storage driver file layout" href="#changed-ocis-storage-driver-file-layout"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<p>Related: <a href="https://github.com/cs3org/reva/pull/1452">#1452</a></p>
+<p>Despite a breaking change in the oCIS storage driver file layout, data is not automatically migrated. You will be affected if you plan to update from a previous version of oCIS to oCIS 1.4.0 and are using the oCIS storage driver, which is currently the default storage driver.</p>
+<p>Implications:</p>
+<ul>
+<li>manual action required</li>
+</ul>
+<p>Our recommended update strategy to oCIS 1.4.0 is:</p>
+<ol>
+<li>let users backup all their data stored in oCIS</li>
+<li>stop oCIS</li>
+<li>prune all oCIS data in <code>/var/tmp/ocis</code></li>
+<li>update to oCIS 1.4.0</li>
+<li>recreate user accounts (can be skipped if an external IDP is used)</li>
+<li>let users upload all their data again</li>
+<li>let users recreate their shares</li>
+</ol>
+<p>If you already updated to oCIS 1.4.0 without our recommended update strategy you will see no data in oCIS anymore, even after a downgrade to your previous version of oCIS. But be assured that your data is still there.</p>
+<p>You have to follow these steps to be able to access your data again in oCIS:</p>
+<ol>
+<li>stop oCIS</li>
+<li>navigate to <code>/var/tmp/ocis/storage/users/nodes/root/</code></li>
+<li>in this directory you will find directories with UUID as names. These are the home folders of the oCIS users. Find the ones with content your oCIS users uploaded to oCIS.</li>
+<li>create an temporary directory eg. <code>/tmp/dereferenced-ocis-storage</code></li>
+<li>copy the data from oCIS to the temporary directory while dereferencing symlinks. On Linux you can do this by running <code>cp --recursive --dereference /var/tmp/ocis/storage/users/nodes/root/ /tmp/dereferenced-ocis-storage</code></li>
+<li>you now have a backup of all users data in <code>/tmp/dereferenced-ocis-storage</code> and can follow our recommended update strategy above</li>
+</ol>
 <div class="gdoc-page__anchorwrap"><h2 id="owncloud-infinite-scale-130-technology-preview">ownCloud Infinite Scale 1.3.0 Technology Preview<a data-clipboard-text="https://owncloud.dev/ocis/release_notes/#owncloud-infinite-scale-130-technology-preview" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ownCloud Infinite Scale 1.3.0 Technology Preview" href="#owncloud-infinite-scale-130-technology-preview"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>Version 1.3.0 is a regular maintenance and bugfix release. It provides the latest improvements to users and administrators.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="changes-in-reva">Changes in Reva<a data-clipboard-text="https://owncloud.dev/ocis/release_notes/#changes-in-reva" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Changes in Reva" href="#changes-in-reva"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
