@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Configuration">
+<meta name="description" content="Theming">
 
-<title>Configuration | ownCloud</title>
+<title>Theming | ownCloud</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -31,6 +31,7 @@
 <link rel="preload" href="/custom.css" as="style">
 <link rel="stylesheet" href="/custom.css" media="all">
 
+<link rel="alternate" type="application/rss+xml" href="https://owncloud.dev/clients/web/theming/index.xml" title="ownCloud" />
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
 
 </head>
@@ -1096,7 +1097,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-8397230f" class="gdoc-nav__toggle" >
+            <input type="checkbox" id="navtree-8397230f" class="gdoc-nav__toggle" checked>
             <label for="navtree-8397230f" class="flex justify-between">
             
             
@@ -1319,7 +1320,7 @@
             
             
                 <span class="flex">
-                    <a href="/clients/web/theming/" class="gdoc-nav__entry ">
+                    <a href="/clients/web/theming/" class="gdoc-nav__entry is-active">
                         Theming
                     </a>
                 </span>
@@ -1725,7 +1726,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-226998dd" class="gdoc-nav__toggle" checked>
+            <input type="checkbox" id="navtree-226998dd" class="gdoc-nav__toggle" >
             <label for="navtree-226998dd" class="flex justify-between">
             
             
@@ -1760,7 +1761,7 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/accounts/configuration/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/accounts/configuration/" class="gdoc-nav__entry ">
                         Configuration
                     </a>
                 </span>
@@ -3050,7 +3051,7 @@
         
     
     
-        <a href='/'>ownCloud</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/accounts/'>Accounts</a> / Configuration
+        <a href='/'>ownCloud</a> / <a href='/clients/'>Clients</a> / <a href='/clients/web/'>ownCloud Web</a> / Theming
     
 
     
@@ -3066,7 +3067,7 @@
         
         <span class="editpage">
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/accounts/templates/CONFIGURATION.tmpl">
+            <a href="https://github.com/owncloud/web/edit/master/docs/theming/_index.md">
                 Edit this page
             </a>
         </span>
@@ -3074,9 +3075,8 @@
     </span>
 </div>
 
-
     <article class="gdoc-markdown">
-        <h1>Configuration</h1>
+        <h1>Theming</h1>
         
 
 
@@ -3088,142 +3088,217 @@
 
 
   <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
-        <li><a href="#configuration">Configuration</a>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#ways-of-providing-a-theme">Ways of providing a theme</a></li>
+        <li><a href="#configuring-a-theme">Configuring a theme</a></li>
+        <li><a href="#the-general-options">The &ldquo;general&rdquo; options</a></li>
+        <li><a href="#the-logo-options">The &ldquo;logo&rdquo; options</a></li>
+        <li><a href="#the-loadingpage-options">The &ldquo;loadingPage&rdquo; options</a></li>
+        <li><a href="#design-tokens">Design Tokens</a>
           <ul>
-            <li><a href="#configuration-using-config-files">Configuration using config files</a></li>
-            <li><a href="#environment-variables">Environment variables</a></li>
-            <li><a href="#commandline-flags">Commandline flags</a></li>
-            <li><a href="#accounts-list">accounts list</a></li>
-            <li><a href="#accounts-remove">accounts remove</a></li>
-            <li><a href="#accounts-server">accounts server</a></li>
-            <li><a href="#accounts-update">accounts update</a></li>
-            <li><a href="#accounts-version">accounts version</a></li>
-            <li><a href="#accounts-add">accounts add</a></li>
-            <li><a href="#accounts-inspect">accounts inspect</a></li>
-            <li><a href="#accounts-rebuildindex">accounts rebuildIndex</a></li>
-            <li><a href="#accounts-ocis-accounts">accounts ocis-accounts</a></li>
+            <li><a href="#colors">Colors</a></li>
+            <li><a href="#font-sizes">Font sizes</a></li>
+            <li><a href="#spacing">Spacing</a></li>
           </ul>
         </li>
+        <li><a href="#example-theme">Example theme</a></li>
       </ul></nav><hr></div>
 
 
-<div class="gdoc-page__anchorwrap"><h2 id="configuration">Configuration<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#configuration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configuration" href="#configuration"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<div class="gdoc-page__anchorwrap"><h3 id="configuration-using-config-files">Configuration using config files<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#configuration-using-config-files" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configuration using config files" href="#configuration-using-config-files"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Out of the box extensions will attempt to read configuration details from:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">/etc/ocis
-$HOME/.ocis
-./config
-</code></pre></div><p>For this configuration to be picked up, have a look at your extension <code>root</code> command and look for which default config name it has assigned. <em>i.e: ocis-accounts reads <code>accounts.json | yaml | toml ...</code></em>.</p>
-<p>So far we support the file formats <code>JSON</code> and <code>YAML</code>, if you want to get a full example configuration just take a look at <a href="https://github.com/owncloud/ocis/tree/master/accounts/config">our repository</a>, there you can always see the latest configuration format. These example configurations include all available options and the default values. The configuration file will be automatically loaded if it&rsquo;s placed at <code>/etc/ocis/ocis.yml</code>, <code>${HOME}/.ocis/ocis.yml</code> or <code>$(pwd)/config/ocis.yml</code>.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="environment-variables">Environment variables<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#environment-variables" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Environment variables" href="#environment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>If you prefer to configure the service with environment variables you can see the available variables below.</p>
-<p>If multiple variables are listed for one option, they are in order of precedence. This means the leftmost variable will always win if given.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="commandline-flags">Commandline flags<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#commandline-flags" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Commandline flags" href="#commandline-flags"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>If you prefer to configure the service with commandline flags you can see the available variables below. Command line flags are only working when calling the subcommand directly.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-list">accounts list<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-list" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts list" href="#accounts-list"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>List existing accounts</p>
-<p>Usage: <code>accounts list [command options] [arguments...]</code></p>
-<dl>
-<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>flags.OverrideDefaultString(cfg.GRPC.Namespace, &quot;com.owncloud.api&quot;)</code>.</dd>
-<dt>-name |  $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>flags.OverrideDefaultString(cfg.Server.Name, &quot;accounts&quot;)</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-remove">accounts remove<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-remove" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts remove" href="#accounts-remove"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Removes an existing account</p>
-<p>Usage: <code>accounts remove [command options] [arguments...]</code></p>
-<dl>
-<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>flags.OverrideDefaultString(cfg.GRPC.Namespace, &quot;com.owncloud.api&quot;)</code>.</dd>
-<dt>-name |  $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>flags.OverrideDefaultString(cfg.Server.Name, &quot;accounts&quot;)</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-server">accounts server<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts server" href="#accounts-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Start ocis accounts service</p>
-<p>Usage: <code>accounts server [command options] [arguments...]</code></p>
-<dl>
-<dt>-log-file |  $ACCOUNTS_LOG_FILE , $OCIS_LOG_FILE</dt>
-<dd>Enable log to file.</dd>
-<dt>-tracing-enabled |  $ACCOUNTS_TRACING_ENABLED</dt>
-<dd>Enable sending traces.</dd>
-<dt>-tracing-type |  $ACCOUNTS_TRACING_TYPE</dt>
-<dd>Tracing backend type. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Type, &quot;jaeger&quot;)</code>.</dd>
-<dt>-tracing-endpoint |  $ACCOUNTS_TRACING_ENDPOINT</dt>
-<dd>Endpoint for the agent. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Endpoint, &quot;&quot;)</code>.</dd>
-<dt>-tracing-collector |  $ACCOUNTS_TRACING_COLLECTOR</dt>
-<dd>Endpoint for the collector. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Collector, &quot;&quot;)</code>.</dd>
-<dt>-tracing-service |  $ACCOUNTS_TRACING_SERVICE</dt>
-<dd>Service name for tracing. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Service, &quot;accounts&quot;)</code>.</dd>
-<dt>-http-namespace |  $ACCOUNTS_HTTP_NAMESPACE</dt>
-<dd>Set the base namespace for the http namespace. Default: <code>flags.OverrideDefaultString(cfg.HTTP.Namespace, &quot;com.owncloud.web&quot;)</code>.</dd>
-<dt>-http-addr |  $ACCOUNTS_HTTP_ADDR</dt>
-<dd>Address to bind http server. Default: <code>flags.OverrideDefaultString(cfg.HTTP.Addr, &quot;0.0.0.0:9181&quot;)</code>.</dd>
-<dt>-http-root |  $ACCOUNTS_HTTP_ROOT</dt>
-<dd>Root path of http server. Default: <code>flags.OverrideDefaultString(cfg.HTTP.Root, &quot;/&quot;)</code>.</dd>
-<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>flags.OverrideDefaultString(cfg.GRPC.Namespace, &quot;com.owncloud.api&quot;)</code>.</dd>
-<dt>-grpc-addr |  $ACCOUNTS_GRPC_ADDR</dt>
-<dd>Address to bind grpc server. Default: <code>flags.OverrideDefaultString(cfg.GRPC.Addr, &quot;0.0.0.0:9180&quot;)</code>.</dd>
-<dt>-name |  $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>flags.OverrideDefaultString(cfg.Server.Name, &quot;accounts&quot;)</code>.</dd>
-<dt>-asset-path |  $ACCOUNTS_ASSET_PATH</dt>
-<dd>Path to custom assets. Default: <code>flags.OverrideDefaultString(cfg.Asset.Path, &quot;&quot;)</code>.</dd>
-<dt>-jwt-secret |  $ACCOUNTS_JWT_SECRET , $OCIS_JWT_SECRET</dt>
-<dd>Used to create JWT to talk to reva, should equal reva&rsquo;s jwt-secret. Default: <code>flags.OverrideDefaultString(cfg.TokenManager.JWTSecret, &quot;Pive-Fumkiu4&quot;)</code>.</dd>
-<dt>-storage-disk-path |  $ACCOUNTS_STORAGE_DISK_PATH</dt>
-<dd>Path on the local disk, e.g. /var/tmp/ocis/accounts. Default: <code>flags.OverrideDefaultString(cfg.Repo.Disk.Path, &quot;&quot;)</code>.</dd>
-<dt>-storage-cs3-provider-addr |  $ACCOUNTS_STORAGE_CS3_PROVIDER_ADDR</dt>
-<dd>bind address for the metadata storage provider. Default: <code>flags.OverrideDefaultString(cfg.Repo.CS3.ProviderAddr, &quot;localhost:9215&quot;)</code>.</dd>
-<dt>-storage-cs3-data-url |  $ACCOUNTS_STORAGE_CS3_DATA_URL</dt>
-<dd>http endpoint of the metadata storage. Default: <code>flags.OverrideDefaultString(cfg.Repo.CS3.DataURL, &quot;http://localhost:9216&quot;)</code>.</dd>
-<dt>-storage-cs3-data-prefix |  $ACCOUNTS_STORAGE_CS3_DATA_PREFIX</dt>
-<dd>path prefix for the http endpoint of the metadata storage, without leading slash. Default: <code>flags.OverrideDefaultString(cfg.Repo.CS3.DataPrefix, &quot;data&quot;)</code>.</dd>
-<dt>-storage-cs3-jwt-secret |  $ACCOUNTS_STORAGE_CS3_JWT_SECRET , $OCIS_JWT_SECRET</dt>
-<dd>Used to create JWT to talk to reva, should equal reva&rsquo;s jwt-secret. Default: <code>flags.OverrideDefaultString(cfg.Repo.CS3.JWTSecret, &quot;Pive-Fumkiu4&quot;)</code>.</dd>
-<dt>-service-user-uuid |  $ACCOUNTS_SERVICE_USER_UUID</dt>
-<dd>uuid of the internal service user (required on EOS). Default: <code>flags.OverrideDefaultString(cfg.ServiceUser.UUID, &quot;95cb8724-03b2-11eb-a0a6-c33ef8ef53ad&quot;)</code>.</dd>
-<dt>-service-user-username |  $ACCOUNTS_SERVICE_USER_USERNAME</dt>
-<dd>username of the internal service user (required on EOS). Default: <code>flags.OverrideDefaultString(cfg.ServiceUser.Username, &quot;&quot;)</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-update">accounts update<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-update" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts update" href="#accounts-update"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Make changes to an existing account</p>
-<p>Usage: <code>accounts update [command options] [arguments...]</code></p>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-version">accounts version<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-version" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts version" href="#accounts-version"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Print the versions of the running instances</p>
-<p>Usage: <code>accounts version [command options] [arguments...]</code></p>
-<dl>
-<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>flags.OverrideDefaultString(cfg.GRPC.Namespace, &quot;com.owncloud.api&quot;)</code>.</dd>
-<dt>-name |  $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>flags.OverrideDefaultString(cfg.Server.Name, &quot;accounts&quot;)</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-add">accounts add<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-add" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts add" href="#accounts-add"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Create a new account</p>
-<p>Usage: <code>accounts add [command options] [arguments...]</code></p>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-inspect">accounts inspect<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-inspect" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts inspect" href="#accounts-inspect"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Show detailed data on an existing account</p>
-<p>Usage: <code>accounts inspect [command options] [arguments...]</code></p>
-<dl>
-<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>flags.OverrideDefaultString(cfg.GRPC.Namespace, &quot;com.owncloud.api&quot;)</code>.</dd>
-<dt>-name |  $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>flags.OverrideDefaultString(cfg.Server.Name, &quot;accounts&quot;)</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-rebuildindex">accounts rebuildIndex<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-rebuildindex" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts rebuildIndex" href="#accounts-rebuildindex"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Rebuilds the service&rsquo;s index, i.e. deleting and then re-adding all existing documents</p>
-<p>Usage: <code>accounts rebuildIndex [command options] [arguments...]</code></p>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-ocis-accounts">accounts ocis-accounts<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-ocis-accounts" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts ocis-accounts" href="#accounts-ocis-accounts"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Provide accounts and groups for oCIS</p>
-<p>Usage: <code>accounts ocis-accounts [command options] [arguments...]</code></p>
-<dl>
-<dt>-log-level |  $ACCOUNTS_LOG_LEVEL , $OCIS_LOG_LEVEL</dt>
-<dd>Set logging level.</dd>
-<dt>-log-pretty |  $ACCOUNTS_LOG_PRETTY , $OCIS_LOG_PRETTY</dt>
-<dd>Enable pretty logging.</dd>
-<dt>-log-color |  $ACCOUNTS_LOG_COLOR , $OCIS_LOG_COLOR</dt>
-<dd>Enable colored logging.</dd>
-</dl>
-
+<div class="gdoc-page__anchorwrap"><h2 id="introduction">Introduction<a data-clipboard-text="https://owncloud.dev/clients/web/theming/#introduction" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Introduction" href="#introduction"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>By providing your own theme, you can customize the user experience for your own ownCloud installation. This is being achieved by providing a <code>json</code> file that contains text snippets (like brand name and slogan), paths to images (e.g. logos or favicon) and design tokens for custom colors (font size and spacing aren&rsquo;t yet supported).</p>
+<p>This page documents the setup and configuration options, and provides an empty template for you to get started.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="ways-of-providing-a-theme">Ways of providing a theme<a data-clipboard-text="https://owncloud.dev/clients/web/theming/#ways-of-providing-a-theme" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Ways of providing a theme" href="#ways-of-providing-a-theme"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>Generally, your theming configuration lives inside a <code>.json</code> file, e.g. <code>theme.json</code>. To load this file, it needs to be correctly referenced inside your <code>config/config.json</code> (example configurations can be <a href="https://github.com/owncloud/web/tree/master/config">found on GitHub</a>).</p>
+<p>To reference your theme, you have two options:</p>
+<ul>
+<li>Using a URL, e.g. <code>&quot;theme&quot;: &quot;https://externalurl.example.com/theme-name/theme.json&quot;,</code>. To avoid CORS issues, please make sure that you host the URL on the same URL as your ownCloud web hosting.</li>
+<li>For development and testing purposes, you can store your <code>theme.json</code> inside <code>packages/web-runtime/themes/{theme-name}/</code> and reference it in the <code>config.json</code>. However, this isn&rsquo;t recommended for production use since your changes may get lost when updating oCIS or the <code>web</code> app in OC10.</li>
+</ul>
+<p><strong>Hint:</strong> If no theme is provided or the loading of your custom theme fails, the standard ownCloud theme will be loaded as a fallback. However, this doesn&rsquo;t stop you from correctly loading a theme that is wrongly formatted, so please read the instructions below carefully.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="configuring-a-theme">Configuring a theme<a data-clipboard-text="https://owncloud.dev/clients/web/theming/#configuring-a-theme" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configuring a theme" href="#configuring-a-theme"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>Inside your <code>theme.json</code>, you can provide multiple themes as first-level objects. Currently, only the one called <code>&quot;default&quot;</code> gets applied when the frontend application is started.</p>
+<p>You can use the snippet below as a base for writing your own theme by replacing the strings and image file paths accordingly. Also, make sure to delete the comments from the file.</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;default&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="err">//</span> <span class="err">a</span> <span class="err">theme</span> <span class="err">named</span> <span class="err">`default`</span> <span class="err">is</span> <span class="err">expected</span> <span class="err">to</span> 
+    <span class="err">//</span> <span class="err">be</span> <span class="err">present</span> <span class="err">and</span> <span class="err">gets</span> <span class="err">applied</span> <span class="err">initially</span>
+    <span class="nt">&#34;general&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;ownCloud&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;slogan&#34;</span><span class="p">:</span> <span class="s2">&#34;ownCloud – A safe home for all your data&#34;</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;logo&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="err">//</span> <span class="err">Reference</span> <span class="err">URL</span> <span class="err">paths</span> <span class="err">for</span> <span class="err">assets</span> <span class="err">when</span> <span class="err">using</span> <span class="err">a</span> <span class="err">remote</span> <span class="err">theme</span>
+      <span class="nt">&#34;sidebar&#34;</span><span class="p">:</span> <span class="s2">&#34;https://externalurl.example.com/theme-name/assets/logo.svg&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;favicon&#34;</span><span class="p">:</span> <span class="s2">&#34;https://externalurl.example.com/theme-name/assets/favicon.jpg&#34;</span><span class="p">,</span>
+      <span class="err">//</span> <span class="err">Example</span> <span class="err">use</span> <span class="err">of</span> <span class="err">relative</span> <span class="err">paths</span> <span class="err">for</span> <span class="err">usage</span> <span class="err">with</span> <span class="err">a</span> <span class="err">local</span> <span class="err">theme</span> <span class="err">inside</span> <span class="err">packages/web-runtime/themes/</span>
+      <span class="nt">&#34;login&#34;</span><span class="p">:</span> <span class="s2">&#34;themes/owncloud/assets/logo.svg&#34;</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;loginPage&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;autoRedirect&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nt">&#34;backgroundImg&#34;</span><span class="p">:</span> <span class="s2">&#34;themes/owncloud/assets/loginBackground.jpg&#34;</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;designTokens&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="err">//</span> <span class="err">please</span> <span class="err">see</span> <span class="err">the</span> <span class="err">section</span> <span class="err">on</span> <span class="err">Design</span> <span class="err">Tokens</span> <span class="err">below</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;alternative&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="err">//</span> <span class="err">you</span> <span class="err">can</span> <span class="err">provide</span> <span class="err">multiple</span> <span class="err">themes</span> <span class="err">inside</span> <span class="err">your</span> <span class="err">`.json`</span> <span class="err">file</span>
+    <span class="err">//</span> <span class="err">currently</span> <span class="err">that</span> <span class="err">doesn&#39;t</span> <span class="err">do</span> <span class="err">anything,</span> <span class="err">but</span> <span class="err">we&#39;ll</span> <span class="err">provide</span>
+    <span class="err">//</span> <span class="err">functionality</span> <span class="err">to</span> <span class="err">dynamically</span> <span class="err">switch</span> <span class="err">between</span> <span class="err">themes</span> <span class="err">in</span> <span class="err">the</span> <span class="err">future</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>See below for the meaning of all the first-level objects inside a single theme and recommendations on how to make best use of them:</p>
+<div class="gdoc-page__anchorwrap"><h2 id="the-general-options">The &ldquo;general&rdquo; options<a data-clipboard-text="https://owncloud.dev/clients/web/theming/#the-general-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor The &ldquo;general&rdquo; options" href="#the-general-options"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>Here, you can specify a <code>&quot;name&quot;</code> and a <code>&quot;slogan&quot;</code> string. The name gets used in the HTML page <code>&lt;title&gt;</code>, and both of them are shown on various screens (e.g. login, loading, error and public share pages).</p>
+<div class="gdoc-page__anchorwrap"><h2 id="the-logo-options">The &ldquo;logo&rdquo; options<a data-clipboard-text="https://owncloud.dev/clients/web/theming/#the-logo-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor The &ldquo;logo&rdquo; options" href="#the-logo-options"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>Here, you can specify the images to be used in the <code>&quot;sidebar&quot;</code>, for the <code>&quot;favicon&quot;</code> and on the <code>&quot;login&quot;</code> page. Various formats are supported and it&rsquo;s up to you to decide which one fits best to your use case.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="the-loadingpage-options">The &ldquo;loadingPage&rdquo; options<a data-clipboard-text="https://owncloud.dev/clients/web/theming/#the-loadingpage-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor The &ldquo;loadingPage&rdquo; options" href="#the-loadingpage-options"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>Using the <code>&quot;autoRedirect&quot;</code> boolean, you can specify whether the user is shown a login page before possible getting redirected to your LDAP/OIDC/OAuth provider. If it is set to true, you can set the background image for said login page by providing an image file in the <code>&quot;backgroundImg&quot;</code> option.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="design-tokens">Design Tokens<a data-clipboard-text="https://owncloud.dev/clients/web/theming/#design-tokens" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Design Tokens" href="#design-tokens"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>To further customize your ownCloud instance, you can provide your own styles. To give you an idea of how a working design system looks like, feel free to head over to the <a href="https://owncloud.design/#/Design%20Tokens">ownCloud design tokens</a> for inspiration.</p>
+<p><strong>Hint:</strong> All the variables are initialized using the <a href="https://owncloud.design/#/Design%20Tokens">ownCloud design tokens</a> and then overwritten by your theme variables. Therefore, you don&rsquo;t have to provide all the variables and can use the default ownCloud colors as a fallback.</p>
+<p>In general, the theme loader looks for a <code>designTokens</code> key inside your theme configuration. Inside the <code>designTokens</code>, it expects to find a <code>colorPalette</code>, <code>fontSize</code> and <code>spacing</code> collection (ony <code>colorPalette</code> is being used right now, see below for details).</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;default&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;general&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="err">//</span> <span class="err">...</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;designTokens&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;colorPalette&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="err">//</span> <span class="err">...</span>
+      <span class="p">},</span>
+      <span class="nt">&#34;fontSizes&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="err">//</span> <span class="err">...</span>
+      <span class="p">},</span>
+      <span class="nt">&#34;spacing&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="err">//</span> <span class="err">...</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>Please follow this structure to make sure your theming configuration can be loaded correctly.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="colors">Colors<a data-clipboard-text="https://owncloud.dev/clients/web/theming/#colors" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Colors" href="#colors"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>For the color values, you can use any valid CSS color format, e.g. <strong>hex</strong> (#fff), <strong>rgb</strong> (rgb(255,255,255)) or <strong>color names</strong> (white).</p>
+<p>Again, you can use the <a href="https://owncloud.design/#/Design%20Tokens">ownCloud design tokens</a> as a reference implementation.</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;default&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;general&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="err">//</span> <span class="err">...</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;designTokens&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;colorPalette&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;background&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;background-muted&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;background-highlight&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;border-primary&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;brand-primary&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;brand-primary-hover&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;color-muted&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;color-inverse&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;input-color&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;input-color-muted&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;input-border&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;input-background&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;variation-primary&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;variation-primary-hover&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;variation-primary-muted&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;variation-passive&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;variation-passive-hover&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;variation-passive-muted&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;variation-success&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;variation-success-hover&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;variation-success-muted&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;variation-warning&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;variation-warning-hover&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;variation-warning-muted&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;variation-danger&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;variation-danger-hover&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;variation-danger-muted&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
+      <span class="p">},</span>
+      <span class="nt">&#34;fontSizes&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="err">//</span> <span class="err">...</span>
+      <span class="p">},</span>
+      <span class="nt">&#34;spacing&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="err">//</span> <span class="err">...</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>If you define different key-value pairs inside <code>&quot;colorPalette&quot;</code>, they will get loaded and initialized as CSS custom properties but don&rsquo;t take any effect in the user interface. This gives you an opportunity to, for example, customize extensions from within the theme in the web runtime (and not the extension itself).</p>
+<div class="gdoc-page__anchorwrap"><h3 id="font-sizes">Font sizes<a data-clipboard-text="https://owncloud.dev/clients/web/theming/#font-sizes" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Font sizes" href="#font-sizes"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Changing font sizes via a custom theme is not yet supported and will be released in the future. If this is a pressing feature you&rsquo;d like to use soon, please <a href="https://github.com/owncloud/web/issues/new">open an issue on GitHub</a> or reach out to us about contribution options.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="spacing">Spacing<a data-clipboard-text="https://owncloud.dev/clients/web/theming/#spacing" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Spacing" href="#spacing"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Changing the spacing via a custom theme is not yet supported and will be released in the future. If this is a pressing feature you&rsquo;d like to use soon, please <a href="https://github.com/owncloud/web/issues/new">open an issue on GitHub</a> or reach out to us about contribution options.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="example-theme">Example theme<a data-clipboard-text="https://owncloud.dev/clients/web/theming/#example-theme" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Example theme" href="#example-theme"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>An empty template for your custom theme is provided below, and you can use the instructions above to set it up according to your needs. Please note that since changing themes at runtime is not yet supported it only consists of a <code>default</code> theme, and the <code>fontSizes</code> and <code>spacing</code> tokens don&rsquo;t have any effect yet.</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;default&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;general&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;slogan&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;logo&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;sidebar&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;favicon&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;login&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;notFound&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;loginPage&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;autoRedirect&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nt">&#34;backgroundImg&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;designTokens&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;colorPalette&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;emphasis-color&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;muted-color&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;link-color&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;link-hover-color&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;inverse-color&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;active-icon-color&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;passive-icon-color&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;system-icon-color&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;background&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;muted-background&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;primary-background&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;secondary-background&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;selected-background&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;success-background&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;warning-background&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;danger-background&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;danger-background-hover&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;brand-primary&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;action-primary&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;action-primary-hover&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;action-disabled&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;shadow-global&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;shadow-action-primary&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;border-primary&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;input-background&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;input-background-checked&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;input-border&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
+      <span class="p">},</span>
+      <span class="nt">&#34;fontSizes&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;small-font-size&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;medium-font-size&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;large-font-size&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;font-size&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;xxlarge-font-size&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;xlarge-font-size&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
+      <span class="p">},</span>
+      <span class="nt">&#34;spacing&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;space-small&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;space-medium&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;space-large&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;space-xlarge&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;space-xxlarge&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 
     </article>
 
