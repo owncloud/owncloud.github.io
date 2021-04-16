@@ -3119,17 +3119,37 @@
 
 
   <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
-        <li><a href="#setup-authorization">Setup authorization</a></li>
+        <li><a href="#setup-authentication">Setup authentication</a>
+          <ul>
+            <li><a href="#openid-connect-config">OpenID Connect config</a></li>
+            <li><a href="#oauth2-config">OAuth2 config</a></li>
+            <li><a href="#pass-bearer-token">Pass bearer token</a></li>
+          </ul>
+        </li>
         <li><a href="#install-file-picker-package">Install File picker package</a></li>
         <li><a href="#integrate-in-html-page-with-vanilla-javascript">Integrate in HTML page with vanilla JavaScript</a></li>
         <li><a href="#integrate-in-vue-web-application">Integrate in Vue web application</a></li>
         <li><a href="#set-correct-variation">Set correct variation</a></li>
-        <li><a href="#pass-bearer-token">Pass bearer token</a></li>
+        <li><a href="#buttons-and-events">Buttons and events</a>
+          <ul>
+            <li><a href="#select-button">Select button</a></li>
+            <li><a href="#cancel-button">Cancel button</a></li>
+          </ul>
+        </li>
       </ul></nav><hr></div>
 
 
-<div class="gdoc-page__anchorwrap"><h2 id="setup-authorization">Setup authorization<a data-clipboard-text="https://owncloud.dev/integration/file_picker/installation/#setup-authorization" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setup authorization" href="#setup-authorization"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>The config for authorization is provided via a json file. Location of the file can be provided via a prop called <code>configLocation</code>. This requires full URL address (e.g. <code>https://&lt;your-server&gt;/&lt;path-to-the-config&gt;</code>). If the prop is not defined, the location will fallback to <code>https://&lt;your-server&gt;/file-picker-config.json</code>. The config can point to both oauth2 and OIDC. You can take a look at the following example to see how OIDC can be defined:</p>
+<div class="gdoc-page__anchorwrap"><h2 id="setup-authentication">Setup authentication<a data-clipboard-text="https://owncloud.dev/integration/file_picker/installation/#setup-authentication" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setup authentication" href="#setup-authentication"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>The config for the server backend and authentication needs to be provided in json format. The full set of options is listed below in two examples. One for authentication with OAuth2 and one with OpenID Connect.</p>
+<p>There are different ways of providing the config JSON to the file picker:</p>
+<ul>
+<li>As a JSON object via a prop called <code>configObject</code></li>
+<li>As a JSON string via the same prop (<code>configObject</code>)</li>
+<li>As a URL via a prop called <code>configLocation</code>. This requires full URL address (e.g. <code>https://&lt;your-server&gt;/&lt;path-to-the-config&gt;</code>)</li>
+<li>If none of the props (<code>configObject</code> or <code>configLocation</code>) is defined, the file picker has a <code>configLocation</code> of <code>https://&lt;your-server&gt;/file-picker-config.json</code> as fallback</li>
+</ul>
+<p>Location of the file can be provided via a prop called <code>configLocation</code>. This requires full URL address (e.g. <code>https://&lt;your-server&gt;/&lt;path-to-the-config&gt;</code>). If the prop is not defined, the location will fallback to <code>https://&lt;your-server&gt;/file-picker-config.json</code>. The config can point to both oauth2 and OIDC. You can take a look at the following example to see how OIDC can be defined:</p>
+<div class="gdoc-page__anchorwrap"><h3 id="openid-connect-config">OpenID Connect config<a data-clipboard-text="https://owncloud.dev/integration/file_picker/installation/#openid-connect-config" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor OpenID Connect config" href="#openid-connect-config"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
   <span class="nt">&#34;server&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;owncloud-server&gt;&#34;</span><span class="p">,</span>
   <span class="nt">&#34;openIdConnect&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -3138,9 +3158,20 @@
     <span class="nt">&#34;client_id&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;client-id&gt;&#34;</span><span class="p">,</span>
     <span class="nt">&#34;response_type&#34;</span><span class="p">:</span> <span class="s2">&#34;code&#34;</span><span class="p">,</span>
     <span class="nt">&#34;scope&#34;</span><span class="p">:</span> <span class="s2">&#34;openid profile email&#34;</span>
-  <span class="p">},</span>
-<span class="p">}</span> 
-</code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="install-file-picker-package">Install File picker package<a data-clipboard-text="https://owncloud.dev/integration/file_picker/installation/#install-file-picker-package" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Install File picker package" href="#install-file-picker-package"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="oauth2-config">OAuth2 config<a data-clipboard-text="https://owncloud.dev/integration/file_picker/installation/#oauth2-config" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor OAuth2 config" href="#oauth2-config"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;server&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;owncloud-server&gt;&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;auth&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;clientId&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;oauth2-client-id&gt;&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;your-server&gt;/index.php/apps/oauth2/api/v1/token&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;authUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;your-server&gt;/index.php/apps/oauth2/authorize&#34;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="pass-bearer-token">Pass bearer token<a data-clipboard-text="https://owncloud.dev/integration/file_picker/installation/#pass-bearer-token" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Pass bearer token" href="#pass-bearer-token"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>In case you already have a bearer token and want to skip the whole authorization process inside of the File picker, you can pass it to the component via prop called <code>bearerToken</code>.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="install-file-picker-package">Install File picker package<a data-clipboard-text="https://owncloud.dev/integration/file_picker/installation/#install-file-picker-package" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Install File picker package" href="#install-file-picker-package"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>To integrate File picker into your own product, you can install it via one of the following commands:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">npm install @ownclouders/file-picker --save
 <span class="c1"># OR</span>
@@ -3185,8 +3216,16 @@ This requires us to separate the import of Vue into a bootstrap file.</p>
 <li><code>resource</code> - File picker</li>
 <li><code>location</code> - Location picker</li>
 </ul>
-<div class="gdoc-page__anchorwrap"><h2 id="pass-bearer-token">Pass bearer token<a data-clipboard-text="https://owncloud.dev/integration/file_picker/installation/#pass-bearer-token" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Pass bearer token" href="#pass-bearer-token"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>In case you already have a bearer token and want to skip the whole authorization process inside of the File picker, you can pass it to the component via prop called <code>bearerToken</code>.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="buttons-and-events">Buttons and events<a data-clipboard-text="https://owncloud.dev/integration/file_picker/installation/#buttons-and-events" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Buttons and events" href="#buttons-and-events"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>The wording of buttons can be customized.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="select-button">Select button<a data-clipboard-text="https://owncloud.dev/integration/file_picker/installation/#select-button" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Select button" href="#select-button"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>The file picker has a button in the top right for emitting an event with the selected location or resource, depending on the configured variation.
+This button has default labels, depending on the chosen variation. However, it is possible to define a different button label by setting
+<code>select-btn-label=&quot;&lt;your select button label&gt;&quot;</code>. Using the select button will emit an event with the name <code>selectResources</code>.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="cancel-button">Cancel button<a data-clipboard-text="https://owncloud.dev/integration/file_picker/installation/#cancel-button" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Cancel button" href="#cancel-button"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Cancellation for the file picker is disabled by default. When a label is provided, the file picker renders a cancel button on the left side of the select button.
+This can be achieved by setting <code>cancel-btn-label=&quot;&lt;your cancel button label&gt;&quot;</code>. This will also add a keyboard event on the <code>ESC</code> key. Using
+the cancel button or the <code>ESC</code> key on the keyboard will emit an event with the name <code>cancel</code>.</p>
 
 
     </article>
