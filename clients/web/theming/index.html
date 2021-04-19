@@ -3127,8 +3127,10 @@
         <li><a href="#the-loadingpage-options">The &ldquo;loadingPage&rdquo; options</a></li>
         <li><a href="#design-tokens">Design Tokens</a>
           <ul>
+            <li><a href="#extendability">Extendability</a></li>
             <li><a href="#colors">Colors</a></li>
             <li><a href="#font-sizes">Font sizes</a></li>
+            <li><a href="#sizes">Sizes</a></li>
             <li><a href="#spacing">Spacing</a></li>
           </ul>
         </li>
@@ -3202,6 +3204,9 @@
       <span class="nt">&#34;fontSizes&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="err">//</span> <span class="err">...</span>
       <span class="p">},</span>
+      <span class="nt">&#34;sizes&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="err">//</span> <span class="err">...</span>
+      <span class="p">},</span>
       <span class="nt">&#34;spacing&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="err">//</span> <span class="err">...</span>
       <span class="p">}</span>
@@ -3209,8 +3214,11 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>Please follow this structure to make sure your theming configuration can be loaded correctly.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="extendability">Extendability<a data-clipboard-text="https://owncloud.dev/clients/web/theming/#extendability" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Extendability" href="#extendability"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>If you define different key-value pairs inside any of the objects in <code>&quot;designTokens&quot;</code>, they will get loaded and initialized as CSS custom properties but don&rsquo;t take any effect in the user interface. This gives you an opportunity to, for example, customize extensions from within the theme in the web runtime (and not the extension itself).</p>
 <div class="gdoc-page__anchorwrap"><h3 id="colors">Colors<a data-clipboard-text="https://owncloud.dev/clients/web/theming/#colors" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Colors" href="#colors"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>For the color values, you can use any valid CSS color format, e.g. <strong>hex</strong> (#fff), <strong>rgb</strong> (rgb(255,255,255)) or <strong>color names</strong> (white).</p>
+<p>Color variables get prepended with <code>--oc-color-</code>, so e.g. <em>&ldquo;background-default&rdquo;</em> creates the custom CSS property <code>--oc-color-background-default</code>.</p>
 <p>Again, you can use the <a href="https://owncloud.design/#/Design%20Tokens">ownCloud design tokens</a> as a reference implementation.</p>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
   <span class="nt">&#34;default&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -3219,49 +3227,66 @@
     <span class="p">},</span>
     <span class="nt">&#34;designTokens&#34;</span><span class="p">:</span> <span class="p">{</span>
       <span class="nt">&#34;colorPalette&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;background&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;background-muted&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;background-default&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
         <span class="nt">&#34;background-highlight&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;border-primary&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;brand-primary&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;brand-primary-hover&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;color-muted&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;color-inverse&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;input-color&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;input-color-muted&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;background-muted&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;border&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;input-bg&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
         <span class="nt">&#34;input-border&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;input-background&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;variation-primary&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;variation-primary-hover&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;variation-primary-muted&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;variation-passive&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;variation-passive-hover&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;variation-passive-muted&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;variation-success&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;variation-success-hover&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;variation-success-muted&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;variation-warning&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;variation-warning-hover&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;variation-warning-muted&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;variation-danger&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;variation-danger-hover&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;variation-danger-muted&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
+        <span class="nt">&#34;input-text-default&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;input-text-muted&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;swatch-brand-default&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;swatch-brand-hover&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;swatch-danger-default&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;swatch-danger-hover&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;swatch-danger-muted&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;swatch-passive-default&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;swatch-passive-hover&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;swatch-passive-muted&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;swatch-primary-default&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;swatch-primary-hover&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;swatch-primary-muted&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;swatch-success-default&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;swatch-success-hover&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;swatch-success-muted&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;swatch-warning-default&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;swatch-warning-hover&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;swatch-warning-muted&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;text-default&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;text-inverse&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;text-muted&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
       <span class="p">},</span>
       <span class="nt">&#34;fontSizes&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="err">//</span> <span class="err">...</span>
+        <span class="nt">&#34;default&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;large&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;medium&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
+      <span class="p">},</span>
+      <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;form-check-default&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;height-small&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;icon-default&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;width-medium&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
       <span class="p">},</span>
       <span class="nt">&#34;spacing&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="err">//</span> <span class="err">...</span>
+        <span class="nt">&#34;xsmall&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;small&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;medium&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;large&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;xlarge&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;xxlarge&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
       <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>If you define different key-value pairs inside <code>&quot;colorPalette&quot;</code>, they will get loaded and initialized as CSS custom properties but don&rsquo;t take any effect in the user interface. This gives you an opportunity to, for example, customize extensions from within the theme in the web runtime (and not the extension itself).</p>
-<div class="gdoc-page__anchorwrap"><h3 id="font-sizes">Font sizes<a data-clipboard-text="https://owncloud.dev/clients/web/theming/#font-sizes" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Font sizes" href="#font-sizes"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Changing font sizes via a custom theme is not yet supported and will be released in the future. If this is a pressing feature you&rsquo;d like to use soon, please <a href="https://github.com/owncloud/web/issues/new">open an issue on GitHub</a> or reach out to us about contribution options.</p>
+</code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="font-sizes">Font sizes<a data-clipboard-text="https://owncloud.dev/clients/web/theming/#font-sizes" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Font sizes" href="#font-sizes"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>You can change the <code>default</code>, <code>large</code> and <code>medium</code> font sizes according to your needs. If you need more customization options regarding font sizes, please <a href="https://github.com/owncloud/web/issues/new">open an issue on GitHub</a> with a detailed description.</p>
+<p>Font size variables get prepended with <code>--oc-font-size-</code>, so e.g. <em>&ldquo;default&rdquo;</em> creates the custom CSS property <code>--oc-font-size-default</code>.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="sizes">Sizes<a data-clipboard-text="https://owncloud.dev/clients/web/theming/#sizes" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Sizes" href="#sizes"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>You can change the <code>form-check-default</code> (checkbox sizing), <code>height-small</code> (height of the logo img in the sidebar), <code>icon-default</code> (icon base size) and <code>width-medium</code> (width of the sidebar) according to your needs. If you need more customization options regarding sizes, please <a href="https://github.com/owncloud/web/issues/new">open an issue on GitHub</a> with a detailed description.</p>
+<p>Size variables get prepended with <code>--oc-size-</code>, so e.g. <em>&ldquo;icon-default&rdquo;</em> creates the custom CSS property <code>--oc-size-icon-default</code>.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="spacing">Spacing<a data-clipboard-text="https://owncloud.dev/clients/web/theming/#spacing" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Spacing" href="#spacing"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Changing the spacing via a custom theme is not yet supported and will be released in the future. If this is a pressing feature you&rsquo;d like to use soon, please <a href="https://github.com/owncloud/web/issues/new">open an issue on GitHub</a> or reach out to us about contribution options.</p>
+<p>Use the six spacing options (<code>xsmall | small | medium | large | xlarge | xxlarge</code>) to create a more (or less) condensed version of the user interface. If you need more customization options regarding sizes, please <a href="https://github.com/owncloud/web/issues/new">open an issue on GitHub</a> with a detailed description.</p>
+<p>Spacing variables get prepended with <code>--oc-space-</code>, so e.g. <em>&ldquo;xlarge&rdquo;</em> creates the custom CSS property <code>--oc-space-xlarge</code>.</p>
 <div class="gdoc-page__anchorwrap"><h2 id="example-theme">Example theme<a data-clipboard-text="https://owncloud.dev/clients/web/theming/#example-theme" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Example theme" href="#example-theme"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>An empty template for your custom theme is provided below, and you can use the instructions above to set it up according to your needs. Please note that since changing themes at runtime is not yet supported it only consists of a <code>default</code> theme, and the <code>fontSizes</code> and <code>spacing</code> tokens don&rsquo;t have any effect yet.</p>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>

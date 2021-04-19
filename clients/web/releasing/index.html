@@ -3121,34 +3121,20 @@
   <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
         <li><a href="#releasing-owncloud-web">Releasing ownCloud Web</a>
           <ul>
-            <li><a href="#package-hierarchy">Package Hierarchy</a>
-              <ul>
-                <li><a href="#releasing-web-frontend">Releasing Web Frontend</a></li>
-                <li><a href="#next-steps">Next steps</a></li>
-              </ul>
-            </li>
+            <li><a href="#versioning">Versioning</a></li>
+            <li><a href="#release-guide">Release Guide</a></li>
+            <li><a href="#next-steps">Next steps</a></li>
           </ul>
         </li>
       </ul></nav><hr></div>
 
 
 <div class="gdoc-page__anchorwrap"><h2 id="releasing-owncloud-web">Releasing ownCloud Web<a data-clipboard-text="https://owncloud.dev/clients/web/releasing/#releasing-owncloud-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Releasing ownCloud Web" href="#releasing-owncloud-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>The ownCloud Web is shipped as an ocis Extension. The <code>ocis-web</code> extension is also embedded in the single binary and part of the <code>ocis server</code> command.</p>
-<p>This repository contains the assets and these must be released first before being bundled into <code>ocis-web</code>.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="package-hierarchy">Package Hierarchy<a data-clipboard-text="https://owncloud.dev/clients/web/releasing/#package-hierarchy" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Package Hierarchy" href="#package-hierarchy"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<ul>
-<li><a href="https://github.com/owncloud/ocis">ocis</a>
-<ul>
-<li><a href="https://github.com/owncloud/ocis-web">ocis-web</a>
-<ul>
-<li><a href="https://github.com/owncloud/ocis-pkg">ocis-pkg</a></li>
-<li><a href="https://github.com/owncloud/web">web</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<div class="gdoc-page__anchorwrap"><h4 id="releasing-web-frontend">Releasing Web Frontend<a data-clipboard-text="https://owncloud.dev/clients/web/releasing/#releasing-web-frontend" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Releasing Web Frontend" href="#releasing-web-frontend"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<p>OwnCloud Web can be hosted standalone, as ownCloud 10 app or as part of oCIS.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="versioning">Versioning<a data-clipboard-text="https://owncloud.dev/clients/web/releasing/#versioning" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Versioning" href="#versioning"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>We follow the <a href="https://semver.org/">Semantic Versioning</a> scheme. Therefore, each change is of one of the possible types: <code>Bugfix, Change, Enhancement, Security</code>.</p>
+<p>The highest type before a new release determines the version update number, so if it&rsquo;s only <code>Bugfix</code> and <code>Security</code> changes the next release will be a <code>PATCH</code> version bump, if there&rsquo;s at least one <code>Enhancement</code> within the changes this leads to a <code>MINOR</code> version bump, while <code>Change</code> type changes make for a new <code>MAJOR</code> release version.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="release-guide">Release Guide<a data-clipboard-text="https://owncloud.dev/clients/web/releasing/#release-guide" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Release Guide" href="#release-guide"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <ol>
 <li>Create a branch <code>release-$version</code> in <a href="https://github.com/owncloud/web">https://github.com/owncloud/web</a>.</li>
 <li>Create a folder in <code>changelog</code> for the release version and date <code>mkdir $major.$minor.$patchVersion_YYYY-MM-DD</code>.</li>
@@ -3161,8 +3147,11 @@
 <li>Use <code>v$major.$minor.$patch</code> as a tag (the <code>v</code> prefix is important) and publish it.</li>
 <li>The tag and the Release artifacts will be created automatically.</li>
 </ol>
-<div class="gdoc-page__anchorwrap"><h4 id="next-steps">Next steps<a data-clipboard-text="https://owncloud.dev/clients/web/releasing/#next-steps" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Next steps" href="#next-steps"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>The next steps are usually to update the Web assets in the <a href="https://github.com/owncloud/ocis-web">ocis-web</a> repository. Therefore  we have prepared a <a href="https://owncloud.dev/extensions/web/releasing/">separate ocis-web release guide</a>.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="next-steps">Next steps<a data-clipboard-text="https://owncloud.dev/clients/web/releasing/#next-steps" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Next steps" href="#next-steps"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>The ownCloud 10 app gets created as part of the release pipeline and will be part of the <a href="https://github.com/owncloud/web/releases">release assets</a>.</li>
+<li>For oCIS the release assets need to be updated. For that we have prepared a <a href="https://owncloud.dev/extensions/web/releasing/">separate ocis-web release guide</a>.</li>
+</ul>
 
 
     </article>
