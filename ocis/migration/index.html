@@ -3108,38 +3108,43 @@
     
 
 
-<div class="gdoc-page__anchorwrap"><h2 id="migration">Migration<a data-clipboard-text="https://owncloud.dev/ocis/migration/#migration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Migration" href="#migration"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>The migration happens in subsequent stages while the service is online. First all users need to migrate to the new architecture, then the data on disk can be migrated user by user by switching the storage driver.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="user-stories">User Stories<a data-clipboard-text="https://owncloud.dev/ocis/migration/#user-stories" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor User Stories" href="#user-stories"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>As an admin I need to avoid downtime.
-As an admin I want to migrate certain groups of users before others.
-As a user, I need a seamless migration and not lose data by any chance.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="user-stories">User Stories<a data-clipboard-text="https://owncloud.dev/ocis/migration/#user-stories" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor User Stories" href="#user-stories"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<ul>
+<li>As an admin I need to avoid downtime.</li>
+<li>As an admin I want to migrate certain groups of users before others.</li>
+<li>As a user, I need a seamless migration and not lose data by any chance.</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h2 id="migration-stages">Migration Stages<a data-clipboard-text="https://owncloud.dev/ocis/migration/#migration-stages" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Migration Stages" href="#migration-stages"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <div class="gdoc-page__anchorwrap"><h3 id="stage-0">Stage-0<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-0" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-0" href="#stage-0"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Is the pre-migration stage having a functional ownCloud 10 instance.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="stage-1">Stage-1<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-1" href="#stage-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Introduce OpenID Connect to server and Clients</p>
+<p>Introduce OpenID Connect to ownCloud 10 server and clients.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="stage-2">Stage-2<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-2" href="#stage-2"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Install and introduce ownCloud Web and let users test it voluntarily.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="stage-3">Stage-3<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-3" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-3" href="#stage-3"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Start oCIS backend and make read only tests on existing data using the <code>owncloud</code> storage driver which will read (and write)</p>
 <ul>
-<li>blobs from the same datadirectory layout as in ownCloud 10 and</li>
-<li>metadata from the ownCloud 10 databas
-The oCIS share manager will read share infomation from the owncloud database as well.</li>
-<li><input disabled="" type="checkbox"> <em>we need a share manager that can read from the oc 10 db as well as from whatever new backend will be used for a pure oCIS setup. Currently, that would be the json file. Or that is migrated after all users have switched to oCIS. &ndash; jfd</em></li>
+<li>blobs from the same datadirectory layout as in ownCloud 10</li>
+<li>metadata from the ownCloud 10 database:
+The oCIS share manager will read share information from the ownCloud database as well.</li>
+</ul>
+<p>Therefore we need:</p>
+<ul>
+<li><input disabled="" type="checkbox"> <em>a share manager that can read from the ownCloud 10 database as well as from whatever new backend will be used for a pure oCIS setup. Currently, that would be the json file. Or that is migrated after all users have switched to oCIS. &ndash; jfd</em></li>
 </ul>
 <div class="gdoc-page__anchorwrap"><h3 id="stage-4">Stage-4<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-4" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-4" href="#stage-4"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Test writing data with oCIS into the existing ownCloud 10 datafolder using the <code>owncloud</code> storage driver.</p>
+<p>Test writing data with oCIS into the existing ownCloud 10 data directory using the <code>owncloud</code> storage driver.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="stage-5">Stage-5<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-5" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-5" href="#stage-5"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Introduce reverse proxy and switch over early adoptors, let admins gain trust in the new backend by comparing metrics of the two systems and having it running in parallel.</p>
+<p>Introduce reverse proxy and switch over early adopters, let admins gain trust in the new backend by comparing metrics of the two systems and having it running in parallel.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="stage-6">Stage-6<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-6" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-6" href="#stage-6"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Voluntary transition period and subsequent hard deadline for all users</p>
 <div class="gdoc-page__anchorwrap"><h3 id="stage-7">Stage-7<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-7" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-7" href="#stage-7"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Disable oc10 in the proxy, all requests are now handled by oCIS, shut down oc10 web servers and redis (or keep for calendar &amp; contacts only? rip out files from oCIS?)</p>
+<p>Disable ownCloud 10 in the proxy, all requests are now handled by oCIS, shut down oc10 web servers and redis (or keep for calendar &amp; contacts only? rip out files from oCIS?)</p>
 <div class="gdoc-page__anchorwrap"><h3 id="stage-8">Stage-8<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-8" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-8" href="#stage-8"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>User by user storage migration from owncloud driver to <code>ocis</code>/<code>s3ng</code>/<code>cephfs</code>&hellip;</p>
+<p>User by user storage migration from <code>owncloud</code> driver to <code>ocis</code>/<code>s3ng</code>/<code>cephfs</code>&hellip;</p>
 <div class="gdoc-page__anchorwrap"><h3 id="stage-9">Stage-9<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-9" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-9" href="#stage-9"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Migrate share data to &lt;yet to determine&gt; share manager backend and shut down owncloud database</p>
+<p>Migrate share data to &lt;yet to determine&gt; share manager backend and shut down ownCloud database</p>
 <div class="gdoc-page__anchorwrap"><h3 id="stage-10">Stage-10<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-10" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-10" href="#stage-10"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Profit! (db for file metadata no longer necessary, less maintenance effort)</p>
 <div class="gdoc-page__anchorwrap"><h2 id="architectural-differences">Architectural differences<a data-clipboard-text="https://owncloud.dev/ocis/migration/#architectural-differences" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Architectural differences" href="#architectural-differences"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
@@ -3176,15 +3181,18 @@ The oCIS share manager will read share infomation from the owncloud database as 
 │   │   │   ├── 2048-1536-max.png
 │   │   │   └── 32-32.png                 // the file id, eg. of /Photos/Portugal.jpg
 │   └── uploads
-├── einstein
-│   ├── files
-│   ├── files_trash
-│   └── files_versions
-│   …
 ├── marie
+│   ├── cache
+│   ├── files
+│   ├── files_external
+│   ├── files_trashbin
+│   ├── files_versions
+│   └── thumbnails
+│   …
+├── moss
 …
-</code></pre></div><p>The <em>data directory</em> may also contain subfolders for owncloud 10 applications like <code>avatars</code>, <code>gallery</code>, <code>files_external</code> and <code>cache</code>.</p>
-<p>When an objectstorage is used as the primary storage all file blobs are stored by their file id and a prefix, eg.: <code>urn:oid:&lt;fileid&gt;</code>.</p>
+</code></pre></div><p>The <em>data directory</em> may also contain subfolders for ownCloud 10 applications like <code>avatars</code>, <code>gallery</code>, <code>files_external</code> and <code>cache</code>.</p>
+<p>When an object storage is used as the primary storage all file blobs are stored by their file id and a prefix, eg.: <code>urn:oid:&lt;fileid&gt;</code>.</p>
 <p>The three types of blobs we need to migrate are stored in</p>
 <ul>
 <li><code>files</code> for file blobs, the current file content,</li>
@@ -3275,7 +3283,7 @@ The oCIS share manager will read share infomation from the owncloud database as 
 <td></td>
 <td>0</td>
 <td></td>
-<td><em>joined with the <code>oc_mimetypes</code> table. only relevant for objectstorage deployments</em></td>
+<td><em>joined with the <code>oc_mimetypes</code> table. only relevant for object storage deployments</em></td>
 <td>can be determined from blob / file extension</td>
 </tr>
 <tr>
@@ -3366,7 +3374,7 @@ The oCIS share manager will read share infomation from the owncloud database as 
 <td>NULL</td>
 <td></td>
 <td><em>same as blob checksum</em></td>
-<td>SHOULD become the checksum in the storage provider. eos calculates it itself, <code>ocis</code> driver stores it in extendetd attributes</td>
+<td>SHOULD become the checksum in the storage provider. eos calculates it itself, <code>ocis</code> driver stores it in extended attributes</td>
 </tr>
 </tbody>
 </table>
@@ -3790,12 +3798,12 @@ The oCIS share manager will read share infomation from the owncloud database as 
 </tr>
 </tbody>
 </table>
-<p><em>TODO clarify how OCM handles this andt where we store / configure this. It seems related to trusted IdPs</em></p>
+<p><em>TODO clarify how OCM handles this and where we store / configure this. It seems related to trusted IdPs</em></p>
 <div class="gdoc-page__anchorwrap"><h3 id="user-data">user data<a data-clipboard-text="https://owncloud.dev/ocis/migration/#user-data" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor user data" href="#user-data"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Users are migrated in two steps:</p>
 <ol>
 <li>They should all be authenticated using openid connect, which already moves them to a common identity management system.</li>
-<li>To search share recipients, both, ownCloud 10 and oCIS need acces to the same user directory using eg. LDAP.</li>
+<li>To search share recipients, both, ownCloud 10 and oCIS need access to the same user directory using eg. LDAP.</li>
 </ol>
 <p><em>TODO: add state to CS3 API, so we can &lsquo;disable&rsquo; users</em>
 <em>TODO: how do we map (sub) admins? -&gt; map to roles &amp; permissions</em></p>
