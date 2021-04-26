@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Tracing">
+<meta name="description" content="6. Service Discovery within oCIS and Reva">
 
-<title>Tracing | ownCloud</title>
+<title>6. Service Discovery within oCIS and Reva | ownCloud</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -247,7 +247,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-dba039ca" class="gdoc-nav__toggle" checked>
+            <input type="checkbox" id="navtree-dba039ca" class="gdoc-nav__toggle" >
             <label for="navtree-dba039ca" class="flex justify-between">
             
             
@@ -403,7 +403,7 @@
             
             
                 <span class="flex">
-                    <a href="/ocis/development/tracing/" class="gdoc-nav__entry is-active">
+                    <a href="/ocis/development/tracing/" class="gdoc-nav__entry ">
                         Tracing
                     </a>
                 </span>
@@ -483,7 +483,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-307b2de1" class="gdoc-nav__toggle" >
+            <input type="checkbox" id="navtree-307b2de1" class="gdoc-nav__toggle" checked>
             <label for="navtree-307b2de1" class="flex justify-between">
             
             
@@ -610,7 +610,7 @@
             
             
                 <span class="flex">
-                    <a href="/ocis/adr/0006-service-discovery/" class="gdoc-nav__entry ">
+                    <a href="/ocis/adr/0006-service-discovery/" class="gdoc-nav__entry is-active">
                         6. Service Discovery within oCIS and Reva
                     </a>
                 </span>
@@ -3104,7 +3104,7 @@
         
     
     
-        <a href='/'>ownCloud</a> / <a href='/ocis/'>oCIS - ownCloud Infinite Scale</a> / <a href='/ocis/development/'>Development</a> / Tracing
+        <a href='/'>ownCloud</a> / <a href='/ocis/'>oCIS - ownCloud Infinite Scale</a> / <a href='/ocis/adr/'>Architecture Decisions</a> / 6. Service Discovery within oCIS and Reva
     
 
     
@@ -3120,7 +3120,7 @@
         
         <span class="editpage">
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/development/tracing.md">
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/adr/0006-service-discovery.md">
                 Edit this page
             </a>
         </span>
@@ -3130,7 +3130,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>Tracing</h1>
+        <h1>6. Service Discovery within oCIS and Reva</h1>
         
 
 
@@ -3138,51 +3138,55 @@
     
 
 
-
-
-
-  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"></nav><hr></div>
-
-
-<p>By default, we use <a href="https://www.jaegertracing.io">Jaeger</a> for request tracing within oCIS. You can follow these steps
-to get started:</p>
-<ol>
-<li>Start Jaeger by using the all-in-one docker image:
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker run -d --name jaeger \
-  -e COLLECTOR_ZIPKIN_HTTP_PORT=9411 \
-  -p 5775:5775/udp \
-  -p 6831:6831/udp \
-  -p 6832:6832/udp \
-  -p 5778:5778 \
-  -p 16686:16686 \
-  -p 14268:14268 \
-  -p 14250:14250 \
-  -p 9411:9411 \
-  jaegertracing/all-in-one:1.17
-</code></pre></div></li>
-<li>Every single oCIS service has its own environment variables for enabling and configuring tracing.
-<ol>
-<li>You can enable and configure tracing on each service individually. For example, enable tracing
-in Reva when starting the oCIS single binary like this:
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">REVA_TRACING_ENABLED=true \
-REVA_TRACING_ENDPOINT=localhost:6831 \
-REVA_TRACING_COLLECTOR=http://localhost:14268/api/traces \
-./bin/ocis server
-</code></pre></div></li>
-<li>Enabling and configuring tracing on oCIS itself will forward the configuration to all services:
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">OCIS_TRACING_ENABLED=true \
-OCIS_TRACING_ENDPOINT=localhost:6831 \
-OCIS_TRACING_COLLECTOR=http://localhost:14268/api/traces \
-./bin/ocis server
-</code></pre></div><p>If you want to set individual tracing configuration for each service, make sure to set
-<code>OCIS_TRACING_ENABLED=false</code>.</p>
+<h1 id="6-service-discovery-within-ocis-and-reva">6. Service Discovery within oCIS and Reva</h1>
+<ul>
+<li>Status: proposed</li>
+<li>Deciders: @refs, @butonic, @micbar, @dragotin, @pmaier1</li>
+<li>Date: 2021-04-19</li>
+</ul>
+<p>Technical Story: <a href="https://github.com/cs3org/reva/pull/1509">Introduce Named Services.</a></p>
+<div class="gdoc-page__anchorwrap"><h2 id="context-and-problem-statement">Context and Problem Statement<a data-clipboard-text="https://owncloud.dev/ocis/adr/0006-service-discovery/#context-and-problem-statement" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Context and Problem Statement" href="#context-and-problem-statement"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>Reva relies heavily on config files. A known implication of this approach are having to know a-priori where a service is running (host + port). We want to move away from hardcoded values and rely instead on named services for service discovery. Furthermore, we would like both platforms (Reva + oCIS) to have the same source of truth at any given time, not having one to notify the other whenever a service status changes.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="decision-drivers">Decision Drivers<a data-clipboard-text="https://owncloud.dev/ocis/adr/0006-service-discovery/#decision-drivers" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Decision Drivers" href="#decision-drivers"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<ul>
+<li>Avoid a-priori knowledge of services.</li>
+<li>Ease of scalability.</li>
+<li>Always up-to-date knowledge of the running services on a given deployment (a service registry doesn&rsquo;t have to necessarily be running on the same machine / network)</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h2 id="considered-options">Considered Options<a data-clipboard-text="https://owncloud.dev/ocis/adr/0006-service-discovery/#considered-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Considered Options" href="#considered-options"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<ul>
+<li>Hardcoded tuples of hostname + port</li>
+<li>Dynamic service registration</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h2 id="decision-outcome">Decision Outcome<a data-clipboard-text="https://owncloud.dev/ocis/adr/0006-service-discovery/#decision-outcome" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Decision Outcome" href="#decision-outcome"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>Chosen option: &ldquo;Dynamic service registration&rdquo;. There were some drawbacks regarding this due to introducing go-micro to Reva was from start an issue. Given the little usage of go-micro we need, we decided instead to define our very own <a href="https://github.com/refs/reva/blob/58d013a7509d1941834e1bc814e9a9fa8bff00b1/pkg/registry/registry.go#L22-L35">Registry interface</a> on Reva and extended the runtime arguments to <a href="https://github.com/refs/reva/blob/58d013a7509d1941834e1bc814e9a9fa8bff00b1/cmd/revad/runtime/option.go#L53-L58">allow for injecting a registry</a>.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="positive-consequences">Positive Consequences<a data-clipboard-text="https://owncloud.dev/ocis/adr/0006-service-discovery/#positive-consequences" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Positive Consequences" href="#positive-consequences"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>Having dynamic service registration delegates the entire lifecycle of finding a process to the service registry.</li>
+<li>Removing a-priori knowledge of hostname + port for services.</li>
+<li>Marrying go-micro&rsquo;s registry and a newly defined registry abstraction on Reva.</li>
+<li>We will embrace go-micro interfaces by defining a third merger interface in order to marry go-micro registry and rega revistry.</li>
+<li>The ability to fetch a service node relying only on its name (i.e: com.owncloud.proxy) and not on a tuple hostname + port that we rely on being preconfigured during runtime.</li>
+<li>Conceptually speaking, a better framework to tie all the services together. Referring to services by names is less overall confusing than having to add a service name + where it is running. A registry is agnostic to &ldquo;where is it running&rdquo; because it, by definition, keeps track of this specific question, so when speaking about design or functionality, it will ease communication.</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h2 id="pros-and-cons-of-the-options">Pros and Cons of the Options<a data-clipboard-text="https://owncloud.dev/ocis/adr/0006-service-discovery/#pros-and-cons-of-the-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Pros and Cons of the Options" href="#pros-and-cons-of-the-options"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<div class="gdoc-page__anchorwrap"><h3 id="hardcoded-tuples-of-hostname--port">Hardcoded tuples of hostname + port<a data-clipboard-text="https://owncloud.dev/ocis/adr/0006-service-discovery/#hardcoded-tuples-of-hostname--port" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Hardcoded tuples of hostname + port" href="#hardcoded-tuples-of-hostname--port"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>Good, because firewalls are easier to configure since IP are static.</li>
+<li>Good, because the mental model required is easier to grasp as IP addresses can be easily bundled.</li>
+<li>Bad, because it requires thorough planning of ports.</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h3 id="dynamic-service-registration">Dynamic service registration<a data-clipboard-text="https://owncloud.dev/ocis/adr/0006-service-discovery/#dynamic-service-registration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Dynamic service registration" href="#dynamic-service-registration"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>Good, because it abstracts the use of service lookup away to registry logic from the admin or developer.</li>
+<li>Good, because it allows for, through interfaces, registry injection
+<ul>
+<li>This means we can have a service registry that we extensively use in oCIS and inject its functionality onto Reva.</li>
+</ul>
 </li>
-</ol>
-</li>
-<li>Make the actual request that you want to trace.</li>
-<li>Open up the <a href="http://localhost:16686">Jaeger UI</a> to analyze request traces.</li>
-</ol>
-<p>For more information on Jaeger, please refer to their <a href="https://www.jaegertracing.io/docs/1.17/">Documentation</a>.</p>
+<li>Bad, because it&rsquo;s yet another abstraction.</li>
+<li>Bad, because firewalls are harder to configure with dynamic IPs.f</li>
+</ul>
 
 
     </article>
