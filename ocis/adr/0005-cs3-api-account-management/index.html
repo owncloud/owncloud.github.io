@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Configuration">
+<meta name="description" content="5. Account Management through CS3 API">
 
-<title>Configuration | ownCloud</title>
+<title>5. Account Management through CS3 API | ownCloud</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -483,7 +483,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-307b2de1" class="gdoc-nav__toggle" >
+            <input type="checkbox" id="navtree-307b2de1" class="gdoc-nav__toggle" checked>
             <label for="navtree-307b2de1" class="flex justify-between">
             
             
@@ -610,7 +610,7 @@
             
             
                 <span class="flex">
-                    <a href="/ocis/adr/0005-cs3-api-account-management/" class="gdoc-nav__entry ">
+                    <a href="/ocis/adr/0005-cs3-api-account-management/" class="gdoc-nav__entry is-active">
                         5. Account Management through CS3 API
                     </a>
                 </span>
@@ -1754,7 +1754,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-978af166" class="gdoc-nav__toggle" checked>
+            <input type="checkbox" id="navtree-978af166" class="gdoc-nav__toggle" >
             <label for="navtree-978af166" class="flex justify-between">
             
             
@@ -1789,7 +1789,7 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/glauth/configuration/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/glauth/configuration/" class="gdoc-nav__entry ">
                         Configuration
                     </a>
                 </span>
@@ -3127,7 +3127,7 @@
         
     
     
-        <a href='/'>ownCloud</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/glauth/'>GLAuth</a> / Configuration
+        <a href='/'>ownCloud</a> / <a href='/ocis/'>oCIS - ownCloud Infinite Scale</a> / <a href='/ocis/adr/'>Architecture Decisions</a> / 5. Account Management through CS3 API
     
 
     
@@ -3143,7 +3143,7 @@
         
         <span class="editpage">
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/glauth/templates/CONFIGURATION.tmpl">
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/adr/0004-cs3api-user-management.md">
                 Edit this page
             </a>
         </span>
@@ -3153,7 +3153,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>Configuration</h1>
+        <h1>5. Account Management through CS3 API</h1>
         
 
 
@@ -3161,123 +3161,197 @@
     
 
 
-
-
-
-  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
-        <li><a href="#configuration">Configuration</a>
-          <ul>
-            <li><a href="#configuration-using-config-files">Configuration using config files</a></li>
-            <li><a href="#environment-variables">Environment variables</a></li>
-            <li><a href="#commandline-flags">Commandline flags</a></li>
-            <li><a href="#glauth-health">glauth health</a></li>
-            <li><a href="#glauth-ocis-glauth">glauth ocis-glauth</a></li>
-            <li><a href="#glauth-server">glauth server</a></li>
-          </ul>
-        </li>
-      </ul></nav><hr></div>
-
-
-<div class="gdoc-page__anchorwrap"><h2 id="configuration">Configuration<a data-clipboard-text="https://owncloud.dev/extensions/glauth/configuration/#configuration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configuration" href="#configuration"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<div class="gdoc-page__anchorwrap"><h3 id="configuration-using-config-files">Configuration using config files<a data-clipboard-text="https://owncloud.dev/extensions/glauth/configuration/#configuration-using-config-files" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configuration using config files" href="#configuration-using-config-files"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Out of the box extensions will attempt to read configuration details from:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">/etc/ocis
-$HOME/.ocis
-./config
-</code></pre></div><p>For this configuration to be picked up, have a look at your extension <code>root</code> command and look for which default config name it has assigned. <em>i.e: ocis-glauth reads <code>glauth.json | yaml | toml ...</code></em>.</p>
-<p>So far we support the file formats <code>JSON</code> and <code>YAML</code>, if you want to get a full example configuration just take a look at <a href="https://github.com/owncloud/ocis/tree/master/glauth/config">our repository</a>, there you can always see the latest configuration format. These example configurations include all available options and the default values. The configuration file will be automatically loaded if it&rsquo;s placed at <code>/etc/ocis/ocis.yml</code>, <code>${HOME}/.ocis/ocis.yml</code> or <code>$(pwd)/config/ocis.yml</code>.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="environment-variables">Environment variables<a data-clipboard-text="https://owncloud.dev/extensions/glauth/configuration/#environment-variables" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Environment variables" href="#environment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>If you prefer to configure the service with environment variables you can see the available variables below.</p>
-<p>If multiple variables are listed for one option, they are in order of precedence. This means the leftmost variable will always win if given.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="commandline-flags">Commandline flags<a data-clipboard-text="https://owncloud.dev/extensions/glauth/configuration/#commandline-flags" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Commandline flags" href="#commandline-flags"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>If you prefer to configure the service with commandline flags you can see the available variables below. Command line flags are only working when calling the subcommand directly.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="glauth-health">glauth health<a data-clipboard-text="https://owncloud.dev/extensions/glauth/configuration/#glauth-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor glauth health" href="#glauth-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Check health status</p>
-<p>Usage: <code>glauth health [command options] [arguments...]</code></p>
-<dl>
-<dt>-debug-addr |  $GLAUTH_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>flags.OverrideDefaultString(cfg.Debug.Addr, &quot;0.0.0.0:9129&quot;)</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="glauth-ocis-glauth">glauth ocis-glauth<a data-clipboard-text="https://owncloud.dev/extensions/glauth/configuration/#glauth-ocis-glauth" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor glauth ocis-glauth" href="#glauth-ocis-glauth"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Serve GLAuth API for oCIS</p>
-<p>Usage: <code>glauth ocis-glauth [command options] [arguments...]</code></p>
-<dl>
-<dt>-log-level |  $GLAUTH_LOG_LEVEL , $OCIS_LOG_LEVEL</dt>
-<dd>Set logging level.</dd>
-<dt>-log-pretty |  $GLAUTH_LOG_PRETTY , $OCIS_LOG_PRETTY</dt>
-<dd>Enable pretty logging.</dd>
-<dt>-log-color |  $GLAUTH_LOG_COLOR , $OCIS_LOG_COLOR</dt>
-<dd>Enable colored logging.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="glauth-server">glauth server<a data-clipboard-text="https://owncloud.dev/extensions/glauth/configuration/#glauth-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor glauth server" href="#glauth-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Start integrated server</p>
-<p>Usage: <code>glauth server [command options] [arguments...]</code></p>
-<dl>
-<dt>-log-file |  $GLAUTH_LOG_FILE , $OCIS_LOG_FILE</dt>
-<dd>Enable log to file.</dd>
-<dt>-config-file |  $GLAUTH_CONFIG_FILE</dt>
-<dd>Path to config file. Default: <code>flags.OverrideDefaultString(cfg.File, &quot;&quot;)</code>.</dd>
-<dt>-tracing-enabled |  $GLAUTH_TRACING_ENABLED</dt>
-<dd>Enable sending traces.</dd>
-<dt>-tracing-type |  $GLAUTH_TRACING_TYPE</dt>
-<dd>Tracing backend type. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Type, &quot;jaeger&quot;)</code>.</dd>
-<dt>-tracing-endpoint |  $GLAUTH_TRACING_ENDPOINT</dt>
-<dd>Endpoint for the agent. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Endpoint, &quot;&quot;)</code>.</dd>
-<dt>-tracing-collector |  $GLAUTH_TRACING_COLLECTOR</dt>
-<dd>Endpoint for the collector. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Collector, &quot;&quot;)</code>.</dd>
-<dt>-tracing-service |  $GLAUTH_TRACING_SERVICE</dt>
-<dd>Service name for tracing. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Service, &quot;glauth&quot;)</code>.</dd>
-<dt>-debug-addr |  $GLAUTH_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>flags.OverrideDefaultString(cfg.Debug.Addr, &quot;0.0.0.0:9129&quot;)</code>.</dd>
-<dt>-debug-token |  $GLAUTH_DEBUG_TOKEN</dt>
-<dd>Token to grant metrics access. Default: <code>flags.OverrideDefaultString(cfg.Debug.Token, &quot;&quot;)</code>.</dd>
-<dt>-debug-pprof |  $GLAUTH_DEBUG_PPROF</dt>
-<dd>Enable pprof debugging.</dd>
-<dt>-debug-zpages |  $GLAUTH_DEBUG_ZPAGES</dt>
-<dd>Enable zpages debugging.</dd>
-<dt>-role-bundle-id |  $GLAUTH_ROLE_BUNDLE_ID</dt>
-<dd>roleid used to make internal grpc requests. Default: <code>flags.OverrideDefaultString(cfg.RoleBundleUUID, &quot;71881883-1768-46bd-a24d-a356a2afdf7f&quot;)</code>.</dd>
-<dt>-ldap-addr |  $GLAUTH_LDAP_ADDR</dt>
-<dd>Address to bind ldap server. Default: <code>flags.OverrideDefaultString(cfg.Ldap.Address, &quot;0.0.0.0:9125&quot;)</code>.</dd>
-<dt>-ldap-enabled |  $GLAUTH_LDAP_ENABLED</dt>
-<dd>Enable ldap server. Default: <code>flags.OverrideDefaultBool(cfg.Ldap.Enabled, true)</code>.</dd>
-<dt>-ldaps-addr |  $GLAUTH_LDAPS_ADDR</dt>
-<dd>Address to bind ldap server. Default: <code>flags.OverrideDefaultString(cfg.Ldaps.Address, &quot;0.0.0.0:9126&quot;)</code>.</dd>
-<dt>-ldaps-enabled |  $GLAUTH_LDAPS_ENABLED</dt>
-<dd>Enable ldap server. Default: <code>flags.OverrideDefaultBool(cfg.Ldaps.Enabled, true)</code>.</dd>
-<dt>-ldaps-cert |  $GLAUTH_LDAPS_CERT</dt>
-<dd>path to ldaps certificate in PEM format. Default: <code>flags.OverrideDefaultString(cfg.Ldaps.Cert, &quot;./ldap.crt&quot;)</code>.</dd>
-<dt>-ldaps-key |  $GLAUTH_LDAPS_KEY</dt>
-<dd>path to ldaps key in PEM format. Default: <code>flags.OverrideDefaultString(cfg.Ldaps.Key, &quot;./ldap.key&quot;)</code>.</dd>
-<dt>-backend-basedn |  $GLAUTH_BACKEND_BASEDN</dt>
-<dd>base distinguished name to expose. Default: <code>flags.OverrideDefaultString(cfg.Backend.BaseDN, &quot;dc=example,dc=org&quot;)</code>.</dd>
-<dt>-backend-name-format |  $GLAUTH_BACKEND_NAME_FORMAT</dt>
-<dd>name attribute for entries to expose. typically cn or uid. Default: <code>flags.OverrideDefaultString(cfg.Backend.NameFormat, &quot;cn&quot;)</code>.</dd>
-<dt>-backend-group-format |  $GLAUTH_BACKEND_GROUP_FORMAT</dt>
-<dd>name attribute for entries to expose. typically ou, cn or dc. Default: <code>flags.OverrideDefaultString(cfg.Backend.GroupFormat, &quot;ou&quot;)</code>.</dd>
-<dt>-backend-ssh-key-attr |  $GLAUTH_BACKEND_SSH_KEY_ATTR</dt>
-<dd>ssh key attribute for entries to expose. Default: <code>flags.OverrideDefaultString(cfg.Backend.SSHKeyAttr, &quot;sshPublicKey&quot;)</code>.</dd>
-<dt>-backend-datastore |  $GLAUTH_BACKEND_DATASTORE</dt>
-<dd>datastore to use as the backend. one of accounts, ldap or owncloud. Default: <code>flags.OverrideDefaultString(cfg.Backend.Datastore, &quot;accounts&quot;)</code>.</dd>
-<dt>-backend-insecure |  $GLAUTH_BACKEND_INSECURE</dt>
-<dd>Allow insecure requests to the datastore. Default: <code>flags.OverrideDefaultBool(cfg.Backend.Insecure, false)</code>.</dd>
-<dt>-backend-use-graphapi |  $GLAUTH_BACKEND_USE_GRAPHAPI</dt>
-<dd>use Graph API, only for owncloud datastore. Default: <code>flags.OverrideDefaultBool(cfg.Backend.UseGraphAPI, true)</code>.</dd>
-<dt>-fallback-basedn |  $GLAUTH_FALLBACK_BASEDN</dt>
-<dd>base distinguished name to expose. Default: <code>flags.OverrideDefaultString(cfg.Fallback.BaseDN, &quot;dc=example,dc=org&quot;)</code>.</dd>
-<dt>-fallback-name-format |  $GLAUTH_FALLBACK_NAME_FORMAT</dt>
-<dd>name attribute for entries to expose. typically cn or uid. Default: <code>flags.OverrideDefaultString(cfg.Fallback.NameFormat, &quot;cn&quot;)</code>.</dd>
-<dt>-fallback-group-format |  $GLAUTH_FALLBACK_GROUP_FORMAT</dt>
-<dd>name attribute for entries to expose. typically ou, cn or dc. Default: <code>flags.OverrideDefaultString(cfg.Fallback.GroupFormat, &quot;ou&quot;)</code>.</dd>
-<dt>-fallback-ssh-key-attr |  $GLAUTH_FALLBACK_SSH_KEY_ATTR</dt>
-<dd>ssh key attribute for entries to expose. Default: <code>flags.OverrideDefaultString(cfg.Fallback.SSHKeyAttr, &quot;sshPublicKey&quot;)</code>.</dd>
-<dt>-fallback-datastore |  $GLAUTH_FALLBACK_DATASTORE</dt>
-<dd>datastore to use as the fallback. one of accounts, ldap or owncloud. Default: <code>flags.OverrideDefaultString(cfg.Fallback.Datastore, &quot;&quot;)</code>.</dd>
-<dt>-fallback-insecure |  $GLAUTH_FALLBACK_INSECURE</dt>
-<dd>Allow insecure requests to the datastore. Default: <code>flags.OverrideDefaultBool(cfg.Fallback.Insecure, false)</code>.</dd>
-<dt>-fallback-use-graphapi |  $GLAUTH_FALLBACK_USE_GRAPHAPI</dt>
-<dd>use Graph API, only for owncloud datastore. Default: <code>flags.OverrideDefaultBool(cfg.Fallback.UseGraphAPI, true)</code>.</dd>
-</dl>
+<h1 id="5-account-management-via-cs3-api">5. Account Management via CS3 API</h1>
+<ul>
+<li>Status: proposed</li>
+<li>Deciders: @refs, @butonic, @micbar, @dragotin, @pmaier1</li>
+<li>Date: 2021-04-12</li>
+</ul>
+<p>Technical Story: <a href="https://github.com/cs3org/cs3apis/pull/119">Write only management API for User and Group resources</a></p>
+<div class="gdoc-page__anchorwrap"><h2 id="context-and-problem-statement">Context and Problem Statement<a data-clipboard-text="https://owncloud.dev/ocis/adr/0005-cs3-api-account-management/#context-and-problem-statement" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Context and Problem Statement" href="#context-and-problem-statement"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>What would be a more effective way of using network resources and handle account management within the oCIS-Reva ecosystem? Separating account management at the service level is pragmatic and allows for fast iterations, but also steadily accumulates inconsistencies and bloats technical debt.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="decision-drivers">Decision Drivers<a data-clipboard-text="https://owncloud.dev/ocis/adr/0005-cs3-api-account-management/#decision-drivers" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Decision Drivers" href="#decision-drivers"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<ul>
+<li>Reduce number of network calls.</li>
+<li>Reduce number of services (merge Account + GLAuth from ADR-0003).</li>
+<li>Formalize account management at the API level.</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h2 id="considered-options">Considered Options<a data-clipboard-text="https://owncloud.dev/ocis/adr/0005-cs3-api-account-management/#considered-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Considered Options" href="#considered-options"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<ul>
+<li>Account management delegated to vendors.</li>
+<li>Add account management to the CS3 API.</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h2 id="decision-outcome">Decision Outcome<a data-clipboard-text="https://owncloud.dev/ocis/adr/0005-cs3-api-account-management/#decision-outcome" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Decision Outcome" href="#decision-outcome"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>Chosen option: &ldquo;Add account management to the CS3 API&rdquo;. Making the API declare an API for account management will not only allow a deployment to fail fast (as in: the management node is not running) but would also centralize all management operations that should happen to be constrained within the Reva context. Constrained operations <em>SHOULD</em> be by definition more secure, or at least as secure as the rest of the system.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="positive-consequences">Positive Consequences<a data-clipboard-text="https://owncloud.dev/ocis/adr/0005-cs3-api-account-management/#positive-consequences" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Positive Consequences" href="#positive-consequences"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>More resilient API.
+<ul>
+<li>Because account management is considered a &ldquo;first class citizen&rdquo; changes are forced to go through a more exhaustive revision process.</li>
+</ul>
+</li>
+<li>Removing Accounts from search users<!-- raw HTML omitted -->1<!-- raw HTML omitted -->.</li>
+<li>Replace the provisioning API in favor of the new Reva Admin node.</li>
+</ul>
+<p>(1) the current vendor implementation of searching a user (i.e: when sharing a resource) relies directly on the accounts service, since this is the only source of truth. Searching a user looks like:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">┌────────────────────────────────────────┐
+│user search (no LDAP)                   │
+│                                        │
+│    ┌──────────┐                        │
+│    │          │                        │
+│    │  proxy   │                        │
+│    │          │        ┌ ─ ─ ─ ─ ─ ┐   │
+│    └──────────┘         go-micro       │
+│          ▲             │           │   │
+│          │                   Λ         │
+│          ▼             │    ╱ ╲    │   │
+│    ┌──────────┐            ╱   ╲       │
+│    │          │        │  ╱     ╲  │   │
+│    │   ocs    │◀──(1)───▶registry▏     │
+│    │          │        │  ╲     ╱  │   │
+│    └──────────┘            ╲   ╱       │
+│          ▲             │    ╲ ╱    │   │
+│          │                   V         │
+│          │             │           │   │
+│          │                             │
+│          │             └ ─ ─ ─ ─ ─ ┘   │
+│          │                             │
+│          │                             │
+│          │              ┌──────────┐   │
+│          │              │          │   │
+│          └─────────────▶│ accounts │   │
+│                         │          │   │
+│                         └──────────┘   │
+│                                        │
+│                                        │
+│(1) ocs requests a connection to the    │
+│accounts service to the registry        │
+│                                        │
+└────────────────────────────────────────┘
+</code></pre></div><p>Whereas, as a result of ADR-0003 and this ADR, we can simplify and improve this design:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">┌─────────────────────────────────────────────┐
+│user search                                  │
+│                                             │
+│                                             │
+│      ┌──────────┐                           │
+│      │          │                           │
+│      │  proxy   │                           │
+│      │          │                           │
+│      └──────────┘                           │
+│            │                                │
+│            ▼                                │
+│      ┌──────────┐                           │
+│      │          │                           │
+│      │   ocs    │                           │
+│      │          │                           │
+│      └──────────┘                           │
+│            │                                │
+│            │                                │
+│ ┌ ─ ─ ─ ─ ─│─ ─ ─ ─    ┌ ─ ─ ─ ─ ─ ─ ─ ─ ┐  │
+│  reva      ▼       │    IDM                 │
+│ │    ┌──────────┐      │   ┌──────────┐  │  │
+│      │          │  │       │          │     │
+│ │    │  users   │◀─────┼──▶│  GLAuth  │  │  │
+│      │          │  │       │          │     │
+│ │    └──────────┘      │   └──────────┘  │  │
+│                    │                        │
+│ └ ─ ─ ─ ─ ─ ─ ─ ─ ─    └ ─ ─ ─ ─ ─ ─ ─ ─ ┘  │
+│                                             │
+└─────────────────────────────────────────────┘
+</code></pre></div><p>And instead rely on the already existing Reva users provider.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="pros-and-cons-of-the-options">Pros and Cons of the Options<a data-clipboard-text="https://owncloud.dev/ocis/adr/0005-cs3-api-account-management/#pros-and-cons-of-the-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Pros and Cons of the Options" href="#pros-and-cons-of-the-options"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<div class="gdoc-page__anchorwrap"><h3 id="account-management-delegated-to-vendors">Account management delegated to vendors<a data-clipboard-text="https://owncloud.dev/ocis/adr/0005-cs3-api-account-management/#account-management-delegated-to-vendors" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Account management delegated to vendors" href="#account-management-delegated-to-vendors"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>Good, because it allows for fast iterations.</li>
+<li>Bad, because account management happens outside of the Reva process. This can potentially end up in invalid account creation / deletion / updates.
+<ul>
+<li>An example with the existing Accounts service is that any client can fire CRUD accounts requests to the Accounts service as long as the client knows where the server is running and provides with an Authorization header (only required by the proxy). This request totally bypasses Reva middlewares and therefore any security measures that should be enforced by the entire system.</li>
+</ul>
+</li>
+<li>Bad, because leaves teams the task of designing and implementing a way of dealing with account management. Ideally one schema should be provided / suggested.</li>
+</ul>
+<p>Creating an account using the first option looks currently is implemented in vendors as:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">┌──────────────────────────────────────────────────┐
+│ creating a user (webui)                          │
+│                                                  │
+│       ┌──────────┐                               │
+│       │          │                               │
+│       │  proxy   │                               │
+│       │          │                               │
+│       └──────────┘                               │
+│             │                                    │
+│             │                                    │
+│  /api/v0/accounts/accounts-create                │
+│             │                                    │
+│             │                                    │
+│             │                                    │
+│             ▼                                    │
+│       ┌──────────┐                               │
+│       │          │                               │
+│       │ accounts │                               │
+│       │          │                               │
+│       └──────────┘                               │
+│                                                  │
+│ note that while doing CRUD operations changes    │
+│ are instantly reflected for the IDP since out of │
+│ the box oCIS uses an accounts backend for        │
+│ GLAuth.                                          │
+└──────────────────────────────────────────────────┘
+</code></pre></div><p>As explained before, during this flow no Reva middlewares are ran. Creating an account will only use the embedded accounts js file alongside a minted jwt token (by the oCIS proxy) to communicate with the accounts service.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="add-account-management-to-the-cs3-api">Add account management to the CS3 API<a data-clipboard-text="https://owncloud.dev/ocis/adr/0005-cs3-api-account-management/#add-account-management-to-the-cs3-api" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Add account management to the CS3 API" href="#add-account-management-to-the-cs3-api"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>Good, because it solidifies what the CS3 API can or cannot do, and account management should be handled at the API level since ultimately accounts would contain a mix of required CS3 and vendor-specific attributes.</li>
+<li>Good, because it centralizes account management and constrains it within the Reva boundaries.</li>
+<li>Good, because there is a clear separation of concerns on what is accounts management logic.</li>
+<li>Good, because we already designed <a href="https://github.com/owncloud/ocis/blob/master/accounts/pkg/proto/v0/accounts.proto#L42-L85">a similar API for the accounts service</a> the only difference being we (vendors) <a href="https://github.com/owncloud/ocis/blob/master/accounts/pkg/proto/v0/accounts.proto#L252-L408">define their own messages</a>.
+<ul>
+<li>The API would fully include CRUD methods</li>
+</ul>
+</li>
+<li>Bad, because development cycles are larger.
+<ul>
+<li>an example flow will be: <code>update api &gt; run prototool &gt; publish language specific packages &gt; update dependencies to fetch latest version of the package &gt; utilize the new changes</code>.</li>
+</ul>
+</li>
+</ul>
+<p>The new account management workflow will result in:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">┌───────────────────────────────────────────────────┐
+│creating a user (webui)                            │
+│ - maintain the same route for compatibility       │
+│                                                   │
+│      ┌──────────┐                                 │
+│      │          │                                 │
+│      │  proxy   │                                 │
+│      │          │                                 │
+│      └──────────┘                                 │
+│            │                                      │
+│            │                                      │
+│   /api/v0/accounts/accounts-create                │
+│            │                                      │
+│            │                                      │
+│ ┌ ─ ─ ─ ─ ─│─ ─ ─ ─ ─ ─ ─ ─ ┐  ┌ ─ ─ ─ ─ ─ ─ ─ ─  │
+│  Reva      │                    IDM             │ │
+│ │          │                │  │                  │
+│            ▼                                    │ │
+│ │    ┌──────────┐           │  │   ┌──────────┐   │
+│      │          │                  │          │ │ │
+│ │    │  admin   │───────────┼──┼──▶│  GLAuth  │   │
+│      │          │                  │          │ │ │
+│ │    └──────────┘           │  │   └──────────┘   │
+│                                                 │ │
+│ │                           │  │                  │
+│  ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─    ─ ─ ─ ─ ─ ─ ─ ─ ┘ │
+│                                                   │
+│                                                   │
+│                                                   │
+│                                                   │
+│                                                   │
+│                                                   │
+│ an example of a driver could be GLAuth            │
+│ implementing the user management portion of the   │
+│ GraphAPI                                          │
+└───────────────────────────────────────────────────┘
+</code></pre></div><p>This flow allows Reva and oCIS Proxy to run any middleware logic in order to validate a request. The communication between the proposed Admin api (CS3 API messages) and the IDM (GLAuth) are specific to the <em>drivers</em>.</p>
 
 
     </article>
