@@ -3220,10 +3220,10 @@
             <li><a href="#configuration-using-config-files">Configuration using config files</a></li>
             <li><a href="#environment-variables">Environment variables</a></li>
             <li><a href="#commandline-flags">Commandline flags</a></li>
-            <li><a href="#idp-server">idp server</a></li>
-            <li><a href="#idp-version">idp version</a></li>
             <li><a href="#idp-health">idp health</a></li>
             <li><a href="#idp-ocis-idp">idp ocis-idp</a></li>
+            <li><a href="#idp-server">idp server</a></li>
+            <li><a href="#idp-version">idp version</a></li>
           </ul>
         </li>
       </ul></nav><hr></div>
@@ -3242,6 +3242,24 @@ $HOME/.ocis
 <p>If multiple variables are listed for one option, they are in order of precedence. This means the leftmost variable will always win if given.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="commandline-flags">Commandline flags<a data-clipboard-text="https://owncloud.dev/extensions/idp/configuration/#commandline-flags" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Commandline flags" href="#commandline-flags"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>If you prefer to configure the service with commandline flags you can see the available variables below. Command line flags are only working when calling the subcommand directly.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="idp-health">idp health<a data-clipboard-text="https://owncloud.dev/extensions/idp/configuration/#idp-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor idp health" href="#idp-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Check health status</p>
+<p>Usage: <code>idp health [command options] [arguments...]</code></p>
+<dl>
+<dt>-debug-addr |  $IDP_DEBUG_ADDR</dt>
+<dd>Address to debug endpoint. Default: <code>flags.OverrideDefaultString(cfg.Debug.Addr, &quot;0.0.0.0:9134&quot;)</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap"><h3 id="idp-ocis-idp">idp ocis-idp<a data-clipboard-text="https://owncloud.dev/extensions/idp/configuration/#idp-ocis-idp" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor idp ocis-idp" href="#idp-ocis-idp"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Serve IDP API for oCIS</p>
+<p>Usage: <code>idp ocis-idp [command options] [arguments...]</code></p>
+<dl>
+<dt>-log-level |  $IDP_LOG_LEVEL , $OCIS_LOG_LEVEL</dt>
+<dd>Set logging level.</dd>
+<dt>-log-pretty |  $IDP_LOG_PRETTY , $OCIS_LOG_PRETTY</dt>
+<dd>Enable pretty logging.</dd>
+<dt>-log-color |  $IDP_LOG_COLOR , $OCIS_LOG_COLOR</dt>
+<dd>Enable colored logging.</dd>
+</dl>
 <div class="gdoc-page__anchorwrap"><h3 id="idp-server">idp server<a data-clipboard-text="https://owncloud.dev/extensions/idp/configuration/#idp-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor idp server" href="#idp-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Start integrated server</p>
 <p>Usage: <code>idp server [command options] [arguments...]</code></p>
@@ -3351,24 +3369,6 @@ $HOME/.ocis
 <dd>Set the base namespace for service discovery. Default: <code>flags.OverrideDefaultString(cfg.Service.Namespace, &quot;com.owncloud.web&quot;)</code>.</dd>
 <dt>-name |  $IDP_NAME</dt>
 <dd>Service name. Default: <code>flags.OverrideDefaultString(cfg.Service.Name, &quot;idp&quot;)</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="idp-health">idp health<a data-clipboard-text="https://owncloud.dev/extensions/idp/configuration/#idp-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor idp health" href="#idp-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Check health status</p>
-<p>Usage: <code>idp health [command options] [arguments...]</code></p>
-<dl>
-<dt>-debug-addr |  $IDP_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>flags.OverrideDefaultString(cfg.Debug.Addr, &quot;0.0.0.0:9134&quot;)</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="idp-ocis-idp">idp ocis-idp<a data-clipboard-text="https://owncloud.dev/extensions/idp/configuration/#idp-ocis-idp" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor idp ocis-idp" href="#idp-ocis-idp"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Serve IDP API for oCIS</p>
-<p>Usage: <code>idp ocis-idp [command options] [arguments...]</code></p>
-<dl>
-<dt>-log-level |  $IDP_LOG_LEVEL , $OCIS_LOG_LEVEL</dt>
-<dd>Set logging level.</dd>
-<dt>-log-pretty |  $IDP_LOG_PRETTY , $OCIS_LOG_PRETTY</dt>
-<dd>Enable pretty logging.</dd>
-<dt>-log-color |  $IDP_LOG_COLOR , $OCIS_LOG_COLOR</dt>
-<dd>Enable colored logging.</dd>
 </dl>
 
 
