@@ -3167,9 +3167,11 @@
   <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
         <li><a href="#thumbnailsproto">thumbnails.proto</a>
           <ul>
-            <li><a href="#getrequest">GetRequest</a></li>
-            <li><a href="#getresponse">GetResponse</a></li>
-            <li><a href="#getrequestfiletype">GetRequest.FileType</a></li>
+            <li><a href="#cs3source">CS3Source</a></li>
+            <li><a href="#getthumbnailrequest">GetThumbnailRequest</a></li>
+            <li><a href="#getthumbnailresponse">GetThumbnailResponse</a></li>
+            <li><a href="#webdavsource">WebdavSource</a></li>
+            <li><a href="#getthumbnailrequestthumbnailtype">GetThumbnailRequest.ThumbnailType</a></li>
             <li><a href="#thumbnailservice">ThumbnailService</a></li>
           </ul>
         </li>
@@ -3178,7 +3180,32 @@
 
 
 <div class="gdoc-page__anchorwrap"><h2 id="thumbnailsproto">thumbnails.proto<a data-clipboard-text="https://owncloud.dev/extensions/thumbnails/grpc/#thumbnailsproto" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor thumbnails.proto" href="#thumbnailsproto"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<div class="gdoc-page__anchorwrap"><h3 id="getrequest">GetRequest<a data-clipboard-text="https://owncloud.dev/extensions/thumbnails/grpc/#getrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor GetRequest" href="#getrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<div class="gdoc-page__anchorwrap"><h3 id="cs3source">CS3Source<a data-clipboard-text="https://owncloud.dev/extensions/thumbnails/grpc/#cs3source" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor CS3Source" href="#cs3source"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>path</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>authorization</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="getthumbnailrequest">GetThumbnailRequest<a data-clipboard-text="https://owncloud.dev/extensions/thumbnails/grpc/#getthumbnailrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor GetThumbnailRequest" href="#getthumbnailrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>A request to retrieve a thumbnail</p>
 <table>
 <thead>
@@ -3197,16 +3224,10 @@
 <td>The path to the source image</td>
 </tr>
 <tr>
-<td>filetype</td>
-<td><a href="#getrequestfiletype">GetRequest.FileType</a></td>
+<td>thumbnail_type</td>
+<td><a href="#getthumbnailrequestthumbnailtype">GetThumbnailRequest.ThumbnailType</a></td>
 <td></td>
 <td>The type to which the thumbnail should get encoded to.</td>
-</tr>
-<tr>
-<td>etag</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>The etag of the source image</td>
 </tr>
 <tr>
 <td>width</td>
@@ -3221,20 +3242,20 @@
 <td>The height of the thumbnail</td>
 </tr>
 <tr>
-<td>authorization</td>
-<td><a href="#string">string</a></td>
+<td>webdav_source</td>
+<td><a href="#webdavsource">WebdavSource</a></td>
 <td></td>
-<td>The authorization token</td>
+<td></td>
 </tr>
 <tr>
-<td>username</td>
-<td><a href="#string">string</a></td>
+<td>cs3_source</td>
+<td><a href="#cs3source">CS3Source</a></td>
 <td></td>
-<td>The user requesting the resource.</td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<div class="gdoc-page__anchorwrap"><h3 id="getresponse">GetResponse<a data-clipboard-text="https://owncloud.dev/extensions/thumbnails/grpc/#getresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor GetResponse" href="#getresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<div class="gdoc-page__anchorwrap"><h3 id="getthumbnailresponse">GetThumbnailResponse<a data-clipboard-text="https://owncloud.dev/extensions/thumbnails/grpc/#getthumbnailresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor GetThumbnailResponse" href="#getthumbnailresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>The service response</p>
 <table>
 <thead>
@@ -3260,8 +3281,51 @@
 </tr>
 </tbody>
 </table>
-<div class="gdoc-page__anchorwrap"><h3 id="getrequestfiletype">GetRequest.FileType<a data-clipboard-text="https://owncloud.dev/extensions/thumbnails/grpc/#getrequestfiletype" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor GetRequest.FileType" href="#getrequestfiletype"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>The file types to which the thumbnail cna get encoded to.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="webdavsource">WebdavSource<a data-clipboard-text="https://owncloud.dev/extensions/thumbnails/grpc/#webdavsource" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor WebdavSource" href="#webdavsource"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>url</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>REQUIRED.</td>
+</tr>
+<tr>
+<td>is_public_link</td>
+<td><a href="#bool">bool</a></td>
+<td></td>
+<td>REQUIRED.</td>
+</tr>
+<tr>
+<td>webdav_authorization</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>OPTIONAL.</td>
+</tr>
+<tr>
+<td>reva_authorization</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>OPTIONAL.</td>
+</tr>
+<tr>
+<td>public_link_token</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>OPTIONAL.</td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="getthumbnailrequestthumbnailtype">GetThumbnailRequest.ThumbnailType<a data-clipboard-text="https://owncloud.dev/extensions/thumbnails/grpc/#getthumbnailrequestthumbnailtype" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor GetThumbnailRequest.ThumbnailType" href="#getthumbnailrequestthumbnailtype"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>The file types to which the thumbnail can get encoded to.</p>
 <table>
 <thead>
 <tr>
@@ -3297,8 +3361,8 @@
 <tbody>
 <tr>
 <td>GetThumbnail</td>
-<td><a href="#getrequest">GetRequest</a></td>
-<td><a href="#getresponse">GetResponse</a></td>
+<td><a href="#getthumbnailrequest">GetThumbnailRequest</a></td>
+<td><a href="#getthumbnailresponse">GetThumbnailResponse</a></td>
 <td>Generates the thumbnail and returns it.</td>
 </tr>
 </tbody>
