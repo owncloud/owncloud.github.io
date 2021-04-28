@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Continuous Deployment">
+<meta name="description" content="Releasing">
 
-<title>Continuous Deployment | ownCloud</title>
+<title>Releasing | ownCloud</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -663,7 +663,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-b3fc9a63" class="gdoc-nav__toggle" checked>
+            <input type="checkbox" id="navtree-b3fc9a63" class="gdoc-nav__toggle" >
             <label for="navtree-b3fc9a63" class="flex justify-between">
             
             
@@ -698,7 +698,7 @@
             
             
                 <span class="flex">
-                    <a href="/ocis/deployment/continuous_deployment/" class="gdoc-nav__entry is-active">
+                    <a href="/ocis/deployment/continuous_deployment/" class="gdoc-nav__entry ">
                         Continuous Deployment
                     </a>
                 </span>
@@ -2404,7 +2404,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-8988d4c5" class="gdoc-nav__toggle" >
+            <input type="checkbox" id="navtree-8988d4c5" class="gdoc-nav__toggle" checked>
             <label for="navtree-8988d4c5" class="flex justify-between">
             
             
@@ -2537,7 +2537,7 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/settings/releasing/" class="gdoc-nav__entry ">
+                    <a href="/extensions/settings/releasing/" class="gdoc-nav__entry is-active">
                         Releasing
                     </a>
                 </span>
@@ -3177,7 +3177,7 @@
         
     
     
-        <a href='/'>ownCloud</a> / <a href='/ocis/'>oCIS - ownCloud Infinite Scale</a> / <a href='/ocis/deployment/'>Deployment</a> / Continuous Deployment
+        <a href='/'>ownCloud</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/settings/'>Settings</a> / Releasing
     
 
     
@@ -3193,7 +3193,7 @@
         
         <span class="editpage">
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/deployment/continuous_deployment.md">
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/extensions/settings/releasing.md">
                 Edit this page
             </a>
         </span>
@@ -3203,7 +3203,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>Continuous Deployment</h1>
+        <h1>Releasing</h1>
         
 
 
@@ -3214,87 +3214,29 @@
 
 
 
-  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#ocis-with-traefik">oCIS with Traefik</a>
-      <ul>
-        <li><a href="#latest">Latest</a></li>
-        <li><a href="#released">Released</a></li>
-      </ul>
-    </li>
-    <li><a href="#ocis-with-keycloak">oCIS with Keycloak</a>
-      <ul>
-        <li><a href="#latest-1">Latest</a></li>
-        <li><a href="#released-1">Released</a></li>
-      </ul>
-    </li>
-    <li><a href="#ocis-with-cs3-users">oCIS with CS3 users</a>
-      <ul>
-        <li><a href="#latest-2">Latest</a></li>
-        <li><a href="#released-2">Released</a></li>
+  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
+        <li><a href="#requirements">Requirements</a></li>
+        <li><a href="#releasing">Releasing</a>
+          <ul>
+            <li><a href="#package-hierarchy">Package Hierarchy</a></li>
+          </ul>
+        </li>
       </ul></nav><hr></div>
 
 
-<p>We are continuously deploying the following deployment examples. Every example is deployed in two flavors:</p>
+<div class="gdoc-page__anchorwrap"><h2 id="requirements">Requirements<a data-clipboard-text="https://owncloud.dev/extensions/settings/releasing/#requirements" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Requirements" href="#requirements"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>You need a working installation of <a href="https://golang.org/">the Go programming language</a> installed to build the assets for a working release.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="releasing">Releasing<a data-clipboard-text="https://owncloud.dev/extensions/settings/releasing/#releasing" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Releasing" href="#releasing"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>After adding changes to the settings package within oCIS and testing them locally, you want to update the compiled assets to the oCIS binary.</p>
+<p>To achieve this, you have to run a Go command and add the results to your PR. The preferred way to do this is to run <code>make generate</code> in the root
+of the repository and then commit the resulting changes to your branch/PR.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="package-hierarchy">Package Hierarchy<a data-clipboard-text="https://owncloud.dev/extensions/settings/releasing/#package-hierarchy" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Package Hierarchy" href="#package-hierarchy"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <ul>
-<li>Latest: reflects the current master branch state of oCIS and will be updated with every commit to master</li>
-<li>Released: reflects the newest release state (currently latest release of version 1) and will be updated with every release</li>
-</ul>
-<p>The configuration for the continuous deployment can be found in the <a href="https://github.com/owncloud/ocis/tree/master/deployments/continuous-deployment-config">oCIS repository</a>.</p>
-<h1 id="ocis-with-traefik">oCIS with Traefik</h1>
-<p>Credentials:</p>
+<li><a href="https://github.com/owncloud/ocis">ocis</a>
 <ul>
-<li>oCIS: see <a href="https://owncloud.dev/ocis/getting-started/#login-to-owncloud-web">default demo users</a></li>
-</ul>
-<div class="gdoc-page__anchorwrap"><h2 id="latest">Latest<a data-clipboard-text="https://owncloud.dev/ocis/deployment/continuous_deployment/#latest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Latest" href="#latest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<ul>
-<li>oCIS: <a href="https://ocis.ocis-traefik.latest.owncloud.works">ocis.ocis-traefik.latest.owncloud.works</a></li>
-</ul>
-<div class="gdoc-page__anchorwrap"><h2 id="released">Released<a data-clipboard-text="https://owncloud.dev/ocis/deployment/continuous_deployment/#released" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Released" href="#released"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<ul>
-<li>oCIS: <a href="https://ocis.ocis-traefik.released.owncloud.works">ocis.ocis-traefik.released.owncloud.works</a></li>
-</ul>
-<h1 id="ocis-with-keycloak">oCIS with Keycloak</h1>
-<p>Credentials:</p>
-<ul>
-<li>oCIS: see <a href="https://owncloud.dev/ocis/getting-started/#login-to-owncloud-web">default demo users</a></li>
-<li>Keycloak:
-<ul>
-<li>username: admin</li>
-<li>password: admin</li>
+<li><a href="https://github.com/owncloud/ocis/tree/master/settings">ocis-settings</a></li>
 </ul>
 </li>
-</ul>
-<div class="gdoc-page__anchorwrap"><h2 id="latest-1">Latest<a data-clipboard-text="https://owncloud.dev/ocis/deployment/continuous_deployment/#latest-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Latest" href="#latest-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<ul>
-<li>oCIS: <a href="https://ocis.ocis-keycloak.latest.owncloud.works">ocis.ocis-keycloak.latest.owncloud.works</a></li>
-<li>Keycloak: <a href="https://keycloak.ocis-keycloak.latest.owncloud.works">keycloak.ocis-keycloak.latest.owncloud.works</a></li>
-</ul>
-<div class="gdoc-page__anchorwrap"><h2 id="released-1">Released<a data-clipboard-text="https://owncloud.dev/ocis/deployment/continuous_deployment/#released-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Released" href="#released-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<ul>
-<li>oCIS: <a href="https://ocis.ocis-keycloak.released.owncloud.works">ocis.ocis-keycloak.released.owncloud.works</a></li>
-<li>Keycloak: <a href="https://keycloak.ocis-keycloak.released.owncloud.works">keycloak.ocis-keycloak.released.owncloud.works</a></li>
-</ul>
-<h1 id="ocis-with-cs3-users">oCIS with CS3 users</h1>
-<p>Credentials:</p>
-<ul>
-<li>oCIS: see <a href="https://owncloud.dev/ocis/getting-started/#login-to-owncloud-web">default demo users</a></li>
-<li>LDAP admin:
-<ul>
-<li>username: cn=admin,dc=owncloud,dc=com</li>
-<li>password: admin</li>
-</ul>
-</li>
-</ul>
-<div class="gdoc-page__anchorwrap"><h2 id="latest-2">Latest<a data-clipboard-text="https://owncloud.dev/ocis/deployment/continuous_deployment/#latest-2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Latest" href="#latest-2"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<ul>
-<li>oCIS: <a href="https://ocis.ocis-cs3-users.latest.owncloud.works">ocis.ocis-cs3-users.latest.owncloud.works</a></li>
-<li>LDAP admin: <a href="https://ldap.ocis-cs3-users.latest.owncloud.works">ldap.ocis-cs3-users.latest.owncloud.works</a></li>
-</ul>
-<div class="gdoc-page__anchorwrap"><h2 id="released-2">Released<a data-clipboard-text="https://owncloud.dev/ocis/deployment/continuous_deployment/#released-2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Released" href="#released-2"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<ul>
-<li>oCIS: <a href="https://ocis.ocis-cs3-users.released.owncloud.works">ocis.ocis-cs3-users.released.owncloud.works</a></li>
-<li>LDAP admin: <a href="https://ldap.ocis-cs3-users.released.owncloud.works">ldap.ocis-cs3-users.released.owncloud.works</a></li>
 </ul>
 
 
