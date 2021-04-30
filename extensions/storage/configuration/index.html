@@ -3225,19 +3225,19 @@
         <li><a href="#root-command">Root Command</a></li>
         <li><a href="#sub-commands">Sub Commands</a>
           <ul>
-            <li><a href="#storage-auth-bearer">storage auth-bearer</a></li>
             <li><a href="#storage-gateway">storage gateway</a></li>
-            <li><a href="#storage-storage">storage storage</a></li>
-            <li><a href="#storage-auth-basic">storage auth-basic</a></li>
-            <li><a href="#storage-health">storage health</a></li>
+            <li><a href="#storage-sharing">storage sharing</a></li>
             <li><a href="#storage-storage-users">storage storage-users</a></li>
-            <li><a href="#storage-users">storage users</a></li>
+            <li><a href="#storage-storage-public-link">storage storage-public-link</a></li>
+            <li><a href="#storage-health">storage health</a></li>
+            <li><a href="#storage-storage">storage storage</a></li>
+            <li><a href="#storage-storage-metadata">storage storage-metadata</a></li>
+            <li><a href="#storage-auth-basic">storage auth-basic</a></li>
+            <li><a href="#storage-auth-bearer">storage auth-bearer</a></li>
             <li><a href="#storage-frontend">storage frontend</a></li>
             <li><a href="#storage-groups">storage groups</a></li>
-            <li><a href="#storage-sharing">storage sharing</a></li>
             <li><a href="#storage-storage-home">storage storage-home</a></li>
-            <li><a href="#storage-storage-metadata">storage storage-metadata</a></li>
-            <li><a href="#storage-storage-public-link">storage storage-public-link</a></li>
+            <li><a href="#storage-users">storage users</a></li>
           </ul>
         </li>
         <li><a href="#config-for-the-different-storage-drivers">Config for the different Storage Drivers</a>
@@ -3278,29 +3278,6 @@ $HOME/.ocis
 <dd>Enable colored logging.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h2 id="sub-commands">Sub Commands<a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#sub-commands" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Sub Commands" href="#sub-commands"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<div class="gdoc-page__anchorwrap"><h3 id="storage-auth-bearer">storage auth-bearer<a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-auth-bearer" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage auth-bearer" href="#storage-auth-bearer"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Start authprovider for bearer auth</p>
-<p>Usage: <code>storage auth-bearer [command options] [arguments...]</code></p>
-<dl>
-<dt>-debug-addr |  $STORAGE_AUTH_BEARER_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>flags.OverrideDefaultString(cfg.Reva.AuthBearer.DebugAddr, &quot;0.0.0.0:9149&quot;)</code>.</dd>
-<dt>-oidc-issuer |  $STORAGE_OIDC_ISSUER , $OCIS_URL</dt>
-<dd>OIDC issuer. Default: <code>flags.OverrideDefaultString(cfg.Reva.OIDC.Issuer, &quot;https://localhost:9200&quot;)</code>.</dd>
-<dt>-oidc-insecure |  $STORAGE_OIDC_INSECURE</dt>
-<dd>OIDC allow insecure communication. Default: <code>flags.OverrideDefaultBool(cfg.Reva.OIDC.Insecure, true)</code>.</dd>
-<dt>-oidc-id-claim |  $STORAGE_OIDC_ID_CLAIM</dt>
-<dd>OIDC id claim. Default: <code>flags.OverrideDefaultString(cfg.Reva.OIDC.IDClaim, &quot;preferred_username&quot;)</code>.</dd>
-<dt>-oidc-uid-claim |  $STORAGE_OIDC_UID_CLAIM</dt>
-<dd>OIDC uid claim. Default: <code>flags.OverrideDefaultString(cfg.Reva.OIDC.UIDClaim, &quot;&quot;)</code>.</dd>
-<dt>-oidc-gid-claim |  $STORAGE_OIDC_GID_CLAIM</dt>
-<dd>OIDC gid claim. Default: <code>flags.OverrideDefaultString(cfg.Reva.OIDC.GIDClaim, &quot;&quot;)</code>.</dd>
-<dt>-network |  $STORAGE_AUTH_BEARER_GRPC_NETWORK</dt>
-<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>flags.OverrideDefaultString(cfg.Reva.AuthBearer.GRPCNetwork, &quot;tcp&quot;)</code>.</dd>
-<dt>-addr |  $STORAGE_AUTH_BEARER_GRPC_ADDR</dt>
-<dd>Address to bind storage service. Default: <code>flags.OverrideDefaultString(cfg.Reva.AuthBearer.GRPCAddr, &quot;0.0.0.0:9148&quot;)</code>.</dd>
-<dt>-gateway-url |  $STORAGE_GATEWAY_ENDPOINT</dt>
-<dd>URL to use for the storage gateway service. Default: <code>flags.OverrideDefaultString(cfg.Reva.Gateway.Endpoint, &quot;localhost:9142&quot;)</code>.</dd>
-</dl>
 <div class="gdoc-page__anchorwrap"><h3 id="storage-gateway">storage gateway<a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-gateway" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage gateway" href="#storage-gateway"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Start gateway</p>
 <p>Usage: <code>storage gateway [command options] [arguments...]</code></p>
@@ -3362,42 +3339,26 @@ $HOME/.ocis
 <dt>-storage-public-link-mount-path |  $STORAGE_PUBLIC_LINK_MOUNT_PATH</dt>
 <dd>mount path. Default: <code>flags.OverrideDefaultString(cfg.Reva.StoragePublicLink.MountPath, &quot;/public&quot;)</code>.</dd>
 </dl>
-<div class="gdoc-page__anchorwrap"><h3 id="storage-storage">storage storage<a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-storage" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage storage" href="#storage-storage"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Storage service for oCIS</p>
-<p>Usage: <code>storage storage [command options] [arguments...]</code></p>
+<div class="gdoc-page__anchorwrap"><h3 id="storage-sharing">storage sharing<a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-sharing" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage sharing" href="#storage-sharing"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Start sharing service</p>
+<p>Usage: <code>storage sharing [command options] [arguments...]</code></p>
 <dl>
-<dt>-config-file |  $STORAGE_CONFIG_FILE</dt>
-<dd>Path to config file.</dd>
-<dt>-log-level |  $STORAGE_LOG_LEVEL , $OCIS_LOG_LEVEL</dt>
-<dd>Set logging level.</dd>
-<dt>-log-pretty |  $STORAGE_LOG_PRETTY , $OCIS_LOG_PRETTY</dt>
-<dd>Enable pretty logging.</dd>
-<dt>-log-color |  $STORAGE_LOG_COLOR , $OCIS_LOG_COLOR</dt>
-<dd>Enable colored logging.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="storage-auth-basic">storage auth-basic<a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-auth-basic" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage auth-basic" href="#storage-auth-basic"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Start authprovider for basic auth</p>
-<p>Usage: <code>storage auth-basic [command options] [arguments...]</code></p>
-<dl>
-<dt>-debug-addr |  $STORAGE_AUTH_BASIC_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>flags.OverrideDefaultString(cfg.Reva.AuthBasic.DebugAddr, &quot;0.0.0.0:9147&quot;)</code>.</dd>
-<dt>-auth-driver |  $STORAGE_AUTH_DRIVER</dt>
-<dd>auth driver: &lsquo;demo&rsquo;, &lsquo;json&rsquo; or &lsquo;ldap&rsquo;. Default: <code>flags.OverrideDefaultString(cfg.Reva.AuthProvider.Driver, &quot;ldap&quot;)</code>.</dd>
-<dt>-auth-json |  $STORAGE_AUTH_JSON</dt>
-<dd>Path to users.json file. Default: <code>flags.OverrideDefaultString(cfg.Reva.AuthProvider.JSON, &quot;&quot;)</code>.</dd>
-<dt>-network |  $STORAGE_AUTH_BASIC_GRPC_NETWORK</dt>
-<dd>Network to use for the storage auth-basic service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>flags.OverrideDefaultString(cfg.Reva.AuthBasic.GRPCNetwork, &quot;tcp&quot;)</code>.</dd>
-<dt>-addr |  $STORAGE_AUTH_BASIC_GRPC_ADDR</dt>
-<dd>Address to bind storage service. Default: <code>flags.OverrideDefaultString(cfg.Reva.AuthBasic.GRPCAddr, &quot;0.0.0.0:9146&quot;)</code>.</dd>
-<dt>-gateway-url |  $STORAGE_GATEWAY_ENDPOINT</dt>
-<dd>URL to use for the storage gateway service. Default: <code>flags.OverrideDefaultString(cfg.Reva.Gateway.Endpoint, &quot;localhost:9142&quot;)</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="storage-health">storage health<a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage health" href="#storage-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Check health status</p>
-<p>Usage: <code>storage health [command options] [arguments...]</code></p>
-<dl>
-<dt>-debug-addr |  $STORAGE_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>flags.OverrideDefaultString(cfg.Debug.Addr, &quot;0.0.0.0:9109&quot;)</code>.</dd>
+<dt>-debug-addr |  $STORAGE_SHARING_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>flags.OverrideDefaultString(cfg.Reva.Sharing.DebugAddr, &quot;0.0.0.0:9151&quot;)</code>.</dd>
+<dt>-network |  $STORAGE_SHARING_GRPC_NETWORK</dt>
+<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>flags.OverrideDefaultString(cfg.Reva.Sharing.GRPCNetwork, &quot;tcp&quot;)</code>.</dd>
+<dt>-addr |  $STORAGE_SHARING_GRPC_ADDR</dt>
+<dd>Address to bind storage service. Default: <code>flags.OverrideDefaultString(cfg.Reva.Sharing.GRPCAddr, &quot;0.0.0.0:9150&quot;)</code>.</dd>
+<dt>-user-driver |  $STORAGE_SHARING_USER_DRIVER</dt>
+<dd>driver to use for the UserShareProvider. Default: <code>flags.OverrideDefaultString(cfg.Reva.Sharing.UserDriver, &quot;json&quot;)</code>.</dd>
+<dt>-user-json-file |  $STORAGE_SHARING_USER_JSON_FILE</dt>
+<dd>file used to persist shares for the UserShareProvider. Default: <code>flags.OverrideDefaultString(cfg.Reva.Sharing.UserJSONFile, &quot;/var/tmp/ocis/storage/shares.json&quot;)</code>.</dd>
+<dt>-public-driver |  $STORAGE_SHARING_PUBLIC_DRIVER</dt>
+<dd>driver to use for the PublicShareProvider. Default: <code>flags.OverrideDefaultString(cfg.Reva.Sharing.PublicDriver, &quot;json&quot;)</code>.</dd>
+<dt>-public-json-file |  $STORAGE_SHARING_PUBLIC_JSON_FILE</dt>
+<dd>file used to persist shares for the PublicShareProvider. Default: <code>flags.OverrideDefaultString(cfg.Reva.Sharing.PublicJSONFile, &quot;/var/tmp/ocis/storage/publicshares.json&quot;)</code>.</dd>
+<dt>-public-enable-expired-shares-cleanup |  $STORAGE_SHARING_PUBLIC_ENABLE_EXPIRED_SHARES_CLEANUP</dt>
+<dd>whether to periodically delete expired public shares. Default: <code>flags.OverrideDefaultBool(cfg.Reva.Sharing.PublicEnableExpiredSharesCleanup, true)</code>.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h3 id="storage-storage-users">storage storage-users<a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-storage-users" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage storage-users" href="#storage-storage-users"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Start storage-users service</p>
@@ -3432,22 +3393,83 @@ $HOME/.ocis
 <dt>-users-endpoint |  $STORAGE_USERPROVIDER_ENDPOINT</dt>
 <dd>endpoint to use for the storage service. Default: <code>flags.OverrideDefaultString(cfg.Reva.Users.Endpoint, &quot;localhost:9144&quot;)</code>.</dd>
 </dl>
-<div class="gdoc-page__anchorwrap"><h3 id="storage-users">storage users<a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-users" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage users" href="#storage-users"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Start users service</p>
-<p>Usage: <code>storage users [command options] [arguments...]</code></p>
+<div class="gdoc-page__anchorwrap"><h3 id="storage-storage-public-link">storage storage-public-link<a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-storage-public-link" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage storage-public-link" href="#storage-storage-public-link"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Start storage-public-link service</p>
+<p>Usage: <code>storage storage-public-link [command options] [arguments...]</code></p>
 <dl>
-<dt>-debug-addr |  $STORAGE_SHARING_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>flags.OverrideDefaultString(cfg.Reva.Users.DebugAddr, &quot;0.0.0.0:9145&quot;)</code>.</dd>
-<dt>-network |  $STORAGE_USERPROVIDER_NETWORK</dt>
-<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>flags.OverrideDefaultString(cfg.Reva.Users.GRPCNetwork, &quot;tcp&quot;)</code>.</dd>
-<dt>-addr |  $STORAGE_USERPROVIDER_ADDR</dt>
-<dd>Address to bind storage service. Default: <code>flags.OverrideDefaultString(cfg.Reva.Users.GRPCAddr, &quot;0.0.0.0:9144&quot;)</code>.</dd>
-<dt>-endpoint |  $STORAGE_USERPROVIDER_ENDPOINT</dt>
-<dd>URL to use for the storage service. Default: <code>flags.OverrideDefaultString(cfg.Reva.Users.Endpoint, &quot;localhost:9144&quot;)</code>.</dd>
-<dt>-driver |  $STORAGE_USERPROVIDER_DRIVER</dt>
-<dd>user driver: &lsquo;demo&rsquo;, &lsquo;json&rsquo;, &lsquo;ldap&rsquo;, or &lsquo;rest&rsquo;. Default: <code>flags.OverrideDefaultString(cfg.Reva.Users.Driver, &quot;ldap&quot;)</code>.</dd>
-<dt>-json-config |  $STORAGE_USERPROVIDER_JSON</dt>
-<dd>Path to users.json file. Default: <code>flags.OverrideDefaultString(cfg.Reva.Users.JSON, &quot;&quot;)</code>.</dd>
+<dt>-debug-addr |  $STORAGE_PUBLIC_LINK_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>flags.OverrideDefaultString(cfg.Reva.StoragePublicLink.DebugAddr, &quot;0.0.0.0:9179&quot;)</code>.</dd>
+<dt>-network |  $STORAGE_PUBLIC_LINK_GRPC_NETWORK</dt>
+<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>flags.OverrideDefaultString(cfg.Reva.StoragePublicLink.GRPCNetwork, &quot;tcp&quot;)</code>.</dd>
+<dt>-addr |  $STORAGE_PUBLIC_LINK_GRPC_ADDR</dt>
+<dd>Address to bind storage service. Default: <code>flags.OverrideDefaultString(cfg.Reva.StoragePublicLink.GRPCAddr, &quot;0.0.0.0:9178&quot;)</code>.</dd>
+<dt>-mount-path |  $STORAGE_PUBLIC_LINK_MOUNT_PATH</dt>
+<dd>mount path. Default: <code>flags.OverrideDefaultString(cfg.Reva.StoragePublicLink.MountPath, &quot;/public&quot;)</code>.</dd>
+<dt>-gateway-endpoint |  $STORAGE_GATEWAY_ENDPOINT</dt>
+<dd>endpoint to use for the storage gateway service. Default: <code>flags.OverrideDefaultString(cfg.Reva.Gateway.Endpoint, &quot;localhost:9142&quot;)</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap"><h3 id="storage-health">storage health<a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage health" href="#storage-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Check health status</p>
+<p>Usage: <code>storage health [command options] [arguments...]</code></p>
+<dl>
+<dt>-debug-addr |  $STORAGE_DEBUG_ADDR</dt>
+<dd>Address to debug endpoint. Default: <code>flags.OverrideDefaultString(cfg.Debug.Addr, &quot;0.0.0.0:9109&quot;)</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap"><h3 id="storage-storage">storage storage<a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-storage" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage storage" href="#storage-storage"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Storage service for oCIS</p>
+<p>Usage: <code>storage storage [command options] [arguments...]</code></p>
+<dl>
+<dt>-config-file |  $STORAGE_CONFIG_FILE</dt>
+<dd>Path to config file.</dd>
+<dt>-log-level |  $STORAGE_LOG_LEVEL , $OCIS_LOG_LEVEL</dt>
+<dd>Set logging level.</dd>
+<dt>-log-pretty |  $STORAGE_LOG_PRETTY , $OCIS_LOG_PRETTY</dt>
+<dd>Enable pretty logging.</dd>
+<dt>-log-color |  $STORAGE_LOG_COLOR , $OCIS_LOG_COLOR</dt>
+<dd>Enable colored logging.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap"><h3 id="storage-storage-metadata">storage storage-metadata<a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-storage-metadata" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage storage-metadata" href="#storage-storage-metadata"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Start storage-metadata service</p>
+<p>Usage: <code>storage storage-metadata [command options] [arguments...]</code></p>
+<div class="gdoc-page__anchorwrap"><h3 id="storage-auth-basic">storage auth-basic<a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-auth-basic" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage auth-basic" href="#storage-auth-basic"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Start authprovider for basic auth</p>
+<p>Usage: <code>storage auth-basic [command options] [arguments...]</code></p>
+<dl>
+<dt>-debug-addr |  $STORAGE_AUTH_BASIC_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>flags.OverrideDefaultString(cfg.Reva.AuthBasic.DebugAddr, &quot;0.0.0.0:9147&quot;)</code>.</dd>
+<dt>-auth-driver |  $STORAGE_AUTH_DRIVER</dt>
+<dd>auth driver: &lsquo;demo&rsquo;, &lsquo;json&rsquo; or &lsquo;ldap&rsquo;. Default: <code>flags.OverrideDefaultString(cfg.Reva.AuthProvider.Driver, &quot;ldap&quot;)</code>.</dd>
+<dt>-auth-json |  $STORAGE_AUTH_JSON</dt>
+<dd>Path to users.json file. Default: <code>flags.OverrideDefaultString(cfg.Reva.AuthProvider.JSON, &quot;&quot;)</code>.</dd>
+<dt>-network |  $STORAGE_AUTH_BASIC_GRPC_NETWORK</dt>
+<dd>Network to use for the storage auth-basic service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>flags.OverrideDefaultString(cfg.Reva.AuthBasic.GRPCNetwork, &quot;tcp&quot;)</code>.</dd>
+<dt>-addr |  $STORAGE_AUTH_BASIC_GRPC_ADDR</dt>
+<dd>Address to bind storage service. Default: <code>flags.OverrideDefaultString(cfg.Reva.AuthBasic.GRPCAddr, &quot;0.0.0.0:9146&quot;)</code>.</dd>
+<dt>-gateway-url |  $STORAGE_GATEWAY_ENDPOINT</dt>
+<dd>URL to use for the storage gateway service. Default: <code>flags.OverrideDefaultString(cfg.Reva.Gateway.Endpoint, &quot;localhost:9142&quot;)</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap"><h3 id="storage-auth-bearer">storage auth-bearer<a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-auth-bearer" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage auth-bearer" href="#storage-auth-bearer"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Start authprovider for bearer auth</p>
+<p>Usage: <code>storage auth-bearer [command options] [arguments...]</code></p>
+<dl>
+<dt>-debug-addr |  $STORAGE_AUTH_BEARER_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>flags.OverrideDefaultString(cfg.Reva.AuthBearer.DebugAddr, &quot;0.0.0.0:9149&quot;)</code>.</dd>
+<dt>-oidc-issuer |  $STORAGE_OIDC_ISSUER , $OCIS_URL</dt>
+<dd>OIDC issuer. Default: <code>flags.OverrideDefaultString(cfg.Reva.OIDC.Issuer, &quot;https://localhost:9200&quot;)</code>.</dd>
+<dt>-oidc-insecure |  $STORAGE_OIDC_INSECURE</dt>
+<dd>OIDC allow insecure communication. Default: <code>flags.OverrideDefaultBool(cfg.Reva.OIDC.Insecure, true)</code>.</dd>
+<dt>-oidc-id-claim |  $STORAGE_OIDC_ID_CLAIM</dt>
+<dd>OIDC id claim. Default: <code>flags.OverrideDefaultString(cfg.Reva.OIDC.IDClaim, &quot;preferred_username&quot;)</code>.</dd>
+<dt>-oidc-uid-claim |  $STORAGE_OIDC_UID_CLAIM</dt>
+<dd>OIDC uid claim. Default: <code>flags.OverrideDefaultString(cfg.Reva.OIDC.UIDClaim, &quot;&quot;)</code>.</dd>
+<dt>-oidc-gid-claim |  $STORAGE_OIDC_GID_CLAIM</dt>
+<dd>OIDC gid claim. Default: <code>flags.OverrideDefaultString(cfg.Reva.OIDC.GIDClaim, &quot;&quot;)</code>.</dd>
+<dt>-network |  $STORAGE_AUTH_BEARER_GRPC_NETWORK</dt>
+<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>flags.OverrideDefaultString(cfg.Reva.AuthBearer.GRPCNetwork, &quot;tcp&quot;)</code>.</dd>
+<dt>-addr |  $STORAGE_AUTH_BEARER_GRPC_ADDR</dt>
+<dd>Address to bind storage service. Default: <code>flags.OverrideDefaultString(cfg.Reva.AuthBearer.GRPCAddr, &quot;0.0.0.0:9148&quot;)</code>.</dd>
+<dt>-gateway-url |  $STORAGE_GATEWAY_ENDPOINT</dt>
+<dd>URL to use for the storage gateway service. Default: <code>flags.OverrideDefaultString(cfg.Reva.Gateway.Endpoint, &quot;localhost:9142&quot;)</code>.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h3 id="storage-frontend">storage frontend<a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-frontend" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage frontend" href="#storage-frontend"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Start frontend service</p>
@@ -3503,27 +3525,6 @@ $HOME/.ocis
 <dt>-json-config |  $STORAGE_GROUPPROVIDER_JSON</dt>
 <dd>Path to groups.json file. Default: <code>flags.OverrideDefaultString(cfg.Reva.Groups.JSON, &quot;&quot;)</code>.</dd>
 </dl>
-<div class="gdoc-page__anchorwrap"><h3 id="storage-sharing">storage sharing<a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-sharing" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage sharing" href="#storage-sharing"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Start sharing service</p>
-<p>Usage: <code>storage sharing [command options] [arguments...]</code></p>
-<dl>
-<dt>-debug-addr |  $STORAGE_SHARING_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>flags.OverrideDefaultString(cfg.Reva.Sharing.DebugAddr, &quot;0.0.0.0:9151&quot;)</code>.</dd>
-<dt>-network |  $STORAGE_SHARING_GRPC_NETWORK</dt>
-<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>flags.OverrideDefaultString(cfg.Reva.Sharing.GRPCNetwork, &quot;tcp&quot;)</code>.</dd>
-<dt>-addr |  $STORAGE_SHARING_GRPC_ADDR</dt>
-<dd>Address to bind storage service. Default: <code>flags.OverrideDefaultString(cfg.Reva.Sharing.GRPCAddr, &quot;0.0.0.0:9150&quot;)</code>.</dd>
-<dt>-user-driver |  $STORAGE_SHARING_USER_DRIVER</dt>
-<dd>driver to use for the UserShareProvider. Default: <code>flags.OverrideDefaultString(cfg.Reva.Sharing.UserDriver, &quot;json&quot;)</code>.</dd>
-<dt>-user-json-file |  $STORAGE_SHARING_USER_JSON_FILE</dt>
-<dd>file used to persist shares for the UserShareProvider. Default: <code>flags.OverrideDefaultString(cfg.Reva.Sharing.UserJSONFile, &quot;/var/tmp/ocis/storage/shares.json&quot;)</code>.</dd>
-<dt>-public-driver |  $STORAGE_SHARING_PUBLIC_DRIVER</dt>
-<dd>driver to use for the PublicShareProvider. Default: <code>flags.OverrideDefaultString(cfg.Reva.Sharing.PublicDriver, &quot;json&quot;)</code>.</dd>
-<dt>-public-json-file |  $STORAGE_SHARING_PUBLIC_JSON_FILE</dt>
-<dd>file used to persist shares for the PublicShareProvider. Default: <code>flags.OverrideDefaultString(cfg.Reva.Sharing.PublicJSONFile, &quot;/var/tmp/ocis/storage/publicshares.json&quot;)</code>.</dd>
-<dt>-public-enable-expired-shares-cleanup |  $STORAGE_SHARING_PUBLIC_ENABLE_EXPIRED_SHARES_CLEANUP</dt>
-<dd>whether to periodically delete expired public shares. Default: <code>flags.OverrideDefaultBool(cfg.Reva.Sharing.PublicEnableExpiredSharesCleanup, true)</code>.</dd>
-</dl>
 <div class="gdoc-page__anchorwrap"><h3 id="storage-storage-home">storage storage-home<a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-storage-home" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage storage-home" href="#storage-storage-home"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Start storage-home service</p>
 <p>Usage: <code>storage storage-home [command options] [arguments...]</code></p>
@@ -3559,23 +3560,22 @@ $HOME/.ocis
 <dt>-users-endpoint |  $STORAGE_USERPROVIDER_ENDPOINT</dt>
 <dd>endpoint to use for the storage service. Default: <code>flags.OverrideDefaultString(cfg.Reva.Users.Endpoint, &quot;localhost:9144&quot;)</code>.</dd>
 </dl>
-<div class="gdoc-page__anchorwrap"><h3 id="storage-storage-metadata">storage storage-metadata<a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-storage-metadata" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage storage-metadata" href="#storage-storage-metadata"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Start storage-metadata service</p>
-<p>Usage: <code>storage storage-metadata [command options] [arguments...]</code></p>
-<div class="gdoc-page__anchorwrap"><h3 id="storage-storage-public-link">storage storage-public-link<a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-storage-public-link" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage storage-public-link" href="#storage-storage-public-link"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Start storage-public-link service</p>
-<p>Usage: <code>storage storage-public-link [command options] [arguments...]</code></p>
+<div class="gdoc-page__anchorwrap"><h3 id="storage-users">storage users<a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-users" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage users" href="#storage-users"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Start users service</p>
+<p>Usage: <code>storage users [command options] [arguments...]</code></p>
 <dl>
-<dt>-debug-addr |  $STORAGE_PUBLIC_LINK_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>flags.OverrideDefaultString(cfg.Reva.StoragePublicLink.DebugAddr, &quot;0.0.0.0:9179&quot;)</code>.</dd>
-<dt>-network |  $STORAGE_PUBLIC_LINK_GRPC_NETWORK</dt>
-<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>flags.OverrideDefaultString(cfg.Reva.StoragePublicLink.GRPCNetwork, &quot;tcp&quot;)</code>.</dd>
-<dt>-addr |  $STORAGE_PUBLIC_LINK_GRPC_ADDR</dt>
-<dd>Address to bind storage service. Default: <code>flags.OverrideDefaultString(cfg.Reva.StoragePublicLink.GRPCAddr, &quot;0.0.0.0:9178&quot;)</code>.</dd>
-<dt>-mount-path |  $STORAGE_PUBLIC_LINK_MOUNT_PATH</dt>
-<dd>mount path. Default: <code>flags.OverrideDefaultString(cfg.Reva.StoragePublicLink.MountPath, &quot;/public&quot;)</code>.</dd>
-<dt>-gateway-endpoint |  $STORAGE_GATEWAY_ENDPOINT</dt>
-<dd>endpoint to use for the storage gateway service. Default: <code>flags.OverrideDefaultString(cfg.Reva.Gateway.Endpoint, &quot;localhost:9142&quot;)</code>.</dd>
+<dt>-debug-addr |  $STORAGE_SHARING_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>flags.OverrideDefaultString(cfg.Reva.Users.DebugAddr, &quot;0.0.0.0:9145&quot;)</code>.</dd>
+<dt>-network |  $STORAGE_USERPROVIDER_NETWORK</dt>
+<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>flags.OverrideDefaultString(cfg.Reva.Users.GRPCNetwork, &quot;tcp&quot;)</code>.</dd>
+<dt>-addr |  $STORAGE_USERPROVIDER_ADDR</dt>
+<dd>Address to bind storage service. Default: <code>flags.OverrideDefaultString(cfg.Reva.Users.GRPCAddr, &quot;0.0.0.0:9144&quot;)</code>.</dd>
+<dt>-endpoint |  $STORAGE_USERPROVIDER_ENDPOINT</dt>
+<dd>URL to use for the storage service. Default: <code>flags.OverrideDefaultString(cfg.Reva.Users.Endpoint, &quot;localhost:9144&quot;)</code>.</dd>
+<dt>-driver |  $STORAGE_USERPROVIDER_DRIVER</dt>
+<dd>user driver: &lsquo;demo&rsquo;, &lsquo;json&rsquo;, &lsquo;ldap&rsquo;, or &lsquo;rest&rsquo;. Default: <code>flags.OverrideDefaultString(cfg.Reva.Users.Driver, &quot;ldap&quot;)</code>.</dd>
+<dt>-json-config |  $STORAGE_USERPROVIDER_JSON</dt>
+<dd>Path to users.json file. Default: <code>flags.OverrideDefaultString(cfg.Reva.Users.JSON, &quot;&quot;)</code>.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h2 id="config-for-the-different-storage-drivers">Config for the different Storage Drivers<a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#config-for-the-different-storage-drivers" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Config for the different Storage Drivers" href="#config-for-the-different-storage-drivers"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>You can set different storage drivers for the Storage Providers. Please check the storage provider configuration.</p>
