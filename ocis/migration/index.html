@@ -2625,6 +2625,81 @@
             
             
                 <span class="flex">
+                    <a href="/extensions/storage/architecture/" class="gdoc-nav__entry ">
+                        Architecture
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/extensions/storage/namespaces/" class="gdoc-nav__entry ">
+                        Namespaces
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/extensions/storage/terminology/" class="gdoc-nav__entry ">
+                        Terminology
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
                     <a href="/extensions/storage/configuration/" class="gdoc-nav__entry ">
                         Configuration
                     </a>
@@ -2677,6 +2752,31 @@
                 <span class="flex">
                     <a href="/extensions/storage/storages/" class="gdoc-nav__entry ">
                         Storages
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/extensions/storage/ports/" class="gdoc-nav__entry ">
+                        Ports
                     </a>
                 </span>
             
@@ -3204,20 +3304,55 @@
     
 
 
-<p>The migration happens in subsequent stages while the service is online. First all users need to migrate to the new architecture, then the data on disk can be migrated user by user by switching the storage driver.</p>
+<p>The migration happens in subsequent stages while the service is online. First all users need to migrate to the new architecture, then the global namespace needs to be introduced. Finally, the data on disk can be migrated user by user by switching the storage driver.</p>
+<blockquote class="gdoc-hint warning">
+  @jfd: It might be easier to introduce the spaces api in oc10 and then migrate to ocis. We cannot migrate both at the same time, the architecture to ocis (which will change fileids) and introduce a global namespace (which requires stable fileids to let clients handle moves without redownloading). Either we implement arbitrary mounting of shares in ocis / reva or we make clients and oc10 spaces aware.
+</blockquote>
+
 <div class="gdoc-page__anchorwrap"><h2 id="user-stories">User Stories<a data-clipboard-text="https://owncloud.dev/ocis/migration/#user-stories" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor User Stories" href="#user-stories"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <ul>
-<li>As an admin I need to avoid downtime.</li>
-<li>As an admin I want to migrate certain groups of users before others.</li>
+<li>As an admin, I need to avoid downtime.</li>
+<li>As an admin, I want to migrate certain groups of users before others.</li>
 <li>As a user, I need a seamless migration and not lose data by any chance.</li>
 </ul>
 <div class="gdoc-page__anchorwrap"><h2 id="migration-stages">Migration Stages<a data-clipboard-text="https://owncloud.dev/ocis/migration/#migration-stages" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Migration Stages" href="#migration-stages"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <div class="gdoc-page__anchorwrap"><h3 id="stage-0">Stage-0<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-0" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-0" href="#stage-0"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Is the pre-migration stage having a functional ownCloud 10 instance.</p>
+<p>Is the pre-migration stage when having a functional ownCloud 10 instance.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="stage-1">Stage-1<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-1" href="#stage-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Introduce OpenID Connect to ownCloud 10 server and clients.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="stage-2">Stage-2<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-2" href="#stage-2"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Install and introduce ownCloud Web and let users test it voluntarily.</p>
+<blockquote class="gdoc-hint warning">
+  <p><strong>Alternative 1</strong>
+Add a routable prefix to fileids in oc10, and replicate the prefix in ocis.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="stage-21">Stage-2.1<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-21" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-2.1" href="#stage-21"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Let oc10 render file ids with prefixes: <code>&lt;instance name&gt;$&lt;numeric storageid&gt;!&lt;fileid&gt;</code>. This will allow clients to handle moved files.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="stage-22">Stage-2.2<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-22" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-2.2" href="#stage-22"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Roll out new clients that understand the spaces API and know how to convert local sync pairs for legacy oc10 <code>/webdav</code> or <code>/dav/files/&lt;username&gt;</code> home folders into multiple sync pairs.
+One pair for <code>/webdav/home</code> or <code>/dav/files/&lt;username&gt;/home</code> and another pair for every accepted share. The shares will be accessible at <code>/webdav/shares/</code> when the server side enables the spaces API.
+Files can be identified using <code>&lt;instance name&gt;$&lt;numeric storageid&gt;!&lt;fileid&gt;</code> and moved to the correct sync pair.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="stage-23">Stage-2.3<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-23" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-2.3" href="#stage-23"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Enable spaces API in oc10:</p>
+<ul>
+<li>New clients will get a response from the spaces API and can set up new sync pairs.</li>
+<li>Legacy clients will still poll <code>/webdav</code> or <code>/dav/files/&lt;username&gt;</code> where they will see new subfolders instead of the users home. They will move down the users files into <code>/home</code> and shares into <code>/shares</code>. Custom sync pairs will no longer be available, causing the legacy client to leave local files in place. They can be picked up manually when installing a new client.</li>
+</ul>
+
+</blockquote>
+
+<blockquote class="gdoc-hint warning">
+  <p><strong>Alternative 2</strong>
+An additional <code>uuid</code> property used only to detect moves. A lookup by uuid is not necessary for this. The <code>/dav/meta</code> endpoint would still take the fileid. Clients  would use the <code>uuid</code> to detect moves and set up new sync pairs when migrating to a global namespace.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="stage-21">Stage-2.1<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-21" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-2.1" href="#stage-21"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Generate a <code>uuid</code> for every file as a file property. Clients can submit a <code>uuid</code> when creating files. The server will create a <code>uuid</code> if the client did not provide one.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="stage-22">Stage-2.2<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-22" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-2.2" href="#stage-22"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Roll out new clients that understand the spaces API and know how to convert local sync pairs for legacy oc10 <code>/webdav</code> or <code>/dav/files/&lt;username&gt;</code> home folders into multiple sync pairs.
+One pair for <code>/webdav/home</code> or <code>/dav/files/&lt;username&gt;/home</code> and another pair for every accepted share. The shares will be accessible at <code>/webdav/shares/</code> when the server side enables the spaces API. Files can be identified using the <code>uuid</code>  and moved to the correct sync pair.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="stage-31">Stage-3.1<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-31" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-3.1" href="#stage-31"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>When reading the files from ocis return the same <code>uuid</code>. It can be migrated to an extended attribute or it can be read from oc10. If users change it the client will not be able to detect a move and maybe other weird stuff happens. <em>What if the uuid gets lost on the server side due to a partial restore?</em></p>
+
+</blockquote>
+
 <div class="gdoc-page__anchorwrap"><h3 id="stage-3">Stage-3<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-3" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-3" href="#stage-3"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Start oCIS backend and make read only tests on existing data using the <code>owncloud</code> storage driver which will read (and write)</p>
 <ul>
