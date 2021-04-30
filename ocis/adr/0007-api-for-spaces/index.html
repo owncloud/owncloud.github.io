@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="OnlyOffice">
+<meta name="description" content="0007 Api for Spaces">
 
-<title>OnlyOffice | ownCloud</title>
+<title>0007 Api for Spaces | ownCloud</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -31,7 +31,6 @@
 <link rel="preload" href="/custom.css" as="style">
 <link rel="stylesheet" href="/custom.css" media="all">
 
-<link rel="alternate" type="application/rss+xml" href="https://owncloud.dev/extensions/onlyoffice/index.xml" title="ownCloud" />
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
 
 </head>
@@ -484,7 +483,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-307b2de1" class="gdoc-nav__toggle" >
+            <input type="checkbox" id="navtree-307b2de1" class="gdoc-nav__toggle" checked>
             <label for="navtree-307b2de1" class="flex justify-between">
             
             
@@ -519,7 +518,7 @@
             
             
                 <span class="flex">
-                    <a href="/ocis/adr/0007-api-for-spaces/" class="gdoc-nav__entry ">
+                    <a href="/ocis/adr/0007-api-for-spaces/" class="gdoc-nav__entry is-active">
                         0007 Api for Spaces
                     </a>
                 </span>
@@ -2141,12 +2140,12 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-4fe009a0" class="gdoc-nav__toggle" checked>
+            <input type="checkbox" id="navtree-4fe009a0" class="gdoc-nav__toggle" >
             <label for="navtree-4fe009a0" class="flex justify-between">
             
             
                 <span class="flex">
-                    <a href="/extensions/onlyoffice/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/onlyoffice/" class="gdoc-nav__entry ">
                         OnlyOffice
                     </a>
                 </span>
@@ -3277,7 +3276,7 @@
 
 
 
-<div class="gdoc-page__header flex flex-wrap justify-between" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+<div class="gdoc-page__header flex flex-wrap justify-between hidden-mobile" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
     <span>
         
         <span class="breadcrumb">
@@ -3296,7 +3295,14 @@
         
     
     
-        <a href='/'>ownCloud</a> / <a href='/extensions/'>Extensions</a> / OnlyOffice
+        
+        
+        
+    
+    
+        <a href='/'>ownCloud</a> / <a href='/ocis/'>oCIS - ownCloud Infinite Scale</a> / <a href='/ocis/adr/'>Architecture Decisions</a> / 0007 Api for Spaces
+    
+
     
 
     
@@ -3308,18 +3314,12 @@
     </span>
     <span>
         
-        <span class="editpage">
-            <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/docs/extensions/onlyoffice/_index.md">
-                Edit this page
-            </a>
-        </span>
-        
     </span>
 </div>
 
+
     <article class="gdoc-markdown">
-        <h1>OnlyOffice</h1>
+        <h1>0007 Api for Spaces</h1>
         
 
 
@@ -3327,7 +3327,134 @@
     
 
 
-<p>This service enables users open documents, spreadsheets and presentations in the OnlyOffice app installed in ownCloud 10.</p>
+<h1 id="5-graph-api-for-spaces">5. Graph API for Spaces</h1>
+<ul>
+<li>Status: proposed</li>
+<li>Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1</li>
+<li>Date: 2021-03-19</li>
+</ul>
+<p>Technical Story: API to enable the concept of <a href="https://github.com/owncloud/enterprise/issues/3863">Spaces</a></p>
+<div class="gdoc-page__anchorwrap"><h2 id="context-and-problem-statement">Context and Problem Statement<a data-clipboard-text="https://owncloud.dev/ocis/adr/0007-api-for-spaces/#context-and-problem-statement" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Context and Problem Statement" href="#context-and-problem-statement"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>As one of the building blocks for Spaces in oCIS we plan to add an API that returns information about available spaces. This ADR discusses the API design oriented on the Microsoft Graph API.</p>
+<blockquote>
+<p>Note: The term &ldquo;spaces&rdquo; is used here in the context of &ldquo;a space where files can be saved&rdquo;, similar to a directory. It is not to be confused with space in the sense of free file space for example.</p>
+</blockquote>
+<p>The purpose of this new API is to give clients a very simple way to query the dynamic list of spaces, that the user has access to. Clients can provide a better user experience with that.</p>
+<p>This API is supposed to be queried often, to give clients a condensed view of the available spaces for a user, but also their eTags and cTags. Hence the clients do not have to perform a PROPFIND for every space separately.</p>
+<p>This API would even allow to provide (WebDAV-) endpoints depending on the kind and version of the client asking for it.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="decision-drivers">Decision Drivers<a data-clipboard-text="https://owncloud.dev/ocis/adr/0007-api-for-spaces/#decision-drivers" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Decision Drivers" href="#decision-drivers"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<ul>
+<li>Make it easy to work with a dynamic list of spaces of a user for the clients.</li>
+<li>No longer the need to make assumptions about WebDAV- and other routes in clients.</li>
+<li>More meta data available about spaces for a better user experience.</li>
+<li>Part of the bigger spaces plan.</li>
+<li>Important to consider in client migration scenarios, ie. in CERN.</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h2 id="considered-options">Considered Options<a data-clipboard-text="https://owncloud.dev/ocis/adr/0007-api-for-spaces/#considered-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Considered Options" href="#considered-options"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<ol>
+<li><a href="https://developer.microsoft.com/en-us/graph">Microsoft Graph API</a> inspired API that provides the requested information.</li>
+</ol>
+<div class="gdoc-page__anchorwrap"><h2 id="decision-outcome">Decision Outcome<a data-clipboard-text="https://owncloud.dev/ocis/adr/0007-api-for-spaces/#decision-outcome" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Decision Outcome" href="#decision-outcome"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>This the DRAFT for the API.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="api-to-get-info-about-spaces">API to Get Info about Spaces<a data-clipboard-text="https://owncloud.dev/ocis/adr/0007-api-for-spaces/#api-to-get-info-about-spaces" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor API to Get Info about Spaces" href="#api-to-get-info-about-spaces"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>ownCloud servers provide an API to query for available spaces of an user.</p>
+<p>Most important, the API returns the WebDAV endpoint for each space. With that, clients do not have to make assumptions about WebDAV routes any more.</p>
+<p>See <a href="https://docs.microsoft.com/en-us/graph/api/resources/onedrive?view=graph-rest-1.0">Drive item in Microsoft Graph API</a> for an overview of <code>drive</code> and <code>driveItem</code> resources. The concrete list of drives / spaces a user has access to can be obtained on multiple endpoints.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="get-home-folder">Get &ldquo;Home folder&rdquo;<a data-clipboard-text="https://owncloud.dev/ocis/adr/0007-api-for-spaces/#get-home-folder" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Get &ldquo;Home folder&rdquo;" href="#get-home-folder"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Retrieve information about the home space of a user. Note: The user has access to more spaces. This call only returns the home space to provide API parity with the Graph API.</p>
+<p>API Call: <code>/me/drive</code>: Returns the information about the users home folder.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="get-all-spaces-of-a-user">Get All Spaces of a User<a data-clipboard-text="https://owncloud.dev/ocis/adr/0007-api-for-spaces/#get-all-spaces-of-a-user" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Get All Spaces of a User" href="#get-all-spaces-of-a-user"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Retrieve a list of available spaces of a user. This includes all spaces the user has access to at that moment, also the home space.</p>
+<p>API Call: <code>/me/drives</code>: Returns a list of spaces.</p>
+<p>There is also <code>/drives</code>, returning the list of spaces the user has access to. This endpoint is used to access any space by id using <code>/drives/{drive-id}</code>.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="common-reply">Common Reply<a data-clipboard-text="https://owncloud.dev/ocis/adr/0007-api-for-spaces/#common-reply" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Common Reply" href="#common-reply"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>The reply to both calls is either one or a list of <a href="https://docs.microsoft.com/de-de/graph/api/resources/drive?view=graph-rest-1.0">Drive representation objects</a>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">{
+  &#34;id&#34;: &#34;string&#34;,
+  &#34;createdDateTime&#34;: &#34;string (timestamp)&#34;,
+  &#34;description&#34;: &#34;string&#34;,
+  &#34;driveType&#34;: &#34;personal | projectSpaces | shares&#34;,
+  &#34;lastModifiedDateTime&#34;: &#34;string (timestamp)&#34;,
+  &#34;name&#34;: &#34;string&#34;,
+  &#34;owner&#34;: { &#34;@odata.type&#34;: &#34;microsoft.graph.identitySet&#34; },
+  &#34;quota&#34;: { &#34;@odata.type&#34;: &#34;microsoft.graph.quota&#34; },
+  &#34;root&#34;:  { &#34;@odata.type&#34;: &#34;microsoft.graph.driveItem&#34; },
+  &#34;webUrl&#34;: &#34;url&#34;,
+  &#34;ocCoOwner&#34;: [ { &#34;@odata.type&#34;: &#34;microsoft.graph.identitySet&#34; } ]
+}
+</code></pre></div><p>The meaning of the objects in Open Graph API context are:</p>
+<ol>
+<li><strong>id</strong> - a persistent and unique ID identifying the space, called Storage Space ID.</li>
+<li><strong>driveType</strong> - describing the type of the space.</li>
+<li><strong>owner</strong> - an owner object to whom the space belongs</li>
+<li><strong>quota</strong> - quota information about this space</li>
+<li><strong>root</strong>  - the root driveItem object.</li>
+<li><strong>webUrl</strong> - The URL to make this space visible in the browser.</li>
+<li><strong>ocCoOwner</strong> - optional array owner objects of the co-owners of a space (*)</li>
+</ol>
+<p>The following <em>driveType</em> values are available in the first step, but might be enhanced later:</p>
+<ul>
+<li><strong>personal</strong>: The users home space</li>
+<li><strong>projectSpaces</strong>: The project spaces available for the user (*)</li>
+<li><strong>shares</strong>: The share jail, contains all shares for the user (*)</li>
+</ul>
+<p>Other space types such as backup, hidden etc. can be added later as requested.</p>
+<blockquote>
+<p>Note: The <em>projectSpaces</em> and <em>shares</em> space are virtual spaces. They only contain other spaces, and no regular resources.</p>
+</blockquote>
+<p>The (*) marked types are not defined in the official MS API. They are prefixed with <code>oc</code> to avoid namespace clashes.</p>
+<p>The <code>root</code> object equals a <a href="https://docs.microsoft.com/de-de/graph/api/resources/driveitem?view=graph-rest-1.0">driveItem</a> and contains information about the root resource (directory) of the space.</p>
+<p>This is an example object as it can be expected as <code>root</code> element. It is not complete, as not all elements will be implemented so far.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">{
+  &#34;cTag&#34;: &#34;string (etag)&#34;,
+  &#34;webDavUrl&#34;: &#34;string&#34;,
+
+  /* inherited from baseItem */
+  &#34;id&#34;: &#34;string (identifier)&#34;,
+  &#34;createdBy&#34;: {&#34;@odata.type&#34;: &#34;microsoft.graph.identitySet&#34;},
+  &#34;createdDateTime&#34;: &#34;String (timestamp)&#34;,
+  &#34;eTag&#34;: &#34;string&#34;,
+  &#34;lastModifiedBy&#34;: {&#34;@odata.type&#34;: &#34;microsoft.graph.identitySet&#34;},
+  &#34;lastModifiedDateTime&#34;: &#34;String (timestamp)&#34;,
+  &#34;name&#34;: &#34;string&#34;,
+  &#34;webUrl&#34;: &#34;string&#34;,
+}
+</code></pre></div><p>Meaningful fields of the root element in the context of the Open Graph API:</p>
+<ol>
+<li><strong>id</strong> - a persistent and unique ID identifying the root directory node.</li>
+<li><strong>webDavUrl</strong> - The webdav path of the top item of the space.</li>
+<li><strong>eTag</strong> - an identifier that changes automatically if the content <em>or</em> metadata of the node or the underlying resources changes.</li>
+<li><strong>cTag</strong> - an identifier that changes automatically if the content of the root node or of one of the underlying resources changes.</li>
+<li><strong>webUrl</strong> - The URL to make this space visible in the browser.</li>
+</ol>
+<blockquote>
+<p>Note: To indicate that only the metadata of a resource has changed, the eTag has changed, but the cTag not.</p>
+</blockquote>
+<div class="gdoc-page__anchorwrap"><h3 id="positive-consequences">Positive Consequences<a data-clipboard-text="https://owncloud.dev/ocis/adr/0007-api-for-spaces/#positive-consequences" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Positive Consequences" href="#positive-consequences"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>A well understood and mature API from Microsoft adopted to our needs.</li>
+<li>Prerequisite for Spaces in oCIS.</li>
+<li>Enables further steps in client development.</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h3 id="negative-consequences">Negative Consequences<a data-clipboard-text="https://owncloud.dev/ocis/adr/0007-api-for-spaces/#negative-consequences" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Negative Consequences" href="#negative-consequences"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>Migration impact on existing installations. Still to be investigated.</li>
+<li>Requires additional webdav endpoint that allows accessing an arbitrary storage space, either
+<ul>
+<li>with an id: <code>/dav/spaces/&lt;spaceid&gt;/relative/path/to/file.ext</code>, or</li>
+<li>with a global path: <code>/dav/global/&lt;accessible&gt;/&lt;mount&gt;/&lt;point&gt;/relative/path/to/file.ext</code>, e.g. <code>/dav/global/projects/Golive 2021/Resources/slides.odt</code></li>
+</ul>
+</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h3 id="open-topics">Open Topics<a data-clipboard-text="https://owncloud.dev/ocis/adr/0007-api-for-spaces/#open-topics" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Open Topics" href="#open-topics"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>What are the WebDAV pathes for Trashbin, Versions
+<ul>
+<li>option: additional entries in the reply struct</li>
+</ul>
+</li>
+<li>The identitySet object used for &ldquo;owner&rdquo; and &ldquo;coowner&rdquo; require to implement the <a href="IdentitySet">https://docs.microsoft.com/de-de/graph/api/resources/identityset?view=graph-rest-1.0</a> JSON object, which contains information that seems to be of limited benefit for oCIS. An alternative would be to implement a simpler identity object for oCIS and use that.</li>
+</ul>
 
 
     </article>
