@@ -3484,7 +3484,7 @@
 
 <p>oCIS uses <a href="https://www.drone.io/">DRONE</a> as CI system. You can find the pipeline logs <a href="https://drone.owncloud.com/owncloud/ocis">here</a> or in your PR.</p>
 <div class="gdoc-page__anchorwrap"><h2 id="concepts">Concepts<a data-clipboard-text="https://owncloud.dev/ocis/development/continuous-integration/#concepts" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Concepts" href="#concepts"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>The pipeline is defined in <a href="https://github.com/bazelbuild/starlark">Starlark</a> and transformed to YAML upon pipeline run. This enables us to do a highly dynamic and non repeating pipeline configuration.</p>
+<p>The pipeline is defined in <a href="https://github.com/bazelbuild/starlark">Starlark</a> and transformed to YAML upon pipeline run. This enables us to do a highly dynamic and non repeating pipeline configuration. We enforce Starlark format guidelines with Bazel Buildifier. You can format the .drone.star file by running <code>make ci-format</code>.</p>
 <p>Upon running the pipeline, your branch gets merged to the master branch. This ensures that we always test your changeset if as it was applied to the master of oCIS. Please note that this does not apply to the pipeline definition (<code>.drone.star</code>).</p>
 <div class="gdoc-page__anchorwrap"><h2 id="things-done-in-ci">Things done in CI<a data-clipboard-text="https://owncloud.dev/ocis/development/continuous-integration/#things-done-in-ci" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Things done in CI" href="#things-done-in-ci"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <ul>
