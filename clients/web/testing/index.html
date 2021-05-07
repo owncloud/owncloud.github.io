@@ -3552,18 +3552,13 @@ After all these changes Web will be accessible at <code>http://host.docker.inter
 <li>clone and install the <a href="http://github.com/owncloud/testing">testing app</a> into ownCloud</li>
 </ul>
 <div class="gdoc-page__anchorwrap"><h3 id="ocis">oCIS<a data-clipboard-text="https://owncloud.dev/clients/web/testing/#ocis" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor oCIS" href="#ocis"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>In order to run the acceptance tests you need to run ocis using the owncloud storage driver. Also, you need to enable basic auth on the server with these environment variables.</p>
+<p>In order to run the acceptance tests you need to run ocis using the ocis storage driver. Also, you need to enable basic auth on the server with these environment variables.</p>
 <p><code>PROXY_ENABLE_BASIC_AUTH=true STORAGE_HOME_DRIVER=owncloud STORAGE_USERS_DRIVER=owncloud</code></p>
 <ul>
-<li>
-<p>set up the <a href="https://owncloud.dev/clients/web/backend-ocis/">oCIS backend</a></p>
+<li>set up the <a href="https://owncloud.dev/clients/web/backend-ocis/">oCIS backend</a>
 <ul>
 <li>if you are a Mac user, you need to start the server with additional environment variables: <code>STORAGE_HOME_DATA_SERVER_URL='http://host.docker.internal:9155/data' STORAGE_DATAGATEWAY_PUBLIC_URL='https://host.docker.internal:9200/data' STORAGE_USERS_DATA_SERVER_URL='http://host.docker.internal:9158/data' STORAGE_FRONTEND_PUBLIC_URL='https://host.docker.internal:9200' PROXY_ENABLE_BASIC_AUTH=true PROXY_OIDC_ISSUER='https://host.docker.internal:9200' IDP_INSECURE='true' IDP_IDENTIFIER_REGISTRATION_CONF='&lt;web-path&gt;/tests/acceptance/mac-identifier-registration.yml' IDP_ISS='https://host.docker.internal:9200' IDP_TLS='true'</code> (<code>&lt;web-path&gt;</code> needs to be replaced with the your local clone of ownCloud Web)</li>
 </ul>
-</li>
-<li>
-<p>oCIS also uses redis for caching, so run redis with this command</p>
-<p><code>docker run -e REDIS_DATABASES=1 -p 6379:6379 -d webhippie/redis:latest</code></p>
 </li>
 </ul>
 <div class="gdoc-page__anchorwrap"><h2 id="setup-owncloud-web">Setup ownCloud Web<a data-clipboard-text="https://owncloud.dev/clients/web/testing/#setup-owncloud-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setup ownCloud Web" href="#setup-owncloud-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
