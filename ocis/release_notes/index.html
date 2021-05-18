@@ -3478,6 +3478,21 @@
   We are currently in a Tech Preview state and breaking changes may occur at any time. For more information see our <a href="https://owncloud.dev/ocis/release_roadmap/">release roadmap</a>
 </blockquote>
 
+<div class="gdoc-page__anchorwrap"><h4 id="changed-ocis-json-share-driver-storage-format">Changed oCIS JSON share driver storage format<a data-clipboard-text="https://owncloud.dev/ocis/release_notes/#changed-ocis-json-share-driver-storage-format" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Changed oCIS JSON share driver storage format" href="#changed-ocis-json-share-driver-storage-format"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<p>Related: <a href="https://github.com/cs3org/reva/pull/1655">#1655</a></p>
+<p>The storage format of the oCIS JSON share driver has changed. You will be affected if you plan to update from a previous version of oCIS to oCIS 1.6.0, you have shared files or folders with users or groups and you are using the oCIS JSON share driver, which is currently the default share driver.</p>
+<p>Implications:</p>
+<ul>
+<li>manual action required</li>
+</ul>
+<p>Our recommended update strategy to oCIS 1.6.0 is:</p>
+<ol>
+<li>let users note all their shares with users and groups they set up in oCIS</li>
+<li>stop oCIS</li>
+<li>move / delete the JSON share driver storage file <code>/var/tmp/ocis/storage/shares.json</code></li>
+<li>update to oCIS 1.6.0</li>
+<li>let users recreate their shares</li>
+</ol>
 <div class="gdoc-page__anchorwrap"><h2 id="owncloud-infinite-scale-150-technology-preview">ownCloud Infinite Scale 1.5.0 Technology Preview<a data-clipboard-text="https://owncloud.dev/ocis/release_notes/#owncloud-infinite-scale-150-technology-preview" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ownCloud Infinite Scale 1.5.0 Technology Preview" href="#owncloud-infinite-scale-150-technology-preview"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>Version 1.5.0 is a maintenance release for the Infinite Scale backend with a number of bug fixes and smaller improvements. For ownCloud Web it brings further accessibility improvements and a whole bunch of new features. The web interface can now be branded and there is a new, dedicated view in the left sidebar to list all link shares of a user.</p>
 <p>The most prominent changes in version 1.5.0 comprise:</p>
