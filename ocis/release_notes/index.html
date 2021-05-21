@@ -3493,6 +3493,26 @@
 <li>update to oCIS 1.6.0</li>
 <li>let users recreate their shares</li>
 </ol>
+<div class="gdoc-page__anchorwrap"><h4 id="fixed--changed-ocis-metadata-storage-driver-filesystem-path">Fixed / changed oCIS metadata storage driver filesystem path<a data-clipboard-text="https://owncloud.dev/ocis/release_notes/#fixed--changed-ocis-metadata-storage-driver-filesystem-path" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Fixed / changed oCIS metadata storage driver filesystem path" href="#fixed--changed-ocis-metadata-storage-driver-filesystem-path"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<p>Related: <a href="https://github.com/owncloud/ocis/pull/1956">#1956</a></p>
+<p>The filesystem path of the oCIS metadata storage driver has changed (been fixed). You will be affected if you plan to update from a previous version of oCIS to oCIS 1.6.0 and are using the oCIS storage driver for metadata storage.</p>
+<p>Implications:</p>
+<ul>
+<li>manual action required</li>
+</ul>
+<p>Our recommended update strategy to oCIS 1.6.0 is:</p>
+<ol>
+<li>let users backup all their data stored in oCIS</li>
+<li>stop oCIS</li>
+<li>prune all oCIS data in <code>/var/tmp/ocis</code></li>
+<li>update to oCIS 1.6.0</li>
+<li>recreate user accounts (can be skipped if an external IDP is used)</li>
+<li>let users upload all their data again</li>
+<li>let users recreate their shares</li>
+</ol>
+<p>If you want to use oCIS 1.6.0 without following our recommended update strategy, you can also keep the pre 1.6.0 behaviour by setting this environment variable:
+<code>export STORAGE_METADATA_ROOT=/var/tmp/ocis/storage/users</code>
+This may lead to faulty behaviour since both the metadata and user storage driver will be storing their data in the same filesystem path.</p>
 <div class="gdoc-page__anchorwrap"><h2 id="owncloud-infinite-scale-150-technology-preview">ownCloud Infinite Scale 1.5.0 Technology Preview<a data-clipboard-text="https://owncloud.dev/ocis/release_notes/#owncloud-infinite-scale-150-technology-preview" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ownCloud Infinite Scale 1.5.0 Technology Preview" href="#owncloud-infinite-scale-150-technology-preview"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>Version 1.5.0 is a maintenance release for the Infinite Scale backend with a number of bug fixes and smaller improvements. For ownCloud Web it brings further accessibility improvements and a whole bunch of new features. The web interface can now be branded and there is a new, dedicated view in the left sidebar to list all link shares of a user.</p>
 <p>The most prominent changes in version 1.5.0 comprise:</p>
