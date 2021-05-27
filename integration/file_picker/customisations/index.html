@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Setup with OCIS">
+<meta name="description" content="Customising">
 
-<title>Setup with OCIS | ownCloud</title>
+<title>Customising | ownCloud</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -1221,7 +1221,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-8397230f" class="gdoc-nav__toggle" checked>
+            <input type="checkbox" id="navtree-8397230f" class="gdoc-nav__toggle" >
             <label for="navtree-8397230f" class="flex justify-between">
             
             
@@ -1356,7 +1356,7 @@
             
             
                 <span class="flex">
-                    <a href="/clients/web/backend-ocis/" class="gdoc-nav__entry is-active">
+                    <a href="/clients/web/backend-ocis/" class="gdoc-nav__entry ">
                         Setup with OCIS
                     </a>
                 </span>
@@ -3278,7 +3278,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-3d0bb527" class="gdoc-nav__toggle" >
+            <input type="checkbox" id="navtree-3d0bb527" class="gdoc-nav__toggle" checked>
             <label for="navtree-3d0bb527" class="flex justify-between">
             
             
@@ -3388,7 +3388,7 @@
             
             
                 <span class="flex">
-                    <a href="/integration/file_picker/customisations/" class="gdoc-nav__entry ">
+                    <a href="/integration/file_picker/customisations/" class="gdoc-nav__entry is-active">
                         Customising
                     </a>
                 </span>
@@ -3516,7 +3516,7 @@
         
     
     
-        <a href='/'>ownCloud</a> / <a href='/clients/'>Clients</a> / <a href='/clients/web/'>ownCloud Web</a> / Setup with OCIS
+        <a href='/'>ownCloud</a> / <a href='/integration/'>Integrations</a> / <a href='/integration/file_picker/'>File Picker</a> / Customising
     
 
     
@@ -3532,7 +3532,7 @@
         
         <span class="editpage">
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/web/edit/master/docs/backend-ocis.md">
+            <a href="https://github.com/owncloud/file-picker/edit/master/docs/customising.md">
                 Edit this page
             </a>
         </span>
@@ -3542,7 +3542,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>Setup with OCIS</h1>
+        <h1>Customising</h1>
         
 
 
@@ -3554,31 +3554,34 @@
 
 
   <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
-        <li><a href="#setting-up-ocis-services">Setting up OCIS services</a></li>
-        <li><a href="#setting-up-web">Setting up Web</a></li>
-        <li><a href="#running-web">Running Web</a></li>
-        <li><a href="#running-acceptance-tests">Running acceptance tests</a></li>
+        <li><a href="#variation">Variation</a>
+          <ul>
+            <li><a href="#file-picker">File Picker</a></li>
+            <li><a href="#location-picker">Location Picker</a></li>
+          </ul>
+        </li>
+        <li><a href="#actions">Actions</a>
+          <ul>
+            <li><a href="#select">Select</a></li>
+            <li><a href="#cancel">Cancel</a></li>
+          </ul>
+        </li>
       </ul></nav><hr></div>
 
 
-<div class="gdoc-page__anchorwrap"><h2 id="setting-up-ocis-services">Setting up OCIS services<a data-clipboard-text="https://owncloud.dev/clients/web/backend-ocis/#setting-up-ocis-services" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setting up OCIS services" href="#setting-up-ocis-services"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<ul>
-<li>Setup OCIS by following the <a href="https://owncloud.dev/ocis/getting-started/">setup instructions</a>.</li>
-<li>Kill the oCIS Web service <code>./ocis kill web</code></li>
-</ul>
-<div class="gdoc-page__anchorwrap"><h2 id="setting-up-web">Setting up Web<a data-clipboard-text="https://owncloud.dev/clients/web/backend-ocis/#setting-up-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setting up Web" href="#setting-up-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<ul>
-<li>Copy <code>./config/config.json.sample-ocis</code> to <code>./config/config.json</code> and adjust values if required</li>
-</ul>
-<div class="gdoc-page__anchorwrap"><h2 id="running-web">Running Web<a data-clipboard-text="https://owncloud.dev/clients/web/backend-ocis/#running-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Running Web" href="#running-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<ul>
-<li>in the Web checkout folder, run <code>yarn serve</code></li>
-<li>open <a href="https://localhost:9200">https://localhost:9200</a> and accept the certificate.</li>
-<li>when signing in, use one of the <a href="https://owncloud.dev/ocis/getting-started/demo-users/">available demo users</a></li>
-<li>whenever code changes are made, you need to manually reload the browser page (no hot reload)</li>
-</ul>
-<div class="gdoc-page__anchorwrap"><h2 id="running-acceptance-tests">Running acceptance tests<a data-clipboard-text="https://owncloud.dev/clients/web/backend-ocis/#running-acceptance-tests" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Running acceptance tests" href="#running-acceptance-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>For testing, please refer to the <a href="https://owncloud.dev/clients/web/testing/#running-acceptance-tests-using-ocis-backend">OCIS testing section</a></p>
+<p>It is possible to customise certain parts of the File Picker with the help of props.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="variation">Variation<a data-clipboard-text="https://owncloud.dev/integration/file_picker/customisations/#variation" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Variation" href="#variation"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>File picker comes in two different variations - File Picker and Location Picker. To specify which one should be used, set property <code>variation</code> to <code>resource</code> or <code>location</code>.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="file-picker">File Picker<a data-clipboard-text="https://owncloud.dev/integration/file_picker/customisations/#file-picker" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor File Picker" href="#file-picker"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>File picker variation is used to select resources from within your ownCloud instace. It is possible to select multiple files and folders.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="location-picker">Location Picker<a data-clipboard-text="https://owncloud.dev/integration/file_picker/customisations/#location-picker" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Location Picker" href="#location-picker"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Location picker variation is used to select location inside of your ownCloud instance. It is only possible to select one folder.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="actions">Actions<a data-clipboard-text="https://owncloud.dev/integration/file_picker/customisations/#actions" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Actions" href="#actions"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>If you do not wish to include the default File Picker actions (select and cancel), you can hide both of them.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="select">Select<a data-clipboard-text="https://owncloud.dev/integration/file_picker/customisations/#select" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Select" href="#select"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Select resources/location button can be hidden by setting prop <code>isSelectBtnDisplayed</code> to <code>false</code>.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="cancel">Cancel<a data-clipboard-text="https://owncloud.dev/integration/file_picker/customisations/#cancel" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Cancel" href="#cancel"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Hiding Cancel button slightly differes to the Select button. If you do not wish to display the cancel button, simply leave out any value for prop <code>cancelBtnLabel</code> and the component will be hidden by default.</p>
 
 
     </article>

@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Setup with OCIS">
+<meta name="description" content="Component reference">
 
-<title>Setup with OCIS | ownCloud</title>
+<title>Component reference | ownCloud</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -1221,7 +1221,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-8397230f" class="gdoc-nav__toggle" checked>
+            <input type="checkbox" id="navtree-8397230f" class="gdoc-nav__toggle" >
             <label for="navtree-8397230f" class="flex justify-between">
             
             
@@ -1356,7 +1356,7 @@
             
             
                 <span class="flex">
-                    <a href="/clients/web/backend-ocis/" class="gdoc-nav__entry is-active">
+                    <a href="/clients/web/backend-ocis/" class="gdoc-nav__entry ">
                         Setup with OCIS
                     </a>
                 </span>
@@ -3278,7 +3278,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-3d0bb527" class="gdoc-nav__toggle" >
+            <input type="checkbox" id="navtree-3d0bb527" class="gdoc-nav__toggle" checked>
             <label for="navtree-3d0bb527" class="flex justify-between">
             
             
@@ -3413,7 +3413,7 @@
             
             
                 <span class="flex">
-                    <a href="/integration/file_picker/component-reference/" class="gdoc-nav__entry ">
+                    <a href="/integration/file_picker/component-reference/" class="gdoc-nav__entry is-active">
                         Component reference
                     </a>
                 </span>
@@ -3516,7 +3516,7 @@
         
     
     
-        <a href='/'>ownCloud</a> / <a href='/clients/'>Clients</a> / <a href='/clients/web/'>ownCloud Web</a> / Setup with OCIS
+        <a href='/'>ownCloud</a> / <a href='/integration/'>Integrations</a> / <a href='/integration/file_picker/'>File Picker</a> / Component reference
     
 
     
@@ -3532,7 +3532,7 @@
         
         <span class="editpage">
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/web/edit/master/docs/backend-ocis.md">
+            <a href="https://github.com/owncloud/file-picker/edit/master/docs/component-reference.md">
                 Edit this page
             </a>
         </span>
@@ -3542,7 +3542,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>Setup with OCIS</h1>
+        <h1>Component reference</h1>
         
 
 
@@ -3554,31 +3554,112 @@
 
 
   <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
-        <li><a href="#setting-up-ocis-services">Setting up OCIS services</a></li>
-        <li><a href="#setting-up-web">Setting up Web</a></li>
-        <li><a href="#running-web">Running Web</a></li>
-        <li><a href="#running-acceptance-tests">Running acceptance tests</a></li>
+        <li><a href="#props">Props</a></li>
+        <li><a href="#events">Events</a></li>
       </ul></nav><hr></div>
 
 
-<div class="gdoc-page__anchorwrap"><h2 id="setting-up-ocis-services">Setting up OCIS services<a data-clipboard-text="https://owncloud.dev/clients/web/backend-ocis/#setting-up-ocis-services" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setting up OCIS services" href="#setting-up-ocis-services"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<ul>
-<li>Setup OCIS by following the <a href="https://owncloud.dev/ocis/getting-started/">setup instructions</a>.</li>
-<li>Kill the oCIS Web service <code>./ocis kill web</code></li>
-</ul>
-<div class="gdoc-page__anchorwrap"><h2 id="setting-up-web">Setting up Web<a data-clipboard-text="https://owncloud.dev/clients/web/backend-ocis/#setting-up-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setting up Web" href="#setting-up-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<ul>
-<li>Copy <code>./config/config.json.sample-ocis</code> to <code>./config/config.json</code> and adjust values if required</li>
-</ul>
-<div class="gdoc-page__anchorwrap"><h2 id="running-web">Running Web<a data-clipboard-text="https://owncloud.dev/clients/web/backend-ocis/#running-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Running Web" href="#running-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<ul>
-<li>in the Web checkout folder, run <code>yarn serve</code></li>
-<li>open <a href="https://localhost:9200">https://localhost:9200</a> and accept the certificate.</li>
-<li>when signing in, use one of the <a href="https://owncloud.dev/ocis/getting-started/demo-users/">available demo users</a></li>
-<li>whenever code changes are made, you need to manually reload the browser page (no hot reload)</li>
-</ul>
-<div class="gdoc-page__anchorwrap"><h2 id="running-acceptance-tests">Running acceptance tests<a data-clipboard-text="https://owncloud.dev/clients/web/backend-ocis/#running-acceptance-tests" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Running acceptance tests" href="#running-acceptance-tests"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>For testing, please refer to the <a href="https://owncloud.dev/clients/web/testing/#running-acceptance-tests-using-ocis-backend">OCIS testing section</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-vuejs" data-lang="vuejs"><span class="p">&lt;</span><span class="nt">file-picker</span><span class="p">&gt;</span>
+</code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="props">Props<a data-clipboard-text="https://owncloud.dev/integration/file_picker/component-reference/#props" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Props" href="#props"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<table>
+<thead>
+<tr>
+<th align="left">Property</th>
+<th align="left">Type</th>
+<th align="left">Default</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>variation</code></td>
+<td align="left"><code>String</code></td>
+<td align="left"></td>
+<td align="left">Specifies if File Picker (<code>resource</code>) or Location Picker (<code>location</code>) should be used</td>
+</tr>
+<tr>
+<td align="left"><code>configLocation</code></td>
+<td align="left"><code>String</code></td>
+<td align="left"><code>window.location.origin + '/file-picker-config.json'</code></td>
+<td align="left">Defines where the config file should be located</td>
+</tr>
+<tr>
+<td align="left"><code>bearerToken</code></td>
+<td align="left"><code>String</code></td>
+<td align="left"><code>null</code></td>
+<td align="left">Bearer token used for requests authentication. If specified, authorization step is skipped</td>
+</tr>
+<tr>
+<td align="left"><code>configObject</code></td>
+<td align="left"><code>String | Object</code></td>
+<td align="left"></td>
+<td align="left">File Picker config. If defined, fetching config from <code>configLocation</code> is skipped</td>
+</tr>
+<tr>
+<td align="left"><code>isSdkProvided</code></td>
+<td align="left"><code>Boolean</code></td>
+<td align="left"><code>false</code></td>
+<td align="left">Asserts whether ownCloud SDK is already initialised in the consuming app</td>
+</tr>
+<tr>
+<td align="left"><code>selectBtnLabel</code></td>
+<td align="left"><code>String</code></td>
+<td align="left"><code>null</code></td>
+<td align="left">Replaces the select button label</td>
+</tr>
+<tr>
+<td align="left"><code>isSelectBtnDisplayed</code></td>
+<td align="left"><code>Boolean</code></td>
+<td align="left"><code>true</code></td>
+<td align="left">Asserts whether the select button should be displayed</td>
+</tr>
+<tr>
+<td align="left"><code>cancelBtnLabel</code></td>
+<td align="left"><code>String</code></td>
+<td align="left"><code>nulll</code></td>
+<td align="left">Displays the cancel button and uses the given value as a label</td>
+</tr>
+<tr>
+<td align="left"><code>isOdsProvided</code></td>
+<td align="left"><code>Boolean</code></td>
+<td align="left"><code>false</code></td>
+<td align="left">Asserts whether the ownCloud Design System has been already initialised in the consuming app</td>
+</tr>
+<tr>
+<td align="left"><code>locale</code></td>
+<td align="left"><code>String</code></td>
+<td align="left"><code>null</code></td>
+<td align="left">Sets the language in which the File Picker should be displayed. If omitted, the browser language will be used</td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h2 id="events">Events<a data-clipboard-text="https://owncloud.dev/integration/file_picker/component-reference/#events" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Events" href="#events"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<table>
+<thead>
+<tr>
+<th align="left">Event</th>
+<th align="left">Arguments</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>update</code></td>
+<td align="left">Resources array</td>
+<td align="left">Emitted when any resource or location is selected or deselected</td>
+</tr>
+<tr>
+<td align="left"><code>select</code></td>
+<td align="left">Resources array</td>
+<td align="left">Emitted when the select button is clicked</td>
+</tr>
+<tr>
+<td align="left"><code>cancel</code></td>
+<td align="left">Native click event object</td>
+<td align="left">Emitted when the cancel button is clicked</td>
+</tr>
+</tbody>
+</table>
 
 
     </article>
