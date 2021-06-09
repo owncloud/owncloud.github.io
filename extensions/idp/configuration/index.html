@@ -3658,9 +3658,9 @@ $HOME/.ocis
 <dt>-ldap-filter |  $IDP_LDAP_FILTER</dt>
 <dd>LDAP filter of the oCIS users. Default: <code>flags.OverrideDefaultString(cfg.Ldap.Filter, &quot;(objectClass=posixaccount)&quot;)</code>.</dd>
 <dt>-transport-tls-cert |  $IDP_TRANSPORT_TLS_CERT</dt>
-<dd>Certificate file for transport encryption. Default: <code>flags.OverrideDefaultString(cfg.HTTP.TLSCert, &quot;&quot;)</code>.</dd>
+<dd>Certificate file for transport encryption. Default: <code>flags.OverrideDefaultString(cfg.HTTP.TLSCert, path.Join(pkgos.MustUserConfigDir(&quot;ocis&quot;, &quot;idp&quot;), &quot;server.crt&quot;))</code>.</dd>
 <dt>-transport-tls-key |  $IDP_TRANSPORT_TLS_KEY</dt>
-<dd>Secret file for transport encryption. Default: <code>flags.OverrideDefaultString(cfg.HTTP.TLSKey, &quot;&quot;)</code>.</dd>
+<dd>Secret file for transport encryption. Default: <code>flags.OverrideDefaultString(cfg.HTTP.TLSKey, path.Join(pkgos.MustUserConfigDir(&quot;ocis&quot;, &quot;idp&quot;), &quot;server.key&quot;))</code>.</dd>
 <dt>-iss |  $IDP_ISS , $OCIS_URL</dt>
 <dd>OIDC issuer URL. Default: <code>flags.OverrideDefaultString(cfg.IDP.Iss, &quot;https://localhost:9200&quot;)</code>.</dd>
 <dt>-signing-kid |  $IDP_SIGNING_KID</dt>
