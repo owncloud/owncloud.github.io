@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Getting Started">
+<meta name="description" content="GRPC API">
 
-<title>Getting Started | ownCloud</title>
+<title>GRPC API | ownCloud</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -1532,7 +1532,7 @@
             
                 <span class="flex">
                     <a href="/extensions/ocis_hello/" class="gdoc-nav__entry ">
-                        Hello
+                        Hello (example extension)
                     </a>
                 </span>
             
@@ -1561,31 +1561,6 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/ocis_hello/getting-started/" class="gdoc-nav__entry is-active">
-                        Getting Started
-                    </a>
-                </span>
-            
-            
-
-            
-            </li>
-            
-            
-        
-            
-            
-
-            
-            
-            
-            
-            
-
-            <li>
-            
-            
-                <span class="flex">
                     <a href="/extensions/ocis_hello/building/" class="gdoc-nav__entry ">
                         Building
                     </a>
@@ -1597,6 +1572,29 @@
             </li>
             
             
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/extensions/ocis_hello/configuration/" class="gdoc-nav__entry ">
+                        Configuration
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
         
             
             
@@ -1611,7 +1609,30 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/ocis_hello/configuration-with-ocis/" class="gdoc-nav__entry ">
+                    <a href="/extensions/ocis_hello/grpc/" class="gdoc-nav__entry is-active">
+                        GRPC API
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/extensions/ocis_hello/running/" class="gdoc-nav__entry ">
                         Running
                     </a>
                 </span>
@@ -1659,31 +1680,6 @@
                 <span class="flex">
                     <a href="/extensions/ocis_hello/testing/" class="gdoc-nav__entry ">
                         Testing
-                    </a>
-                </span>
-            
-            
-
-            
-            </li>
-            
-            
-        
-            
-            
-
-            
-            
-            
-            
-            
-
-            <li>
-            
-            
-                <span class="flex">
-                    <a href="/extensions/ocis_hello/license/" class="gdoc-nav__entry ">
-                        License
                     </a>
                 </span>
             
@@ -3516,7 +3512,7 @@
         
     
     
-        <a href='/'>ownCloud</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_hello/'>Hello</a> / Getting Started
+        <a href='/'>ownCloud</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_hello/'>Hello (example extension)</a> / GRPC API
     
 
     
@@ -3532,7 +3528,7 @@
         
         <span class="editpage">
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis-hello/edit/master/docs/getting-started.md">
+            <a href="https://github.com/owncloud/ocis-hello/edit/master/docs/grpc.md">
                 Edit this page
             </a>
         </span>
@@ -3542,7 +3538,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>Getting Started</h1>
+        <h1>GRPC API</h1>
         
 
 
@@ -3554,221 +3550,208 @@
 
 
   <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
-        <li><a href="#installation">Installation</a>
+        <li><a href="#helloproto">hello.proto</a>
           <ul>
-            <li><a href="#docker">Docker</a></li>
-            <li><a href="#binaries">Binaries</a></li>
+            <li><a href="#greetrequest">GreetRequest</a></li>
+            <li><a href="#greetresponse">GreetResponse</a></li>
+            <li><a href="#hello">Hello</a></li>
           </ul>
         </li>
-        <li><a href="#configuration">Configuration</a>
-          <ul>
-            <li><a href="#envrionment-variables">Envrionment variables</a>
-              <ul>
-                <li><a href="#global">Global</a></li>
-                <li><a href="#server">Server</a></li>
-                <li><a href="#health">Health</a></li>
-              </ul>
-            </li>
-            <li><a href="#commandline-flags">Commandline flags</a>
-              <ul>
-                <li><a href="#global-1">Global</a></li>
-                <li><a href="#server-1">Server</a></li>
-                <li><a href="#health-1">Health</a></li>
-              </ul>
-            </li>
-            <li><a href="#configuration-file">Configuration file</a></li>
-          </ul>
-        </li>
-        <li><a href="#usage">Usage</a>
-          <ul>
-            <li><a href="#server-2">Server</a></li>
-            <li><a href="#health-2">Health</a></li>
-          </ul>
-        </li>
-        <li><a href="#metrics">Metrics</a></li>
+        <li><a href="#scalar-value-types">Scalar Value Types</a></li>
       </ul></nav><hr></div>
 
 
-<div class="gdoc-page__anchorwrap"><h2 id="installation">Installation<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/getting-started/#installation" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Installation" href="#installation"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>So far we are offering two different variants for the installation. You can choose between <a href="https://www.docker.com/">Docker</a> or pre-built binaries which are stored on our download mirrors and GitHub releases. Maybe we will also provide system packages for the major distributions later if we see the need for it.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="docker">Docker<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/getting-started/#docker" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Docker" href="#docker"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>TBD</p>
-<div class="gdoc-page__anchorwrap"><h3 id="binaries">Binaries<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/getting-started/#binaries" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Binaries" href="#binaries"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>TBD</p>
-<div class="gdoc-page__anchorwrap"><h2 id="configuration">Configuration<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/getting-started/#configuration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configuration" href="#configuration"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>We provide overall three different variants of configuration. The variant based on environment variables and commandline flags are split up into global values and command-specific values.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="envrionment-variables">Envrionment variables<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/getting-started/#envrionment-variables" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Envrionment variables" href="#envrionment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>If you prefer to configure the service with environment variables you can see the available variables below.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="global">Global<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/getting-started/#global" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Global" href="#global"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<dl>
-<dt>HELLO_CONFIG_FILE</dt>
-<dd>Path to config file, empty default value</dd>
-<dt>HELLO_LOG_LEVEL</dt>
-<dd>Set logging level, defaults to <code>info</code></dd>
-<dt>HELLO_LOG_COLOR</dt>
-<dd>Enable colored logging, defaults to <code>true</code></dd>
-<dt>HELLO_LOG_PRETTY</dt>
-<dd>Enable pretty logging, defaults to <code>true</code></dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h4 id="server">Server<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/getting-started/#server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Server" href="#server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<dl>
-<dt>HELLO_TRACING_ENABLED</dt>
-<dd>Enable sending traces, defaults to <code>false</code></dd>
-<dt>HELLO_TRACING_TYPE</dt>
-<dd>Tracing backend type, defaults to <code>jaeger</code></dd>
-<dt>HELLO_TRACING_ENDPOINT</dt>
-<dd>Endpoint for the agent, empty default value</dd>
-<dt>HELLO_TRACING_COLLECTOR</dt>
-<dd>Endpoint for the collector, empty default value</dd>
-<dt>HELLO_TRACING_SERVICE</dt>
-<dd>Service name for tracing, defaults to <code>hello</code></dd>
-<dt>HELLO_DEBUG_ADDR</dt>
-<dd>Address to bind debug server, defaults to <code>0.0.0.0:9109</code></dd>
-<dt>HELLO_DEBUG_TOKEN</dt>
-<dd>Token to grant metrics access, empty default value</dd>
-<dt>HELLO_DEBUG_PPROF</dt>
-<dd>Enable pprof debugging, defaults to <code>false</code></dd>
-<dt>HELLO_DEBUG_ZPAGES</dt>
-<dd>Enable zpages debugging, defaults to <code>false</code></dd>
-<dt>HELLO_HTTP_ADDR</dt>
-<dd>Address to bind http server, defaults to <code>0.0.0.0:9105</code></dd>
-<dt>HELLO_HTTP_ROOT</dt>
-<dd>Root path of http server, defaults to <code>/</code></dd>
-<dt>HELLO_GRPC_ADDR</dt>
-<dd>Address to bind grpc server, defaults to <code>0.0.0.0:9106</code></dd>
-<dt>HELLO_ASSET_PATH</dt>
-<dd>Path to custom assets, empty default value</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h4 id="health">Health<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/getting-started/#health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Health" href="#health"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<dl>
-<dt>HELLO_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint, defaults to <code>0.0.0.0:9109</code></dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="commandline-flags">Commandline flags<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/getting-started/#commandline-flags" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Commandline flags" href="#commandline-flags"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>If you prefer to configure the service with commandline flags you can see the available variables below.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="global-1">Global<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/getting-started/#global-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Global" href="#global-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<dl>
-<dt>&ndash;config-file</dt>
-<dd>Path to config file, empty default value</dd>
-<dt>&ndash;log-level</dt>
-<dd>Set logging level, defaults to <code>info</code></dd>
-<dt>&ndash;log-color</dt>
-<dd>Enable colored logging, defaults to <code>true</code></dd>
-<dt>&ndash;log-pretty</dt>
-<dd>Enable pretty logging, defaults to <code>true</code></dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h4 id="server-1">Server<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/getting-started/#server-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Server" href="#server-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<dl>
-<dt>&ndash;tracing-enabled</dt>
-<dd>Enable sending traces, defaults to <code>false</code></dd>
-<dt>&ndash;tracing-type</dt>
-<dd>Tracing backend type, defaults to <code>jaeger</code></dd>
-<dt>&ndash;tracing-endpoint</dt>
-<dd>Endpoint for the agent, empty default value</dd>
-<dt>&ndash;tracing-collector</dt>
-<dd>Endpoint for the collector, empty default value</dd>
-<dt>&ndash;tracing-service</dt>
-<dd>Service name for tracing, defaults to <code>hello</code></dd>
-<dt>&ndash;debug-addr</dt>
-<dd>Address to bind debug server, defaults to <code>0.0.0.0:9109</code></dd>
-<dt>&ndash;debug-token</dt>
-<dd>Token to grant metrics access, empty default value</dd>
-<dt>&ndash;debug-pprof</dt>
-<dd>Enable pprof debugging, defaults to <code>false</code></dd>
-<dt>&ndash;debug-zpages</dt>
-<dd>Enable zpages debugging, defaults to <code>false</code></dd>
-<dt>&ndash;http-addr</dt>
-<dd>Address to bind http server, defaults to <code>0.0.0.0:9105</code></dd>
-<dt>&ndash;http-root</dt>
-<dd>Root path of http server, defaults to <code>/</code></dd>
-<dt>&ndash;grpc-addr</dt>
-<dd>Address to bind grpc server, defaults to <code>0.0.0.0:9106</code></dd>
-<dt>&ndash;asset-path</dt>
-<dd>Path to custom assets, empty default value</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h4 id="health-1">Health<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/getting-started/#health-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Health" href="#health-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<dl>
-<dt>&ndash;debug-addr</dt>
-<dd>Address to debug endpoint, defaults to <code>0.0.0.0:9109</code></dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="configuration-file">Configuration file<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/getting-started/#configuration-file" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configuration file" href="#configuration-file"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>So far we support the file formats <code>JSON</code> and <code>YAML</code>, if you want to get a full example configuration just take a look at <a href="https://github.com/owncloud/ocis-hello/tree/master/config">our repository</a>, there you can always see the latest configuration format. These example configurations include all available options and the default values. The configuration file will be automatically loaded if it&rsquo;s placed at <code>/etc/ocis/hello.yml</code>, <code>${HOME}/.ocis/hello.yml</code> or <code>$(pwd)/config/hello.yml</code>.</p>
-<div class="gdoc-page__anchorwrap"><h2 id="usage">Usage<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/getting-started/#usage" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Usage" href="#usage"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>The program provides a few sub-commands on execution. The available configuration methods have already been mentioned above. Generally you can always see a formated help output if you execute the binary via <code>ocis-hello --help</code>.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="server-2">Server<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/getting-started/#server-2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Server" href="#server-2"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>The server command is used to start the http and debug server on two addresses within a single process. The http server is serving the general webservice while the debug server is used for health check, readiness check and to server the metrics mentioned below. For further help please execute:</p>
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">ocis-hello server --help</code></pre></div>
-<div class="gdoc-page__anchorwrap"><h3 id="health-2">Health<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/getting-started/#health-2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Health" href="#health-2"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>The health command is used to execute a health check, if the exit code equals zero the service should be up and running, if the exist code is greater than zero the service is not in a healthy state. Generally this command is used within our Docker containers, it could also be used within Kubernetes.</p>
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">ocis-hello health --help</code></pre></div>
-<div class="gdoc-page__anchorwrap"><h2 id="metrics">Metrics<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/getting-started/#metrics" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Metrics" href="#metrics"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>This service provides some <a href="https://prometheus.io/">Prometheus</a> metrics through the debug endpoint, you can optionally secure the metrics endpoint by some random token, which got to be configured through one of the flag <code>--debug-token</code> or the environment variable <code>HELLO_DEBUG_TOKEN</code> mentioned above. By default the metrics endpoint is bound to <code>http://0.0.0.0:9109/metrics</code>.</p>
-<dl>
-<dt>go_gc_duration_seconds</dt>
-<dd>A summary of the GC invocation durations</dd>
-<dt>go_gc_duration_seconds_sum</dt>
-<dd>A summary of the GC invocation durations</dd>
-<dt>go_gc_duration_seconds_count</dt>
-<dd>A summary of the GC invocation durations</dd>
-<dt>go_goroutines</dt>
-<dd>Number of goroutines that currently exist</dd>
-<dt>go_info</dt>
-<dd>Information about the Go environment</dd>
-<dt>go_memstats_alloc_bytes</dt>
-<dd>Number of bytes allocated and still in use</dd>
-<dt>go_memstats_alloc_bytes_total</dt>
-<dd>Total number of bytes allocated, even if freed</dd>
-<dt>go_memstats_buck_hash_sys_bytes</dt>
-<dd>Number of bytes used by the profiling bucket hash table</dd>
-<dt>go_memstats_frees_total</dt>
-<dd>Total number of frees</dd>
-<dt>go_memstats_gc_cpu_fraction</dt>
-<dd>The fraction of this program&rsquo;s available CPU time used by the GC since the program started</dd>
-<dt>go_memstats_gc_sys_bytes</dt>
-<dd>Number of bytes used for garbage collection system metadata</dd>
-<dt>go_memstats_heap_alloc_bytes</dt>
-<dd>Number of heap bytes allocated and still in use</dd>
-<dt>go_memstats_heap_idle_bytes</dt>
-<dd>Number of heap bytes waiting to be used</dd>
-<dt>go_memstats_heap_inuse_bytes</dt>
-<dd>Number of heap bytes that are in use</dd>
-<dt>go_memstats_heap_objects</dt>
-<dd>Number of allocated objects</dd>
-<dt>go_memstats_heap_released_bytes</dt>
-<dd>Number of heap bytes released to OS</dd>
-<dt>go_memstats_heap_sys_bytes</dt>
-<dd>Number of heap bytes obtained from system</dd>
-<dt>go_memstats_last_gc_time_seconds</dt>
-<dd>Number of seconds since 1970 of last garbage collection</dd>
-<dt>go_memstats_lookups_total</dt>
-<dd>Total number of pointer lookups</dd>
-<dt>go_memstats_mallocs_total</dt>
-<dd>Total number of mallocs</dd>
-<dt>go_memstats_mcache_inuse_bytes</dt>
-<dd>Number of bytes in use by mcache structures</dd>
-<dt>go_memstats_mcache_sys_bytes</dt>
-<dd>Number of bytes used for mcache structures obtained from system</dd>
-<dt>go_memstats_mspan_inuse_bytes</dt>
-<dd>Number of bytes in use by mspan structures</dd>
-<dt>go_memstats_mspan_sys_bytes</dt>
-<dd>Number of bytes used for mspan structures obtained from system</dd>
-<dt>go_memstats_next_gc_bytes</dt>
-<dd>Number of heap bytes when next garbage collection will take place</dd>
-<dt>go_memstats_other_sys_bytes</dt>
-<dd>Number of bytes used for other system allocations</dd>
-<dt>go_memstats_stack_inuse_bytes</dt>
-<dd>Number of bytes in use by the stack allocator</dd>
-<dt>go_memstats_stack_sys_bytes</dt>
-<dd>Number of bytes obtained from system for stack allocator</dd>
-<dt>go_memstats_sys_bytes</dt>
-<dd>Number of bytes obtained from system</dd>
-<dt>go_threads</dt>
-<dd>Number of OS threads created</dd>
-<dt>promhttp_metric_handler_requests_in_flight</dt>
-<dd>Current number of scrapes being served</dd>
-<dt>promhttp_metric_handler_requests_total</dt>
-<dd>Total number of scrapes by HTTP status code</dd>
-</dl>
+<div class="gdoc-page__anchorwrap"><h2 id="helloproto">hello.proto<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/grpc/#helloproto" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor hello.proto" href="#helloproto"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<div class="gdoc-page__anchorwrap"><h3 id="greetrequest">GreetRequest<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/grpc/#greetrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor GreetRequest" href="#greetrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="greetresponse">GreetResponse<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/grpc/#greetresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor GreetResponse" href="#greetresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h3 id="hello">Hello<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/grpc/#hello" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Hello" href="#hello"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<table>
+<thead>
+<tr>
+<th>Method Name</th>
+<th>Request Type</th>
+<th>Response Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Greet</td>
+<td><a href="#greetrequest">GreetRequest</a></td>
+<td><a href="#greetresponse">GreetResponse</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="gdoc-page__anchorwrap"><h2 id="scalar-value-types">Scalar Value Types<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/grpc/#scalar-value-types" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Scalar Value Types" href="#scalar-value-types"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<table>
+<thead>
+<tr>
+<th>.proto Type</th>
+<th>Notes</th>
+<th>C++</th>
+<th>Java</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><div  id="double">
+    double
+</div></td>
+<td></td>
+<td>double</td>
+<td>double</td>
+</tr>
+<tr>
+<td><div  id="float">
+    float
+</div></td>
+<td></td>
+<td>float</td>
+<td>float</td>
+</tr>
+<tr>
+<td><div  id="int32">
+    int32
+</div></td>
+<td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+<td>int32</td>
+<td>int</td>
+</tr>
+<tr>
+<td><div  id="int64">
+    int64
+</div></td>
+<td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+<td>int64</td>
+<td>long</td>
+</tr>
+<tr>
+<td><div  id="uint32">
+    uint32
+</div></td>
+<td>Uses variable-length encoding.</td>
+<td>uint32</td>
+<td>int</td>
+</tr>
+<tr>
+<td><div  id="uint64">
+    uint64
+</div></td>
+<td>Uses variable-length encoding.</td>
+<td>uint64</td>
+<td>long</td>
+</tr>
+<tr>
+<td><div  id="sint32">
+    sint32
+</div></td>
+<td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+<td>int32</td>
+<td>int</td>
+</tr>
+<tr>
+<td><div  id="sint64">
+    sint64
+</div></td>
+<td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+<td>int64</td>
+<td>long</td>
+</tr>
+<tr>
+<td><div  id="fixed32">
+    fixed32
+</div></td>
+<td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+<td>uint32</td>
+<td>int</td>
+</tr>
+<tr>
+<td><div  id="fixed64">
+    fixed64
+</div></td>
+<td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+<td>uint64</td>
+<td>long</td>
+</tr>
+<tr>
+<td><div  id="sfixed32">
+    sfixed32
+</div></td>
+<td>Always four bytes.</td>
+<td>int32</td>
+<td>int</td>
+</tr>
+<tr>
+<td><div  id="sfixed64">
+    sfixed64
+</div></td>
+<td>Always eight bytes.</td>
+<td>int64</td>
+<td>long</td>
+</tr>
+<tr>
+<td><div  id="bool">
+    bool
+</div></td>
+<td></td>
+<td>bool</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td><div  id="string">
+    string
+</div></td>
+<td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+<td>string</td>
+<td>String</td>
+</tr>
+<tr>
+<td><div  id="bytes">
+    bytes
+</div></td>
+<td>May contain any arbitrary sequence of bytes.</td>
+<td>string</td>
+<td>ByteString</td>
+</tr>
+</tbody>
+</table>
 
 
     </article>

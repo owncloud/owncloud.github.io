@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hello on ownCloud</title>
+    <title>Hello (example extension) on ownCloud</title>
     <link>https://owncloud.dev/extensions/ocis_hello/</link>
-    <description>Recent content in Hello on ownCloud</description>
+    <description>Recent content in Hello (example extension) on ownCloud</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 02 May 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 14 Jun 2021 14:16:42 +0000</lastBuildDate>
     
 	<atom:link href="https://owncloud.dev/extensions/ocis_hello/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Getting Started</title>
-      <link>https://owncloud.dev/extensions/ocis_hello/getting-started/</link>
-      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
+      <title>Configuration</title>
+      <link>https://owncloud.dev/extensions/ocis_hello/configuration/</link>
+      <pubDate>Mon, 14 Jun 2021 14:16:42 +0000</pubDate>
       
-      <guid>https://owncloud.dev/extensions/ocis_hello/getting-started/</guid>
-      <description>Installation  Docker Binaries   Configuration  Envrionment variables  Global Server Health   Commandline flags  Global Server Health   Configuration file   Usage  Server Health   Metrics     Installation So far we are offering two different variants for the installation. You can choose between Docker or pre-built binaries which are stored on our download mirrors and GitHub releases.</description>
+      <guid>https://owncloud.dev/extensions/ocis_hello/configuration/</guid>
+      <description>Configuration  Configuration using config files Environment variables Command line flags   Root Command Sub Commands  hello health hello server       Configuration Configuration using config files Out of the box extensions will attempt to read configuration details from:
+/etc/ocis $HOME/.ocis ./config For this configuration to be picked up, have a look at your extension root command and look for which default config name it has assigned.</description>
     </item>
     
     <item>
@@ -26,18 +27,27 @@
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.dev/extensions/ocis_hello/building/</guid>
-      <description>Frontend Backend     As this project is built with Go and NodeJS, so you need to install that first. The installation of Go and NodeJS is out of the scope of this document, please follow the official documentation for Go, NodeJS and Yarn, to build this project you have to install Go &amp;gt;= v1.13. After the installation of the required tools you need to get the sources:</description>
+      <description>Frontend Backend Documentation     As this project is built with Go and NodeJS, so you need to install that first. The installation of Go and NodeJS is out of the scope of this document, please follow the official documentation for Go, NodeJS and Yarn, to build this project you have to install Go &amp;gt;= v1.16. After the installation of the required tools you need to get the sources:</description>
+    </item>
+    
+    <item>
+      <title>GRPC API</title>
+      <link>https://owncloud.dev/extensions/ocis_hello/grpc/</link>
+      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/extensions/ocis_hello/grpc/</guid>
+      <description>hello.proto  GreetRequest GreetResponse Hello   Scalar Value Types     hello.proto GreetRequest    Field Type Label Description     name string      GreetResponse    Field Type Label Description     message string      Hello    Method Name Request Type Response Type Description     Greet GreetRequest GreetResponse     Scalar Value Types    .</description>
     </item>
     
     <item>
       <title>Running</title>
-      <link>https://owncloud.dev/extensions/ocis_hello/configuration-with-ocis/</link>
+      <link>https://owncloud.dev/extensions/ocis_hello/running/</link>
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://owncloud.dev/extensions/ocis_hello/configuration-with-ocis/</guid>
-      <description>Configuring ocis-hello with ocis We will need various services to run ocis
-Running a ldap server in docker container We will use the ldap server as users provider for ocis.
-docker run --hostname ldap.my-company.com \ -e LDAP_TLS_VERIFY_CLIENT=never \ -e LDAP_DOMAIN=owncloud.com \ -e LDAP_ORGANISATION=ownCloud \ -e LDAP_ADMIN_PASSWORD=admin \ --name docker-slapd \ -p 127.0.0.1:389:389 \ -p 636:636 -d osixia/openldap Running a redis server in a docker container Redis will be used by ocis for various caching purposes.</description>
+      <guid>https://owncloud.dev/extensions/ocis_hello/running/</guid>
+      <description>In order to use the Hello extension we need to configure and start oCIS first. After that we can run the Hello extension itself.
+Configure and start oCIS You can either start oCIS from a binary or build it from source.
+No matter which way you choose, we need to create a configuration file for ownCloud Web, so that the Hello extension will be loaded in the frontend. Therefore create a file web-config.</description>
     </item>
     
     <item>
@@ -46,7 +56,10 @@ docker run --hostname ldap.my-company.com \ -e LDAP_TLS_VERIFY_CLIENT=never \ -e
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.dev/extensions/ocis_hello/settings/</guid>
-      <description>The ocis-settings service exposes an endpoint for registering so called settings bundles. This gives control to every service to define settings that are needed for fulfilling it&amp;rsquo;s intended purpose. There are different types of settings available out of the box - hopefully those already fit your needs. The settings defined through settings bundles can be changed by authenticated users through an ocis-web extension, which is also provided by the settings service.</description>
+      <description>oCIS provides an settings extension that other extensions can use to make settings accessible to users.
+In case of the Hello extension administrator users are able to change the greeter message.
+Settings are stored and presented to the user by the oCIS settings extension. It also exposes endpoints for registering and manipulating so called settings bundles.
+The settings defined through settings bundles can be changed by authenticated users in ownCloud Web, if they have enough permissions to edit them.</description>
     </item>
     
     <item>
@@ -55,17 +68,8 @@ docker run --hostname ldap.my-company.com \ -e LDAP_TLS_VERIFY_CLIENT=never \ -e
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.dev/extensions/ocis_hello/testing/</guid>
-      <description>This repository provides a general guideline for creating tests for the ocis extensions. The tests can be written in various levels from unit, integration, and end-to-end. It is not essential to write tests on all these levels as it can be redundant in some cases. This repository provides a reference for all levels of tests.
+      <description>This repository provides a general guideline for creating tests for an oCIS extension. The tests can be written in various levels from unit, integration, and end-to-end. It is not essential to write tests on all these levels as it can be redundant in some cases. This repository provides a reference for all levels of tests.
 Unit tests Unit tests generally live inside *_test.go files in the /pkg directory. One such example in this extension is in /pkg/service/v0/service_test.</description>
-    </item>
-    
-    <item>
-      <title>License</title>
-      <link>https://owncloud.dev/extensions/ocis_hello/license/</link>
-      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://owncloud.dev/extensions/ocis_hello/license/</guid>
-      <description>This project is licensed under the Apache 2.0 license. For the license of the used libraries you have to check the respective sources.</description>
     </item>
     
   </channel>

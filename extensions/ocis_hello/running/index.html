@@ -1532,7 +1532,7 @@
             
                 <span class="flex">
                     <a href="/extensions/ocis_hello/" class="gdoc-nav__entry ">
-                        Hello
+                        Hello (example extension)
                     </a>
                 </span>
             
@@ -1561,31 +1561,6 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/ocis_hello/getting-started/" class="gdoc-nav__entry ">
-                        Getting Started
-                    </a>
-                </span>
-            
-            
-
-            
-            </li>
-            
-            
-        
-            
-            
-
-            
-            
-            
-            
-            
-
-            <li>
-            
-            
-                <span class="flex">
                     <a href="/extensions/ocis_hello/building/" class="gdoc-nav__entry ">
                         Building
                     </a>
@@ -1597,6 +1572,29 @@
             </li>
             
             
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/extensions/ocis_hello/configuration/" class="gdoc-nav__entry ">
+                        Configuration
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
         
             
             
@@ -1611,7 +1609,30 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/ocis_hello/configuration-with-ocis/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/ocis_hello/grpc/" class="gdoc-nav__entry ">
+                        GRPC API
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/extensions/ocis_hello/running/" class="gdoc-nav__entry is-active">
                         Running
                     </a>
                 </span>
@@ -1659,31 +1680,6 @@
                 <span class="flex">
                     <a href="/extensions/ocis_hello/testing/" class="gdoc-nav__entry ">
                         Testing
-                    </a>
-                </span>
-            
-            
-
-            
-            </li>
-            
-            
-        
-            
-            
-
-            
-            
-            
-            
-            
-
-            <li>
-            
-            
-                <span class="flex">
-                    <a href="/extensions/ocis_hello/license/" class="gdoc-nav__entry ">
-                        License
                     </a>
                 </span>
             
@@ -3516,7 +3512,7 @@
         
     
     
-        <a href='/'>ownCloud</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_hello/'>Hello</a> / Running
+        <a href='/'>ownCloud</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_hello/'>Hello (example extension)</a> / Running
     
 
     
@@ -3532,7 +3528,7 @@
         
         <span class="editpage">
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis-hello/edit/master/docs/configuration-with-ocis.md">
+            <a href="https://github.com/owncloud/ocis-hello/edit/master/docs/running.md">
                 Edit this page
             </a>
         </span>
@@ -3550,87 +3546,64 @@
     
 
 
-<div class="gdoc-page__anchorwrap"><h3 id="configuring-ocis-hello-with-ocis">Configuring ocis-hello with ocis<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/configuration-with-ocis/#configuring-ocis-hello-with-ocis" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configuring ocis-hello with ocis" href="#configuring-ocis-hello-with-ocis"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>We will need various services to run ocis</p>
-<div class="gdoc-page__anchorwrap"><h4 id="running-a-ldap-server-in-docker-container">Running a ldap server in docker container<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/configuration-with-ocis/#running-a-ldap-server-in-docker-container" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Running a ldap server in docker container" href="#running-a-ldap-server-in-docker-container"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>We will use the ldap server as users provider for ocis.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker run --hostname ldap.my-company.com \
-    -e LDAP_TLS_VERIFY_CLIENT=never \
-    -e LDAP_DOMAIN=owncloud.com \
-    -e LDAP_ORGANISATION=ownCloud \
-    -e LDAP_ADMIN_PASSWORD=admin \
-    --name docker-slapd \
-    -p 127.0.0.1:389:389 \
-    -p 636:636 -d osixia/openldap
-</code></pre></div><div class="gdoc-page__anchorwrap"><h4 id="running-a-redis-server-in-a-docker-container">Running a redis server in a docker container<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/configuration-with-ocis/#running-a-redis-server-in-a-docker-container" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Running a redis server in a docker container" href="#running-a-redis-server-in-a-docker-container"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>Redis will be used by ocis for various caching purposes.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker run -e REDIS_DATABASES=1 -p 6379:6379 -d webhippie/redis:latest
-
-</code></pre></div><div class="gdoc-page__anchorwrap"><h4 id="running-ocis">Running ocis<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/configuration-with-ocis/#running-ocis" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Running ocis" href="#running-ocis"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>In order to run this extension we will need to run ocis first. For that clone and build the ocis single binary from the github repo <code>https://github.com/owncloud/ocis</code>.
-After that we will need to create a config file for phoenix so that we can load the hello app in the frontend. Create a file <code>phoenix-config.json</code> with the following contents.</p>
+<p>In order to use the Hello extension we need to configure and start oCIS first. After that we can run the Hello extension itself.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="configure-and-start-ocis">Configure and start oCIS<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/running/#configure-and-start-ocis" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configure and start oCIS" href="#configure-and-start-ocis"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>You can either <a href="https://owncloud.dev/ocis/getting-started/#binaries">start oCIS from a binary</a> or <a href="https://owncloud.dev/ocis/development/build/#build-the-ocis-binary">build it from source</a>.</p>
+<p>No matter which way you choose, we need to create a configuration file for ownCloud Web, so that the Hello extension will be loaded in the frontend. Therefore create a file <code>web-config.json</code> with the following contents:</p>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-    <span class="nt">&#34;server&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;theme&#34;</span><span class="p">:</span> <span class="s2">&#34;owncloud&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;0.1.0&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;openIdConnect&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;metadata_url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/.well-known/openid-configuration&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;authority&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;client_id&#34;</span><span class="p">:</span> <span class="s2">&#34;phoenix&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;response_type&#34;</span><span class="p">:</span> <span class="s2">&#34;code&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;scope&#34;</span><span class="p">:</span> <span class="s2">&#34;openid profile email&#34;</span>
-    <span class="p">},</span> 
-    <span class="nt">&#34;apps&#34;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s2">&#34;files&#34;</span><span class="p">,</span>
-        <span class="s2">&#34;draw-io&#34;</span><span class="p">,</span>
-        <span class="s2">&#34;pdf-viewer&#34;</span><span class="p">,</span>
-        <span class="s2">&#34;markdown-editor&#34;</span><span class="p">,</span>
-        <span class="s2">&#34;media-viewer&#34;</span>
-    <span class="p">],</span> 
-    <span class="nt">&#34;external_apps&#34;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;hello&#34;</span><span class="p">,</span>
-            <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:9105/hello.js&#34;</span><span class="p">,</span>
-            <span class="nt">&#34;config&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:9105&#34;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">]</span>   
+  <span class="nt">&#34;server&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;theme&#34;</span><span class="p">:</span> <span class="s2">&#34;owncloud&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;0.1.0&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;openIdConnect&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;metadata_url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/.well-known/openid-configuration&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;authority&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;client_id&#34;</span><span class="p">:</span> <span class="s2">&#34;web&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;response_type&#34;</span><span class="p">:</span> <span class="s2">&#34;code&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;scope&#34;</span><span class="p">:</span> <span class="s2">&#34;openid profile email&#34;</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;apps&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;files&#34;</span><span class="p">,</span> <span class="s2">&#34;media-viewer&#34;</span><span class="p">],</span>
+  <span class="nt">&#34;external_apps&#34;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;settings&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;/settings.js&#34;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;accounts&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;/accounts.js&#34;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;hello&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;/hello.js&#34;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&#34;options&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;hideSearchBar&#34;</span><span class="p">:</span> <span class="kc">true</span>
+  <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>Here we can add the url for the js file from where the hello app will be loaded.</p>
-<p>After that we will need a configuration file for ocis where we can specify the path for the hello app in the backend. For this you can use the existing <code>proxy-example.json</code> file from the <a href="https://github.com/owncloud/ocis-proxy/blob/master/config/proxy-example.json">ocis-proxy</a> repo. Just add an extra endpoint at the end for the hello app.</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json">        <span class="p">{</span>
-          <span class="nt">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s2">&#34;/api/v0/greet&#34;</span><span class="p">,</span>
-          <span class="nt">&#34;backend&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:9105&#34;</span>
-        <span class="p">}</span>
-</code></pre></div><p>With all this in place we can finally start ocis. But first we will need to set some configuration variables.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">export REVA_USERS_DRIVER=ldap
-export REVA_LDAP_HOSTNAME=localhost
-export REVA_LDAP_PORT=636
-export REVA_LDAP_BASE_DN=&#39;dc=owncloud,dc=com&#39;
-export REVA_LDAP_USERFILTER=&#39;(&amp;(objectclass=posixAccount)(cn=%s))&#39;
-export REVA_LDAP_GROUPFILTER=&#39;(&amp;(objectclass=posixGroup)(cn=%s))&#39;
-export REVA_LDAP_BIND_DN=&#39;cn=admin,dc=owncloud,dc=com&#39;
-export REVA_LDAP_BIND_PASSWORD=admin
-export REVA_LDAP_SCHEMA_UID=uid
-export REVA_LDAP_SCHEMA_MAIL=mail
-export REVA_LDAP_SCHEMA_DISPLAYNAME=displayName
-export REVA_LDAP_SCHEMA_CN=cn
-export LDAP_URI=ldap://localhost
-export LDAP_BINDDN=&#39;cn=admin,dc=owncloud,dc=com&#39;
-export LDAP_BINDPW=admin
-export LDAP_BASEDN=&#39;dc=owncloud,dc=com&#39;
-</code></pre></div><p>In addition to all these we will also need to set the config files we just modified. For that set these variables with the path to the config files.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">export PHOENIX_WEB_CONFIG=&lt;path to phoenix config file&gt;
-export OCIS_CONFIG_FILE=&lt;path to ocis proxy config file&gt;
-</code></pre></div><p>And finally start the ocis server</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">bin/ocis server
-</code></pre></div><p>After this we will need to start the ocis-hello service.
-For that just build ocis-hello binary.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">cd ocis-hello 
+
+</code></pre></div><p>Please note the the regististration of our Hello extension in the <code>external_apps</code> section. It will trigger ownCloud Web to load <code>hello.js</code>, the frontend bundle generated in the <a href="https://owncloud.dev/extensions/ocis_hello/building/#frontend">frontend build step</a>.</p>
+<p>The frontend bundle will be requested from the oCIS proxy and requests to our Hello extension&rsquo;s API will also be passed to the oCIS proxy first. Therefore the oCIS proxy needs to be configured to forward these requests to our Hello extension.
+We do this by using the existing <code>proxy-example.json</code> file from the <a href="https://github.com/owncloud/ocis/blob/master/proxy/config/proxy-example.json">oCIS proxy</a>. Just add an extra endpoint at the end for the Hello extension.</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s2">&#34;/api/v0/greet&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;backend&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:9105&#34;</span>
+<span class="p">}</span><span class="err">,</span>
+<span class="p">{</span>
+  <span class="nt">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s2">&#34;/hello.js&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;backend&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:9105&#34;</span>
+<span class="p">}</span>
+</code></pre></div><p>In addition to all these we will also need to activate the config files we just created. Therefore set these two variables with the path to the respective config file.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">export WEB_UI_CONFIG=&lt;path to web-config.json&gt;
+export PROXY_CONFIG_FILE=&lt;path to ocis proxy config file&gt;
+</code></pre></div><p>And finally start the oCIS server:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">ocis server
+</code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="start-the-extension">Start the extension<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/running/#start-the-extension" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Start the extension" href="#start-the-extension"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>After oCIS is running, we can start the Hello extension.</p>
+<p>For that just build ocis-hello binary.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">cd ocis-hello
 make
 </code></pre></div><p>And Run the service</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">bin/ocis-hello server
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">./bin/hello server
 </code></pre></div>
 
     </article>

@@ -1532,7 +1532,7 @@
             
                 <span class="flex">
                     <a href="/extensions/ocis_hello/" class="gdoc-nav__entry ">
-                        Hello
+                        Hello (example extension)
                     </a>
                 </span>
             
@@ -1561,31 +1561,6 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/ocis_hello/getting-started/" class="gdoc-nav__entry ">
-                        Getting Started
-                    </a>
-                </span>
-            
-            
-
-            
-            </li>
-            
-            
-        
-            
-            
-
-            
-            
-            
-            
-            
-
-            <li>
-            
-            
-                <span class="flex">
                     <a href="/extensions/ocis_hello/building/" class="gdoc-nav__entry ">
                         Building
                     </a>
@@ -1597,6 +1572,29 @@
             </li>
             
             
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/extensions/ocis_hello/configuration/" class="gdoc-nav__entry ">
+                        Configuration
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
         
             
             
@@ -1611,7 +1609,30 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/ocis_hello/configuration-with-ocis/" class="gdoc-nav__entry ">
+                    <a href="/extensions/ocis_hello/grpc/" class="gdoc-nav__entry ">
+                        GRPC API
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/extensions/ocis_hello/running/" class="gdoc-nav__entry ">
                         Running
                     </a>
                 </span>
@@ -1659,31 +1680,6 @@
                 <span class="flex">
                     <a href="/extensions/ocis_hello/testing/" class="gdoc-nav__entry ">
                         Testing
-                    </a>
-                </span>
-            
-            
-
-            
-            </li>
-            
-            
-        
-            
-            
-
-            
-            
-            
-            
-            
-
-            <li>
-            
-            
-                <span class="flex">
-                    <a href="/extensions/ocis_hello/license/" class="gdoc-nav__entry ">
-                        License
                     </a>
                 </span>
             
@@ -3516,7 +3512,7 @@
         
     
     
-        <a href='/'>ownCloud</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_hello/'>Hello</a> / Settings
+        <a href='/'>ownCloud</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_hello/'>Hello (example extension)</a> / Settings
     
 
     
@@ -3550,105 +3546,114 @@
     
 
 
-<p>The <em>ocis-settings</em> service exposes an endpoint for registering so called
-<a href="https://owncloud.github.io/extensions/ocis_settings/bundles/">settings bundles</a>.
-This gives control to every service to define settings that are needed for fulfilling it&rsquo;s intended purpose.
-There are different types of settings available out of the box - hopefully those already fit your needs.
-The settings defined through settings bundles can be changed by authenticated users through an <code>ocis-web</code>
-extension, which is also provided by the settings service. As a result, your service only has to register
-a settings bundle and oCIS takes care of everything else. Your service can simply use the settings values
-that were set by users.</p>
-<p>With this chapter we want to show you, how to register a settings bundle and how to use the respective
-values that were set by users. We do this by customizing the greeter phrase from our greeter service in ocis-hello.</p>
+<p>oCIS provides an settings extension that other extensions can use to make settings accessible to users.</p>
+<p>In case of the Hello extension administrator users are able to change the greeter message.</p>
+<p>Settings are stored and presented to the user by the oCIS settings extension. It also exposes endpoints for registering and manipulating so called
+<a href="https://owncloud.dev/extensions/settings/bundles/">settings bundles</a>.</p>
+<p>The settings defined through settings bundles can be changed by authenticated users in ownCloud Web, if they have enough permissions to edit them. As a result, your service only has to register a settings bundle and permissions for it and oCIS settings takes care of everything else. Your service can simply use the settings values that were set by users.</p>
+<p>In this chapter we want to show you how to register a settings bundle, the settings permissions and how to use the respective values that were set by users. We do this by customizing the greeter phrase from our greeter service in the Hello extension.</p>
 <p>You can find the source code, especially how it&rsquo;s integrated into the service, in the following files:</p>
 <ul>
-<li><code>pkg/service/v0/service.go</code> for the requests,</li>
-<li><code>pkg/command/server.go</code> for the integration of <code>RegisterSettingsBundles</code> into the service start.</li>
+<li><code>pkg/service/v0/service.go</code> for the requests</li>
+<li><code>pkg/command/server.go</code> for the integration of <code>registerSettingsBundles</code> into the service start</li>
 </ul>
-<div class="gdoc-page__anchorwrap"><h2 id="register-settings-bundle">Register settings bundle<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/settings/#register-settings-bundle" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Register settings bundle" href="#register-settings-bundle"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<div class="gdoc-page__anchorwrap"><h2 id="register-a-settings-bundle-and-set-the-permissions">Register a settings bundle and set the permissions<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/settings/#register-a-settings-bundle-and-set-the-permissions" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Register a settings bundle and set the permissions" href="#register-a-settings-bundle-and-set-the-permissions"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>In order to register a settings bundle, you need to create a request message and then send it
-to the <code>BundleService</code> of <code>ocis-settings</code> through a gRPC call.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="create-request">Create request<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/settings/#create-request" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Create request" href="#create-request"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">request</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">settings</span><span class="p">.</span><span class="nx">SaveSettingsBundleRequest</span><span class="p">{</span>
-    <span class="nx">SettingsBundle</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">settings</span><span class="p">.</span><span class="nx">SettingsBundle</span><span class="p">{</span>
-        <span class="nx">Identifier</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">settings</span><span class="p">.</span><span class="nx">Identifier</span><span class="p">{</span>
-            <span class="nx">Extension</span><span class="p">:</span> <span class="s">&#34;ocis-hello&#34;</span><span class="p">,</span>
-            <span class="nx">BundleKey</span><span class="p">:</span> <span class="s">&#34;greeting&#34;</span><span class="p">,</span>
-        <span class="p">},</span>
-        <span class="nx">DisplayName</span><span class="p">:</span> <span class="s">&#34;Greeting&#34;</span><span class="p">,</span>
-        <span class="nx">Settings</span><span class="p">:</span> <span class="p">[]</span><span class="o">*</span><span class="nx">settings</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{</span>
-            <span class="p">{</span>
-                <span class="nx">SettingKey</span><span class="p">:</span>  <span class="s">&#34;phrase&#34;</span><span class="p">,</span>
-                <span class="nx">DisplayName</span><span class="p">:</span> <span class="s">&#34;Phrase&#34;</span><span class="p">,</span>
-                <span class="nx">Description</span><span class="p">:</span> <span class="s">&#34;Phrase for replies on the greet request&#34;</span><span class="p">,</span>
-                <span class="nx">Value</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">settings</span><span class="p">.</span><span class="nx">Setting_StringValue</span><span class="p">{</span>
-                    <span class="nx">StringValue</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">settings</span><span class="p">.</span><span class="nx">StringSetting</span><span class="p">{</span>
-                        <span class="nx">Required</span><span class="p">:</span>  <span class="kc">true</span><span class="p">,</span>
-                        <span class="nx">Default</span><span class="p">:</span>   <span class="s">&#34;Hello&#34;</span><span class="p">,</span>
-                        <span class="nx">MaxLength</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
-                    <span class="p">},</span>
-                <span class="p">},</span>
-            <span class="p">},</span>
-        <span class="p">},</span>
+to the <code>BundleService</code> of <code>oCIS settings</code> through a gRPC call. The same applies for setting permissions on the setting bundles.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="create-a-bundle-request">Create a bundle request<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/settings/#create-a-bundle-request" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Create a bundle request" href="#create-a-bundle-request"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">request</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">settings</span><span class="p">.</span><span class="nx">SaveBundleRequest</span><span class="p">{</span>
+  <span class="nx">Bundle</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">settings</span><span class="p">.</span><span class="nx">Bundle</span><span class="p">{</span>
+    <span class="nx">Id</span><span class="p">:</span>          <span class="nx">bundleIDGreeting</span><span class="p">,</span>
+    <span class="nx">Name</span><span class="p">:</span>        <span class="s">&#34;greeting&#34;</span><span class="p">,</span>
+    <span class="nx">DisplayName</span><span class="p">:</span> <span class="s">&#34;Greeting&#34;</span><span class="p">,</span>
+    <span class="nx">Extension</span><span class="p">:</span>   <span class="s">&#34;ocis-hello&#34;</span><span class="p">,</span>
+    <span class="nx">Type</span><span class="p">:</span>        <span class="nx">settings</span><span class="p">.</span><span class="nx">Bundle_TYPE_DEFAULT</span><span class="p">,</span>
+    <span class="nx">Resource</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">settings</span><span class="p">.</span><span class="nx">Resource</span><span class="p">{</span>
+      <span class="nx">Type</span><span class="p">:</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">Resource_TYPE_SYSTEM</span><span class="p">,</span>
     <span class="p">},</span>
-<span class="p">}</span>
+    <span class="nx">Settings</span><span class="p">:</span> <span class="p">[]</span><span class="o">*</span><span class="nx">settings</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{</span>
+      <span class="p">{</span>
+        <span class="nx">Id</span><span class="p">:</span>          <span class="nx">settingIDGreeterPhrase</span><span class="p">,</span>
+        <span class="nx">Name</span><span class="p">:</span>        <span class="s">&#34;phrase&#34;</span><span class="p">,</span>
+        <span class="nx">DisplayName</span><span class="p">:</span> <span class="s">&#34;Phrase&#34;</span><span class="p">,</span>
+        <span class="nx">Description</span><span class="p">:</span> <span class="s">&#34;Phrase for replies on the greet request&#34;</span><span class="p">,</span>
+        <span class="nx">Resource</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">settings</span><span class="p">.</span><span class="nx">Resource</span><span class="p">{</span>
+          <span class="nx">Type</span><span class="p">:</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">Resource_TYPE_SYSTEM</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="nx">Value</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">settings</span><span class="p">.</span><span class="nx">Setting_StringValue</span><span class="p">{</span>
+          <span class="nx">StringValue</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">settings</span><span class="p">.</span><span class="nx">String</span><span class="p">{</span>
+            <span class="nx">Required</span><span class="p">:</span>  <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">Default</span><span class="p">:</span>   <span class="s">&#34;Hello&#34;</span><span class="p">,</span>
+            <span class="nx">MaxLength</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+          <span class="p">},</span>
+        <span class="p">},</span>
+      <span class="p">},</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+
 </code></pre></div><p>The request holds only one field, which is a <code>SettingsBundle</code>. It consists of an <code>Identifier</code>, a <code>DisplayName</code>
 and a list of <code>Settings</code>.</p>
 <ul>
-<li>The <code>Extension</code> and <code>BundleKey</code> inside the <code>Identifier</code> are required and have to be
-alphanumeric (<code>-</code> and <code>_</code> are allowed as well). The <code>Identifier</code> has to stay stable - if you change it, existing
-settings will not be migrated to the new identifier.</li>
-<li>The <code>DisplayName</code> is required and may contain any UTF8 character. It will be shown in the settings user frontend
-in a generated form, so please try to be descriptive. You can change the <code>DisplayName</code> at any time.</li>
+<li>The <code>Extension</code> and the <code>ID</code> of the bundle are required and have to be
+alphanumeric (<code>-</code> and <code>_</code> are allowed as well). The <code>ID</code> has to stay stable - if you change it, existing settings will not be migrated to the new identifier.</li>
+<li>The <code>DisplayName</code> is required and may contain any UTF8 character. It will be shown in the settings user frontend in a generated form, so please try to be descriptive. You can change the <code>DisplayName</code> at any time.</li>
 <li><code>Settings</code> is the list of settings you want to make available with this settings bundle. In this example, there
 is only one setting defined - a string setting for the phrase our greeter uses in the response. You can explore
-more types of settings in the <code>settings</code> package. All of them come with their own characteristics and validations.
-For the <code>phrase</code> setting we decided to set it to <code>Required</code>, so that it can&rsquo;t be empty, and to set a <code>MaxLength</code>
-of 15 characters, so that the phrase is not too long. The <code>SettingKey</code> is particularly important, as this is
-used for referencing the setting in other requests. It has to fulfill the same rules as the other <code>Identifier</code>
-attributes. Please also take the time to set a <code>Description</code>, in order to provide accessibility in the generated
-forms as good as possible.</li>
+more types of settings in the <code>settings</code> package. All of them come with their own characteristics and validations. For the <code>phrase</code> setting we decided to set it to <code>Required</code>, so that it can&rsquo;t be empty, and to set a <code>MaxLength</code> of 15 characters, so that the phrase is not too long. The <code>ID</code> of the setting is again particularly important, as this is used for referencing the setting in other requests. It has to fulfill the same rules as the other <code>ID</code> attributes. Please also take the time to set a <code>Description</code>, in order to provide accessibility in the generated forms as good as possible.</li>
 </ul>
-<div class="gdoc-page__anchorwrap"><h3 id="send-request-to-ocis-settings">Send request to ocis-settings<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/settings/#send-request-to-ocis-settings" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Send request to ocis-settings" href="#send-request-to-ocis-settings"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>This request message can be sent to the <code>BundleService</code> of <code>ocis-settings</code> like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">bundleService</span> <span class="o">:=</span> <span class="nx">settings</span><span class="p">.</span><span class="nf">NewBundleService</span><span class="p">(</span><span class="s">&#34;com.owncloud.api.settings&#34;</span><span class="p">,</span> <span class="nx">mclient</span><span class="p">.</span><span class="nx">DefaultClient</span><span class="p">)</span>
-<span class="nx">response</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">bundleService</span><span class="p">.</span><span class="nf">SaveSettingsBundle</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="nx">request</span><span class="p">)</span>
-</code></pre></div><p>We run this request on every start of <code>ocis-hello</code> so that the settings service always has the most recent
-version of the settings bundle.</p>
-<div class="gdoc-page__anchorwrap"><h2 id="use-settings-value">Use settings value<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/settings/#use-settings-value" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Use settings value" href="#use-settings-value"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>We registered the greeter phrase setting for a reason: We want to allow the authenticated user to customize
-how they want to be greeted by <code>ocis-hello</code>. In order to do this, we need to ask <code>ocis-settings</code> on every
-request, what the greeter phrase of the authenticated user is.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="account-uuid">Account UUID<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/settings/#account-uuid" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Account UUID" href="#account-uuid"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>The settings request has one important prerequisite: As our service is stateless, we need to know the
-account UUID of the authenticated user the incoming POST request to our greeter service is coming from.
-As that POST request is coming through <code>ocis-proxy</code>, there is an HTTP header <code>x-access-token</code> that holds
-a JWT with the account UUID in it. We just have to dismantle the JWT to get the UUID. There is a middleware for
-that in <code>ocis-pkg</code>. You can look up the server configuration for that middleware in <code>pkg/server/http/server.go</code>.
-In essence, it dismantles the <code>x-access-token</code>, extracts the account UUID and makes it available in the context.
-It can be subsequently retrieved from the context like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">ownAccountUUID</span> <span class="o">:=</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">Value</span><span class="p">(</span><span class="nx">middleware</span><span class="p">.</span><span class="nx">UUIDKey</span><span class="p">).(</span><span class="kt">string</span><span class="p">)</span>
-</code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="create-request-1">Create request<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/settings/#create-request-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Create request" href="#create-request-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>With the account UUID we can build an <code>Identifier</code> for the request to <code>ocis-settings</code> as follows:</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">request</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">settings</span><span class="p">.</span><span class="nx">GetSettingsValueRequest</span><span class="p">{</span>
-    <span class="nx">Identifier</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">settings</span><span class="p">.</span><span class="nx">Identifier</span><span class="p">{</span>
-        <span class="nx">Extension</span><span class="p">:</span>   <span class="s">&#34;ocis-hello&#34;</span><span class="p">,</span>
-        <span class="nx">BundleKey</span><span class="p">:</span>   <span class="s">&#34;greeting&#34;</span><span class="p">,</span>
-        <span class="nx">SettingKey</span><span class="p">:</span>  <span class="s">&#34;phrase&#34;</span><span class="p">,</span>
-        <span class="nx">AccountUuid</span><span class="p">:</span> <span class="nx">ownAccountUUID</span><span class="p">,</span>
+<div class="gdoc-page__anchorwrap"><h3 id="send-bundle-request-to-ocis-settings">Send bundle request to oCIS settings<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/settings/#send-bundle-request-to-ocis-settings" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Send bundle request to oCIS settings" href="#send-bundle-request-to-ocis-settings"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>This request message can be sent to the <code>BundleService</code> of <code>oCIS settings</code> like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">settings</span> <span class="o">:=</span> <span class="nx">settings</span><span class="p">.</span><span class="nf">NewBundleService</span><span class="p">(</span><span class="s">&#34;com.owncloud.api.settings&#34;</span><span class="p">,</span> <span class="nx">mclient</span><span class="p">.</span><span class="nx">DefaultClient</span><span class="p">)</span>
+<span class="nx">response</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">bundleService</span><span class="p">.</span><span class="nf">SaveBundle</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="nx">request</span><span class="p">)</span>
+</code></pre></div><p>We run this request on every start of the Hello extension so that the settings service always has the most recent version of the settings bundle.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="create-a-permission-settings-request">Create a permission settings request<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/settings/#create-a-permission-settings-request" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Create a permission settings request" href="#create-a-permission-settings-request"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>In order to grant admins access to the setting we need to create a <code>AddSettingToBundleRequest</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">permissionRequests</span> <span class="o">:=</span> <span class="p">[]</span><span class="o">*</span><span class="nx">settings</span><span class="p">.</span><span class="nx">AddSettingToBundleRequest</span><span class="p">{</span>
+  <span class="p">{</span>
+    <span class="nx">BundleId</span><span class="p">:</span> <span class="nx">ssvc</span><span class="p">.</span><span class="nx">BundleUUIDRoleAdmin</span><span class="p">,</span>
+    <span class="nx">Setting</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">settings</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{</span>
+      <span class="nx">Id</span><span class="p">:</span> <span class="s">&#34;d5f42c4b-e1b6-4b59-8eca-fc4b9e9f2320&#34;</span><span class="p">,</span>
+      <span class="nx">Resource</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">settings</span><span class="p">.</span><span class="nx">Resource</span><span class="p">{</span>
+        <span class="nx">Type</span><span class="p">:</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">Resource_TYPE_SETTING</span><span class="p">,</span>
+        <span class="nx">Id</span><span class="p">:</span>   <span class="nx">settingIDGreeterPhrase</span><span class="p">,</span>
+      <span class="p">},</span>
+      <span class="nx">Name</span><span class="p">:</span> <span class="s">&#34;phrase-admin-read&#34;</span><span class="p">,</span>
+      <span class="nx">Value</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">settings</span><span class="p">.</span><span class="nx">Setting_PermissionValue</span><span class="p">{</span>
+        <span class="nx">PermissionValue</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">settings</span><span class="p">.</span><span class="nx">Permission</span><span class="p">{</span>
+          <span class="nx">Operation</span><span class="p">:</span>  <span class="nx">settings</span><span class="p">.</span><span class="nx">Permission_OPERATION_READWRITE</span><span class="p">,</span>
+          <span class="nx">Constraint</span><span class="p">:</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">Permission_CONSTRAINT_OWN</span><span class="p">,</span>
+        <span class="p">},</span>
+      <span class="p">},</span>
     <span class="p">},</span>
+  <span class="p">},</span>
 <span class="p">}</span>
-</code></pre></div><p>The <code>Identifier</code> for getting a value from <code>ocis-settings</code> needs the three fields for extension, bundle and
-setting that we chose in the settings bundle. The fourth field is the UUID of the authenticated user.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="send-request-to-ocis-settings-1">Send request to ocis-settings<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/settings/#send-request-to-ocis-settings-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Send request to ocis-settings" href="#send-request-to-ocis-settings-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>This request message can be sent to the <code>ValueService</code> of <code>ocis-settings</code> like this:</p>
+</code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="send-permission-settings-request">Send permission settings request<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/settings/#send-permission-settings-request" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Send permission settings request" href="#send-permission-settings-request"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>The <code>AddSettingToBundleRequest</code> then needs to be send to the settings service:</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">response</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">bundleService</span><span class="p">.</span><span class="nf">AddSettingToBundle</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="nx">permissionRequests</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+</code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="use-settings-value">Use settings value<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/settings/#use-settings-value" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Use settings value" href="#use-settings-value"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>We registered the greeter phrase setting for a reason: We want to allow authenticated administrator users to customize how users are greeted by the Hello extension. In order to do this, we need to ask oCIS settings on every request, what the greeter phrase of the authenticated user is.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="account-uuid">Account UUID<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/settings/#account-uuid" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Account UUID" href="#account-uuid"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>The settings request has one important prerequisite: As our service is stateless, we need to know the account UUID of the authenticated user the incoming POST request to our greeter service is coming from.
+As that POST request is coming through oCIS proxy, there is an HTTP header <code>x-access-token</code> that holds a JWT with the account UUID in it. We just have to dismantle the JWT to get the UUID. There is a middleware for that in <code>ocis-pkg</code>. You can look up the server configuration for that middleware in <code>pkg/server/http/server.go</code>.
+In essence, it dismantles the <code>x-access-token</code>, extracts the account UUID and makes it available in the context.</p>
+<p>It can be subsequently retrieved from the context like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">accountID</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">metadata</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">middleware</span><span class="p">.</span><span class="nx">AccountID</span><span class="p">)</span>
+</code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="create-request">Create request<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/settings/#create-request" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Create request" href="#create-request"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>With the account UUID we can build an <code>Identifier</code> for the request to oCIS settings as follows:</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">rq</span> <span class="o">:=</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">GetValueByUniqueIdentifiersRequest</span><span class="p">{</span>
+  <span class="nx">AccountUuid</span><span class="p">:</span> <span class="nx">accountID</span><span class="p">,</span>
+  <span class="nx">SettingId</span><span class="p">:</span>   <span class="nx">settingIDGreeterPhrase</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nx">response</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">vsClient</span><span class="p">.</span><span class="nf">GetValueByUniqueIdentifiers</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="o">&amp;</span><span class="nx">rq</span><span class="p">)</span>
+</code></pre></div><p>In order to get the setting we need to know which user (<code>AccountUuid</code>) is requesting the settings value and which setting he is requesting (<code>SettingId</code>).</p>
+<div class="gdoc-page__anchorwrap"><h3 id="send-request">Send request<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/settings/#send-request" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Send request" href="#send-request"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>This request message can be sent to the settings extension like this:</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">valueService</span> <span class="o">:=</span> <span class="nx">settings</span><span class="p">.</span><span class="nf">NewValueService</span><span class="p">(</span><span class="s">&#34;com.owncloud.api.settings&#34;</span><span class="p">,</span> <span class="nx">mclient</span><span class="p">.</span><span class="nx">DefaultClient</span><span class="p">)</span>
 <span class="nx">response</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">valueService</span><span class="p">.</span><span class="nf">GetSettingsValue</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">request</span><span class="p">)</span>
-</code></pre></div><p>If this request is successful we will have a - possibly customized - greeting phrase. It could also be the
-default value, if the user didn&rsquo;t customize their phrase in the settings frontend.</p>
+</code></pre></div><p>The request gives us the default or customized greeting phrase, depending on wether it has already been changed by an administrator.</p>
 <div class="gdoc-page__anchorwrap"><h2 id="conclusion">Conclusion<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/settings/#conclusion" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Conclusion" href="#conclusion"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>You have learned how to register <em>settings bundles</em>, how to get the account UUID of the authenticated user
-and how to query the settings service for <em>settings values</em>.</p>
+<p>You have learned how to register <em>settings bundles</em>, how to get the account UUID of the authenticated user and how to query the settings service for <em>settings values</em>.</p>
 
 
     </article>

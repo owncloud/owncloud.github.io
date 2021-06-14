@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="License">
+<meta name="description" content="Configuration">
 
-<title>License | ownCloud</title>
+<title>Configuration | ownCloud</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -1532,7 +1532,7 @@
             
                 <span class="flex">
                     <a href="/extensions/ocis_hello/" class="gdoc-nav__entry ">
-                        Hello
+                        Hello (example extension)
                     </a>
                 </span>
             
@@ -1561,31 +1561,6 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/ocis_hello/getting-started/" class="gdoc-nav__entry ">
-                        Getting Started
-                    </a>
-                </span>
-            
-            
-
-            
-            </li>
-            
-            
-        
-            
-            
-
-            
-            
-            
-            
-            
-
-            <li>
-            
-            
-                <span class="flex">
                     <a href="/extensions/ocis_hello/building/" class="gdoc-nav__entry ">
                         Building
                     </a>
@@ -1597,6 +1572,29 @@
             </li>
             
             
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/extensions/ocis_hello/configuration/" class="gdoc-nav__entry is-active">
+                        Configuration
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
         
             
             
@@ -1611,7 +1609,30 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/ocis_hello/configuration-with-ocis/" class="gdoc-nav__entry ">
+                    <a href="/extensions/ocis_hello/grpc/" class="gdoc-nav__entry ">
+                        GRPC API
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/extensions/ocis_hello/running/" class="gdoc-nav__entry ">
                         Running
                     </a>
                 </span>
@@ -1659,31 +1680,6 @@
                 <span class="flex">
                     <a href="/extensions/ocis_hello/testing/" class="gdoc-nav__entry ">
                         Testing
-                    </a>
-                </span>
-            
-            
-
-            
-            </li>
-            
-            
-        
-            
-            
-
-            
-            
-            
-            
-            
-
-            <li>
-            
-            
-                <span class="flex">
-                    <a href="/extensions/ocis_hello/license/" class="gdoc-nav__entry is-active">
-                        License
                     </a>
                 </span>
             
@@ -3516,7 +3512,7 @@
         
     
     
-        <a href='/'>ownCloud</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_hello/'>Hello</a> / License
+        <a href='/'>ownCloud</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_hello/'>Hello (example extension)</a> / Configuration
     
 
     
@@ -3532,7 +3528,7 @@
         
         <span class="editpage">
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis-hello/edit/master/docs/license.md">
+            <a href="https://github.com/owncloud/ocis-hello/edit/master/templates/CONFIGURATION.tmpl">
                 Edit this page
             </a>
         </span>
@@ -3542,7 +3538,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>License</h1>
+        <h1>Configuration</h1>
         
 
 
@@ -3550,7 +3546,102 @@
     
 
 
-<p>This project is licensed under the <a href="https://github.com/owncloud/ocis-hello/blob/master/LICENSE">Apache 2.0</a> license. For the license of the used libraries you have to check the respective sources.</p>
+
+
+
+  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
+        <li><a href="#configuration">Configuration</a>
+          <ul>
+            <li><a href="#configuration-using-config-files">Configuration using config files</a></li>
+            <li><a href="#environment-variables">Environment variables</a></li>
+            <li><a href="#command-line-flags">Command line flags</a></li>
+          </ul>
+        </li>
+        <li><a href="#root-command">Root Command</a></li>
+        <li><a href="#sub-commands">Sub Commands</a>
+          <ul>
+            <li><a href="#hello-health">hello health</a></li>
+            <li><a href="#hello-server">hello server</a></li>
+          </ul>
+        </li>
+      </ul></nav><hr></div>
+
+
+<div class="gdoc-page__anchorwrap"><h2 id="configuration">Configuration<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/configuration/#configuration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configuration" href="#configuration"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<div class="gdoc-page__anchorwrap"><h3 id="configuration-using-config-files">Configuration using config files<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/configuration/#configuration-using-config-files" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configuration using config files" href="#configuration-using-config-files"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Out of the box extensions will attempt to read configuration details from:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">/etc/ocis
+$HOME/.ocis
+./config
+</code></pre></div><p>For this configuration to be picked up, have a look at your extension <code>root</code> command and look for which default config name it has assigned. <em>i.e: ocis-hello reads <code>hello.json | yaml | toml ...</code></em>.</p>
+<p>So far we support the file formats <code>JSON</code> and <code>YAML</code>, if you want to get a full example configuration just take a look at <a href="https://github.com/owncloud/ocis-hello/tree/master/config">our repository</a>, there you can always see the latest configuration format. These example configurations include all available options and the default values. The configuration file will be automatically loaded if it&rsquo;s placed at <code>/etc/ocis/ocis.yml</code>, <code>${HOME}/.ocis/ocis.yml</code> or <code>$(pwd)/config/ocis.yml</code>.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="environment-variables">Environment variables<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/configuration/#environment-variables" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Environment variables" href="#environment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>If you prefer to configure the service with environment variables you can see the available variables below.</p>
+<p>If multiple variables are listed for one option, they are in order of precedence. This means the leftmost variable will always win if given.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="command-line-flags">Command line flags<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/configuration/#command-line-flags" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Command line flags" href="#command-line-flags"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>If you prefer to configure the service with command line flags you can see the available variables below. Command line flags are only working when calling the sub command directly.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="root-command">Root Command<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/configuration/#root-command" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Root Command" href="#root-command"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>Hello, an example oCIS extension</p>
+<p>Usage: <code>hello [global options] command [command options] [arguments...]</code></p>
+<dl>
+<dt>-config-file |  $HELLO_CONFIG_FILE</dt>
+<dd>Path to config file.</dd>
+<dt>-log-level |  $HELLO_LOG_LEVEL , $OCIS_LOG_LEVEL</dt>
+<dd>Set logging level. Default: <code>info</code>.</dd>
+<dt>-log-pretty |  $HELLO_LOG_PRETTY , $OCIS_LOG_PRETTY</dt>
+<dd>Enable pretty logging.</dd>
+<dt>-log-color |  $HELLO_LOG_COLOR , $OCIS_LOG_COLOR</dt>
+<dd>Enable colored logging.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap"><h2 id="sub-commands">Sub Commands<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/configuration/#sub-commands" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Sub Commands" href="#sub-commands"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<div class="gdoc-page__anchorwrap"><h3 id="hello-health">hello health<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/configuration/#hello-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor hello health" href="#hello-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Check health status</p>
+<p>Usage: <code>hello health [command options] [arguments...]</code></p>
+<dl>
+<dt>-debug-addr |  $HELLO_DEBUG_ADDR</dt>
+<dd>Address to debug endpoint. Default: <code>0.0.0.0:9109</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap"><h3 id="hello-server">hello server<a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/configuration/#hello-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor hello server" href="#hello-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>start hello service</p>
+<p>Usage: <code>hello server [command options] [arguments...]</code></p>
+<dl>
+<dt>-log-file |  $HELLO_LOG_FILE , $OCIS_LOG_FILE</dt>
+<dd>Enable log to file.</dd>
+<dt>-tracing-enabled |  $HELLO_TRACING_ENABLED</dt>
+<dd>Enable sending traces.</dd>
+<dt>-tracing-type |  $HELLO_TRACING_TYPE</dt>
+<dd>Tracing backend type. Default: <code>jaeger</code>.</dd>
+<dt>-tracing-endpoint |  $HELLO_TRACING_ENDPOINT</dt>
+<dd>Endpoint for the agent.</dd>
+<dt>-tracing-collector |  $HELLO_TRACING_COLLECTOR</dt>
+<dd>Endpoint for the collector.</dd>
+<dt>-tracing-service |  $HELLO_TRACING_SERVICE</dt>
+<dd>Service name for tracing. Default: <code>hello</code>.</dd>
+<dt>-debug-addr |  $HELLO_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>0.0.0.0:9109</code>.</dd>
+<dt>-debug-token |  $HELLO_DEBUG_TOKEN</dt>
+<dd>Token to grant metrics access.</dd>
+<dt>-debug-pprof |  $HELLO_DEBUG_PPROF</dt>
+<dd>Enable pprof debugging.</dd>
+<dt>-debug-zpages |  $HELLO_DEBUG_ZPAGES</dt>
+<dd>Enable zpages debugging.</dd>
+<dt>-http-namespace |  $HELLO_HTTP_NAMESPACE</dt>
+<dd>Set the base namespace for the http namespace. Default: <code>com.owncloud.web</code>.</dd>
+<dt>-http-addr |  $HELLO_HTTP_ADDR</dt>
+<dd>Address to bind http server. Default: <code>0.0.0.0:9105</code>.</dd>
+<dt>-http-root |  $HELLO_HTTP_ROOT</dt>
+<dd>Root path of http server. Default: <code>/</code>.</dd>
+<dt>-grpc-namespace |  $HELLO_GRPC_NAMESPACE</dt>
+<dd>Set the base namespace for the grpc namespace. Default: <code>com.owncloud.api</code>.</dd>
+<dt>-name |  $HELLO_NAME</dt>
+<dd>service name. Default: <code>flags.OverrideDefaultString(cfg.Server.Name, &quot;hello&quot;)</code>.</dd>
+<dt>-grpc-addr |  $HELLO_GRPC_ADDR</dt>
+<dd>Address to bind grpc server. Default: <code>0.0.0.0:9106</code>.</dd>
+<dt>-asset-path |  $HELLO_ASSET_PATH</dt>
+<dd>Path to custom assets.</dd>
+<dt>-jwt-secret |  $HELLO_JWT_SECRET</dt>
+<dd>Used to create JWT to talk to reva, should equal reva&rsquo;s jwt-secret. Default: <code>Pive-Fumkiu4</code>.</dd>
+</dl>
 
 
     </article>
