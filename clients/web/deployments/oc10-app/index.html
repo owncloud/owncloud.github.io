@@ -3560,7 +3560,12 @@
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#deploying-owncloud-web">Deploying ownCloud Web</a></li>
         <li><a href="#configure-oauth2">Configure oauth2</a></li>
-        <li><a href="#configure-owncloud-10">Configure ownCloud 10</a></li>
+        <li><a href="#configure-owncloud-10">Configure ownCloud 10</a>
+          <ul>
+            <li><a href="#set-owncloud-web-address">Set ownCloud Web address</a></li>
+            <li><a href="#configure-link-routing">Configure link routing</a></li>
+          </ul>
+        </li>
         <li><a href="#configure-owncloud-web">Configure ownCloud Web</a></li>
         <li><a href="#accessing-owncloud-web">Accessing ownCloud Web</a></li>
       </ul></nav><hr></div>
@@ -3585,8 +3590,12 @@ After completing this setup, ownCloud Web will be available on <code>https://&lt
 </figure>
 
 <div class="gdoc-page__anchorwrap"><h2 id="configure-owncloud-10">Configure ownCloud 10<a data-clipboard-text="https://owncloud.dev/clients/web/deployments/oc10-app/#configure-owncloud-10" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configure ownCloud 10" href="#configure-owncloud-10"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>To display ownCloud Web in the app switcher and to redirect all private and public links to the new WebUI, add the following config into <code>config/config.php</code>:</p>
+<div class="gdoc-page__anchorwrap"><h3 id="set-owncloud-web-address">Set ownCloud Web address<a data-clipboard-text="https://owncloud.dev/clients/web/deployments/oc10-app/#set-owncloud-web-address" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Set ownCloud Web address" href="#set-owncloud-web-address"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>To set the ownCloud Web address and to display ownCloud Web in the app switcher, add the following line into <code>config/config.php</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">&#39;web.baseUrl&#39; =&gt; &#39;https://<span class="p">&lt;</span><span class="nt">your-owncloud-server</span><span class="p">&gt;</span>/index.php/apps/web&#39;,
+</code></pre></div><div class="gdoc-page__anchorwrap"><h3 id="configure-link-routing">Configure link routing<a data-clipboard-text="https://owncloud.dev/clients/web/deployments/oc10-app/#configure-link-routing" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configure link routing" href="#configure-link-routing"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Administrators can optionally decide whether ownCloud Links (public and private links) should be provided by the Classic web interface or by ownCloud Web using the <code>web.rewriteLinks</code> option in <code>config/config.php</code>. The option defaults to <code>false</code> so that the links open in the Classic web interface. Setting it to <code>true</code> will redirect all links to ownCloud Web. To redirect all private and public links to ownCloud Web, add the following line into <code>config/config.php</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">&#39;web.rewriteLinks&#39; =&gt; &#39;true&#39;,
 </code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="configure-owncloud-web">Configure ownCloud Web<a data-clipboard-text="https://owncloud.dev/clients/web/deployments/oc10-app/#configure-owncloud-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configure ownCloud Web" href="#configure-owncloud-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>There are a few config values which need to be set in order for ownCloud Web to work correctly. Please copy the example config below into <code>config/config.json</code> and adjust it for your environment:</p>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
