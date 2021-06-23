@@ -3628,13 +3628,15 @@ The file by default looks like this:</p>
 
   <span class="c1">### Wopi server settings ###</span>
   <span class="c1"># oCIS Wopi server version. Defaults to &#34;latest&#34;</span>
-  <span class="nv">OCIS_WOPISERVER_DOCKER_TAG</span><span class="o">=</span>custom
+  <span class="nv">OCIS_WOPISERVER_DOCKER_TAG</span><span class="o">=</span>
   <span class="c1"># cs3org wopi server version. Defaults to &#34;latest&#34;</span>
   <span class="nv">CS3ORG_WOPISERVER_DOCKER_TAG</span><span class="o">=</span>
   <span class="c1"># cs3org wopi server domain. Defaults to &#34;wopiserver.owncloud.test&#34;</span>
   <span class="nv">WOPISERVER_DOMAIN</span><span class="o">=</span>
-  <span class="c1"># JWT secret which is used for the documents to be request by the Wopi client from the cs3org Wopi server. Must be change in order to have a secure Wopi server. Defaults to &#34;Pive-Fumkiu4&#34;</span>
+  <span class="c1"># JWT secret which is used for the documents to be request by the Wopi client from the cs3org Wopi server. Must be change in order to have a secure Wopi server. Defaults to &#34;LoremIpsum567&#34;</span>
   <span class="nv">WOPI_JWT_SECRET</span><span class="o">=</span>
+  <span class="c1"># JWT secret which is used for the documents to be request by the Wopi client from the cs3org Wopi server. Must be change in order to have a secure Wopi server. Defaults to &#34;LoremIpsum123&#34;</span>
+  <span class="nv">WOPI_IOP_SECRET</span><span class="o">=</span>
 
   <span class="c1">### Collabora settings ###</span>
   <span class="c1"># Domain of Collabora, where you can find the frontend. Defaults to &#34;collabora.owncloud.test&#34;</span>
@@ -3655,7 +3657,7 @@ The file by default looks like this:</p>
 <p>By default the oCIS WOPI server extension will be started in the <code>latest</code> version. If you want to start a specific version of oCIS WOPI server set the version to <code>OCIS_WOPISERVER_DOCKER_TAG=</code>. Available versions can be found on <a href="https://hub.docker.com/r/owncloud/ocis-wopiserver/tags?page=1&amp;ordering=last_updated">Docker Hub</a>.</p>
 <p>By default the CS3Org WOPI server will also be started in the <code>latest</code> version. If you want to start a specific version of it, you can set the version to <code>CS3ORG_WOPISERVER_DOCKER_TAG=</code>. Available versions can be found on <a href="https://hub.docker.com/r/cs3org/wopiserver/tags?page=1&amp;ordering=last_updated">Docker Hub</a>.</p>
 <p>Set your domain for the CS3Org WOPI server in <code>WOPISERVER_DOMAIN=</code>, where Collabora can download the files.</p>
-<p>You also must override the default WOPI JWT secret, in order to have a secure setup. Do this by setting <code>WOPI_JWT_SECRET</code> to a long and random string.</p>
+<p>You also must override the default WOPI JWT secret and the WOPI IOP secret, in order to have a secure setup. Do this by setting <code>WOPI_JWT_SECRET</code> and <code>WOPI_IOP_SECRET</code> to a long and random string.</p>
 <p>Now it&rsquo;s time to set up Collabora and you need to configure the Domain of Collabora in <code>COLLABORA_DOMAIN=</code>.</p>
 <p>If you want to use the Collabora admin panel you need to set user name and passwort for in <code>COLLABORA_ADMIN_USER=</code> and <code>COLLABORA_ADMIN_PASSWORD=</code>.</p>
 <p>Now you have configured everything and can save the file.</p>
