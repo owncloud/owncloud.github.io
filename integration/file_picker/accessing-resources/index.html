@@ -3554,7 +3554,7 @@
       </ul></nav><hr></div>
 
 
-<p>File picker is returning selected resources via event called <code>selectResources</code>. To access them, you need to set an event listener where you&rsquo;ll be able to get them as part of the response of the callback function.</p>
+<p>If using File picker as a web component, it is returning selected resources via events called <code>select</code> and <code>update</code>. To access them, you need to set an event listener where you&rsquo;ll be able to get them as part of the response of the callback function.</p>
 <div class="gdoc-page__anchorwrap"><h2 id="access-resources">Access resources<a data-clipboard-text="https://owncloud.dev/integration/file_picker/accessing-resources/#access-resources" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Access resources" href="#access-resources"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">file-picker</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;file-picker&#34;</span> <span class="na">variation</span><span class="o">=</span><span class="s">&#34;resource&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">file-picker</span><span class="p">&gt;</span>
 
@@ -3562,7 +3562,7 @@
   <span class="kr">const</span> <span class="nx">item</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;file-picker&#39;</span><span class="p">)</span>
   <span class="kd">let</span> <span class="nx">resources</span> <span class="o">=</span> <span class="p">[]</span>
 
-  <span class="nx">item</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;selectResources&#39;</span><span class="p">,</span> <span class="nx">event</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">item</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;select&#39;</span><span class="p">,</span> <span class="nx">event</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">resources</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">detail</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
   <span class="p">})</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
