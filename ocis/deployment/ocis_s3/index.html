@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Configuration">
+<meta name="description" content="oCIS with S3 storage backend (MinIO)">
 
-<title>Configuration | ownCloud</title>
+<title>oCIS with S3 storage backend (MinIO) | ownCloud</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -686,7 +686,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-b3fc9a63" class="gdoc-nav__toggle" >
+            <input type="checkbox" id="navtree-b3fc9a63" class="gdoc-nav__toggle" checked>
             <label for="navtree-b3fc9a63" class="flex justify-between">
             
             
@@ -840,7 +840,7 @@
             
             
                 <span class="flex">
-                    <a href="/ocis/deployment/ocis_s3/" class="gdoc-nav__entry ">
+                    <a href="/ocis/deployment/ocis_s3/" class="gdoc-nav__entry is-active">
                         oCIS with S3 storage backend (MinIO)
                     </a>
                 </span>
@@ -2941,7 +2941,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-fe12edef" class="gdoc-nav__toggle" checked>
+            <input type="checkbox" id="navtree-fe12edef" class="gdoc-nav__toggle" >
             <label for="navtree-fe12edef" class="flex justify-between">
             
             
@@ -2976,7 +2976,7 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/store/configuration/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/store/configuration/" class="gdoc-nav__entry ">
                         Configuration
                     </a>
                 </span>
@@ -3558,7 +3558,7 @@
         
     
     
-        <a href='/'>ownCloud</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/store/'>Store</a> / Configuration
+        <a href='/'>ownCloud</a> / <a href='/ocis/'>oCIS - ownCloud Infinite Scale</a> / <a href='/ocis/deployment/'>Deployment</a> / oCIS with S3 storage backend (MinIO)
     
 
     
@@ -3574,7 +3574,7 @@
         
         <span class="editpage">
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/store/templates/CONFIGURATION.tmpl">
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/deployment/ocis_wopi.md">
                 Edit this page
             </a>
         </span>
@@ -3584,7 +3584,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>Configuration</h1>
+        <h1>oCIS with S3 storage backend (MinIO)</h1>
         
 
 
@@ -3596,93 +3596,120 @@
 
 
   <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
-        <li><a href="#configuration">Configuration</a>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#server-deployment">Server Deployment</a>
           <ul>
-            <li><a href="#configuration-using-config-files">Configuration using config files</a></li>
-            <li><a href="#environment-variables">Environment variables</a></li>
-            <li><a href="#commandline-flags">Commandline flags</a></li>
-            <li><a href="#store-health">store health</a></li>
-            <li><a href="#store-ocis-store">store ocis-store</a></li>
-            <li><a href="#store-server">store server</a></li>
-            <li><a href="#store-version">store version</a></li>
+            <li><a href="#requirements">Requirements</a></li>
+            <li><a href="#install-ocis-and-traefik">Install oCIS and Traefik</a></li>
           </ul>
         </li>
+        <li><a href="#local-setup">Local setup</a></li>
       </ul></nav><hr></div>
 
 
-<div class="gdoc-page__anchorwrap"><h2 id="configuration">Configuration<a data-clipboard-text="https://owncloud.dev/extensions/store/configuration/#configuration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configuration" href="#configuration"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<div class="gdoc-page__anchorwrap"><h3 id="configuration-using-config-files">Configuration using config files<a data-clipboard-text="https://owncloud.dev/extensions/store/configuration/#configuration-using-config-files" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configuration using config files" href="#configuration-using-config-files"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Out of the box extensions will attempt to read configuration details from:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">/etc/ocis
-$HOME/.ocis
-./config
-</code></pre></div><p>For this configuration to be picked up, have a look at your extension <code>root</code> command and look for which default config name it has assigned. <em>i.e: ocis-proxy reads <code>proxy.json | yaml | toml ...</code></em>.</p>
-<p>So far we support the file formats <code>JSON</code> and <code>YAML</code>, if you want to get a full example configuration just take a look at <a href="https://github.com/owncloud/ocis/tree/master/store/config">our repository</a>, there you can always see the latest configuration format. These example configurations include all available options and the default values. The configuration file will be automatically loaded if it&rsquo;s placed at <code>/etc/ocis/ocis.yml</code>, <code>${HOME}/.ocis/ocis.yml</code> or <code>$(pwd)/config/ocis.yml</code>.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="environment-variables">Environment variables<a data-clipboard-text="https://owncloud.dev/extensions/store/configuration/#environment-variables" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Environment variables" href="#environment-variables"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>If you prefer to configure the service with environment variables you can see the available variables below.</p>
-<p>If multiple variables are listed for one option, they are in order of precedence. This means the leftmost variable will always win if given.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="commandline-flags">Commandline flags<a data-clipboard-text="https://owncloud.dev/extensions/store/configuration/#commandline-flags" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Commandline flags" href="#commandline-flags"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>If you prefer to configure the service with commandline flags you can see the available variables below. Command line flags are only working when calling the subcommand directly.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="store-health">store health<a data-clipboard-text="https://owncloud.dev/extensions/store/configuration/#store-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor store health" href="#store-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Check health status</p>
-<p>Usage: <code>store health [command options] [arguments...]</code></p>
-<dl>
-<dt>-debug-addr |  $STORE_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>flags.OverrideDefaultString(cfg.Debug.Addr, &quot;0.0.0.0:9460&quot;)</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="store-ocis-store">store ocis-store<a data-clipboard-text="https://owncloud.dev/extensions/store/configuration/#store-ocis-store" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor store ocis-store" href="#store-ocis-store"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Service to store values for ocis extensions</p>
-<p>Usage: <code>store ocis-store [command options] [arguments...]</code></p>
-<dl>
-<dt>-config-file |  $STORE_CONFIG_FILE</dt>
-<dd>Path to config file.</dd>
-<dt>-log-level |  $STORE_LOG_LEVEL , $OCIS_LOG_LEVEL</dt>
-<dd>Set logging level.</dd>
-<dt>-log-pretty |  $STORE_LOG_PRETTY , $OCIS_LOG_PRETTY</dt>
-<dd>Enable pretty logging.</dd>
-<dt>-log-color |  $STORE_LOG_COLOR , $OCIS_LOG_COLOR</dt>
-<dd>Enable colored logging.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="store-server">store server<a data-clipboard-text="https://owncloud.dev/extensions/store/configuration/#store-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor store server" href="#store-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Start integrated server</p>
-<p>Usage: <code>store server [command options] [arguments...]</code></p>
-<dl>
-<dt>-log-file |  $STORE_LOG_FILE , $OCIS_LOG_FILE</dt>
-<dd>Enable log to file.</dd>
-<dt>-tracing-enabled |  $STORE_TRACING_ENABLED</dt>
-<dd>Enable sending traces.</dd>
-<dt>-tracing-type |  $STORE_TRACING_TYPE</dt>
-<dd>Tracing backend type. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Type, &quot;jaeger&quot;)</code>.</dd>
-<dt>-tracing-endpoint |  $STORE_TRACING_ENDPOINT</dt>
-<dd>Endpoint for the agent. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Endpoint, &quot;&quot;)</code>.</dd>
-<dt>-tracing-collector |  $STORE_TRACING_COLLECTOR</dt>
-<dd>Endpoint for the collector. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Collector, &quot;&quot;)</code>.</dd>
-<dt>-tracing-service |  $STORE_TRACING_SERVICE</dt>
-<dd>Service name for tracing. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Service, &quot;store&quot;)</code>.</dd>
-<dt>-debug-addr |  $STORE_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>flags.OverrideDefaultString(cfg.Debug.Addr, &quot;0.0.0.0:9460&quot;)</code>.</dd>
-<dt>-debug-token |  $STORE_DEBUG_TOKEN</dt>
-<dd>Token to grant metrics access. Default: <code>flags.OverrideDefaultString(cfg.Debug.Token, &quot;&quot;)</code>.</dd>
-<dt>-debug-pprof |  $STORE_DEBUG_PPROF</dt>
-<dd>Enable pprof debugging.</dd>
-<dt>-debug-zpages |  $STORE_DEBUG_ZPAGES</dt>
-<dd>Enable zpages debugging.</dd>
-<dt>-grpc-namespace |  $STORE_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>flags.OverrideDefaultString(cfg.Service.Namespace, &quot;com.owncloud.api&quot;)</code>.</dd>
-<dt>-name |  $STORE_NAME</dt>
-<dd>Service name. Default: <code>flags.OverrideDefaultString(cfg.Service.Name, &quot;store&quot;)</code>.</dd>
-<dt>-data-path |  $STORE_DATA_PATH</dt>
-<dd>location of the store data path. Default: <code>flags.OverrideDefaultString(cfg.Datapath, &quot;/var/tmp/ocis/store&quot;)</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="store-version">store version<a data-clipboard-text="https://owncloud.dev/extensions/store/configuration/#store-version" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor store version" href="#store-version"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Print the versions of the running instances</p>
-<p>Usage: <code>store version [command options] [arguments...]</code></p>
-<dl>
-<dt>-grpc-namespace |  $STORE_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>flags.OverrideDefaultString(cfg.Service.Namespace, &quot;com.owncloud.api&quot;)</code>.</dd>
-<dt>-name |  $STORE_NAME</dt>
-<dd>Service name. Default: <code>flags.OverrideDefaultString(cfg.Service.Name, &quot;store&quot;)</code>.</dd>
-</dl>
+<div class="gdoc-page__anchorwrap"><h2 id="overview">Overview<a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_s3/#overview" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Overview" href="#overview"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<ul>
+<li>oCIS running behind Traefik as reverse proxy</li>
+<li>MinIO as S3 compatible storage provider</li>
+<li>oCIS is configured to use S3 as user storage provider</li>
+<li>Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup</li>
+</ul>
+<p><a href="https://github.com/owncloud/ocis/tree/master/deployments/examples/ocis_wopi">Find this example on GitHub</a></p>
+<p>The docker stack consists 3 containers. One of them is Traefik, a proxy which is terminating SSL and forwards the requests to oCIS in the internal docker network.</p>
+<p>The next container is oCIS itself in a configuration like the <a href="https://owncloud.dev/ocis/deployment/ocis_traefik/">oCIS with Traefik example</a>, except that it will use S3 as user storage.</p>
+<p>The last container is MinIO, providing a S3 compatible API, where oCIS will store its&rsquo; data.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="server-deployment">Server Deployment<a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_s3/#server-deployment" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Server Deployment" href="#server-deployment"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<div class="gdoc-page__anchorwrap"><h3 id="requirements">Requirements<a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_s3/#requirements" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Requirements" href="#requirements"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>Linux server with docker and docker-compose installed</li>
+<li>Three domains set up and pointing to your server
+<ul>
+<li>ocis.* for serving oCIS</li>
+<li>minio.* for accessing the MinIO S3 bucket in the browser</li>
+<li>traefik.* for serving the Traefik dashboard</li>
+</ul>
+</li>
+</ul>
+<p>See also <a href="https://owncloud.dev/ocis/deployment/preparing_server/">example server setup</a></p>
+<div class="gdoc-page__anchorwrap"><h3 id="install-ocis-and-traefik">Install oCIS and Traefik<a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_s3/#install-ocis-and-traefik" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Install oCIS and Traefik" href="#install-ocis-and-traefik"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>
+<p>Clone oCIS repository</p>
+<p><code>git clone https://github.com/owncloud/ocis.git</code></p>
+</li>
+<li>
+<p>Go to the deployment example</p>
+<p>`cd ocis/deployment/examples/ocis_s3</p>
+</li>
+<li>
+<p>Open the <code>.env</code> file in a text editor
+The file by default looks like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">    <span class="c1"># If you&#39;re on a internet facing server please comment out following line.</span>
+    <span class="c1"># It skips certificate validation for various parts of oCIS and is needed if you use self signed certificates.</span>
+    <span class="nv">INSECURE</span><span class="o">=</span><span class="nb">true</span>
+
+    <span class="c1">### Traefik settings ###</span>
+    <span class="c1"># Serve Treafik dashboard. Defaults to &#34;false&#34;.</span>
+    <span class="nv">TRAEFIK_DASHBOARD</span><span class="o">=</span>
+    <span class="c1"># Domain of Traefik, where you can find the dashboard. Defaults to &#34;traefik.owncloud.test&#34;</span>
+    <span class="nv">TRAEFIK_DOMAIN</span><span class="o">=</span>
+    <span class="c1"># Basic authentication for the dashboard. Defaults to user &#34;admin&#34; and password &#34;admin&#34;</span>
+    <span class="nv">TRAEFIK_BASIC_AUTH_USERS</span><span class="o">=</span>
+    <span class="c1"># Email address for obtaining LetsEncrypt certificates, needs only be changed if this is a public facing server</span>
+    <span class="nv">TRAEFIK_ACME_MAIL</span><span class="o">=</span>
+
+    <span class="c1">### oCIS settings ###</span>
+    <span class="c1"># oCIS version. Defaults to &#34;latest&#34;</span>
+    <span class="nv">OCIS_DOCKER_TAG</span><span class="o">=</span>
+    <span class="c1"># Domain of oCIS, where you can find the frontend. Defaults to &#34;ocis.owncloud.test&#34;</span>
+    <span class="nv">OCIS_DOMAIN</span><span class="o">=</span>
+    <span class="c1"># IDP LDAP bind password. Must be changed in order to have a secure oCIS. Defaults to &#34;idp&#34;.</span>
+    <span class="nv">IDP_LDAP_BIND_PASSWORD</span><span class="o">=</span>
+    <span class="c1"># Storage LDAP bind password. Must be changed in order to have a secure oCIS. Defaults to &#34;reva&#34;.</span>
+    <span class="nv">STORAGE_LDAP_BIND_PASSWORD</span><span class="o">=</span>
+    <span class="c1"># JWT secret which is used for the storage provider. Must be changed in order to have a secure oCIS. Defaults to &#34;Pive-Fumkiu4&#34;</span>
+    <span class="nv">OCIS_JWT_SECRET</span><span class="o">=</span>
+
+    <span class="c1">### MINIO / S3 settings ###</span>
+    <span class="c1"># Domain of MinIO where the Web UI is accessible. Defaults to &#34;minio.owncloud.test&#34;.</span>
+    <span class="nv">MINIO_DOMAIN</span><span class="o">=</span>
+    <span class="c1"># S3 bucket name, where oCIS stores its data in. Defaults to &#34;ocis-bucket&#34;.</span>
+    <span class="nv">MINIO_BUCKET</span><span class="o">=</span>
+    <span class="c1"># S3 bucket access key, which oCIS uses to authenticate. Defaults to &#34;ocis&#34;.</span>
+    <span class="nv">MINIO_ACCESS_KEY</span><span class="o">=</span>
+    <span class="c1"># S3 bucket access key secret, which oCIS uses to authenticate. Defaults to &#34;ocis-secret-key&#34;.</span>
+    <span class="nv">MINIO_SECRET_KEY</span><span class="o">=</span>
+
+</code></pre></div><p>You are installing oCIS on a server and Traefik will obtain valid certificates for you so please remove <code>INSECURE=true</code> or set it to <code>false</code>.</p>
+<p>If you want to use the Traefik dashboard, set TRAEFIK_DASHBOARD to <code>true</code> (default is <code>false</code> and therefore not active). If you activate it, you must set a domain for the Traefik dashboard in <code>TRAEFIK_DOMAIN=</code> eg. <code>TRAEFIK_DOMAIN=traefik.owncloud.test</code>.</p>
+<p>The Traefik dashboard is secured by basic auth. Default credentials are the user <code>admin</code> with the password <code>admin</code>. To set your own credentials, generate a htpasswd (eg. by using <a href="https://htpasswdgenerator.de/">an online tool</a> or a cli tool).</p>
+<p>Traefik will issue certificates with LetsEncrypt and therefore you must set an email address in <code>TRAEFIK_ACME_MAIL=</code>.</p>
+<p>By default oCIS will be started in the <code>latest</code> version. If you want to start a specific version of oCIS set the version to <code>OCIS_DOCKER_TAG=</code>. Available versions can be found on <a href="https://hub.docker.com/r/owncloud/ocis/tags?page=1&amp;ordering=last_updated">Docker Hub</a>.</p>
+<p>Set your domain for the oCIS frontend in <code>OCIS_DOMAIN=</code>, eg. <code>OCIS_DOMAIN=ocis.owncloud.test</code>.</p>
+<p>You also must override three default secrets in <code>IDP_LDAP_BIND_PASSWORD</code>, <code>STORAGE_LDAP_BIND_PASSWORD</code> and <code>OCIS_JWT_SECRET</code> in order to secure your oCIS instance. Choose some random strings eg. from the output of <code>openssl rand -base64 32</code>. For more information see <a href="https://owncloud.dev/ocis/deployment/#secure-an-ocis-instance">secure an oCIS instance</a>.</p>
+<p>Set your domain for the MinIO frontend in <code>MINIO_DOMAIN=</code>, eg. <code>MINIO_DOMAIN=minio.owncloud.test</code>. If you are using other S3-compatible providers you need to configure the respective endpoint here.</p>
+<p>If you like you can change the default name of the S3 bucket by setting <code>MINIO_BUCKET=</code> to a different value.</p>
+<p>You also must override the S3 bucket credentials in <code>MINIO_ACCESS_KEY</code> and <code>MINIO_SECRET_KEY</code> in order to secure your MinIO instance. Choose some random strings eg. from the output of <code>openssl rand -base64 32</code>.</p>
+<p>Now you have configured everything and can save the file.</p>
+</li>
+<li>
+<p>Start the docker stack</p>
+<p><code>docker-compose up -d</code></p>
+</li>
+<li>
+<p>You now can visit oCIS and are able to use it just normally. If you log into the web UI of MinIO, you will see blobs of files you uploaded.</p>
+</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h2 id="local-setup">Local setup<a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_s3/#local-setup" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Local setup" href="#local-setup"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>For a more simple local ocis setup see <a href="https://owncloud.dev/ocis/getting-started/">Getting started</a></p>
+<p>This docker stack can also be run locally. One downside is that Traefik can not obtain valid SSL certificates and therefore will create self signed ones. This means that your browser will show scary warnings. Another downside is that you can not point DNS entries to your localhost. So you have to add static host entries to your computer.</p>
+<p>On Linux and macOS you can add them to your <code>/etc/hosts</code> files like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">127.0.0.1 ocis.owncloud.test
+127.0.0.1 traefik.owncloud.test
+127.0.0.1 minio.owncloud.test
+</code></pre></div><p>After that you&rsquo;re ready to start the application stack:</p>
+<p><code>docker-compose up -d</code></p>
+<p>Open <a href="https://ocis.owncloud.test">https://ocis.owncloud.test</a> in your browser and accept the invalid certificate warning. You now can use oCIS normally and should now upload a file. Open <a href="https://minio.owncloud.test">https://minio.owncloud.test</a> in your browser and accept the invalid certificate warning, after that you will see blobs of files you have uploaded to oCIS.</p>
 
 
     </article>
