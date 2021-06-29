@@ -3558,6 +3558,7 @@
           </ul>
         </li>
         <li><a href="#install-file-picker-package">Install File picker package</a></li>
+        <li><a href="#select-browser-storage">Select browser storage</a></li>
         <li><a href="#integrate-in-html-page-with-vanilla-javascript">Integrate in HTML page with vanilla JavaScript</a></li>
         <li><a href="#integrate-in-vue-web-application">Integrate in Vue web application</a></li>
         <li><a href="#set-correct-variation">Set correct variation</a></li>
@@ -3608,7 +3609,17 @@
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">npm install @ownclouders/file-picker --save
 <span class="c1"># OR</span>
 yarn add @ownclouders/file-picker
-</code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="integrate-in-html-page-with-vanilla-javascript">Integrate in HTML page with vanilla JavaScript<a data-clipboard-text="https://owncloud.dev/integration/file_picker/installation/#integrate-in-html-page-with-vanilla-javascript" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Integrate in HTML page with vanilla JavaScript" href="#integrate-in-html-page-with-vanilla-javascript"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+</code></pre></div><div class="gdoc-page__anchorwrap"><h2 id="select-browser-storage">Select browser storage<a data-clipboard-text="https://owncloud.dev/integration/file_picker/installation/#select-browser-storage" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Select browser storage" href="#select-browser-storage"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>In order to authorize any request to the ownCloud server, we are storing the Bearer token in a browser storage. By default, it is the session storage. As browsers are adding more strict policies when it comes to blocking third party cookies, your users might experience issues with the token not being saved in the storage. For this reason, it is possible to specify a storage name in the config of File picker. To make it possible to run the File picker inside of an iframe, specify <code>storage: memory</code>.</p>
+<blockquote class="gdoc-hint danger">
+  If the memory storage is used, it is not persisted in the session. This leads to users having to authorize again after a refresh has happened.
+</blockquote>
+
+<blockquote class="gdoc-hint info">
+  Users might still be experiencing issues with the authentication even if the memory storage is used. That can happen due to the authentication popup needing to trigger a callback in the File picker. To make sure it will work as supposed, be sure to set correct CORS headers.
+</blockquote>
+
+<div class="gdoc-page__anchorwrap"><h2 id="integrate-in-html-page-with-vanilla-javascript">Integrate in HTML page with vanilla JavaScript<a data-clipboard-text="https://owncloud.dev/integration/file_picker/installation/#integrate-in-html-page-with-vanilla-javascript" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Integrate in HTML page with vanilla JavaScript" href="#integrate-in-html-page-with-vanilla-javascript"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
 <p>When including File picker in an HTML page, it is important to include Vue.js as well. In this case, we will import it via <a href="https://unpkg.com">unpkg</a>. Without this, the component won&rsquo;t work. Vue needs to be included also if you&rsquo;re importing the File picker into a web application built with other framework than Vue (e.g. React, Angular).</p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">...
 <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;utf-8&#34;</span><span class="p">&gt;</span>
