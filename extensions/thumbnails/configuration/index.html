@@ -3651,7 +3651,7 @@ $HOME/.ocis
 <p>Usage: <code>thumbnails health [command options] [arguments...]</code></p>
 <dl>
 <dt>-debug-addr |  $THUMBNAILS_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>flags.OverrideDefaultString(cfg.Debug.Addr, &quot;0.0.0.0:9189&quot;)</code>.</dd>
+<dd>Address to debug endpoint. Default: <code>&quot;0.0.0.0:9189&quot;</code>.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h3 id="thumbnails-ocis-thumbnails">thumbnails ocis-thumbnails<a data-clipboard-text="https://owncloud.dev/extensions/thumbnails/configuration/#thumbnails-ocis-thumbnails" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor thumbnails ocis-thumbnails" href="#thumbnails-ocis-thumbnails"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Example usage</p>
@@ -3673,35 +3673,37 @@ $HOME/.ocis
 <dt>-tracing-enabled |  $THUMBNAILS_TRACING_ENABLED</dt>
 <dd>Enable sending traces.</dd>
 <dt>-tracing-type |  $THUMBNAILS_TRACING_TYPE</dt>
-<dd>Tracing backend type. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Type, &quot;jaeger&quot;)</code>.</dd>
+<dd>Tracing backend type. Default: <code>&quot;jaeger&quot;</code>.</dd>
 <dt>-tracing-endpoint |  $THUMBNAILS_TRACING_ENDPOINT</dt>
-<dd>Endpoint for the agent. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Endpoint, &quot;&quot;)</code>.</dd>
+<dd>Endpoint for the agent. Default: <code>&quot;&quot;</code>.</dd>
 <dt>-tracing-collector |  $THUMBNAILS_TRACING_COLLECTOR</dt>
-<dd>Endpoint for the collector. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Collector, &quot;&quot;)</code>.</dd>
+<dd>Endpoint for the collector. Default: <code>&quot;&quot;</code>.</dd>
 <dt>-tracing-service |  $THUMBNAILS_TRACING_SERVICE</dt>
-<dd>Service name for tracing. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Service, &quot;thumbnails&quot;)</code>.</dd>
+<dd>Service name for tracing. Default: <code>&quot;thumbnails&quot;</code>.</dd>
 <dt>-debug-addr |  $THUMBNAILS_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>flags.OverrideDefaultString(cfg.Debug.Addr, &quot;0.0.0.0:9189&quot;)</code>.</dd>
+<dd>Address to bind debug server. Default: <code>&quot;0.0.0.0:9189&quot;</code>.</dd>
 <dt>-debug-token |  $THUMBNAILS_DEBUG_TOKEN</dt>
-<dd>Token to grant metrics access. Default: <code>flags.OverrideDefaultString(cfg.Debug.Token, &quot;&quot;)</code>.</dd>
+<dd>Token to grant metrics access. Default: <code>&quot;&quot;</code>.</dd>
 <dt>-debug-pprof |  $THUMBNAILS_DEBUG_PPROF</dt>
 <dd>Enable pprof debugging.</dd>
 <dt>-debug-zpages |  $THUMBNAILS_DEBUG_ZPAGES</dt>
 <dd>Enable zpages debugging.</dd>
 <dt>-grpc-name |  $THUMBNAILS_GRPC_NAME</dt>
-<dd>Name of the service. Default: <code>flags.OverrideDefaultString(cfg.Server.Name, &quot;thumbnails&quot;)</code>.</dd>
+<dd>Name of the service. Default: <code>&quot;thumbnails&quot;</code>.</dd>
 <dt>-grpc-addr |  $THUMBNAILS_GRPC_ADDR</dt>
-<dd>Address to bind grpc server. Default: <code>flags.OverrideDefaultString(cfg.Server.Address, &quot;0.0.0.0:9185&quot;)</code>.</dd>
+<dd>Address to bind grpc server. Default: <code>&quot;0.0.0.0:9185&quot;</code>.</dd>
 <dt>-grpc-namespace |  $THUMBNAILS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>flags.OverrideDefaultString(cfg.Server.Namespace, &quot;com.owncloud.api&quot;)</code>.</dd>
+<dd>Set the base namespace for the grpc namespace. Default: <code>&quot;com.owncloud.api&quot;</code>.</dd>
 <dt>-filesystemstorage-root |  $THUMBNAILS_FILESYSTEMSTORAGE_ROOT</dt>
 <dd>Root path of the filesystem storage directory. Default: <code>/var/tmp/ocis/thumbnails</code>.</dd>
 <dt>-reva-gateway-addr |  $THUMBNAILS_REVA_GATEWAY , $PROXY_REVA_GATEWAY_ADDR</dt>
-<dd>Reva gateway address. Default: <code>flags.OverrideDefaultString(cfg.Thumbnail.RevaGateway, &quot;127.0.0.1:9142&quot;)</code>.</dd>
+<dd>Reva gateway address. Default: <code>&quot;127.0.0.1:9142&quot;</code>.</dd>
 <dt>-webdavsource-insecure |  $THUMBNAILS_WEBDAVSOURCE_INSECURE</dt>
-<dd>Whether to skip certificate checks. Default: <code>flags.OverrideDefaultBool(cfg.Thumbnail.WebdavAllowInsecure, true)</code>.</dd>
+<dd>Whether to skip certificate checks. Default: <code>true</code>.</dd>
+<dt>-thumbnail-resolution |  $THUMBNAILS_RESOLUTIONS</dt>
+<dd>&ndash;thumbnail-resolution 16x16 [&ndash;thumbnail-resolution 32x32]. Default: <code>cli.NewStringSlice(&quot;16x16&quot;, &quot;32x32&quot;, &quot;64x64&quot;, &quot;128x128&quot;, &quot;1920x1080&quot;, &quot;3840x2160&quot;, &quot;7680x4320&quot;)</code>.</dd>
 <dt>-webdav-namespace |  $STORAGE_WEBDAV_NAMESPACE</dt>
-<dd>Namespace prefix for the webdav endpoint. Default: <code>flags.OverrideDefaultString(cfg.Thumbnail.WebdavNamespace, &quot;/home&quot;)</code>.</dd>
+<dd>Namespace prefix for the webdav endpoint. Default: <code>&quot;/home&quot;</code>.</dd>
 <dt>-extensions |</dt>
 <dd>Run specific extensions during supervised mode.</dd>
 </dl>
@@ -3710,9 +3712,9 @@ $HOME/.ocis
 <p>Usage: <code>thumbnails version [command options] [arguments...]</code></p>
 <dl>
 <dt>-grpc-name |  $THUMBNAILS_GRPC_NAME</dt>
-<dd>Name of the service. Default: <code>flags.OverrideDefaultString(cfg.Server.Name, &quot;thumbnails&quot;)</code>.</dd>
+<dd>Name of the service. Default: <code>&quot;thumbnails&quot;</code>.</dd>
 <dt>-grpc-namespace |  $THUMBNAILS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>flags.OverrideDefaultString(cfg.Server.Namespace, &quot;com.owncloud.api&quot;)</code>.</dd>
+<dd>Set the base namespace for the grpc namespace. Default: <code>&quot;com.owncloud.api&quot;</code>.</dd>
 </dl>
 
 

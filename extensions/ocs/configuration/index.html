@@ -3624,10 +3624,10 @@
             <li><a href="#configuration-using-config-files">Configuration using config files</a></li>
             <li><a href="#environment-variables">Environment variables</a></li>
             <li><a href="#commandline-flags">Commandline flags</a></li>
-            <li><a href="#ocs-server">ocs server</a></li>
-            <li><a href="#ocs-version">ocs version</a></li>
             <li><a href="#ocs-health">ocs health</a></li>
             <li><a href="#ocs-ocis-ocs">ocs ocis-ocs</a></li>
+            <li><a href="#ocs-server">ocs server</a></li>
+            <li><a href="#ocs-version">ocs version</a></li>
           </ul>
         </li>
       </ul></nav><hr></div>
@@ -3646,6 +3646,16 @@ $HOME/.ocis
 <p>If multiple variables are listed for one option, they are in order of precedence. This means the leftmost variable will always win if given.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="commandline-flags">Commandline flags<a data-clipboard-text="https://owncloud.dev/extensions/ocs/configuration/#commandline-flags" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Commandline flags" href="#commandline-flags"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>If you prefer to configure the service with commandline flags you can see the available variables below. Command line flags are only working when calling the subcommand directly.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="ocs-health">ocs health<a data-clipboard-text="https://owncloud.dev/extensions/ocs/configuration/#ocs-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ocs health" href="#ocs-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Check health status</p>
+<p>Usage: <code>ocs health [command options] [arguments...]</code></p>
+<dl>
+<dt>-debug-addr |  $OCS_DEBUG_ADDR</dt>
+<dd>Address to debug endpoint. Default: <code>&quot;0.0.0.0:9114&quot;</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap"><h3 id="ocs-ocis-ocs">ocs ocis-ocs<a data-clipboard-text="https://owncloud.dev/extensions/ocs/configuration/#ocs-ocis-ocs" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ocs ocis-ocs" href="#ocs-ocis-ocs"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Serve OCS API for oCIS</p>
+<p>Usage: <code>ocs ocis-ocs [command options] [arguments...]</code></p>
 <div class="gdoc-page__anchorwrap"><h3 id="ocs-server">ocs server<a data-clipboard-text="https://owncloud.dev/extensions/ocs/configuration/#ocs-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ocs server" href="#ocs-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Start integrated server</p>
 <p>Usage: <code>ocs server [command options] [arguments...]</code></p>
@@ -3661,41 +3671,41 @@ $HOME/.ocis
 <dt>-config-file |  $OCS_CONFIG_FILE</dt>
 <dd>Path to config file.</dd>
 <dt>-tracing-enabled |  $OCS_TRACING_ENABLED</dt>
-<dd>Enable sending traces. Default: <code>flags.OverrideDefaultBool(cfg.Tracing.Enabled, false)</code>.</dd>
+<dd>Enable sending traces. Default: <code>false</code>.</dd>
 <dt>-tracing-type |  $OCS_TRACING_TYPE</dt>
-<dd>Tracing backend type. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Type, &quot;jaeger&quot;)</code>.</dd>
+<dd>Tracing backend type. Default: <code>&quot;jaeger&quot;</code>.</dd>
 <dt>-tracing-endpoint |  $OCS_TRACING_ENDPOINT</dt>
-<dd>Endpoint for the agent. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Endpoint, &quot;&quot;)</code>.</dd>
+<dd>Endpoint for the agent. Default: <code>&quot;&quot;</code>.</dd>
 <dt>-tracing-collector |  $OCS_TRACING_COLLECTOR</dt>
-<dd>Endpoint for the collector. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Collector, &quot;&quot;)</code>.</dd>
+<dd>Endpoint for the collector. Default: <code>&quot;&quot;</code>.</dd>
 <dt>-tracing-service |  $OCS_TRACING_SERVICE</dt>
-<dd>Service name for tracing. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Service, &quot;ocs&quot;)</code>.</dd>
+<dd>Service name for tracing. Default: <code>&quot;ocs&quot;</code>.</dd>
 <dt>-debug-addr |  $OCS_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>flags.OverrideDefaultString(cfg.Debug.Addr, &quot;0.0.0.0:9114&quot;)</code>.</dd>
+<dd>Address to bind debug server. Default: <code>&quot;0.0.0.0:9114&quot;</code>.</dd>
 <dt>-debug-token |  $OCS_DEBUG_TOKEN</dt>
-<dd>Token to grant metrics access. Default: <code>flags.OverrideDefaultString(cfg.Debug.Token, &quot;&quot;)</code>.</dd>
+<dd>Token to grant metrics access. Default: <code>&quot;&quot;</code>.</dd>
 <dt>-debug-pprof |  $OCS_DEBUG_PPROF</dt>
 <dd>Enable pprof debugging.</dd>
 <dt>-debug-zpages |  $OCS_DEBUG_ZPAGES</dt>
 <dd>Enable zpages debugging.</dd>
 <dt>-http-addr |  $OCS_HTTP_ADDR</dt>
-<dd>Address to bind http server. Default: <code>flags.OverrideDefaultString(cfg.HTTP.Addr, &quot;0.0.0.0:9110&quot;)</code>.</dd>
+<dd>Address to bind http server. Default: <code>&quot;0.0.0.0:9110&quot;</code>.</dd>
 <dt>-http-namespace |  $OCS_NAMESPACE</dt>
-<dd>Set the base namespace for the http namespace. Default: <code>flags.OverrideDefaultString(cfg.Service.Namespace, &quot;com.owncloud.web&quot;)</code>.</dd>
+<dd>Set the base namespace for the http namespace. Default: <code>&quot;com.owncloud.web&quot;</code>.</dd>
 <dt>-name |  $OCS_NAME</dt>
-<dd>Service name. Default: <code>flags.OverrideDefaultString(cfg.Service.Name, &quot;ocs&quot;)</code>.</dd>
+<dd>Service name. Default: <code>&quot;ocs&quot;</code>.</dd>
 <dt>-http-root |  $OCS_HTTP_ROOT</dt>
-<dd>Root path of http server. Default: <code>flags.OverrideDefaultString(cfg.HTTP.Root, &quot;/ocs&quot;)</code>.</dd>
+<dd>Root path of http server. Default: <code>&quot;/ocs&quot;</code>.</dd>
 <dt>-jwt-secret |  $OCS_JWT_SECRET , $OCIS_JWT_SECRET</dt>
-<dd>Used to dismantle the access token, should equal reva&rsquo;s jwt-secret. Default: <code>flags.OverrideDefaultString(cfg.TokenManager.JWTSecret, &quot;Pive-Fumkiu4&quot;)</code>.</dd>
+<dd>Used to dismantle the access token, should equal reva&rsquo;s jwt-secret. Default: <code>&quot;Pive-Fumkiu4&quot;</code>.</dd>
 <dt>-account-backend-type |  $OCS_ACCOUNT_BACKEND_TYPE</dt>
-<dd>account-backend-type. Default: <code>flags.OverrideDefaultString(cfg.AccountBackend, &quot;accounts&quot;)</code>.</dd>
+<dd>account-backend-type. Default: <code>&quot;accounts&quot;</code>.</dd>
 <dt>-reva-gateway-addr |  $OCS_REVA_GATEWAY_ADDR</dt>
-<dd>REVA Gateway Endpoint. Default: <code>flags.OverrideDefaultString(cfg.RevaAddress, &quot;127.0.0.1:9142&quot;)</code>.</dd>
+<dd>REVA Gateway Endpoint. Default: <code>&quot;127.0.0.1:9142&quot;</code>.</dd>
 <dt>-idm-address |  $OCS_IDM_ADDRESS , $OCIS_URL</dt>
-<dd>keeps track of the IDM Address. Needed because of Reva requisite of uniqueness for users. Default: <code>flags.OverrideDefaultString(cfg.IdentityManagement.Address, &quot;https://localhost:9200&quot;)</code>.</dd>
+<dd>keeps track of the IDM Address. Needed because of Reva requisite of uniqueness for users. Default: <code>&quot;https://localhost:9200&quot;</code>.</dd>
 <dt>-users-driver |  $OCS_STORAGE_USERS_DRIVER , $STORAGE_USERS_DRIVER</dt>
-<dd>storage driver for users mount: eg. local, eos, owncloud, ocis or s3. Default: <code>flags.OverrideDefaultString(cfg.StorageUsersDriver, &quot;ocis&quot;)</code>.</dd>
+<dd>storage driver for users mount: eg. local, eos, owncloud, ocis or s3. Default: <code>&quot;ocis&quot;</code>.</dd>
 <dt>-extensions |</dt>
 <dd>Run specific extensions during supervised mode.</dd>
 </dl>
@@ -3704,20 +3714,10 @@ $HOME/.ocis
 <p>Usage: <code>ocs version [command options] [arguments...]</code></p>
 <dl>
 <dt>-http-namespace |  $OCS_NAMESPACE</dt>
-<dd>Set the base namespace for the http namespace. Default: <code>flags.OverrideDefaultString(cfg.Service.Namespace, &quot;com.owncloud.web&quot;)</code>.</dd>
+<dd>Set the base namespace for the http namespace. Default: <code>&quot;com.owncloud.web&quot;</code>.</dd>
 <dt>-name |  $OCS_NAME</dt>
-<dd>Service name. Default: <code>flags.OverrideDefaultString(cfg.Service.Name, &quot;ocs&quot;)</code>.</dd>
+<dd>Service name. Default: <code>&quot;ocs&quot;</code>.</dd>
 </dl>
-<div class="gdoc-page__anchorwrap"><h3 id="ocs-health">ocs health<a data-clipboard-text="https://owncloud.dev/extensions/ocs/configuration/#ocs-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ocs health" href="#ocs-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Check health status</p>
-<p>Usage: <code>ocs health [command options] [arguments...]</code></p>
-<dl>
-<dt>-debug-addr |  $OCS_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>flags.OverrideDefaultString(cfg.Debug.Addr, &quot;0.0.0.0:9114&quot;)</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="ocs-ocis-ocs">ocs ocis-ocs<a data-clipboard-text="https://owncloud.dev/extensions/ocs/configuration/#ocs-ocis-ocs" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ocs ocis-ocs" href="#ocs-ocis-ocs"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Serve OCS API for oCIS</p>
-<p>Usage: <code>ocs ocis-ocs [command options] [arguments...]</code></p>
 
 
     </article>

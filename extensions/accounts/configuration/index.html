@@ -3624,15 +3624,15 @@
             <li><a href="#configuration-using-config-files">Configuration using config files</a></li>
             <li><a href="#environment-variables">Environment variables</a></li>
             <li><a href="#commandline-flags">Commandline flags</a></li>
-            <li><a href="#accounts-server">accounts server</a></li>
-            <li><a href="#accounts-update">accounts update</a></li>
             <li><a href="#accounts-list">accounts list</a></li>
             <li><a href="#accounts-rebuildindex">accounts rebuildIndex</a></li>
-            <li><a href="#accounts-ocis-accounts">accounts ocis-accounts</a></li>
+            <li><a href="#accounts-remove">accounts remove</a></li>
+            <li><a href="#accounts-server">accounts server</a></li>
+            <li><a href="#accounts-update">accounts update</a></li>
             <li><a href="#accounts-version">accounts version</a></li>
             <li><a href="#accounts-add">accounts add</a></li>
             <li><a href="#accounts-inspect">accounts inspect</a></li>
-            <li><a href="#accounts-remove">accounts remove</a></li>
+            <li><a href="#accounts-ocis-accounts">accounts ocis-accounts</a></li>
           </ul>
         </li>
       </ul></nav><hr></div>
@@ -3651,6 +3651,27 @@ $HOME/.ocis
 <p>If multiple variables are listed for one option, they are in order of precedence. This means the leftmost variable will always win if given.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="commandline-flags">Commandline flags<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#commandline-flags" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Commandline flags" href="#commandline-flags"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>If you prefer to configure the service with commandline flags you can see the available variables below. Command line flags are only working when calling the subcommand directly.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="accounts-list">accounts list<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-list" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts list" href="#accounts-list"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>List existing accounts</p>
+<p>Usage: <code>accounts list [command options] [arguments...]</code></p>
+<dl>
+<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
+<dd>Set the base namespace for the grpc namespace. Default: <code>&quot;com.owncloud.api&quot;</code>.</dd>
+<dt>-name |  $ACCOUNTS_NAME</dt>
+<dd>service name. Default: <code>&quot;accounts&quot;</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap"><h3 id="accounts-rebuildindex">accounts rebuildIndex<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-rebuildindex" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts rebuildIndex" href="#accounts-rebuildindex"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Rebuilds the service&rsquo;s index, i.e. deleting and then re-adding all existing documents</p>
+<p>Usage: <code>accounts rebuildIndex [command options] [arguments...]</code></p>
+<div class="gdoc-page__anchorwrap"><h3 id="accounts-remove">accounts remove<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-remove" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts remove" href="#accounts-remove"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Removes an existing account</p>
+<p>Usage: <code>accounts remove [command options] [arguments...]</code></p>
+<dl>
+<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
+<dd>Set the base namespace for the grpc namespace. Default: <code>&quot;com.owncloud.api&quot;</code>.</dd>
+<dt>-name |  $ACCOUNTS_NAME</dt>
+<dd>service name. Default: <code>&quot;accounts&quot;</code>.</dd>
+</dl>
 <div class="gdoc-page__anchorwrap"><h3 id="accounts-server">accounts server<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts server" href="#accounts-server"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Start ocis accounts service</p>
 <p>Usage: <code>accounts server [command options] [arguments...]</code></p>
@@ -3660,43 +3681,59 @@ $HOME/.ocis
 <dt>-tracing-enabled |  $ACCOUNTS_TRACING_ENABLED</dt>
 <dd>Enable sending traces.</dd>
 <dt>-tracing-type |  $ACCOUNTS_TRACING_TYPE</dt>
-<dd>Tracing backend type. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Type, &quot;jaeger&quot;)</code>.</dd>
+<dd>Tracing backend type. Default: <code>&quot;jaeger&quot;</code>.</dd>
 <dt>-tracing-endpoint |  $ACCOUNTS_TRACING_ENDPOINT</dt>
-<dd>Endpoint for the agent. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Endpoint, &quot;&quot;)</code>.</dd>
+<dd>Endpoint for the agent. Default: <code>&quot;&quot;</code>.</dd>
 <dt>-tracing-collector |  $ACCOUNTS_TRACING_COLLECTOR</dt>
-<dd>Endpoint for the collector. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Collector, &quot;&quot;)</code>.</dd>
+<dd>Endpoint for the collector. Default: <code>&quot;&quot;</code>.</dd>
 <dt>-tracing-service |  $ACCOUNTS_TRACING_SERVICE</dt>
-<dd>Service name for tracing. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Service, &quot;accounts&quot;)</code>.</dd>
+<dd>Service name for tracing. Default: <code>&quot;accounts&quot;</code>.</dd>
 <dt>-http-namespace |  $ACCOUNTS_HTTP_NAMESPACE</dt>
-<dd>Set the base namespace for the http namespace. Default: <code>flags.OverrideDefaultString(cfg.HTTP.Namespace, &quot;com.owncloud.web&quot;)</code>.</dd>
+<dd>Set the base namespace for the http namespace. Default: <code>&quot;com.owncloud.web&quot;</code>.</dd>
 <dt>-http-addr |  $ACCOUNTS_HTTP_ADDR</dt>
-<dd>Address to bind http server. Default: <code>flags.OverrideDefaultString(cfg.HTTP.Addr, &quot;0.0.0.0:9181&quot;)</code>.</dd>
+<dd>Address to bind http server. Default: <code>&quot;0.0.0.0:9181&quot;</code>.</dd>
 <dt>-http-root |  $ACCOUNTS_HTTP_ROOT</dt>
-<dd>Root path of http server. Default: <code>flags.OverrideDefaultString(cfg.HTTP.Root, &quot;/&quot;)</code>.</dd>
+<dd>Root path of http server. Default: <code>&quot;/&quot;</code>.</dd>
+<dt>-http-cache-ttl |  $ACCOUNTS_CACHE_TTL</dt>
+<dd>Set the static assets caching duration in seconds. Default: <code>604800</code>.</dd>
 <dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>flags.OverrideDefaultString(cfg.GRPC.Namespace, &quot;com.owncloud.api&quot;)</code>.</dd>
+<dd>Set the base namespace for the grpc namespace. Default: <code>&quot;com.owncloud.api&quot;</code>.</dd>
 <dt>-grpc-addr |  $ACCOUNTS_GRPC_ADDR</dt>
-<dd>Address to bind grpc server. Default: <code>flags.OverrideDefaultString(cfg.GRPC.Addr, &quot;0.0.0.0:9180&quot;)</code>.</dd>
+<dd>Address to bind grpc server. Default: <code>&quot;0.0.0.0:9180&quot;</code>.</dd>
 <dt>-name |  $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>flags.OverrideDefaultString(cfg.Server.Name, &quot;accounts&quot;)</code>.</dd>
+<dd>service name. Default: <code>&quot;accounts&quot;</code>.</dd>
+<dt>-accounts-hash-difficulty |  $ACCOUNTS_HASH_DIFFICULTY</dt>
+<dd>accounts password hash difficulty. Default: <code>11</code>.</dd>
 <dt>-asset-path |  $ACCOUNTS_ASSET_PATH</dt>
-<dd>Path to custom assets. Default: <code>flags.OverrideDefaultString(cfg.Asset.Path, &quot;&quot;)</code>.</dd>
+<dd>Path to custom assets. Default: <code>&quot;&quot;</code>.</dd>
 <dt>-jwt-secret |  $ACCOUNTS_JWT_SECRET , $OCIS_JWT_SECRET</dt>
-<dd>Used to create JWT to talk to reva, should equal reva&rsquo;s jwt-secret. Default: <code>flags.OverrideDefaultString(cfg.TokenManager.JWTSecret, &quot;Pive-Fumkiu4&quot;)</code>.</dd>
+<dd>Used to create JWT to talk to reva, should equal reva&rsquo;s jwt-secret. Default: <code>&quot;Pive-Fumkiu4&quot;</code>.</dd>
 <dt>-storage-disk-path |  $ACCOUNTS_STORAGE_DISK_PATH</dt>
-<dd>Path on the local disk, e.g. /var/tmp/ocis/accounts. Default: <code>flags.OverrideDefaultString(cfg.Repo.Disk.Path, &quot;&quot;)</code>.</dd>
+<dd>Path on the local disk, e.g. /var/tmp/ocis/accounts. Default: <code>&quot;&quot;</code>.</dd>
 <dt>-storage-cs3-provider-addr |  $ACCOUNTS_STORAGE_CS3_PROVIDER_ADDR</dt>
-<dd>bind address for the metadata storage provider. Default: <code>flags.OverrideDefaultString(cfg.Repo.CS3.ProviderAddr, &quot;localhost:9215&quot;)</code>.</dd>
+<dd>bind address for the metadata storage provider. Default: <code>&quot;localhost:9215&quot;</code>.</dd>
 <dt>-storage-cs3-data-url |  $ACCOUNTS_STORAGE_CS3_DATA_URL</dt>
-<dd>http endpoint of the metadata storage. Default: <code>flags.OverrideDefaultString(cfg.Repo.CS3.DataURL, &quot;http://localhost:9216&quot;)</code>.</dd>
+<dd>http endpoint of the metadata storage. Default: <code>&quot;http://localhost:9216&quot;</code>.</dd>
 <dt>-storage-cs3-data-prefix |  $ACCOUNTS_STORAGE_CS3_DATA_PREFIX</dt>
-<dd>path prefix for the http endpoint of the metadata storage, without leading slash. Default: <code>flags.OverrideDefaultString(cfg.Repo.CS3.DataPrefix, &quot;data&quot;)</code>.</dd>
+<dd>path prefix for the http endpoint of the metadata storage, without leading slash. Default: <code>&quot;data&quot;</code>.</dd>
 <dt>-storage-cs3-jwt-secret |  $ACCOUNTS_STORAGE_CS3_JWT_SECRET , $OCIS_JWT_SECRET</dt>
-<dd>Used to create JWT to talk to reva, should equal reva&rsquo;s jwt-secret. Default: <code>flags.OverrideDefaultString(cfg.Repo.CS3.JWTSecret, &quot;Pive-Fumkiu4&quot;)</code>.</dd>
+<dd>Used to create JWT to talk to reva, should equal reva&rsquo;s jwt-secret. Default: <code>&quot;Pive-Fumkiu4&quot;</code>.</dd>
 <dt>-service-user-uuid |  $ACCOUNTS_SERVICE_USER_UUID</dt>
-<dd>uuid of the internal service user (required on EOS). Default: <code>flags.OverrideDefaultString(cfg.ServiceUser.UUID, &quot;95cb8724-03b2-11eb-a0a6-c33ef8ef53ad&quot;)</code>.</dd>
+<dd>uuid of the internal service user (required on EOS). Default: <code>&quot;95cb8724-03b2-11eb-a0a6-c33ef8ef53ad&quot;</code>.</dd>
 <dt>-service-user-username |  $ACCOUNTS_SERVICE_USER_USERNAME</dt>
-<dd>username of the internal service user (required on EOS). Default: <code>flags.OverrideDefaultString(cfg.ServiceUser.Username, &quot;&quot;)</code>.</dd>
+<dd>username of the internal service user (required on EOS). Default: <code>&quot;&quot;</code>.</dd>
+<dt>-service-user-uid |  $ACCOUNTS_SERVICE_USER_UID</dt>
+<dd>uid of the internal service user (required on EOS). Default: <code>0</code>.</dd>
+<dt>-service-user-gid |  $ACCOUNTS_SERVICE_USER_GID</dt>
+<dd>gid of the internal service user (required on EOS). Default: <code>0</code>.</dd>
+<dt>-uid-index-lower-bound |  $ACCOUNTS_UID_INDEX_LOWER_BOUND</dt>
+<dd>define a starting point for the account UID. Default: <code>0</code>.</dd>
+<dt>-gid-index-lower-bound |  $ACCOUNTS_GID_INDEX_LOWER_BOUND</dt>
+<dd>define a starting point for the account GID. Default: <code>1000</code>.</dd>
+<dt>-uid-index-upper-bound |  $ACCOUNTS_UID_INDEX_UPPER_BOUND</dt>
+<dd>define an ending point for the account UID. Default: <code>0</code>.</dd>
+<dt>-gid-index-upper-bound |  $ACCOUNTS_GID_INDEX_UPPER_BOUND</dt>
+<dd>define an ending point for the account GID. Default: <code>1000</code>.</dd>
 <dt>-extensions |</dt>
 <dd>Run specific extensions during supervised mode.</dd>
 </dl>
@@ -3705,9 +3742,9 @@ $HOME/.ocis
 <p>Usage: <code>accounts update [command options] [arguments...]</code></p>
 <dl>
 <dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>flags.OverrideDefaultString(cfg.GRPC.Namespace, &quot;com.owncloud.api&quot;)</code>.</dd>
+<dd>Set the base namespace for the grpc namespace. Default: <code>&quot;com.owncloud.api&quot;</code>.</dd>
 <dt>-name |  $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>flags.OverrideDefaultString(cfg.Server.Name, &quot;accounts&quot;)</code>.</dd>
+<dd>service name. Default: <code>&quot;accounts&quot;</code>.</dd>
 <dt>-enabled |</dt>
 <dd>Enable the account.</dd>
 <dt>-displayname |</dt>
@@ -3716,29 +3753,76 @@ $HOME/.ocis
 <dd>Set the preferred-name for the account.</dd>
 <dt>-on-premises-sam-account-name |</dt>
 <dd>Set the on-premises-sam-account-name.</dd>
+<dt>-uidnumber |</dt>
+<dd>Set the uidnumber for the account.</dd>
+<dt>-gidnumber |</dt>
+<dd>Set the gidnumber for the account.</dd>
 <dt>-mail |</dt>
 <dd>Set the mail for the account.</dd>
 <dt>-description |</dt>
 <dd>Set the description for the account.</dd>
 <dt>-password |</dt>
 <dd>Set the password for the account.</dd>
+<dt>-password-policies |</dt>
+<dd>Possible policies: DisableStrongPassword, DisablePasswordExpiration.</dd>
 <dt>-force-password-change |</dt>
 <dd>Force password change on next sign-in.</dd>
 <dt>-force-password-change-mfa |</dt>
 <dd>Force password change on next sign-in with mfa.</dd>
 </dl>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-list">accounts list<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-list" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts list" href="#accounts-list"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>List existing accounts</p>
-<p>Usage: <code>accounts list [command options] [arguments...]</code></p>
+<div class="gdoc-page__anchorwrap"><h3 id="accounts-version">accounts version<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-version" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts version" href="#accounts-version"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Print the versions of the running instances</p>
+<p>Usage: <code>accounts version [command options] [arguments...]</code></p>
 <dl>
 <dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>flags.OverrideDefaultString(cfg.GRPC.Namespace, &quot;com.owncloud.api&quot;)</code>.</dd>
+<dd>Set the base namespace for the grpc namespace. Default: <code>&quot;com.owncloud.api&quot;</code>.</dd>
 <dt>-name |  $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>flags.OverrideDefaultString(cfg.Server.Name, &quot;accounts&quot;)</code>.</dd>
+<dd>service name. Default: <code>&quot;accounts&quot;</code>.</dd>
 </dl>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-rebuildindex">accounts rebuildIndex<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-rebuildindex" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts rebuildIndex" href="#accounts-rebuildindex"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Rebuilds the service&rsquo;s index, i.e. deleting and then re-adding all existing documents</p>
-<p>Usage: <code>accounts rebuildIndex [command options] [arguments...]</code></p>
+<div class="gdoc-page__anchorwrap"><h3 id="accounts-add">accounts add<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-add" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts add" href="#accounts-add"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Create a new account</p>
+<p>Usage: <code>accounts add [command options] [arguments...]</code></p>
+<dl>
+<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
+<dd>Set the base namespace for the grpc namespace. Default: <code>&quot;com.owncloud.api&quot;</code>.</dd>
+<dt>-name |  $ACCOUNTS_NAME</dt>
+<dd>service name. Default: <code>&quot;accounts&quot;</code>.</dd>
+<dt>-enabled |</dt>
+<dd>Enable the account.</dd>
+<dt>-displayname |</dt>
+<dd>Set the displayname for the account.</dd>
+<dt>-username |</dt>
+<dd>Username will be written to preferred-name and on_premises_sam_account_name.</dd>
+<dt>-preferred-name |</dt>
+<dd>Set the preferred-name for the account.</dd>
+<dt>-on-premises-sam-account-name |</dt>
+<dd>Set the on-premises-sam-account-name.</dd>
+<dt>-uidnumber |</dt>
+<dd>Set the uidnumber for the account.</dd>
+<dt>-gidnumber |</dt>
+<dd>Set the gidnumber for the account.</dd>
+<dt>-mail |</dt>
+<dd>Set the mail for the account.</dd>
+<dt>-description |</dt>
+<dd>Set the description for the account.</dd>
+<dt>-password |</dt>
+<dd>Set the password for the account.</dd>
+<dt>-password-policies |</dt>
+<dd>Possible policies: DisableStrongPassword, DisablePasswordExpiration.</dd>
+<dt>-force-password-change |</dt>
+<dd>Force password change on next sign-in.</dd>
+<dt>-force-password-change-mfa |</dt>
+<dd>Force password change on next sign-in with mfa.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap"><h3 id="accounts-inspect">accounts inspect<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-inspect" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts inspect" href="#accounts-inspect"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Show detailed data on an existing account</p>
+<p>Usage: <code>accounts inspect [command options] [arguments...]</code></p>
+<dl>
+<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
+<dd>Set the base namespace for the grpc namespace. Default: <code>&quot;com.owncloud.api&quot;</code>.</dd>
+<dt>-name |  $ACCOUNTS_NAME</dt>
+<dd>service name. Default: <code>&quot;accounts&quot;</code>.</dd>
+</dl>
 <div class="gdoc-page__anchorwrap"><h3 id="accounts-ocis-accounts">accounts ocis-accounts<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-ocis-accounts" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts ocis-accounts" href="#accounts-ocis-accounts"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Provide accounts and groups for oCIS</p>
 <p>Usage: <code>accounts ocis-accounts [command options] [arguments...]</code></p>
@@ -3751,62 +3835,6 @@ $HOME/.ocis
 <dd>Enable colored logging.</dd>
 <dt>-extensions |</dt>
 <dd>Run specific extensions during supervised mode.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-version">accounts version<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-version" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts version" href="#accounts-version"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Print the versions of the running instances</p>
-<p>Usage: <code>accounts version [command options] [arguments...]</code></p>
-<dl>
-<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>flags.OverrideDefaultString(cfg.GRPC.Namespace, &quot;com.owncloud.api&quot;)</code>.</dd>
-<dt>-name |  $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>flags.OverrideDefaultString(cfg.Server.Name, &quot;accounts&quot;)</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-add">accounts add<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-add" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts add" href="#accounts-add"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Create a new account</p>
-<p>Usage: <code>accounts add [command options] [arguments...]</code></p>
-<dl>
-<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>flags.OverrideDefaultString(cfg.GRPC.Namespace, &quot;com.owncloud.api&quot;)</code>.</dd>
-<dt>-name |  $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>flags.OverrideDefaultString(cfg.Server.Name, &quot;accounts&quot;)</code>.</dd>
-<dt>-enabled |</dt>
-<dd>Enable the account.</dd>
-<dt>-displayname |</dt>
-<dd>Set the displayname for the account.</dd>
-<dt>-username |</dt>
-<dd>Username will be written to preferred-name and on_premises_sam_account_name.</dd>
-<dt>-preferred-name |</dt>
-<dd>Set the preferred-name for the account.</dd>
-<dt>-on-premises-sam-account-name |</dt>
-<dd>Set the on-premises-sam-account-name.</dd>
-<dt>-mail |</dt>
-<dd>Set the mail for the account.</dd>
-<dt>-description |</dt>
-<dd>Set the description for the account.</dd>
-<dt>-password |</dt>
-<dd>Set the password for the account.</dd>
-<dt>-force-password-change |</dt>
-<dd>Force password change on next sign-in.</dd>
-<dt>-force-password-change-mfa |</dt>
-<dd>Force password change on next sign-in with mfa.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-inspect">accounts inspect<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-inspect" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts inspect" href="#accounts-inspect"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Show detailed data on an existing account</p>
-<p>Usage: <code>accounts inspect [command options] [arguments...]</code></p>
-<dl>
-<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>flags.OverrideDefaultString(cfg.GRPC.Namespace, &quot;com.owncloud.api&quot;)</code>.</dd>
-<dt>-name |  $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>flags.OverrideDefaultString(cfg.Server.Name, &quot;accounts&quot;)</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-remove">accounts remove<a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-remove" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts remove" href="#accounts-remove"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Removes an existing account</p>
-<p>Usage: <code>accounts remove [command options] [arguments...]</code></p>
-<dl>
-<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>flags.OverrideDefaultString(cfg.GRPC.Namespace, &quot;com.owncloud.api&quot;)</code>.</dd>
-<dt>-name |  $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>flags.OverrideDefaultString(cfg.Server.Name, &quot;accounts&quot;)</code>.</dd>
 </dl>
 
 

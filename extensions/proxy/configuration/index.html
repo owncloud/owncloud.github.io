@@ -3651,7 +3651,7 @@ $HOME/.ocis
 <p>Usage: <code>proxy health [command options] [arguments...]</code></p>
 <dl>
 <dt>-debug-addr |  $PROXY_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>flags.OverrideDefaultString(cfg.Debug.Addr, &quot;0.0.0.0:9109&quot;)</code>.</dd>
+<dd>Address to debug endpoint. Default: <code>&quot;0.0.0.0:9109&quot;</code>.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h3 id="proxy-ocis-proxy">proxy ocis-proxy<a data-clipboard-text="https://owncloud.dev/extensions/proxy/configuration/#proxy-ocis-proxy" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor proxy ocis-proxy" href="#proxy-ocis-proxy"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>proxy for oCIS</p>
@@ -3685,15 +3685,15 @@ $HOME/.ocis
 <dt>-tracing-enabled |  $PROXY_TRACING_ENABLED</dt>
 <dd>Enable sending traces.</dd>
 <dt>-tracing-type |  $PROXY_TRACING_TYPE</dt>
-<dd>Tracing backend type. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Type, &quot;jaeger&quot;)</code>.</dd>
+<dd>Tracing backend type. Default: <code>&quot;jaeger&quot;</code>.</dd>
 <dt>-tracing-endpoint |  $PROXY_TRACING_ENDPOINT</dt>
 <dd>Endpoint for the agent.</dd>
 <dt>-tracing-collector |  $PROXY_TRACING_COLLECTOR</dt>
 <dd>Endpoint for the collector.</dd>
 <dt>-tracing-service |  $PROXY_TRACING_SERVICE</dt>
-<dd>Service name for tracing. Default: <code>flags.OverrideDefaultString(cfg.Tracing.Service, &quot;proxy&quot;)</code>.</dd>
+<dd>Service name for tracing. Default: <code>&quot;proxy&quot;</code>.</dd>
 <dt>-debug-addr |  $PROXY_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>flags.OverrideDefaultString(cfg.Debug.Addr, &quot;0.0.0.0:9205&quot;)</code>.</dd>
+<dd>Address to bind debug server. Default: <code>&quot;0.0.0.0:9205&quot;</code>.</dd>
 <dt>-debug-token |  $PROXY_DEBUG_TOKEN</dt>
 <dd>Token to grant metrics access.</dd>
 <dt>-debug-pprof |  $PROXY_DEBUG_PPROF</dt>
@@ -3701,48 +3701,56 @@ $HOME/.ocis
 <dt>-debug-zpages |  $PROXY_DEBUG_ZPAGES</dt>
 <dd>Enable zpages debugging.</dd>
 <dt>-http-addr |  $PROXY_HTTP_ADDR</dt>
-<dd>Address to bind http server. Default: <code>flags.OverrideDefaultString(cfg.HTTP.Addr, &quot;0.0.0.0:9200&quot;)</code>.</dd>
+<dd>Address to bind http server. Default: <code>&quot;0.0.0.0:9200&quot;</code>.</dd>
 <dt>-http-root |  $PROXY_HTTP_ROOT</dt>
-<dd>Root path of http server. Default: <code>flags.OverrideDefaultString(cfg.HTTP.Root, &quot;/&quot;)</code>.</dd>
+<dd>Root path of http server. Default: <code>&quot;/&quot;</code>.</dd>
 <dt>-asset-path |  $PROXY_ASSET_PATH</dt>
-<dd>Path to custom assets. Default: <code>flags.OverrideDefaultString(cfg.Asset.Path, &quot;&quot;)</code>.</dd>
+<dd>Path to custom assets. Default: <code>&quot;&quot;</code>.</dd>
 <dt>-service-namespace |  $PROXY_SERVICE_NAMESPACE</dt>
-<dd>Set the base namespace for the service namespace. Default: <code>flags.OverrideDefaultString(cfg.Service.Namespace, &quot;com.owncloud.web&quot;)</code>.</dd>
+<dd>Set the base namespace for the service namespace. Default: <code>&quot;com.owncloud.web&quot;</code>.</dd>
 <dt>-service-name |  $PROXY_SERVICE_NAME</dt>
-<dd>Service name. Default: <code>flags.OverrideDefaultString(cfg.Service.Name, &quot;proxy&quot;)</code>.</dd>
+<dd>Service name. Default: <code>&quot;proxy&quot;</code>.</dd>
 <dt>-transport-tls-cert |  $PROXY_TRANSPORT_TLS_CERT</dt>
 <dd>Certificate file for transport encryption. Default: <code>flags.OverrideDefaultString(cfg.HTTP.TLSCert, path.Join(pkgos.MustUserConfigDir(&quot;ocis&quot;, &quot;proxy&quot;), &quot;server.crt&quot;))</code>.</dd>
 <dt>-transport-tls-key |  $PROXY_TRANSPORT_TLS_KEY</dt>
 <dd>Secret file for transport encryption. Default: <code>flags.OverrideDefaultString(cfg.HTTP.TLSKey, path.Join(pkgos.MustUserConfigDir(&quot;ocis&quot;, &quot;proxy&quot;), &quot;server.key&quot;))</code>.</dd>
 <dt>-tls |  $PROXY_TLS</dt>
-<dd>Use TLS (disable only if proxy is behind a TLS-terminating reverse-proxy).. Default: <code>flags.OverrideDefaultBool(cfg.HTTP.TLS, true)</code>.</dd>
+<dd>Use TLS (disable only if proxy is behind a TLS-terminating reverse-proxy).. Default: <code>true</code>.</dd>
 <dt>-jwt-secret |  $PROXY_JWT_SECRET , $OCIS_JWT_SECRET</dt>
-<dd>Used to create JWT to talk to reva, should equal reva&rsquo;s jwt-secret. Default: <code>flags.OverrideDefaultString(cfg.TokenManager.JWTSecret, &quot;Pive-Fumkiu4&quot;)</code>.</dd>
+<dd>Used to create JWT to talk to reva, should equal reva&rsquo;s jwt-secret. Default: <code>&quot;Pive-Fumkiu4&quot;</code>.</dd>
 <dt>-reva-gateway-addr |  $PROXY_REVA_GATEWAY_ADDR</dt>
-<dd>REVA Gateway Endpoint. Default: <code>flags.OverrideDefaultString(cfg.Reva.Address, &quot;127.0.0.1:9142&quot;)</code>.</dd>
+<dd>REVA Gateway Endpoint. Default: <code>&quot;127.0.0.1:9142&quot;</code>.</dd>
 <dt>-insecure |  $PROXY_INSECURE_BACKENDS</dt>
-<dd>allow insecure communication to upstream servers. Default: <code>flags.OverrideDefaultBool(cfg.InsecureBackends, false)</code>.</dd>
+<dd>allow insecure communication to upstream servers. Default: <code>false</code>.</dd>
 <dt>-oidc-issuer |  $PROXY_OIDC_ISSUER , $OCIS_URL</dt>
-<dd>OIDC issuer. Default: <code>flags.OverrideDefaultString(cfg.OIDC.Issuer, &quot;https://localhost:9200&quot;)</code>.</dd>
+<dd>OIDC issuer. Default: <code>&quot;https://localhost:9200&quot;</code>.</dd>
 <dt>-oidc-insecure |  $PROXY_OIDC_INSECURE</dt>
-<dd>OIDC allow insecure communication. Default: <code>flags.OverrideDefaultBool(cfg.OIDC.Insecure, true)</code>.</dd>
+<dd>OIDC allow insecure communication. Default: <code>true</code>.</dd>
+<dt>-oidc-userinfo-cache-tll |  $PROXY_OIDC_USERINFO_CACHE_TTL</dt>
+<dd>Fallback TTL in seconds for caching userinfo, when no token lifetime can be identified. Default: <code>10</code>.</dd>
+<dt>-oidc-userinfo-cache-size |  $PROXY_OIDC_USERINFO_CACHE_SIZE</dt>
+<dd>Max entries for caching userinfo. Default: <code>1024</code>.</dd>
 <dt>-autoprovision-accounts |  $PROXY_AUTOPROVISION_ACCOUNTS</dt>
-<dd>create accounts from OIDC access tokens to learn new users. Default: <code>flags.OverrideDefaultBool(cfg.AutoprovisionAccounts, false)</code>.</dd>
+<dd>create accounts from OIDC access tokens to learn new users. Default: <code>false</code>.</dd>
+<dt>-presignedurl-allow-method |  $PRESIGNEDURL_ALLOWED_METHODS</dt>
+<dd>&ndash;presignedurl-allow-method GET [&ndash;presignedurl-allow-method POST]. Default: <code>cli.NewStringSlice(&quot;GET&quot;)</code>.</dd>
 <dt>-enable-presignedurls |  $PROXY_ENABLE_PRESIGNEDURLS</dt>
-<dd>Enable or disable handling the presigned urls in the proxy. Default: <code>flags.OverrideDefaultBool(cfg.PreSignedURL.Enabled, true)</code>.</dd>
+<dd>Enable or disable handling the presigned urls in the proxy. Default: <code>true</code>.</dd>
 <dt>-enable-basic-auth |  $PROXY_ENABLE_BASIC_AUTH</dt>
-<dd>enable basic authentication. Default: <code>flags.OverrideDefaultBool(cfg.EnableBasicAuth, false)</code>.</dd>
+<dd>enable basic authentication. Default: <code>false</code>.</dd>
 <dt>-account-backend-type |  $PROXY_ACCOUNT_BACKEND_TYPE</dt>
-<dd>account-backend-type. Default: <code>flags.OverrideDefaultString(cfg.AccountBackend, &quot;accounts&quot;)</code>.</dd>
+<dd>account-backend-type. Default: <code>&quot;accounts&quot;</code>.</dd>
+<dt>-proxy-user-agent-lock-in |  $PROXY_MIDDLEWARE_AUTH_CREDENTIALS_BY_USER_AGENT</dt>
+<dd>&ndash;user-agent-whitelist-lock-in=mirall:basic,foo:bearer Given a tuple of [UserAgent:challenge] it locks a given user agent to the authentication challenge. Particularly useful for old clients whose USer-Agent is known and only support one authentication challenge. When this flag is set in the proxy it configures the authentication middlewares..</dd>
 </dl>
 <div class="gdoc-page__anchorwrap"><h3 id="proxy-version">proxy version<a data-clipboard-text="https://owncloud.dev/extensions/proxy/configuration/#proxy-version" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor proxy version" href="#proxy-version"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>Print the versions of the running instances</p>
 <p>Usage: <code>proxy version [command options] [arguments...]</code></p>
 <dl>
 <dt>-service-namespace |  $PROXY_SERVICE_NAMESPACE</dt>
-<dd>Set the base namespace for the service namespace. Default: <code>flags.OverrideDefaultString(cfg.OIDC.Issuer, &quot;com.owncloud.web&quot;)</code>.</dd>
+<dd>Set the base namespace for the service namespace. Default: <code>&quot;com.owncloud.web&quot;</code>.</dd>
 <dt>-service-name |  $PROXY_SERVICE_NAME</dt>
-<dd>Service name. Default: <code>flags.OverrideDefaultString(cfg.Service.Name, &quot;proxy&quot;)</code>.</dd>
+<dd>Service name. Default: <code>&quot;proxy&quot;</code>.</dd>
 </dl>
 
 
