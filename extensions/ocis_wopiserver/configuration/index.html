@@ -3624,9 +3624,9 @@
             <li><a href="#configuration-using-config-files">Configuration using config files</a></li>
             <li><a href="#environment-variables">Environment variables</a></li>
             <li><a href="#commandline-flags">Commandline flags</a></li>
-            <li><a href="#accounts-health">accounts health</a></li>
             <li><a href="#accounts-wopiserver">accounts wopiserver</a></li>
             <li><a href="#accounts-server">accounts server</a></li>
+            <li><a href="#accounts-health">accounts health</a></li>
           </ul>
         </li>
       </ul></nav><hr></div>
@@ -3645,13 +3645,6 @@ $HOME/.ocis
 <p>If multiple variables are listed for one option, they are in order of precedence. This means the leftmost variable will always win if given.</p>
 <div class="gdoc-page__anchorwrap"><h3 id="commandline-flags">Commandline flags<a data-clipboard-text="https://owncloud.dev/extensions/ocis_wopiserver/configuration/#commandline-flags" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Commandline flags" href="#commandline-flags"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>If you prefer to configure the service with commandline flags you can see the available variables below. Command line flags are only working when calling the subcommand directly.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="accounts-health">accounts health<a data-clipboard-text="https://owncloud.dev/extensions/ocis_wopiserver/configuration/#accounts-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts health" href="#accounts-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Check health status</p>
-<p>Usage: <code>accounts health [command options] [arguments...]</code></p>
-<dl>
-<dt>-debug-addr |  $WOPISERVER_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>0.0.0.0:9109</code>.</dd>
-</dl>
 <div class="gdoc-page__anchorwrap"><h3 id="accounts-wopiserver">accounts wopiserver<a data-clipboard-text="https://owncloud.dev/extensions/ocis_wopiserver/configuration/#accounts-wopiserver" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts wopiserver" href="#accounts-wopiserver"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
 <p>wopiserver, an example oCIS extension</p>
 <p>Usage: <code>accounts wopiserver [command options] [arguments...]</code></p>
@@ -3695,8 +3688,10 @@ $HOME/.ocis
 <dd>Address to bind http server. Default: <code>0.0.0.0:9105</code>.</dd>
 <dt>-http-root |  $WOPISERVER_HTTP_ROOT</dt>
 <dd>Root path of http server. Default: <code>/</code>.</dd>
+<dt>-http-cache-ttl |  $WOPISERVER_CACHE_TTL</dt>
+<dd>Set the static assets caching duration in seconds. Default: <code>604800</code>.</dd>
 <dt>-name |  $WOPISERVER_NAME</dt>
-<dd>service name. Default: <code>flags.OverrideDefaultString(cfg.Server.Name, &quot;wopiserver&quot;)</code>.</dd>
+<dd>service name. Default: <code>&quot;wopiserver&quot;</code>.</dd>
 <dt>-asset-path |  $WOPISERVER_ASSET_PATH</dt>
 <dd>Path to custom assets.</dd>
 <dt>-wopi-server-host |  $WOPISERVER_WOPI_SERVER_HOST</dt>
@@ -3705,10 +3700,19 @@ $HOME/.ocis
 <dd>Wopiserver insecure. Default: <code>false</code>.</dd>
 <dt>-wopi-server-iop-secret |  $WOPISERVER_WOPI_SERVER_IOP_SECRET</dt>
 <dd>shared IOP secret for CS3 WOPI server.</dd>
+<dt>-wopi-server-token-ttl |  $WOPISERVER_TOKEN_TTL</dt>
+<dd>TTL of issued tokens. Default: <code>(1 * time.Hour)</code>.</dd>
 <dt>-jwt-secret |  $WOPISERVER_JWT_SECRET , $OCIS_JWT_SECRET</dt>
-<dd>Used to create JWT to talk to reva, should equal reva&rsquo;s jwt-secret. Default: <code>flags.OverrideDefaultString(cfg.TokenManager.JWTSecret, &quot;Pive-Fumkiu4&quot;)</code>.</dd>
+<dd>Used to create JWT to talk to reva, should equal reva&rsquo;s jwt-secret. Default: <code>&quot;Pive-Fumkiu4&quot;</code>.</dd>
 <dt>-reva-gateway-addr |  $WOPISERVER_REVA_GATEWAY_ADDR</dt>
-<dd>Reva gateway address. Default: <code>flags.OverrideDefaultString(cfg.WopiServer.RevaGateway, &quot;127.0.0.1:9142&quot;)</code>.</dd>
+<dd>Reva gateway address. Default: <code>&quot;127.0.0.1:9142&quot;</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap"><h3 id="accounts-health">accounts health<a data-clipboard-text="https://owncloud.dev/extensions/ocis_wopiserver/configuration/#accounts-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts health" href="#accounts-health"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>Check health status</p>
+<p>Usage: <code>accounts health [command options] [arguments...]</code></p>
+<dl>
+<dt>-debug-addr |  $WOPISERVER_DEBUG_ADDR</dt>
+<dd>Address to debug endpoint. Default: <code>0.0.0.0:9109</code>.</dd>
 </dl>
 
 
