@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Running">
+<meta name="description" content="8. Extensions Policies">
 
-<title>Running | ownCloud</title>
+<title>8. Extensions Policies | ownCloud</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -483,7 +483,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-307b2de1" class="gdoc-nav__toggle" >
+            <input type="checkbox" id="navtree-307b2de1" class="gdoc-nav__toggle" checked>
             <label for="navtree-307b2de1" class="flex justify-between">
             
             
@@ -702,7 +702,7 @@
             
             
                 <span class="flex">
-                    <a href="/ocis/adr/0008-policy-enforcement/" class="gdoc-nav__entry ">
+                    <a href="/ocis/adr/0008-policy-enforcement/" class="gdoc-nav__entry is-active">
                         8. Extensions Policies
                     </a>
                 </span>
@@ -3226,7 +3226,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-770c91cc" class="gdoc-nav__toggle" checked>
+            <input type="checkbox" id="navtree-770c91cc" class="gdoc-nav__toggle" >
             <label for="navtree-770c91cc" class="flex justify-between">
             
             
@@ -3309,7 +3309,7 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/ocis_wopiserver/configuration-with-ocis/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/ocis_wopiserver/configuration-with-ocis/" class="gdoc-nav__entry ">
                         Running
                     </a>
                 </span>
@@ -3604,7 +3604,7 @@
         
     
     
-        <a href='/'>ownCloud</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/ocis_wopiserver/'>WOPI server</a> / Running
+        <a href='/'>ownCloud</a> / <a href='/ocis/'>oCIS - ownCloud Infinite Scale</a> / <a href='/ocis/adr/'>Architecture Decisions</a> / 8. Extensions Policies
     
 
     
@@ -3620,7 +3620,7 @@
         
         <span class="editpage">
             <svg class="icon code"><use xlink:href="#code"></use></svg>
-            <a href="https://github.com/owncloud/ocis-wopiserver/edit/main/docs/extensions/wopiserver/configuration-with-ocis.md">
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/adr/0008-policy-enforcement">
                 Edit this page
             </a>
         </span>
@@ -3630,7 +3630,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>Running</h1>
+        <h1>8. Extensions Policies</h1>
         
 
 
@@ -3638,62 +3638,59 @@
     
 
 
-<div class="gdoc-page__anchorwrap"><h4 id="running-ocis">Running ocis<a data-clipboard-text="https://owncloud.dev/extensions/ocis_wopiserver/configuration-with-ocis/#running-ocis" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Running ocis" href="#running-ocis"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>In order to run this extension we will need to run oCIS first. For that clone and build the oCIS single binary from the github repo <code>https://github.com/owncloud/ocis</code>.
-After that we will need to create a config file for phoenix so that we can load the WOPI app in the frontend. Create a file <code>web-config.json</code> with the following contents.</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-  <span class="nt">&#34;server&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200&#34;</span><span class="p">,</span>
-  <span class="nt">&#34;theme&#34;</span><span class="p">:</span> <span class="s2">&#34;owncloud&#34;</span><span class="p">,</span>
-  <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;0.1.0&#34;</span><span class="p">,</span>
-  <span class="nt">&#34;openIdConnect&#34;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&#34;metadata_url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/.well-known/openid-configuration&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;authority&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;client_id&#34;</span><span class="p">:</span> <span class="s2">&#34;web&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;response_type&#34;</span><span class="p">:</span> <span class="s2">&#34;code&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;scope&#34;</span><span class="p">:</span> <span class="s2">&#34;openid profile email&#34;</span>
-  <span class="p">},</span>
-  <span class="nt">&#34;apps&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;files&#34;</span><span class="p">,</span> <span class="s2">&#34;media-viewer&#34;</span><span class="p">],</span>
-  <span class="nt">&#34;external_apps&#34;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;settings&#34;</span><span class="p">,</span>
-      <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;/settings.js&#34;</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-      <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;accounts&#34;</span><span class="p">,</span>
-      <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;/accounts.js&#34;</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-      <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;wopi&#34;</span><span class="p">,</span>
-      <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;/wopi.js&#34;</span>
-    <span class="p">}</span>
-  <span class="p">],</span>
-  <span class="nt">&#34;options&#34;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&#34;hideSearchBar&#34;</span><span class="p">:</span> <span class="kc">true</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<ul>
+<li>Status: proposed</li>
+<li>Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1, @fschade</li>
+<li>Date: 2021-06-30</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h2 id="context-and-problem-statement">Context and Problem Statement<a data-clipboard-text="https://owncloud.dev/ocis/adr/0008-policy-enforcement/#context-and-problem-statement" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Context and Problem Statement" href="#context-and-problem-statement"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>There should be a way to impose certain limitations in areas of the code that require licensing. This document researches an approach to achieve it.</p>
+<div class="gdoc-page__anchorwrap"><h2 id="decision-drivers">Decision Drivers<a data-clipboard-text="https://owncloud.dev/ocis/adr/0008-policy-enforcement/#decision-drivers" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Decision Drivers" href="#decision-drivers"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<ul>
+<li>as a team, we want to have the licensing code concentrated in a central module</li>
+<li>we don&rsquo;t want to stop/start the extension whenever a policy is updated (hot reload)</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h2 id="considered-options">Considered Options<a data-clipboard-text="https://owncloud.dev/ocis/adr/0008-policy-enforcement/#considered-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Considered Options" href="#considered-options"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<ol>
+<li>Build the evaluation engine in-house.</li>
+<li>Use third party libraries such as Open Policy Agent (a CNCF aproved project written in Go)</li>
+</ol>
+<div class="gdoc-page__anchorwrap"><h2 id="decision-outcome">Decision Outcome<a data-clipboard-text="https://owncloud.dev/ocis/adr/0008-policy-enforcement/#decision-outcome" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Decision Outcome" href="#decision-outcome"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>Chosen option: option 2; Use third party libraries such as Open Policy Agent (a CNCF aproved project written in Go)</p>
+<div class="gdoc-page__anchorwrap"><h3 id="positive-consequences">Positive Consequences<a data-clipboard-text="https://owncloud.dev/ocis/adr/0008-policy-enforcement/#positive-consequences" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Positive Consequences" href="#positive-consequences"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>OPA is production battle tested.</li>
+<li>built around performance - policies evaluations are no longer than 1ms per request.</li>
+<li>middleware friendly: we use gRPC clients all over our ecosystem; wrappers (or middlewares) is a viable way to solve this problem instead of a dedicated service or its own package.</li>
+<li>community support.</li>
+<li>kubernetes friendly.</li>
+<li>supports envoy, kong, terraform, traefik, php, node and many more.</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h3 id="negative-consequences">Negative Consequences<a data-clipboard-text="https://owncloud.dev/ocis/adr/0008-policy-enforcement/#negative-consequences" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Negative Consequences" href="#negative-consequences"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<ul>
+<li>more vendor code inside the binary (larger attack surface, larger footprint [to be quantified] )</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h2 id="chosen-option-approach">Chosen option approach<a data-clipboard-text="https://owncloud.dev/ocis/adr/0008-policy-enforcement/#chosen-option-approach" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Chosen option approach" href="#chosen-option-approach"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>Make use of <a href="https://www.openpolicyagent.org/docs/latest/external-data/#option-2-overload-input">overloading Open Policy Agent&rsquo;s input</a> along with an external storage source (instead of an OPA service) in conjunction with go-micro&rsquo;s gRPC client wrappers (a.k.a middlewares) to leverage policy rules evaluation.</p>
+<div class="gdoc-page__anchorwrap"><h3 id="terminology">Terminology<a data-clipboard-text="https://owncloud.dev/ocis/adr/0008-policy-enforcement/#terminology" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Terminology" href="#terminology"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p>New terms are defined to refer to new mental models:</p>
+<ul>
+<li>policy: self-imposed limitation of a piece of software. i.e: &ldquo;after 20 users limit the use of thumbnails&rdquo;.</li>
+<li>checkers: in the context of a middleware, a checker is in charge of defining logical conditions that prevent requests (users) from doing an action.</li>
+<li>policy file: a <a href="https://www.openpolicyagent.org/docs/latest/policy-language/">rego file</a>.</li>
+<li>policy evaluation: the act of piecing together input (from a request), data (from an external storage) and policies in order to make a decision.</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h4 id="temporary-new-interfaces-part-of-the-poc">Temporary new Interfaces part of the PoC<a data-clipboard-text="https://owncloud.dev/ocis/adr/0008-policy-enforcement/#temporary-new-interfaces-part-of-the-poc" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Temporary new Interfaces part of the PoC" href="#temporary-new-interfaces-part-of-the-poc"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<ul>
+<li>IStorage: provides means of extracting data from an external source (in case of the POC an etcd storage cluster).</li>
+</ul>
+<div class="gdoc-page__anchorwrap"><h3 id="future-ideas">Future ideas<a data-clipboard-text="https://owncloud.dev/ocis/adr/0008-policy-enforcement/#future-ideas" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Future ideas" href="#future-ideas"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
+<p><a href="https://github.com/owncloud/ocis/pull/2236">This proof of concept</a> is very rigid in the sense that the <code>IStorage</code> interface only has one implementation that ties it to etcd, meaning running an oCIS cluster without an etcd service will result in a crash. This is by far ideal and less coupled implementations should be done. There is the case of using the storage metadata as a source to store data necessary to the policies, or even using the go-micro store as a kv store to achieve the exact same, since it already runs as its own service. The implementation of this is trivial and left out of the POC since it requires more time than the allotted for this task.</p>
+<div class="gdoc-page__anchorwrap"><h4 id="message-broker">Message Broker<a data-clipboard-text="https://owncloud.dev/ocis/adr/0008-policy-enforcement/#message-broker" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Message Broker" href="#message-broker"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
+<p>This problem perfectly encompasses the use of a message broker, where services such as OCS will emit messages to a bus and only listeners react to them. In this case the following applies:</p>
+<p><img src="https://i.imgur.com/sa1pANQ.jpg" alt="message broker"></p>
+<p>The necessary interfaces are provided to us by go-micro, only implementations are to be done.</p>
 
-</code></pre></div><p>Here we can add the url for the js file from where the WOPI app will be loaded.</p>
-<p>After that we will need a configuration file for oCIS where we can specify the path for the WOPI app in the backend. For this you can use the existing <code>proxy-example.json</code> file from the <a href="https://github.com/owncloud/ocis/blob/master/proxy/config/proxy-example.json">ocis-proxy</a> repo. Just add an extra endpoint at the end for the WOPI app.</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-  <span class="nt">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s2">&#34;/api/v0/wopi&#34;</span><span class="p">,</span>
-  <span class="nt">&#34;backend&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:9105&#34;</span>
-<span class="p">}</span><span class="err">,</span>
-<span class="p">{</span>
-  <span class="nt">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s2">&#34;/wopi.js&#34;</span><span class="p">,</span>
-  <span class="nt">&#34;backend&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:9105&#34;</span>
-<span class="p">}</span>
-</code></pre></div><p>In addition to all these we will also need to set the config files we just modified. For that set these variables with the path to the config files.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">export WEB_UI_CONFIG=&lt;path to web-config.json&gt;
-export PROXY_CONFIG_FILE=&lt;path to ocis proxy config file&gt;
-</code></pre></div><p>And finally start the ocis server</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">ocis server
-</code></pre></div><p>After this we will need to start the oCIS WOPI server service.
-For that just build oCIS WOPI server binary.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">cd ocis-wopi 
-make
-</code></pre></div><p>And Run the service</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">bin/wopiserver server
-</code></pre></div>
 
     </article>
 
