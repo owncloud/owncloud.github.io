@@ -1,69 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="color-toggle-hidden">
 
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Migration">
+<meta name="color-scheme" content="light dark" />
 
-<title>Migration | ownCloud</title>
 
-<link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
+
+
+
+    <meta name="description" content="The migration happens in subsequent stages while the service is online. First all users need to migrate to the new architecture, then the global namespace needs to be introduced. Finally, the data on disk can be migrated user by user by switching the storage driver.
+@jfd: It might be easier to introduce the spaces api in oc10 and then migrate to oCIS. We cannot migrate both at the same time, the architecture to oCIS (which will change fileids) and introduce a global namespace (which requires stable fileids to let clients handle moves without redownloading).">
+
+
+
+    <title>Migration | ownCloud</title>
+
+    <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
+
+    <script src="/js/darkmode-ce906ea916.min.js"></script>
 
 <link rel="preload" as="font" href="/fonts/Metropolis.woff2" type="font/woff2" crossorigin="anonymous">
 <link rel="preload" as="font" href="/fonts/LiberationSans.woff2" type="font/woff2" crossorigin="anonymous">
-<link rel="preload" as="font" href="/fonts/LiberationSans-Bold.woff2" type="font/woff2" crossorigin="anonymous">
-<link rel="preload" as="font" href="/fonts/LiberationSans-BoldItalic.woff2" type="font/woff2" crossorigin="anonymous">
-<link rel="preload" as="font" href="/fonts/LiberationSans-Italic.woff2" type="font/woff2" crossorigin="anonymous">
-<link rel="preload" as="font" href="/fonts/LiberationMono.woff2" type="font/woff2" crossorigin="anonymous">
-<link rel="preload" as="font" href="/fonts/DroidSans.woff2" type="font/woff2" crossorigin="anonymous">
-<link rel="preload" as="font" href="/fonts/GeekdocIcons.woff2" type="font/woff2" crossorigin="anonymous">
 
-<link rel="preload" href="/main-bed196f5e7.min.css" as="style">
-<link rel="stylesheet" href="/main-bed196f5e7.min.css" media="all">
+<link rel="preload" href="/main-cc3cbe901b.min.css" as="style">
+<link rel="stylesheet" href="/main-cc3cbe901b.min.css" media="all">
 
-<link rel="preload" href="/mobile-2eb10ce87d.min.css" as="style">
-<link rel="stylesheet" href="/mobile-2eb10ce87d.min.css" media="screen and (max-width: 45rem)">
+<link rel="preload" href="/mobile-249b801e7d.min.css" as="style">
+<link rel="stylesheet" href="/mobile-249b801e7d.min.css" media="screen and (max-width: 45rem)">
 
-<link rel="preload" href="/print-16259ad7b8.min.css" as="style">
-<link rel="stylesheet" href="/print-16259ad7b8.min.css" media="print">
+<link rel="preload" href="/print-f79fc3e5d7.min.css" as="style">
+<link rel="stylesheet" href="/print-f79fc3e5d7.min.css" media="print">
 
 <link rel="preload" href="/custom.css" as="style">
 <link rel="stylesheet" href="/custom.css" media="all">
 
+
+
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
+
+    
 
 </head>
 
-<body>
-    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><symbol viewBox="-2.29 -2.29 28.57 28.57" id="arrow_back" xmlns="http://www.w3.org/2000/svg"><path d="M24 10.526v2.947H5.755l8.351 8.421-2.105 2.105-12-12 12-12 2.105 2.105-8.351 8.421H24z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="arrow_left_alt" xmlns="http://www.w3.org/2000/svg"><path d="M5.965 10.526V6.035L0 12l5.965 5.965v-4.491H24v-2.947H5.965z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="arrow_right_alt" xmlns="http://www.w3.org/2000/svg"><path d="M18.035 10.526V6.035L24 12l-5.965 5.965v-4.491H0v-2.947h18.035z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="bitbucket" xmlns="http://www.w3.org/2000/svg"><path d="M15.905 13.355c.189 1.444-1.564 2.578-2.784 1.839-1.375-.602-1.375-2.784-.034-3.403 1.151-.705 2.818.223 2.818 1.564zm1.907-.361c-.309-2.44-3.076-4.056-5.328-3.042-1.426.636-2.389 2.148-2.32 3.747.086 2.097 2.08 3.815 4.176 3.626s3.729-2.234 3.472-4.331zm4.108-9.315c-.756-.997-2.045-1.169-3.179-1.358-3.214-.516-6.513-.533-9.727.034-1.066.172-2.269.361-2.939 1.323 1.1 1.031 2.664 1.186 4.073 1.358 2.544.327 5.156.344 7.699.017 1.426-.172 3.008-.309 4.073-1.375zm.979 17.788c-.481 1.684-.206 3.953-1.994 4.932-3.076 1.701-6.806 1.89-10.191 1.289-1.787-.327-3.884-.894-4.864-2.578-.43-1.65-.705-3.334-.98-5.018l.103-.275.309-.155c5.121 3.386 12.288 3.386 17.427 0 .808.241.206 1.22.189 1.805zM26.01 4.951c-.584 3.764-1.255 7.51-1.908 11.257-.189 1.1-1.255 1.719-2.148 2.183-3.214 1.615-6.96 1.89-10.483 1.512-2.389-.258-4.829-.894-6.771-2.389-.911-.705-.911-1.908-1.083-2.922-.602-3.523-1.289-7.046-1.719-10.604.206-1.547 1.942-2.217 3.231-2.698C6.848.654 8.686.362 10.508.19c3.884-.378 7.854-.241 11.618.859 1.341.395 2.784.945 3.695 2.097.412.533.275 1.203.189 1.805z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="bookmark" xmlns="http://www.w3.org/2000/svg"><path d="M15.268 4.392q.868 0 1.532.638t.664 1.506v17.463l-7.659-3.268-7.608 3.268V6.536q0-.868.664-1.506t1.532-.638h10.876zm4.34 14.144V4.392q0-.868-.638-1.532t-1.506-.664H6.537q0-.868.664-1.532T8.733 0h10.876q.868 0 1.532.664t.664 1.532v17.412z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="code" xmlns="http://www.w3.org/2000/svg"><path d="M9.917 24.5a1.75 1.75 0 10-3.501.001 1.75 1.75 0 003.501-.001zm0-21a1.75 1.75 0 10-3.501.001A1.75 1.75 0 009.917 3.5zm11.666 2.333a1.75 1.75 0 10-3.501.001 1.75 1.75 0 003.501-.001zm1.75 0a3.502 3.502 0 01-1.75 3.026c-.055 6.581-4.721 8.039-7.82 9.023-2.898.911-3.846 1.349-3.846 3.117v.474a3.502 3.502 0 011.75 3.026c0 1.932-1.568 3.5-3.5 3.5s-3.5-1.568-3.5-3.5c0-1.294.711-2.424 1.75-3.026V6.526A3.502 3.502 0 014.667 3.5c0-1.932 1.568-3.5 3.5-3.5s3.5 1.568 3.5 3.5a3.502 3.502 0 01-1.75 3.026v9.06c.93-.456 1.914-.766 2.807-1.039 3.391-1.075 5.323-1.878 5.359-5.687a3.502 3.502 0 01-1.75-3.026c0-1.932 1.568-3.5 3.5-3.5s3.5 1.568 3.5 3.5z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="date" xmlns="http://www.w3.org/2000/svg"><path d="M27.192 28.844V11.192H4.808v17.652h22.384zm0-25.689q1.277 0 2.253.976t.976 2.253v22.459q0 1.277-.976 2.216t-2.253.939H4.808q-1.352 0-2.291-.901t-.939-2.253V6.385q0-1.277.939-2.253t2.291-.976h1.577V.001h3.23v3.155h12.769V.001h3.23v3.155h1.577zm-3.155 11.267v3.155h-3.23v-3.155h3.23zm-6.46 0v3.155h-3.155v-3.155h3.155zm-6.384 0v3.155h-3.23v-3.155h3.23z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="download" xmlns="http://www.w3.org/2000/svg"><path d="M2.866 28.209h26.269v3.79H2.866v-3.79zm26.268-16.925L16 24.418 2.866 11.284h7.493V.001h11.283v11.283h7.493z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="email" xmlns="http://www.w3.org/2000/svg"><path d="M28.845 9.615v-3.23L16 14.422 3.155 6.385v3.23L16 17.577zm0-6.46q1.277 0 2.216.977T32 6.385v19.23q0 1.277-.939 2.253t-2.216.977H3.155q-1.277 0-2.216-.977T0 25.615V6.385q0-1.277.939-2.253t2.216-.977h25.69z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="git" xmlns="http://www.w3.org/2000/svg"><path d="M27.472 12.753L15.247.529a1.803 1.803 0 00-2.55 0l-2.84 2.84 2.137 2.137a2.625 2.625 0 013.501 3.501l3.499 3.499a2.625 2.625 0 11-1.237 1.237l-3.499-3.499c-.083.04-.169.075-.257.106v7.3a2.626 2.626 0 11-1.75 0v-7.3a2.626 2.626 0 01-1.494-3.607L8.62 4.606l-8.09 8.09a1.805 1.805 0 000 2.551l12.225 12.224a1.803 1.803 0 002.55 0l12.168-12.168a1.805 1.805 0 000-2.551z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="github" xmlns="http://www.w3.org/2000/svg"><path d="M16 .394c8.833 0 15.999 7.166 15.999 15.999 0 7.062-4.583 13.062-10.937 15.187-.813.146-1.104-.354-1.104-.771 0-.521.021-2.25.021-4.396 0-1.5-.5-2.458-1.083-2.958 3.562-.396 7.312-1.75 7.312-7.896 0-1.75-.625-3.167-1.646-4.291.167-.417.708-2.042-.167-4.25-1.333-.417-4.396 1.646-4.396 1.646a15.032 15.032 0 00-8 0S8.937 6.602 7.603 7.018c-.875 2.208-.333 3.833-.167 4.25-1.021 1.125-1.646 2.542-1.646 4.291 0 6.125 3.729 7.5 7.291 7.896-.458.417-.875 1.125-1.021 2.146-.917.417-3.25 1.125-4.646-1.333-.875-1.521-2.458-1.646-2.458-1.646-1.562-.021-.104.979-.104.979 1.042.479 1.771 2.333 1.771 2.333.938 2.854 5.396 1.896 5.396 1.896 0 1.333.021 2.583.021 2.979 0 .417-.292.917-1.104.771C4.582 29.455-.001 23.455-.001 16.393-.001 7.56 7.165.394 15.998.394zM6.063 23.372c.042-.083-.021-.187-.146-.25-.125-.042-.229-.021-.271.042-.042.083.021.187.146.25.104.062.229.042.271-.042zm.646.709c.083-.062.062-.208-.042-.333-.104-.104-.25-.146-.333-.062-.083.062-.062.208.042.333.104.104.25.146.333.062zm.625.937c.104-.083.104-.25 0-.396-.083-.146-.25-.208-.354-.125-.104.062-.104.229 0 .375s.271.208.354.146zm.875.875c.083-.083.042-.271-.083-.396-.146-.146-.333-.167-.417-.062-.104.083-.062.271.083.396.146.146.333.167.417.062zm1.187.521c.042-.125-.083-.271-.271-.333-.167-.042-.354.021-.396.146s.083.271.271.312c.167.062.354 0 .396-.125zm1.313.104c0-.146-.167-.25-.354-.229-.187 0-.333.104-.333.229 0 .146.146.25.354.229.187 0 .333-.104.333-.229zm1.208-.208c-.021-.125-.187-.208-.375-.187-.187.042-.312.167-.292.312.021.125.187.208.375.167s.312-.167.292-.292z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gitlab" xmlns="http://www.w3.org/2000/svg"><path d="M1.629 11.034L14 26.888.442 17.048a1.09 1.09 0 01-.39-1.203l1.578-4.811zm7.217 0h10.309l-5.154 15.854zM5.753 1.475l3.093 9.559H1.63l3.093-9.559a.548.548 0 011.031 0zm20.618 9.559l1.578 4.811c.141.437-.016.922-.39 1.203l-13.558 9.84 12.371-15.854zm0 0h-7.216l3.093-9.559a.548.548 0 011.031 0z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="heart" xmlns="http://www.w3.org/2000/svg"><path d="M16 29.714a1.11 1.11 0 01-.786-.321L4.072 18.643c-.143-.125-4.071-3.714-4.071-8 0-5.232 3.196-8.357 8.535-8.357 3.125 0 6.053 2.464 7.464 3.857 1.411-1.393 4.339-3.857 7.464-3.857 5.339 0 8.535 3.125 8.535 8.357 0 4.286-3.928 7.875-4.089 8.035L16.785 29.392c-.214.214-.5.321-.786.321z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="keyborad_arrow_down" xmlns="http://www.w3.org/2000/svg"><path d="M3.281 5.36L14 16.079 24.719 5.36 28 8.641l-14 14-14-14z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="keyborad_arrow_left" xmlns="http://www.w3.org/2000/svg"><path d="M25.875 28.25L22.125 32 6.126 16.001 22.125.002l3.75 3.75-12.25 12.25z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="keyborad_arrow_right" xmlns="http://www.w3.org/2000/svg"><path d="M6.125 28.25L18.375 16 6.125 3.75 9.875 0l15.999 15.999L9.875 31.998z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="link" xmlns="http://www.w3.org/2000/svg"><path d="M24.037 7.963q3.305 0 5.634 2.366T32 16t-2.329 5.671-5.634 2.366h-6.46v-3.08h6.46q2.028 0 3.493-1.465t1.465-3.493-1.465-3.493-3.493-1.465h-6.46v-3.08h6.46zM9.615 17.578v-3.155h12.77v3.155H9.615zM3.005 16q0 2.028 1.465 3.493t3.493 1.465h6.46v3.08h-6.46q-3.305 0-5.634-2.366T0 16.001t2.329-5.671 5.634-2.366h6.46v3.08h-6.46q-2.028 0-3.493 1.465t-1.465 3.493z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="menu" xmlns="http://www.w3.org/2000/svg"><path d="M.001 5.334h31.998v3.583H.001V5.334zm0 12.416v-3.5h31.998v3.5H.001zm0 8.916v-3.583h31.998v3.583H.001z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="notification" xmlns="http://www.w3.org/2000/svg"><path d="M22.615 19.384l2.894 2.894v1.413H2.49v-1.413l2.894-2.894V12.25q0-3.365 1.716-5.856t4.745-3.231v-1.01q0-.875.606-1.514T13.999 0t1.548.639.606 1.514v1.01q3.029.74 4.745 3.231t1.716 5.856v7.134zM14 27.999q-1.211 0-2.053-.808t-.841-2.019h5.788q0 1.144-.875 1.986T14 27.999z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="path" xmlns="http://www.w3.org/2000/svg"><path d="M28 12.62h-9.793V8.414h-2.826v11.173h2.826v-4.206H28V26.62h-9.793v-4.206H12.62v-14H9.794v4.206H.001V1.381h9.793v4.206h8.413V1.381H28V12.62z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="person" xmlns="http://www.w3.org/2000/svg"><path d="M16 20.023q5.052 0 10.526 2.199t5.473 5.754v4.023H0v-4.023q0-3.555 5.473-5.754t10.526-2.199zM16 16q-3.275 0-5.614-2.339T8.047 8.047t2.339-5.661T16 0t5.614 2.386 2.339 5.661-2.339 5.614T16 16z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="search" xmlns="http://www.w3.org/2000/svg"><path d="M11.925 20.161q3.432 0 5.834-2.402t2.402-5.834-2.402-5.834-5.834-2.402-5.834 2.402-2.402 5.834 2.402 5.834 5.834 2.402zm10.981 0L32 29.255 29.255 32l-9.094-9.094v-1.458l-.515-.515q-3.26 2.831-7.721 2.831-4.976 0-8.45-3.432T.001 11.925t3.474-8.45 8.45-3.474 8.407 3.474 3.432 8.45q0 1.802-.858 4.075t-1.973 3.646l.515.515h1.458z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="shield" xmlns="http://www.w3.org/2000/svg"><path d="M22.167 15.166V3.5h-8.166v20.726c.93-.492 2.424-1.349 3.883-2.497 1.95-1.531 4.284-3.919 4.284-6.562zm3.499-13.999v14c0 7.674-10.737 12.523-11.192 12.724-.146.073-.31.109-.474.109s-.328-.036-.474-.109c-.456-.201-11.192-5.049-11.192-12.724v-14C2.334.529 2.863 0 3.501 0H24.5c.638 0 1.167.529 1.167 1.167z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="tags" xmlns="http://www.w3.org/2000/svg"><path d="M6.606 7.549c0-1.047-.84-1.887-1.887-1.887s-1.887.84-1.887 1.887.84 1.887 1.887 1.887 1.887-.84 1.887-1.887zm15.732 8.493c0 .501-.206.988-.546 1.327l-7.239 7.254c-.354.339-.84.546-1.342.546s-.988-.206-1.327-.546L1.342 14.066C.59 13.329 0 11.899 0 10.852V4.718a1.9 1.9 0 011.887-1.887h6.134c1.047 0 2.477.59 3.229 1.342L21.792 14.7c.339.354.546.84.546 1.342zm5.661 0c0 .501-.206.988-.546 1.327l-7.239 7.254c-.354.339-.84.546-1.342.546-.767 0-1.15-.354-1.651-.87l6.93-6.93c.339-.339.546-.826.546-1.327s-.206-.988-.546-1.342L13.609 4.173c-.752-.752-2.182-1.342-3.229-1.342h3.303c1.047 0 2.477.59 3.229 1.342L27.454 14.7c.339.354.546.84.546 1.342z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="telescope" xmlns="http://www.w3.org/2000/svg"><path d="M25.026 3.335a.466.466 0 00-.646-.238L13.362 8.91a.463.463 0 00-.216.575l.227.593-6.36 3.488a.462.462 0 00-.205.583l.211.508-6.755 3.228a.463.463 0 00-.228.595l1.386 3.341a.463.463 0 00.583.259l7.056-2.5.211.508a.462.462 0 00.557.267l6.733-1.941.202.527a.46.46 0 00.566.277l12.03-3.702a.46.46 0 00.293-.613L25.026 3.335zM2.109 21.061l-1.049-2.53 6.314-3.018 1.332 3.211-6.596 2.337zm7.857-1.708l-.22-.531-1.706-4.113-.22-.53 5.863-3.216 2.197 5.676.347.908-6.261 1.806zm7.505-1.146l-.188-.491c-.003-.01-.001-.022-.006-.032l-.572-1.478-2.549-6.668 10.201-5.381 4.249 10.624-11.136 3.428zm8.943-16.723a.463.463 0 00-.86.344l5.552 13.881a.464.464 0 00.602.258.464.464 0 00.258-.602L26.413 1.484zM16.268 20.627h-2.776c-1.055 0-1.851.796-1.851 1.851v1.217l-5.44 6.347a.462.462 0 10.702.602l5.415-6.316h2.101v6.015a.463.463 0 00.926 0v-6.015h2.101l5.414 6.316a.462.462 0 10.703-.602l-5.44-6.347v-1.148c0-1.076-.813-1.92-1.851-1.92zm.925 2.777h-4.627v-.925c0-.545.38-.925.925-.925h2.776c.527 0 .925.428.925.995v.856z"/></symbol></svg>
+<body itemscope itemtype="https://schema.org/WebPage">
+    
+<!-- geekdoc include: sprites/geekdoc.svg -->
+<svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_arrow_back" xmlns="http://www.w3.org/2000/svg"><path d="M24 10.526v2.947H5.755l8.351 8.421-2.105 2.105-12-12 12-12 2.105 2.105-8.351 8.421H24z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_arrow_left_alt" xmlns="http://www.w3.org/2000/svg"><path d="M5.965 10.526V6.035L0 12l5.965 5.965v-4.491H24v-2.947H5.965z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_arrow_right_alt" xmlns="http://www.w3.org/2000/svg"><path d="M18.035 10.526V6.035L24 12l-5.965 5.965v-4.491H0v-2.947h18.035z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_bitbucket" xmlns="http://www.w3.org/2000/svg"><path d="M15.905 13.355c.189 1.444-1.564 2.578-2.784 1.839-1.375-.602-1.375-2.784-.034-3.403 1.151-.705 2.818.223 2.818 1.564zm1.907-.361c-.309-2.44-3.076-4.056-5.328-3.042-1.426.636-2.389 2.148-2.32 3.747.086 2.097 2.08 3.815 4.176 3.626s3.729-2.234 3.472-4.331zm4.108-9.315c-.756-.997-2.045-1.169-3.179-1.358-3.214-.516-6.513-.533-9.727.034-1.066.172-2.269.361-2.939 1.323 1.1 1.031 2.664 1.186 4.073 1.358 2.544.327 5.156.344 7.699.017 1.426-.172 3.008-.309 4.073-1.375zm.979 17.788c-.481 1.684-.206 3.953-1.994 4.932-3.076 1.701-6.806 1.89-10.191 1.289-1.787-.327-3.884-.894-4.864-2.578-.43-1.65-.705-3.334-.98-5.018l.103-.275.309-.155c5.121 3.386 12.288 3.386 17.427 0 .808.241.206 1.22.189 1.805zM26.01 4.951c-.584 3.764-1.255 7.51-1.908 11.257-.189 1.1-1.255 1.719-2.148 2.183-3.214 1.615-6.96 1.89-10.483 1.512-2.389-.258-4.829-.894-6.771-2.389-.911-.705-.911-1.908-1.083-2.922-.602-3.523-1.289-7.046-1.719-10.604.206-1.547 1.942-2.217 3.231-2.698C6.848.654 8.686.362 10.508.19c3.884-.378 7.854-.241 11.618.859 1.341.395 2.784.945 3.695 2.097.412.533.275 1.203.189 1.805z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_bookmark" xmlns="http://www.w3.org/2000/svg"><path d="M15.268 4.392q.868 0 1.532.638t.664 1.506v17.463l-7.659-3.268-7.608 3.268V6.536q0-.868.664-1.506t1.532-.638h10.876zm4.34 14.144V4.392q0-.868-.638-1.532t-1.506-.664H6.537q0-.868.664-1.532T8.733 0h10.876q.868 0 1.532.664t.664 1.532v17.412z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_brightness_auto" xmlns="http://www.w3.org/2000/svg"><path d="M16.846 18.938h2.382L15.22 7.785h-2.44L8.772 18.938h2.382l.871-2.44h3.95zm7.087-9.062L27.999 14l-4.066 4.124v5.809h-5.809L14 27.999l-4.124-4.066H4.067v-5.809L.001 14l4.066-4.124V4.067h5.809L14 .001l4.124 4.066h5.809v5.809zm-11.385 4.937L14 10.282l1.452 4.531h-2.904z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_brightness_dark" xmlns="http://www.w3.org/2000/svg"><path d="M14 21.435q3.079 0 5.257-2.178T21.435 14t-2.178-5.257T14 6.565q-1.51 0-3.079.697 1.917.871 3.108 2.701T15.22 14t-1.191 4.037-3.108 2.701q1.568.697 3.079.697zm9.933-11.559L27.999 14l-4.066 4.124v5.809h-5.809L14 27.999l-4.124-4.066H4.067v-5.809L.001 14l4.066-4.124V4.067h5.809L14 .001l4.124 4.066h5.809v5.809z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_brightness_light" xmlns="http://www.w3.org/2000/svg"><path d="M14 21.435q3.079 0 5.257-2.178T21.435 14t-2.178-5.257T14 6.565 8.743 8.743 6.565 14t2.178 5.257T14 21.435zm9.933-3.311v5.809h-5.809L14 27.999l-4.124-4.066H4.067v-5.809L.001 14l4.066-4.124V4.067h5.809L14 .001l4.124 4.066h5.809v5.809L27.999 14z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_cloud_off" xmlns="http://www.w3.org/2000/svg"><path d="M9.023 10.5H7q-1.914 0-3.281 1.395t-1.367 3.309 1.367 3.281T7 19.852h11.375zM3.5 4.976l1.477-1.477L24.5 23.022l-1.477 1.477-2.352-2.297H6.999q-2.898 0-4.949-2.051t-2.051-4.949q0-2.844 1.969-4.867t4.758-2.133zm19.086 5.578q2.242.164 3.828 1.832T28 16.351q0 3.008-2.461 4.758l-1.695-1.695q1.805-.984 1.805-3.063 0-1.422-1.039-2.461t-2.461-1.039h-1.75v-.602q0-2.68-1.859-4.539t-4.539-1.859q-1.531 0-2.953.711l-1.75-1.695Q11.431 3.5 14.001 3.5q2.953 0 5.496 2.078t3.09 4.977z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_code" xmlns="http://www.w3.org/2000/svg"><path d="M9.917 24.5a1.75 1.75 0 10-3.501.001 1.75 1.75 0 003.501-.001zm0-21a1.75 1.75 0 10-3.501.001A1.75 1.75 0 009.917 3.5zm11.666 2.333a1.75 1.75 0 10-3.501.001 1.75 1.75 0 003.501-.001zm1.75 0a3.502 3.502 0 01-1.75 3.026c-.055 6.581-4.721 8.039-7.82 9.023-2.898.911-3.846 1.349-3.846 3.117v.474a3.502 3.502 0 011.75 3.026c0 1.932-1.568 3.5-3.5 3.5s-3.5-1.568-3.5-3.5c0-1.294.711-2.424 1.75-3.026V6.526A3.502 3.502 0 014.667 3.5c0-1.932 1.568-3.5 3.5-3.5s3.5 1.568 3.5 3.5a3.502 3.502 0 01-1.75 3.026v9.06c.93-.456 1.914-.766 2.807-1.039 3.391-1.075 5.323-1.878 5.359-5.687a3.502 3.502 0 01-1.75-3.026c0-1.932 1.568-3.5 3.5-3.5s3.5 1.568 3.5 3.5z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_date" xmlns="http://www.w3.org/2000/svg"><path d="M27.192 28.844V11.192H4.808v17.652h22.384zm0-25.689q1.277 0 2.253.976t.976 2.253v22.459q0 1.277-.976 2.216t-2.253.939H4.808q-1.352 0-2.291-.901t-.939-2.253V6.385q0-1.277.939-2.253t2.291-.976h1.577V.001h3.23v3.155h12.769V.001h3.23v3.155h1.577zm-3.155 11.267v3.155h-3.23v-3.155h3.23zm-6.46 0v3.155h-3.155v-3.155h3.155zm-6.384 0v3.155h-3.23v-3.155h3.23z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_download" xmlns="http://www.w3.org/2000/svg"><path d="M2.866 28.209h26.269v3.79H2.866v-3.79zm26.268-16.925L16 24.418 2.866 11.284h7.493V.001h11.283v11.283h7.493z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_email" xmlns="http://www.w3.org/2000/svg"><path d="M28.845 9.615v-3.23L16 14.422 3.155 6.385v3.23L16 17.577zm0-6.46q1.277 0 2.216.977T32 6.385v19.23q0 1.277-.939 2.253t-2.216.977H3.155q-1.277 0-2.216-.977T0 25.615V6.385q0-1.277.939-2.253t2.216-.977h25.69z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_git" xmlns="http://www.w3.org/2000/svg"><path d="M27.472 12.753L15.247.529a1.803 1.803 0 00-2.55 0l-2.84 2.84 2.137 2.137a2.625 2.625 0 013.501 3.501l3.499 3.499a2.625 2.625 0 11-1.237 1.237l-3.499-3.499c-.083.04-.169.075-.257.106v7.3a2.626 2.626 0 11-1.75 0v-7.3a2.626 2.626 0 01-1.494-3.607L8.62 4.606l-8.09 8.09a1.805 1.805 0 000 2.551l12.225 12.224a1.803 1.803 0 002.55 0l12.168-12.168a1.805 1.805 0 000-2.551z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_github" xmlns="http://www.w3.org/2000/svg"><path d="M16 .394c8.833 0 15.999 7.166 15.999 15.999 0 7.062-4.583 13.062-10.937 15.187-.813.146-1.104-.354-1.104-.771 0-.521.021-2.25.021-4.396 0-1.5-.5-2.458-1.083-2.958 3.562-.396 7.312-1.75 7.312-7.896 0-1.75-.625-3.167-1.646-4.291.167-.417.708-2.042-.167-4.25-1.333-.417-4.396 1.646-4.396 1.646a15.032 15.032 0 00-8 0S8.937 6.602 7.603 7.018c-.875 2.208-.333 3.833-.167 4.25-1.021 1.125-1.646 2.542-1.646 4.291 0 6.125 3.729 7.5 7.291 7.896-.458.417-.875 1.125-1.021 2.146-.917.417-3.25 1.125-4.646-1.333-.875-1.521-2.458-1.646-2.458-1.646-1.562-.021-.104.979-.104.979 1.042.479 1.771 2.333 1.771 2.333.938 2.854 5.396 1.896 5.396 1.896 0 1.333.021 2.583.021 2.979 0 .417-.292.917-1.104.771C4.582 29.455-.001 23.455-.001 16.393-.001 7.56 7.165.394 15.998.394zM6.063 23.372c.042-.083-.021-.187-.146-.25-.125-.042-.229-.021-.271.042-.042.083.021.187.146.25.104.062.229.042.271-.042zm.646.709c.083-.062.062-.208-.042-.333-.104-.104-.25-.146-.333-.062-.083.062-.062.208.042.333.104.104.25.146.333.062zm.625.937c.104-.083.104-.25 0-.396-.083-.146-.25-.208-.354-.125-.104.062-.104.229 0 .375s.271.208.354.146zm.875.875c.083-.083.042-.271-.083-.396-.146-.146-.333-.167-.417-.062-.104.083-.062.271.083.396.146.146.333.167.417.062zm1.187.521c.042-.125-.083-.271-.271-.333-.167-.042-.354.021-.396.146s.083.271.271.312c.167.062.354 0 .396-.125zm1.313.104c0-.146-.167-.25-.354-.229-.187 0-.333.104-.333.229 0 .146.146.25.354.229.187 0 .333-.104.333-.229zm1.208-.208c-.021-.125-.187-.208-.375-.187-.187.042-.312.167-.292.312.021.125.187.208.375.167s.312-.167.292-.292z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_gitlab" xmlns="http://www.w3.org/2000/svg"><path d="M1.629 11.034L14 26.888.442 17.048a1.09 1.09 0 01-.39-1.203l1.578-4.811zm7.217 0h10.309l-5.154 15.854zM5.753 1.475l3.093 9.559H1.63l3.093-9.559a.548.548 0 011.031 0zm20.618 9.559l1.578 4.811c.141.437-.016.922-.39 1.203l-13.558 9.84 12.371-15.854zm0 0h-7.216l3.093-9.559a.548.548 0 011.031 0z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_heart" xmlns="http://www.w3.org/2000/svg"><path d="M16 29.714a1.11 1.11 0 01-.786-.321L4.072 18.643c-.143-.125-4.071-3.714-4.071-8 0-5.232 3.196-8.357 8.535-8.357 3.125 0 6.053 2.464 7.464 3.857 1.411-1.393 4.339-3.857 7.464-3.857 5.339 0 8.535 3.125 8.535 8.357 0 4.286-3.928 7.875-4.089 8.035L16.785 29.392c-.214.214-.5.321-.786.321z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_keyborad_arrow_down" xmlns="http://www.w3.org/2000/svg"><path d="M3.281 5.36L14 16.079 24.719 5.36 28 8.641l-14 14-14-14z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_keyborad_arrow_left" xmlns="http://www.w3.org/2000/svg"><path d="M25.875 28.25L22.125 32 6.126 16.001 22.125.002l3.75 3.75-12.25 12.25z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_keyborad_arrow_right" xmlns="http://www.w3.org/2000/svg"><path d="M6.125 28.25L18.375 16 6.125 3.75 9.875 0l15.999 15.999L9.875 31.998z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_link" xmlns="http://www.w3.org/2000/svg"><path d="M24.037 7.963q3.305 0 5.634 2.366T32 16t-2.329 5.671-5.634 2.366h-6.46v-3.08h6.46q2.028 0 3.493-1.465t1.465-3.493-1.465-3.493-3.493-1.465h-6.46v-3.08h6.46zM9.615 17.578v-3.155h12.77v3.155H9.615zM3.005 16q0 2.028 1.465 3.493t3.493 1.465h6.46v3.08h-6.46q-3.305 0-5.634-2.366T0 16.001t2.329-5.671 5.634-2.366h6.46v3.08h-6.46q-2.028 0-3.493 1.465t-1.465 3.493z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_menu" xmlns="http://www.w3.org/2000/svg"><path d="M.001 5.334h31.998v3.583H.001V5.334zm0 12.416v-3.5h31.998v3.5H.001zm0 8.916v-3.583h31.998v3.583H.001z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_notification" xmlns="http://www.w3.org/2000/svg"><path d="M22.615 19.384l2.894 2.894v1.413H2.49v-1.413l2.894-2.894V12.25q0-3.365 1.716-5.856t4.745-3.231v-1.01q0-.875.606-1.514T13.999 0t1.548.639.606 1.514v1.01q3.029.74 4.745 3.231t1.716 5.856v7.134zM14 27.999q-1.211 0-2.053-.808t-.841-2.019h5.788q0 1.144-.875 1.986T14 27.999z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_path" xmlns="http://www.w3.org/2000/svg"><path d="M28 12.62h-9.793V8.414h-2.826v11.173h2.826v-4.206H28V26.62h-9.793v-4.206H12.62v-14H9.794v4.206H.001V1.381h9.793v4.206h8.413V1.381H28V12.62z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_person" xmlns="http://www.w3.org/2000/svg"><path d="M16 20.023q5.052 0 10.526 2.199t5.473 5.754v4.023H0v-4.023q0-3.555 5.473-5.754t10.526-2.199zM16 16q-3.275 0-5.614-2.339T8.047 8.047t2.339-5.661T16 0t5.614 2.386 2.339 5.661-2.339 5.614T16 16z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_search" xmlns="http://www.w3.org/2000/svg"><path d="M11.925 20.161q3.432 0 5.834-2.402t2.402-5.834-2.402-5.834-5.834-2.402-5.834 2.402-2.402 5.834 2.402 5.834 5.834 2.402zm10.981 0L32 29.255 29.255 32l-9.094-9.094v-1.458l-.515-.515q-3.26 2.831-7.721 2.831-4.976 0-8.45-3.432T.001 11.925t3.474-8.45 8.45-3.474 8.407 3.474 3.432 8.45q0 1.802-.858 4.075t-1.973 3.646l.515.515h1.458z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_shield" xmlns="http://www.w3.org/2000/svg"><path d="M22.167 15.166V3.5h-8.166v20.726c.93-.492 2.424-1.349 3.883-2.497 1.95-1.531 4.284-3.919 4.284-6.562zm3.499-13.999v14c0 7.674-10.737 12.523-11.192 12.724-.146.073-.31.109-.474.109s-.328-.036-.474-.109c-.456-.201-11.192-5.049-11.192-12.724v-14C2.334.529 2.863 0 3.501 0H24.5c.638 0 1.167.529 1.167 1.167z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_tags" xmlns="http://www.w3.org/2000/svg"><path d="M6.606 7.549c0-1.047-.84-1.887-1.887-1.887s-1.887.84-1.887 1.887.84 1.887 1.887 1.887 1.887-.84 1.887-1.887zm15.732 8.493c0 .501-.206.988-.546 1.327l-7.239 7.254c-.354.339-.84.546-1.342.546s-.988-.206-1.327-.546L1.342 14.066C.59 13.329 0 11.899 0 10.852V4.718a1.9 1.9 0 011.887-1.887h6.134c1.047 0 2.477.59 3.229 1.342L21.792 14.7c.339.354.546.84.546 1.342zm5.661 0c0 .501-.206.988-.546 1.327l-7.239 7.254c-.354.339-.84.546-1.342.546-.767 0-1.15-.354-1.651-.87l6.93-6.93c.339-.339.546-.826.546-1.327s-.206-.988-.546-1.342L13.609 4.173c-.752-.752-2.182-1.342-3.229-1.342h3.303c1.047 0 2.477.59 3.229 1.342L27.454 14.7c.339.354.546.84.546 1.342z"/></symbol></svg>
 
-    <div class="wrapper">
+
+
+    <div class="wrapper ">
         <input type="checkbox" class="hidden" id="menu-control" />
+        
         <header class="gdoc-header">
     <div class="container flex align-center justify-between">
         
         <label for="menu-control" class="gdoc-nav__control">
-            <svg class="icon menu"><use xlink:href="#menu"></use></svg>
-            <svg class="icon arrow-back"><use xlink:href="#arrow_back"></use></svg>
+            <svg class="icon gdoc_menu"><use xlink:href="#gdoc_menu"></use></svg>
+            <svg class="icon gdoc_arrow_back"><use xlink:href="#gdoc_arrow_back"></use></svg>
         </label>
         
         <a class="gdoc-header__link" href="https://owncloud.dev/">
             <span class="gdoc-brand flex align-center">
-                <img class="gdoc-brand__img" src="/logo.png" alt="" width=38 height=38>
+                <img class="gdoc-brand__img" src="/logo.png" alt="">
                 ownCloud
             </span>
         </a>
+        <span id="gdoc-dark-mode">
+            <svg class="icon gdoc_brightness_dark"><use xlink:href="#gdoc_brightness_dark"></use></svg>
+            <svg class="icon gdoc_brightness_light"><use xlink:href="#gdoc_brightness_light"></use></svg>
+            <svg class="icon gdoc_brightness_auto"><use xlink:href="#gdoc_brightness_auto"></use></svg>
+        </span>
     </div>
 </header>
 
 
         <main class="container flex flex-even">
+            
             <aside class="gdoc-nav">
                 <nav>
     
     <div class="gdoc-search">
-        <svg class="icon search"><use xlink:href="#search"></use></svg>
+        <svg class="icon gdoc_search"><use xlink:href="#gdoc_search"></use></svg>
         <input type="text" id="gdoc-search-input" class="gdoc-search__input" placeholder="Search..."
             aria-label="Search" maxlength="64" />
         <div class="gdoc-search__spinner spinner hidden"></div>
@@ -84,6 +104,7 @@
             
             
 
+            
             
             
             
@@ -115,6 +136,7 @@
             
             
             
+            
 
             <li>
             
@@ -136,6 +158,7 @@
             
             
 
+            
             
             
             
@@ -171,6 +194,7 @@
             
             
             
+            
 
             <li>
             
@@ -189,6 +213,7 @@
             
             
 
+            
             
             
             
@@ -219,6 +244,7 @@
             
             
             
+            
 
             <li>
             
@@ -244,6 +270,7 @@
             
             
             
+            
 
             <li>
             
@@ -254,8 +281,8 @@
                 <span class="flex">Development</span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -268,6 +295,7 @@
             
             
 
+            
             
             
             
@@ -298,6 +326,7 @@
             
             
             
+            
 
             <li>
             
@@ -318,6 +347,7 @@
             
             
 
+            
             
             
             
@@ -348,6 +378,7 @@
             
             
             
+            
 
             <li>
             
@@ -368,6 +399,7 @@
             
             
 
+            
             
             
             
@@ -398,6 +430,7 @@
             
             
             
+            
 
             <li>
             
@@ -423,6 +456,7 @@
             
             
             
+            
 
             <li>
             
@@ -443,6 +477,7 @@
             
             
 
+            
             
             
             
@@ -480,6 +515,7 @@
             
             
             
+            
 
             <li>
             
@@ -494,8 +530,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -508,6 +544,7 @@
             
             
 
+            
             
             
             
@@ -536,6 +573,7 @@
             
             
             
+            
 
             <li>
             
@@ -554,6 +592,7 @@
             
             
 
+            
             
             
             
@@ -582,6 +621,7 @@
             
             
             
+            
 
             <li>
             
@@ -600,6 +640,7 @@
             
             
 
+            
             
             
             
@@ -628,6 +669,7 @@
             
             
             
+            
 
             <li>
             
@@ -646,6 +688,7 @@
             
             
 
+            
             
             
             
@@ -674,6 +717,7 @@
             
             
             
+            
 
             <li>
             
@@ -692,6 +736,7 @@
             
             
 
+            
             
             
             
@@ -729,6 +774,7 @@
             
             
             
+            
 
             <li>
             
@@ -743,8 +789,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -757,6 +803,7 @@
             
             
 
+            
             
             
             
@@ -780,6 +827,7 @@
             
             
 
+            
             
             
             
@@ -810,6 +858,7 @@
             
             
             
+            
 
             <li>
             
@@ -830,6 +879,7 @@
             
             
 
+            
             
             
             
@@ -858,6 +908,7 @@
             
             
             
+            
 
             <li>
             
@@ -876,6 +927,7 @@
             
             
 
+            
             
             
             
@@ -904,6 +956,7 @@
             
             
             
+            
 
             <li>
             
@@ -922,6 +975,7 @@
             
             
 
+            
             
             
             
@@ -952,6 +1006,7 @@
             
             
             
+            
 
             <li>
             
@@ -977,6 +1032,7 @@
             
             
             
+            
 
             <li>
             
@@ -997,6 +1053,7 @@
             
             
 
+            
             
             
             
@@ -1034,6 +1091,7 @@
             
             
             
+            
 
             <li>
             
@@ -1044,8 +1102,8 @@
                 <span class="flex">Flow documentation</span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -1058,6 +1116,7 @@
             
             
 
+            
             
             
             
@@ -1088,6 +1147,7 @@
             
             
             
+            
 
             <li>
             
@@ -1108,6 +1168,7 @@
             
             
 
+            
             
             
             
@@ -1145,6 +1206,7 @@
             
             
             
+            
 
             <li>
             
@@ -1155,8 +1217,8 @@
                 <span class="flex">Storage backends</span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -1169,6 +1231,7 @@
             
             
 
+            
             
             
             
@@ -1206,6 +1269,7 @@
             
             
             
+            
 
             <li>
             
@@ -1231,6 +1295,7 @@
             
             
             
+            
 
             <li>
             
@@ -1251,6 +1316,7 @@
             
             
 
+            
             
             
             
@@ -1288,6 +1354,7 @@
             
             
             
+            
 
             <li>
             
@@ -1310,6 +1377,7 @@
             
             
             
+            
 
             <li>
             
@@ -1324,8 +1392,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -1338,6 +1406,7 @@
             
             
 
+            
             
             
             
@@ -1368,6 +1437,7 @@
             
             
             
+            
 
             <li>
             
@@ -1388,6 +1458,7 @@
             
             
 
+            
             
             
             
@@ -1418,6 +1489,7 @@
             
             
             
+            
 
             <li>
             
@@ -1438,6 +1510,7 @@
             
             
 
+            
             
             
             
@@ -1468,6 +1541,7 @@
             
             
             
+            
 
             <li>
             
@@ -1482,8 +1556,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -1496,6 +1570,7 @@
             
             
 
+            
             
             
             
@@ -1531,6 +1606,7 @@
             
             
             
+            
 
             <li>
             
@@ -1551,6 +1627,7 @@
             
             
 
+            
             
             
             
@@ -1593,6 +1670,7 @@
             
             
             
+            
 
             <li>
             
@@ -1615,6 +1693,7 @@
             
             
             
+            
 
             <li>
             
@@ -1629,8 +1708,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -1643,6 +1722,7 @@
             
             
 
+            
             
             
             
@@ -1666,6 +1746,7 @@
             
             
 
+            
             
             
             
@@ -1696,6 +1777,7 @@
             
             
             
+            
 
             <li>
             
@@ -1714,6 +1796,7 @@
             
             
 
+            
             
             
             
@@ -1742,6 +1825,7 @@
             
             
             
+            
 
             <li>
             
@@ -1760,6 +1844,7 @@
             
             
 
+            
             
             
             
@@ -1797,6 +1882,7 @@
             
             
             
+            
 
             <li>
             
@@ -1811,8 +1897,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -1825,6 +1911,7 @@
             
             
 
+            
             
             
             
@@ -1855,6 +1942,7 @@
             
             
             
+            
 
             <li>
             
@@ -1875,6 +1963,7 @@
             
             
 
+            
             
             
             
@@ -1910,6 +1999,7 @@
             
             
             
+            
 
             <li>
             
@@ -1924,8 +2014,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -1938,6 +2028,7 @@
             
             
 
+            
             
             
             
@@ -1961,6 +2052,7 @@
             
             
 
+            
             
             
             
@@ -1996,6 +2088,7 @@
             
             
             
+            
 
             <li>
             
@@ -2010,8 +2103,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -2024,6 +2117,7 @@
             
             
 
+            
             
             
             
@@ -2059,6 +2153,7 @@
             
             
             
+            
 
             <li>
             
@@ -2073,8 +2168,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -2087,6 +2182,7 @@
             
             
 
+            
             
             
             
@@ -2122,6 +2218,7 @@
             
             
             
+            
 
             <li>
             
@@ -2136,8 +2233,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -2150,6 +2247,7 @@
             
             
 
+            
             
             
             
@@ -2185,6 +2283,7 @@
             
             
             
+            
 
             <li>
             
@@ -2199,8 +2298,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -2213,6 +2312,7 @@
             
             
 
+            
             
             
             
@@ -2248,6 +2348,7 @@
             
             
             
+            
 
             <li>
             
@@ -2262,8 +2363,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -2276,6 +2377,7 @@
             
             
 
+            
             
             
             
@@ -2299,6 +2401,7 @@
             
             
 
+            
             
             
             
@@ -2329,6 +2432,7 @@
             
             
             
+            
 
             <li>
             
@@ -2349,6 +2453,7 @@
             
             
 
+            
             
             
             
@@ -2384,6 +2489,7 @@
             
             
             
+            
 
             <li>
             
@@ -2398,8 +2504,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -2412,6 +2518,7 @@
             
             
 
+            
             
             
             
@@ -2437,6 +2544,7 @@
             
             
 
+            
             
             
             
@@ -2472,6 +2580,7 @@
             
             
             
+            
 
             <li>
             
@@ -2486,8 +2595,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -2500,6 +2609,7 @@
             
             
 
+            
             
             
             
@@ -2535,6 +2645,7 @@
             
             
             
+            
 
             <li>
             
@@ -2549,8 +2660,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -2563,6 +2674,7 @@
             
             
 
+            
             
             
             
@@ -2593,6 +2705,7 @@
             
             
             
+            
 
             <li>
             
@@ -2611,6 +2724,7 @@
             
             
 
+            
             
             
             
@@ -2641,6 +2755,7 @@
             
             
             
+            
 
             <li>
             
@@ -2666,6 +2781,7 @@
             
             
             
+            
 
             <li>
             
@@ -2686,6 +2802,7 @@
             
             
 
+            
             
             
             
@@ -2721,6 +2838,7 @@
             
             
             
+            
 
             <li>
             
@@ -2735,8 +2853,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -2749,6 +2867,7 @@
             
             
 
+            
             
             
             
@@ -2779,6 +2898,7 @@
             
             
             
+            
 
             <li>
             
@@ -2799,6 +2919,7 @@
             
             
 
+            
             
             
             
@@ -2829,6 +2950,7 @@
             
             
             
+            
 
             <li>
             
@@ -2849,6 +2971,7 @@
             
             
 
+            
             
             
             
@@ -2879,6 +3002,7 @@
             
             
             
+            
 
             <li>
             
@@ -2899,6 +3023,7 @@
             
             
 
+            
             
             
             
@@ -2929,6 +3054,7 @@
             
             
             
+            
 
             <li>
             
@@ -2949,6 +3075,7 @@
             
             
 
+            
             
             
             
@@ -2984,6 +3111,7 @@
             
             
             
+            
 
             <li>
             
@@ -2998,8 +3126,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -3012,6 +3140,7 @@
             
             
 
+            
             
             
             
@@ -3037,6 +3166,7 @@
             
             
 
+            
             
             
             
@@ -3072,6 +3202,7 @@
             
             
             
+            
 
             <li>
             
@@ -3086,8 +3217,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -3100,6 +3231,7 @@
             
             
 
+            
             
             
             
@@ -3125,6 +3257,7 @@
             
             
 
+            
             
             
             
@@ -3160,6 +3293,7 @@
             
             
             
+            
 
             <li>
             
@@ -3174,8 +3308,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -3188,6 +3322,7 @@
             
             
 
+            
             
             
             
@@ -3223,6 +3358,7 @@
             
             
             
+            
 
             <li>
             
@@ -3237,8 +3373,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -3251,6 +3387,7 @@
             
             
 
+            
             
             
             
@@ -3279,6 +3416,7 @@
             
             
             
+            
 
             <li>
             
@@ -3299,6 +3437,7 @@
             
             
 
+            
             
             
             
@@ -3341,6 +3480,7 @@
             
             
             
+            
 
             <li>
             
@@ -3363,6 +3503,7 @@
             
             
             
+            
 
             <li>
             
@@ -3377,8 +3518,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -3391,6 +3532,7 @@
             
             
 
+            
             
             
             
@@ -3421,6 +3563,7 @@
             
             
             
+            
 
             <li>
             
@@ -3441,6 +3584,7 @@
             
             
 
+            
             
             
             
@@ -3471,6 +3615,7 @@
             
             
             
+            
 
             <li>
             
@@ -3496,6 +3641,7 @@
             
             
             
+            
 
             <li>
             
@@ -3516,6 +3662,7 @@
             
             
 
+            
             
             
             
@@ -3567,6 +3714,7 @@
 </nav>
 
             </aside>
+            
 
             <div class="gdoc-page">
                 
@@ -3580,11 +3728,16 @@
 
 
 
-<div class="gdoc-page__header flex flex-wrap justify-between" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-    <span>
-        
-        <span class="breadcrumb">
-            <svg class="icon path"><use xlink:href="#path"></use></svg>
+<div class="gdoc-page__header flex flex-wrap
+     justify-between 
+    
+    " itemprop="breadcrumb">
+    
+    <div>
+        <svg class="icon gdoc_path hidden-mobile"><use xlink:href="#gdoc_path"></use></svg>
+        <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+            
+            
             
             
     
@@ -3592,102 +3745,175 @@
         
         
         
+        
     
     
         
         
         
+        
     
     
-        <a href='/'>ownCloud</a> / <a href='/ocis/'>oCIS - ownCloud Infinite Scale</a> / Migration
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Migration</span><meta itemprop='position' content='3' /></li>
     
 
     
 
     
 
-        </span>
-        
-    </span>
-    <span>
-        
+        </ol>
+    </div>
+    
+    
+    <div>
         <span class="editpage">
-            <svg class="icon code"><use xlink:href="#code"></use></svg>
+            <svg class="icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
             <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/migration.md">
                 Edit this page
             </a>
         </span>
-        
-    </span>
+    </div>
+    
 </div>
 
 
-    <article class="gdoc-markdown">
+    <article class="gdoc-markdown gdoc-markdown__align--left">
         <h1>Migration</h1>
-        
-
-
-
-    
-
-
-<p>The migration happens in subsequent stages while the service is online. First all users need to migrate to the new architecture, then the global namespace needs to be introduced. Finally, the data on disk can be migrated user by user by switching the storage driver.</p>
+        <p>The migration happens in subsequent stages while the service is online. First all users need to migrate to the new architecture, then the global namespace needs to be introduced. Finally, the data on disk can be migrated user by user by switching the storage driver.</p>
 <div class="editpage">
 <blockquote class="gdoc-hint warning">
   @jfd: It might be easier to introduce the spaces api in oc10 and then migrate to oCIS. We cannot migrate both at the same time, the architecture to oCIS (which will change fileids) and introduce a global namespace (which requires stable fileids to let clients handle moves without redownloading). Either we implement arbitrary mounting of shares in oCIS / reva or we make clients and oc10 spaces aware.
 </blockquote>
 
 </div>
-<div class="gdoc-page__anchorwrap"><h2 id="migration-stages">Migration Stages<a data-clipboard-text="https://owncloud.dev/ocis/migration/#migration-stages" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Migration Stages" href="#migration-stages"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<div class="gdoc-page__anchorwrap"><h3 id="stage-0-pre-migration">Stage 0: pre migration<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-0-pre-migration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage 0: pre migration" href="#stage-0-pre-migration"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Is the pre-migration stage when having a functional ownCloud 10 instance.</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="migration-stages">
+        Migration Stages
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#migration-stages" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Migration Stages" href="#migration-stages">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="stage-0-pre-migration">
+        Stage 0: pre migration
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-0-pre-migration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage 0: pre migration" href="#stage-0-pre-migration">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Is the pre-migration stage when having a functional ownCloud 10 instance.</p>
 <div class="editpage">
-<div class="gdoc-page__anchorwrap"><h4 id="faq">FAQ<a data-clipboard-text="https://owncloud.dev/ocis/migration/#faq" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor FAQ" href="#faq"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p><em>Feel free to add your question as a PR to this document using the link at the top of this page!</em></p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="faq">
+        FAQ
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#faq" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor FAQ" href="#faq">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p><em>Feel free to add your question as a PR to this document using the link at the top of this page!</em></p>
 </div>
 <div style="break-after: page"></div>
-<div class="gdoc-page__anchorwrap"><h3 id="stage-1-introduce-owncloud-web">Stage 1: introduce ownCloud Web<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-1-introduce-owncloud-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage 1: introduce ownCloud Web" href="#stage-1-introduce-owncloud-web"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Install and introduce <a href="https://github.com/owncloud/web/">ownCloud Web</a> and let users test it voluntarily to gain early feedback on the new UI.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="steps">Steps<a data-clipboard-text="https://owncloud.dev/ocis/migration/#steps" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Steps" href="#steps"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>Deploy web and enable switching to and from it.
-For more details see: <a href="https://owncloud.dev/ocis/deployment/owncloud10_with_oc_web/">ownCloud 10 with ownCloud Web</a></p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="stage-1-introduce-owncloud-web">
+        Stage 1: introduce ownCloud Web
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-1-introduce-owncloud-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage 1: introduce ownCloud Web" href="#stage-1-introduce-owncloud-web">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Install and introduce <a class="gdoc-markdown__link" href="https://github.com/owncloud/web/">ownCloud Web</a> and let users test it voluntarily to gain early feedback on the new UI.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="steps">
+        Steps
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#steps" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Steps" href="#steps">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>Deploy web and enable switching to and from it.
+For more details see: <a class="gdoc-markdown__link" href="https://owncloud.dev/ocis/deployment/owncloud10_with_oc_web/">ownCloud 10 with ownCloud Web</a></p>
 <div class="editpage">
 <p><em>TODO allow limiting the web ui switch to an &lsquo;early adopters&rsquo; group</em></p>
 </div>
-<div class="gdoc-page__anchorwrap"><h4 id="validation">Validation<a data-clipboard-text="https://owncloud.dev/ocis/migration/#validation" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Validation" href="#validation"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>Ensure switching back an forth between the classic ownCloud 10 web UI and ownCloud web works as at our <a href="https://demo.owncloud.com">https://demo.owncloud.com</a>.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="rollback">Rollback<a data-clipboard-text="https://owncloud.dev/ocis/migration/#rollback" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Rollback" href="#rollback"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>Should there be problems with ownCloud web at this point it can simply be removed from the menu and be undeployed.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="notes">Notes<a data-clipboard-text="https://owncloud.dev/ocis/migration/#notes" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Notes" href="#notes"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<div style="break-after: avoid"></div>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="validation">
+        Validation
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#validation" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Validation" href="#validation">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>Ensure switching back an forth between the classic ownCloud 10 web UI and ownCloud web works as at our <a href="https://demo.owncloud.com">https://demo.owncloud.com</a>.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="rollback">
+        Rollback
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#rollback" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Rollback" href="#rollback">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>Should there be problems with ownCloud web at this point it can simply be removed from the menu and be undeployed.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="notes">
+        Notes
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#notes" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Notes" href="#notes">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><div style="break-after: avoid"></div>
 The ownCloud 10 demo instance uses OAuth to obtain a token for ownCloud web and currently always requires explicit consent. In oCIS the token is provided by the OpenID Connect Identity Provider, which may skip the consent step for trusted clients for a more seamless login experience. You may want to introduce OpenID Connect before enabling the new web UI.
 <div class="editpage">
 <p><em>TODO make oauth2 in oc10 trust the new web ui, based on <code>redirect_uri</code> and CSRF so no explicit consent is needed</em></p>
-<div class="gdoc-page__anchorwrap"><h4 id="faq-1">FAQ<a data-clipboard-text="https://owncloud.dev/ocis/migration/#faq-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor FAQ" href="#faq-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p><em>Feel free to add your question as a PR to this document using the link at the top of this page!</em></p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="faq-1">
+        FAQ
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#faq-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor FAQ" href="#faq-1">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p><em>Feel free to add your question as a PR to this document using the link at the top of this page!</em></p>
 </div>
 <div style="break-after: page"></div>
-<div class="gdoc-page__anchorwrap"><h3 id="stage-2-introduce-openid-connect">Stage 2: introduce OpenID Connect<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-2-introduce-openid-connect" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage 2: introduce OpenID Connect" href="#stage-2-introduce-openid-connect"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Basic auth requires us to properly store and manage user credentials. Something we would rather like to delegate to a tool specifically built for that task.
-While SAML and Shibboleth are protocols that solve that problem, they are limited to web clients. Desktop and mobile clients were an afterthought and keep running into timeouts. For these reasons, we decided to move to <a href="https://owncloud.com/news/openid-connect-oidc-app/">OpenID Connect as our primary authentication protocol</a>.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="stage-2-introduce-openid-connect">
+        Stage 2: introduce OpenID Connect
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-2-introduce-openid-connect" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage 2: introduce OpenID Connect" href="#stage-2-introduce-openid-connect">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Basic auth requires us to properly store and manage user credentials. Something we would rather like to delegate to a tool specifically built for that task.
+While SAML and Shibboleth are protocols that solve that problem, they are limited to web clients. Desktop and mobile clients were an afterthought and keep running into timeouts. For these reasons, we decided to move to <a class="gdoc-markdown__link" href="https://owncloud.com/news/openid-connect-oidc-app/">OpenID Connect as our primary authentication protocol</a>.</p>
 <div class="editpage">
 <p><em>TODO @butonic add ADR for OpenID Connect</em></p>
 </div>
-<div class="gdoc-page__anchorwrap"><h4 id="user-impact">User impact<a data-clipboard-text="https://owncloud.dev/ocis/migration/#user-impact" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor User impact" href="#user-impact"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>When introducing OpenID Connect, the clients will detect the new authentication scheme when their current way of authenticating returns an error. Users will then have to
+<div class="gdoc-page__anchorwrap">
+    <h4 id="user-impact">
+        User impact
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#user-impact" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor User impact" href="#user-impact">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>When introducing OpenID Connect, the clients will detect the new authentication scheme when their current way of authenticating returns an error. Users will then have to
 reauthorize at the OpenID Connecd IdP, which again, may be configured to skip the consent step for trusted clients.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="steps-1">Steps<a data-clipboard-text="https://owncloud.dev/ocis/migration/#steps-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Steps" href="#steps-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<ol>
-<li>There are multiple products that can be used as an OpenID Connect IdP. We test with <a href="https://stash.kopano.io/projects/KC/repos/konnect/browse">kopano konnect</a>, which is also <a href="https://github.com/owncloud/web/">embedded in oCIS</a>. Other alternatives include <a href="https://www.keycloak.org/">Keycloak</a> or <a href="https://www.pingidentity.com/">Ping</a>. Please refer to the corresponding setup instructions for the product you intent to use.</li>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="steps-1">
+        Steps
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#steps-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Steps" href="#steps-1">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><ol>
+<li>There are multiple products that can be used as an OpenID Connect IdP. We test with <a class="gdoc-markdown__link" href="https://stash.kopano.io/projects/KC/repos/konnect/browse">kopano konnect</a>, which is also <a class="gdoc-markdown__link" href="https://github.com/owncloud/web/">embedded in oCIS</a>. Other alternatives include <a class="gdoc-markdown__link" href="https://www.keycloak.org/">Keycloak</a> or <a class="gdoc-markdown__link" href="https://www.pingidentity.com/">Ping</a>. Please refer to the corresponding setup instructions for the product you intent to use.</li>
 </ol>
 <div class="editpage">
 <p><em>TODO @butonic flesh out oCIS IDP documentation</em></p>
 </div>
 <ol start="2">
-<li>Add <a href="https://doc.owncloud.com/server/admin_manual/configuration/user/oidc/">Openid Connect (OIDC)</a> support to ownCloud 10.</li>
+<li>Add <a class="gdoc-markdown__link" href="https://doc.owncloud.com/server/admin_manual/configuration/user/oidc/">Openid Connect (OIDC)</a> support to ownCloud 10.</li>
 </ol>
-<div class="gdoc-page__anchorwrap"><h4 id="validation-1">Validation<a data-clipboard-text="https://owncloud.dev/ocis/migration/#validation-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Validation" href="#validation-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>When OpenID Connect support is enabled verify that all clients can login:</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="validation-1">
+        Validation
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#validation-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Validation" href="#validation-1">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>When OpenID Connect support is enabled verify that all clients can login:</p>
 <ul>
 <li>web classic</li>
 <li>ownCloud web</li>
@@ -3695,19 +3921,43 @@ reauthorize at the OpenID Connecd IdP, which again, may be configured to skip th
 <li>android</li>
 <li>iOS</li>
 </ul>
-<div class="gdoc-page__anchorwrap"><h4 id="rollback-1">Rollback<a data-clipboard-text="https://owncloud.dev/ocis/migration/#rollback-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Rollback" href="#rollback-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>Should there be problems with OpenID Connect at this point you can disable the app. Users will have to reauthenticate in this case.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="notes-1">Notes<a data-clipboard-text="https://owncloud.dev/ocis/migration/#notes-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Notes" href="#notes-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<div style="break-after: avoid"></div>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="rollback-1">
+        Rollback
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#rollback-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Rollback" href="#rollback-1">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>Should there be problems with OpenID Connect at this point you can disable the app. Users will have to reauthenticate in this case.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="notes-1">
+        Notes
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#notes-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Notes" href="#notes-1">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><div style="break-after: avoid"></div>
 Legacy clients relying on Basic auth or app passwords need to be migrated to OpenId Connect to work with oCIS. For a transition period Basic auth in oCIS can be enabled with `PROXY_ENABLE_BASIC_AUTH=true`, but we strongly recommend adopting OpenID Connect for other tools as well.
 <p>While OpenID Connect providers will send an <code>iss</code> and <code>sub</code> claim that relying parties (services like oCIS or ownCloud 10) can use to identify users we recommend introducing a dedicated, globally unique, persistent, non-reassignable user identifier like a UUID for every user. This <code>ownclouduuid</code> shold be sent as an additional claim to save additional lookups on the server side. It will become the user id in oCIS, e.g. when searching for recipients the <code>ownclouduuid</code> will be used to persist permissions with the share manager. It has a different purpose than the ownCloud 10 username, which is used to login. Using UUIDs we can not only mitigate username collisions when merging multiple instances but also allow renaming usernames after the migration to oCIS has been completed.</p>
 <div class="editpage">
-<div class="gdoc-page__anchorwrap"><h4 id="faq-2">FAQ<a data-clipboard-text="https://owncloud.dev/ocis/migration/#faq-2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor FAQ" href="#faq-2"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p><em>Feel free to add your question as a PR to this document using the link at the top of this page!</em></p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="faq-2">
+        FAQ
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#faq-2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor FAQ" href="#faq-2">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p><em>Feel free to add your question as a PR to this document using the link at the top of this page!</em></p>
 </div>
 <div style="break-after: page"></div>
-<div class="gdoc-page__anchorwrap"><h3 id="stage-3-introduce-ocis-interally">Stage 3: introduce oCIS interally<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-3-introduce-ocis-interally" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage 3: introduce oCIS interally" href="#stage-3-introduce-ocis-interally"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Befor letting oCIS handle end user requests we will first make it available in the internal network. By subsequently adding services we can add functionality and verify the services work as intended.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="stage-3-introduce-ocis-interally">
+        Stage 3: introduce oCIS interally
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-3-introduce-ocis-interally" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage 3: introduce oCIS interally" href="#stage-3-introduce-ocis-interally">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Befor letting oCIS handle end user requests we will first make it available in the internal network. By subsequently adding services we can add functionality and verify the services work as intended.</p>
 <p>Start oCIS backend and make read only tests on existing data using the <code>owncloudsql</code> storage driver which will read (and write)</p>
 <ul>
 <li>blobs from the same datadirectory layout as in ownCloud 10</li>
@@ -3718,30 +3968,72 @@ The oCIS share manager will read share information from the ownCloud database us
 <p><em>TODO @butonic add guide on how to configure <code>owncloudsql</code></em></p>
 <p><em>TODO we need a share manager that can read from the ownCloud 10 database as well as from whatever new backend will be used for a pure oCIS setup. Currently, that would be the json file. Or that is migrated after all users have switched to oCIS. &ndash; jfd</em></p>
 </div>
-<div class="gdoc-page__anchorwrap"><h4 id="user-impact-1">User impact<a data-clipboard-text="https://owncloud.dev/ocis/migration/#user-impact-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor User impact" href="#user-impact-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>None, only administrators will be able to explore oCIS during this stage.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="steps-and-verifications">Steps and verifications<a data-clipboard-text="https://owncloud.dev/ocis/migration/#steps-and-verifications" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Steps and verifications" href="#steps-and-verifications"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>We are going to run and explore a series of services that will together handle the same requests as ownCloud 10. For initial exploration the oCIS binary is recommended. The services can later be deployed using a single oCIS runtime or in multiple cotainers.</p>
-<div class="gdoc-page__anchorwrap"><h5 id="storage-provider-for-file-metadata">Storage provider for file metadata<a data-clipboard-text="https://owncloud.dev/ocis/migration/#storage-provider-for-file-metadata" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Storage provider for file metadata" href="#storage-provider-for-file-metadata"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h5></div>
-<ol>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="user-impact-1">
+        User impact
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#user-impact-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor User impact" href="#user-impact-1">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>None, only administrators will be able to explore oCIS during this stage.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="steps-and-verifications">
+        Steps and verifications
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#steps-and-verifications" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Steps and verifications" href="#steps-and-verifications">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>We are going to run and explore a series of services that will together handle the same requests as ownCloud 10. For initial exploration the oCIS binary is recommended. The services can later be deployed using a single oCIS runtime or in multiple cotainers.</p>
+<div class="gdoc-page__anchorwrap">
+    <h5 id="storage-provider-for-file-metadata">
+        Storage provider for file metadata
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#storage-provider-for-file-metadata" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Storage provider for file metadata" href="#storage-provider-for-file-metadata">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h5>
+</div><ol>
 <li>Deploy OCIS storage provider with owncloudsql driver.</li>
 <li>Set <code>read_only: true</code> in the storage provider config. <div class="editpage">_TODO @butonic add read only flag to storage drivers_</div></li>
 <li>Use cli tool to list files using the CS3 api</li>
 </ol>
-<div class="gdoc-page__anchorwrap"><h5 id="file-id-alternatives">File ID alternatives<a data-clipboard-text="https://owncloud.dev/ocis/migration/#file-id-alternatives" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor File ID alternatives" href="#file-id-alternatives"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h5></div>
-<p>Multiple ownCloud instances can be merged into one oCIS instance. To prevent the numeric ids from colliding, the file ids will be prefixed with a new storage space id which is used by oCIS to route requests to the correct storage provider. See Stage 8 below.</p>
+<div class="gdoc-page__anchorwrap">
+    <h5 id="file-id-alternatives">
+        File ID alternatives
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#file-id-alternatives" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor File ID alternatives" href="#file-id-alternatives">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h5>
+</div><p>Multiple ownCloud instances can be merged into one oCIS instance. To prevent the numeric ids from colliding, the file ids will be prefixed with a new storage space id which is used by oCIS to route requests to the correct storage provider. See Stage 8 below.</p>
 <div class="editpage">
 <blockquote class="gdoc-hint warning">
   <p><strong>Alternative 1</strong>
 Add a routable prefix to fileids in oc10, and replicate the prefix in oCIS.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="stage-31">Stage-3.1<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-31" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-3.1" href="#stage-31"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Let oc10 render file ids with prefixes: <code>&lt;instance name&gt;$&lt;numeric storageid&gt;!&lt;fileid&gt;</code>. This will allow clients to handle moved files.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="stage-32">Stage-3.2<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-32" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-3.2" href="#stage-32"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Roll out new clients that understand the spaces API and know how to convert local sync pairs for legacy oc10 <code>/webdav</code> or <code>/dav/files/&lt;username&gt;</code> home folders into multiple sync pairs.
+<div class="gdoc-page__anchorwrap">
+    <h3 id="stage-31">
+        Stage-3.1
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-31" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-3.1" href="#stage-31">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Let oc10 render file ids with prefixes: <code>&lt;instance name&gt;$&lt;numeric storageid&gt;!&lt;fileid&gt;</code>. This will allow clients to handle moved files.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="stage-32">
+        Stage-3.2
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-32" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-3.2" href="#stage-32">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Roll out new clients that understand the spaces API and know how to convert local sync pairs for legacy oc10 <code>/webdav</code> or <code>/dav/files/&lt;username&gt;</code> home folders into multiple sync pairs.
 One pair for <code>/webdav/home</code> or <code>/dav/files/&lt;username&gt;/home</code> and another pair for every accepted share. The shares will be accessible at <code>/webdav/shares/</code> when the server side enables the spaces API.
 Files can be identified using <code>&lt;instance name&gt;$&lt;numeric storageid&gt;!&lt;fileid&gt;</code> and moved to the correct sync pair.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="stage-33">Stage-3.3<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-33" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-3.3" href="#stage-33"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Enable spaces API in oc10:</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="stage-33">
+        Stage-3.3
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-33" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-3.3" href="#stage-33">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Enable spaces API in oc10:</p>
 <ul>
 <li>New clients will get a response from the spaces API and can set up new sync pairs.</li>
 <li>Legacy clients will still poll <code>/webdav</code> or <code>/dav/files/&lt;username&gt;</code> where they will see new subfolders instead of the users home. They will move down the users files into <code>/home</code> and shares into <code>/shares</code>. Custom sync pairs will no longer be available, causing the legacy client to leave local files in place. They can be picked up manually when installing a new client.</li>
@@ -3752,170 +4044,440 @@ Files can be identified using <code>&lt;instance name&gt;$&lt;numeric storageid&
 <blockquote class="gdoc-hint warning">
   <p><strong>Alternative 2</strong>
 An additional <code>uuid</code> property used only to detect moves. A lookup by uuid is not necessary for this. The <code>/dav/meta</code> endpoint would still take the fileid. Clients  would use the <code>uuid</code> to detect moves and set up new sync pairs when migrating to a global namespace.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="stage-31">Stage-3.1<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-31" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-3.1" href="#stage-31"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Generate a <code>uuid</code> for every file as a file property. Clients can submit a <code>uuid</code> when creating files. The server will create a <code>uuid</code> if the client did not provide one.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="stage-32">Stage-3.2<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-32" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-3.2" href="#stage-32"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Roll out new clients that understand the spaces API and know how to convert local sync pairs for legacy oc10 <code>/webdav</code> or <code>/dav/files/&lt;username&gt;</code> home folders into multiple sync pairs.
+<div class="gdoc-page__anchorwrap">
+    <h3 id="stage-31">
+        Stage-3.1
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-31" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-3.1" href="#stage-31">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Generate a <code>uuid</code> for every file as a file property. Clients can submit a <code>uuid</code> when creating files. The server will create a <code>uuid</code> if the client did not provide one.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="stage-32">
+        Stage-3.2
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-32" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-3.2" href="#stage-32">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Roll out new clients that understand the spaces API and know how to convert local sync pairs for legacy oc10 <code>/webdav</code> or <code>/dav/files/&lt;username&gt;</code> home folders into multiple sync pairs.
 One pair for <code>/webdav/home</code> or <code>/dav/files/&lt;username&gt;/home</code> and another pair for every accepted share. The shares will be accessible at <code>/webdav/shares/</code> when the server side enables the spaces API. Files can be identified using the <code>uuid</code>  and moved to the correct sync pair.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="stage-41">Stage-4.1<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-41" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-4.1" href="#stage-41"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>When reading the files from oCIS return the same <code>uuid</code>. It can be migrated to an extended attribute or it can be read from oc10. If users change it the client will not be able to detect a move and maybe other weird stuff happens. <em>What if the uuid gets lost on the server side due to a partial restore?</em></p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="stage-41">
+        Stage-4.1
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-41" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-4.1" href="#stage-41">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>When reading the files from oCIS return the same <code>uuid</code>. It can be migrated to an extended attribute or it can be read from oc10. If users change it the client will not be able to detect a move and maybe other weird stuff happens. <em>What if the uuid gets lost on the server side due to a partial restore?</em></p>
 
 </blockquote>
 
 </div>
 <div style="break-after: page"></div>
-<div class="gdoc-page__anchorwrap"><h5 id="graph-api-endpoint">graph API endpoint<a data-clipboard-text="https://owncloud.dev/ocis/migration/#graph-api-endpoint" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor graph API endpoint" href="#graph-api-endpoint"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h5></div>
-<ol>
+<div class="gdoc-page__anchorwrap">
+    <h5 id="graph-api-endpoint">
+        graph API endpoint
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#graph-api-endpoint" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor graph API endpoint" href="#graph-api-endpoint">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h5>
+</div><ol>
 <li>Deploy graph api to list spaces</li>
 <li>Use curl to list spaces using graph drives endpoint</li>
 </ol>
-<div class="gdoc-page__anchorwrap"><h5 id="owncloud-flavoured-webdav-endpoint">owncloud flavoured WebDAV endpoint<a data-clipboard-text="https://owncloud.dev/ocis/migration/#owncloud-flavoured-webdav-endpoint" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor owncloud flavoured WebDAV endpoint" href="#owncloud-flavoured-webdav-endpoint"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h5></div>
-<ol>
+<div class="gdoc-page__anchorwrap">
+    <h5 id="owncloud-flavoured-webdav-endpoint">
+        owncloud flavoured WebDAV endpoint
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#owncloud-flavoured-webdav-endpoint" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor owncloud flavoured WebDAV endpoint" href="#owncloud-flavoured-webdav-endpoint">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h5>
+</div><ol>
 <li>Deploy Ocdav</li>
 <li>Use curl to send PROPFIND</li>
 </ol>
-<div class="gdoc-page__anchorwrap"><h5 id="data-provider-for-up-and-download">data provider for up and download<a data-clipboard-text="https://owncloud.dev/ocis/migration/#data-provider-for-up-and-download" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor data provider for up and download" href="#data-provider-for-up-and-download"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h5></div>
-<ol>
+<div class="gdoc-page__anchorwrap">
+    <h5 id="data-provider-for-up-and-download">
+        data provider for up and download
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#data-provider-for-up-and-download" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor data provider for up and download" href="#data-provider-for-up-and-download">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h5>
+</div><ol>
 <li>Deploy dataprovider</li>
 <li>Use curl to up and download files</li>
 <li>Use tus to upload files</li>
 </ol>
 <p>Deploy &hellip;</p>
-<div class="gdoc-page__anchorwrap"><h5 id="share-manager">share manager<a data-clipboard-text="https://owncloud.dev/ocis/migration/#share-manager" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor share manager" href="#share-manager"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h5></div>
-<p>Deploy share manager with owncloud driver</p>
-<div class="gdoc-page__anchorwrap"><h5 id="reva-gateway">reva gateway<a data-clipboard-text="https://owncloud.dev/ocis/migration/#reva-gateway" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor reva gateway" href="#reva-gateway"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h5></div>
-<ol>
+<div class="gdoc-page__anchorwrap">
+    <h5 id="share-manager">
+        share manager
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#share-manager" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor share manager" href="#share-manager">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h5>
+</div><p>Deploy share manager with owncloud driver</p>
+<div class="gdoc-page__anchorwrap">
+    <h5 id="reva-gateway">
+        reva gateway
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#reva-gateway" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor reva gateway" href="#reva-gateway">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h5>
+</div><ol>
 <li>Deploy gateway to authenticate requests? I guess we need that first&hellip; Or we need the to mint a token. Might be a good exercise.</li>
 </ol>
-<div class="gdoc-page__anchorwrap"><h5 id="automated-deployment">automated deployment<a data-clipboard-text="https://owncloud.dev/ocis/migration/#automated-deployment" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor automated deployment" href="#automated-deployment"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h5></div>
-<p>Finally, deploy OCIS with a config to set up everything running in a single oCIS runtime or in multiple containers.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="rollback-2">Rollback<a data-clipboard-text="https://owncloud.dev/ocis/migration/#rollback-2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Rollback" href="#rollback-2"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>You can stop the oCIS process at any time.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="notes-2">Notes<a data-clipboard-text="https://owncloud.dev/ocis/migration/#notes-2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Notes" href="#notes-2"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<div style="break-after: avoid"></div>
+<div class="gdoc-page__anchorwrap">
+    <h5 id="automated-deployment">
+        automated deployment
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#automated-deployment" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor automated deployment" href="#automated-deployment">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h5>
+</div><p>Finally, deploy OCIS with a config to set up everything running in a single oCIS runtime or in multiple containers.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="rollback-2">
+        Rollback
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#rollback-2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Rollback" href="#rollback-2">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>You can stop the oCIS process at any time.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="notes-2">
+        Notes
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#notes-2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Notes" href="#notes-2">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><div style="break-after: avoid"></div>
 Multiple ownCloud instances can be merged into one oCIS instance. The file ids will be prefixed with a new storage space id which is used to route requests to the correct storage provider.
 <div class="editpage">
-<div class="gdoc-page__anchorwrap"><h4 id="faq-3">FAQ<a data-clipboard-text="https://owncloud.dev/ocis/migration/#faq-3" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor FAQ" href="#faq-3"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p><em>Feel free to add your question as a PR to this document using the link at the top of this page!</em></p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="faq-3">
+        FAQ
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#faq-3" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor FAQ" href="#faq-3">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p><em>Feel free to add your question as a PR to this document using the link at the top of this page!</em></p>
 </div>
 <div style="break-after: page"></div>
-<div class="gdoc-page__anchorwrap"><h3 id="stage-4-internal-write-access-with-ocis">Stage 4: internal write access with oCIS<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-4-internal-write-access-with-ocis" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage 4: internal write access with oCIS" href="#stage-4-internal-write-access-with-ocis"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Test writing data with oCIS into the existing ownCloud 10 data directory using the <code>owncloudsql</code> storage driver.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="user-impact-2">User impact<a data-clipboard-text="https://owncloud.dev/ocis/migration/#user-impact-2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor User impact" href="#user-impact-2"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>Only administrators will be able to explore oCIS during this stage. End users should not be affected if the testing is limited to test users.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="steps-2">Steps<a data-clipboard-text="https://owncloud.dev/ocis/migration/#steps-2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Steps" href="#steps-2"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>Set <code>read_only: false</code> in the storage provider config.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="stage-4-internal-write-access-with-ocis">
+        Stage 4: internal write access with oCIS
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-4-internal-write-access-with-ocis" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage 4: internal write access with oCIS" href="#stage-4-internal-write-access-with-ocis">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Test writing data with oCIS into the existing ownCloud 10 data directory using the <code>owncloudsql</code> storage driver.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="user-impact-2">
+        User impact
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#user-impact-2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor User impact" href="#user-impact-2">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>Only administrators will be able to explore oCIS during this stage. End users should not be affected if the testing is limited to test users.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="steps-2">
+        Steps
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#steps-2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Steps" href="#steps-2">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>Set <code>read_only: false</code> in the storage provider config.</p>
 <div class="editpage">
 <p><em>TODO @butonic add read only flag to storage drivers</em></p>
 </div>
-<div class="gdoc-page__anchorwrap"><h4 id="verification">Verification<a data-clipboard-text="https://owncloud.dev/ocis/migration/#verification" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Verification" href="#verification"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<div class="gdoc-page__anchorwrap"><h4 id="rollback-3">Rollback<a data-clipboard-text="https://owncloud.dev/ocis/migration/#rollback-3" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Rollback" href="#rollback-3"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>Set <code>read_only: true</code> in the storage provider config.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="verification">
+        Verification
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#verification" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Verification" href="#verification">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><div class="gdoc-page__anchorwrap">
+    <h4 id="rollback-3">
+        Rollback
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#rollback-3" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Rollback" href="#rollback-3">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>Set <code>read_only: true</code> in the storage provider config.</p>
 <div class="editpage">
 <p><em>TODO @butonic add read only flag to storage drivers</em></p>
 </div>
-<div class="gdoc-page__anchorwrap"><h4 id="notes-3">Notes<a data-clipboard-text="https://owncloud.dev/ocis/migration/#notes-3" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Notes" href="#notes-3"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<div style="break-after: avoid"></div>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="notes-3">
+        Notes
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#notes-3" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Notes" href="#notes-3">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><div style="break-after: avoid"></div>
 With write access it becomes possible to manipulate existing files and shares.
 <div class="editpage">
-<div class="gdoc-page__anchorwrap"><h4 id="faq-4">FAQ<a data-clipboard-text="https://owncloud.dev/ocis/migration/#faq-4" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor FAQ" href="#faq-4"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p><em>Feel free to add your question as a PR to this document using the link at the top of this page!</em></p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="faq-4">
+        FAQ
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#faq-4" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor FAQ" href="#faq-4">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p><em>Feel free to add your question as a PR to this document using the link at the top of this page!</em></p>
 </div>
 <div style="break-after: page"></div>
-<div class="gdoc-page__anchorwrap"><h3 id="stage-5-introduce-user-aware-proxy">Stage-5: introduce user aware proxy<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-5-introduce-user-aware-proxy" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-5: introduce user aware proxy" href="#stage-5-introduce-user-aware-proxy"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>In the previous stages oCIS was only accessible for administrators with access to the network. To expose only a single service to the internet, oCIS comes with a user aware proxy that can be used to route requests to the existing ownCloud 10 installation or oCIS, based on the authenticated user. The proxy uses OIDC to identify the logged in user and route them to the configured backend.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="user-impact-3">User impact<a data-clipboard-text="https://owncloud.dev/ocis/migration/#user-impact-3" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor User impact" href="#user-impact-3"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>The IP address of the ownCloud host changes. There is no change for the file sync and share functionality when requests are handled by the oCIS codebase as it uses the same database and storage system as owncloud 10.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="steps-and-verifications-1">Steps and verifications<a data-clipboard-text="https://owncloud.dev/ocis/migration/#steps-and-verifications-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Steps and verifications" href="#steps-and-verifications-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<div class="gdoc-page__anchorwrap"><h5 id="deploy-ocis-proxy">Deploy oCIS proxy<a data-clipboard-text="https://owncloud.dev/ocis/migration/#deploy-ocis-proxy" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Deploy oCIS proxy" href="#deploy-ocis-proxy"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h5></div>
-<ol>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="stage-5-introduce-user-aware-proxy">
+        Stage-5: introduce user aware proxy
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-5-introduce-user-aware-proxy" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-5: introduce user aware proxy" href="#stage-5-introduce-user-aware-proxy">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>In the previous stages oCIS was only accessible for administrators with access to the network. To expose only a single service to the internet, oCIS comes with a user aware proxy that can be used to route requests to the existing ownCloud 10 installation or oCIS, based on the authenticated user. The proxy uses OIDC to identify the logged in user and route them to the configured backend.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="user-impact-3">
+        User impact
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#user-impact-3" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor User impact" href="#user-impact-3">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>The IP address of the ownCloud host changes. There is no change for the file sync and share functionality when requests are handled by the oCIS codebase as it uses the same database and storage system as owncloud 10.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="steps-and-verifications-1">
+        Steps and verifications
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#steps-and-verifications-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Steps and verifications" href="#steps-and-verifications-1">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><div class="gdoc-page__anchorwrap">
+    <h5 id="deploy-ocis-proxy">
+        Deploy oCIS proxy
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#deploy-ocis-proxy" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Deploy oCIS proxy" href="#deploy-ocis-proxy">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h5>
+</div><ol>
 <li>Deploy the <code>ocis proxy</code></li>
 <li>Verify the requests are routed based on the ownCloud 10 routing policy <code>oc10</code> by default</li>
 </ol>
-<div class="gdoc-page__anchorwrap"><h5 id="test-user-based-routing">Test user based routing<a data-clipboard-text="https://owncloud.dev/ocis/migration/#test-user-based-routing" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Test user based routing" href="#test-user-based-routing"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h5></div>
-<ol>
+<div class="gdoc-page__anchorwrap">
+    <h5 id="test-user-based-routing">
+        Test user based routing
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#test-user-based-routing" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Test user based routing" href="#test-user-based-routing">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h5>
+</div><ol>
 <li>Change the routing policy for a user or an early adoptors group to <code>ocis</code> <div class="editpage">_TODO @butonic currently, the migration selector will use the <code>ocis</code> policy for users that have been added to the accounts service. IMO we need to evaluate a claim from the IdP._</div></li>
 <li>Verify the requests are routed based on the oCIS routing policy <code>oc10</code> for &lsquo;migrated&rsquo; users.</li>
 </ol>
 <p>At this point you are ready to rock &amp; roll!</p>
-<div class="gdoc-page__anchorwrap"><h5 id="let-owncloud-domain-point-to-proxy">Let ownCloud domain point to proxy<a data-clipboard-text="https://owncloud.dev/ocis/migration/#let-owncloud-domain-point-to-proxy" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Let ownCloud domain point to proxy" href="#let-owncloud-domain-point-to-proxy"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h5></div>
-<ol>
+<div class="gdoc-page__anchorwrap">
+    <h5 id="let-owncloud-domain-point-to-proxy">
+        Let ownCloud domain point to proxy
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#let-owncloud-domain-point-to-proxy" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Let ownCloud domain point to proxy" href="#let-owncloud-domain-point-to-proxy">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h5>
+</div><ol>
 <li>Update the dns to use the oCIS proxy instead of the ownCloud application servers directly.</li>
 <li>Let DNS propagate the change and monitor requests moving from the ownCloud application servers to the oCIS proxy.</li>
 <li>Verify the DNS change has propagated sufficiently. All requests should now use the oCIS Proxy.</li>
 </ol>
-<div class="gdoc-page__anchorwrap"><h4 id="rollback-4">Rollback<a data-clipboard-text="https://owncloud.dev/ocis/migration/#rollback-4" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Rollback" href="#rollback-4"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>Should there be a problem with the oCIS routes the user can be routed to ownCloud by changing his routing policy. In case of unfixable problems with the proxy the DNS needs to be updated to use the ownCloud 10 application servers directly. This could also be done in a load balancer.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="notes-4">Notes<a data-clipboard-text="https://owncloud.dev/ocis/migration/#notes-4" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Notes" href="#notes-4"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<div style="break-after: avoid"></div>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="rollback-4">
+        Rollback
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#rollback-4" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Rollback" href="#rollback-4">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>Should there be a problem with the oCIS routes the user can be routed to ownCloud by changing his routing policy. In case of unfixable problems with the proxy the DNS needs to be updated to use the ownCloud 10 application servers directly. This could also be done in a load balancer.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="notes-4">
+        Notes
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#notes-4" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Notes" href="#notes-4">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><div style="break-after: avoid"></div>
 The proxy is stateless, multiple instances can be deployed as needed.
 <div class="editpage">
-<div class="gdoc-page__anchorwrap"><h4 id="faq-5">FAQ<a data-clipboard-text="https://owncloud.dev/ocis/migration/#faq-5" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor FAQ" href="#faq-5"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p><em>Feel free to add your question as a PR to this document using the link at the top of this page!</em></p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="faq-5">
+        FAQ
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#faq-5" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor FAQ" href="#faq-5">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p><em>Feel free to add your question as a PR to this document using the link at the top of this page!</em></p>
 </div>
 <div style="break-after: page"></div>
-<div class="gdoc-page__anchorwrap"><h3 id="stage-6-parallel-deployment">Stage-6: parallel deployment<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-6-parallel-deployment" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-6: parallel deployment" href="#stage-6-parallel-deployment"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Running ownCloud 10 and oCIS in parallel is a crucial stage for the migration: it allows users access to group shares regardless of the system that is being used to to access the data. A user by user migration with multiple domains would technically break group shares when users vanish because they (and their data) are no longer available in the old system.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="stage-6-parallel-deployment">
+        Stage-6: parallel deployment
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-6-parallel-deployment" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-6: parallel deployment" href="#stage-6-parallel-deployment">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Running ownCloud 10 and oCIS in parallel is a crucial stage for the migration: it allows users access to group shares regardless of the system that is being used to to access the data. A user by user migration with multiple domains would technically break group shares when users vanish because they (and their data) are no longer available in the old system.</p>
 <p>Depending on the amount of power users on an instance, the admin may want to allow users to voluntarily migrate to the oCIS backend. A monitoring system can be used to visualize the behavior for the two systems and gain trust in the overall stability and performance.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="user-impact-4">User impact<a data-clipboard-text="https://owncloud.dev/ocis/migration/#user-impact-4" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor User impact" href="#user-impact-4"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>Since the underling data is still stored in the same systems, a similar or performance can be expected.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="user-impact-4">
+        User impact
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#user-impact-4" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor User impact" href="#user-impact-4">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>Since the underling data is still stored in the same systems, a similar or performance can be expected.</p>
 <div class="editpage">
 <p>See <em>TODO hmpf outdated didn&rsquo;t we want to run them nightly? &hellip;</em>
 <em>TODO @butonic update performance comparisons nightly</em></p>
 </div>
-<div class="gdoc-page__anchorwrap"><h4 id="steps-3">Steps<a data-clipboard-text="https://owncloud.dev/ocis/migration/#steps-3" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Steps" href="#steps-3"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>There are several options to move users to the oCIS backend:</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="steps-3">
+        Steps
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#steps-3" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Steps" href="#steps-3">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>There are several options to move users to the oCIS backend:</p>
 <ul>
 <li>Use a canary app to let users decide thamselves</li>
 <li>Use an early adoptors group with an opt in</li>
 <li>Force migrate users in batch or one by one at the administrators will</li>
 </ul>
-<div class="gdoc-page__anchorwrap"><h4 id="verification-1">Verification<a data-clipboard-text="https://owncloud.dev/ocis/migration/#verification-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Verification" href="#verification-1"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>The same verification steps as for the internal testing stage apply. Just from the outside.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="rollback-5">Rollback<a data-clipboard-text="https://owncloud.dev/ocis/migration/#rollback-5" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Rollback" href="#rollback-5"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>Until now, the oCIS configuration mimics ownCloud 10 and uses the old data directory layout and the ownCloud 10 database. Users can seamlessly be switched from ownCloud 10 to oCIS and back again.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="verification-1">
+        Verification
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#verification-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Verification" href="#verification-1">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>The same verification steps as for the internal testing stage apply. Just from the outside.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="rollback-5">
+        Rollback
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#rollback-5" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Rollback" href="#rollback-5">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>Until now, the oCIS configuration mimics ownCloud 10 and uses the old data directory layout and the ownCloud 10 database. Users can seamlessly be switched from ownCloud 10 to oCIS and back again.</p>
 <div class="editpage">
 <p><em>TODO @butonic we need a canary app that allows users to decide for themself which backend to use</em></p>
 </div>
 <div style="break-after: page"></div>
-<div class="gdoc-page__anchorwrap"><h4 id="notes-5">Notes<a data-clipboard-text="https://owncloud.dev/ocis/migration/#notes-5" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Notes" href="#notes-5"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>Running the two systems in parallel stage
+<div class="gdoc-page__anchorwrap">
+    <h4 id="notes-5">
+        Notes
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#notes-5" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Notes" href="#notes-5">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>Running the two systems in parallel stage
 Try to keep the duration of this stage short. Until now we only added services and made the system more complex. oCIS aims to reduce the maintenance cost of an ownCloud instance. You will not get there if you keep both systems alive.</p>
 <div class="editpage">
-<div class="gdoc-page__anchorwrap"><h4 id="faq-6">FAQ<a data-clipboard-text="https://owncloud.dev/ocis/migration/#faq-6" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor FAQ" href="#faq-6"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p><em>Feel free to add your question as a PR to this document using the link at the top of this page!</em></p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="faq-6">
+        FAQ
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#faq-6" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor FAQ" href="#faq-6">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p><em>Feel free to add your question as a PR to this document using the link at the top of this page!</em></p>
 </div>
 <div style="break-after: page"></div>
-<div class="gdoc-page__anchorwrap"><h3 id="stage-7-shut-down-owncloud-10">Stage-7: shut down ownCloud 10<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-7-shut-down-owncloud-10" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-7: shut down ownCloud 10" href="#stage-7-shut-down-owncloud-10"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Disable ownCloud 10 in the proxy, all requests are now handled by oCIS, shut down oc10 web servers and redis (or keep for calendar &amp; contacts only? rip out files from oCIS?)</p>
-<div class="gdoc-page__anchorwrap"><h4 id="user-impact-5">User impact<a data-clipboard-text="https://owncloud.dev/ocis/migration/#user-impact-5" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor User impact" href="#user-impact-5"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>All users are already sent to the oCIS backend. Shutting down ownCloud 10 will remove the old web UI, apps and functionality that is not yet present in ownCloud web. For example contacts and calendar.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="stage-7-shut-down-owncloud-10">
+        Stage-7: shut down ownCloud 10
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-7-shut-down-owncloud-10" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-7: shut down ownCloud 10" href="#stage-7-shut-down-owncloud-10">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Disable ownCloud 10 in the proxy, all requests are now handled by oCIS, shut down oc10 web servers and redis (or keep for calendar &amp; contacts only? rip out files from oCIS?)</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="user-impact-5">
+        User impact
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#user-impact-5" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor User impact" href="#user-impact-5">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>All users are already sent to the oCIS backend. Shutting down ownCloud 10 will remove the old web UI, apps and functionality that is not yet present in ownCloud web. For example contacts and calendar.</p>
 <div class="editpage">
 <p><em>TODO @butonic recommend alternatives</em></p>
 </div>
-<div class="gdoc-page__anchorwrap"><h4 id="steps-4">Steps<a data-clipboard-text="https://owncloud.dev/ocis/migration/#steps-4" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Steps" href="#steps-4"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<ol>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="steps-4">
+        Steps
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#steps-4" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Steps" href="#steps-4">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><ol>
 <li>Shut down the apache servers that are running the ownCloud 10 PHP code.</li>
 <li>DO NOT SHUT DOWN THE DATABASE, YET!</li>
 </ol>
-<div class="gdoc-page__anchorwrap"><h4 id="verification-2">Verification<a data-clipboard-text="https://owncloud.dev/ocis/migration/#verification-2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Verification" href="#verification-2"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>The ownCloud 10 classic web UI should no longer be reachable.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="rollback-6">Rollback<a data-clipboard-text="https://owncloud.dev/ocis/migration/#rollback-6" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Rollback" href="#rollback-6"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>Redeploy ownCloud 10.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="notes-6">Notes<a data-clipboard-text="https://owncloud.dev/ocis/migration/#notes-6" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Notes" href="#notes-6"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<div style="break-after: avoid"></div>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="verification-2">
+        Verification
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#verification-2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Verification" href="#verification-2">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>The ownCloud 10 classic web UI should no longer be reachable.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="rollback-6">
+        Rollback
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#rollback-6" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Rollback" href="#rollback-6">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>Redeploy ownCloud 10.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="notes-6">
+        Notes
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#notes-6" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Notes" href="#notes-6">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><div style="break-after: avoid"></div>
 The database needs to remain online until the storage layer and share metadata have been migrated as well. One thing at a time.
 <div class="editpage">
-<div class="gdoc-page__anchorwrap"><h4 id="faq-7">FAQ<a data-clipboard-text="https://owncloud.dev/ocis/migration/#faq-7" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor FAQ" href="#faq-7"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p><em>Feel free to add your question as a PR to this document using the link at the top of this page!</em></p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="faq-7">
+        FAQ
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#faq-7" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor FAQ" href="#faq-7">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p><em>Feel free to add your question as a PR to this document using the link at the top of this page!</em></p>
 </div>
 <div style="break-after: page"></div>
-<div class="gdoc-page__anchorwrap"><h3 id="stage-8-storage-migration">Stage 8: storage migration<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-8-storage-migration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage 8: storage migration" href="#stage-8-storage-migration"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>To get rid of the database we will move the metadata from the old ownCloud 10 database into dedicated storage providers. This can happen in a user by user fashion. group drives can properly be migrated to group, project or workspaces in this stage.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="user-impact-6">User impact<a data-clipboard-text="https://owncloud.dev/ocis/migration/#user-impact-6" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor User impact" href="#user-impact-6"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>Noticeable performance improvements because we effectively shard the storage logic and persistence layer.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="steps-5">Steps<a data-clipboard-text="https://owncloud.dev/ocis/migration/#steps-5" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Steps" href="#steps-5"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<ol>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="stage-8-storage-migration">
+        Stage 8: storage migration
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-8-storage-migration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage 8: storage migration" href="#stage-8-storage-migration">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>To get rid of the database we will move the metadata from the old ownCloud 10 database into dedicated storage providers. This can happen in a user by user fashion. group drives can properly be migrated to group, project or workspaces in this stage.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="user-impact-6">
+        User impact
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#user-impact-6" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor User impact" href="#user-impact-6">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>Noticeable performance improvements because we effectively shard the storage logic and persistence layer.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="steps-5">
+        Steps
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#steps-5" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Steps" href="#steps-5">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><ol>
 <li>User by user storage migration from <code>owncloud</code> or <code>ownclouds3</code> driver to <code>ocis</code>/<code>s3ng</code>/<code>cephfs</code>&hellip; currently this means copying the metadata from one storage provider to another using the cs3 api.</li>
 <li>Change the responsible storage provider for a storage space (e.g. a user home, a group or project space are a workspace) in the storage registry.</li>
 </ol>
@@ -3924,30 +4486,72 @@ The database needs to remain online until the storage layer and share metadata h
 <em>TODO @butonic implement tiered storage provider for seamless migration</em>
 <em>TODO @butonic document how to manually do that until the storge registry can discover that on its own.</em></p>
 </div>
-<div class="gdoc-page__anchorwrap"><h4 id="verification-3">Verification<a data-clipboard-text="https://owncloud.dev/ocis/migration/#verification-3" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Verification" href="#verification-3"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>Start with a test user, then move to early adoptors and finally migrate all users.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="rollback-7">Rollback<a data-clipboard-text="https://owncloud.dev/ocis/migration/#rollback-7" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Rollback" href="#rollback-7"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>To switch the storage provider again the same storage space migration can be performed again: copy medatata and blob data using the CS3 api, then change the responsible storage provider in the storage registry.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="notes-7">Notes<a data-clipboard-text="https://owncloud.dev/ocis/migration/#notes-7" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Notes" href="#notes-7"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<div style="break-after: avoid"></div>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="verification-3">
+        Verification
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#verification-3" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Verification" href="#verification-3">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>Start with a test user, then move to early adoptors and finally migrate all users.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="rollback-7">
+        Rollback
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#rollback-7" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Rollback" href="#rollback-7">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>To switch the storage provider again the same storage space migration can be performed again: copy medatata and blob data using the CS3 api, then change the responsible storage provider in the storage registry.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="notes-7">
+        Notes
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#notes-7" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Notes" href="#notes-7">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><div style="break-after: avoid"></div>
 Multiple ownCloud instances can be merged into one oCIS instance. The file ids will be prefixed with a new storage space id which is used to route requests to the correct storage provider.
 <p>The storage space migration will become a seamless feature in the future that allows administrators to move users to storage systems with different capabilities, to implement premium features, deprovisioning strategies or archiving.</p>
 <div class="editpage">
-<div class="gdoc-page__anchorwrap"><h4 id="faq-8">FAQ<a data-clipboard-text="https://owncloud.dev/ocis/migration/#faq-8" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor FAQ" href="#faq-8"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p><em>Feel free to add your question as a PR to this document using the link at the top of this page!</em></p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="faq-8">
+        FAQ
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#faq-8" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor FAQ" href="#faq-8">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p><em>Feel free to add your question as a PR to this document using the link at the top of this page!</em></p>
 </div>
 <div style="break-after: page"></div>
-<div class="gdoc-page__anchorwrap"><h3 id="stage-9-share-metadata-migration">Stage-9: share metadata migration<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-9-share-metadata-migration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-9: share metadata migration" href="#stage-9-share-metadata-migration"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Migrate share data to <em>yet to determine</em> share manager backend and shut down ownCloud database.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="stage-9-share-metadata-migration">
+        Stage-9: share metadata migration
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-9-share-metadata-migration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-9: share metadata migration" href="#stage-9-share-metadata-migration">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Migrate share data to <em>yet to determine</em> share manager backend and shut down ownCloud database.</p>
 <p>The ownCloud 10 database still holds share information in the <code>oc_share</code> and <code>oc_share_external</code> tables. They are used to efficiently answer queries about who shared what with whom. In oCIS shares are persisted using a share manager and if desired these grants are also sent to the storage provider so it can set ACLs if possible. Only one system should be responsible for the shares, which in case of treating the storage as the primary source effectively turns the share manager into a cache.</p>
-<div class="gdoc-page__anchorwrap"><h4 id="user-impact-7">User impact<a data-clipboard-text="https://owncloud.dev/ocis/migration/#user-impact-7" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor User impact" href="#user-impact-7"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>Depending on chosen the share manager provider some sharing requests should be faster: listing incoming and outgoing shares is no longer bound to the ownCloud 10 database but to whatever technology is used by the share provdier:</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="user-impact-7">
+        User impact
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#user-impact-7" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor User impact" href="#user-impact-7">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>Depending on chosen the share manager provider some sharing requests should be faster: listing incoming and outgoing shares is no longer bound to the ownCloud 10 database but to whatever technology is used by the share provdier:</p>
 <ul>
 <li>For non HA scenarios they can be served from memory, backed by a simple json file.</li>
 <li>TODO: implement share manager with redis / nats / &hellip; key value store backend: use the micro store interface please &hellip;</li>
 </ul>
-<div class="gdoc-page__anchorwrap"><h4 id="steps-6">Steps<a data-clipboard-text="https://owncloud.dev/ocis/migration/#steps-6" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Steps" href="#steps-6"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<ol>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="steps-6">
+        Steps
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#steps-6" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Steps" href="#steps-6">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><ol>
 <li>Start new share manager</li>
 <li>Migrate metadata using the CS3 API (copy from old to new)</li>
 <li>Shut down old share manager</li>
@@ -3959,26 +4563,68 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 <em>TODO for seamless migration implement tiered/chained share provider that reads share data from the old provider and writes newc shares to the new one</em>
 <em>TODO for storage provider as source of truth persist ALL share data in the storage provider. Currently, part is stored in the share manager, part is in the storage provider. We can keep both, but the the share manager should directly persist its metadata to the storage system used by the storage provider so metadata is kept in sync</em></p>
 </div>
-<div class="gdoc-page__anchorwrap"><h4 id="verification-4">Verification<a data-clipboard-text="https://owncloud.dev/ocis/migration/#verification-4" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Verification" href="#verification-4"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>After copying all metadata start a dedicated gateway and change the configuration to use the new share manager. Route a test user, a test group and early adoptors to the new gateway. When no problems occur you can stirt the desired number of share managers and roll out the change to all gateways.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="verification-4">
+        Verification
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#verification-4" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Verification" href="#verification-4">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>After copying all metadata start a dedicated gateway and change the configuration to use the new share manager. Route a test user, a test group and early adoptors to the new gateway. When no problems occur you can stirt the desired number of share managers and roll out the change to all gateways.</p>
 <div class="editpage">
 <p><em>TODO let the gateway write updates to multiple share managers &hellip; or rely on the tiered/chained share manager provider to persist to both providers</em></p>
 </div>
-<div class="gdoc-page__anchorwrap"><h4 id="rollback-8">Rollback<a data-clipboard-text="https://owncloud.dev/ocis/migration/#rollback-8" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Rollback" href="#rollback-8"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p>To switch the share manager to the database one revert routing users to the new share manager. If you already shut down the old share manager start it again. Use the tiered/chained share manager provider in reverse configuration (new share provider as read only, old as write) and migrate the shares again. You can alse restore a database backup if needed.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="rollback-8">
+        Rollback
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#rollback-8" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Rollback" href="#rollback-8">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>To switch the share manager to the database one revert routing users to the new share manager. If you already shut down the old share manager start it again. Use the tiered/chained share manager provider in reverse configuration (new share provider as read only, old as write) and migrate the shares again. You can alse restore a database backup if needed.</p>
 <div class="editpage">
-<div class="gdoc-page__anchorwrap"><h3 id="stage-10">Stage-10<a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-10" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-10" href="#stage-10"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Profit! Well, on the one hand you do not need to maintain a clustered database setup and can rely on the storage system. On the other hand you are now in microservice wonderland and will have to relearn how to identify bottlenecks and scale oCIS accordingly. The good thing is that tools like jaeger and prometheus have evolved and will help you understand what is going on. But this is a different Topic. See you on the other side!</p>
-<div class="gdoc-page__anchorwrap"><h4 id="faq-9">FAQ<a data-clipboard-text="https://owncloud.dev/ocis/migration/#faq-9" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor FAQ" href="#faq-9"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h4></div>
-<p><em>Feel free to add your question as a PR to this document using the link at the top of this page!</em></p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="stage-10">
+        Stage-10
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-10" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-10" href="#stage-10">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Profit! Well, on the one hand you do not need to maintain a clustered database setup and can rely on the storage system. On the other hand you are now in microservice wonderland and will have to relearn how to identify bottlenecks and scale oCIS accordingly. The good thing is that tools like jaeger and prometheus have evolved and will help you understand what is going on. But this is a different Topic. See you on the other side!</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="faq-9">
+        FAQ
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#faq-9" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor FAQ" href="#faq-9">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p><em>Feel free to add your question as a PR to this document using the link at the top of this page!</em></p>
 </div>
 <div style="break-after: page"></div>
-<div class="gdoc-page__anchorwrap"><h2 id="architectural-differences">Architectural differences<a data-clipboard-text="https://owncloud.dev/ocis/migration/#architectural-differences" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Architectural differences" href="#architectural-differences"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>The fundamental difference between ownCloud 10 and oCIS is that the file metadata is moved from the database in the <code>oc_filecache</code> table (which is misnamed, as it actually is an index) to the storage provider who can place metadata as close to the underlying storage system as possible. In effect, the file metadata is sharded over multiple specialized services.</p>
-<div class="gdoc-page__anchorwrap"><h2 id="data-that-will-be-migrated">Data that will be migrated<a data-clipboard-text="https://owncloud.dev/ocis/migration/#data-that-will-be-migrated" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Data that will be migrated" href="#data-that-will-be-migrated"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>Currently, oCIS focuses on file sync and share use cases.</p>
-<div class="gdoc-page__anchorwrap"><h3 id="blob-data">Blob data<a data-clipboard-text="https://owncloud.dev/ocis/migration/#blob-data" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Blob data" href="#blob-data"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>In ownCloud 10 the files are laid out on disk in the <em>data directory</em> using the following layout:</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="architectural-differences">
+        Architectural differences
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#architectural-differences" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Architectural differences" href="#architectural-differences">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>The fundamental difference between ownCloud 10 and oCIS is that the file metadata is moved from the database in the <code>oc_filecache</code> table (which is misnamed, as it actually is an index) to the storage provider who can place metadata as close to the underlying storage system as possible. In effect, the file metadata is sharded over multiple specialized services.</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="data-that-will-be-migrated">
+        Data that will be migrated
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#data-that-will-be-migrated" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Data that will be migrated" href="#data-that-will-be-migrated">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>Currently, oCIS focuses on file sync and share use cases.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="blob-data">
+        Blob data
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#blob-data" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Blob data" href="#blob-data">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>In ownCloud 10 the files are laid out on disk in the <em>data directory</em> using the following layout:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">data
 ├── einstein
 │   ├── cache
@@ -4026,8 +4672,14 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 <li><code>files_versions</code> for file blobs of older versions.</li>
 </ul>
 <div style="break-after: page"></div>
-<div class="gdoc-page__anchorwrap"><h3 id="filecache-table">Filecache table<a data-clipboard-text="https://owncloud.dev/ocis/migration/#filecache-table" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Filecache table" href="#filecache-table"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>In both cases the file metadata, including a full replication of the file tree, is stored in the <code>oc_filecache</code> table of an ownCloud 10 database. The primary key of a row is the file id. It is used to attach additional metadata like shares, tags, favorites or arbitrary file properties.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="filecache-table">
+        Filecache table
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#filecache-table" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Filecache table" href="#filecache-table">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>In both cases the file metadata, including a full replication of the file tree, is stored in the <code>oc_filecache</code> table of an ownCloud 10 database. The primary key of a row is the file id. It is used to attach additional metadata like shares, tags, favorites or arbitrary file properties.</p>
 <p>The <code>filecache</code> table itself has more metadata:</p>
 <table>
 <thead>
@@ -4209,8 +4861,14 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 <p>Note: for EOS a hot migration only works seamlessly if file ids in oc10 are already read from eos. otherwise either a mapping from the oc10 filecache file id to the new eos file id has to be created under the assumption that these id sets do not intersect or files and corresponding shares need to be exported and imported offline to generate a new set of ids. While this will preserve public links, user, group and even federated shares, old internal links may still point to different files because they contain the oc10 fileid</p>
 </blockquote>
 <div style="break-after: page"></div>
-<div class="gdoc-page__anchorwrap"><h3 id="share-table">share table<a data-clipboard-text="https://owncloud.dev/ocis/migration/#share-table" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor share table" href="#share-table"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>used to store</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="share-table">
+        share table
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#share-table" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor share table" href="#share-table">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>used to store</p>
 <ul>
 <li>Public links</li>
 <li>Private shares with users and groups</li>
@@ -4227,7 +4885,7 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 <th>Default</th>
 <th>Extra</th>
 <th>Comment</th>
-<th><a href="https://cs3org.github.io/cs3apis/">CS3 API</a></th>
+<th><a class="gdoc-markdown__link" href="https://cs3org.github.io/cs3apis/">CS3 API</a></th>
 </tr>
 </thead>
 <tbody>
@@ -4249,7 +4907,7 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 <td>0</td>
 <td></td>
 <td><em>in CS3 every type is handled by a dedicated API. See below the table</em></td>
-<td>does NOT map to <a href="https://cs3org.github.io/cs3apis/#cs3.sharing.ocm.v1beta1.Share.ShareType"><code>Share.ShareType</code></a> <em>TODO clarify</em></td>
+<td>does NOT map to <a class="gdoc-markdown__link" href="https://cs3org.github.io/cs3apis/#cs3.sharing.ocm.v1beta1.Share.ShareType"><code>Share.ShareType</code></a> <em>TODO clarify</em></td>
 </tr>
 <tr>
 <td><code>share_with</code></td>
@@ -4259,7 +4917,7 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 <td>NULL</td>
 <td></td>
 <td></td>
-<td><code>Share.grantee</code> <a href="https://cs3org.github.io/cs3apis/#cs3.storage.provider.v1beta1.Grantee"><code>Grantee</code></a></td>
+<td><code>Share.grantee</code> <a class="gdoc-markdown__link" href="https://cs3org.github.io/cs3apis/#cs3.storage.provider.v1beta1.Grantee"><code>Grantee</code></a></td>
 </tr>
 <tr>
 <td><code>uid_owner</code></td>
@@ -4269,7 +4927,7 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 <td></td>
 <td></td>
 <td></td>
-<td><code>ShareId.owner</code> <a href="https://cs3org.github.io/cs3apis/#cs3.identity.user.v1beta1.UserId"><code>UserID</code></a></td>
+<td><code>ShareId.owner</code> <a class="gdoc-markdown__link" href="https://cs3org.github.io/cs3apis/#cs3.identity.user.v1beta1.UserId"><code>UserID</code></a></td>
 </tr>
 <tr>
 <td><code>parent</code></td>
@@ -4289,7 +4947,7 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 <td></td>
 <td></td>
 <td></td>
-<td><code>Share.resource_id</code> <a href="https://cs3org.github.io/cs3apis/#cs3.storage.provider.v1beta1.ResourceId"><code>ResourceId</code></a></td>
+<td><code>Share.resource_id</code> <a class="gdoc-markdown__link" href="https://cs3org.github.io/cs3apis/#cs3.storage.provider.v1beta1.ResourceId"><code>ResourceId</code></a></td>
 </tr>
 <tr>
 <td><code>item_source</code></td>
@@ -4299,7 +4957,7 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 <td>NULL</td>
 <td></td>
 <td></td>
-<td><code>Share.resource_id</code> <a href="https://cs3org.github.io/cs3apis/#cs3.storage.provider.v1beta1.ResourceId"><code>ResourceId</code></a></td>
+<td><code>Share.resource_id</code> <a class="gdoc-markdown__link" href="https://cs3org.github.io/cs3apis/#cs3.storage.provider.v1beta1.ResourceId"><code>ResourceId</code></a></td>
 </tr>
 <tr>
 <td><code>item_target</code></td>
@@ -4309,7 +4967,7 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 <td>NULL</td>
 <td></td>
 <td></td>
-<td><code>Share.resource_id</code> <a href="https://cs3org.github.io/cs3apis/#cs3.storage.provider.v1beta1.ResourceId"><code>ResourceId</code></a></td>
+<td><code>Share.resource_id</code> <a class="gdoc-markdown__link" href="https://cs3org.github.io/cs3apis/#cs3.storage.provider.v1beta1.ResourceId"><code>ResourceId</code></a></td>
 </tr>
 <tr>
 <td><code>file_source</code></td>
@@ -4319,7 +4977,7 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 <td>NULL</td>
 <td></td>
 <td><em>cannot store uuid style file ids from oCIS. when all users have migrated to oCIS the share manager needs to be updated / migrated to a version that does.</em></td>
-<td><code>Share.resource_id</code> <a href="https://cs3org.github.io/cs3apis/#cs3.storage.provider.v1beta1.ResourceId"><code>ResourceId</code></a></td>
+<td><code>Share.resource_id</code> <a class="gdoc-markdown__link" href="https://cs3org.github.io/cs3apis/#cs3.storage.provider.v1beta1.ResourceId"><code>ResourceId</code></a></td>
 </tr>
 <tr>
 <td><code>file_target</code></td>
@@ -4329,7 +4987,7 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 <td>NULL</td>
 <td></td>
 <td></td>
-<td><code>Share.resource_id</code> <a href="https://cs3org.github.io/cs3apis/#cs3.storage.provider.v1beta1.ResourceId"><code>ResourceId</code></a></td>
+<td><code>Share.resource_id</code> <a class="gdoc-markdown__link" href="https://cs3org.github.io/cs3apis/#cs3.storage.provider.v1beta1.ResourceId"><code>ResourceId</code></a></td>
 </tr>
 <tr>
 <td><code>permissions</code></td>
@@ -4339,7 +4997,7 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 <td>0</td>
 <td></td>
 <td></td>
-<td><code>Share.Permissions</code> <a href="https://cs3org.github.io/cs3apis/#cs3.sharing.ocm.v1beta1.SharePermissions"><code>SharePermissions</code></a></td>
+<td><code>Share.Permissions</code> <a class="gdoc-markdown__link" href="https://cs3org.github.io/cs3apis/#cs3.sharing.ocm.v1beta1.SharePermissions"><code>SharePermissions</code></a></td>
 </tr>
 <tr>
 <td><code>stime</code></td>
@@ -4359,7 +5017,7 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 <td>0</td>
 <td></td>
 <td></td>
-<td><code>ReceivedShare.ShareState</code> <a href="https://cs3org.github.io/cs3apis/#cs3.sharing.collaboration.v1beta1.ShareState"><code>ShareState</code></a></td>
+<td><code>ReceivedShare.ShareState</code> <a class="gdoc-markdown__link" href="https://cs3org.github.io/cs3apis/#cs3.sharing.collaboration.v1beta1.ShareState"><code>ShareState</code></a></td>
 </tr>
 <tr>
 <td><code>expiration</code></td>
@@ -4369,7 +5027,7 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 <td>NULL</td>
 <td></td>
 <td><em>only used for the Link API and storage provider api, currently cannot be added using the Collaboration or OCM API</em></td>
-<td><a href="https://cs3org.github.io/cs3apis/#cs3.storage.provider.v1beta1.Grant"><code>Grant</code></a></td>
+<td><a class="gdoc-markdown__link" href="https://cs3org.github.io/cs3apis/#cs3.storage.provider.v1beta1.Grant"><code>Grant</code></a></td>
 </tr>
 <tr>
 <td><code>token</code></td>
@@ -4379,7 +5037,7 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 <td>NULL</td>
 <td></td>
 <td></td>
-<td><a href="https://cs3org.github.io/cs3apis/#cs3.sharing.link.v1beta1.PublicShare"><code>PublicShare.token</code></a></td>
+<td><a class="gdoc-markdown__link" href="https://cs3org.github.io/cs3apis/#cs3.sharing.link.v1beta1.PublicShare"><code>PublicShare.token</code></a></td>
 </tr>
 <tr>
 <td><code>mail_send</code></td>
@@ -4399,7 +5057,7 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 <td>NULL</td>
 <td></td>
 <td></td>
-<td><code>ShareId.creator</code> <a href="https://cs3org.github.io/cs3apis/#cs3.identity.user.v1beta1.UserId"><code>UserID</code></a></td>
+<td><code>ShareId.creator</code> <a class="gdoc-markdown__link" href="https://cs3org.github.io/cs3apis/#cs3.identity.user.v1beta1.UserId"><code>UserID</code></a></td>
 </tr>
 <tr>
 <td><code>share_name</code></td>
@@ -4409,7 +5067,7 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 <td>NULL</td>
 <td></td>
 <td><em>only exists for public shares</em></td>
-<td><a href="https://cs3org.github.io/cs3apis/#cs3.sharing.link.v1beta1.PublicShare"><code>PublicShare.display_name</code></a></td>
+<td><a class="gdoc-markdown__link" href="https://cs3org.github.io/cs3apis/#cs3.sharing.link.v1beta1.PublicShare"><code>PublicShare.display_name</code></a></td>
 </tr>
 <tr>
 <td><code>attributes</code></td>
@@ -4425,13 +5083,19 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 </table>
 <p>In the CS3 API</p>
 <ol>
-<li>public links are handled by the PublicShareProvider using the <a href="https://cs3org.github.io/cs3apis/#cs3.sharing.link.v1beta1.LinkAPI">Link API</a></li>
-<li>internal shares are handled by the UserShareProvider using the <a href="https://cs3org.github.io/cs3apis/#cs3.sharing.collaboration.v1beta1.CollaborationAPI">Collaboration API</a>. This covers user and group shares.</li>
-<li>federated shares are handled by the OcmShareProvider using the <a href="https://cs3org.github.io/cs3apis/#cs3.sharing.ocm.v1beta1.OcmAPI">OCM Share Provider AP</a> aka. Open Cloud Mesh.</li>
+<li>public links are handled by the PublicShareProvider using the <a class="gdoc-markdown__link" href="https://cs3org.github.io/cs3apis/#cs3.sharing.link.v1beta1.LinkAPI">Link API</a></li>
+<li>internal shares are handled by the UserShareProvider using the <a class="gdoc-markdown__link" href="https://cs3org.github.io/cs3apis/#cs3.sharing.collaboration.v1beta1.CollaborationAPI">Collaboration API</a>. This covers user and group shares.</li>
+<li>federated shares are handled by the OcmShareProvider using the <a class="gdoc-markdown__link" href="https://cs3org.github.io/cs3apis/#cs3.sharing.ocm.v1beta1.OcmAPI">OCM Share Provider AP</a> aka. Open Cloud Mesh.</li>
 </ol>
 <div style="break-after: page"></div>
-<div class="gdoc-page__anchorwrap"><h3 id="share_external">share_external<a data-clipboard-text="https://owncloud.dev/ocis/migration/#share_external" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor share_external" href="#share_external"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Used to store additional metadata for federated shares.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="share_external">
+        share_external
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#share_external" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor share_external" href="#share_external">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Used to store additional metadata for federated shares.</p>
 <table>
 <thead>
 <tr>
@@ -4550,8 +5214,14 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 <p><em>TODO document how the reva OCM service currently persists the data</em></p>
 </div>
 <div style="break-after: page"></div>
-<div class="gdoc-page__anchorwrap"><h3 id="trusted_servers">trusted_servers<a data-clipboard-text="https://owncloud.dev/ocis/migration/#trusted_servers" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor trusted_servers" href="#trusted_servers"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>used to determine if federated shares can automatically be accepted</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="trusted_servers">
+        trusted_servers
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#trusted_servers" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor trusted_servers" href="#trusted_servers">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>used to determine if federated shares can automatically be accepted</p>
 <table>
 <thead>
 <tr>
@@ -4634,8 +5304,14 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 <p><em>TODO clarify how OCM handles this and where we store / configure this. It seems related to trusted IdPs</em></p>
 </div>
 <div style="break-after: page"></div>
-<div class="gdoc-page__anchorwrap"><h3 id="user-data">user data<a data-clipboard-text="https://owncloud.dev/ocis/migration/#user-data" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor user data" href="#user-data"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Users are migrated in two steps:</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="user-data">
+        user data
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#user-data" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor user data" href="#user-data">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Users are migrated in two steps:</p>
 <ol>
 <li>They should all be authenticated using OpenID Connect, which already moves them to a common identity management system.</li>
 <li>To search share recipients, both, ownCloud 10 and oCIS need access to the same user directory using eg. LDAP.</li>
@@ -4818,15 +5494,27 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 </tbody>
 </table>
 <div style="break-after: page"></div>
-<div class="gdoc-page__anchorwrap"><h3 id="ldap">LDAP<a data-clipboard-text="https://owncloud.dev/ocis/migration/#ldap" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor LDAP" href="#ldap"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<div class="editpage">
+<div class="gdoc-page__anchorwrap">
+    <h3 id="ldap">
+        LDAP
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#ldap" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor LDAP" href="#ldap">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><div class="editpage">
 <p><em>TODO clarify if metadata from ldap &amp; user_shibboleth needs to be migrated</em></p>
 </div>
 <p>The <code>dn</code> -&gt; <em>owncloud internal username</em> mapping that currently lives in the <code>oc_ldap_user_mapping</code> table needs to move into a dedicated ownclouduuid attribute in the LDAP server. The idp should send it as a claim so the proxy does not have to look up the user using LDAP again. The username cannot be changed in ownCloud 10 and the oCIS provisioning API will not allow changing it as well. When we introduce the graph api we may allow changing usernames when all clients have moved to that api.</p>
 <p>The problem is that the username in owncloud 10 and in oCIS also need to be the same, which might not be the case when the ldap mapping used a different column. In that case we should add another owncloudusername attribute to the ldap server.</p>
 <div class="editpage">
-<div class="gdoc-page__anchorwrap"><h3 id="activities">activities<a data-clipboard-text="https://owncloud.dev/ocis/migration/#activities" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor activities" href="#activities"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p><em>dedicated service, not yet implemented, requires decisions about an event system &ndash; jfd</em></p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="activities">
+        activities
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#activities" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor activities" href="#activities">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p><em>dedicated service, not yet implemented, requires decisions about an event system &ndash; jfd</em></p>
 <table>
 <thead>
 <tr>
@@ -4977,8 +5665,14 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 </tr>
 </tbody>
 </table>
-<div class="gdoc-page__anchorwrap"><h2 id="links">Links<a data-clipboard-text="https://owncloud.dev/ocis/migration/#links" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Links" href="#links"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>The <a href="https://github.com/owncloud/data_exporter">data_exporter</a> has logic that allows exporting and importing users, including shares. The <a href="https://github.com/owncloud/data_exporter/tree/master/lib/Model">model classes</a> contain the exact mapping.</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="links">
+        Links
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#links" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Links" href="#links">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>The <a class="gdoc-markdown__link" href="https://github.com/owncloud/data_exporter">data_exporter</a> has logic that allows exporting and importing users, including shares. The <a class="gdoc-markdown__link" href="https://github.com/owncloud/data_exporter/tree/master/lib/Model">model classes</a> contain the exact mapping.</p>
 </div>
 
     </article>
@@ -5013,7 +5707,7 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
     <div class="container flex flex-wrap">
         <span class="gdoc-footer__item">
             Built with <a href="https://gohugo.io/" class="gdoc-footer__link">Hugo</a> and
-            <svg class="icon heart"><use xlink:href="#heart"></use></svg>
+            <svg class="icon gdoc_heart"><use xlink:href="#gdoc_heart"></use></svg>
         </span>
         
         <span class="gdoc-footer__item">
@@ -5035,16 +5729,12 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 
 
 
-<script defer src="/js/en.search.min.c8e955343bfe0248e415a4d6686a21b8f6429bd355a3613448fadf17bfdae324.js"></script>
+<script defer src="/js/en.search.min.0f0f3a9579398cc6d5bdddb9566ae50211120fb6f3f17dac1de19a3eeec0329e.js"></script>
 
 
 
-<script defer src="/js/clipboard-af8ab36589.min.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function(event) {
-        var clipboard = new ClipboardJS('.clip');
-    });
-</script>
+<script defer src="/js/clipboard-27784b7376.min.js"></script>
+<script defer src="/js/clipboard-loader-f0b5fbd5f6.min.js"></script>
 
 
 </body>

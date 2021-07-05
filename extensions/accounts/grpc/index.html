@@ -1,69 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="color-toggle-hidden">
 
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="GRPC API">
+<meta name="color-scheme" content="light dark" />
 
-<title>GRPC API | ownCloud</title>
 
-<link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
+
+
+
+    <meta name="description" content="accounts.proto  Account AddMemberRequest CreateAccountRequest CreateGroupRequest DeleteAccountRequest DeleteGroupRequest GetAccountRequest GetGroupRequest Group Identities ListAccountsRequest ListAccountsResponse ListGroupsRequest ListGroupsResponse ListMembersRequest ListMembersResponse OnPremisesProvisioningError PasswordProfile RebuildIndexRequest RebuildIndexResponse RemoveMemberRequest UpdateAccountRequest UpdateGroupRequest AccountsService GroupsService IndexService   Scalar Value Types     accounts.proto    Account    Account follows the properties of the ms graph api user resuorce. See https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0#properties
+   Field Type Label Description     id string  The unique identifier for the user.">
+
+
+
+    <title>GRPC API | ownCloud</title>
+
+    <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
+
+    <script src="/js/darkmode-ce906ea916.min.js"></script>
 
 <link rel="preload" as="font" href="/fonts/Metropolis.woff2" type="font/woff2" crossorigin="anonymous">
 <link rel="preload" as="font" href="/fonts/LiberationSans.woff2" type="font/woff2" crossorigin="anonymous">
-<link rel="preload" as="font" href="/fonts/LiberationSans-Bold.woff2" type="font/woff2" crossorigin="anonymous">
-<link rel="preload" as="font" href="/fonts/LiberationSans-BoldItalic.woff2" type="font/woff2" crossorigin="anonymous">
-<link rel="preload" as="font" href="/fonts/LiberationSans-Italic.woff2" type="font/woff2" crossorigin="anonymous">
-<link rel="preload" as="font" href="/fonts/LiberationMono.woff2" type="font/woff2" crossorigin="anonymous">
-<link rel="preload" as="font" href="/fonts/DroidSans.woff2" type="font/woff2" crossorigin="anonymous">
-<link rel="preload" as="font" href="/fonts/GeekdocIcons.woff2" type="font/woff2" crossorigin="anonymous">
 
-<link rel="preload" href="/main-bed196f5e7.min.css" as="style">
-<link rel="stylesheet" href="/main-bed196f5e7.min.css" media="all">
+<link rel="preload" href="/main-cc3cbe901b.min.css" as="style">
+<link rel="stylesheet" href="/main-cc3cbe901b.min.css" media="all">
 
-<link rel="preload" href="/mobile-2eb10ce87d.min.css" as="style">
-<link rel="stylesheet" href="/mobile-2eb10ce87d.min.css" media="screen and (max-width: 45rem)">
+<link rel="preload" href="/mobile-249b801e7d.min.css" as="style">
+<link rel="stylesheet" href="/mobile-249b801e7d.min.css" media="screen and (max-width: 45rem)">
 
-<link rel="preload" href="/print-16259ad7b8.min.css" as="style">
-<link rel="stylesheet" href="/print-16259ad7b8.min.css" media="print">
+<link rel="preload" href="/print-f79fc3e5d7.min.css" as="style">
+<link rel="stylesheet" href="/print-f79fc3e5d7.min.css" media="print">
 
 <link rel="preload" href="/custom.css" as="style">
 <link rel="stylesheet" href="/custom.css" media="all">
 
+
+
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
+
+    
 
 </head>
 
-<body>
-    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><symbol viewBox="-2.29 -2.29 28.57 28.57" id="arrow_back" xmlns="http://www.w3.org/2000/svg"><path d="M24 10.526v2.947H5.755l8.351 8.421-2.105 2.105-12-12 12-12 2.105 2.105-8.351 8.421H24z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="arrow_left_alt" xmlns="http://www.w3.org/2000/svg"><path d="M5.965 10.526V6.035L0 12l5.965 5.965v-4.491H24v-2.947H5.965z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="arrow_right_alt" xmlns="http://www.w3.org/2000/svg"><path d="M18.035 10.526V6.035L24 12l-5.965 5.965v-4.491H0v-2.947h18.035z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="bitbucket" xmlns="http://www.w3.org/2000/svg"><path d="M15.905 13.355c.189 1.444-1.564 2.578-2.784 1.839-1.375-.602-1.375-2.784-.034-3.403 1.151-.705 2.818.223 2.818 1.564zm1.907-.361c-.309-2.44-3.076-4.056-5.328-3.042-1.426.636-2.389 2.148-2.32 3.747.086 2.097 2.08 3.815 4.176 3.626s3.729-2.234 3.472-4.331zm4.108-9.315c-.756-.997-2.045-1.169-3.179-1.358-3.214-.516-6.513-.533-9.727.034-1.066.172-2.269.361-2.939 1.323 1.1 1.031 2.664 1.186 4.073 1.358 2.544.327 5.156.344 7.699.017 1.426-.172 3.008-.309 4.073-1.375zm.979 17.788c-.481 1.684-.206 3.953-1.994 4.932-3.076 1.701-6.806 1.89-10.191 1.289-1.787-.327-3.884-.894-4.864-2.578-.43-1.65-.705-3.334-.98-5.018l.103-.275.309-.155c5.121 3.386 12.288 3.386 17.427 0 .808.241.206 1.22.189 1.805zM26.01 4.951c-.584 3.764-1.255 7.51-1.908 11.257-.189 1.1-1.255 1.719-2.148 2.183-3.214 1.615-6.96 1.89-10.483 1.512-2.389-.258-4.829-.894-6.771-2.389-.911-.705-.911-1.908-1.083-2.922-.602-3.523-1.289-7.046-1.719-10.604.206-1.547 1.942-2.217 3.231-2.698C6.848.654 8.686.362 10.508.19c3.884-.378 7.854-.241 11.618.859 1.341.395 2.784.945 3.695 2.097.412.533.275 1.203.189 1.805z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="bookmark" xmlns="http://www.w3.org/2000/svg"><path d="M15.268 4.392q.868 0 1.532.638t.664 1.506v17.463l-7.659-3.268-7.608 3.268V6.536q0-.868.664-1.506t1.532-.638h10.876zm4.34 14.144V4.392q0-.868-.638-1.532t-1.506-.664H6.537q0-.868.664-1.532T8.733 0h10.876q.868 0 1.532.664t.664 1.532v17.412z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="code" xmlns="http://www.w3.org/2000/svg"><path d="M9.917 24.5a1.75 1.75 0 10-3.501.001 1.75 1.75 0 003.501-.001zm0-21a1.75 1.75 0 10-3.501.001A1.75 1.75 0 009.917 3.5zm11.666 2.333a1.75 1.75 0 10-3.501.001 1.75 1.75 0 003.501-.001zm1.75 0a3.502 3.502 0 01-1.75 3.026c-.055 6.581-4.721 8.039-7.82 9.023-2.898.911-3.846 1.349-3.846 3.117v.474a3.502 3.502 0 011.75 3.026c0 1.932-1.568 3.5-3.5 3.5s-3.5-1.568-3.5-3.5c0-1.294.711-2.424 1.75-3.026V6.526A3.502 3.502 0 014.667 3.5c0-1.932 1.568-3.5 3.5-3.5s3.5 1.568 3.5 3.5a3.502 3.502 0 01-1.75 3.026v9.06c.93-.456 1.914-.766 2.807-1.039 3.391-1.075 5.323-1.878 5.359-5.687a3.502 3.502 0 01-1.75-3.026c0-1.932 1.568-3.5 3.5-3.5s3.5 1.568 3.5 3.5z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="date" xmlns="http://www.w3.org/2000/svg"><path d="M27.192 28.844V11.192H4.808v17.652h22.384zm0-25.689q1.277 0 2.253.976t.976 2.253v22.459q0 1.277-.976 2.216t-2.253.939H4.808q-1.352 0-2.291-.901t-.939-2.253V6.385q0-1.277.939-2.253t2.291-.976h1.577V.001h3.23v3.155h12.769V.001h3.23v3.155h1.577zm-3.155 11.267v3.155h-3.23v-3.155h3.23zm-6.46 0v3.155h-3.155v-3.155h3.155zm-6.384 0v3.155h-3.23v-3.155h3.23z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="download" xmlns="http://www.w3.org/2000/svg"><path d="M2.866 28.209h26.269v3.79H2.866v-3.79zm26.268-16.925L16 24.418 2.866 11.284h7.493V.001h11.283v11.283h7.493z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="email" xmlns="http://www.w3.org/2000/svg"><path d="M28.845 9.615v-3.23L16 14.422 3.155 6.385v3.23L16 17.577zm0-6.46q1.277 0 2.216.977T32 6.385v19.23q0 1.277-.939 2.253t-2.216.977H3.155q-1.277 0-2.216-.977T0 25.615V6.385q0-1.277.939-2.253t2.216-.977h25.69z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="git" xmlns="http://www.w3.org/2000/svg"><path d="M27.472 12.753L15.247.529a1.803 1.803 0 00-2.55 0l-2.84 2.84 2.137 2.137a2.625 2.625 0 013.501 3.501l3.499 3.499a2.625 2.625 0 11-1.237 1.237l-3.499-3.499c-.083.04-.169.075-.257.106v7.3a2.626 2.626 0 11-1.75 0v-7.3a2.626 2.626 0 01-1.494-3.607L8.62 4.606l-8.09 8.09a1.805 1.805 0 000 2.551l12.225 12.224a1.803 1.803 0 002.55 0l12.168-12.168a1.805 1.805 0 000-2.551z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="github" xmlns="http://www.w3.org/2000/svg"><path d="M16 .394c8.833 0 15.999 7.166 15.999 15.999 0 7.062-4.583 13.062-10.937 15.187-.813.146-1.104-.354-1.104-.771 0-.521.021-2.25.021-4.396 0-1.5-.5-2.458-1.083-2.958 3.562-.396 7.312-1.75 7.312-7.896 0-1.75-.625-3.167-1.646-4.291.167-.417.708-2.042-.167-4.25-1.333-.417-4.396 1.646-4.396 1.646a15.032 15.032 0 00-8 0S8.937 6.602 7.603 7.018c-.875 2.208-.333 3.833-.167 4.25-1.021 1.125-1.646 2.542-1.646 4.291 0 6.125 3.729 7.5 7.291 7.896-.458.417-.875 1.125-1.021 2.146-.917.417-3.25 1.125-4.646-1.333-.875-1.521-2.458-1.646-2.458-1.646-1.562-.021-.104.979-.104.979 1.042.479 1.771 2.333 1.771 2.333.938 2.854 5.396 1.896 5.396 1.896 0 1.333.021 2.583.021 2.979 0 .417-.292.917-1.104.771C4.582 29.455-.001 23.455-.001 16.393-.001 7.56 7.165.394 15.998.394zM6.063 23.372c.042-.083-.021-.187-.146-.25-.125-.042-.229-.021-.271.042-.042.083.021.187.146.25.104.062.229.042.271-.042zm.646.709c.083-.062.062-.208-.042-.333-.104-.104-.25-.146-.333-.062-.083.062-.062.208.042.333.104.104.25.146.333.062zm.625.937c.104-.083.104-.25 0-.396-.083-.146-.25-.208-.354-.125-.104.062-.104.229 0 .375s.271.208.354.146zm.875.875c.083-.083.042-.271-.083-.396-.146-.146-.333-.167-.417-.062-.104.083-.062.271.083.396.146.146.333.167.417.062zm1.187.521c.042-.125-.083-.271-.271-.333-.167-.042-.354.021-.396.146s.083.271.271.312c.167.062.354 0 .396-.125zm1.313.104c0-.146-.167-.25-.354-.229-.187 0-.333.104-.333.229 0 .146.146.25.354.229.187 0 .333-.104.333-.229zm1.208-.208c-.021-.125-.187-.208-.375-.187-.187.042-.312.167-.292.312.021.125.187.208.375.167s.312-.167.292-.292z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gitlab" xmlns="http://www.w3.org/2000/svg"><path d="M1.629 11.034L14 26.888.442 17.048a1.09 1.09 0 01-.39-1.203l1.578-4.811zm7.217 0h10.309l-5.154 15.854zM5.753 1.475l3.093 9.559H1.63l3.093-9.559a.548.548 0 011.031 0zm20.618 9.559l1.578 4.811c.141.437-.016.922-.39 1.203l-13.558 9.84 12.371-15.854zm0 0h-7.216l3.093-9.559a.548.548 0 011.031 0z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="heart" xmlns="http://www.w3.org/2000/svg"><path d="M16 29.714a1.11 1.11 0 01-.786-.321L4.072 18.643c-.143-.125-4.071-3.714-4.071-8 0-5.232 3.196-8.357 8.535-8.357 3.125 0 6.053 2.464 7.464 3.857 1.411-1.393 4.339-3.857 7.464-3.857 5.339 0 8.535 3.125 8.535 8.357 0 4.286-3.928 7.875-4.089 8.035L16.785 29.392c-.214.214-.5.321-.786.321z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="keyborad_arrow_down" xmlns="http://www.w3.org/2000/svg"><path d="M3.281 5.36L14 16.079 24.719 5.36 28 8.641l-14 14-14-14z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="keyborad_arrow_left" xmlns="http://www.w3.org/2000/svg"><path d="M25.875 28.25L22.125 32 6.126 16.001 22.125.002l3.75 3.75-12.25 12.25z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="keyborad_arrow_right" xmlns="http://www.w3.org/2000/svg"><path d="M6.125 28.25L18.375 16 6.125 3.75 9.875 0l15.999 15.999L9.875 31.998z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="link" xmlns="http://www.w3.org/2000/svg"><path d="M24.037 7.963q3.305 0 5.634 2.366T32 16t-2.329 5.671-5.634 2.366h-6.46v-3.08h6.46q2.028 0 3.493-1.465t1.465-3.493-1.465-3.493-3.493-1.465h-6.46v-3.08h6.46zM9.615 17.578v-3.155h12.77v3.155H9.615zM3.005 16q0 2.028 1.465 3.493t3.493 1.465h6.46v3.08h-6.46q-3.305 0-5.634-2.366T0 16.001t2.329-5.671 5.634-2.366h6.46v3.08h-6.46q-2.028 0-3.493 1.465t-1.465 3.493z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="menu" xmlns="http://www.w3.org/2000/svg"><path d="M.001 5.334h31.998v3.583H.001V5.334zm0 12.416v-3.5h31.998v3.5H.001zm0 8.916v-3.583h31.998v3.583H.001z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="notification" xmlns="http://www.w3.org/2000/svg"><path d="M22.615 19.384l2.894 2.894v1.413H2.49v-1.413l2.894-2.894V12.25q0-3.365 1.716-5.856t4.745-3.231v-1.01q0-.875.606-1.514T13.999 0t1.548.639.606 1.514v1.01q3.029.74 4.745 3.231t1.716 5.856v7.134zM14 27.999q-1.211 0-2.053-.808t-.841-2.019h5.788q0 1.144-.875 1.986T14 27.999z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="path" xmlns="http://www.w3.org/2000/svg"><path d="M28 12.62h-9.793V8.414h-2.826v11.173h2.826v-4.206H28V26.62h-9.793v-4.206H12.62v-14H9.794v4.206H.001V1.381h9.793v4.206h8.413V1.381H28V12.62z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="person" xmlns="http://www.w3.org/2000/svg"><path d="M16 20.023q5.052 0 10.526 2.199t5.473 5.754v4.023H0v-4.023q0-3.555 5.473-5.754t10.526-2.199zM16 16q-3.275 0-5.614-2.339T8.047 8.047t2.339-5.661T16 0t5.614 2.386 2.339 5.661-2.339 5.614T16 16z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="search" xmlns="http://www.w3.org/2000/svg"><path d="M11.925 20.161q3.432 0 5.834-2.402t2.402-5.834-2.402-5.834-5.834-2.402-5.834 2.402-2.402 5.834 2.402 5.834 5.834 2.402zm10.981 0L32 29.255 29.255 32l-9.094-9.094v-1.458l-.515-.515q-3.26 2.831-7.721 2.831-4.976 0-8.45-3.432T.001 11.925t3.474-8.45 8.45-3.474 8.407 3.474 3.432 8.45q0 1.802-.858 4.075t-1.973 3.646l.515.515h1.458z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="shield" xmlns="http://www.w3.org/2000/svg"><path d="M22.167 15.166V3.5h-8.166v20.726c.93-.492 2.424-1.349 3.883-2.497 1.95-1.531 4.284-3.919 4.284-6.562zm3.499-13.999v14c0 7.674-10.737 12.523-11.192 12.724-.146.073-.31.109-.474.109s-.328-.036-.474-.109c-.456-.201-11.192-5.049-11.192-12.724v-14C2.334.529 2.863 0 3.501 0H24.5c.638 0 1.167.529 1.167 1.167z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="tags" xmlns="http://www.w3.org/2000/svg"><path d="M6.606 7.549c0-1.047-.84-1.887-1.887-1.887s-1.887.84-1.887 1.887.84 1.887 1.887 1.887 1.887-.84 1.887-1.887zm15.732 8.493c0 .501-.206.988-.546 1.327l-7.239 7.254c-.354.339-.84.546-1.342.546s-.988-.206-1.327-.546L1.342 14.066C.59 13.329 0 11.899 0 10.852V4.718a1.9 1.9 0 011.887-1.887h6.134c1.047 0 2.477.59 3.229 1.342L21.792 14.7c.339.354.546.84.546 1.342zm5.661 0c0 .501-.206.988-.546 1.327l-7.239 7.254c-.354.339-.84.546-1.342.546-.767 0-1.15-.354-1.651-.87l6.93-6.93c.339-.339.546-.826.546-1.327s-.206-.988-.546-1.342L13.609 4.173c-.752-.752-2.182-1.342-3.229-1.342h3.303c1.047 0 2.477.59 3.229 1.342L27.454 14.7c.339.354.546.84.546 1.342z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="telescope" xmlns="http://www.w3.org/2000/svg"><path d="M25.026 3.335a.466.466 0 00-.646-.238L13.362 8.91a.463.463 0 00-.216.575l.227.593-6.36 3.488a.462.462 0 00-.205.583l.211.508-6.755 3.228a.463.463 0 00-.228.595l1.386 3.341a.463.463 0 00.583.259l7.056-2.5.211.508a.462.462 0 00.557.267l6.733-1.941.202.527a.46.46 0 00.566.277l12.03-3.702a.46.46 0 00.293-.613L25.026 3.335zM2.109 21.061l-1.049-2.53 6.314-3.018 1.332 3.211-6.596 2.337zm7.857-1.708l-.22-.531-1.706-4.113-.22-.53 5.863-3.216 2.197 5.676.347.908-6.261 1.806zm7.505-1.146l-.188-.491c-.003-.01-.001-.022-.006-.032l-.572-1.478-2.549-6.668 10.201-5.381 4.249 10.624-11.136 3.428zm8.943-16.723a.463.463 0 00-.86.344l5.552 13.881a.464.464 0 00.602.258.464.464 0 00.258-.602L26.413 1.484zM16.268 20.627h-2.776c-1.055 0-1.851.796-1.851 1.851v1.217l-5.44 6.347a.462.462 0 10.702.602l5.415-6.316h2.101v6.015a.463.463 0 00.926 0v-6.015h2.101l5.414 6.316a.462.462 0 10.703-.602l-5.44-6.347v-1.148c0-1.076-.813-1.92-1.851-1.92zm.925 2.777h-4.627v-.925c0-.545.38-.925.925-.925h2.776c.527 0 .925.428.925.995v.856z"/></symbol></svg>
+<body itemscope itemtype="https://schema.org/WebPage">
+    
+<!-- geekdoc include: sprites/geekdoc.svg -->
+<svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_arrow_back" xmlns="http://www.w3.org/2000/svg"><path d="M24 10.526v2.947H5.755l8.351 8.421-2.105 2.105-12-12 12-12 2.105 2.105-8.351 8.421H24z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_arrow_left_alt" xmlns="http://www.w3.org/2000/svg"><path d="M5.965 10.526V6.035L0 12l5.965 5.965v-4.491H24v-2.947H5.965z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_arrow_right_alt" xmlns="http://www.w3.org/2000/svg"><path d="M18.035 10.526V6.035L24 12l-5.965 5.965v-4.491H0v-2.947h18.035z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_bitbucket" xmlns="http://www.w3.org/2000/svg"><path d="M15.905 13.355c.189 1.444-1.564 2.578-2.784 1.839-1.375-.602-1.375-2.784-.034-3.403 1.151-.705 2.818.223 2.818 1.564zm1.907-.361c-.309-2.44-3.076-4.056-5.328-3.042-1.426.636-2.389 2.148-2.32 3.747.086 2.097 2.08 3.815 4.176 3.626s3.729-2.234 3.472-4.331zm4.108-9.315c-.756-.997-2.045-1.169-3.179-1.358-3.214-.516-6.513-.533-9.727.034-1.066.172-2.269.361-2.939 1.323 1.1 1.031 2.664 1.186 4.073 1.358 2.544.327 5.156.344 7.699.017 1.426-.172 3.008-.309 4.073-1.375zm.979 17.788c-.481 1.684-.206 3.953-1.994 4.932-3.076 1.701-6.806 1.89-10.191 1.289-1.787-.327-3.884-.894-4.864-2.578-.43-1.65-.705-3.334-.98-5.018l.103-.275.309-.155c5.121 3.386 12.288 3.386 17.427 0 .808.241.206 1.22.189 1.805zM26.01 4.951c-.584 3.764-1.255 7.51-1.908 11.257-.189 1.1-1.255 1.719-2.148 2.183-3.214 1.615-6.96 1.89-10.483 1.512-2.389-.258-4.829-.894-6.771-2.389-.911-.705-.911-1.908-1.083-2.922-.602-3.523-1.289-7.046-1.719-10.604.206-1.547 1.942-2.217 3.231-2.698C6.848.654 8.686.362 10.508.19c3.884-.378 7.854-.241 11.618.859 1.341.395 2.784.945 3.695 2.097.412.533.275 1.203.189 1.805z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_bookmark" xmlns="http://www.w3.org/2000/svg"><path d="M15.268 4.392q.868 0 1.532.638t.664 1.506v17.463l-7.659-3.268-7.608 3.268V6.536q0-.868.664-1.506t1.532-.638h10.876zm4.34 14.144V4.392q0-.868-.638-1.532t-1.506-.664H6.537q0-.868.664-1.532T8.733 0h10.876q.868 0 1.532.664t.664 1.532v17.412z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_brightness_auto" xmlns="http://www.w3.org/2000/svg"><path d="M16.846 18.938h2.382L15.22 7.785h-2.44L8.772 18.938h2.382l.871-2.44h3.95zm7.087-9.062L27.999 14l-4.066 4.124v5.809h-5.809L14 27.999l-4.124-4.066H4.067v-5.809L.001 14l4.066-4.124V4.067h5.809L14 .001l4.124 4.066h5.809v5.809zm-11.385 4.937L14 10.282l1.452 4.531h-2.904z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_brightness_dark" xmlns="http://www.w3.org/2000/svg"><path d="M14 21.435q3.079 0 5.257-2.178T21.435 14t-2.178-5.257T14 6.565q-1.51 0-3.079.697 1.917.871 3.108 2.701T15.22 14t-1.191 4.037-3.108 2.701q1.568.697 3.079.697zm9.933-11.559L27.999 14l-4.066 4.124v5.809h-5.809L14 27.999l-4.124-4.066H4.067v-5.809L.001 14l4.066-4.124V4.067h5.809L14 .001l4.124 4.066h5.809v5.809z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_brightness_light" xmlns="http://www.w3.org/2000/svg"><path d="M14 21.435q3.079 0 5.257-2.178T21.435 14t-2.178-5.257T14 6.565 8.743 8.743 6.565 14t2.178 5.257T14 21.435zm9.933-3.311v5.809h-5.809L14 27.999l-4.124-4.066H4.067v-5.809L.001 14l4.066-4.124V4.067h5.809L14 .001l4.124 4.066h5.809v5.809L27.999 14z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_cloud_off" xmlns="http://www.w3.org/2000/svg"><path d="M9.023 10.5H7q-1.914 0-3.281 1.395t-1.367 3.309 1.367 3.281T7 19.852h11.375zM3.5 4.976l1.477-1.477L24.5 23.022l-1.477 1.477-2.352-2.297H6.999q-2.898 0-4.949-2.051t-2.051-4.949q0-2.844 1.969-4.867t4.758-2.133zm19.086 5.578q2.242.164 3.828 1.832T28 16.351q0 3.008-2.461 4.758l-1.695-1.695q1.805-.984 1.805-3.063 0-1.422-1.039-2.461t-2.461-1.039h-1.75v-.602q0-2.68-1.859-4.539t-4.539-1.859q-1.531 0-2.953.711l-1.75-1.695Q11.431 3.5 14.001 3.5q2.953 0 5.496 2.078t3.09 4.977z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_code" xmlns="http://www.w3.org/2000/svg"><path d="M9.917 24.5a1.75 1.75 0 10-3.501.001 1.75 1.75 0 003.501-.001zm0-21a1.75 1.75 0 10-3.501.001A1.75 1.75 0 009.917 3.5zm11.666 2.333a1.75 1.75 0 10-3.501.001 1.75 1.75 0 003.501-.001zm1.75 0a3.502 3.502 0 01-1.75 3.026c-.055 6.581-4.721 8.039-7.82 9.023-2.898.911-3.846 1.349-3.846 3.117v.474a3.502 3.502 0 011.75 3.026c0 1.932-1.568 3.5-3.5 3.5s-3.5-1.568-3.5-3.5c0-1.294.711-2.424 1.75-3.026V6.526A3.502 3.502 0 014.667 3.5c0-1.932 1.568-3.5 3.5-3.5s3.5 1.568 3.5 3.5a3.502 3.502 0 01-1.75 3.026v9.06c.93-.456 1.914-.766 2.807-1.039 3.391-1.075 5.323-1.878 5.359-5.687a3.502 3.502 0 01-1.75-3.026c0-1.932 1.568-3.5 3.5-3.5s3.5 1.568 3.5 3.5z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_date" xmlns="http://www.w3.org/2000/svg"><path d="M27.192 28.844V11.192H4.808v17.652h22.384zm0-25.689q1.277 0 2.253.976t.976 2.253v22.459q0 1.277-.976 2.216t-2.253.939H4.808q-1.352 0-2.291-.901t-.939-2.253V6.385q0-1.277.939-2.253t2.291-.976h1.577V.001h3.23v3.155h12.769V.001h3.23v3.155h1.577zm-3.155 11.267v3.155h-3.23v-3.155h3.23zm-6.46 0v3.155h-3.155v-3.155h3.155zm-6.384 0v3.155h-3.23v-3.155h3.23z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_download" xmlns="http://www.w3.org/2000/svg"><path d="M2.866 28.209h26.269v3.79H2.866v-3.79zm26.268-16.925L16 24.418 2.866 11.284h7.493V.001h11.283v11.283h7.493z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_email" xmlns="http://www.w3.org/2000/svg"><path d="M28.845 9.615v-3.23L16 14.422 3.155 6.385v3.23L16 17.577zm0-6.46q1.277 0 2.216.977T32 6.385v19.23q0 1.277-.939 2.253t-2.216.977H3.155q-1.277 0-2.216-.977T0 25.615V6.385q0-1.277.939-2.253t2.216-.977h25.69z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_git" xmlns="http://www.w3.org/2000/svg"><path d="M27.472 12.753L15.247.529a1.803 1.803 0 00-2.55 0l-2.84 2.84 2.137 2.137a2.625 2.625 0 013.501 3.501l3.499 3.499a2.625 2.625 0 11-1.237 1.237l-3.499-3.499c-.083.04-.169.075-.257.106v7.3a2.626 2.626 0 11-1.75 0v-7.3a2.626 2.626 0 01-1.494-3.607L8.62 4.606l-8.09 8.09a1.805 1.805 0 000 2.551l12.225 12.224a1.803 1.803 0 002.55 0l12.168-12.168a1.805 1.805 0 000-2.551z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_github" xmlns="http://www.w3.org/2000/svg"><path d="M16 .394c8.833 0 15.999 7.166 15.999 15.999 0 7.062-4.583 13.062-10.937 15.187-.813.146-1.104-.354-1.104-.771 0-.521.021-2.25.021-4.396 0-1.5-.5-2.458-1.083-2.958 3.562-.396 7.312-1.75 7.312-7.896 0-1.75-.625-3.167-1.646-4.291.167-.417.708-2.042-.167-4.25-1.333-.417-4.396 1.646-4.396 1.646a15.032 15.032 0 00-8 0S8.937 6.602 7.603 7.018c-.875 2.208-.333 3.833-.167 4.25-1.021 1.125-1.646 2.542-1.646 4.291 0 6.125 3.729 7.5 7.291 7.896-.458.417-.875 1.125-1.021 2.146-.917.417-3.25 1.125-4.646-1.333-.875-1.521-2.458-1.646-2.458-1.646-1.562-.021-.104.979-.104.979 1.042.479 1.771 2.333 1.771 2.333.938 2.854 5.396 1.896 5.396 1.896 0 1.333.021 2.583.021 2.979 0 .417-.292.917-1.104.771C4.582 29.455-.001 23.455-.001 16.393-.001 7.56 7.165.394 15.998.394zM6.063 23.372c.042-.083-.021-.187-.146-.25-.125-.042-.229-.021-.271.042-.042.083.021.187.146.25.104.062.229.042.271-.042zm.646.709c.083-.062.062-.208-.042-.333-.104-.104-.25-.146-.333-.062-.083.062-.062.208.042.333.104.104.25.146.333.062zm.625.937c.104-.083.104-.25 0-.396-.083-.146-.25-.208-.354-.125-.104.062-.104.229 0 .375s.271.208.354.146zm.875.875c.083-.083.042-.271-.083-.396-.146-.146-.333-.167-.417-.062-.104.083-.062.271.083.396.146.146.333.167.417.062zm1.187.521c.042-.125-.083-.271-.271-.333-.167-.042-.354.021-.396.146s.083.271.271.312c.167.062.354 0 .396-.125zm1.313.104c0-.146-.167-.25-.354-.229-.187 0-.333.104-.333.229 0 .146.146.25.354.229.187 0 .333-.104.333-.229zm1.208-.208c-.021-.125-.187-.208-.375-.187-.187.042-.312.167-.292.312.021.125.187.208.375.167s.312-.167.292-.292z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_gitlab" xmlns="http://www.w3.org/2000/svg"><path d="M1.629 11.034L14 26.888.442 17.048a1.09 1.09 0 01-.39-1.203l1.578-4.811zm7.217 0h10.309l-5.154 15.854zM5.753 1.475l3.093 9.559H1.63l3.093-9.559a.548.548 0 011.031 0zm20.618 9.559l1.578 4.811c.141.437-.016.922-.39 1.203l-13.558 9.84 12.371-15.854zm0 0h-7.216l3.093-9.559a.548.548 0 011.031 0z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_heart" xmlns="http://www.w3.org/2000/svg"><path d="M16 29.714a1.11 1.11 0 01-.786-.321L4.072 18.643c-.143-.125-4.071-3.714-4.071-8 0-5.232 3.196-8.357 8.535-8.357 3.125 0 6.053 2.464 7.464 3.857 1.411-1.393 4.339-3.857 7.464-3.857 5.339 0 8.535 3.125 8.535 8.357 0 4.286-3.928 7.875-4.089 8.035L16.785 29.392c-.214.214-.5.321-.786.321z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_keyborad_arrow_down" xmlns="http://www.w3.org/2000/svg"><path d="M3.281 5.36L14 16.079 24.719 5.36 28 8.641l-14 14-14-14z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_keyborad_arrow_left" xmlns="http://www.w3.org/2000/svg"><path d="M25.875 28.25L22.125 32 6.126 16.001 22.125.002l3.75 3.75-12.25 12.25z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_keyborad_arrow_right" xmlns="http://www.w3.org/2000/svg"><path d="M6.125 28.25L18.375 16 6.125 3.75 9.875 0l15.999 15.999L9.875 31.998z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_link" xmlns="http://www.w3.org/2000/svg"><path d="M24.037 7.963q3.305 0 5.634 2.366T32 16t-2.329 5.671-5.634 2.366h-6.46v-3.08h6.46q2.028 0 3.493-1.465t1.465-3.493-1.465-3.493-3.493-1.465h-6.46v-3.08h6.46zM9.615 17.578v-3.155h12.77v3.155H9.615zM3.005 16q0 2.028 1.465 3.493t3.493 1.465h6.46v3.08h-6.46q-3.305 0-5.634-2.366T0 16.001t2.329-5.671 5.634-2.366h6.46v3.08h-6.46q-2.028 0-3.493 1.465t-1.465 3.493z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_menu" xmlns="http://www.w3.org/2000/svg"><path d="M.001 5.334h31.998v3.583H.001V5.334zm0 12.416v-3.5h31.998v3.5H.001zm0 8.916v-3.583h31.998v3.583H.001z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_notification" xmlns="http://www.w3.org/2000/svg"><path d="M22.615 19.384l2.894 2.894v1.413H2.49v-1.413l2.894-2.894V12.25q0-3.365 1.716-5.856t4.745-3.231v-1.01q0-.875.606-1.514T13.999 0t1.548.639.606 1.514v1.01q3.029.74 4.745 3.231t1.716 5.856v7.134zM14 27.999q-1.211 0-2.053-.808t-.841-2.019h5.788q0 1.144-.875 1.986T14 27.999z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_path" xmlns="http://www.w3.org/2000/svg"><path d="M28 12.62h-9.793V8.414h-2.826v11.173h2.826v-4.206H28V26.62h-9.793v-4.206H12.62v-14H9.794v4.206H.001V1.381h9.793v4.206h8.413V1.381H28V12.62z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_person" xmlns="http://www.w3.org/2000/svg"><path d="M16 20.023q5.052 0 10.526 2.199t5.473 5.754v4.023H0v-4.023q0-3.555 5.473-5.754t10.526-2.199zM16 16q-3.275 0-5.614-2.339T8.047 8.047t2.339-5.661T16 0t5.614 2.386 2.339 5.661-2.339 5.614T16 16z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_search" xmlns="http://www.w3.org/2000/svg"><path d="M11.925 20.161q3.432 0 5.834-2.402t2.402-5.834-2.402-5.834-5.834-2.402-5.834 2.402-2.402 5.834 2.402 5.834 5.834 2.402zm10.981 0L32 29.255 29.255 32l-9.094-9.094v-1.458l-.515-.515q-3.26 2.831-7.721 2.831-4.976 0-8.45-3.432T.001 11.925t3.474-8.45 8.45-3.474 8.407 3.474 3.432 8.45q0 1.802-.858 4.075t-1.973 3.646l.515.515h1.458z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_shield" xmlns="http://www.w3.org/2000/svg"><path d="M22.167 15.166V3.5h-8.166v20.726c.93-.492 2.424-1.349 3.883-2.497 1.95-1.531 4.284-3.919 4.284-6.562zm3.499-13.999v14c0 7.674-10.737 12.523-11.192 12.724-.146.073-.31.109-.474.109s-.328-.036-.474-.109c-.456-.201-11.192-5.049-11.192-12.724v-14C2.334.529 2.863 0 3.501 0H24.5c.638 0 1.167.529 1.167 1.167z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_tags" xmlns="http://www.w3.org/2000/svg"><path d="M6.606 7.549c0-1.047-.84-1.887-1.887-1.887s-1.887.84-1.887 1.887.84 1.887 1.887 1.887 1.887-.84 1.887-1.887zm15.732 8.493c0 .501-.206.988-.546 1.327l-7.239 7.254c-.354.339-.84.546-1.342.546s-.988-.206-1.327-.546L1.342 14.066C.59 13.329 0 11.899 0 10.852V4.718a1.9 1.9 0 011.887-1.887h6.134c1.047 0 2.477.59 3.229 1.342L21.792 14.7c.339.354.546.84.546 1.342zm5.661 0c0 .501-.206.988-.546 1.327l-7.239 7.254c-.354.339-.84.546-1.342.546-.767 0-1.15-.354-1.651-.87l6.93-6.93c.339-.339.546-.826.546-1.327s-.206-.988-.546-1.342L13.609 4.173c-.752-.752-2.182-1.342-3.229-1.342h3.303c1.047 0 2.477.59 3.229 1.342L27.454 14.7c.339.354.546.84.546 1.342z"/></symbol></svg>
 
-    <div class="wrapper">
+
+
+    <div class="wrapper ">
         <input type="checkbox" class="hidden" id="menu-control" />
+        
         <header class="gdoc-header">
     <div class="container flex align-center justify-between">
         
         <label for="menu-control" class="gdoc-nav__control">
-            <svg class="icon menu"><use xlink:href="#menu"></use></svg>
-            <svg class="icon arrow-back"><use xlink:href="#arrow_back"></use></svg>
+            <svg class="icon gdoc_menu"><use xlink:href="#gdoc_menu"></use></svg>
+            <svg class="icon gdoc_arrow_back"><use xlink:href="#gdoc_arrow_back"></use></svg>
         </label>
         
         <a class="gdoc-header__link" href="https://owncloud.dev/">
             <span class="gdoc-brand flex align-center">
-                <img class="gdoc-brand__img" src="/logo.png" alt="" width=38 height=38>
+                <img class="gdoc-brand__img" src="/logo.png" alt="">
                 ownCloud
             </span>
         </a>
+        <span id="gdoc-dark-mode">
+            <svg class="icon gdoc_brightness_dark"><use xlink:href="#gdoc_brightness_dark"></use></svg>
+            <svg class="icon gdoc_brightness_light"><use xlink:href="#gdoc_brightness_light"></use></svg>
+            <svg class="icon gdoc_brightness_auto"><use xlink:href="#gdoc_brightness_auto"></use></svg>
+        </span>
     </div>
 </header>
 
 
         <main class="container flex flex-even">
+            
             <aside class="gdoc-nav">
                 <nav>
     
     <div class="gdoc-search">
-        <svg class="icon search"><use xlink:href="#search"></use></svg>
+        <svg class="icon gdoc_search"><use xlink:href="#gdoc_search"></use></svg>
         <input type="text" id="gdoc-search-input" class="gdoc-search__input" placeholder="Search..."
             aria-label="Search" maxlength="64" />
         <div class="gdoc-search__spinner spinner hidden"></div>
@@ -84,6 +104,7 @@
             
             
 
+            
             
             
             
@@ -115,6 +136,7 @@
             
             
             
+            
 
             <li>
             
@@ -136,6 +158,7 @@
             
             
 
+            
             
             
             
@@ -171,6 +194,7 @@
             
             
             
+            
 
             <li>
             
@@ -189,6 +213,7 @@
             
             
 
+            
             
             
             
@@ -219,6 +244,7 @@
             
             
             
+            
 
             <li>
             
@@ -244,6 +270,7 @@
             
             
             
+            
 
             <li>
             
@@ -254,8 +281,8 @@
                 <span class="flex">Development</span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -268,6 +295,7 @@
             
             
 
+            
             
             
             
@@ -298,6 +326,7 @@
             
             
             
+            
 
             <li>
             
@@ -318,6 +347,7 @@
             
             
 
+            
             
             
             
@@ -348,6 +378,7 @@
             
             
             
+            
 
             <li>
             
@@ -368,6 +399,7 @@
             
             
 
+            
             
             
             
@@ -398,6 +430,7 @@
             
             
             
+            
 
             <li>
             
@@ -423,6 +456,7 @@
             
             
             
+            
 
             <li>
             
@@ -443,6 +477,7 @@
             
             
 
+            
             
             
             
@@ -480,6 +515,7 @@
             
             
             
+            
 
             <li>
             
@@ -494,8 +530,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -508,6 +544,7 @@
             
             
 
+            
             
             
             
@@ -536,6 +573,7 @@
             
             
             
+            
 
             <li>
             
@@ -554,6 +592,7 @@
             
             
 
+            
             
             
             
@@ -582,6 +621,7 @@
             
             
             
+            
 
             <li>
             
@@ -600,6 +640,7 @@
             
             
 
+            
             
             
             
@@ -628,6 +669,7 @@
             
             
             
+            
 
             <li>
             
@@ -646,6 +688,7 @@
             
             
 
+            
             
             
             
@@ -674,6 +717,7 @@
             
             
             
+            
 
             <li>
             
@@ -692,6 +736,7 @@
             
             
 
+            
             
             
             
@@ -729,6 +774,7 @@
             
             
             
+            
 
             <li>
             
@@ -743,8 +789,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -757,6 +803,7 @@
             
             
 
+            
             
             
             
@@ -780,6 +827,7 @@
             
             
 
+            
             
             
             
@@ -810,6 +858,7 @@
             
             
             
+            
 
             <li>
             
@@ -830,6 +879,7 @@
             
             
 
+            
             
             
             
@@ -858,6 +908,7 @@
             
             
             
+            
 
             <li>
             
@@ -876,6 +927,7 @@
             
             
 
+            
             
             
             
@@ -904,6 +956,7 @@
             
             
             
+            
 
             <li>
             
@@ -922,6 +975,7 @@
             
             
 
+            
             
             
             
@@ -952,6 +1006,7 @@
             
             
             
+            
 
             <li>
             
@@ -977,6 +1032,7 @@
             
             
             
+            
 
             <li>
             
@@ -997,6 +1053,7 @@
             
             
 
+            
             
             
             
@@ -1034,6 +1091,7 @@
             
             
             
+            
 
             <li>
             
@@ -1044,8 +1102,8 @@
                 <span class="flex">Flow documentation</span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -1058,6 +1116,7 @@
             
             
 
+            
             
             
             
@@ -1088,6 +1147,7 @@
             
             
             
+            
 
             <li>
             
@@ -1108,6 +1168,7 @@
             
             
 
+            
             
             
             
@@ -1145,6 +1206,7 @@
             
             
             
+            
 
             <li>
             
@@ -1155,8 +1217,8 @@
                 <span class="flex">Storage backends</span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -1169,6 +1231,7 @@
             
             
 
+            
             
             
             
@@ -1206,6 +1269,7 @@
             
             
             
+            
 
             <li>
             
@@ -1231,6 +1295,7 @@
             
             
             
+            
 
             <li>
             
@@ -1251,6 +1316,7 @@
             
             
 
+            
             
             
             
@@ -1288,6 +1354,7 @@
             
             
             
+            
 
             <li>
             
@@ -1310,6 +1377,7 @@
             
             
             
+            
 
             <li>
             
@@ -1324,8 +1392,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -1338,6 +1406,7 @@
             
             
 
+            
             
             
             
@@ -1368,6 +1437,7 @@
             
             
             
+            
 
             <li>
             
@@ -1388,6 +1458,7 @@
             
             
 
+            
             
             
             
@@ -1418,6 +1489,7 @@
             
             
             
+            
 
             <li>
             
@@ -1438,6 +1510,7 @@
             
             
 
+            
             
             
             
@@ -1468,6 +1541,7 @@
             
             
             
+            
 
             <li>
             
@@ -1482,8 +1556,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -1496,6 +1570,7 @@
             
             
 
+            
             
             
             
@@ -1531,6 +1606,7 @@
             
             
             
+            
 
             <li>
             
@@ -1551,6 +1627,7 @@
             
             
 
+            
             
             
             
@@ -1593,6 +1670,7 @@
             
             
             
+            
 
             <li>
             
@@ -1615,6 +1693,7 @@
             
             
             
+            
 
             <li>
             
@@ -1629,8 +1708,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -1643,6 +1722,7 @@
             
             
 
+            
             
             
             
@@ -1666,6 +1746,7 @@
             
             
 
+            
             
             
             
@@ -1696,6 +1777,7 @@
             
             
             
+            
 
             <li>
             
@@ -1714,6 +1796,7 @@
             
             
 
+            
             
             
             
@@ -1742,6 +1825,7 @@
             
             
             
+            
 
             <li>
             
@@ -1760,6 +1844,7 @@
             
             
 
+            
             
             
             
@@ -1797,6 +1882,7 @@
             
             
             
+            
 
             <li>
             
@@ -1811,8 +1897,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -1825,6 +1911,7 @@
             
             
 
+            
             
             
             
@@ -1855,6 +1942,7 @@
             
             
             
+            
 
             <li>
             
@@ -1875,6 +1963,7 @@
             
             
 
+            
             
             
             
@@ -1910,6 +1999,7 @@
             
             
             
+            
 
             <li>
             
@@ -1924,8 +2014,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -1938,6 +2028,7 @@
             
             
 
+            
             
             
             
@@ -1961,6 +2052,7 @@
             
             
 
+            
             
             
             
@@ -1996,6 +2088,7 @@
             
             
             
+            
 
             <li>
             
@@ -2010,8 +2103,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -2024,6 +2117,7 @@
             
             
 
+            
             
             
             
@@ -2059,6 +2153,7 @@
             
             
             
+            
 
             <li>
             
@@ -2073,8 +2168,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -2087,6 +2182,7 @@
             
             
 
+            
             
             
             
@@ -2122,6 +2218,7 @@
             
             
             
+            
 
             <li>
             
@@ -2136,8 +2233,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -2150,6 +2247,7 @@
             
             
 
+            
             
             
             
@@ -2185,6 +2283,7 @@
             
             
             
+            
 
             <li>
             
@@ -2199,8 +2298,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -2213,6 +2312,7 @@
             
             
 
+            
             
             
             
@@ -2248,6 +2348,7 @@
             
             
             
+            
 
             <li>
             
@@ -2262,8 +2363,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -2276,6 +2377,7 @@
             
             
 
+            
             
             
             
@@ -2299,6 +2401,7 @@
             
             
 
+            
             
             
             
@@ -2329,6 +2432,7 @@
             
             
             
+            
 
             <li>
             
@@ -2349,6 +2453,7 @@
             
             
 
+            
             
             
             
@@ -2384,6 +2489,7 @@
             
             
             
+            
 
             <li>
             
@@ -2398,8 +2504,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -2412,6 +2518,7 @@
             
             
 
+            
             
             
             
@@ -2437,6 +2544,7 @@
             
             
 
+            
             
             
             
@@ -2472,6 +2580,7 @@
             
             
             
+            
 
             <li>
             
@@ -2486,8 +2595,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -2500,6 +2609,7 @@
             
             
 
+            
             
             
             
@@ -2535,6 +2645,7 @@
             
             
             
+            
 
             <li>
             
@@ -2549,8 +2660,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -2563,6 +2674,7 @@
             
             
 
+            
             
             
             
@@ -2593,6 +2705,7 @@
             
             
             
+            
 
             <li>
             
@@ -2611,6 +2724,7 @@
             
             
 
+            
             
             
             
@@ -2641,6 +2755,7 @@
             
             
             
+            
 
             <li>
             
@@ -2666,6 +2781,7 @@
             
             
             
+            
 
             <li>
             
@@ -2686,6 +2802,7 @@
             
             
 
+            
             
             
             
@@ -2721,6 +2838,7 @@
             
             
             
+            
 
             <li>
             
@@ -2735,8 +2853,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -2749,6 +2867,7 @@
             
             
 
+            
             
             
             
@@ -2779,6 +2898,7 @@
             
             
             
+            
 
             <li>
             
@@ -2799,6 +2919,7 @@
             
             
 
+            
             
             
             
@@ -2829,6 +2950,7 @@
             
             
             
+            
 
             <li>
             
@@ -2849,6 +2971,7 @@
             
             
 
+            
             
             
             
@@ -2879,6 +3002,7 @@
             
             
             
+            
 
             <li>
             
@@ -2899,6 +3023,7 @@
             
             
 
+            
             
             
             
@@ -2929,6 +3054,7 @@
             
             
             
+            
 
             <li>
             
@@ -2949,6 +3075,7 @@
             
             
 
+            
             
             
             
@@ -2984,6 +3111,7 @@
             
             
             
+            
 
             <li>
             
@@ -2998,8 +3126,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -3012,6 +3140,7 @@
             
             
 
+            
             
             
             
@@ -3037,6 +3166,7 @@
             
             
 
+            
             
             
             
@@ -3072,6 +3202,7 @@
             
             
             
+            
 
             <li>
             
@@ -3086,8 +3217,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -3100,6 +3231,7 @@
             
             
 
+            
             
             
             
@@ -3125,6 +3257,7 @@
             
             
 
+            
             
             
             
@@ -3160,6 +3293,7 @@
             
             
             
+            
 
             <li>
             
@@ -3174,8 +3308,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -3188,6 +3322,7 @@
             
             
 
+            
             
             
             
@@ -3223,6 +3358,7 @@
             
             
             
+            
 
             <li>
             
@@ -3237,8 +3373,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -3251,6 +3387,7 @@
             
             
 
+            
             
             
             
@@ -3279,6 +3416,7 @@
             
             
             
+            
 
             <li>
             
@@ -3299,6 +3437,7 @@
             
             
 
+            
             
             
             
@@ -3341,6 +3480,7 @@
             
             
             
+            
 
             <li>
             
@@ -3363,6 +3503,7 @@
             
             
             
+            
 
             <li>
             
@@ -3377,8 +3518,8 @@
                 </span>
             
             
-                <svg class="icon keyborad_arrow_left"><use xlink:href="#keyborad_arrow_left"></use></svg>
-                <svg class="icon keyborad_arrow_down hidden"><use xlink:href="#keyborad_arrow_down"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
             </label>
             
 
@@ -3391,6 +3532,7 @@
             
             
 
+            
             
             
             
@@ -3421,6 +3563,7 @@
             
             
             
+            
 
             <li>
             
@@ -3441,6 +3584,7 @@
             
             
 
+            
             
             
             
@@ -3471,6 +3615,7 @@
             
             
             
+            
 
             <li>
             
@@ -3496,6 +3641,7 @@
             
             
             
+            
 
             <li>
             
@@ -3516,6 +3662,7 @@
             
             
 
+            
             
             
             
@@ -3567,6 +3714,7 @@
 </nav>
 
             </aside>
+            
 
             <div class="gdoc-page">
                 
@@ -3580,11 +3728,16 @@
 
 
 
-<div class="gdoc-page__header flex flex-wrap justify-between" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-    <span>
-        
-        <span class="breadcrumb">
-            <svg class="icon path"><use xlink:href="#path"></use></svg>
+<div class="gdoc-page__header flex flex-wrap
+     justify-between 
+    
+    " itemprop="breadcrumb">
+    
+    <div>
+        <svg class="icon gdoc_path hidden-mobile"><use xlink:href="#gdoc_path"></use></svg>
+        <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+            
+            
             
             
     
@@ -3592,19 +3745,22 @@
         
         
         
-    
-    
-        
-        
         
     
     
         
         
         
+        
     
     
-        <a href='/'>ownCloud</a> / <a href='/extensions/'>Extensions</a> / <a href='/extensions/accounts/'>Accounts</a> / GRPC API
+        
+        
+        
+        
+    
+    
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/extensions/' href='/extensions/'><span itemprop='name'>Extensions</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/extensions/accounts/' href='/extensions/accounts/'><span itemprop='name'>Accounts</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>GRPC API</span><meta itemprop='position' content='4' /></li>
     
 
     
@@ -3613,32 +3769,25 @@
 
     
 
-        </span>
-        
-    </span>
-    <span>
-        
+        </ol>
+    </div>
+    
+    
+    <div>
         <span class="editpage">
-            <svg class="icon code"><use xlink:href="#code"></use></svg>
+            <svg class="icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
             <a href="https://github.com/owncloud/ocis-thumbnails/edit/master/docs/grpc.md">
                 Edit this page
             </a>
         </span>
-        
-    </span>
+    </div>
+    
 </div>
 
 
-    <article class="gdoc-markdown">
+    <article class="gdoc-markdown gdoc-markdown__align--left">
         <h1>GRPC API</h1>
         
-
-
-
-    
-
-
-
 
 
   <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
@@ -3676,9 +3825,21 @@
       </ul></nav><hr></div>
 
 
-<div class="gdoc-page__anchorwrap"><h2 id="accountsproto">accounts.proto<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#accountsproto" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts.proto" href="#accountsproto"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<div class="gdoc-page__anchorwrap"><h3 id="account">Account<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#account" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Account" href="#account"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Account follows the properties of the ms graph api user resuorce.
+<div class="gdoc-page__anchorwrap">
+    <h2 id="accountsproto">
+        accounts.proto
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#accountsproto" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts.proto" href="#accountsproto">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="account">
+        Account
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#account" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Account" href="#account">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Account follows the properties of the ms graph api user resuorce.
 See <a href="https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0#properties">https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0#properties</a></p>
 <table>
 <thead>
@@ -3692,176 +3853,182 @@ See <a href="https://docs.microsoft.com/en-us/graph/api/resources/user?view=grap
 <tbody>
 <tr>
 <td>id</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>The unique identifier for the user. Key. Not nullable. Non reassignable. Read-only.</td>
 </tr>
 <tr>
 <td>account_enabled</td>
-<td><a href="#bool">bool</a></td>
+<td><a class="gdoc-markdown__link" href="#bool">bool</a></td>
 <td></td>
 <td>true* if the account is enabled; otherwise, *false*. This property is required when a user is created. Supports $filter.</td>
 </tr>
 <tr>
 <td>is_resource_account</td>
-<td><a href="#bool">bool</a></td>
+<td><a class="gdoc-markdown__link" href="#bool">bool</a></td>
 <td></td>
 <td>A resource account is also known as a /disabled user object/ in Azure AD, and can be used to represent resources in general. In Exchange it might be used to represent conference rooms, for example, and allow them to have a phone number. You could give printers or machines with a sync client resource accounts as well. A resource account can be homed in Microsoft 365 or on premises using Skype for Business Server 2019. <em>true</em> if the user is a resource account; otherwise, <em>false</em>. Null value should be considered false.</td>
 </tr>
 <tr>
 <td>creation_type</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>Indicates whether the account was created as - a regular school or work account (&rdquo;&rdquo; / emptystring), - a local account, fully managed by oCIS (LocalAccount), includes synced accounts or - an external account (Invitation), - self-service sign-up using email verification (EmailVerified). Read-only.</td>
 </tr>
 <tr>
 <td>identities</td>
-<td><a href="#identities">Identities</a></td>
+<td><a class="gdoc-markdown__link" href="#identities">Identities</a></td>
 <td>repeated</td>
 <td>Represents the identities that can be used to sign in to this account. An identity can be provided by oCIS (also known as a local account), by organizations, or by social identity providers such as Facebook, Google, and Microsoft, and is tied to an account. May contain multiple items with the same signInType value. Supports $filter.</td>
 </tr>
 <tr>
 <td>display_name</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>The name displayed in the address book for the account. This is usually the combination of the user&rsquo;s first name, middle initial and last name. This property is required when a user is created and it cannot be cleared during updates. Supports $filter and $orderby. posixaccount MUST cn</td>
 </tr>
 <tr>
 <td>preferred_name</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>The username posixaccount MUST uid</td>
 </tr>
 <tr>
 <td>uid_number</td>
-<td><a href="#int64">int64</a></td>
+<td><a class="gdoc-markdown__link" href="#int64">int64</a></td>
 <td></td>
 <td>TODO rename to on_premise_? or move to extension? see <a href="https://docs.microsoft.com/en-us/graph/extensibility-open-users">https://docs.microsoft.com/en-us/graph/extensibility-open-users</a> used for exposing the user using ldap posixaccount MUST uidnumber</td>
 </tr>
 <tr>
 <td>gid_number</td>
-<td><a href="#int64">int64</a></td>
+<td><a class="gdoc-markdown__link" href="#int64">int64</a></td>
 <td></td>
 <td>used for exposing the user using ldap posixaccount MUST gidnumber</td>
 </tr>
 <tr>
 <td>mail</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>The SMTP address for the user, for example, &ldquo;<a href="mailto:jeff@contoso.onmicrosoft.com">jeff@contoso.onmicrosoft.com</a>&rdquo;. Read-Only. Supports $filter. inetorgperson MAY mail</td>
 </tr>
 <tr>
 <td>description</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>A description, useful for resource accounts posixaccount MAY description</td>
 </tr>
 <tr>
 <td>password_profile</td>
-<td><a href="#passwordprofile">PasswordProfile</a></td>
+<td><a class="gdoc-markdown__link" href="#passwordprofile">PasswordProfile</a></td>
 <td></td>
 <td>Specifies the password profile for the user. The profile contains the user’s password. This property is required when a user is created. The password in the profile must satisfy minimum requirements as specified by the passwordPolicies property. By default, a strong password is required. posixaccount MAY authPassword</td>
 </tr>
 <tr>
 <td>memberOf</td>
-<td><a href="#group">Group</a></td>
+<td><a class="gdoc-markdown__link" href="#group">Group</a></td>
 <td>repeated</td>
 <td>The groups, directory roles and administrative units that the user is a member of. Read-only. Nullable. should we only respond with repeated strings of ids? no clients should a proper filter mask!</td>
 </tr>
 <tr>
 <td>created_date_time</td>
-<td><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a></td>
+<td><a class="gdoc-markdown__link" href="#googleprotobuftimestamp">google.protobuf.Timestamp</a></td>
 <td></td>
 <td>The created date of the account object.</td>
 </tr>
 <tr>
 <td>deleted_date_time</td>
-<td><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a></td>
+<td><a class="gdoc-markdown__link" href="#googleprotobuftimestamp">google.protobuf.Timestamp</a></td>
 <td></td>
 <td>The date and time the user was deleted. Returned only on $select.</td>
 </tr>
 <tr>
 <td>on_premises_sync_enabled</td>
-<td><a href="#bool">bool</a></td>
+<td><a class="gdoc-markdown__link" href="#bool">bool</a></td>
 <td></td>
 <td>true* if this object is synced from an on-premises directory; *false* if this object was originally synced from an on-premises directory but is no longer synced; null if this object has never been synced from an on-premises directory (default). Read-only</td>
 </tr>
 <tr>
 <td>on_premises_immutable_id</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>This property is used to associate an on-premises LDAP user to the oCIS account object. This property must be specified when creating a new user account in the Graph if you are using a federated domain for the user’s userPrincipalName (UPN) property. Important: The $ and _ characters cannot be used when specifying this property. Supports $filter.</td>
 </tr>
 <tr>
 <td>on_premises_security_identifier</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>Contains the on-premises security identifier (SID) for the user that was synchronized from on-premises to the cloud. Read-only.</td>
 </tr>
 <tr>
 <td>on_premises_distinguished_name</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>Contains the on-premises LDAP <code>distinguished name</code> or <code>DN</code>. The property is only populated for customers who are synchronizing their on-premises directory to ocis-accounts. Read-only.</td>
 </tr>
 <tr>
 <td>on_premises_sam_account_name</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>Contains the on-premises <code>samAccountName</code> synchronized from the on-premises directory. The property is only populated for customers who are synchronizing their on-premises directory to ocis-accounts. Read-only.</td>
 </tr>
 <tr>
 <td>on_premises_domain_name</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>Contains the on-premises <code>domainFQDN</code>, also called <code>dnsDomainName</code> synchronized from the on-premises directory The property is only populated for customers who are synchronizing their on-premises directory to ocis-accounts. Read-only.</td>
 </tr>
 <tr>
 <td>on_premises_user_principal_name</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>Contains the on-premises userPrincipalName synchronized from the on-premises directory. The property is only populated for customers who are synchronizing their on-premises directory to ocis-accounts. Read-only.</td>
 </tr>
 <tr>
 <td>on_premises_last_sync_date_time</td>
-<td><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a></td>
+<td><a class="gdoc-markdown__link" href="#googleprotobuftimestamp">google.protobuf.Timestamp</a></td>
 <td></td>
 <td>Indicates the last time at which the object was synced with the on-premises directory; Read-only.</td>
 </tr>
 <tr>
 <td>on_premises_provisioning_errors</td>
-<td><a href="#onpremisesprovisioningerror">OnPremisesProvisioningError</a></td>
+<td><a class="gdoc-markdown__link" href="#onpremisesprovisioningerror">OnPremisesProvisioningError</a></td>
 <td>repeated</td>
 <td>Errors when using synchronization during provisioning.</td>
 </tr>
 <tr>
 <td>external_user_state</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>For an external user invited to the tenant using the invitation API, this property represents the invited user&rsquo;s invitation status. For invited users, the state can be <code>PendingAcceptance</code> or <code>Accepted</code>, or &quot;&rdquo; / emptystring for all other users. Returned only on $select. Supports $filter with the supported values. For example: $filter=externalUserState eq &lsquo;PendingAcceptance&rsquo;.</td>
 </tr>
 <tr>
 <td>external_user_state_change_date_time</td>
-<td><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a></td>
+<td><a class="gdoc-markdown__link" href="#googleprotobuftimestamp">google.protobuf.Timestamp</a></td>
 <td></td>
 <td>Shows the timestamp for the latest change to the externalUserState property. Returned only on $select.</td>
 </tr>
 <tr>
 <td>refresh_tokens_valid_from_date_time</td>
-<td><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a></td>
+<td><a class="gdoc-markdown__link" href="#googleprotobuftimestamp">google.protobuf.Timestamp</a></td>
 <td></td>
 <td>Any refresh tokens or sessions tokens (session cookies) issued before this time are invalid, and applications will get an error when using an invalid refresh or sessions token to acquire a delegated access token (to access APIs such as Microsoft Graph). If this happens, the application will need to acquire a new refresh token by making a request to the authorize endpoint. Returned only on $select. Read-only. Use invalidateAllRefreshTokens to reset.</td>
 </tr>
 <tr>
 <td>sign_in_sessions_valid_from_date_time</td>
-<td><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a></td>
+<td><a class="gdoc-markdown__link" href="#googleprotobuftimestamp">google.protobuf.Timestamp</a></td>
 <td></td>
 <td>Any refresh tokens or sessions tokens (session cookies) issued before this time are invalid, and applications will get an error when using an invalid refresh or sessions token to acquire a delegated access token (to access APIs such as Microsoft Graph). If this happens, the application will need to acquire a new refresh token by making a request to the authorize endpoint. Read-only. Use revokeSignInSessions to reset.</td>
 </tr>
 </tbody>
 </table>
-<div class="gdoc-page__anchorwrap"><h3 id="addmemberrequest">AddMemberRequest<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#addmemberrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor AddMemberRequest" href="#addmemberrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="addmemberrequest">
+        AddMemberRequest
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#addmemberrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor AddMemberRequest" href="#addmemberrequest">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><table>
 <thead>
 <tr>
 <th>Field</th>
@@ -3873,20 +4040,26 @@ See <a href="https://docs.microsoft.com/en-us/graph/api/resources/user?view=grap
 <tbody>
 <tr>
 <td>group_id</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>The id of the group to add a member to</td>
 </tr>
 <tr>
 <td>account_id</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>The account id to add</td>
 </tr>
 </tbody>
 </table>
-<div class="gdoc-page__anchorwrap"><h3 id="createaccountrequest">CreateAccountRequest<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#createaccountrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor CreateAccountRequest" href="#createaccountrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="createaccountrequest">
+        CreateAccountRequest
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#createaccountrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor CreateAccountRequest" href="#createaccountrequest">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><table>
 <thead>
 <tr>
 <th>Field</th>
@@ -3898,14 +4071,20 @@ See <a href="https://docs.microsoft.com/en-us/graph/api/resources/user?view=grap
 <tbody>
 <tr>
 <td>account</td>
-<td><a href="#account">Account</a></td>
+<td><a class="gdoc-markdown__link" href="#account">Account</a></td>
 <td></td>
 <td>The account resource to create</td>
 </tr>
 </tbody>
 </table>
-<div class="gdoc-page__anchorwrap"><h3 id="creategrouprequest">CreateGroupRequest<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#creategrouprequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor CreateGroupRequest" href="#creategrouprequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="creategrouprequest">
+        CreateGroupRequest
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#creategrouprequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor CreateGroupRequest" href="#creategrouprequest">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><table>
 <thead>
 <tr>
 <th>Field</th>
@@ -3917,14 +4096,20 @@ See <a href="https://docs.microsoft.com/en-us/graph/api/resources/user?view=grap
 <tbody>
 <tr>
 <td>group</td>
-<td><a href="#group">Group</a></td>
+<td><a class="gdoc-markdown__link" href="#group">Group</a></td>
 <td></td>
 <td>The account resource to create</td>
 </tr>
 </tbody>
 </table>
-<div class="gdoc-page__anchorwrap"><h3 id="deleteaccountrequest">DeleteAccountRequest<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#deleteaccountrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor DeleteAccountRequest" href="#deleteaccountrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="deleteaccountrequest">
+        DeleteAccountRequest
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#deleteaccountrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor DeleteAccountRequest" href="#deleteaccountrequest">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><table>
 <thead>
 <tr>
 <th>Field</th>
@@ -3936,14 +4121,20 @@ See <a href="https://docs.microsoft.com/en-us/graph/api/resources/user?view=grap
 <tbody>
 <tr>
 <td>id</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<div class="gdoc-page__anchorwrap"><h3 id="deletegrouprequest">DeleteGroupRequest<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#deletegrouprequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor DeleteGroupRequest" href="#deletegrouprequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="deletegrouprequest">
+        DeleteGroupRequest
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#deletegrouprequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor DeleteGroupRequest" href="#deletegrouprequest">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><table>
 <thead>
 <tr>
 <th>Field</th>
@@ -3955,14 +4146,20 @@ See <a href="https://docs.microsoft.com/en-us/graph/api/resources/user?view=grap
 <tbody>
 <tr>
 <td>id</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<div class="gdoc-page__anchorwrap"><h3 id="getaccountrequest">GetAccountRequest<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#getaccountrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor GetAccountRequest" href="#getaccountrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="getaccountrequest">
+        GetAccountRequest
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#getaccountrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor GetAccountRequest" href="#getaccountrequest">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><table>
 <thead>
 <tr>
 <th>Field</th>
@@ -3974,14 +4171,20 @@ See <a href="https://docs.microsoft.com/en-us/graph/api/resources/user?view=grap
 <tbody>
 <tr>
 <td>id</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<div class="gdoc-page__anchorwrap"><h3 id="getgrouprequest">GetGroupRequest<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#getgrouprequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor GetGroupRequest" href="#getgrouprequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="getgrouprequest">
+        GetGroupRequest
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#getgrouprequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor GetGroupRequest" href="#getgrouprequest">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><table>
 <thead>
 <tr>
 <th>Field</th>
@@ -3993,14 +4196,20 @@ See <a href="https://docs.microsoft.com/en-us/graph/api/resources/user?view=grap
 <tbody>
 <tr>
 <td>id</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<div class="gdoc-page__anchorwrap"><h3 id="group">Group<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#group" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Group" href="#group"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="group">
+        Group
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#group" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Group" href="#group">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><table>
 <thead>
 <tr>
 <th>Field</th>
@@ -4012,40 +4221,46 @@ See <a href="https://docs.microsoft.com/en-us/graph/api/resources/user?view=grap
 <tbody>
 <tr>
 <td>id</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>The unique identifier for the group. Returned by default. Inherited from directoryObject. Key. Not nullable. Read-only.</td>
 </tr>
 <tr>
 <td>display_name</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>The display name for the group. This property is required when a group is created and cannot be cleared during updates. Returned by default. Supports $filter and $orderby. groupofnames MUST cn</td>
 </tr>
 </tbody>
 </table>
 <p>groupofnames MUST/MAY member |
-| members | <a href="#account">Account</a> | repeated | Users, contacts, and groups that are members of this group. HTTP Methods: GET (supported for all groups), POST (supported for security groups and mail-enabled security groups), DELETE (supported only for security groups) Read-only. Nullable. TODO accounts (users) only for now, we can add groups with the dedicated message using oneof construct later |
-| owners | <a href="#account">Account</a> | repeated | groupofnames MAY businessCategory groupofnames MAY o groupofnames MAY ou groupofnames MAY owner, SINGLE-VALUE but there might be multiple owners |
-| description | <a href="#string">string</a> |  | An optional description for the group. Returned by default. groupofnames MAY description |
-| gid_number | <a href="#int64">int64</a> |  | used for exposing the user using ldap posixgroup MUST gidnumber</p>
+| members | <a class="gdoc-markdown__link" href="#account">Account</a> | repeated | Users, contacts, and groups that are members of this group. HTTP Methods: GET (supported for all groups), POST (supported for security groups and mail-enabled security groups), DELETE (supported only for security groups) Read-only. Nullable. TODO accounts (users) only for now, we can add groups with the dedicated message using oneof construct later |
+| owners | <a class="gdoc-markdown__link" href="#account">Account</a> | repeated | groupofnames MAY businessCategory groupofnames MAY o groupofnames MAY ou groupofnames MAY owner, SINGLE-VALUE but there might be multiple owners |
+| description | <a class="gdoc-markdown__link" href="#string">string</a> |  | An optional description for the group. Returned by default. groupofnames MAY description |
+| gid_number | <a class="gdoc-markdown__link" href="#int64">int64</a> |  | used for exposing the user using ldap posixgroup MUST gidnumber</p>
 <p>posixgroup MAY authPassword posixgroup MAY userPassword posixgroup MAY memberUid -&gt; groupofnames member posixgroup MAY description -&gt; groupofnames |
-| created_date_time | <a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> |  | Timestamp of when the group was created. The value cannot be modified and is automatically populated when the group is created Returned by default. Read-only. |
-| deleted_date_time | <a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> |  | For some Azure Active Directory objects (user, group, application), if the object is deleted, it is first logically deleted, and this property is updated with the date and time when the object was deleted. Otherwise this property is null. If the object is restored, this property is updated to null. Returned by default. Read-only. |
-| expiration_date_time | <a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> |  | Timestamp of when the group is set to expire. The value cannot be modified and is automatically populated when the group is created. Returned by default. Read-only. |
-| hide_from_address_lists | <a href="#bool">bool</a> |  | True if the group is not displayed in certain parts of the Outlook user interface: in the Address Book, in address lists for selecting message recipients, and in the Browse Groups dialog for searching groups; false otherwise. Default value is false. Returned only on $select. |
-| visibility | <a href="#string">string</a> |  | Specifies the visibility of an Office 365 group. Possible values are: Private, Public, or Hiddenmembership; blank values are treated as public. See group visibility options to learn more. Visibility can be set only when a group is created; it is not editable. Returned by default. |
-| on_premises_sync_enabled | <a href="#bool">bool</a> |  | true* if this group is synced from an on-premises directory; *false* if this group was originally synced from an on-premises directory but is no longer synced; null if this object has never been synced from an on-premises directory (default). Returned by default. Read-only. Supports $filter. |
-| on_premises_immutable_id | <a href="#string">string</a> |  | This property is used to associate an on-premises LDAP user to the oCIS account object. This property must be specified when creating a new user account in the Graph if you are using a federated domain for the user’s userPrincipalName (UPN) property. Important: The $ and _ characters cannot be used when specifying this property. Supports $filter. |
-| on_premises_security_identifier | <a href="#string">string</a> |  | Contains the on-premises security identifier (SID) for the group that was synchronized from on-premises to the cloud. Returned by default. Read-only. |
-| on_premises_distinguished_name | <a href="#string">string</a> |  | Contains the on-premises LDAP <code>distinguished name</code> or <code>DN</code>. The property is only populated for customers who are synchronizing their on-premises directory to ocis-accounts. Read-only. |
-| on_premises_sam_account_name | <a href="#string">string</a> |  | Contains the on-premises <code>samAccountName</code> synchronized from the on-premises directory. The property is only populated for customers who are synchronizing their on-premises directory to ocis-accounts. Returned by default. Read-only. |
-| on_premises_domain_name | <a href="#string">string</a> |  | Contains the on-premises domain FQDN, also called dnsDomainName synchronized from the on-premises directory. The property is only populated for customers who are synchronizing their on-premises directory to Azure Active Directory via Azure AD Connect. Returned by default. Read-only. |
-| on_premises_net_bios_name | <a href="#string">string</a> |  | Contains the on-premises netBios name synchronized from the on-premises directory. The property is only populated for customers who are synchronizing their on-premises directory to Azure Active Directory via Azure AD Connect. Returned by default. Read-only. |
-| on_premises_last_sync_date_time | <a href="#string">string</a> |  | Indicates the last time at which the group was synced with the on-premises directory. Returned by default. Read-only. Supports $filter. |
-| on_premises_provisioning_errors | <a href="#onpremisesprovisioningerror">OnPremisesProvisioningError</a> | repeated | Errors when using synchronization during provisioning. |</p>
-<div class="gdoc-page__anchorwrap"><h3 id="identities">Identities<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#identities" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Identities" href="#identities"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Identities Represents an identity used to sign in to a user account.
+| created_date_time | <a class="gdoc-markdown__link" href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> |  | Timestamp of when the group was created. The value cannot be modified and is automatically populated when the group is created Returned by default. Read-only. |
+| deleted_date_time | <a class="gdoc-markdown__link" href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> |  | For some Azure Active Directory objects (user, group, application), if the object is deleted, it is first logically deleted, and this property is updated with the date and time when the object was deleted. Otherwise this property is null. If the object is restored, this property is updated to null. Returned by default. Read-only. |
+| expiration_date_time | <a class="gdoc-markdown__link" href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> |  | Timestamp of when the group is set to expire. The value cannot be modified and is automatically populated when the group is created. Returned by default. Read-only. |
+| hide_from_address_lists | <a class="gdoc-markdown__link" href="#bool">bool</a> |  | True if the group is not displayed in certain parts of the Outlook user interface: in the Address Book, in address lists for selecting message recipients, and in the Browse Groups dialog for searching groups; false otherwise. Default value is false. Returned only on $select. |
+| visibility | <a class="gdoc-markdown__link" href="#string">string</a> |  | Specifies the visibility of an Office 365 group. Possible values are: Private, Public, or Hiddenmembership; blank values are treated as public. See group visibility options to learn more. Visibility can be set only when a group is created; it is not editable. Returned by default. |
+| on_premises_sync_enabled | <a class="gdoc-markdown__link" href="#bool">bool</a> |  | true* if this group is synced from an on-premises directory; *false* if this group was originally synced from an on-premises directory but is no longer synced; null if this object has never been synced from an on-premises directory (default). Returned by default. Read-only. Supports $filter. |
+| on_premises_immutable_id | <a class="gdoc-markdown__link" href="#string">string</a> |  | This property is used to associate an on-premises LDAP user to the oCIS account object. This property must be specified when creating a new user account in the Graph if you are using a federated domain for the user’s userPrincipalName (UPN) property. Important: The $ and _ characters cannot be used when specifying this property. Supports $filter. |
+| on_premises_security_identifier | <a class="gdoc-markdown__link" href="#string">string</a> |  | Contains the on-premises security identifier (SID) for the group that was synchronized from on-premises to the cloud. Returned by default. Read-only. |
+| on_premises_distinguished_name | <a class="gdoc-markdown__link" href="#string">string</a> |  | Contains the on-premises LDAP <code>distinguished name</code> or <code>DN</code>. The property is only populated for customers who are synchronizing their on-premises directory to ocis-accounts. Read-only. |
+| on_premises_sam_account_name | <a class="gdoc-markdown__link" href="#string">string</a> |  | Contains the on-premises <code>samAccountName</code> synchronized from the on-premises directory. The property is only populated for customers who are synchronizing their on-premises directory to ocis-accounts. Returned by default. Read-only. |
+| on_premises_domain_name | <a class="gdoc-markdown__link" href="#string">string</a> |  | Contains the on-premises domain FQDN, also called dnsDomainName synchronized from the on-premises directory. The property is only populated for customers who are synchronizing their on-premises directory to Azure Active Directory via Azure AD Connect. Returned by default. Read-only. |
+| on_premises_net_bios_name | <a class="gdoc-markdown__link" href="#string">string</a> |  | Contains the on-premises netBios name synchronized from the on-premises directory. The property is only populated for customers who are synchronizing their on-premises directory to Azure Active Directory via Azure AD Connect. Returned by default. Read-only. |
+| on_premises_last_sync_date_time | <a class="gdoc-markdown__link" href="#string">string</a> |  | Indicates the last time at which the group was synced with the on-premises directory. Returned by default. Read-only. Supports $filter. |
+| on_premises_provisioning_errors | <a class="gdoc-markdown__link" href="#onpremisesprovisioningerror">OnPremisesProvisioningError</a> | repeated | Errors when using synchronization during provisioning. |</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="identities">
+        Identities
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#identities" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Identities" href="#identities">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Identities Represents an identity used to sign in to a user account.
 An identity can be provided by oCIS, by organizations, or by social identity providers such as Facebook, Google, or Microsoft, that are tied to a user account.
 This enables the user to sign in to the user account with any of those associated identities.
 They are also used to keep a history of old usernames.</p>
@@ -4061,26 +4276,32 @@ They are also used to keep a history of old usernames.</p>
 <tbody>
 <tr>
 <td>sign_in_type</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>Specifies the user sign-in types in your directory, such as <code>emailAddress</code>, <code>userName</code> or <code>federated</code>. Here, federated represents a unique identifier for a user from an issuer, that can be in any format chosen by the issuer. Additional validation is enforced on <em>issuer_assigned_id</em> when the sign-in type is set to <code>emailAddress</code> or <code>userName</code>. This property can also be set to any custom string.</td>
 </tr>
 <tr>
 <td>issuer</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>Specifies the issuer of the identity, for example facebook.com. For local accounts (where signInType is not federated), this property is the local B2C tenant default domain name, for example contoso.onmicrosoft.com. For external users from other Azure AD organization, this will be the domain of the federated organization, for example contoso.com. Supports $filter. 512 character limit.</td>
 </tr>
 <tr>
 <td>issuer_assigned_id</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>Specifies the unique identifier assigned to the user by the issuer. The combination of <em>issuer</em> and <em>issuerAssignedId</em> must be unique within the organization. Represents the sign-in name for the user, when signInType is set to emailAddress or userName (also known as local accounts). When <em>signInType</em> is set to: * <code>emailAddress</code>, (or starts with <code>emailAddress</code> like <code>emailAddress1</code>) <em>issuerAssignedId</em> must be a valid email address * <code>userName</code>, issuer_assigned_id must be a valid local part of an email address Supports $filter. 512 character limit.</td>
 </tr>
 </tbody>
 </table>
-<div class="gdoc-page__anchorwrap"><h3 id="listaccountsrequest">ListAccountsRequest<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#listaccountsrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListAccountsRequest" href="#listaccountsrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="listaccountsrequest">
+        ListAccountsRequest
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#listaccountsrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListAccountsRequest" href="#listaccountsrequest">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><table>
 <thead>
 <tr>
 <th>Field</th>
@@ -4092,25 +4313,25 @@ They are also used to keep a history of old usernames.</p>
 <tbody>
 <tr>
 <td>page_size</td>
-<td><a href="#int32">int32</a></td>
+<td><a class="gdoc-markdown__link" href="#int32">int32</a></td>
 <td></td>
 <td>Optional. The maximum number of accounts to return in the response</td>
 </tr>
 <tr>
 <td>page_token</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>Optional. A pagination token returned from a previous call to <code>Get</code> that indicates from where search should continue</td>
 </tr>
 <tr>
 <td>field_mask</td>
-<td><a href="#googleprotobuffieldmask">google.protobuf.FieldMask</a></td>
+<td><a class="gdoc-markdown__link" href="#googleprotobuffieldmask">google.protobuf.FieldMask</a></td>
 <td></td>
 <td>Optional. Used to specify a subset of fields that should be returned by a get operation or modified by an update operation.</td>
 </tr>
 <tr>
 <td>query</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>Optional. Search criteria used to select the accounts to return. If no search criteria is specified then all accounts will be returned</td>
 </tr>
@@ -4122,8 +4343,14 @@ They are also used to keep a history of old usernames.</p>
 <ul>
 <li>Query <code>display_name=Th*</code> returns accounts whose display_name starts with &ldquo;Th&rdquo; * Query <code>email=foo@example.com</code> returns accounts with <code>email</code> set to <code>foo@example.com</code> * Query <code>display_name=\\&quot;Test String\\&quot;</code> returns accounts with display names that include both &ldquo;Test&rdquo; and &ldquo;String&rdquo; |</li>
 </ul>
-<div class="gdoc-page__anchorwrap"><h3 id="listaccountsresponse">ListAccountsResponse<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#listaccountsresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListAccountsResponse" href="#listaccountsresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="listaccountsresponse">
+        ListAccountsResponse
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#listaccountsresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListAccountsResponse" href="#listaccountsresponse">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><table>
 <thead>
 <tr>
 <th>Field</th>
@@ -4135,20 +4362,26 @@ They are also used to keep a history of old usernames.</p>
 <tbody>
 <tr>
 <td>accounts</td>
-<td><a href="#account">Account</a></td>
+<td><a class="gdoc-markdown__link" href="#account">Account</a></td>
 <td>repeated</td>
 <td>The field name should match the noun &ldquo;accounts&rdquo; in the method name. There will be a maximum number of items returned based on the page_size field in the request</td>
 </tr>
 <tr>
 <td>next_page_token</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>Token to retrieve the next page of results, or empty if there are no more results in the list</td>
 </tr>
 </tbody>
 </table>
-<div class="gdoc-page__anchorwrap"><h3 id="listgroupsrequest">ListGroupsRequest<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#listgroupsrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListGroupsRequest" href="#listgroupsrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="listgroupsrequest">
+        ListGroupsRequest
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#listgroupsrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListGroupsRequest" href="#listgroupsrequest">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><table>
 <thead>
 <tr>
 <th>Field</th>
@@ -4160,25 +4393,25 @@ They are also used to keep a history of old usernames.</p>
 <tbody>
 <tr>
 <td>page_size</td>
-<td><a href="#int32">int32</a></td>
+<td><a class="gdoc-markdown__link" href="#int32">int32</a></td>
 <td></td>
 <td>Optional. The maximum number of groups to return in the response</td>
 </tr>
 <tr>
 <td>page_token</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>Optional. A pagination token returned from a previous call to <code>Get</code> that indicates from where search should continue</td>
 </tr>
 <tr>
 <td>field_mask</td>
-<td><a href="#googleprotobuffieldmask">google.protobuf.FieldMask</a></td>
+<td><a class="gdoc-markdown__link" href="#googleprotobuffieldmask">google.protobuf.FieldMask</a></td>
 <td></td>
 <td>Optional. Used to specify a subset of fields that should be returned by a get operation or modified by an update operation.</td>
 </tr>
 <tr>
 <td>query</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>Optional. Search criteria used to select the groups to return. If no search criteria is specified then all groups will be returned</td>
 </tr>
@@ -4190,8 +4423,14 @@ They are also used to keep a history of old usernames.</p>
 <ul>
 <li>Query <code>display_name=Th*</code> returns accounts whose display_name starts with &ldquo;Th&rdquo; * Query <code>display_name=\\&quot;Test String\\&quot;</code> returns groups with display names that include both &ldquo;Test&rdquo; and &ldquo;String&rdquo; |</li>
 </ul>
-<div class="gdoc-page__anchorwrap"><h3 id="listgroupsresponse">ListGroupsResponse<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#listgroupsresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListGroupsResponse" href="#listgroupsresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="listgroupsresponse">
+        ListGroupsResponse
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#listgroupsresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListGroupsResponse" href="#listgroupsresponse">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><table>
 <thead>
 <tr>
 <th>Field</th>
@@ -4203,20 +4442,26 @@ They are also used to keep a history of old usernames.</p>
 <tbody>
 <tr>
 <td>groups</td>
-<td><a href="#group">Group</a></td>
+<td><a class="gdoc-markdown__link" href="#group">Group</a></td>
 <td>repeated</td>
 <td>The field name should match the noun &ldquo;group&rdquo; in the method name. There will be a maximum number of items returned based on the page_size field in the request</td>
 </tr>
 <tr>
 <td>next_page_token</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>Token to retrieve the next page of results, or empty if there are no more results in the list</td>
 </tr>
 </tbody>
 </table>
-<div class="gdoc-page__anchorwrap"><h3 id="listmembersrequest">ListMembersRequest<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#listmembersrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListMembersRequest" href="#listmembersrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="listmembersrequest">
+        ListMembersRequest
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#listmembersrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListMembersRequest" href="#listmembersrequest">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><table>
 <thead>
 <tr>
 <th>Field</th>
@@ -4228,25 +4473,25 @@ They are also used to keep a history of old usernames.</p>
 <tbody>
 <tr>
 <td>page_size</td>
-<td><a href="#int32">int32</a></td>
+<td><a class="gdoc-markdown__link" href="#int32">int32</a></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>page_token</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>Optional. A pagination token returned from a previous call to <code>Get</code> that indicates from where search should continue</td>
 </tr>
 <tr>
 <td>field_mask</td>
-<td><a href="#googleprotobuffieldmask">google.protobuf.FieldMask</a></td>
+<td><a class="gdoc-markdown__link" href="#googleprotobuffieldmask">google.protobuf.FieldMask</a></td>
 <td></td>
 <td>Optional. Used to specify a subset of fields that should be returned by a get operation or modified by an update operation.</td>
 </tr>
 <tr>
 <td>query</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>Optional. Search criteria used to select the groups to return. If no search criteria is specified then all groups will be returned</td>
 </tr>
@@ -4257,10 +4502,16 @@ They are also used to keep a history of old usernames.</p>
 <p>Some example queries are:</p>
 <ul>
 <li>Query <code>display_name=Th*</code> returns accounts whose display_name starts with &ldquo;Th&rdquo; * Query <code>display_name=\\&quot;Test String\\&quot;</code> returns groups with display names that include both &ldquo;Test&rdquo; and &ldquo;String&rdquo; |
-| id | <a href="#string">string</a> |  | The id of the group to list members from |</li>
+| id | <a class="gdoc-markdown__link" href="#string">string</a> |  | The id of the group to list members from |</li>
 </ul>
-<div class="gdoc-page__anchorwrap"><h3 id="listmembersresponse">ListMembersResponse<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#listmembersresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListMembersResponse" href="#listmembersresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="listmembersresponse">
+        ListMembersResponse
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#listmembersresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ListMembersResponse" href="#listmembersresponse">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><table>
 <thead>
 <tr>
 <th>Field</th>
@@ -4272,20 +4523,26 @@ They are also used to keep a history of old usernames.</p>
 <tbody>
 <tr>
 <td>members</td>
-<td><a href="#account">Account</a></td>
+<td><a class="gdoc-markdown__link" href="#account">Account</a></td>
 <td>repeated</td>
 <td>The field name should match the noun &ldquo;members&rdquo; in the method name. There will be a maximum number of items returned based on the page_size field in the request</td>
 </tr>
 <tr>
 <td>next_page_token</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>Token to retrieve the next page of results, or empty if there are no more results in the list</td>
 </tr>
 </tbody>
 </table>
-<div class="gdoc-page__anchorwrap"><h3 id="onpremisesprovisioningerror">OnPremisesProvisioningError<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#onpremisesprovisioningerror" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor OnPremisesProvisioningError" href="#onpremisesprovisioningerror"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="onpremisesprovisioningerror">
+        OnPremisesProvisioningError
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#onpremisesprovisioningerror" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor OnPremisesProvisioningError" href="#onpremisesprovisioningerror">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><table>
 <thead>
 <tr>
 <th>Field</th>
@@ -4297,32 +4554,38 @@ They are also used to keep a history of old usernames.</p>
 <tbody>
 <tr>
 <td>category</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>Category of the provisioning error. Note: Currently, there is only one possible value. Possible value: PropertyConflict - indicates a property value is not unique. Other objects contain the same value for the property.</td>
 </tr>
 <tr>
 <td>occurred_date_time</td>
-<td><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a></td>
+<td><a class="gdoc-markdown__link" href="#googleprotobuftimestamp">google.protobuf.Timestamp</a></td>
 <td></td>
 <td>The date and time at which the error occurred.</td>
 </tr>
 <tr>
 <td>property_causing_error</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>Name of the directory property causing the error. Current possible values: UserPrincipalName or ProxyAddress</td>
 </tr>
 <tr>
 <td>value</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>Value of the property causing the error.</td>
 </tr>
 </tbody>
 </table>
-<div class="gdoc-page__anchorwrap"><h3 id="passwordprofile">PasswordProfile<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#passwordprofile" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor PasswordProfile" href="#passwordprofile"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="passwordprofile">
+        PasswordProfile
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#passwordprofile" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor PasswordProfile" href="#passwordprofile">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><table>
 <thead>
 <tr>
 <th>Field</th>
@@ -4334,40 +4597,58 @@ They are also used to keep a history of old usernames.</p>
 <tbody>
 <tr>
 <td>password</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>The password for the user. This property is required when a user is created. It can be updated, but the user will be required to change the password on the next login. The password must satisfy minimum requirements as specified by the user’s passwordPolicies property. By default, a strong password is required.</td>
 </tr>
 <tr>
 <td>last_password_change_date_time</td>
-<td><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a></td>
+<td><a class="gdoc-markdown__link" href="#googleprotobuftimestamp">google.protobuf.Timestamp</a></td>
 <td></td>
 <td>The time when this account last changed their password.</td>
 </tr>
 <tr>
 <td>password_policies</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td>repeated</td>
 <td>Specifies password policies for the user. This value is an enumeration with one possible value being “DisableStrongPassword”, which allows weaker passwords than the default policy to be specified. “DisablePasswordExpiration” can also be specified.</td>
 </tr>
 <tr>
 <td>force_change_password_next_sign_in</td>
-<td><a href="#bool">bool</a></td>
+<td><a class="gdoc-markdown__link" href="#bool">bool</a></td>
 <td></td>
 <td>true* if the user must change her password on the next login; otherwise false.</td>
 </tr>
 <tr>
 <td>force_change_password_next_sign_in_with_mfa</td>
-<td><a href="#bool">bool</a></td>
+<td><a class="gdoc-markdown__link" href="#bool">bool</a></td>
 <td></td>
 <td>If <em>true</em>, at next sign-in, the user must perform a multi-factor authentication (MFA) before being forced to change their password. The behavior is identical to forceChangePasswordNextSignIn except that the user is required to first perform a multi-factor authentication before password change. After a password change, this property will be automatically reset to false. If not set, default is false.</td>
 </tr>
 </tbody>
 </table>
-<div class="gdoc-page__anchorwrap"><h3 id="rebuildindexrequest">RebuildIndexRequest<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#rebuildindexrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor RebuildIndexRequest" href="#rebuildindexrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<div class="gdoc-page__anchorwrap"><h3 id="rebuildindexresponse">RebuildIndexResponse<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#rebuildindexresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor RebuildIndexResponse" href="#rebuildindexresponse"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<div class="gdoc-page__anchorwrap"><h3 id="removememberrequest">RemoveMemberRequest<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#removememberrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor RemoveMemberRequest" href="#removememberrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="rebuildindexrequest">
+        RebuildIndexRequest
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#rebuildindexrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor RebuildIndexRequest" href="#rebuildindexrequest">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="rebuildindexresponse">
+        RebuildIndexResponse
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#rebuildindexresponse" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor RebuildIndexResponse" href="#rebuildindexresponse">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="removememberrequest">
+        RemoveMemberRequest
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#removememberrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor RemoveMemberRequest" href="#removememberrequest">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><table>
 <thead>
 <tr>
 <th>Field</th>
@@ -4379,20 +4660,26 @@ They are also used to keep a history of old usernames.</p>
 <tbody>
 <tr>
 <td>group_id</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>The id of the group to remove a member from</td>
 </tr>
 <tr>
 <td>account_id</td>
-<td><a href="#string">string</a></td>
+<td><a class="gdoc-markdown__link" href="#string">string</a></td>
 <td></td>
 <td>The account id to remove</td>
 </tr>
 </tbody>
 </table>
-<div class="gdoc-page__anchorwrap"><h3 id="updateaccountrequest">UpdateAccountRequest<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#updateaccountrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor UpdateAccountRequest" href="#updateaccountrequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="updateaccountrequest">
+        UpdateAccountRequest
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#updateaccountrequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor UpdateAccountRequest" href="#updateaccountrequest">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><table>
 <thead>
 <tr>
 <th>Field</th>
@@ -4404,20 +4691,26 @@ They are also used to keep a history of old usernames.</p>
 <tbody>
 <tr>
 <td>account</td>
-<td><a href="#account">Account</a></td>
+<td><a class="gdoc-markdown__link" href="#account">Account</a></td>
 <td></td>
 <td>The account resource which replaces the resource on the server</td>
 </tr>
 <tr>
 <td>update_mask</td>
-<td><a href="#googleprotobuffieldmask">google.protobuf.FieldMask</a></td>
+<td><a class="gdoc-markdown__link" href="#googleprotobuffieldmask">google.protobuf.FieldMask</a></td>
 <td></td>
 <td>The update mask applies to the resource. For the <code>FieldMask</code> definition, see <a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask">https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask</a></td>
 </tr>
 </tbody>
 </table>
-<div class="gdoc-page__anchorwrap"><h3 id="updategrouprequest">UpdateGroupRequest<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#updategrouprequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor UpdateGroupRequest" href="#updategrouprequest"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="updategrouprequest">
+        UpdateGroupRequest
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#updategrouprequest" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor UpdateGroupRequest" href="#updategrouprequest">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><table>
 <thead>
 <tr>
 <th>Field</th>
@@ -4429,20 +4722,26 @@ They are also used to keep a history of old usernames.</p>
 <tbody>
 <tr>
 <td>group</td>
-<td><a href="#group">Group</a></td>
+<td><a class="gdoc-markdown__link" href="#group">Group</a></td>
 <td></td>
 <td>The group resource which replaces the resource on the server</td>
 </tr>
 <tr>
 <td>update_mask</td>
-<td><a href="#googleprotobuffieldmask">google.protobuf.FieldMask</a></td>
+<td><a class="gdoc-markdown__link" href="#googleprotobuffieldmask">google.protobuf.FieldMask</a></td>
 <td></td>
 <td>The update mask applies to the resource. For the <code>FieldMask</code> definition, see <a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask">https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask</a></td>
 </tr>
 </tbody>
 </table>
-<div class="gdoc-page__anchorwrap"><h3 id="accountsservice">AccountsService<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#accountsservice" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor AccountsService" href="#accountsservice"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<p>Follow recommended Methods for rpc APIs <a href="https://cloud.google.com/apis/design/resources?hl=de#methods">https://cloud.google.com/apis/design/resources?hl=de#methods</a>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="accountsservice">
+        AccountsService
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#accountsservice" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor AccountsService" href="#accountsservice">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Follow recommended Methods for rpc APIs <a href="https://cloud.google.com/apis/design/resources?hl=de#methods">https://cloud.google.com/apis/design/resources?hl=de#methods</a>
 <a href="https://cloud.google.com/apis/design/standard_methods?hl=de#list">https://cloud.google.com/apis/design/standard_methods?hl=de#list</a>
 <a href="https://cloud.google.com/apis/design/naming_convention?hl=de">https://cloud.google.com/apis/design/naming_convention?hl=de</a></p>
 <table>
@@ -4457,38 +4756,44 @@ They are also used to keep a history of old usernames.</p>
 <tbody>
 <tr>
 <td>ListAccounts</td>
-<td><a href="#listaccountsrequest">ListAccountsRequest</a></td>
-<td><a href="#listaccountsresponse">ListAccountsResponse</a></td>
+<td><a class="gdoc-markdown__link" href="#listaccountsrequest">ListAccountsRequest</a></td>
+<td><a class="gdoc-markdown__link" href="#listaccountsresponse">ListAccountsResponse</a></td>
 <td>Lists accounts</td>
 </tr>
 <tr>
 <td>GetAccount</td>
-<td><a href="#getaccountrequest">GetAccountRequest</a></td>
-<td><a href="#account">Account</a></td>
+<td><a class="gdoc-markdown__link" href="#getaccountrequest">GetAccountRequest</a></td>
+<td><a class="gdoc-markdown__link" href="#account">Account</a></td>
 <td>Gets an account</td>
 </tr>
 <tr>
 <td>CreateAccount</td>
-<td><a href="#createaccountrequest">CreateAccountRequest</a></td>
-<td><a href="#account">Account</a></td>
+<td><a class="gdoc-markdown__link" href="#createaccountrequest">CreateAccountRequest</a></td>
+<td><a class="gdoc-markdown__link" href="#account">Account</a></td>
 <td>Creates an account</td>
 </tr>
 <tr>
 <td>UpdateAccount</td>
-<td><a href="#updateaccountrequest">UpdateAccountRequest</a></td>
-<td><a href="#account">Account</a></td>
+<td><a class="gdoc-markdown__link" href="#updateaccountrequest">UpdateAccountRequest</a></td>
+<td><a class="gdoc-markdown__link" href="#account">Account</a></td>
 <td>Updates an account</td>
 </tr>
 <tr>
 <td>DeleteAccount</td>
-<td><a href="#deleteaccountrequest">DeleteAccountRequest</a></td>
-<td><a href="#googleprotobufempty">.google.protobuf.Empty</a></td>
+<td><a class="gdoc-markdown__link" href="#deleteaccountrequest">DeleteAccountRequest</a></td>
+<td><a class="gdoc-markdown__link" href="#googleprotobufempty">.google.protobuf.Empty</a></td>
 <td>Deletes an account</td>
 </tr>
 </tbody>
 </table>
-<div class="gdoc-page__anchorwrap"><h3 id="groupsservice">GroupsService<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#groupsservice" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor GroupsService" href="#groupsservice"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="groupsservice">
+        GroupsService
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#groupsservice" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor GroupsService" href="#groupsservice">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><table>
 <thead>
 <tr>
 <th>Method Name</th>
@@ -4500,56 +4805,62 @@ They are also used to keep a history of old usernames.</p>
 <tbody>
 <tr>
 <td>ListGroups</td>
-<td><a href="#listgroupsrequest">ListGroupsRequest</a></td>
-<td><a href="#listgroupsresponse">ListGroupsResponse</a></td>
+<td><a class="gdoc-markdown__link" href="#listgroupsrequest">ListGroupsRequest</a></td>
+<td><a class="gdoc-markdown__link" href="#listgroupsresponse">ListGroupsResponse</a></td>
 <td>Lists groups</td>
 </tr>
 <tr>
 <td>GetGroup</td>
-<td><a href="#getgrouprequest">GetGroupRequest</a></td>
-<td><a href="#group">Group</a></td>
+<td><a class="gdoc-markdown__link" href="#getgrouprequest">GetGroupRequest</a></td>
+<td><a class="gdoc-markdown__link" href="#group">Group</a></td>
 <td>Gets an groups</td>
 </tr>
 <tr>
 <td>CreateGroup</td>
-<td><a href="#creategrouprequest">CreateGroupRequest</a></td>
-<td><a href="#group">Group</a></td>
+<td><a class="gdoc-markdown__link" href="#creategrouprequest">CreateGroupRequest</a></td>
+<td><a class="gdoc-markdown__link" href="#group">Group</a></td>
 <td>Creates a group</td>
 </tr>
 <tr>
 <td>UpdateGroup</td>
-<td><a href="#updategrouprequest">UpdateGroupRequest</a></td>
-<td><a href="#group">Group</a></td>
+<td><a class="gdoc-markdown__link" href="#updategrouprequest">UpdateGroupRequest</a></td>
+<td><a class="gdoc-markdown__link" href="#group">Group</a></td>
 <td>Updates a group</td>
 </tr>
 <tr>
 <td>DeleteGroup</td>
-<td><a href="#deletegrouprequest">DeleteGroupRequest</a></td>
-<td><a href="#googleprotobufempty">.google.protobuf.Empty</a></td>
+<td><a class="gdoc-markdown__link" href="#deletegrouprequest">DeleteGroupRequest</a></td>
+<td><a class="gdoc-markdown__link" href="#googleprotobufempty">.google.protobuf.Empty</a></td>
 <td>Deletes a group</td>
 </tr>
 <tr>
 <td>AddMember</td>
-<td><a href="#addmemberrequest">AddMemberRequest</a></td>
-<td><a href="#group">Group</a></td>
+<td><a class="gdoc-markdown__link" href="#addmemberrequest">AddMemberRequest</a></td>
+<td><a class="gdoc-markdown__link" href="#group">Group</a></td>
 <td>group:addmember <a href="https://docs.microsoft.com/en-us/graph/api/group-post-members?view=graph-rest-1.0&amp;tabs=http">https://docs.microsoft.com/en-us/graph/api/group-post-members?view=graph-rest-1.0&amp;tabs=http</a></td>
 </tr>
 <tr>
 <td>RemoveMember</td>
-<td><a href="#removememberrequest">RemoveMemberRequest</a></td>
-<td><a href="#group">Group</a></td>
+<td><a class="gdoc-markdown__link" href="#removememberrequest">RemoveMemberRequest</a></td>
+<td><a class="gdoc-markdown__link" href="#group">Group</a></td>
 <td>group:removemember <a href="https://docs.microsoft.com/en-us/graph/api/group-delete-members?view=graph-rest-1.0">https://docs.microsoft.com/en-us/graph/api/group-delete-members?view=graph-rest-1.0</a></td>
 </tr>
 <tr>
 <td>ListMembers</td>
-<td><a href="#listmembersrequest">ListMembersRequest</a></td>
-<td><a href="#listmembersresponse">ListMembersResponse</a></td>
+<td><a class="gdoc-markdown__link" href="#listmembersrequest">ListMembersRequest</a></td>
+<td><a class="gdoc-markdown__link" href="#listmembersresponse">ListMembersResponse</a></td>
 <td>group:listmembers <a href="https://docs.microsoft.com/en-us/graph/api/group-list-members?view=graph-rest-1.0">https://docs.microsoft.com/en-us/graph/api/group-list-members?view=graph-rest-1.0</a></td>
 </tr>
 </tbody>
 </table>
-<div class="gdoc-page__anchorwrap"><h3 id="indexservice">IndexService<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#indexservice" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor IndexService" href="#indexservice"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h3></div>
-<table>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="indexservice">
+        IndexService
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#indexservice" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor IndexService" href="#indexservice">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><table>
 <thead>
 <tr>
 <th>Method Name</th>
@@ -4561,14 +4872,20 @@ They are also used to keep a history of old usernames.</p>
 <tbody>
 <tr>
 <td>RebuildIndex</td>
-<td><a href="#rebuildindexrequest">RebuildIndexRequest</a></td>
-<td><a href="#rebuildindexresponse">RebuildIndexResponse</a></td>
+<td><a class="gdoc-markdown__link" href="#rebuildindexrequest">RebuildIndexRequest</a></td>
+<td><a class="gdoc-markdown__link" href="#rebuildindexresponse">RebuildIndexResponse</a></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<div class="gdoc-page__anchorwrap"><h2 id="scalar-value-types">Scalar Value Types<a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#scalar-value-types" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Scalar Value Types" href="#scalar-value-types"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<table>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="scalar-value-types">
+        Scalar Value Types
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/grpc/#scalar-value-types" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Scalar Value Types" href="#scalar-value-types">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><table>
 <thead>
 <tr>
 <th>.proto Type</th>
@@ -4734,7 +5051,7 @@ They are also used to keep a history of old usernames.</p>
     <div class="container flex flex-wrap">
         <span class="gdoc-footer__item">
             Built with <a href="https://gohugo.io/" class="gdoc-footer__link">Hugo</a> and
-            <svg class="icon heart"><use xlink:href="#heart"></use></svg>
+            <svg class="icon gdoc_heart"><use xlink:href="#gdoc_heart"></use></svg>
         </span>
         
         <span class="gdoc-footer__item">
@@ -4756,16 +5073,12 @@ They are also used to keep a history of old usernames.</p>
 
 
 
-<script defer src="/js/en.search.min.c8e955343bfe0248e415a4d6686a21b8f6429bd355a3613448fadf17bfdae324.js"></script>
+<script defer src="/js/en.search.min.0f0f3a9579398cc6d5bdddb9566ae50211120fb6f3f17dac1de19a3eeec0329e.js"></script>
 
 
 
-<script defer src="/js/clipboard-af8ab36589.min.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function(event) {
-        var clipboard = new ClipboardJS('.clip');
-    });
-</script>
+<script defer src="/js/clipboard-27784b7376.min.js"></script>
+<script defer src="/js/clipboard-loader-f0b5fbd5f6.min.js"></script>
 
 
 </body>
