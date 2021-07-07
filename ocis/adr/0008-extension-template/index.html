@@ -10,12 +10,12 @@
 
 
 
-    <meta name="description" content="Configuration  Configuration using config files Environment variables Commandline flags store health store ocis-store store server store version       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
-/etc/ocis $HOME/.ocis ./config For this configuration to be picked up, have a look at your extension root command and look for which default config name it has assigned.">
+    <meta name="description" content="Status: proposed Deciders: @c0rby  Date: 2021-06-10  Technical Story: [description | ticket/issue URL] Context and Problem Statement    We want to accelerate and simplify extension development by removing the necessity to type or copy the boilerplate code. Can we provide a template or a similar mechanism to aid when developing new extensions?
+Decision Drivers     The solution should be easily maintainable.  It should always be up-to-date.">
 
 
 
-    <title>Configuration | ownCloud</title>
+    <title>8. Extension Template | ownCloud</title>
 
     <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -519,7 +519,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-307b2de1" class="gdoc-nav__toggle" >
+            <input type="checkbox" id="navtree-307b2de1" class="gdoc-nav__toggle" checked>
             <label for="navtree-307b2de1" class="flex justify-between">
             
             
@@ -747,7 +747,7 @@
             
             
                 <span class="flex">
-                    <a href="/ocis/adr/0008-extension-template/" class="gdoc-nav__entry ">
+                    <a href="/ocis/adr/0008-extension-template/" class="gdoc-nav__entry is-active">
                         8. Extension Template
                     </a>
                 </span>
@@ -3139,7 +3139,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-fe12edef" class="gdoc-nav__toggle" checked>
+            <input type="checkbox" id="navtree-fe12edef" class="gdoc-nav__toggle" >
             <label for="navtree-fe12edef" class="flex justify-between">
             
             
@@ -3175,7 +3175,7 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/store/configuration/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/store/configuration/" class="gdoc-nav__entry ">
                         Configuration
                     </a>
                 </span>
@@ -3754,7 +3754,7 @@
 
 <div class="gdoc-page__header flex flex-wrap
      justify-between 
-    
+     hidden-mobile 
     " itemprop="breadcrumb">
     
     <div>
@@ -3784,7 +3784,7 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/extensions/' href='/extensions/'><span itemprop='name'>Extensions</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/extensions/store/' href='/extensions/store/'><span itemprop='name'>Store</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Configuration</span><meta itemprop='position' content='4' /></li>
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/adr/' href='/ocis/adr/'><span itemprop='name'>Architecture Decisions</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>8. Extension Template</span><meta itemprop='position' content='4' /></li>
     
 
     
@@ -3797,161 +3797,127 @@
     </div>
     
     
-    <div>
-        <span class="editpage">
-            <svg class="icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/store/templates/CONFIGURATION.tmpl">
-                Edit this page
-            </a>
-        </span>
-    </div>
-    
 </div>
 
 
     <article class="gdoc-markdown gdoc-markdown__align--left">
-        <h1>Configuration</h1>
-        
-
-
-  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
-        <li><a href="#configuration">Configuration</a>
-          <ul>
-            <li><a href="#configuration-using-config-files">Configuration using config files</a></li>
-            <li><a href="#environment-variables">Environment variables</a></li>
-            <li><a href="#commandline-flags">Commandline flags</a></li>
-            <li><a href="#store-health">store health</a></li>
-            <li><a href="#store-ocis-store">store ocis-store</a></li>
-            <li><a href="#store-server">store server</a></li>
-            <li><a href="#store-version">store version</a></li>
-          </ul>
-        </li>
-      </ul></nav><hr></div>
-
-
+        <h1>8. Extension Template</h1>
+        <ul>
+<li>Status: proposed</li>
+<li>Deciders: @c0rby <!-- optional --></li>
+<li>Date: 2021-06-10</li>
+</ul>
+<p>Technical Story: [description | ticket/issue URL] <!-- optional --></p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="configuration">
-        Configuration
-        <a data-clipboard-text="https://owncloud.dev/extensions/store/configuration/#configuration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configuration" href="#configuration">
+    <h2 id="context-and-problem-statement">
+        Context and Problem Statement
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0008-extension-template/#context-and-problem-statement" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Context and Problem Statement" href="#context-and-problem-statement">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>We want to accelerate and simplify extension development by removing the necessity to type or copy the boilerplate code. Can we provide a template or a similar mechanism to aid when developing new extensions?</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="decision-drivers----optional---">
+        Decision Drivers <!-- optional -->
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0008-extension-template/#decision-drivers----optional---" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Decision Drivers " href="#decision-drivers----optional---">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><ul>
+<li>The solution should be easily maintainable.
+<ul>
+<li>It should always be up-to-date.</li>
+</ul>
+</li>
+<li>The solution should be easy to use.</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="considered-options">
+        Considered Options
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0008-extension-template/#considered-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Considered Options" href="#considered-options">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><ul>
+<li>Use <a class="gdoc-markdown__link" href="https://github.com/tmrts/boilr">boilr</a></li>
+<li>Create a template git repository.</li>
+<li>Use <a class="gdoc-markdown__link" href="https://github.com/owncloud/ocis-hello/">ocis-hello</a> as a &ldquo;template&rdquo;</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="decision-outcome">
+        Decision Outcome
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0008-extension-template/#decision-outcome" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Decision Outcome" href="#decision-outcome">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>Chosen option: &ldquo;[option 1]&quot;, because [justification. e.g., only option, which meets k.o. criterion decision driver | which resolves force force | … | comes out best (see below)].</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="positive-consequences----optional---">
+        Positive Consequences: <!-- optional -->
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0008-extension-template/#positive-consequences----optional---" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Positive Consequences: " href="#positive-consequences----optional---">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ul>
+<li>[e.g., improvement of quality attribute satisfaction, follow-up decisions required, …]</li>
+<li>…</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="negative-consequences----optional---">
+        Negative consequences: <!-- optional -->
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0008-extension-template/#negative-consequences----optional---" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Negative consequences: " href="#negative-consequences----optional---">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ul>
+<li>[e.g., compromising quality attribute, follow-up decisions required, …]</li>
+<li>…</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="pros-and-cons-of-the-options----optional---">
+        Pros and Cons of the Options <!-- optional -->
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0008-extension-template/#pros-and-cons-of-the-options----optional---" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Pros and Cons of the Options " href="#pros-and-cons-of-the-options----optional---">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div><div class="gdoc-page__anchorwrap">
-    <h3 id="configuration-using-config-files">
-        Configuration using config files
-        <a data-clipboard-text="https://owncloud.dev/extensions/store/configuration/#configuration-using-config-files" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configuration using config files" href="#configuration-using-config-files">
+    <h3 id="boilrhttpsgithubcomtmrtsboilr">
+        <a class="gdoc-markdown__link" href="https://github.com/tmrts/boilr">boilr</a>
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0008-extension-template/#boilrhttpsgithubcomtmrtsboilr" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor boilr" href="#boilrhttpsgithubcomtmrtsboilr">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><p>Out of the box extensions will attempt to read configuration details from:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">/etc/ocis
-$HOME/.ocis
-./config
-</code></pre></div><p>For this configuration to be picked up, have a look at your extension <code>root</code> command and look for which default config name it has assigned. <em>i.e: ocis-proxy reads <code>proxy.json | yaml | toml ...</code></em>.</p>
-<p>So far we support the file formats <code>JSON</code> and <code>YAML</code>, if you want to get a full example configuration just take a look at <a class="gdoc-markdown__link" href="https://github.com/owncloud/ocis/tree/master/store/config">our repository</a>, there you can always see the latest configuration format. These example configurations include all available options and the default values. The configuration file will be automatically loaded if it&rsquo;s placed at <code>/etc/ocis/ocis.yml</code>, <code>${HOME}/.ocis/ocis.yml</code> or <code>$(pwd)/config/ocis.yml</code>.</p>
+</div><p>We have a boilr template already. <a class="gdoc-markdown__link" href="https://github.com/owncloud/boilr-ocis-extension/">boilr-ocis-extension</a>
+This approach is nice because it provides placeholders which can be filled during the generation of a new extension from the template. It also provides prompts for the placeholder values during generation.</p>
+<ul>
+<li>Good, because with the placeholders it is hard to miss values which should be changed</li>
+<li>Bad, because maintaining is more complex</li>
+</ul>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="environment-variables">
-        Environment variables
-        <a data-clipboard-text="https://owncloud.dev/extensions/store/configuration/#environment-variables" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Environment variables" href="#environment-variables">
+    <h3 id="template-git-repository">
+        Template git repository
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0008-extension-template/#template-git-repository" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Template git repository" href="#template-git-repository">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><p>If you prefer to configure the service with environment variables you can see the available variables below.</p>
-<p>If multiple variables are listed for one option, they are in order of precedence. This means the leftmost variable will always win if given.</p>
+</div><p>Create a git repository with an extension containing the boilerplate code.</p>
+<ul>
+<li>Good, because we can use the usual tools for QA and dependency scanning/updating.</li>
+<li>Good, because it doesn&rsquo;t require any additional tool.</li>
+</ul>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="commandline-flags">
-        Commandline flags
-        <a data-clipboard-text="https://owncloud.dev/extensions/store/configuration/#commandline-flags" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Commandline flags" href="#commandline-flags">
+    <h3 id="ocis-hellohttpsgithubcomowncloudocis-hello-as-a-template">
+        <a class="gdoc-markdown__link" href="https://github.com/owncloud/ocis-hello/">ocis-hello</a> as a &ldquo;template&rdquo;
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0008-extension-template/#ocis-hellohttpsgithubcomowncloudocis-hello-as-a-template" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ocis-hello as a &ldquo;template&rdquo;" href="#ocis-hellohttpsgithubcomowncloudocis-hello-as-a-template">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><p>If you prefer to configure the service with commandline flags you can see the available variables below. Command line flags are only working when calling the subcommand directly.</p>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="store-health">
-        store health
-        <a data-clipboard-text="https://owncloud.dev/extensions/store/configuration/#store-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor store health" href="#store-health">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p>Check health status</p>
-<p>Usage: <code>store health [command options] [arguments...]</code></p>
-<dl>
-<dt>-debug-addr |  $STORE_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>&quot;0.0.0.0:9460&quot;</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="store-ocis-store">
-        store ocis-store
-        <a data-clipboard-text="https://owncloud.dev/extensions/store/configuration/#store-ocis-store" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor store ocis-store" href="#store-ocis-store">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p>Service to store values for ocis extensions</p>
-<p>Usage: <code>store ocis-store [command options] [arguments...]</code></p>
-<dl>
-<dt>-config-file |  $STORE_CONFIG_FILE</dt>
-<dd>Path to config file.</dd>
-<dt>-log-level |  $STORE_LOG_LEVEL , $OCIS_LOG_LEVEL</dt>
-<dd>Set logging level.</dd>
-<dt>-log-pretty |  $STORE_LOG_PRETTY , $OCIS_LOG_PRETTY</dt>
-<dd>Enable pretty logging.</dd>
-<dt>-log-color |  $STORE_LOG_COLOR , $OCIS_LOG_COLOR</dt>
-<dd>Enable colored logging.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="store-server">
-        store server
-        <a data-clipboard-text="https://owncloud.dev/extensions/store/configuration/#store-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor store server" href="#store-server">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p>Start integrated server</p>
-<p>Usage: <code>store server [command options] [arguments...]</code></p>
-<dl>
-<dt>-log-file |  $STORE_LOG_FILE , $OCIS_LOG_FILE</dt>
-<dd>Enable log to file.</dd>
-<dt>-tracing-enabled |  $STORE_TRACING_ENABLED</dt>
-<dd>Enable sending traces.</dd>
-<dt>-tracing-type |  $STORE_TRACING_TYPE</dt>
-<dd>Tracing backend type. Default: <code>&quot;jaeger&quot;</code>.</dd>
-<dt>-tracing-endpoint |  $STORE_TRACING_ENDPOINT</dt>
-<dd>Endpoint for the agent. Default: <code>&quot;&quot;</code>.</dd>
-<dt>-tracing-collector |  $STORE_TRACING_COLLECTOR</dt>
-<dd>Endpoint for the collector. Default: <code>&quot;&quot;</code>.</dd>
-<dt>-tracing-service |  $STORE_TRACING_SERVICE</dt>
-<dd>Service name for tracing. Default: <code>&quot;store&quot;</code>.</dd>
-<dt>-debug-addr |  $STORE_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>&quot;0.0.0.0:9460&quot;</code>.</dd>
-<dt>-debug-token |  $STORE_DEBUG_TOKEN</dt>
-<dd>Token to grant metrics access. Default: <code>&quot;&quot;</code>.</dd>
-<dt>-debug-pprof |  $STORE_DEBUG_PPROF</dt>
-<dd>Enable pprof debugging.</dd>
-<dt>-debug-zpages |  $STORE_DEBUG_ZPAGES</dt>
-<dd>Enable zpages debugging.</dd>
-<dt>-grpc-namespace |  $STORE_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>&quot;com.owncloud.api&quot;</code>.</dd>
-<dt>-name |  $STORE_NAME</dt>
-<dd>Service name. Default: <code>&quot;store&quot;</code>.</dd>
-<dt>-data-path |  $STORE_DATA_PATH</dt>
-<dd>location of the store data path. Default: <code>&quot;/var/tmp/ocis/store&quot;</code>.</dd>
-<dt>-extensions |</dt>
-<dd>Run specific extensions during supervised mode. This flag is set by the runtime.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="store-version">
-        store version
-        <a data-clipboard-text="https://owncloud.dev/extensions/store/configuration/#store-version" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor store version" href="#store-version">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p>Print the versions of the running instances</p>
-<p>Usage: <code>store version [command options] [arguments...]</code></p>
-<dl>
-<dt>-grpc-namespace |  $STORE_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>&quot;com.owncloud.api&quot;</code>.</dd>
-<dt>-name |  $STORE_NAME</dt>
-<dd>Service name. Default: <code>&quot;store&quot;</code>.</dd>
-</dl>
+</div><p>We have the ocis-hello repository which acts as an example extension containing a grpc and http service and a web UI. It also demonstrates the usage of the settings service.</p>
+<ul>
+<li>Good, because it contains a bit more code than just the plain boilerplate</li>
+<li>Good, because the integration into oCIS is already tested for the Hello extension (eg. with Proxy and Settings). This will ensure, that the example extension is up to date.</li>
+<li>Bad, because if you don&rsquo;t require all features you have to delete stuff</li>
+</ul>
 
 
     </article>
