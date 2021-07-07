@@ -10,7 +10,7 @@
 
 
 
-    <meta name="description" content="Configuration  Configuration using config files Environment variables Commandline flags store health store ocis-store store server store version       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
+    <meta name="description" content="Configuration  Configuration using config files Environment variables Commandline flags store version store health store ocis-store store server       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
 /etc/ocis $HOME/.ocis ./config For this configuration to be picked up, have a look at your extension root command and look for which default config name it has assigned.">
 
 
@@ -3796,10 +3796,10 @@
             <li><a href="#configuration-using-config-files">Configuration using config files</a></li>
             <li><a href="#environment-variables">Environment variables</a></li>
             <li><a href="#commandline-flags">Commandline flags</a></li>
+            <li><a href="#store-version">store version</a></li>
             <li><a href="#store-health">store health</a></li>
             <li><a href="#store-ocis-store">store ocis-store</a></li>
             <li><a href="#store-server">store server</a></li>
-            <li><a href="#store-version">store version</a></li>
           </ul>
         </li>
       </ul></nav><hr></div>
@@ -3842,6 +3842,21 @@ $HOME/.ocis
         </a>
     </h3>
 </div><p>If you prefer to configure the service with commandline flags you can see the available variables below. Command line flags are only working when calling the subcommand directly.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="store-version">
+        store version
+        <a data-clipboard-text="https://owncloud.dev/extensions/store/configuration/#store-version" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor store version" href="#store-version">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Print the versions of the running instances</p>
+<p>Usage: <code>store version [command options] [arguments...]</code></p>
+<dl>
+<dt>-grpc-namespace |  $STORE_GRPC_NAMESPACE</dt>
+<dd>Set the base namespace for the grpc namespace. Default: <code>&quot;com.owncloud.api&quot;</code>.</dd>
+<dt>-name |  $STORE_NAME</dt>
+<dd>Service name. Default: <code>&quot;store&quot;</code>.</dd>
+</dl>
 <div class="gdoc-page__anchorwrap">
     <h3 id="store-health">
         store health
@@ -3912,21 +3927,6 @@ $HOME/.ocis
 <dd>location of the store data path. Default: <code>&quot;/var/tmp/ocis/store&quot;</code>.</dd>
 <dt>-extensions |</dt>
 <dd>Run specific extensions during supervised mode. This flag is set by the runtime.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="store-version">
-        store version
-        <a data-clipboard-text="https://owncloud.dev/extensions/store/configuration/#store-version" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor store version" href="#store-version">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p>Print the versions of the running instances</p>
-<p>Usage: <code>store version [command options] [arguments...]</code></p>
-<dl>
-<dt>-grpc-namespace |  $STORE_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>&quot;com.owncloud.api&quot;</code>.</dd>
-<dt>-name |  $STORE_NAME</dt>
-<dd>Service name. Default: <code>&quot;store&quot;</code>.</dd>
 </dl>
 
 
