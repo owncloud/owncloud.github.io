@@ -1284,6 +1284,30 @@ Resources    A resource is a logical concept. Resources can be of different type
             </li>
             
             
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/ocis/storage_registry_discovery/" class="gdoc-nav__entry ">
+                        Storage Registry Discovery
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
         
             
             
@@ -3839,7 +3863,7 @@ Resources    A resource is a logical concept. Resources can be of different type
 <li>a <a class="gdoc-markdown__link" href="https://cs3org.github.io/cs3apis/#cs3.storage.provider.v1beta1.ResourceId">CS3 <em>id</em> based reference</a>, uniquely identifying a <a class="gdoc-markdown__link" href="#resources"><em>resource</em></a> in the <a class="gdoc-markdown__link" href="https://owncloud.dev/extensions/storage/namespaces/"><em>namespace</em></a> of a <a class="gdoc-markdown__link" href="#storage-providers"><em>storage provider</em></a>. It consists of a <code>storage provider id</code> and an <code>opaque id</code>. The <code>storage provider id</code> must NOT start with a <code>/</code>.</li>
 </ul>
 <blockquote class="gdoc-hint info">
-  The <code>/</code> is important because currently the static <a class="gdoc-markdown__link" href="#storage-registries"><em>storage registry</em></a> uses a map to look up which <a class="gdoc-markdown__link" href="#storage-providers"><em>storage provider</em></a> is responsible for the resource. Paths must be prefixed with <code>/</code> so there can be no collisions between paths and storage provider ids in the same map.
+  The <code>/</code> is important because currently the static <a class="gdoc-markdown__link" href="#storage-space-registries"><em>storage registry</em></a> uses a map to look up which <a class="gdoc-markdown__link" href="#storage-providers"><em>storage provider</em></a> is responsible for the resource. Paths must be prefixed with <code>/</code> so there can be no collisions between paths and storage provider ids in the same map.
 </blockquote>
 
 <blockquote class="gdoc-hint warning">
@@ -4554,9 +4578,9 @@ by accessing a <a class="gdoc-markdown__link" href="#storage-systems"><em>storag
 </blockquote>
 
 <div class="gdoc-page__anchorwrap">
-    <h2 id="storage-registries">
-        Storage Registries
-        <a data-clipboard-text="https://owncloud.dev/extensions/storage/terminology/#storage-registries" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Storage Registries" href="#storage-registries">
+    <h2 id="storage-space-registries">
+        Storage Space Registries
+        <a data-clipboard-text="https://owncloud.dev/extensions/storage/terminology/#storage-space-registries" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Storage Space Registries" href="#storage-space-registries">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
@@ -4806,7 +4830,7 @@ that should handle a <a class="gdoc-markdown__link" href="#references"><em>refer
 
 <blockquote class="gdoc-hint warning">
   <p><strong>Proposed Change</strong>
-A <em>storage registry</em> manages the <a class="gdoc-markdown__link" href="https://owncloud.dev/extensions/storage/namespaces/"><em>namespace</em></a> for a <em>user</em>:
+A <em>storage space registry</em> manages the <a class="gdoc-markdown__link" href="https://owncloud.dev/extensions/storage/namespaces/"><em>namespace</em></a> for a <em>user</em>:
 It is used by the <em>gateway</em>
 to look up <code>address</code> and <code>port</code> of the <a class="gdoc-markdown__link" href="#storage-providers"><em>storage provider</em></a>
 that is currently serving a <a class="gdoc-markdown__link" href="#storage-space"><em>storage space</em></a>.</p>
@@ -5324,7 +5348,7 @@ a <em>quota</em> and <em>permissions</em>, identified by a <code>storage space i
   
 
 
-<p>Examples would be every user&rsquo;s home storage space, project storage spaces or group storage spaces. While they all serve different purposes and may or may not have workflows like anti virus scanning enabled, we need a way to identify and manage these subtrees in a generic way. By creating a dedicated concept for them this becomes easier and literally makes the codebase cleaner. A <a class="gdoc-markdown__link" href="#storage-registries"><em>storage registry</em></a> then allows listing the capabilities of <a class="gdoc-markdown__link" href="#storage-spaces"><em>storage spaces</em></a>, e.g. free space, quota, owner, syncable, root etag, upload workflow steps, &hellip;</p>
+<p>Examples would be every user&rsquo;s home storage space, project storage spaces or group storage spaces. While they all serve different purposes and may or may not have workflows like anti virus scanning enabled, we need a way to identify and manage these subtrees in a generic way. By creating a dedicated concept for them this becomes easier and literally makes the codebase cleaner. A <a class="gdoc-markdown__link" href="#storage-space-registries"><em>storage space registry</em></a> then allows listing the capabilities of <a class="gdoc-markdown__link" href="#storage-spaces"><em>storage spaces</em></a>, e.g. free space, quota, owner, syncable, root etag, upload workflow steps, &hellip;</p>
 <p>Finally, a logical <code>storage space id</code> is not tied to a specific <a class="gdoc-markdown__link" href="#storage-providers"><em>storage provider</em></a>. If the <a class="gdoc-markdown__link" href="#storage-drivers"><em>storage driver</em></a> supports it, we can import existing files including their <code>file id</code>, which makes it possible to move <a class="gdoc-markdown__link" href="#storage-spaces"><em>storage spaces</em></a> between <a class="gdoc-markdown__link" href="#storage-providers"><em>storage providers</em></a> to implement storage classes, e.g. with or without archival, workflows, on SSDs or HDDs.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="shares">

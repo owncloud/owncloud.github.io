@@ -10,12 +10,12 @@
 
 
 
-    <meta name="description" content="Concepts Things done in CI Flags in commit message and PR title  Knowledge base       oCIS uses DRONE as CI system. You can find the pipeline logs here or in your PR.
-Concepts    The pipeline is defined in Starlark and transformed to YAML upon pipeline run. This enables us to do a highly dynamic and non repeating pipeline configuration.">
+    <meta name="description" content="Introduction    In order for an oCIS client to access oCIS storage spaces for an End-User, the client needs to know where the oCIS instance is. oCIS uses WebFinger RFC7033 to locate the oCIS instance for an End-User.
+This discovery is optional. If the client has another way of discovering the OpenID instance, e.g. when logging in with a username a static domain might be configured or the domain in the URL might be used.">
 
 
 
-    <title>Continuous Integration | ownCloud</title>
+    <title>Storage Registry Discovery | ownCloud</title>
 
     <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -274,7 +274,7 @@ Concepts    The pipeline is defined in Starlark and transformed to YAML upon pip
 
             <li>
             
-            <input type="checkbox" id="navtree-dba039ca" class="gdoc-nav__toggle" checked>
+            <input type="checkbox" id="navtree-dba039ca" class="gdoc-nav__toggle" >
             <label for="navtree-dba039ca" class="flex justify-between">
             
             
@@ -488,7 +488,7 @@ Concepts    The pipeline is defined in Starlark and transformed to YAML upon pip
             
             
                 <span class="flex">
-                    <a href="/ocis/development/continuous-integration/" class="gdoc-nav__entry is-active">
+                    <a href="/ocis/development/continuous-integration/" class="gdoc-nav__entry ">
                         Continuous Integration
                     </a>
                 </span>
@@ -1297,7 +1297,7 @@ Concepts    The pipeline is defined in Starlark and transformed to YAML upon pip
             
             
                 <span class="flex">
-                    <a href="/ocis/storage_registry_discovery/" class="gdoc-nav__entry ">
+                    <a href="/ocis/storage_registry_discovery/" class="gdoc-nav__entry is-active">
                         Storage Registry Discovery
                     </a>
                 </span>
@@ -3802,15 +3802,7 @@ Concepts    The pipeline is defined in Starlark and transformed to YAML upon pip
         
     
     
-        
-        
-        
-        
-    
-    
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/development/' href='/ocis/development/'><span itemprop='name'>Development</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Continuous Integration</span><meta itemprop='position' content='4' /></li>
-    
-
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Storage Registry Discovery</span><meta itemprop='position' content='3' /></li>
     
 
     
@@ -3824,7 +3816,7 @@ Concepts    The pipeline is defined in Starlark and transformed to YAML upon pip
     <div>
         <span class="editpage">
             <svg class="icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/development/continuous-integration.md">
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/storage_registry_discovery.md">
                 Edit this page
             </a>
         </span>
@@ -3834,90 +3826,122 @@ Concepts    The pipeline is defined in Starlark and transformed to YAML upon pip
 
 
     <article class="gdoc-markdown gdoc-markdown__align--left">
-        <h1>Continuous Integration</h1>
-        
-
-
-  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
-        <li><a href="#concepts">Concepts</a></li>
-        <li><a href="#things-done-in-ci">Things done in CI</a></li>
-        <li><a href="#flags-in-commit-message-and-pr-title">Flags in commit message and PR title</a>
-          <ul>
-            <li><a href="#knowledge-base">Knowledge base</a></li>
-          </ul>
-        </li>
-      </ul></nav><hr></div>
-
-
-<p>oCIS uses <a class="gdoc-markdown__link" href="https://www.drone.io/">DRONE</a> as CI system. You can find the pipeline logs <a class="gdoc-markdown__link" href="https://drone.owncloud.com/owncloud/ocis">here</a> or in your PR.</p>
-<div class="gdoc-page__anchorwrap">
-    <h2 id="concepts">
-        Concepts
-        <a data-clipboard-text="https://owncloud.dev/ocis/development/continuous-integration/#concepts" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Concepts" href="#concepts">
+        <h1>Storage Registry Discovery</h1>
+        <div class="gdoc-page__anchorwrap">
+    <h2 id="introduction">
+        Introduction
+        <a data-clipboard-text="https://owncloud.dev/ocis/storage_registry_discovery/#introduction" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Introduction" href="#introduction">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><p>The pipeline is defined in <a class="gdoc-markdown__link" href="https://github.com/bazelbuild/starlark">Starlark</a> and transformed to YAML upon pipeline run. This enables us to do a highly dynamic and non repeating pipeline configuration. We enforce Starlark format guidelines with Bazel Buildifier. You can format the .drone.star file by running <code>make ci-format</code>.</p>
-<p>Upon running the pipeline, your branch gets merged to the master branch. This ensures that we always test your changeset if as it was applied to the master of oCIS. Please note that this does not apply to the pipeline definition (<code>.drone.star</code>).</p>
+</div><p>In order for an oCIS client to access oCIS storage spaces for an End-User, the client needs to know where the oCIS instance is. oCIS uses WebFinger <a class="gdoc-markdown__link" href="http://tools.ietf.org/html/rfc7033">RFC7033</a> to locate the oCIS instance for an End-User.</p>
+<p>This discovery is optional. If the client has another way of discovering the OpenID instance, e.g. when logging in with a username a static domain might be configured or the domain in the URL might be used.</p>
+<p>For guest accounts that do not have an OIDC issuer or whose IdP is not part of a trusted federation clients may fall back to a local IdP.</p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="things-done-in-ci">
-        Things done in CI
-        <a data-clipboard-text="https://owncloud.dev/ocis/development/continuous-integration/#things-done-in-ci" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Things done in CI" href="#things-done-in-ci">
+    <h2 id="user-input-using-e-mail-address-syntax">
+        User Input using E-Mail Address Syntax
+        <a data-clipboard-text="https://owncloud.dev/ocis/storage_registry_discovery/#user-input-using-e-mail-address-syntax" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor User Input using E-Mail Address Syntax" href="#user-input-using-e-mail-address-syntax">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><ul>
-<li>static code analysis</li>
-<li>linting</li>
-<li>running UI tests</li>
-<li>running ownCloud 10 test suite against oCIS</li>
-<li>build and release docker images</li>
-<li>build and release binaries</li>
-<li>build and release documentation</li>
-</ul>
-<div class="gdoc-page__anchorwrap">
-    <h2 id="flags-in-commit-message-and-pr-title">
-        Flags in commit message and PR title
-        <a data-clipboard-text="https://owncloud.dev/ocis/development/continuous-integration/#flags-in-commit-message-and-pr-title" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Flags in commit message and PR title" href="#flags-in-commit-message-and-pr-title">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h2>
-</div><p>You may add flags to your commit message or PR title in order to speed up pipeline runs and take load from the CI runners.</p>
+</div><p>To find the oCIS instance for the given user input in the form of an e-mail address <code>joe@example.com</code>, the WebFinger parameters are as follows:</p>
+<table>
+<thead>
+<tr>
+<th>WebFinger Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>resource</code></td>
+<td><code>acct:joe@example.com</code></td>
+</tr>
+<tr>
+<td><code>host</code></td>
+<td><code>example.com</code></td>
+</tr>
+<tr>
+<td><code>rel</code></td>
+<td><a href="http://owncloud.com/specs/ocis/1.0/instance">http://owncloud.com/specs/ocis/1.0/instance</a></td>
+</tr>
+</tbody>
+</table>
+<p>Note that in this case, <a class="gdoc-markdown__link" href="http://tools.ietf.org/html/draft-ietf-appsawg-acct-uri-07">the <code>acct:</code> scheme</a> is prepended to the identifier.</p>
+<p>The client (relying party) would make the following WebFinger request to discover the oCIS instance location (with line wraps within lines for display purposes only):</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">  GET /.well-known/webfinger
+    ?resource=acct%3Ajoe%40example.com
+    &amp;rel=http%3A%2F%2Fowncloud.com%2Fspecs%2Focis%2F1.0%2Finstance
+    HTTP/1.1
+  Host: example.com
+
+  HTTP/1.1 200 OK
+  Content-Type: application/jrd+json
+
+  {
+   &#34;subject&#34;: &#34;acct:joe@example.com&#34;,
+   &#34;links&#34;:
+    [
+     {
+      &#34;rel&#34;: &#34;http://owncloud.com/specs/ocis/1.0/instance&#34;,
+      &#34;href&#34;: &#34;https://cloud.example.com&#34;
+     }
+    ]
+  }
+</code></pre></div><blockquote class="gdoc-hint ">
+  Note: the <code>example.com</code> domain is derived from the email.
+</blockquote>
+
+<blockquote class="gdoc-hint danger">
+  <p>The <code>https://cloud.example.com</code> domain above would point to the ocis instance.
+TODO that ins ocis web &hellip; not the registry &hellip; hmmmm
+maybe introduce an ocis provider which then has an <code>/.well-known/ocis-configuration</code>, similar to <code>/.well-known/openid-configuration</code>?
+It would contain</p>
 <ul>
-<li>
-<p><code>[CI SKIP]</code>: no ci is run on the commit or PR</p>
-</li>
-<li>
-<p><code>[docs-only]</code>: please add this flag, if you only changed documentation. This will only trigger documentation related CI steps.</p>
-</li>
-<li>
-<p><code>[tests-only]</code>: please add this flag, if you only changed tests or test-related tooling. You do not need to add a changelog for tests-only changes.</p>
-</li>
+<li>the ocis domain, e.g. <code>https://cloud.example.com</code></li>
+<li>the web endpoint, e.g. <code>https://cloud.example.com</code></li>
+<li>the registry / drives endpoint, e.g. <code>https://cloud.example.com/graph/v0.1/drives/me</code> see <a class="gdoc-markdown__link" href="https://github.com/owncloud/ocis/pull/1827">Add draft of adr for spaces API. #1827</a></li>
 </ul>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="knowledge-base">
-        Knowledge base
-        <a data-clipboard-text="https://owncloud.dev/ocis/development/continuous-integration/#knowledge-base" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Knowledge base" href="#knowledge-base">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><ul>
-<li>
-<p>My pipeline fails because some CI related files or commands are missing.</p>
-<p>Please make sure to rebase your branch onto the latest master of oCIS. It could be that the pipeline definition (<code>.drone.star</code>) was changed on the master branch. This is the only file, that will not be auto merged to master upon pipeline run. So things could be out of sync.</p>
-</li>
-<li>
-<p>How can I see the YAML drone pipeline definition?</p>
-<p>In order to see the Yaml pipeline definition you can use the drone-cli to convert the Starlark file.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">drone starlark
-</code></pre></div><blockquote class="gdoc-hint info">
-  <p>If you experience a <code>&quot;build&quot; struct has no .title attribute</code> you need a newer version of drone-cli.</p>
-<p>You currently need to build it yourself from this <a class="gdoc-markdown__link" href="https://github.com/drone/drone-cli">source code</a>. If you are not using master as source, please ensure that this <a class="gdoc-markdown__link" href="https://github.com/drone/drone-cli/pull/175">PR</a> is included.</p>
+<p>example:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">HTTP/1.1 200 OK
+  Content-Type: application/json
+
+  {
+   &#34;instance&#34;:        &#34;https://cloud.example.com&#34;,
+   &#34;graph_endpoint&#34;:  &#34;https://cloud.example.com/graph/v0.0&#34;,
+   &#34;ocis_web_config&#34;: &#34;https://cloud.example.com/web/config.json&#34;,
+   &#34;issuer&#34;:          &#34;https://idp.example.com&#34;,
+  }
+</code></pre></div><p><code>graph_endpoint</code> is the open-graph-api endpoint that is used to list storage spaces at e.g. <code>https://cloud.example.com/graph/v0.1/me/drives</code>.</p>
+<p><code>ocis_web_config</code> points ocis web to the config for the instance. Maybe we can add more config in the <code>/.well-known/ocis-configuration</code> to replace the config.json? Is this the new status.php? How safe is it to expose all this info &hellip;?</p>
+<p>The <code>issuer</code> could be used to detect the issuer that is used if no other issuer is found &hellip; might be a fallback_issuer, but actually we may decide to skid the OIDC discovery and rely on this property. Maybe we need it if no IdP is present yet or the <code>/.well-known/openid-configuration</code> is not set up / reachable.</p>
 
 </blockquote>
 
-</li>
-</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="obtaining-ocis-provider-configuration-information">
+        Obtaining oCIS Provider Configuration Information
+        <a data-clipboard-text="https://owncloud.dev/ocis/storage_registry_discovery/#obtaining-ocis-provider-configuration-information" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Obtaining oCIS Provider Configuration Information" href="#obtaining-ocis-provider-configuration-information">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>Using the <code>instance</code> location discovered as described above or by other means, the oCIS Provider&rsquo;s configuration information can be retrieved.</p>
+<p>oCIS Providers supporting Discovery MUST make a JSON document available at the path formed by concatenating the string <code>/.well-known/openid-configuration</code> to the <code>instance</code>. The syntax and semantics of <code>.well-known</code> are defined in <a class="gdoc-markdown__link" href="http://tools.ietf.org/html/rfc5785">RFC5785</a> and apply to the <code>instance</code> value when it contains no path component. <code>ocis-configuration</code> MUST point to a JSON document compliant with this specification and MUST be returned using the <code>application/json</code> content type.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="ocis-provider-configuration-request">
+        oCIS Provider Configuration Request
+        <a data-clipboard-text="https://owncloud.dev/ocis/storage_registry_discovery/#ocis-provider-configuration-request" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor oCIS Provider Configuration Request" href="#ocis-provider-configuration-request">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>An oCIS Provider Configuration Document MUST be queried using an HTTP GET request at the previously specified path.</p>
+<p>The client (relying party) would make the following request to the instance <a href="https://example.com">https://example.com</a> to obtain its Configuration information, since the Issuer contains no path component:</p>
+<p>GET /.well-known/openid-configuration HTTP/1.1
+Host: example.com
+If the Issuer value contains a path component, any terminating / MUST be removed before appending /.well-known/openid-configuration. The RP would make the following request to the Issuer <a href="https://example.com/issuer1">https://example.com/issuer1</a> to obtain its Configuration information, since the Issuer contains a path component:</p>
+<p>GET /issuer1/.well-known/openid-configuration HTTP/1.1
+Host: example.com
+Using path components enables supporting multiple issuers per host. This is required in some multi-tenant hosting configurations. This use of .well-known is for supporting multiple issuers per host; unlike its use in RFC 5785 [RFC5785], it does not provide general information about the host.</p>
 
 
     </article>
