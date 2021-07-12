@@ -10,7 +10,7 @@
 
 
 
-    <meta name="description" content="Configuration  Configuration using config files Environment variables Commandline flags accounts ocis-accounts accounts update accounts add accounts list accounts remove accounts server accounts version accounts inspect accounts rebuildIndex       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
+    <meta name="description" content="Configuration  Configuration using config files Environment variables Commandline flags accounts ocis-accounts accounts server accounts update accounts add accounts list accounts remove accounts version accounts inspect accounts rebuildIndex       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
 /etc/ocis $HOME/.ocis ./config For this configuration to be picked up, have a look at your extension root command and look for which default config name it has assigned.">
 
 
@@ -3845,11 +3845,11 @@
             <li><a href="#environment-variables">Environment variables</a></li>
             <li><a href="#commandline-flags">Commandline flags</a></li>
             <li><a href="#accounts-ocis-accounts">accounts ocis-accounts</a></li>
+            <li><a href="#accounts-server">accounts server</a></li>
             <li><a href="#accounts-update">accounts update</a></li>
             <li><a href="#accounts-add">accounts add</a></li>
             <li><a href="#accounts-list">accounts list</a></li>
             <li><a href="#accounts-remove">accounts remove</a></li>
-            <li><a href="#accounts-server">accounts server</a></li>
             <li><a href="#accounts-version">accounts version</a></li>
             <li><a href="#accounts-inspect">accounts inspect</a></li>
             <li><a href="#accounts-rebuildindex">accounts rebuildIndex</a></li>
@@ -3911,6 +3911,77 @@ $HOME/.ocis
 <dd>Enable pretty logging.</dd>
 <dt>-log-color |  $ACCOUNTS_LOG_COLOR , $OCIS_LOG_COLOR</dt>
 <dd>Enable colored logging.</dd>
+<dt>-extensions |</dt>
+<dd>Run specific extensions during supervised mode.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="accounts-server">
+        accounts server
+        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts server" href="#accounts-server">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Start ocis accounts service</p>
+<p>Usage: <code>accounts server [command options] [arguments...]</code></p>
+<dl>
+<dt>-log-file |  $ACCOUNTS_LOG_FILE , $OCIS_LOG_FILE</dt>
+<dd>Enable log to file.</dd>
+<dt>-tracing-enabled |  $ACCOUNTS_TRACING_ENABLED</dt>
+<dd>Enable sending traces.</dd>
+<dt>-tracing-type |  $ACCOUNTS_TRACING_TYPE</dt>
+<dd>Tracing backend type. Default: <code>&quot;jaeger&quot;</code>.</dd>
+<dt>-tracing-endpoint |  $ACCOUNTS_TRACING_ENDPOINT</dt>
+<dd>Endpoint for the agent. Default: <code>&quot;&quot;</code>.</dd>
+<dt>-tracing-collector |  $ACCOUNTS_TRACING_COLLECTOR</dt>
+<dd>Endpoint for the collector. Default: <code>&quot;&quot;</code>.</dd>
+<dt>-tracing-service |  $ACCOUNTS_TRACING_SERVICE</dt>
+<dd>Service name for tracing. Default: <code>&quot;accounts&quot;</code>.</dd>
+<dt>-http-namespace |  $ACCOUNTS_HTTP_NAMESPACE</dt>
+<dd>Set the base namespace for the http namespace. Default: <code>&quot;com.owncloud.web&quot;</code>.</dd>
+<dt>-http-addr |  $ACCOUNTS_HTTP_ADDR</dt>
+<dd>Address to bind http server. Default: <code>&quot;0.0.0.0:9181&quot;</code>.</dd>
+<dt>-http-root |  $ACCOUNTS_HTTP_ROOT</dt>
+<dd>Root path of http server. Default: <code>&quot;/&quot;</code>.</dd>
+<dt>-http-cache-ttl |  $ACCOUNTS_CACHE_TTL</dt>
+<dd>Set the static assets caching duration in seconds. Default: <code>604800</code>.</dd>
+<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
+<dd>Set the base namespace for the grpc namespace. Default: <code>&quot;com.owncloud.api&quot;</code>.</dd>
+<dt>-grpc-addr |  $ACCOUNTS_GRPC_ADDR</dt>
+<dd>Address to bind grpc server. Default: <code>&quot;0.0.0.0:9180&quot;</code>.</dd>
+<dt>-name |  $ACCOUNTS_NAME</dt>
+<dd>service name. Default: <code>&quot;accounts&quot;</code>.</dd>
+<dt>-accounts-hash-difficulty |  $ACCOUNTS_HASH_DIFFICULTY</dt>
+<dd>accounts password hash difficulty. Default: <code>11</code>.</dd>
+<dt>-asset-path |  $ACCOUNTS_ASSET_PATH</dt>
+<dd>Path to custom assets. Default: <code>&quot;&quot;</code>.</dd>
+<dt>-jwt-secret |  $ACCOUNTS_JWT_SECRET , $OCIS_JWT_SECRET</dt>
+<dd>Used to create JWT to talk to reva, should equal reva&rsquo;s jwt-secret. Default: <code>&quot;Pive-Fumkiu4&quot;</code>.</dd>
+<dt>-storage-disk-path |  $ACCOUNTS_STORAGE_DISK_PATH</dt>
+<dd>Path on the local disk, e.g. /var/tmp/ocis/accounts. Default: <code>&quot;&quot;</code>.</dd>
+<dt>-storage-cs3-provider-addr |  $ACCOUNTS_STORAGE_CS3_PROVIDER_ADDR</dt>
+<dd>bind address for the metadata storage provider. Default: <code>&quot;localhost:9215&quot;</code>.</dd>
+<dt>-storage-cs3-data-url |  $ACCOUNTS_STORAGE_CS3_DATA_URL</dt>
+<dd>http endpoint of the metadata storage. Default: <code>&quot;http://localhost:9216&quot;</code>.</dd>
+<dt>-storage-cs3-data-prefix |  $ACCOUNTS_STORAGE_CS3_DATA_PREFIX</dt>
+<dd>path prefix for the http endpoint of the metadata storage, without leading slash. Default: <code>&quot;data&quot;</code>.</dd>
+<dt>-storage-cs3-jwt-secret |  $ACCOUNTS_STORAGE_CS3_JWT_SECRET , $OCIS_JWT_SECRET</dt>
+<dd>Used to create JWT to talk to reva, should equal reva&rsquo;s jwt-secret. Default: <code>&quot;Pive-Fumkiu4&quot;</code>.</dd>
+<dt>-service-user-uuid |  $ACCOUNTS_SERVICE_USER_UUID</dt>
+<dd>uuid of the internal service user (required on EOS). Default: <code>&quot;95cb8724-03b2-11eb-a0a6-c33ef8ef53ad&quot;</code>.</dd>
+<dt>-service-user-username |  $ACCOUNTS_SERVICE_USER_USERNAME</dt>
+<dd>username of the internal service user (required on EOS). Default: <code>&quot;&quot;</code>.</dd>
+<dt>-service-user-uid |  $ACCOUNTS_SERVICE_USER_UID</dt>
+<dd>uid of the internal service user (required on EOS). Default: <code>0</code>.</dd>
+<dt>-service-user-gid |  $ACCOUNTS_SERVICE_USER_GID</dt>
+<dd>gid of the internal service user (required on EOS). Default: <code>0</code>.</dd>
+<dt>-uid-index-lower-bound |  $ACCOUNTS_UID_INDEX_LOWER_BOUND</dt>
+<dd>define a starting point for the account UID. Default: <code>0</code>.</dd>
+<dt>-gid-index-lower-bound |  $ACCOUNTS_GID_INDEX_LOWER_BOUND</dt>
+<dd>define a starting point for the account GID. Default: <code>1000</code>.</dd>
+<dt>-uid-index-upper-bound |  $ACCOUNTS_UID_INDEX_UPPER_BOUND</dt>
+<dd>define an ending point for the account UID. Default: <code>0</code>.</dd>
+<dt>-gid-index-upper-bound |  $ACCOUNTS_GID_INDEX_UPPER_BOUND</dt>
+<dd>define an ending point for the account GID. Default: <code>1000</code>.</dd>
 <dt>-extensions |</dt>
 <dd>Run specific extensions during supervised mode.</dd>
 </dl>
@@ -4023,77 +4094,6 @@ $HOME/.ocis
 <dd>Set the base namespace for the grpc namespace. Default: <code>&quot;com.owncloud.api&quot;</code>.</dd>
 <dt>-name |  $ACCOUNTS_NAME</dt>
 <dd>service name. Default: <code>&quot;accounts&quot;</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="accounts-server">
-        accounts server
-        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts server" href="#accounts-server">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p>Start ocis accounts service</p>
-<p>Usage: <code>accounts server [command options] [arguments...]</code></p>
-<dl>
-<dt>-log-file |  $ACCOUNTS_LOG_FILE , $OCIS_LOG_FILE</dt>
-<dd>Enable log to file.</dd>
-<dt>-tracing-enabled |  $ACCOUNTS_TRACING_ENABLED</dt>
-<dd>Enable sending traces.</dd>
-<dt>-tracing-type |  $ACCOUNTS_TRACING_TYPE</dt>
-<dd>Tracing backend type. Default: <code>&quot;jaeger&quot;</code>.</dd>
-<dt>-tracing-endpoint |  $ACCOUNTS_TRACING_ENDPOINT</dt>
-<dd>Endpoint for the agent. Default: <code>&quot;&quot;</code>.</dd>
-<dt>-tracing-collector |  $ACCOUNTS_TRACING_COLLECTOR</dt>
-<dd>Endpoint for the collector. Default: <code>&quot;&quot;</code>.</dd>
-<dt>-tracing-service |  $ACCOUNTS_TRACING_SERVICE</dt>
-<dd>Service name for tracing. Default: <code>&quot;accounts&quot;</code>.</dd>
-<dt>-http-namespace |  $ACCOUNTS_HTTP_NAMESPACE</dt>
-<dd>Set the base namespace for the http namespace. Default: <code>&quot;com.owncloud.web&quot;</code>.</dd>
-<dt>-http-addr |  $ACCOUNTS_HTTP_ADDR</dt>
-<dd>Address to bind http server. Default: <code>&quot;0.0.0.0:9181&quot;</code>.</dd>
-<dt>-http-root |  $ACCOUNTS_HTTP_ROOT</dt>
-<dd>Root path of http server. Default: <code>&quot;/&quot;</code>.</dd>
-<dt>-http-cache-ttl |  $ACCOUNTS_CACHE_TTL</dt>
-<dd>Set the static assets caching duration in seconds. Default: <code>604800</code>.</dd>
-<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>&quot;com.owncloud.api&quot;</code>.</dd>
-<dt>-grpc-addr |  $ACCOUNTS_GRPC_ADDR</dt>
-<dd>Address to bind grpc server. Default: <code>&quot;0.0.0.0:9180&quot;</code>.</dd>
-<dt>-name |  $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>&quot;accounts&quot;</code>.</dd>
-<dt>-accounts-hash-difficulty |  $ACCOUNTS_HASH_DIFFICULTY</dt>
-<dd>accounts password hash difficulty. Default: <code>11</code>.</dd>
-<dt>-asset-path |  $ACCOUNTS_ASSET_PATH</dt>
-<dd>Path to custom assets. Default: <code>&quot;&quot;</code>.</dd>
-<dt>-jwt-secret |  $ACCOUNTS_JWT_SECRET , $OCIS_JWT_SECRET</dt>
-<dd>Used to create JWT to talk to reva, should equal reva&rsquo;s jwt-secret. Default: <code>&quot;Pive-Fumkiu4&quot;</code>.</dd>
-<dt>-storage-disk-path |  $ACCOUNTS_STORAGE_DISK_PATH</dt>
-<dd>Path on the local disk, e.g. /var/tmp/ocis/accounts. Default: <code>&quot;&quot;</code>.</dd>
-<dt>-storage-cs3-provider-addr |  $ACCOUNTS_STORAGE_CS3_PROVIDER_ADDR</dt>
-<dd>bind address for the metadata storage provider. Default: <code>&quot;localhost:9215&quot;</code>.</dd>
-<dt>-storage-cs3-data-url |  $ACCOUNTS_STORAGE_CS3_DATA_URL</dt>
-<dd>http endpoint of the metadata storage. Default: <code>&quot;http://localhost:9216&quot;</code>.</dd>
-<dt>-storage-cs3-data-prefix |  $ACCOUNTS_STORAGE_CS3_DATA_PREFIX</dt>
-<dd>path prefix for the http endpoint of the metadata storage, without leading slash. Default: <code>&quot;data&quot;</code>.</dd>
-<dt>-storage-cs3-jwt-secret |  $ACCOUNTS_STORAGE_CS3_JWT_SECRET , $OCIS_JWT_SECRET</dt>
-<dd>Used to create JWT to talk to reva, should equal reva&rsquo;s jwt-secret. Default: <code>&quot;Pive-Fumkiu4&quot;</code>.</dd>
-<dt>-service-user-uuid |  $ACCOUNTS_SERVICE_USER_UUID</dt>
-<dd>uuid of the internal service user (required on EOS). Default: <code>&quot;95cb8724-03b2-11eb-a0a6-c33ef8ef53ad&quot;</code>.</dd>
-<dt>-service-user-username |  $ACCOUNTS_SERVICE_USER_USERNAME</dt>
-<dd>username of the internal service user (required on EOS). Default: <code>&quot;&quot;</code>.</dd>
-<dt>-service-user-uid |  $ACCOUNTS_SERVICE_USER_UID</dt>
-<dd>uid of the internal service user (required on EOS). Default: <code>0</code>.</dd>
-<dt>-service-user-gid |  $ACCOUNTS_SERVICE_USER_GID</dt>
-<dd>gid of the internal service user (required on EOS). Default: <code>0</code>.</dd>
-<dt>-uid-index-lower-bound |  $ACCOUNTS_UID_INDEX_LOWER_BOUND</dt>
-<dd>define a starting point for the account UID. Default: <code>0</code>.</dd>
-<dt>-gid-index-lower-bound |  $ACCOUNTS_GID_INDEX_LOWER_BOUND</dt>
-<dd>define a starting point for the account GID. Default: <code>1000</code>.</dd>
-<dt>-uid-index-upper-bound |  $ACCOUNTS_UID_INDEX_UPPER_BOUND</dt>
-<dd>define an ending point for the account UID. Default: <code>0</code>.</dd>
-<dt>-gid-index-upper-bound |  $ACCOUNTS_GID_INDEX_UPPER_BOUND</dt>
-<dd>define an ending point for the account GID. Default: <code>1000</code>.</dd>
-<dt>-extensions |</dt>
-<dd>Run specific extensions during supervised mode.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap">
     <h3 id="accounts-version">
