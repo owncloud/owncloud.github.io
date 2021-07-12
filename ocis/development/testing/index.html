@@ -3973,11 +3973,13 @@ In the ownCloud 10 core clone the testing app with the following command:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">make test-acceptance-api \
 TEST_SERVER_URL=https://localhost:9200 \
 TEST_OCIS=true \
+STORAGE_DRIVER=OCIS \
 SKELETON_DIR=apps/testing/data/apiSkeleton \
 BEHAT_FILTER_TAGS=&#39;~@notToImplementOnOCIS&amp;&amp;~@toImplementOnOCIS&#39;
 </code></pre></div><p>Make sure to adjust the settings <code>TEST_SERVER_URL</code> and <code>OCIS_REVA_DATA_ROOT</code> according to your environment.</p>
 <p>This will run all tests that are relevant to oCIS.</p>
 <p>To run a single test add <code>BEHAT_FEATURE=&lt;feature file&gt;</code></p>
+<p>To run tests with a different storage driver set <code>STORAGE_DRIVER</code> to the correct value. It can be set to <code>OCIS</code> or <code>OWNCLOUD</code> and uses <code>OWNCLOUD</code> as the default value.</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="use-existing-tests-for-bdd">
         use existing tests for BDD
@@ -4010,6 +4012,7 @@ CORE_BRANCH=master
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">make test-acceptance-api \
 TEST_SERVER_URL=https://localhost:9200 \
 TEST_OCIS=true \
+STORAGE_DRIVER=OCIS \
 BEHAT_FEATURE=&#39;tests/acceptance/features/apiComments/comments.feature:123&#39;
 </code></pre></div></li>
 <li>
