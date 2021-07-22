@@ -3897,6 +3897,10 @@ After completing this setup, ownCloud Web will be available on <code>https://&lt
          alt="Example OAuth2 entry"/> 
 </figure>
 
+<blockquote class="gdoc-hint ">
+  If you use OpenID Connect you instead need to add a new client for ownCloud Web to your identity provider.
+</blockquote>
+
 <div class="gdoc-page__anchorwrap">
     <h2 id="configure-owncloud-10">
         Configure ownCloud 10
@@ -4019,6 +4023,18 @@ After completing this setup, ownCloud Web will be available on <code>https://&lt
 </table>
 <blockquote class="gdoc-hint info">
   It is important that you don&rsquo;t edit or place the <code>config.json</code> within the app folder. If you do, the integrity check of the app will fail and raise warnings.
+</blockquote>
+
+<blockquote class="gdoc-hint ">
+  <p>If you use OpenID Connect you need to replace the <code>&quot;auth&quot;</code> part with following configuration:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">  &#34;openIdConnect&#34;: {
+    &#34;metadata_url&#34;: &#34;&lt;fqdn-of-the-identity-provider&gt;/.well-known/openid-configuration&#34;,
+    &#34;authority&#34;: &#34;&lt;fqdn-of-the-identity-provider&gt;&#34;,
+    &#34;client_id&#34;: &#34;&lt;client-id-from-the-identity-provider&gt;&#34;,
+    &#34;response_type&#34;: &#34;code&#34;,
+    &#34;scope&#34;: &#34;openid profile email&#34;
+  },
+</code></pre></div>
 </blockquote>
 
 <div class="gdoc-page__anchorwrap">
