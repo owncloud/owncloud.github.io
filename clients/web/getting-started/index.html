@@ -10,9 +10,9 @@
 
 
 
-    <meta name="description" content="Installation  Docker Source code   Configuration    Options     Setting up backend and running Running     Installation    Docker    TBD
-Source code    The source code is hosted at https://github.com/owncloud/web. Please refer to the build documentation for Web.
-Configuration    Depending on the backend you are using, there are sample config files provided in the config folder of the ownCloud Web git repository.">
+    <meta name="description" content="Installation  Docker Source code   Configuration    Options     Setting up backend and running Running     Installation    Docker    Make sure to have Docker, Docker-Compose, Node.js and Yarn installed.
+This setup currently doesn&rsquo;t work on Windows out of the box.
+ Workaround One of our contributors has opened a PR to a dependency that prevents us from successfully bundling the frontend.">
 
 
 
@@ -1571,7 +1571,7 @@ Configuration    Depending on the backend you are using, there are sample config
             
                 <span class="flex">
                     <a href="/clients/web/backend-ocis/" class="gdoc-nav__entry ">
-                        Setup with OCIS
+                        Setup with oCIS
                     </a>
                 </span>
             
@@ -1689,6 +1689,30 @@ Configuration    Depending on the backend you are using, there are sample config
                 <span class="flex">
                     <a href="/clients/web/testing/" class="gdoc-nav__entry ">
                         Running acceptance tests
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/clients/web/testing-manual/" class="gdoc-nav__entry ">
+                        Running acceptance tests - manual
                     </a>
                 </span>
             
@@ -3874,7 +3898,20 @@ Configuration    Depending on the backend you are using, there are sample config
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><p>TBD</p>
+</div><p>Make sure to have Docker, Docker-Compose, Node.js and Yarn installed.</p>
+<blockquote class="gdoc-hint info">
+  <p>This setup currently doesn&rsquo;t work on Windows out of the box.</p>
+<details>
+  <summary>Workaround</summary>
+  One of our contributors has opened a PR to a dependency that prevents us from successfully bundling the frontend.
+  Feel free to check out [his changes](https://github.com/egoist/rollup-plugin-postcss/pull/384) and build them locally if you absolutely want to work on Windows.
+</details>
+
+</blockquote>
+
+<p>After cloning the <a class="gdoc-markdown__link" href="https://github.com/owncloud/web">source code</a>, install the dependencies via <code>yarn install</code> and bundle the frontend code by running <code>yarn build:w</code>.</p>
+<p>Then, you can start the backends by running <code>docker-compose up oc10 ocis</code> and access them via <a class="gdoc-markdown__link" href="https://host.docker.internal:9200">https://host.docker.internal:9200</a> (oCIS) and <a class="gdoc-markdown__link" href="http://host.docker.internal:8080">http://host.docker.internal:8080</a> (OC10). If you&rsquo;re not using Docker Desktop, you might have to modify your <code>/etc/hosts</code> and add <code>172.17.0.1 docker.host.internal</code> to make the <code>host.docker.internal</code> links work.</p>
+<p>The bundled frontend code automatically gets mounted into the Docker containers, recompiles on changes and you can log in using the demo user (admin/admin) and take a look around!</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="source-code">
         Source code
@@ -3918,11 +3955,11 @@ allows ownCloud to get feedback from your user base through a dedicated survey w
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><p>Web can run against either <a class="gdoc-markdown__link" href="https://github.com/owncloud/core/">ownCloud 10</a> as backend or <a class="gdoc-markdown__link" href="https://github.com/owncloud/ocis">OCIS</a>.
+</div><p>Web can run against either <a class="gdoc-markdown__link" href="https://github.com/owncloud/core/">ownCloud 10</a> as backend or <a class="gdoc-markdown__link" href="https://github.com/owncloud/ocis">oCIS</a>.
 Depending which one you chose, please check the matching section:</p>
 <ul>
 <li><a class="gdoc-markdown__link" href="https://owncloud.dev/clients/web/backend-oc10/">Setting up with ownCloud as backend</a></li>
-<li><a class="gdoc-markdown__link" href="https://owncloud.dev/clients/web/backend-ocis/">Setting up with OCIS as backend</a></li>
+<li><a class="gdoc-markdown__link" href="https://owncloud.dev/clients/web/backend-ocis/">Setting up with oCIS as backend</a></li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h2 id="running">
@@ -3933,7 +3970,7 @@ Depending which one you chose, please check the matching section:</p>
     </h2>
 </div><ul>
 <li><a class="gdoc-markdown__link" href="https://owncloud.dev/clients/web/backend-oc10/#running-web">Running with ownCloud as backend</a></li>
-<li><a class="gdoc-markdown__link" href="https://owncloud.dev/clients/web/backend-ocis/#running-web">Running with OCIS as backend</a></li>
+<li><a class="gdoc-markdown__link" href="https://owncloud.dev/clients/web/backend-ocis/#running-web">Running with oCIS as backend</a></li>
 </ul>
 
 
