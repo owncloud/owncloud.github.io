@@ -10,7 +10,9 @@
 
 
 
-    <meta name="description" content="5. Configuration Management for oCIS     Status: proposed Deciders: @refs, @butonic, @micbar, @dragotin, @pmaier1 Date: 2021-05-03   5. Configuration Management for oCIS  Context and Problem Statement Decision Drivers Considered Options Decision Outcome  Positive Consequences   Pros and Cons of the Options  Extend FlagInputSourceExtension interface Feature request: support for structured configuration (urfave/cli). Clearly defined boundaries of what can and cannot be done. Expose structured field values as CLI flags Drop support for structure configuration Adapt the &ldquo;structured config files have the highest priority&rdquo; within oCIS   Notes  Use Cases and Expected Behaviors  Supervised (ocis server or ocis run extension)  Known Gotchas   Unsupervised (ocis proxy)   Other known use cases Use Cases for Development Config Loading Start an extension multiple times with different configs (in Supervised mode) Developing Considered Alternatives Further Follow up PR&rsquo;s State of the Art      Context and Problem Statement    As per urfave/cli&rsquo;s doc:">
+    <meta name="description" content="Status: proposed Deciders: @refs, @butonic, @micbar, @dragotin, @pmaier1 Date: 2021-05-03  Context and Problem Statement    As per urfave/cli&rsquo;s doc:
+ The precedence for flag value sources is as follows (highest to lowest):
+Command line flag value from user Environment variable (if specified) Configuration file (if specified) Default defined on the flag   An issue arises in point 2, in the sense that configuration file refers to a single file containing the value for the env variable.">
 
 
 
@@ -565,6 +567,8 @@
             </li>
             
             
+        
+            
             
 
             
@@ -588,6 +592,8 @@
             
             </li>
             
+            
+        
             
             
 
@@ -613,6 +619,8 @@
             </li>
             
             
+        
+            
             
 
             
@@ -636,6 +644,8 @@
             
             </li>
             
+            
+        
             
             
 
@@ -661,6 +671,8 @@
             </li>
             
             
+        
+            
             
 
             
@@ -684,6 +696,8 @@
             
             </li>
             
+            
+        
             
             
 
@@ -709,6 +723,8 @@
             </li>
             
             
+        
+            
             
 
             
@@ -733,6 +749,8 @@
             </li>
             
             
+        
+            
             
 
             
@@ -746,8 +764,8 @@
             
             
                 <span class="flex">
-                    <a href="/ocis/adr/0008-extension-template/" class="gdoc-nav__entry ">
-                        8. Extension Template
+                    <a href="/ocis/adr/0009-extension-template/" class="gdoc-nav__entry ">
+                        9. Extension Template
                     </a>
                 </span>
             
@@ -757,6 +775,8 @@
             </li>
             
             
+        
+            
             
 
             
@@ -770,8 +790,34 @@
             
             
                 <span class="flex">
-                    <a href="/ocis/adr/0008-policy-enforcement/" class="gdoc-nav__entry ">
-                        8. Extensions Policies
+                    <a href="/ocis/adr/0010-policy-enforcement/" class="gdoc-nav__entry ">
+                        10. Extension Policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/ocis/adr/0011-global-url-format/" class="gdoc-nav__entry ">
+                        11. WebUI URL format
                     </a>
                 </span>
             
@@ -3858,62 +3904,10 @@
 
     <article class="gdoc-markdown gdoc-markdown__align--left">
         <h1>8. Configuration</h1>
-        <div class="gdoc-page__anchorwrap">
-    <h2 id="5-configuration-management-for-ocis">
-        5. Configuration Management for oCIS
-        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0008-configuration/#5-configuration-management-for-ocis" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 5. Configuration Management for oCIS" href="#5-configuration-management-for-ocis">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h2>
-</div><ul>
+        <ul>
 <li>Status: proposed</li>
 <li>Deciders: @refs, @butonic, @micbar, @dragotin, @pmaier1</li>
 <li>Date: 2021-05-03</li>
-</ul>
-<ul>
-<li><a class="gdoc-markdown__link" href="#5-configuration-management-for-ocis">5. Configuration Management for oCIS</a>
-<ul>
-<li><a class="gdoc-markdown__link" href="#context-and-problem-statement">Context and Problem Statement</a></li>
-<li><a class="gdoc-markdown__link" href="#decision-drivers">Decision Drivers</a></li>
-<li><a class="gdoc-markdown__link" href="#considered-options">Considered Options</a></li>
-<li><a class="gdoc-markdown__link" href="#decision-outcome">Decision Outcome</a>
-<ul>
-<li><a class="gdoc-markdown__link" href="#positive-consequences">Positive Consequences</a></li>
-</ul>
-</li>
-<li><a class="gdoc-markdown__link" href="#pros-and-cons-of-the-options">Pros and Cons of the Options</a>
-<ul>
-<li><a class="gdoc-markdown__link" href="#extend-flaginputsourceextension-interface">Extend FlagInputSourceExtension interface</a></li>
-<li><a class="gdoc-markdown__link" href="#feature-request-support-for-structured-configuration-urfavecli">Feature request: support for structured configuration (urfave/cli).</a></li>
-<li><a class="gdoc-markdown__link" href="#clearly-defined-boundaries-of-what-can-and-cannot-be-done">Clearly defined boundaries of what can and cannot be done.</a></li>
-<li><a class="gdoc-markdown__link" href="#expose-structured-field-values-as-cli-flags">Expose structured field values as CLI flags</a></li>
-<li><a class="gdoc-markdown__link" href="#drop-support-for-structure-configuration">Drop support for structure configuration</a></li>
-<li><a class="gdoc-markdown__link" href="#adapt-the-structured-config-files-have-the-highest-priority-within-ocis">Adapt the &ldquo;structured config files have the highest priority&rdquo; within oCIS</a></li>
-</ul>
-</li>
-<li><a class="gdoc-markdown__link" href="#notes">Notes</a>
-<ul>
-<li><a class="gdoc-markdown__link" href="#use-cases-and-expected-behaviors">Use Cases and Expected Behaviors</a>
-<ul>
-<li><a class="gdoc-markdown__link" href="#supervised-ocis-server-or-ocis-run-extension">Supervised (<code>ocis server</code> or <code>ocis run extension</code>)</a>
-<ul>
-<li><a class="gdoc-markdown__link" href="#known-gotchas">Known Gotchas</a></li>
-</ul>
-</li>
-<li><a class="gdoc-markdown__link" href="#unsupervised-ocis-proxy">Unsupervised (<code>ocis proxy</code>)</a></li>
-</ul>
-</li>
-<li><a class="gdoc-markdown__link" href="#other-known-use-cases">Other known use cases</a></li>
-<li><a class="gdoc-markdown__link" href="#use-cases-for-development">Use Cases for Development</a></li>
-<li><a class="gdoc-markdown__link" href="#config-loading">Config Loading</a></li>
-<li><a class="gdoc-markdown__link" href="#start-an-extension-multiple-times-with-different-configs-in-supervised-mode">Start an extension multiple times with different configs (in Supervised mode)</a></li>
-<li><a class="gdoc-markdown__link" href="#developing-considered-alternatives-further">Developing Considered Alternatives Further</a></li>
-<li><a class="gdoc-markdown__link" href="#follow-up-prs">Follow up PR&rsquo;s</a></li>
-<li><a class="gdoc-markdown__link" href="#state-of-the-art">State of the Art</a></li>
-</ul>
-</li>
-</ul>
-</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h2 id="context-and-problem-statement">

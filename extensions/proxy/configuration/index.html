@@ -10,7 +10,7 @@
 
 
 
-    <meta name="description" content="Configuration  Configuration using config files Environment variables Commandline flags proxy health proxy ocis-proxy proxy server proxy version       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
+    <meta name="description" content="Configuration  Configuration using config files Environment variables Commandline flags proxy server proxy version proxy health proxy ocis-proxy       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
 /etc/ocis $HOME/.ocis ./config For this configuration to be picked up, have a look at your extension root command and look for which default config name it has assigned.">
 
 
@@ -566,6 +566,8 @@
             </li>
             
             
+        
+            
             
 
             
@@ -589,6 +591,8 @@
             
             </li>
             
+            
+        
             
             
 
@@ -614,6 +618,8 @@
             </li>
             
             
+        
+            
             
 
             
@@ -637,6 +643,8 @@
             
             </li>
             
+            
+        
             
             
 
@@ -662,6 +670,8 @@
             </li>
             
             
+        
+            
             
 
             
@@ -685,6 +695,8 @@
             
             </li>
             
+            
+        
             
             
 
@@ -710,6 +722,8 @@
             </li>
             
             
+        
+            
             
 
             
@@ -734,6 +748,8 @@
             </li>
             
             
+        
+            
             
 
             
@@ -747,8 +763,8 @@
             
             
                 <span class="flex">
-                    <a href="/ocis/adr/0008-extension-template/" class="gdoc-nav__entry ">
-                        8. Extension Template
+                    <a href="/ocis/adr/0009-extension-template/" class="gdoc-nav__entry ">
+                        9. Extension Template
                     </a>
                 </span>
             
@@ -758,6 +774,8 @@
             </li>
             
             
+        
+            
             
 
             
@@ -771,8 +789,34 @@
             
             
                 <span class="flex">
-                    <a href="/ocis/adr/0008-policy-enforcement/" class="gdoc-nav__entry ">
-                        8. Extensions Policies
+                    <a href="/ocis/adr/0010-policy-enforcement/" class="gdoc-nav__entry ">
+                        10. Extension Policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/ocis/adr/0011-global-url-format/" class="gdoc-nav__entry ">
+                        11. WebUI URL format
                     </a>
                 </span>
             
@@ -3868,10 +3912,10 @@
             <li><a href="#configuration-using-config-files">Configuration using config files</a></li>
             <li><a href="#environment-variables">Environment variables</a></li>
             <li><a href="#commandline-flags">Commandline flags</a></li>
-            <li><a href="#proxy-health">proxy health</a></li>
-            <li><a href="#proxy-ocis-proxy">proxy ocis-proxy</a></li>
             <li><a href="#proxy-server">proxy server</a></li>
             <li><a href="#proxy-version">proxy version</a></li>
+            <li><a href="#proxy-health">proxy health</a></li>
+            <li><a href="#proxy-ocis-proxy">proxy ocis-proxy</a></li>
           </ul>
         </li>
       </ul></nav><hr></div>
@@ -3914,38 +3958,6 @@ $HOME/.ocis
         </a>
     </h3>
 </div><p>If you prefer to configure the service with commandline flags you can see the available variables below. Command line flags are only working when calling the subcommand directly.</p>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="proxy-health">
-        proxy health
-        <a data-clipboard-text="https://owncloud.dev/extensions/proxy/configuration/#proxy-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor proxy health" href="#proxy-health">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p>Check health status</p>
-<p>Usage: <code>proxy health [command options] [arguments...]</code></p>
-<dl>
-<dt>-debug-addr |  $PROXY_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>&quot;0.0.0.0:9109&quot;</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="proxy-ocis-proxy">
-        proxy ocis-proxy
-        <a data-clipboard-text="https://owncloud.dev/extensions/proxy/configuration/#proxy-ocis-proxy" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor proxy ocis-proxy" href="#proxy-ocis-proxy">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p>proxy for oCIS</p>
-<p>Usage: <code>proxy ocis-proxy [command options] [arguments...]</code></p>
-<dl>
-<dt>-log-level |  $PROXY_LOG_LEVEL , $OCIS_LOG_LEVEL</dt>
-<dd>Set logging level.</dd>
-<dt>-log-pretty |  $PROXY_LOG_PRETTY , $OCIS_LOG_PRETTY</dt>
-<dd>Enable pretty logging.</dd>
-<dt>-log-color |  $PROXY_LOG_COLOR , $OCIS_LOG_COLOR</dt>
-<dd>Enable colored logging.</dd>
-<dt>-extensions |</dt>
-<dd>Run specific extensions during supervised mode.</dd>
-</dl>
 <div class="gdoc-page__anchorwrap">
     <h3 id="proxy-server">
         proxy server
@@ -4047,6 +4059,38 @@ $HOME/.ocis
 <dd>Set the base namespace for the service namespace. Default: <code>&quot;com.owncloud.web&quot;</code>.</dd>
 <dt>-service-name |  $PROXY_SERVICE_NAME</dt>
 <dd>Service name. Default: <code>&quot;proxy&quot;</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="proxy-health">
+        proxy health
+        <a data-clipboard-text="https://owncloud.dev/extensions/proxy/configuration/#proxy-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor proxy health" href="#proxy-health">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Check health status</p>
+<p>Usage: <code>proxy health [command options] [arguments...]</code></p>
+<dl>
+<dt>-debug-addr |  $PROXY_DEBUG_ADDR</dt>
+<dd>Address to debug endpoint. Default: <code>&quot;0.0.0.0:9109&quot;</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="proxy-ocis-proxy">
+        proxy ocis-proxy
+        <a data-clipboard-text="https://owncloud.dev/extensions/proxy/configuration/#proxy-ocis-proxy" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor proxy ocis-proxy" href="#proxy-ocis-proxy">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>proxy for oCIS</p>
+<p>Usage: <code>proxy ocis-proxy [command options] [arguments...]</code></p>
+<dl>
+<dt>-log-level |  $PROXY_LOG_LEVEL , $OCIS_LOG_LEVEL</dt>
+<dd>Set logging level.</dd>
+<dt>-log-pretty |  $PROXY_LOG_PRETTY , $OCIS_LOG_PRETTY</dt>
+<dd>Enable pretty logging.</dd>
+<dt>-log-color |  $PROXY_LOG_COLOR , $OCIS_LOG_COLOR</dt>
+<dd>Enable colored logging.</dd>
+<dt>-extensions |</dt>
+<dd>Run specific extensions during supervised mode.</dd>
 </dl>
 
 
