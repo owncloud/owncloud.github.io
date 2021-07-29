@@ -10,7 +10,7 @@
 
 
 
-    <meta name="description" content="Deployments scenarios and examples  Setup oCIS on your server Migrate an existing ownCloud 10   Secure an oCIS instance  Change default secrets Delete demo users       Deployments scenarios and examples    This section handles deployments and operations for admins and people who are interested in how versatile oCIS is. If you want to just try oCIS you may also follow Getting started.">
+    <meta name="description" content="Deployments scenarios and examples  Setup oCIS on your server   Secure an oCIS instance  Change default secrets Delete demo users       Deployments scenarios and examples    This section handles deployments and operations for admins and people who are interested in how versatile oCIS is. If you want to just try oCIS you may also follow Getting started.">
 
 
 
@@ -1056,32 +1056,6 @@
                 <span class="flex">
                     <a href="/ocis/deployment/ocis_wopi/" class="gdoc-nav__entry ">
                         oCIS with WOPI server
-                    </a>
-                </span>
-            
-            
-
-            
-            </li>
-            
-            
-        
-            
-            
-
-            
-            
-            
-            
-            
-            
-
-            <li>
-            
-            
-                <span class="flex">
-                    <a href="/ocis/deployment/owncloud10_with_oc_web/" class="gdoc-nav__entry ">
-                        ownCloud 10 with ownCloud Web
                     </a>
                 </span>
             
@@ -3901,7 +3875,6 @@
         <li><a href="#deployments-scenarios-and-examples">Deployments scenarios and examples</a>
           <ul>
             <li><a href="#setup-ocis-on-your-server">Setup oCIS on your server</a></li>
-            <li><a href="#migrate-an-existing-owncloud-10">Migrate an existing ownCloud 10</a></li>
           </ul>
         </li>
         <li><a href="#secure-an-ocis-instance">Secure an oCIS instance</a>
@@ -3936,19 +3909,6 @@
 <li><a class="gdoc-markdown__link" href="https://owncloud.dev/ocis/deployment/ocis_wopi/">oCIS setup with WOPI server to open office documents in your browser</a></li>
 </ul>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="migrate-an-existing-owncloud-10">
-        Migrate an existing ownCloud 10
-        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/#migrate-an-existing-owncloud-10" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Migrate an existing ownCloud 10" href="#migrate-an-existing-owncloud-10">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p>You can run ownCloud 10 and oCIS together. This allows you to use new parts of oCIS already with ownCloud 10 and also to have a smooth transition for users from ownCloud 10 to oCIS.</p>
-<ul>
-<li><a class="gdoc-markdown__link" href="https://owncloud.dev/ocis/deployment/owncloud10_with_oc_web/">ownCloud 10 setup with oCIS serving ownCloud Web and acting as OIDC provider</a> - This allows you to switch between the traditional ownCloud 10 frontend and the new ownCloud Web frontend</li>
-<li>Run ownCloud 10 and oCIS in parallel - together</li>
-<li>Migrate users from ownCloud 10 to oCIS</li>
-</ul>
-<div class="gdoc-page__anchorwrap">
     <h2 id="secure-an-ocis-instance">
         Secure an oCIS instance
         <a data-clipboard-text="https://owncloud.dev/ocis/deployment/#secure-an-ocis-instance" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Secure an oCIS instance" href="#secure-an-ocis-instance">
@@ -3971,6 +3931,8 @@
 <p>The new password for the Reva Inter Operability Platform user must be made available to oCIS by using the environment variable <code>STORAGE_LDAP_BIND_PASSWORD</code>. The same applies to the new Kopano IDP user password, which needs do be made available to oCIS in <code>IDP_LDAP_BIND_PASSWORD</code>.</p>
 <p>Furthermore, oCIS uses a shared secret to sign JWT tokens for inter service authorization, which also needs to be changed by the user.
 You can change it by setting the <code>OCIS_JWT_SECRET</code> environment variable for oCIS to a random string.</p>
+<p>Another is used secret for singing JWT tokens for uploads and downloads, which also needs to be changed by the user.
+You can change it by setting the <code>STORAGE_TRANSFER_SECRET</code> environment variable for oCIS to a random string.</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="delete-demo-users">
         Delete demo users
