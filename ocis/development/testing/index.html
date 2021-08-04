@@ -3955,7 +3955,7 @@
         </a>
     </h3>
 </div><p>The names of the full test suite make targets have the same naming as in the CI pipeline.</p>
-<p>For example <code>make -C tests/acceptance/docker localApiTests-apiBugDemonstration-ocis</code> runs the same tests as the <code>localApiTests-apiBugDemonstration-ocis</code> CI pipeline, which runs the oCIS test suite &ldquo;apiBugDemonstration&rdquo; against an oCIS with oCIS storage.</p>
+<p>For example <code>make -C tests/acceptance/docker localApiTests-apiAccountsHashDifficulty-ocis</code> runs the same tests as the <code>localApiTests-apiAccountsHashDifficulty-ocis</code> CI pipeline, which runs the oCIS test suite &ldquo;apiAccountsHashDifficulty&rdquo; against an oCIS with oCIS storage.</p>
 <p>For example <code>make -C tests/acceptance/docker Core-API-Tests-owncloud-storage-3</code>runs the same tests as the <code>Core-API-Tests-owncloud-storage-3</code> CI pipeline, which runs the third (out of ten) ownCloud test suite against an oCIS with owncloud storage.</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="run-single-feature-test">
@@ -3965,7 +3965,7 @@
         </a>
     </h3>
 </div><p>The single feature tests can also be run against the different storage backends. Therefore multiple make targets with the schema test-<test source>-feature-<storage backend> exists. For selecting a single feature test you have to add an additional <code>BEHAT_FEATURE=...</code> parameter when invoking the make command:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">make -C tests/acceptance/docker test-ocis-feature-ocis BEHAT_FEATURE=&#39;tests/acceptance/features/apiBugDemonstration/apiAuthOcs-ocsDELETEAuth.feature&#39;
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">make -C tests/acceptance/docker test-ocis-feature-ocis BEHAT_FEATURE=&#39;tests/acceptance/features/apiAccountsHashDifficulty/addUser.feature&#39;
 </code></pre></div><p>This must be pointing to a valid feature definition.</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="ocis-image-to-be-tested-or-skip-build-and-take-existing-image">
@@ -3975,7 +3975,7 @@
         </a>
     </h3>
 </div><p>By default the tests will be run against docker image built from your current working state of the oCIS repository. For some purposes it might also be handy to use a oCIS image from Docker Hub. Therefore you can provide the optional flag <code>OCIS_IMAGE_TAG=...</code> which must contain an available docker tag of the <a class="gdoc-markdown__link" href="https://hub.docker.com/r/owncloud/ocis">owncloud/ocis registry on Docker Hub</a> (eg. &lsquo;latest&rsquo;).</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">make -C tests/acceptance/docker localApiTests-apiBugDemonstration-ocis OCIS_IMAGE_TAG=latest
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">make -C tests/acceptance/docker localApiTests-apiAccountsHashDifficulty-ocis OCIS_IMAGE_TAG=latest
 </code></pre></div><div class="gdoc-page__anchorwrap">
     <h3 id="test-log-output">
         Test log output
@@ -4058,18 +4058,15 @@ Every scenario that does not work in oCIS with &ldquo;owncloud&rdquo; storage, i
 Every scenario that does not work in oCIS with &ldquo;ocis&rdquo; storage, is listed in <code>tests/acceptance/expected-failures-on-OCIS-storage.md</code> with a link to the related issue.</p>
 <p>Those scenarios are run in the ordinary acceptance test pipeline in CI. The scenarios that fail are checked against the
 expected failures. If there are any differences then the CI pipeline fails.
-Similarly, scenarios that do not work in oCIS with EOS storage are listed in <code>tests/acceptance/expected-failures-on-EOS-storage.md</code>.
-Additionally, some issues have scenarios that demonstrate the current buggy behaviour in ocis(reva).
-Those scenarios are in this ocis repository in <code>tests/acceptance/features/apiBugDemonstration</code>.
-Have a look into the <a class="gdoc-markdown__link" href="https://doc.owncloud.com/server/developer_manual/testing/acceptance-tests.html#writing-scenarios-for-bugs">documentation</a> to understand why we are writing those tests.</p>
+Similarly, scenarios that do not work in oCIS with EOS storage are listed in <code>tests/acceptance/expected-failures-on-EOS-storage.md</code>.</p>
 <p>If you want to work on a specific issue</p>
 <ol>
 <li>
 <p>adjust the core commit id to the latest commit in core so that CI will run the latest test code and scenarios from core.
 For that change <code>CORE_COMMITID</code> in <code>.drone.env</code>:</p>
-<pre><code># The test runner source for API tests
-CORE_COMMITID=38c91e5cf5fc4ffdc0536ba1d147a2a618ef83b5
-CORE_BRANCH=master
+<pre><code> # The test runner source for API tests
+ CORE_COMMITID=38c91e5cf5fc4ffdc0536ba1d147a2a618ef83b5
+ CORE_BRANCH=master
 </code></pre>
 </li>
 <li>
@@ -4094,13 +4091,7 @@ BEHAT_FEATURE=&#39;tests/acceptance/features/apiComments/comments.feature:123&#3
 <p>remove those tests from the expected failures file</p>
 </li>
 <li>
-<p>run each of the local tests that were demonstrating the <strong>buggy</strong> behavior. They should fail.</p>
-</li>
-<li>
-<p>delete each of the local tests that were demonstrating the <strong>buggy</strong> behavior.</p>
-</li>
-<li>
-<p>make a PR that has the fixed code, relevant lines removed from the expected failures file and bug demonstration tests deleted.</p>
+<p>make a PR that has the fixed code, and the relevant lines removed from the expected failures file.</p>
 </li>
 </ol>
 
