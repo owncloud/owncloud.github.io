@@ -10,8 +10,8 @@
 
 
 
-    <meta name="description" content="Focusing content of File Picker     File Picker doesn&rsquo;t come with a focus management. Any element needs to be focused through a code in the consuming app.
-Focusing content of File Picker    If you&rsquo;re including File Picker as a web component, managing focus is slightly different from focusing content of any other component in the DOM tree. Since web component are living in shadow root, we need to send the focus into it.">
+    <meta name="description" content="Focusing content of File Picker Initial folder load focus     File Picker comes only with partial focus management. If you want to focus an element, it needs to be achieved through a code in the consuming app.
+Focusing content of File Picker    If you&rsquo;re including File Picker as a web component, managing focus is slightly different from focusing content of any other component in the DOM tree.">
 
 
 
@@ -3906,10 +3906,11 @@ Focusing content of File Picker    If you&rsquo;re including File Picker as a we
 
   <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
         <li><a href="#focusing-content-of-file-picker">Focusing content of File Picker</a></li>
+        <li><a href="#initial-folder-load-focus">Initial folder load focus</a></li>
       </ul></nav><hr></div>
 
 
-<p>File Picker doesn&rsquo;t come with a focus management. Any element needs to be focused through a code in the consuming app.</p>
+<p>File Picker comes only with partial focus management. If you want to focus an element, it needs to be achieved through a code in the consuming app.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="focusing-content-of-file-picker">
         Focusing content of File Picker
@@ -3918,11 +3919,19 @@ Focusing content of File Picker    If you&rsquo;re including File Picker as a we
         </a>
     </h2>
 </div><p>If you&rsquo;re including File Picker as a web component, managing focus is slightly different from focusing content of any other component in the DOM tree. Since web component are living in shadow root, we need to send the focus into it. To focus e.g. a checkbox within the File Picker, you can use the following code.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#file-picker&#39;</span><span class="p">).</span><span class="nx">shadowRoot</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#oc-checkbox-3&#39;</span><span class="p">).</span><span class="nx">focus</span><span class="p">()</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#file-picker&#39;</span><span class="p">).</span><span class="nx">shadowRoot</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.oc-breadcrumb-list-item span[aria-current=&#34;page&#34;]&#39;</span><span class="p">).</span><span class="nx">focus</span><span class="p">()</span>
 </code></pre></div><blockquote class="gdoc-hint info">
   The <code>#file-picker</code> selector is coming from the consuming app, not from File Picker.
 </blockquote>
 
+<div class="gdoc-page__anchorwrap">
+    <h2 id="initial-folder-load-focus">
+        Initial folder load focus
+        <a data-clipboard-text="https://owncloud.dev/integration/file_picker/focus-management/#initial-folder-load-focus" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Initial folder load focus" href="#initial-folder-load-focus">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>After opening a folder, we are focusing the last item of breadcrumbs. This is not the case when loading the first folder. Any following navigation into the first folder will focus the item. To enable focus on the first load as well, you need to set <code>isInitialFocusEnabled</code> prop to <code>true</code>.</p>
 
 
     </article>
