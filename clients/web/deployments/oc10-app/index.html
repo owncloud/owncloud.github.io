@@ -10,7 +10,7 @@
 
 
 
-    <meta name="description" content="Prerequisites Deploying ownCloud Web Configure oauth2 Configure ownCloud 10  Set ownCloud Web address Configure link routing Make ownCloud Web the default web interface   Configure ownCloud Web Accessing ownCloud Web     The ownCloud Web is being deployed as an app to ownCloud marketplace to enable easy early integration into existing ownCloud 10 instances. After completing this setup, ownCloud Web will be available on https://&lt;your-owncloud-server&gt;/index.">
+    <meta name="description" content="Prerequisites Deploying ownCloud Web Configure oauth2 Configure ownCloud 10  Set ownCloud Web address Configure link routing Make ownCloud Web the default web interface   Configure ownCloud Web Integrate ownCloud Classic features in ownCloud Web  Add links to the app switcher Add links to the user menu ONLYOFFICE   Accessing ownCloud Web     The ownCloud Web is being deployed as an app to ownCloud marketplace to enable easy early integration into existing ownCloud 10 instances.">
 
 
 
@@ -3923,6 +3923,13 @@
           </ul>
         </li>
         <li><a href="#configure-owncloud-web">Configure ownCloud Web</a></li>
+        <li><a href="#integrate-owncloud-classic-features-in-owncloud-web">Integrate ownCloud Classic features in ownCloud Web</a>
+          <ul>
+            <li><a href="#add-links-to-the-app-switcher">Add links to the app switcher</a></li>
+            <li><a href="#add-links-to-the-user-menu">Add links to the user menu</a></li>
+            <li><a href="#onlyoffice">ONLYOFFICE</a></li>
+          </ul>
+        </li>
         <li><a href="#accessing-owncloud-web">Accessing ownCloud Web</a></li>
       </ul></nav><hr></div>
 
@@ -4101,6 +4108,78 @@ After completing this setup, ownCloud Web will be available on <code>https://&lt
     &#34;scope&#34;: &#34;openid profile email&#34;
   },
 </code></pre></div>
+</blockquote>
+
+<div class="gdoc-page__anchorwrap">
+    <h2 id="integrate-owncloud-classic-features-in-owncloud-web">
+        Integrate ownCloud Classic features in ownCloud Web
+        <a data-clipboard-text="https://owncloud.dev/clients/web/deployments/oc10-app/#integrate-owncloud-classic-features-in-owncloud-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Integrate ownCloud Classic features in ownCloud Web" href="#integrate-owncloud-classic-features-in-owncloud-web">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="add-links-to-the-app-switcher">
+        Add links to the app switcher
+        <a data-clipboard-text="https://owncloud.dev/clients/web/deployments/oc10-app/#add-links-to-the-app-switcher" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Add links to the app switcher" href="#add-links-to-the-app-switcher">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>ownCloud Classic features that are not deeply integrated with the Classic UI (e.g., full screen apps) can be added to the ownCloud Web app switcher so that users can easily access them from ownCloud Web. You can use the following example and customize it according to your needs.</p>
+<p>To add new elements in the app switcher, paste the following into the <code>applications</code> section of <code>config.json</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">    {
+      &#34;title&#34;: {
+        &#34;en&#34;: &#34;Custom Groups&#34;,
+        &#34;de&#34;: &#34;Benutzerdefinierte Gruppen&#34; 
+      },
+      &#34;icon&#34;: &#34;application&#34;,
+      &#34;url&#34;: &#34;https://&lt;your-owncloud-server&gt;/settings/personal?sectionid=customgroups&#34;
+    },
+</code></pre></div><blockquote class="gdoc-hint info">
+  The URL in the example might need adaptations depending on the configuration of your ownCloud Server. App switcher elements added this way will open the respective page in a new tab. This method can also be used to link external sites like Help pages or similar.
+</blockquote>
+
+<div class="gdoc-page__anchorwrap">
+    <h3 id="add-links-to-the-user-menu">
+        Add links to the user menu
+        <a data-clipboard-text="https://owncloud.dev/clients/web/deployments/oc10-app/#add-links-to-the-user-menu" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Add links to the user menu" href="#add-links-to-the-user-menu">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Just like adding links to the app switcher, you can also add links to the user menu.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">    {
+      &#34;icon&#34;: &#34;application&#34;,
+      &#34;menu&#34;: &#34;user&#34;,
+      &#34;target&#34;: &#34;_self&#34;,
+      &#34;title&#34;: {
+        &#34;de&#34;: &#34;Hilfe&#34;,
+        &#34;en&#34;: &#34;Help&#34;
+      },
+      &#34;url&#34;: &#34;https://help-link.example&#34;
+    },
+</code></pre></div><p>This will add a link to the specified URL in the user menu. This way, the link will open in the same tab. If you instead want to open it in a new tab, just remove the line <code>&quot;target&quot;: &quot;_self&quot;,</code>.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="onlyoffice">
+        ONLYOFFICE
+        <a data-clipboard-text="https://owncloud.dev/clients/web/deployments/oc10-app/#onlyoffice" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ONLYOFFICE" href="#onlyoffice">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>For ONLYOFFICE there is a <a class="gdoc-markdown__link" href="https://github.com/ONLYOFFICE/onlyoffice-owncloud-web">native integration</a> available for ownCloud Web when it is used with ownCloud Classic Server. It fully integrates the ONLYOFFICE Document Editors and allows users to create and open documents right from ownCloud Web.</p>
+<p>To be able to use ONLYOFFICE in ownCloud Web, it is required to run</p>
+<ul>
+<li>ownCloud Server &gt;= 10.8</li>
+<li>ownCloud Web &gt;= 4.0.0</li>
+<li><a class="gdoc-markdown__link" href="https://marketplace.owncloud.com/apps/onlyoffice">ONLYOFFICE Connector for ownCloud 10</a> &gt;= 7.1.1</li>
+</ul>
+<p>Make sure that ONLYOFFICE works as expected in the Classic UI and add the following to <code>config.json</code> to make it available in ownCloud Web:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">&#34;external_apps&#34;: [
+    {
+        &#34;id&#34;: &#34;onlyoffice&#34;,
+        &#34;path&#34;: &#34;https://&lt;your-owncloud-server&gt;/apps/onlyoffice/js/web/onlyoffice.js&#34;,
+    }
+]
+</code></pre></div><blockquote class="gdoc-hint info">
+  The URL in the example might need adaptations depending on the configuration of your ownCloud Server.
 </blockquote>
 
 <div class="gdoc-page__anchorwrap">
