@@ -4133,18 +4133,18 @@ export LDAP_FILTER=&#34;(objectClass=posixaccount)&#34;
         </a>
     </h3>
 </div><p>Now we need to configure a client we can later use to configure the ownCloud 10 openidconnect app. In the <code>assets/identifier-registration.yaml</code> have:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">---<span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nn">---</span><span class="w">
 </span><span class="w">
 </span><span class="w"></span><span class="c"># OpenID Connect client registry.</span><span class="w">
-</span><span class="w"></span><span class="k">clients</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="k">id</span><span class="p">:</span><span class="w"> </span>ocis<span class="w">
-</span><span class="w">    </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>ownCloud<span class="w"> </span>Infinite<span class="w"> </span>Scale<span class="w">
-</span><span class="w">    </span><span class="k">application_type</span><span class="p">:</span><span class="w"> </span>web<span class="w">
-</span><span class="w">    </span><span class="k">redirect_uris</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- https<span class="p">:</span>//cloud.example.com/apps/openidconnect/redirect<span class="w">
-</span><span class="w">      </span>- http<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9100</span>/oidc-callback.html<span class="w">
-</span><span class="w">      </span>- http<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9100</span><span class="w">
-</span><span class="w">      </span>- http<span class="p">:</span>//localhost<span class="p">:</span><span class="m">9100</span>/<span class="w">
+</span><span class="w"></span><span class="nt">clients</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l">ocis</span><span class="w">
+</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ownCloud Infinite Scale</span><span class="w">
+</span><span class="w">    </span><span class="nt">application_type</span><span class="p">:</span><span class="w"> </span><span class="l">web</span><span class="w">
+</span><span class="w">    </span><span class="nt">redirect_uris</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">https://cloud.example.com/apps/openidconnect/redirect</span><span class="w">
+</span><span class="w">      </span>- <span class="l">http://localhost:9100/oidc-callback.html</span><span class="w">
+</span><span class="w">      </span>- <span class="l">http://localhost:9100</span><span class="w">
+</span><span class="w">      </span>- <span class="l">http://localhost:9100/</span><span class="w">
 </span></code></pre></div><p>Replace <code>cloud.example.com</code> in the redirect URI with your ownCloud 10 host and port.
 Replace <code>localhost:9100</code> in the redirect URIs with your <code>ocis-web</code> host and port.</p>
 <div class="gdoc-page__anchorwrap">
@@ -4203,19 +4203,19 @@ Replace <code>localhost:9100</code> in the redirect URIs with your <code>ocis-we
 $ cd openidconnect
 $ composer install
 </code></pre></div><p>After enabling the app configure it in <code>config/oidc.config.php</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">$CONFIG = [
-  &#39;openid-connect&#39; =&gt; [
-    &#39;provider-url&#39; =&gt; &#39;https://192.168.1.100:9130&#39;,
-    &#39;client-id&#39; =&gt; &#39;ocis&#39;,
-    &#39;loginButtonName&#39; =&gt; &#39;OpenId Connect @ Konnectd&#39;,
-  ],
-  &#39;debug&#39; =&gt; true, // if using self signed certificates
-  // allow the different domains access to the ocs and webdav endpoints:
-  &#39;cors.allowed-domains&#39; =&gt; [
-    &#39;https://cloud.example.com&#39;,
-    &#39;http://localhost:9100&#39;,
-  ],
-];
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="nv">$CONFIG</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s1">&#39;openid-connect&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;provider-url&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;https://192.168.1.100:9130&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;client-id&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;ocis&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;loginButtonName&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;OpenId Connect @ Konnectd&#39;</span><span class="p">,</span>
+  <span class="p">],</span>
+  <span class="s1">&#39;debug&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span> <span class="c1">// if using self signed certificates
+</span><span class="c1"></span>  <span class="c1">// allow the different domains access to the ocs and webdav endpoints:
+</span><span class="c1"></span>  <span class="s1">&#39;cors.allowed-domains&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;https://cloud.example.com&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;http://localhost:9100&#39;</span><span class="p">,</span>
+  <span class="p">],</span>
+<span class="p">];</span>
 </code></pre></div><p>In the above configuration replace</p>
 <ul>
 <li><code>provider-url</code> with the URL to your <code>ocis-idp</code> issuer</li>
@@ -4293,7 +4293,7 @@ $ composer install
 
 
 
-<script defer src="/js/en.search.min.0f0f3a9579398cc6d5bdddb9566ae50211120fb6f3f17dac1de19a3eeec0329e.js"></script>
+<script defer src="/js/en.search.min.4688e4590c0e0ca09eb143416af73f1954ff592e2629757ba58f68362c170fa0.js"></script>
 
 
 

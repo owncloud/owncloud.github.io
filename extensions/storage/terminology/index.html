@@ -3934,21 +3934,42 @@ Resources    A resource is a logical concept. Resources can be of different type
 
 <blockquote class="gdoc-hint warning">
   <div class="gdoc-page__anchorwrap">
-    <h3 id="alternative-reference-triple-">
+    <h3 id="alternative-reference-triple">
         Alternative: reference triple
-        <a data-clipboard-text="https://owncloud.dev/extensions/storage/terminology/#alternative-reference-triple-" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Alternative: reference triple" href="#alternative-reference-triple-">
+        <a data-clipboard-text="https://owncloud.dev/extensions/storage/terminology/#alternative-reference-triple" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Alternative: reference triple" href="#alternative-reference-triple">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
 </div><p>A <em>reference</em> is a logical concept. It identifies a <a class="gdoc-markdown__link" href="#resources"><em>resource</em></a> and consists of
 a <code>storage_space</code>, a <code>&lt;root_id&gt;</code> and a <code>&lt;path&gt;</code></p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;storage_space&gt;!&lt;root_id&gt;:&lt;path&gt;
-</code></pre></div><p>While all components are optional, only three cases are used:
-| format | example | description |
-|-|-|-|
-| <code>!:&lt;absolute_path&gt;</code> | <code>!:/absolute/path/to/file.ext</code> | absolute path |
-| <code>&lt;storage_space&gt;!:&lt;relative_path&gt;</code> | <code>ee1687e5-ac7f-426d-a6c0-03fed91d5f62!:path/to/file.ext</code> | path relative to the root of the storage space |
-| <code>&lt;storage_space&gt;!&lt;root&gt;:&lt;relative_path&gt;</code> | <code>ee1687e5-ac7f-426d-a6c0-03fed91d5f62!c3cf23bb-8f47-4719-a150-1d25a1f6fb56:to/file.ext</code> | path relative to the specified node in the storage space, used to reference resources without disclosing parent paths |</p>
+</code></pre></div><p>While all components are optional, only three cases are used:</p>
+<table>
+<thead>
+<tr>
+<th>format</th>
+<th>example</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>!:&lt;absolute_path&gt;</code></td>
+<td><code>!:/absolute/path/to/file.ext</code></td>
+<td>absolute path</td>
+</tr>
+<tr>
+<td><code>&lt;storage_space&gt;!:&lt;relative_path&gt;</code></td>
+<td><code>ee1687e5-ac7f-426d-a6c0-03fed91d5f62!:path/to/file.ext</code></td>
+<td>path relative to the root of the storage space</td>
+</tr>
+<tr>
+<td><code>&lt;storage_space&gt;!&lt;root&gt;:&lt;relative_path&gt;</code></td>
+<td><code>ee1687e5-ac7f-426d-a6c0-03fed91d5f62!c3cf23bb-8f47-4719-a150-1d25a1f6fb56:to/file.ext</code></td>
+<td>path relative to the specified node in the storage space, used to reference resources without disclosing parent paths</td>
+</tr>
+</tbody>
+</table>
 <p><code>&lt;storage_space&gt;</code> should be a UUID to prevent references from breaking when a <em>user</em> or <a class="gdoc-markdown__link" href="#storage-spaces"><em>storage space</em></a> gets renamed. But it can also be derived from a migration of an oc10 instance by concatenating an instance identifier and the numeric storage id from oc10, e.g. <code>oc10-instance-a$1234</code>.</p>
 <p>A reference will often start as an absolute/global path, e.g. <code>!:/home/Projects/Foo</code>. The gateway will look up the storage provider that is responsible for the path</p>
 <table>
@@ -3972,19 +3993,56 @@ a <code>storage_space</code>, a <code>&lt;root_id&gt;</code> and a <code>&lt;pat
 </tr>
 </tbody>
 </table>
-<p>Now, the same file is accessed as a share
-| Name | Description |
-|&mdash;&mdash;|&mdash;&mdash;&mdash;&mdash;-|
-| <code>!:/users/Einstein/Projects/Foo</code> | <code>Foo</code> is the shared folder |
-| <code>ee1687e5-ac7f-426d-a6c0-03fed91d5f62!56f7ceca-e7f8-4530-9a7a-fe4b7ec8089a:</code> | <code>56f7ceca-e7f8-4530-9a7a-fe4b7ec8089a</code> is the id of <code>Foo</code>, the path is empty |</p>
-<p>The <code>:</code>, <code>!</code> and <code>$</code> are chosen from the set of <a class="gdoc-markdown__link" href="https://tools.ietf.org/html/rfc3986#section-2.2">RFC3986 sub delimiters</a> on purpose. They can be used in URLs without having to be encoded. In some cases, a delimiter can be left out if a component is not set:
-| reference | interpretation |
-|-|-|
-| <code>/absolute/path/to/file.ext</code> | absolute path, all delimiters omitted |
-| <code>ee1687e5-ac7f-426d-a6c0-03fed91d5f62!path/to/file.ext</code> | relative path in the given storage space, root delimiter <code>:</code> omitted |
-| <code>56f7ceca-e7f8-4530-9a7a-fe4b7ec8089a:to/file.ext</code> | relative path in the given root node, storage space delimiter <code>!</code> omitted |
-| <code>ee1687e5-ac7f-426d-a6c0-03fed91d5f62!56f7ceca-e7f8-4530-9a7a-fe4b7ec8089a:</code> | node id in the given storage space, <code>:</code> must be present |
-| <code>ee1687e5-ac7f-426d-a6c0-03fed91d5f62</code> | root of the storage space, all delimiters omitted, can be distinguished by the <code>/</code> |</p>
+<p>Now, the same file is accessed as a share</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>!:/users/Einstein/Projects/Foo</code></td>
+<td><code>Foo</code> is the shared folder</td>
+</tr>
+<tr>
+<td><code>ee1687e5-ac7f-426d-a6c0-03fed91d5f62!56f7ceca-e7f8-4530-9a7a-fe4b7ec8089a:</code></td>
+<td><code>56f7ceca-e7f8-4530-9a7a-fe4b7ec8089a</code> is the id of <code>Foo</code>, the path is empty</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>:</code>, <code>!</code> and <code>$</code> are chosen from the set of <a class="gdoc-markdown__link" href="https://tools.ietf.org/html/rfc3986#section-2.2">RFC3986 sub delimiters</a> on purpose. They can be used in URLs without having to be encoded. In some cases, a delimiter can be left out if a component is not set:</p>
+<table>
+<thead>
+<tr>
+<th>reference</th>
+<th>interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/absolute/path/to/file.ext</code></td>
+<td>absolute path, all delimiters omitted</td>
+</tr>
+<tr>
+<td><code>ee1687e5-ac7f-426d-a6c0-03fed91d5f62!path/to/file.ext</code></td>
+<td>relative path in the given storage space, root delimiter <code>:</code> omitted</td>
+</tr>
+<tr>
+<td><code>56f7ceca-e7f8-4530-9a7a-fe4b7ec8089a:to/file.ext</code></td>
+<td>relative path in the given root node, storage space delimiter <code>!</code> omitted</td>
+</tr>
+<tr>
+<td><code>ee1687e5-ac7f-426d-a6c0-03fed91d5f62!56f7ceca-e7f8-4530-9a7a-fe4b7ec8089a:</code></td>
+<td>node id in the given storage space, <code>:</code> must be present</td>
+</tr>
+<tr>
+<td><code>ee1687e5-ac7f-426d-a6c0-03fed91d5f62</code></td>
+<td>root of the storage space, all delimiters omitted, can be distinguished by the <code>/</code></td>
+</tr>
+</tbody>
+</table>
 
 </blockquote>
 
@@ -5521,7 +5579,7 @@ spaces=/spaces/var/lib/ocis/storage/projects/{{.Name}}
 
 
 
-<script defer src="/js/en.search.min.0f0f3a9579398cc6d5bdddb9566ae50211120fb6f3f17dac1de19a3eeec0329e.js"></script>
+<script defer src="/js/en.search.min.4688e4590c0e0ca09eb143416af73f1954ff592e2629757ba58f68362c170fa0.js"></script>
 
 
 
