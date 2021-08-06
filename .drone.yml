@@ -10,6 +10,11 @@ concurrency:
   limit: 1
 
 steps:
+- name: assets
+  image: owncloudci/alpine:latest
+  commands:
+  - make theme
+
 - name: sync
   image: thegeeklab/git-batch:latest
   commands:
