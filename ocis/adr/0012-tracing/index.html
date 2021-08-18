@@ -10,11 +10,12 @@
 
 
 
-    <meta name="description" content="This service embeds ownCloud Web to provide a UI for ownCloud Infinite Scale.">
+    <meta name="description" content="Status: proposed Deciders: @butonic, @micbar, @dragotin, @mstingl, @pmaier1, @fschade Date: 2021-08-17  Context and Problem Statement    At the time of this writing we are in a situation where our logs have too much verbosity, rendering impossible or rather difficult to debug an instance. For this reason we are giving some care to our traces by updating dependencies from OpenCensus to OpenTelemetry.
+Decision Drivers     We don&rsquo;t want to rely only on logs to debug an instance.">
 
 
 
-    <title>ownCloud Web | ownCloud</title>
+    <title>12. Tracing | ownCloud</title>
 
     <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -35,7 +36,6 @@
 <link rel="preload" href="/custom.css" as="style">
 <link rel="stylesheet" href="/custom.css" media="all">
 
-<link rel="alternate" type="application/rss+xml" href="https://owncloud.dev/extensions/web/index.xml" title="ownCloud" />
 
 
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
@@ -519,7 +519,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-307b2de1" class="gdoc-nav__toggle" >
+            <input type="checkbox" id="navtree-307b2de1" class="gdoc-nav__toggle" checked>
             <label for="navtree-307b2de1" class="flex justify-between">
             
             
@@ -841,7 +841,7 @@
             
             
                 <span class="flex">
-                    <a href="/ocis/adr/0012-tracing/" class="gdoc-nav__entry ">
+                    <a href="/ocis/adr/0012-tracing/" class="gdoc-nav__entry is-active">
                         12. Tracing
                     </a>
                 </span>
@@ -2633,12 +2633,12 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-11c59fca" class="gdoc-nav__toggle" checked>
+            <input type="checkbox" id="navtree-11c59fca" class="gdoc-nav__toggle" >
             <label for="navtree-11c59fca" class="flex justify-between">
             
             
                 <span class="flex">
-                    <a href="/extensions/web/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/web/" class="gdoc-nav__entry ">
                         ownCloud Web
                     </a>
                 </span>
@@ -3894,7 +3894,15 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/extensions/' href='/extensions/'><span itemprop='name'>Extensions</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>ownCloud Web</span><meta itemprop='position' content='3' /></li>
+        
+        
+        
+        
+    
+    
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/adr/' href='/ocis/adr/'><span itemprop='name'>Architecture Decisions</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>12. Tracing</span><meta itemprop='position' content='4' /></li>
+    
+
     
 
     
@@ -3908,7 +3916,7 @@
     <div>
         <span class="editpage">
             <svg class="icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/docs/extensions/web/_index.md">
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/adr/0012-tracing.md">
                 Edit this page
             </a>
         </span>
@@ -3916,9 +3924,81 @@
     
 </div>
 
+
     <article class="gdoc-markdown gdoc-markdown__align--left">
-        <h1>ownCloud Web</h1>
-        <p>This service embeds <a class="gdoc-markdown__link" href="https://github.com/owncloud/web">ownCloud Web</a> to provide a UI for ownCloud Infinite Scale.</p>
+        <h1>12. Tracing</h1>
+        <ul>
+<li>Status: proposed</li>
+<li>Deciders: @butonic, @micbar, @dragotin, @mstingl, @pmaier1, @fschade</li>
+<li>Date: 2021-08-17</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="context-and-problem-statement">
+        Context and Problem Statement
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0012-tracing/#context-and-problem-statement" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Context and Problem Statement" href="#context-and-problem-statement">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>At the time of this writing we are in a situation where our logs have too much verbosity, rendering impossible or rather difficult to debug an instance. For this reason we are giving some care to our traces by updating dependencies from OpenCensus to OpenTelemetry.</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="decision-drivers">
+        Decision Drivers
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0012-tracing/#decision-drivers" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Decision Drivers" href="#decision-drivers">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><ul>
+<li>We don&rsquo;t want to rely only on logs to debug an instance.</li>
+<li>Logs are too verbose.</li>
+<li>Since we have micro-services, we want to holistically understand a request.</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="considered-options">
+        Considered Options
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0012-tracing/#considered-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Considered Options" href="#considered-options">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><ul>
+<li>Trim down logs</li>
+<li>Use OpenCensus</li>
+<li>Migrate to OpenTelemetry</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="decision-outcome">
+        Decision Outcome
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0012-tracing/#decision-outcome" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Decision Outcome" href="#decision-outcome">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>Chosen option: option 3; Migrate to OpenTelemetry. OpenCensus is deprecated, and OpenTelemetry is the merger from OpenCensus and OpenTelemetry and the most recent up-to-date spec.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="positive-consequences">
+        Positive Consequences
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0012-tracing/#positive-consequences" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Positive Consequences" href="#positive-consequences">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ul>
+<li>Fix the current state of the traces on Reva.</li>
+<li>Add more contextual information on a span for a given request.</li>
+<li>Per-request filtering with the <code>X-Request-Id</code> header.</li>
+<li>Group the supported tracing backends to support Jaeger only for simplicity.</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="chosen-option-approach">
+        Chosen option approach
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0012-tracing/#chosen-option-approach" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Chosen option approach" href="#chosen-option-approach">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><ul>
+<li>A trace is a tree, and the proxy will create the root trace and propagate it downstream.</li>
+<li>The Root trace will log the request headers.</li>
+<li>The unit that ultimately does the work will log the result of the operation if success.</li>
+<li>The unit that ultimately does the work will change the state of the span to error if any occurred.</li>
+</ul>
+<p>With this premises, this is by no means a fixed document and the more we learn about the usage of an instance the more context we can add to the traces.</p>
 
     </article>
 
