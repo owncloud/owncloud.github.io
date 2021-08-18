@@ -10,7 +10,7 @@
 
 
 
-    <meta name="description" content="Configuration  Configuration using config files Environment variables Commandline flags   Root Command Sub Commands  webdav server webdav version webdav health       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
+    <meta name="description" content="Configuration  Configuration using config files Environment variables Commandline flags   Root Command Sub Commands  webdav health webdav server webdav version       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
 /etc/ocis $HOME/.ocis ./config For this configuration to be picked up, have a look at your extension root command and look for which default config name it has assigned.">
 
 
@@ -3941,9 +3941,9 @@
         <li><a href="#root-command">Root Command</a></li>
         <li><a href="#sub-commands">Sub Commands</a>
           <ul>
+            <li><a href="#webdav-health">webdav health</a></li>
             <li><a href="#webdav-server">webdav server</a></li>
             <li><a href="#webdav-version">webdav version</a></li>
-            <li><a href="#webdav-health">webdav health</a></li>
           </ul>
         </li>
       </ul></nav><hr></div>
@@ -4003,6 +4003,19 @@ $HOME/.ocis
         </a>
     </h2>
 </div><div class="gdoc-page__anchorwrap">
+    <h3 id="webdav-health">
+        webdav health
+        <a data-clipboard-text="https://owncloud.dev/extensions/webdav/configuration/#webdav-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor webdav health" href="#webdav-health">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Check health status</p>
+<p>Usage: <code>webdav health [command options] [arguments...]</code></p>
+<dl>
+<dt>-debug-addr |  $WEBDAV_DEBUG_ADDR</dt>
+<dd>Address to debug endpoint. Default: <code>&quot;0.0.0.0:9119&quot;</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap">
     <h3 id="webdav-server">
         webdav server
         <a data-clipboard-text="https://owncloud.dev/extensions/webdav/configuration/#webdav-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor webdav server" href="#webdav-server">
@@ -4022,13 +4035,13 @@ $HOME/.ocis
 <dd>Enable colored logging.</dd>
 <dt>-config-file |  $WEBDAV_CONFIG_FILE</dt>
 <dd>Path to config file.</dd>
-<dt>-tracing-enabled |  $WEBDAV_TRACING_ENABLED</dt>
+<dt>-tracing-enabled |  $WEBDAV_TRACING_ENABLED , $OCIS_TRACING_ENABLED</dt>
 <dd>Enable sending traces.</dd>
-<dt>-tracing-type |  $WEBDAV_TRACING_TYPE</dt>
+<dt>-tracing-type |  $WEBDAV_TRACING_TYPE , $OCIS_TRACING_TYPE</dt>
 <dd>Tracing backend type. Default: <code>&quot;jaeger&quot;</code>.</dd>
-<dt>-tracing-endpoint |  $WEBDAV_TRACING_ENDPOINT</dt>
+<dt>-tracing-endpoint |  $WEBDAV_TRACING_ENDPOINT , $OCIS_TRACING_ENDPOINT</dt>
 <dd>Endpoint for the agent. Default: <code>&quot;&quot;</code>.</dd>
-<dt>-tracing-collector |  $WEBDAV_TRACING_COLLECTOR</dt>
+<dt>-tracing-collector |  $WEBDAV_TRACING_COLLECTOR , $OCIS_TRACING_COLLECTOR</dt>
 <dd>Endpoint for the collector. Default: <code>&quot;&quot;</code>.</dd>
 <dt>-tracing-service |  $WEBDAV_TRACING_SERVICE</dt>
 <dd>Service name for tracing. Default: <code>&quot;webdav&quot;</code>.</dd>
@@ -4069,19 +4082,6 @@ $HOME/.ocis
 <dd>Set the base namespace for service discovery. Default: <code>&quot;com.owncloud.web&quot;</code>.</dd>
 <dt>-service-name |  $WEBDAV_SERVICE_NAME</dt>
 <dd>Service name. Default: <code>&quot;webdav&quot;</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="webdav-health">
-        webdav health
-        <a data-clipboard-text="https://owncloud.dev/extensions/webdav/configuration/#webdav-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor webdav health" href="#webdav-health">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p>Check health status</p>
-<p>Usage: <code>webdav health [command options] [arguments...]</code></p>
-<dl>
-<dt>-debug-addr |  $WEBDAV_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>&quot;0.0.0.0:9119&quot;</code>.</dd>
 </dl>
 
     </article>
