@@ -3864,7 +3864,13 @@ We do this by using the existing <code>proxy-example.json</code> file from the <
 export PROXY_CONFIG_FILE=&lt;path to ocis proxy config file&gt;
 </code></pre></div><p>And finally start the oCIS server:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">ocis server
-</code></pre></div><div class="gdoc-page__anchorwrap">
+</code></pre></div><blockquote class="gdoc-hint warning">
+  <p>oCIS currently has a bug. oCIS proxy will not pick up the proxy configuration file if it is started in the supervised mode by <code>ocis server</code>. Therefore you will need to apply the following workaround:</p>
+<p>Run <code>ocis server</code> with the environment variables mentioned above. Then open a new CLI and run <code>ocis kill proxy</code>. Set the same environment variables as above and run <code>ocis proxy server</code>. This starts the proxy in a non supervised mode and ensures that it picks up your custom routes in the proxy configuration file.</p>
+
+</blockquote>
+
+<div class="gdoc-page__anchorwrap">
     <h2 id="start-the-extension">
         Start the extension
         <a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/running/#start-the-extension" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Start the extension" href="#start-the-extension">
@@ -3874,7 +3880,7 @@ export PROXY_CONFIG_FILE=&lt;path to ocis proxy config file&gt;
 </div><p>After oCIS is running, we can start the Hello extension.</p>
 <p>For that just build ocis-hello binary.</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">cd ocis-hello
-make
+make build
 </code></pre></div><p>And Run the service</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">./bin/hello server
 </code></pre></div>
