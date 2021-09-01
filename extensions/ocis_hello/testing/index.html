@@ -3848,9 +3848,9 @@ Unit tests    Unit tests generally live inside *_test.go files in the /pkg direc
         </a>
     </h3>
 </div><p>The unit and integration tests are run using the simple <code>go test</code> command. If you wish to run all the tests with the coverage you can just use make command.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">make <span class="nb">test</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">make <span class="nb">test</span>
 </code></pre></div><p>You can also run a specific file with the go test command</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">go <span class="nb">test</span> &lt;path to package or file&gt;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">go <span class="nb">test</span> &lt;path to package or file&gt;
 </code></pre></div><div class="gdoc-page__anchorwrap">
     <h3 id="end-to-end-tests-1">
         End-to-End tests
@@ -3861,17 +3861,17 @@ Unit tests    Unit tests generally live inside *_test.go files in the /pkg direc
 </div><p>Running end-to-end tests is a bit more complicated than unit and integration tests. First of all we will need a complete oCIS setup with the Hello extension running. Please refer to <a class="gdoc-markdown__link" href="https://owncloud.dev/extensions/ocis_hello/running/">foo</a></p>
 <p>Then we need to set up the test infrastructure following the instructions form <a class="gdoc-markdown__link" href="https://owncloud.dev/clients/web/testing/">here</a></p>
 <p>Now we can run the tests. The tests will take several configuration variables which can be found <a class="gdoc-markdown__link" href="https://owncloud.dev/clients/web/testing/#available-settings-to-be-set-by-environment-variables">here</a>. Without configuration, most of the defaults will work. We just need make sure to set these values through env variable.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">WEB_PATH</span><span class="o">=</span>&lt;path to ownCloud Web directory&gt;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">WEB_PATH</span><span class="o">=</span>&lt;path to ownCloud Web directory&gt;
 <span class="nb">export</span> <span class="nv">OCIS_SKELETON_DIR</span><span class="o">=</span>&lt;path to the skeleton directory&gt;
 <span class="nb">export</span> <span class="nv">WEB_UI_CONFIG</span><span class="o">=</span>&lt;path to the config.json file used by web&gt;
 </code></pre></div><p>While running oCIS we should always use a configuration file for ownCloud Web because our tests will read this file and sometimes even change it which cannot be done if you use environment variables or the default values.</p>
 <p>With all this in place we can just run the tests with a simple make command.
 First go to the Hello repository</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> &lt;path to hello&gt;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> &lt;path to hello&gt;
 </code></pre></div><p>Then run</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">make test-acceptance-webui
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">make test-acceptance-webui
 </code></pre></div><p>To run just one feature you can run</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">make test-acceptance-webui &lt;path-to-feature file&gt;:&lt;line-number&gt;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">make test-acceptance-webui &lt;path-to-feature file&gt;:&lt;line-number&gt;
 </code></pre></div>
     </article>
 

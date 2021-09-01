@@ -3836,13 +3836,13 @@ This discovery is optional. If the client has another way of discovering the Ope
 </tr>
 <tr>
 <td><code>rel</code></td>
-<td><a href="http://owncloud.com/specs/ocis/1.0/instance">http://owncloud.com/specs/ocis/1.0/instance</a></td>
+<td><a class="gdoc-markdown__link" href="http://owncloud.com/specs/ocis/1.0/instance">http://owncloud.com/specs/ocis/1.0/instance</a></td>
 </tr>
 </tbody>
 </table> </div>
 <p>Note that in this case, <a class="gdoc-markdown__link" href="http://tools.ietf.org/html/draft-ietf-appsawg-acct-uri-07">the <code>acct:</code> scheme</a> is prepended to the identifier.</p>
 <p>The client (relying party) would make the following WebFinger request to discover the oCIS instance location (with line wraps within lines for display purposes only):</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">  GET /.well-known/webfinger
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">  GET /.well-known/webfinger
     ?resource=acct%3Ajoe%40example.com
     &amp;rel=http%3A%2F%2Fowncloud.com%2Fspecs%2Focis%2F1.0%2Finstance
     HTTP/1.1
@@ -3876,7 +3876,7 @@ It would contain</p>
 <li>the registry / drives endpoint, e.g. <code>https://cloud.example.com/graph/v0.1/drives/me</code> see <a class="gdoc-markdown__link" href="https://github.com/owncloud/ocis/pull/1827">Add draft of adr for spaces API. #1827</a></li>
 </ul>
 <p>example:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">HTTP/1.1 200 OK
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">HTTP/1.1 200 OK
   Content-Type: application/json
 
   {
@@ -3908,10 +3908,10 @@ It would contain</p>
         </a>
     </h3>
 </div><p>An oCIS Provider Configuration Document MUST be queried using an HTTP GET request at the previously specified path.</p>
-<p>The client (relying party) would make the following request to the instance <a href="https://example.com">https://example.com</a> to obtain its Configuration information, since the Issuer contains no path component:</p>
+<p>The client (relying party) would make the following request to the instance <a class="gdoc-markdown__link" href="https://example.com">https://example.com</a> to obtain its Configuration information, since the Issuer contains no path component:</p>
 <p>GET /.well-known/openid-configuration HTTP/1.1
 Host: example.com
-If the Issuer value contains a path component, any terminating / MUST be removed before appending /.well-known/openid-configuration. The RP would make the following request to the Issuer <a href="https://example.com/issuer1">https://example.com/issuer1</a> to obtain its Configuration information, since the Issuer contains a path component:</p>
+If the Issuer value contains a path component, any terminating / MUST be removed before appending /.well-known/openid-configuration. The RP would make the following request to the Issuer <a class="gdoc-markdown__link" href="https://example.com/issuer1">https://example.com/issuer1</a> to obtain its Configuration information, since the Issuer contains a path component:</p>
 <p>GET /issuer1/.well-known/openid-configuration HTTP/1.1
 Host: example.com
 Using path components enables supporting multiple issuers per host. This is required in some multi-tenant hosting configurations. This use of .well-known is for supporting multiple issuers per host; unlike its use in RFC 5785 [RFC5785], it does not provide general information about the host.</p>

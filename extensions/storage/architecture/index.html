@@ -4311,7 +4311,7 @@ owncloud/core#12504</a> which spawned <a class="gdoc-markdown__link" href="https
 </div><p>The <a class="gdoc-markdown__link" href="https://doc.owncloud.com/server/developer_manual/core/apis/ocs-share-api.html">OCS Share API</a> endpoint <code>/ocs/v1.php/apps/files_sharing/api/v1/shares</code> returns shares, which have their own share id and reference files using a path relative to the users home. They API also lists the numeric storage id as well as the string type <code>storage_id</code> (which is confusing &hellip; but yeah) which would allow constructing combined references with a <code>storage space id</code> and a <code>path</code> relative to the root of that <a class="gdoc-markdown__link" href="https://owncloud.dev/extensions/storage/terminology/#storage-spaces"><em>storage space</em></a>. The web UI however assumes that it can take the path from the <code>file_target</code> and append it to the users home to access it.</p>
 <blockquote class="gdoc-hint ">
   <p>The API <a class="gdoc-markdown__link" href="https://doc.owncloud.com/server/developer_manual/core/apis/ocs-share-api.html#example-request-response-payloads-4">already returns the storage id</a> (and numeric id) in addition to the file id:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">    &lt;storage_id&gt;home::auser&lt;/storage_id&gt;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    &lt;storage_id&gt;home::auser&lt;/storage_id&gt;
     &lt;storage&gt;993&lt;/storage&gt;
     &lt;item_source&gt;3994486&lt;/item_source&gt;
     &lt;file_source&gt;3994486&lt;/file_source&gt;

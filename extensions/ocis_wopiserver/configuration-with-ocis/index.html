@@ -3817,7 +3817,7 @@
     </h4>
 </div><p>In order to run this extension we will need to run oCIS first. For that clone and build the oCIS single binary from the github repo <code>https://github.com/owncloud/ocis</code>.
 After that we will need to create a config file for phoenix so that we can load the WOPI app in the frontend. Create a file <code>web-config.json</code> with the following contents.</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
   <span class="nt">&#34;server&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200&#34;</span><span class="p">,</span>
   <span class="nt">&#34;theme&#34;</span><span class="p">:</span> <span class="s2">&#34;owncloud&#34;</span><span class="p">,</span>
   <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;0.1.0&#34;</span><span class="p">,</span>
@@ -3850,7 +3850,7 @@ After that we will need to create a config file for phoenix so that we can load 
 
 </code></pre></div><p>Here we can add the url for the js file from where the WOPI app will be loaded.</p>
 <p>After that we will need a configuration file for oCIS where we can specify the path for the WOPI app in the backend. For this you can use the existing <code>proxy-example.json</code> file from the <a class="gdoc-markdown__link" href="https://github.com/owncloud/ocis/blob/master/proxy/config/proxy-example.json">ocis-proxy</a> repo. Just add an extra endpoint at the end for the WOPI app.</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
   <span class="nt">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s2">&#34;/api/v0/wopi&#34;</span><span class="p">,</span>
   <span class="nt">&#34;backend&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:9105&#34;</span>
 <span class="p">}</span><span class="err">,</span>
@@ -3859,16 +3859,16 @@ After that we will need to create a config file for phoenix so that we can load 
   <span class="nt">&#34;backend&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:9105&#34;</span>
 <span class="p">}</span>
 </code></pre></div><p>In addition to all these we will also need to set the config files we just modified. For that set these variables with the path to the config files.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">export WEB_UI_CONFIG=&lt;path to web-config.json&gt;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">export WEB_UI_CONFIG=&lt;path to web-config.json&gt;
 export PROXY_CONFIG_FILE=&lt;path to ocis proxy config file&gt;
 </code></pre></div><p>And finally start the ocis server</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">ocis server
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">ocis server
 </code></pre></div><p>After this we will need to start the oCIS WOPI server service.
 For that just build oCIS WOPI server binary.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">cd ocis-wopi 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">cd ocis-wopi 
 make
 </code></pre></div><p>And Run the service</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">bin/wopiserver server
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">bin/wopiserver server
 </code></pre></div>
     </article>
 

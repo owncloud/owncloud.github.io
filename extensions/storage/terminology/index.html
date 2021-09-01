@@ -3849,7 +3849,7 @@ Resources    A resource is a logical concept. Resources can be of different type
     </h3>
 </div><p>A <em>reference</em> is a logical concept. It identifies a <a class="gdoc-markdown__link" href="#resources"><em>resource</em></a> and consists of
 a <code>storage_space</code>, a <code>&lt;root_id&gt;</code> and a <code>&lt;path&gt;</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;storage_space&gt;!&lt;root_id&gt;:&lt;path&gt;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&lt;storage_space&gt;!&lt;root_id&gt;:&lt;path&gt;
 </code></pre></div><p>While all components are optional, only three cases are used:</p>
 <div class=table-wrap> <table>
 <thead>
@@ -5418,7 +5418,7 @@ Currently, the <em>gateway</em> treats <code>/home/shares</code> different than 
 <li>iterating over the root of the storage and treating every folder following a generic <code>&lt;layout&gt;</code> as a <em>storage space</em> for a configurable space type, or</li>
 <li>we allow configuring a map of <code>space type</code> to <code>layout</code> (based on the <a class="gdoc-markdown__link" href="https://cs3org.github.io/cs3apis/#cs3.storage.provider.v1beta1.CreateStorageSpaceRequest">CreateStorageSpaceRequest</a>) which would allow things like</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">home=/var/lib/ocis/storage/home/{{substr 0 1 .Owner.Username}}/{{.Owner.Username}}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">home=/var/lib/ocis/storage/home/{{substr 0 1 .Owner.Username}}/{{.Owner.Username}}
 spaces=/spaces/var/lib/ocis/storage/projects/{{.Name}}
 </code></pre></div><p>This would make the <code>GetHome()</code> call return the path to the <em>storage provider</em> including the relative path to the <em>storage space</em>. No need for a <em>storage provider</em> mounted at <code>/home</code>. This is just a UI alias for <code>/users/&lt;userlayout&gt;</code>. Just like a normal <code>/home/&lt;username&gt;</code> on a linux machine.</p>
 <p>But if we have no <code>/home</code> where do we find the shares, and how can clients discover changes in accepted shares?</p>

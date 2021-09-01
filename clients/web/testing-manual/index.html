@@ -3972,7 +3972,7 @@ After all these changes Web will be accessible at <code>http://host.docker.inter
 <p>to be able to run federation tests, additional setup is needed:</p>
 <ol>
 <li>Install and set up a second ownCloud server-instance that is accessible by a different URL. That second server-instance must have its own database and data directory.</li>
-<li>clone and install the testing app into the second ownCloud server-instance from <a href="http://github.com/owncloud/testing">http://github.com/owncloud/testing</a> .</li>
+<li>clone and install the testing app into the second ownCloud server-instance from <a class="gdoc-markdown__link" href="http://github.com/owncloud/testing">http://github.com/owncloud/testing</a> .</li>
 <li>when running the acceptance tests use <code>REMOTE_BACKEND_HOST</code> environment variable to define its address, for example, <code>REMOTE_BACKEND_HOST=http://&lt;ip_address_of_second_ownCloud_server-instance&gt; yarn test:acceptance:oc10 &lt;feature-files-to-test&gt;</code></li>
 </ol>
 </li>
@@ -4026,7 +4026,7 @@ After all these changes Web will be accessible at <code>http://host.docker.inter
     </h4>
 </div><p>When you run the acceptance tests as usual, all the visual regression comparisons are skipped. To run the acceptance test suite with the visual comparison enabled you need to set the env variable, <code>VISUAL_TEST</code> to <code>true</code></p>
 <p>eg.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">VISUAL_TEST=true SERVER_HOST=http://&lt;server_host&gt; BACKEND_HOST=http://&lt;backend_host&gt; yarn test:acceptance:oc10 &lt;feature-file-to-test&gt;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">VISUAL_TEST=true SERVER_HOST=http://&lt;server_host&gt; BACKEND_HOST=http://&lt;backend_host&gt; yarn test:acceptance:oc10 &lt;feature-file-to-test&gt;
 </code></pre></div><div class="gdoc-page__anchorwrap">
     <h4 id="updating-the-snapshots">
         Updating the snapshots
@@ -4036,7 +4036,7 @@ After all these changes Web will be accessible at <code>http://host.docker.inter
     </h4>
 </div><p>If there is some change in the components, and you want to update the snapshots of the components you can run the tests with <code>UPDATE_VRT_SCREENSHOTS</code> set to <code>true</code>. When this env variable is set, the testrunner will ignore if the visual comparison fails and updates the baseline images with the latest images if the comparison fails.</p>
 <p>eg.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">VISUAL_TEST=true UPDATE_VRT_SCREENSHOTS=true SERVER_HOST=http://&lt;server_host&gt; BACKEND_HOST=http://&lt;backend_host&gt; yarn test:acceptance:oc10 &lt;feature-file-to-test&gt;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">VISUAL_TEST=true UPDATE_VRT_SCREENSHOTS=true SERVER_HOST=http://&lt;server_host&gt; BACKEND_HOST=http://&lt;backend_host&gt; yarn test:acceptance:oc10 &lt;feature-file-to-test&gt;
 </code></pre></div><p><strong>note</strong> Visual regression testing may not be completely reliable every time as small changes such as window size and screen resolution may affect the result. For better results it is recommended that you run the tests using the <code>selenium/standalone-chrome-debug</code> image of selenium and window size of <code>1280x1024</code></p>
 <p>see <a class="gdoc-markdown__link" href="#available-settings-to-be-set-by-environment-variables">available settings</a> for further setup if needed</p>
 <div class="gdoc-page__anchorwrap">
@@ -4175,7 +4175,7 @@ We run web UI tests in the following repos in the CI.</p>
 </div><p>In the <code>owncloud/web</code> repo, we run the tests using both the oc10 backend and the oCIS backend.
 For the oc10 backend, we use the <code>owncloudci/core</code> docker image which runs the latest <code>daily-master-qa</code> version of owncloud.</p>
 <p>For the oCIS backend, we use the Commit ID from the <code>owncloud/ocis</code> repo to indicate which version of backend to use. This can be specified in the <code>.drone.env</code> file.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">  # The version of oCIS to use in pipelines that test against oCIS
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">  # The version of oCIS to use in pipelines that test against oCIS
   OCIS_COMMITID=352034d9eba8be8c4bc4b80421f3c0093e7d472c
   OCIS_BRANCH=master
 </code></pre></div><p>If the version you want to run is on a different branch from master, you also need to change the branch name.</p>
@@ -4188,7 +4188,7 @@ For the oc10 backend, we use the <code>owncloudci/core</code> docker image which
         </a>
     </h3>
 </div><p>We follow the same approach in the <code>owncloud/ocis</code> repo too. In order to run the UI tests in CI we use commit IDs from web which can be changed in the <code>.drone.env</code> file.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">  # The test runner source for UI tests
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">  # The test runner source for UI tests
   WEB_COMMITID=3cab4e32bca513f14f59127a0387b44a409763a3
   WEB_BRANCH=master
 </code></pre></div><p>This is the commit ID of web indicating the version of testrunner we want to use. If the version is on a branch other than master, we will also need to change the branch name.</p>

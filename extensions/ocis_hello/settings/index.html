@@ -3837,7 +3837,7 @@ to the <code>BundleService</code> of <code>oCIS settings</code> through a gRPC c
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">request</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">settings</span><span class="p">.</span><span class="nx">SaveBundleRequest</span><span class="p">{</span>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">request</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">settings</span><span class="p">.</span><span class="nx">SaveBundleRequest</span><span class="p">{</span>
   <span class="nx">Bundle</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">settings</span><span class="p">.</span><span class="nx">Bundle</span><span class="p">{</span>
     <span class="nx">Id</span><span class="p">:</span>          <span class="nx">bundleIDGreeting</span><span class="p">,</span>
     <span class="nx">Name</span><span class="p">:</span>        <span class="s">&#34;greeting&#34;</span><span class="p">,</span>
@@ -3885,7 +3885,7 @@ more types of settings in the <code>settings</code> package. All of them come wi
         </a>
     </h3>
 </div><p>This request message can be sent to the <code>BundleService</code> of <code>oCIS settings</code> like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">settings</span> <span class="o">:=</span> <span class="nx">settings</span><span class="p">.</span><span class="nf">NewBundleService</span><span class="p">(</span><span class="s">&#34;com.owncloud.api.settings&#34;</span><span class="p">,</span> <span class="nx">mclient</span><span class="p">.</span><span class="nx">DefaultClient</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">settings</span> <span class="o">:=</span> <span class="nx">settings</span><span class="p">.</span><span class="nf">NewBundleService</span><span class="p">(</span><span class="s">&#34;com.owncloud.api.settings&#34;</span><span class="p">,</span> <span class="nx">mclient</span><span class="p">.</span><span class="nx">DefaultClient</span><span class="p">)</span>
 <span class="nx">response</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">bundleService</span><span class="p">.</span><span class="nf">SaveBundle</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="nx">request</span><span class="p">)</span>
 </code></pre></div><p>We run this request on every start of the Hello extension so that the settings service always has the most recent version of the settings bundle.</p>
 <div class="gdoc-page__anchorwrap">
@@ -3896,7 +3896,7 @@ more types of settings in the <code>settings</code> package. All of them come wi
         </a>
     </h3>
 </div><p>In order to grant admins access to the setting we need to create a <code>AddSettingToBundleRequest</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">permissionRequests</span> <span class="o">:=</span> <span class="p">[]</span><span class="o">*</span><span class="nx">settings</span><span class="p">.</span><span class="nx">AddSettingToBundleRequest</span><span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">permissionRequests</span> <span class="o">:=</span> <span class="p">[]</span><span class="o">*</span><span class="nx">settings</span><span class="p">.</span><span class="nx">AddSettingToBundleRequest</span><span class="p">{</span>
   <span class="p">{</span>
     <span class="nx">BundleId</span><span class="p">:</span> <span class="nx">ssvc</span><span class="p">.</span><span class="nx">BundleUUIDRoleAdmin</span><span class="p">,</span>
     <span class="nx">Setting</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">settings</span><span class="p">.</span><span class="nx">Setting</span><span class="p">{</span>
@@ -3923,7 +3923,7 @@ more types of settings in the <code>settings</code> package. All of them come wi
         </a>
     </h3>
 </div><p>The <code>AddSettingToBundleRequest</code> then needs to be send to the settings service:</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">response</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">bundleService</span><span class="p">.</span><span class="nf">AddSettingToBundle</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="nx">permissionRequests</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">response</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">bundleService</span><span class="p">.</span><span class="nf">AddSettingToBundle</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="nx">permissionRequests</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
 </code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="use-settings-value">
         Use settings value
@@ -3943,7 +3943,7 @@ more types of settings in the <code>settings</code> package. All of them come wi
 As that POST request is coming through oCIS proxy, there is an HTTP header <code>x-access-token</code> that holds a JWT with the account UUID in it. We just have to dismantle the JWT to get the UUID. There is a middleware for that in <code>ocis-pkg</code>. You can look up the server configuration for that middleware in <code>pkg/server/http/server.go</code>.
 In essence, it dismantles the <code>x-access-token</code>, extracts the account UUID and makes it available in the context.</p>
 <p>It can be subsequently retrieved from the context like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">accountID</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">metadata</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">middleware</span><span class="p">.</span><span class="nx">AccountID</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">accountID</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">metadata</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">middleware</span><span class="p">.</span><span class="nx">AccountID</span><span class="p">)</span>
 </code></pre></div><div class="gdoc-page__anchorwrap">
     <h3 id="create-request">
         Create request
@@ -3952,7 +3952,7 @@ In essence, it dismantles the <code>x-access-token</code>, extracts the account 
         </a>
     </h3>
 </div><p>With the account UUID we can build an <code>Identifier</code> for the request to oCIS settings as follows:</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">rq</span> <span class="o">:=</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">GetValueByUniqueIdentifiersRequest</span><span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">rq</span> <span class="o">:=</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">GetValueByUniqueIdentifiersRequest</span><span class="p">{</span>
   <span class="nx">AccountUuid</span><span class="p">:</span> <span class="nx">accountID</span><span class="p">,</span>
   <span class="nx">SettingId</span><span class="p">:</span>   <span class="nx">settingIDGreeterPhrase</span><span class="p">,</span>
 <span class="p">}</span>
@@ -3967,7 +3967,7 @@ In essence, it dismantles the <code>x-access-token</code>, extracts the account 
         </a>
     </h3>
 </div><p>This request message can be sent to the settings extension like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">valueService</span> <span class="o">:=</span> <span class="nx">settings</span><span class="p">.</span><span class="nf">NewValueService</span><span class="p">(</span><span class="s">&#34;com.owncloud.api.settings&#34;</span><span class="p">,</span> <span class="nx">mclient</span><span class="p">.</span><span class="nx">DefaultClient</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">valueService</span> <span class="o">:=</span> <span class="nx">settings</span><span class="p">.</span><span class="nf">NewValueService</span><span class="p">(</span><span class="s">&#34;com.owncloud.api.settings&#34;</span><span class="p">,</span> <span class="nx">mclient</span><span class="p">.</span><span class="nx">DefaultClient</span><span class="p">)</span>
 <span class="nx">response</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">valueService</span><span class="p">.</span><span class="nf">GetSettingsValue</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">request</span><span class="p">)</span>
 </code></pre></div><p>The request gives us the default or customized greeting phrase, depending on wether it has already been changed by an administrator.</p>
 <div class="gdoc-page__anchorwrap">

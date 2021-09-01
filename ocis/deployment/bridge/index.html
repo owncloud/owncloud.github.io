@@ -3874,7 +3874,7 @@
         </a>
     </h3>
 </div><p>In an owncloud 10 apps folder</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ git clone git@github.com:owncloud/graphapi.git
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ git clone git@github.com:owncloud/graphapi.git
 $ cd graphapi
 $ composer install
 </code></pre></div><div class="gdoc-page__anchorwrap">
@@ -3884,9 +3884,9 @@ $ composer install
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">occ a:e graphapi
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">occ a:e graphapi
 </code></pre></div><p>No configuration necessary. You can test with <code>curl</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ curl https://cloud.example.com/index.php/apps/graphapi/v1.0/users -u admin | jq
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ curl https://cloud.example.com/index.php/apps/graphapi/v1.0/users -u admin | jq
 Enter host password for user &#39;admin&#39;:
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -3927,7 +3927,7 @@ Enter host password for user &#39;admin&#39;:
         </a>
     </h4>
 </div><p>In an <code>ocis</code> folder</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ git clone git@github.com:owncloud/ocis-glauth.git
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ git clone git@github.com:owncloud/ocis-glauth.git
 $ cd ocis-glauth
 $ make
 </code></pre></div><p>This should give you a <code>bin/ocis-glauth</code> binary. Try listing the help with <code>bin/ocis-glauth --help</code>.</p>
@@ -3939,7 +3939,7 @@ $ make
         </a>
     </h4>
 </div><p>You need to point <code>ocis-glauth</code> to your owncloud domain:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ bin/ocis-glauth --log-level debug server --backend-datastore owncloud --backend-server https://cloud.example.com --backend-basedn dc=example,dc=com
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ bin/ocis-glauth --log-level debug server --backend-datastore owncloud --backend-server https://cloud.example.com --backend-basedn dc=example,dc=com
 </code></pre></div><p><code>--log-level debug</code> is only used to generate more verbose output
 <code>--backend-datastore owncloud</code> switches to tho owncloud datastore
 <code>--backend-server https://cloud.example.com</code> is the url to an ownCloud instance with an enabled graphapi app
@@ -3952,9 +3952,9 @@ $ make
         </a>
     </h4>
 </div><p>You should now be able to list accounts from your ownCloud 10 oc_accounts table using:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ ldapsearch -x -H ldap://localhost:9125 -b dc=example,dc=com -D &#34;cn=admin,dc=example,dc=com&#34; -W &#39;(objectclass=posixaccount)&#39;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ ldapsearch -x -H ldap://localhost:9125 -b dc=example,dc=com -D &#34;cn=admin,dc=example,dc=com&#34; -W &#39;(objectclass=posixaccount)&#39;
 </code></pre></div><p>Groups should work as well:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ ldapsearch -x -H ldap://localhost:9125 -b dc=example,dc=com -D &#34;cn=admin,dc=example,dc=com&#34; -W &#39;(objectclass=posixgroup)&#39;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ ldapsearch -x -H ldap://localhost:9125 -b dc=example,dc=com -D &#34;cn=admin,dc=example,dc=com&#34; -W &#39;(objectclass=posixgroup)&#39;
 </code></pre></div><blockquote>
 <p>Note: This is currently a readonly implementation and minimal to the usecase of authenticating users with idp.</p>
 </blockquote>
@@ -3973,7 +3973,7 @@ $ make
         </a>
     </h4>
 </div><p>In an <code>ocis</code> folder</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ git clone git@github.com:owncloud/ocis.git
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ git clone git@github.com:owncloud/ocis.git
 $ cd web
 $ make
 </code></pre></div><p>This should give you a <code>bin/web</code> binary. Try listing the help with <code>bin/web --help</code>.</p>
@@ -3985,7 +3985,7 @@ $ make
         </a>
     </h4>
 </div><p>Point <code>ocis-web</code> to your owncloud domain and tell it where to find the openid connect issuing authority:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ bin/web server --web-config-server https://cloud.example.com --oidc-authority https://192.168.1.100:9130 --oidc-metadata-url https://192.168.1.100:9130/.well-known/openid-configuration --oidc-client-id ocis
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ bin/web server --web-config-server https://cloud.example.com --oidc-authority https://192.168.1.100:9130 --oidc-metadata-url https://192.168.1.100:9130/.well-known/openid-configuration --oidc-client-id ocis
 </code></pre></div><p><code>ocis-web</code> needs to know</p>
 <ul>
 <li><code>--web-config-server https://cloud.example.com</code> is ownCloud url with webdav and ocs endpoints (oc10 or ocis)</li>
@@ -4008,7 +4008,7 @@ $ make
         </a>
     </h4>
 </div><p>In an <code>ocis</code> folder</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ git clone git@github.com:owncloud/ocis-idp.git
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ git clone git@github.com:owncloud/ocis-idp.git
 $ cd ocis-idp
 $ make
 </code></pre></div><p>This should give you a <code>bin/ocis-idp</code> binary. Try listing the help with <code>bin/ocis-idp --help</code>.</p>
@@ -4020,7 +4020,7 @@ $ make
         </a>
     </h4>
 </div><p>Konnectd needs environment variables to configure the LDAP server:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">export LDAP_URI=ldap://192.168.1.100:9125
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">export LDAP_URI=ldap://192.168.1.100:9125
 export LDAP_BINDDN=&#34;cn=admin,dc=example,dc=com&#34;
 export LDAP_BINDPW=&#34;its-a-secret&#34;
 export LDAP_BASEDN=&#34;dc=example,dc=com&#34;
@@ -4040,7 +4040,7 @@ export LDAP_FILTER=&#34;(objectClass=posixaccount)&#34;
         </a>
     </h3>
 </div><p>Now we need to configure a client we can later use to configure the ownCloud 10 openidconnect app. In the <code>assets/identifier-registration.yaml</code> have:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nn">---</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nn">---</span><span class="w">
 </span><span class="w">
 </span><span class="w"></span><span class="c"># OpenID Connect client registry.</span><span class="w">
 </span><span class="w"></span><span class="nt">clients</span><span class="p">:</span><span class="w">
@@ -4062,7 +4062,7 @@ Replace <code>localhost:9100</code> in the redirect URIs with your <code>ocis-we
         </a>
     </h4>
 </div><p>You can now bring up <code>ocis-idp</code> with:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ bin/ocis-idp server --iss https://192.168.1.100:9130 --identifier-registration-conf assets/identifier-registration.yaml --signing-kid gen1-2020-02-27
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ bin/ocis-idp server --iss https://192.168.1.100:9130 --identifier-registration-conf assets/identifier-registration.yaml --signing-kid gen1-2020-02-27
 </code></pre></div><p><code>ocis-idp</code> needs to know</p>
 <ul>
 <li><code>--iss https://192.168.1.100:9130</code> the issuer, which must be a reachable https endpoint. For testing an ip works. HTTPS is NOT optional. This url is exposed in the <code>https://192.168.1.100:9130/.well-known/openid-configuration</code> endpoint and clients need to be able to connect to it</li>
@@ -4079,7 +4079,7 @@ Replace <code>localhost:9100</code> in the redirect URIs with your <code>ocis-we
 </div><ol>
 <li>Try getting the configuration:</li>
 </ol>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ curl https://192.168.1.100:9130/.well-known/openid-configuration
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ curl https://192.168.1.100:9130/.well-known/openid-configuration
 </code></pre></div><ol start="2">
 <li>Check if the login works at https://192.168.1.100:9130/signin/v1/identifier</li>
 </ol>
@@ -4094,7 +4094,7 @@ Replace <code>localhost:9100</code> in the redirect URIs with your <code>ocis-we
         </a>
     </h3>
 </div><p>While the UserSession in ownCloud 10 is currently used to test all available IAuthModule implementations, it immediately logs out the user when an exception occurs. However, existing owncloud 10 instances use the oauth2 app to create Bearer tokens for mobile and desktop clients.</p>
-<p>To give the openidconnect app a chance to verify the tokens we need to change the code a bit. See <a href="https://github.com/owncloud/core/pull/37043">https://github.com/owncloud/core/pull/37043</a> for a possible solution.</p>
+<p>To give the openidconnect app a chance to verify the tokens we need to change the code a bit. See <a class="gdoc-markdown__link" href="https://github.com/owncloud/core/pull/37043">https://github.com/owncloud/core/pull/37043</a> for a possible solution.</p>
 <blockquote>
 <p>Note: The PR is hot &hellip; as in <em>younger than this list of steps</em>. And it messes with authentication. Use with caution.</p>
 </blockquote>
@@ -4106,11 +4106,11 @@ Replace <code>localhost:9100</code> in the redirect URIs with your <code>ocis-we
         </a>
     </h3>
 </div><p>In an owncloud 10 apps folder</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ git clone git@github.com:owncloud/openidconnect.git
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ git clone git@github.com:owncloud/openidconnect.git
 $ cd openidconnect
 $ composer install
 </code></pre></div><p>After enabling the app configure it in <code>config/oidc.config.php</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="nv">$CONFIG</span> <span class="o">=</span> <span class="p">[</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="nv">$CONFIG</span> <span class="o">=</span> <span class="p">[</span>
   <span class="s1">&#39;openid-connect&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
     <span class="s1">&#39;provider-url&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;https://192.168.1.100:9130&#39;</span><span class="p">,</span>
     <span class="s1">&#39;client-id&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;ocis&#39;</span><span class="p">,</span>

@@ -3846,7 +3846,7 @@
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><p>We begin with the docker-compose.yml found in <a href="https://github.com/owncloud/ocis/tree/master/ocis/">https://github.com/owncloud/ocis/tree/master/ocis/</a> and
+</div><p>We begin with the docker-compose.yml found in <a class="gdoc-markdown__link" href="https://github.com/owncloud/ocis/tree/master/ocis/">https://github.com/owncloud/ocis/tree/master/ocis/</a> and
 switch it to eos-storage.</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="1-start-eos--ocis-containers">
@@ -3856,7 +3856,7 @@ switch it to eos-storage.</p>
         </a>
     </h3>
 </div><p>Start the eos cluster and ocis via the compose stack.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose up -d
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose up -d
 </code></pre></div><blockquote class="gdoc-hint info">
   The first time the <strong>ocis</strong> container starts up, it will compile ocis from scratch which can take a while.
 To follow progress, run <code>docker-compose logs -f --tail=10 ocis</code>
@@ -3870,16 +3870,16 @@ To follow progress, run <code>docker-compose logs -f --tail=10 ocis</code>
         </a>
     </h3>
 </div><p>Configure the OS to resolve users and groups using ldap</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec -d ocis /start-ldap
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec -d ocis /start-ldap
 </code></pre></div><p>Check that the OS in the ocis container can now resolve einstein or the other demo users</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ docker-compose exec ocis id einstein
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ docker-compose exec ocis id einstein
 uid=20000(einstein) gid=30000(users) groups=30000(users),30001(sailing-lovers),30002(violin-haters),30007(physics-lovers)
 </code></pre></div><blockquote class="gdoc-hint info">
   If the user is not found at first you might need to wait a few more minutes in case the ocis container is still compiling.
 </blockquote>
 
 <p>We also need to restart the storage-userprovider service, so it picks up the changed environment. Without a restart it is not able to resolve users from LDAP.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill storage-userprovider
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill storage-userprovider
 docker-compose exec ocis ./bin/ocis run storage-userprovider
 </code></pre></div><div class="gdoc-page__anchorwrap">
     <h3 id="3-home-storage">
@@ -3889,7 +3889,7 @@ docker-compose exec ocis ./bin/ocis run storage-userprovider
         </a>
     </h3>
 </div><p>Kill the home storage. By default it uses the <code>ocis</code> storage driver. We need to switch it to the <code>eoshome</code> driver:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill storage-home
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill storage-home
 docker-compose exec -e STORAGE_HOME_DRIVER=eoshome ocis ./bin/ocis run storage-home
 </code></pre></div><div class="gdoc-page__anchorwrap">
     <h3 id="4-users-storage">
@@ -3899,7 +3899,7 @@ docker-compose exec -e STORAGE_HOME_DRIVER=eoshome ocis ./bin/ocis run storage-h
         </a>
     </h3>
 </div><p>Kill the users storage. By default it uses the <code>ocis</code> storage driver. We need to switch it to the <code>eos</code> driver:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill storage-users
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill storage-users
 docker-compose exec -e STORAGE_USERS_DRIVER=eos ocis ./bin/ocis run storage-users
 </code></pre></div><div class="gdoc-page__anchorwrap">
     <h3 id="5-metadata-storage">
@@ -3909,14 +3909,14 @@ docker-compose exec -e STORAGE_USERS_DRIVER=eos ocis ./bin/ocis run storage-user
         </a>
     </h3>
 </div><p>First we need to create the metadata root in eos and set an owner:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis eos mkdir -p /eos/dockertest/ocis/metadata
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis eos mkdir -p /eos/dockertest/ocis/metadata
 docker-compose exec ocis eos chown 2:2 /eos/dockertest/ocis/metadata
 </code></pre></div><blockquote class="gdoc-hint info">
   The uid and gid <code>2</code> are referencing the user <code>daemon</code> inside the ocis container. That user is also configured when restarting the accounts service later. For production systems you should create a dedicated user for the metadata storage.
 </blockquote>
 
 <p>Kill the metadata storage. By default it uses the <code>ocis</code> storage driver. We need to switch it to the <code>eos</code> driver:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill storage-metadata
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill storage-metadata
 docker-compose exec -e STORAGE_METADATA_DRIVER=eos -e STORAGE_METADATA_ROOT=/eos/dockertest/ocis/metadata ocis ./bin/ocis run storage-metadata
 </code></pre></div><div class="gdoc-page__anchorwrap">
     <h3 id="6-accounts-service">
@@ -3926,7 +3926,7 @@ docker-compose exec -e STORAGE_METADATA_DRIVER=eos -e STORAGE_METADATA_ROOT=/eos
         </a>
     </h3>
 </div><p>Kill the accounts service. By default it uses the <code>ocis</code> storage driver. We need to switch it to the <code>eos</code> driver:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill accounts
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill accounts
 docker-compose exec -e ACCOUNTS_SERVICE_USER_USERNAME=daemon -e ACCOUNTS_SERVICE_USER_UID=2 -e ACCOUNTS_SERVICE_USER_GID=2 ocis ./bin/ocis run accounts
 </code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="verification">
@@ -3936,7 +3936,7 @@ docker-compose exec -e ACCOUNTS_SERVICE_USER_USERNAME=daemon -e ACCOUNTS_SERVICE
         </a>
     </h2>
 </div><p>Login with <code>einstein / relativity</code>, upload a file to einsteins home and verify the file is there using</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis eos ls -l /eos/dockertest/reva/users/4/4c510ada-c86b-4815-8820-42cdf82c3d51/
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis eos ls -l /eos/dockertest/reva/users/4/4c510ada-c86b-4815-8820-42cdf82c3d51/
 -rw-r--r--   1 einstein users              10 Jul  1 15:24 newfile.txt
 </code></pre></div><p>If the problem persists, please check the <a class="gdoc-markdown__link" href="#creation-and-upload-of-files-does-not-work">troubleshooting section about uploads</a>.</p>
 <div class="gdoc-page__anchorwrap">
@@ -3947,7 +3947,7 @@ docker-compose exec -e ACCOUNTS_SERVICE_USER_USERNAME=daemon -e ACCOUNTS_SERVICE
         </a>
     </h2>
 </div><p>EOS has a built in shell that you can enter using</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$ docker-compose exec mgm-master eos
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ docker-compose exec mgm-master eos
 # ---------------------------------------------------------------------------
 # EOS  Copyright (C) 2011-2019 CERN/Switzerland
 # This program comes with ABSOLUTELY NO WARRANTY; for details type `license&#39;.

@@ -3851,7 +3851,7 @@
         </a>
     </h4>
 </div><p>Run the debug binary with <code>OCIS_LOG_LEVEL=debug bin/ocis-debug server</code> and then find the service you want to debug using:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"># ps ax | grep ocis
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"># ps ax | grep ocis
 12837 pts/1    Sl+    0:00 bin/ocis-debug server
 12845 pts/1    Sl     0:00 bin/ocis-debug graph
 12847 pts/1    Sl     0:00 bin/ocis-debug reva-auth-bearer
@@ -3876,7 +3876,7 @@
 13004 pts/1    Sl     0:00 bin/ocis-debug web
 13015 pts/1    Sl     0:00 bin/ocis-debug reva-auth-basic
 </code></pre></div><p>Then you can set a breakpoint in the service you need and attach to the process via processid. To debug the <code>reva-sharing</code> service the VS Code <code>launch.json</code> would look like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
   <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;0.2.0&#34;</span><span class="p">,</span>
   <span class="nt">&#34;configurations&#34;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
@@ -3898,7 +3898,7 @@
 </div><ol>
 <li>You can use this <code>./ocis.sh</code> script to start all services independently, so they don&rsquo;t get restarted by the runtime when you kill them:</li>
 </ol>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#/bin/sh</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#/bin/sh</span>
 <span class="nv">LOG_LEVEL</span><span class="o">=</span><span class="s2">&#34;debug&#34;</span>
 
 bin/ocis --log-level<span class="o">=</span><span class="nv">$LOG_LEVEL</span> micro <span class="p">&amp;</span>
@@ -3927,7 +3927,7 @@ bin/ocis --log-level<span class="o">=</span><span class="nv">$LOG_LEVEL</span> p
 </code></pre></div><ol start="2">
 <li>Get the list of running processes:</li>
 </ol>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"># ps ax | grep ocis
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"># ps ax | grep ocis
 12837 pts/1    Sl+    0:00 bin/ocis-debug server
 12845 pts/1    Sl     0:00 bin/ocis-debug graph
 12847 pts/1    Sl     0:00 bin/ocis-debug reva-auth-bearer
@@ -3954,7 +3954,7 @@ bin/ocis --log-level<span class="o">=</span><span class="nv">$LOG_LEVEL</span> p
 </code></pre></div><ol start="3">
 <li>Kill the service you want to start in debug mode:</li>
 </ol>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"># kill 17628
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"># kill 17628
 </code></pre></div><ol start="4">
 <li>Start the service you are interested in in debug mode. When using make to build the binary there is already a <code>bin/ocis-debug</code> binary for you. When running an IDE tell it which service to start by providing the corresponding sub command, eg. <code>bin\ocis-debug reva-frontend</code>.</li>
 </ol>
@@ -3971,7 +3971,7 @@ bin/ocis --log-level<span class="o">=</span><span class="nv">$LOG_LEVEL</span> p
 error sending a grpc stat request</p>
 </blockquote>
 <p>This popped up when I tried to add <code>marie</code> as a collaborator in ownCloud Web. That triggers a request to the server which I copied as curl. We can strip a lot of headers and the gist of it is:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"># curl &#39;https://localhost:9200/ocs/v1.php/apps/files_sharing/api/v1/shares&#39; -d &#39;shareType=0&amp;shareWith=marie&amp;path=%2FNeuer+Ordner&amp;permissions=1&#39; -u einstein:relativity -k -v | xmllint -format -
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"># curl &#39;https://localhost:9200/ocs/v1.php/apps/files_sharing/api/v1/shares&#39; -d &#39;shareType=0&amp;shareWith=marie&amp;path=%2FNeuer+Ordner&amp;permissions=1&#39; -u einstein:relativity -k -v | xmllint -format -
 [... headers ...]
 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;ocs&gt;
@@ -3990,15 +3990,15 @@ error sending a grpc stat request</p>
 </blockquote>
 </p>
 <p>We also have a few interesting log entries:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">0:43PM INF home/jfd/go/pkg/mod/github.com/cs3org/reva@v0.0.2-0.20200318111623-a2f97d4aa741/internal/grpc/interceptors/log/log.go:69 &gt; unary code=OK end=&#34;18/Mar/2020:22:43:40 +0100&#34; from=tcp://[::1]:44078 pid=17836 pkg=rgrpc start=&#34;18/Mar/2020:22:43:40 +0100&#34; time_ns=95841 traceid=b4eb9a9f45921f7d3632523ca32a42b0 uri=/cs3.storage.registry.v1beta1.RegistryAPI/GetStorageProvider user-agent=grpc-go/1.26.0
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">0:43PM INF home/jfd/go/pkg/mod/github.com/cs3org/reva@v0.0.2-0.20200318111623-a2f97d4aa741/internal/grpc/interceptors/log/log.go:69 &gt; unary code=OK end=&#34;18/Mar/2020:22:43:40 +0100&#34; from=tcp://[::1]:44078 pid=17836 pkg=rgrpc start=&#34;18/Mar/2020:22:43:40 +0100&#34; time_ns=95841 traceid=b4eb9a9f45921f7d3632523ca32a42b0 uri=/cs3.storage.registry.v1beta1.RegistryAPI/GetStorageProvider user-agent=grpc-go/1.26.0
 10:43PM ERR home/jfd/go/pkg/mod/github.com/cs3org/reva@v0.0.2-0.20200318111623-a2f97d4aa741/internal/grpc/interceptors/log/log.go:69 &gt; unary code=Unknown end=&#34;18/Mar/2020:22:43:40 +0100&#34; from=tcp://[::1]:43910 pid=17836 pkg=rgrpc start=&#34;18/Mar/2020:22:43:40 +0100&#34; time_ns=586115 traceid=b4eb9a9f45921f7d3632523ca32a42b0 uri=/cs3.gateway.v1beta1.GatewayAPI/Stat user-agent=grpc-go/1.26.0
 10:43PM ERR home/jfd/go/pkg/mod/github.com/cs3org/reva@v0.0.2-0.20200318111623-a2f97d4aa741/internal/http/services/owncloud/ocs/reqres.go:94 &gt; error sending a grpc stat request error=&#34;rpc error: code = Unknown desc = gateway: error calling Stat: rpc error: code = Unavailable desc = connection error: desc = \&#34;transport: Error while dialing dial tcp [::1]:9152: connect: connection refused\&#34;&#34; pid=17832 pkg=rhttp traceid=b4eb9a9f45921f7d3632523ca32a42b0
 </code></pre></div><blockquote class="gdoc-hint danger">
-  TODO return the trace id in the response so we can correlate easier. For reva tracked in <a href="https://github.com/cs3org/reva/issues/587">https://github.com/cs3org/reva/issues/587</a>
+  TODO return the trace id in the response so we can correlate easier. For reva tracked in <a class="gdoc-markdown__link" href="https://github.com/cs3org/reva/issues/587">https://github.com/cs3org/reva/issues/587</a>
 </blockquote>
 
 <p>The last line gives us a hint where the log message originated: <code>.../github.com/cs3org/reva@v0.0.2-0.20200318111623-a2f97d4aa741/internal/http/services/owncloud/ocs/reqres.go:94</code>. Which looks like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="mi">89</span><span class="p">:</span> <span class="c1">// WriteOCSResponse handles writing ocs responses in json and xml
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="mi">89</span><span class="p">:</span> <span class="c1">// WriteOCSResponse handles writing ocs responses in json and xml
 </span><span class="c1"></span><span class="mi">90</span><span class="p">:</span> <span class="kd">func</span> <span class="nf">WriteOCSResponse</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">res</span> <span class="o">*</span><span class="nx">Response</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
 <span class="mi">91</span><span class="p">:</span> 	<span class="kd">var</span> <span class="nx">encoded</span> <span class="p">[]</span><span class="kt">byte</span>
 <span class="mi">92</span><span class="p">:</span>
@@ -4019,7 +4019,7 @@ error sending a grpc stat request</p>
     </h3>
 </div><p>You can either run and manage the services independently, or you can update the <code>go.mod</code> file and replace dependencies with your local version.</p>
 <p>To debug the reva frontend we need to add two replacements:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">// use the local ocis-reva repo
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">// use the local ocis-reva repo
 replace github.com/owncloud/ocis-reva =&gt; ../ocis-reva
 // also use the local reva repo
 replace github.com/cs3org/reva =&gt; ../reva

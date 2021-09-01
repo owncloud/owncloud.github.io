@@ -4047,7 +4047,7 @@ Command line flag value from user Environment variable (if specified) Configurat
     </h4>
 </div><p>Flag parsing on subcommands in supervised mode is not yet allowed. The runtime will first parse the global <code>ocis.yaml</code> (if any) and run with the loaded configuration. This use case should provide support for having 2 different proxy config files and making use of the runtime start 2 proxy services, with different values.</p>
 <p>For this to work, services started via <code>Service.Start</code> need to forward any args as flags:</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">client</span><span class="p">.</span><span class="nf">Call</span><span class="p">(</span><span class="s">&#34;Service.Start&#34;</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="o">&amp;</span><span class="nx">reply</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">client</span><span class="p">.</span><span class="nf">Call</span><span class="p">(</span><span class="s">&#34;Service.Start&#34;</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="o">&amp;</span><span class="nx">reply</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
   <span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div><p>This should provide with enough flexibility for interpreting different config sources as: <code>&gt; bin/ocis run proxy --config-file /etc/ocis/unexpected/proxy.yaml</code></p>
@@ -4068,7 +4068,7 @@ Command line flag value from user Environment variable (if specified) Configurat
 <li>running under supervision mode</li>
 </ol>
 <p>The outcome of the following set of commands should be having all bootstrapped services running + 2 proxies on different addresses:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">&gt; ocis server
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&gt; ocis server
 &gt; ocis kill proxy
 &gt; ocis run proxy --config-file proxy.yaml
 &gt; ocis run proxy --config-file proxy2.yaml
@@ -4093,7 +4093,7 @@ Command line flag value from user Environment variable (if specified) Configurat
         </a>
     </h4>
 </div><p><code>OCIS_URL</code> is a jack-of-all trades configuration. It is meant to ease up providing defaults and ensuring dependant services are well configured. It is an override to the following env vars:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">OCIS_IDM_ADDRESS
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">OCIS_IDM_ADDRESS
 PROXY_OIDC_ISSUER
 STORAGE_OIDC_ISSUER
 STORAGE_FRONTEND_PUBLIC_URL

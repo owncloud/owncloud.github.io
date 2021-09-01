@@ -3821,18 +3821,18 @@ GET https://demo.owncloud.com/apps/files/?dir=/path/to/resource&amp;fileid=54722
         </a>
     </h2>
 </div><p>When speaking about URLs we have to make a difference between browser URLs and API URLs. Only browser URLs are visible to end users and will be bookmarked. The currently existing and bookmarked ownCloud 10 URLs look something like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">GET https://demo.owncloud.com/apps/files/?dir=/path/to/resource&amp;fileid=5472225
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">GET https://demo.owncloud.com/apps/files/?dir=/path/to/resource&amp;fileid=5472225
 303 Location: https://demo.owncloud.com/apps/files/?dir=/path/to/resource
 </code></pre></div><p>When the URL contains a <code>fileid</code> parameter the server will look up the corresponding <code>dir</code>, overwriting whatever was set before the redirect. The <code>fileid</code> always takes precedence and the server is responsible for the lookup.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">GET https://demo.owncloud.com/apps/files/?dir=/path/to/resource
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">GET https://demo.owncloud.com/apps/files/?dir=/path/to/resource
 </code></pre></div><p>The <code>dir</code> parameter is then used to make a WebDAV request against the <code>/dav/files</code> endpoint of the currently logged in user:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">PROPFIND https://demo.owncloud.com/remote.php/dav/files/demo/path/to/resource
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">PROPFIND https://demo.owncloud.com/remote.php/dav/files/demo/path/to/resource
 </code></pre></div><p>The resulting PROPFIND response is used to render the file listing. All good so far.</p>
 <p>For the new ocis web UI we want to clean up the user visible Browser URLs. They currently look like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">https://demo.owncloud.com/#/files/list/all/path/to/resource
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">https://demo.owncloud.com/#/files/list/all/path/to/resource
 </code></pre></div><p>Currently, there is no <code>fileid</code> like parameter in the browser URL, making bookmarks of it fragile (they break when a bookmarked folder is renamed).</p>
 <p>The oCIS web UI just takes the path and uses the <code>/webdav</code> endpoint of the currently logged in user:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">PROPFIND https://demo.owncloud.com/remote.php/webdav/path/to/resource
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">PROPFIND https://demo.owncloud.com/remote.php/webdav/path/to/resource
 </code></pre></div><p>With the new ownCloud web client (owncloud/web)</p>
 <p>needs to interpret them to make API calls. With this in mind, this is the current mapping on ownCloud Web with OC10 and OCIS backend:</p>
 <div class=table-wrap> <table>
@@ -3866,7 +3866,7 @@ GET https://demo.owncloud.com/apps/files/?dir=/path/to/resource&amp;fileid=54722
 <ol>
 <li>TODO for a given resource id as part of the URL the <code>https://demo.owncloud.com/v1.0/drive/items/123456A14B0A7750!359?$select=parentReference</code> can be used to retrieve the drive/space:</li>
 </ol>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">{
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">{
     &#34;parentReference&#34;: {
         &#34;driveId&#34;: &#34;123456a14b0a7750&#34;,
         &#34;driveType&#34;: &#34;personal&#34;,
@@ -3875,7 +3875,7 @@ GET https://demo.owncloud.com/apps/files/?dir=/path/to/resource&amp;fileid=54722
     }
 }
 </code></pre></div><ol start="2">
-<li>TODO to fetch the list of all spaces with their mount points we need an API endpoint that allows clients (not only the web ui) to &lsquo;sync&rsquo; the list of storages a user has access to from the storage registry on the server side. This allows clients to directly talk to a storage provider on another instance, allowing true storage federation. The MS graph api has no notion of mount points, so we will need to add a <code>mountpath</code> <em>(or <code>mountpoint</code>? or <code>alias</code>?)</em> to our <a class="gdoc-markdown__link" href="https://github.com/owncloud/open-graph-api/blob/dc6da5359eee0345429080b5b59762fd8c57b121/api/openapi-spec/v0.0.yaml#L351-L384"><code>drive</code> resource properties in the libreGraph spec</a>. Tracked in <a href="https://github.com/owncloud/open-graph-api/issues/6">https://github.com/owncloud/open-graph-api/issues/6</a></li>
+<li>TODO to fetch the list of all spaces with their mount points we need an API endpoint that allows clients (not only the web ui) to &lsquo;sync&rsquo; the list of storages a user has access to from the storage registry on the server side. This allows clients to directly talk to a storage provider on another instance, allowing true storage federation. The MS graph api has no notion of mount points, so we will need to add a <code>mountpath</code> <em>(or <code>mountpoint</code>? or <code>alias</code>?)</em> to our <a class="gdoc-markdown__link" href="https://github.com/owncloud/open-graph-api/blob/dc6da5359eee0345429080b5b59762fd8c57b121/api/openapi-spec/v0.0.yaml#L351-L384"><code>drive</code> resource properties in the libreGraph spec</a>. Tracked in <a class="gdoc-markdown__link" href="https://github.com/owncloud/open-graph-api/issues/6">https://github.com/owncloud/open-graph-api/issues/6</a></li>
 </ol>
 <blockquote class="gdoc-hint ">
   @jfd: The graph api returns a <code>path</code> in the <code>parentReference</code>, which is part of the <code>root</code> in a <code>drive</code> resource. But it contains a value in the namespace of the <code>graph</code> endpoint, eg.: <code>/drive/root:/Bilder</code> for the <code>/Bilder</code> folder in the root of the currently logged in users personal drive/space. Which is again relative to the drive. To give the clients a way to determine the mount point we need to add a new <code>mountpath/point/alias</code> property.
@@ -4294,7 +4294,7 @@ The same URL with a SR <code>https://ocis.com/#/s/workspaceFoo/TEST?id=b78c2044-
 <p>The URL  <code>https://&lt;host&gt;/files?id=&lt;resource_id&gt;̀</code> is sent to the server. It has to look up the correct path and redirect the request, including the the path. But that would make all bookmarks contain tha path again, even if paths were configured to not be part of the URL.</p>
 <p>The <code>/meta/&lt;fileid&gt;</code> webdav endpoint can be used to look up the path with property <code>meta-path-for-user</code>.</p>
 <p>For now, we would use path based navigation with URLs like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">https://&lt;host&gt;/files&lt;/namespaced/alias&gt;&lt;/relative/path/to/resource&gt;?id=&lt;resource_id&gt;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">https://&lt;host&gt;/files&lt;/namespaced/alias&gt;&lt;/relative/path/to/resource&gt;?id=&lt;resource_id&gt;
 </code></pre></div><p>This means that only the <em>resource path</em> is part of the URL path. Any other parameter, eg. file <code>id</code>, <code>page</code> or sort order must be given as URL parameters.</p>
 <ul>
 <li>

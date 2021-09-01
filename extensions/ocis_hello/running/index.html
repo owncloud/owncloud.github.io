@@ -3819,7 +3819,7 @@ No matter which way you choose, we need to create a configuration file for ownCl
     </h2>
 </div><p>You can either <a class="gdoc-markdown__link" href="https://owncloud.dev/ocis/getting-started/#binaries">start oCIS from a binary</a> or <a class="gdoc-markdown__link" href="https://owncloud.dev/ocis/development/build/#build-the-ocis-binary">build it from source</a>.</p>
 <p>No matter which way you choose, we need to create a configuration file for ownCloud Web, so that the Hello extension will be loaded in the frontend. Therefore create a file <code>web-config.json</code> with the following contents:</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
   <span class="nt">&#34;server&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200&#34;</span><span class="p">,</span>
   <span class="nt">&#34;theme&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/themes/owncloud/theme.json&#34;</span><span class="p">,</span>
   <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;0.1.0&#34;</span><span class="p">,</span>
@@ -3853,7 +3853,7 @@ No matter which way you choose, we need to create a configuration file for ownCl
 </code></pre></div><p>Please note the the regististration of our Hello extension in the <code>external_apps</code> section. It will trigger ownCloud Web to load <code>hello.js</code>, the frontend bundle generated in the <a class="gdoc-markdown__link" href="https://owncloud.dev/extensions/ocis_hello/building/#frontend">frontend build step</a>.</p>
 <p>The frontend bundle will be requested from the oCIS proxy and requests to our Hello extension&rsquo;s API will also be passed to the oCIS proxy first. Therefore the oCIS proxy needs to be configured to forward these requests to our Hello extension.
 We do this by using the existing <code>proxy-example.json</code> file from the <a class="gdoc-markdown__link" href="https://github.com/owncloud/ocis/blob/master/proxy/config/proxy-example.json">oCIS proxy</a>. Just add an extra endpoint at the end for the Hello extension.</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
   <span class="nt">&#34;endpoint&#34;</span><span class="p">:</span> <span class="s2">&#34;/api/v0/greet&#34;</span><span class="p">,</span>
   <span class="nt">&#34;backend&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:9105&#34;</span>
 <span class="p">}</span><span class="err">,</span>
@@ -3862,10 +3862,10 @@ We do this by using the existing <code>proxy-example.json</code> file from the <
   <span class="nt">&#34;backend&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:9105&#34;</span>
 <span class="p">}</span>
 </code></pre></div><p>In addition to all these we will also need to activate the config files we just created. Therefore set these two variables with the path to the respective config file.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">export WEB_UI_CONFIG=&lt;path to web-config.json&gt;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">export WEB_UI_CONFIG=&lt;path to web-config.json&gt;
 export PROXY_CONFIG_FILE=&lt;path to ocis proxy config file&gt;
 </code></pre></div><p>And finally start the oCIS server:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">ocis server
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">ocis server
 </code></pre></div><blockquote class="gdoc-hint warning">
   <p>oCIS currently has a bug. oCIS proxy will not pick up the proxy configuration file if it is started in the supervised mode by <code>ocis server</code>. Therefore you will need to apply the following workaround:</p>
 <p>Run <code>ocis server</code> with the environment variables mentioned above. Then open a new CLI and run <code>ocis kill proxy</code>. Set the same environment variables as above and run <code>ocis proxy server</code>. This starts the proxy in a non supervised mode and ensures that it picks up your custom routes in the proxy configuration file.</p>
@@ -3881,10 +3881,10 @@ export PROXY_CONFIG_FILE=&lt;path to ocis proxy config file&gt;
     </h2>
 </div><p>After oCIS is running, we can start the Hello extension.</p>
 <p>For that just build ocis-hello binary.</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">cd ocis-hello
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">cd ocis-hello
 make build
 </code></pre></div><p>And Run the service</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">./bin/hello server
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">./bin/hello server
 </code></pre></div>
     </article>
 
