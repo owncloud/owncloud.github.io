@@ -10,11 +10,11 @@
 
 
 
-    <meta name="description" content="Intro Customizing assets  Static assets CSS Containers  What pages to theme   Components Images Locales   Building assets     Intro    Our default IDP UI is built with the LibreGraph Connect React app. Even though this app comes already with a simple theming options, we have compiled our own edited version of the app with more advanced changes than the default theming offers.">
+    <meta name="description" content="Development Architecture Implemented Aspects Future work     oCIS intends to make the aspects of existing storage systems available as transparently as possible, but the static sync algorithm of the desktop client relies on some form of recursive change time propagation on the server side to detect changes. While this can be bolted on top of existing file systems with inotify, the kernel audit or a fuse based overlay filesystem, a storage system that already implements this aspect is preferable.">
 
 
 
-    <title>Theming | ownCloud</title>
+    <title>cephfs | ownCloud</title>
 
     <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -1297,7 +1297,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-fcfbecde" class="gdoc-nav__toggle" >
+            <input type="checkbox" id="navtree-fcfbecde" class="gdoc-nav__toggle" checked>
             <label for="navtree-fcfbecde" class="flex justify-between">
             
             
@@ -1329,7 +1329,7 @@
             
             
                 <span class="flex">
-                    <a href="/ocis/storage-backends/cephfs/" class="gdoc-nav__entry ">
+                    <a href="/ocis/storage-backends/cephfs/" class="gdoc-nav__entry is-active">
                         cephfs
                     </a>
                 </span>
@@ -2405,7 +2405,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-306df142" class="gdoc-nav__toggle" checked>
+            <input type="checkbox" id="navtree-306df142" class="gdoc-nav__toggle" >
             <label for="navtree-306df142" class="flex justify-between">
             
             
@@ -2465,7 +2465,7 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/idp/theming/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/idp/theming/" class="gdoc-nav__entry ">
                         Theming
                     </a>
                 </span>
@@ -3828,7 +3828,7 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/extensions/' href='/extensions/'><span itemprop='name'>Extensions</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/extensions/idp/' href='/extensions/idp/'><span itemprop='name'>IDP</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Theming</span><meta itemprop='position' content='4' /></li>
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/storage-backends/' href='/ocis/storage-backends/'><span itemprop='name'>Storage backends</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>cephfs</span><meta itemprop='position' content='4' /></li>
     
 
     
@@ -3844,7 +3844,7 @@
     <div>
         <span class="editpage">
             <svg class="icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/docs/extensions/theming/theming.md">
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/storage-backends/cephfs.md">
                 Edit this page
             </a>
         </span>
@@ -3854,132 +3854,100 @@
 
 
     <article class="gdoc-markdown gdoc-markdown__align--left">
-        <h1>Theming</h1>
+        <h1>cephfs</h1>
         
 
 
   <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
-        <li><a href="#intro">Intro</a></li>
-        <li><a href="#customizing-assets">Customizing assets</a>
-          <ul>
-            <li><a href="#static-assets">Static assets</a></li>
-            <li><a href="#css">CSS</a></li>
-            <li><a href="#containers">Containers</a>
-              <ul>
-                <li><a href="#what-pages-to-theme">What pages to theme</a></li>
-              </ul>
-            </li>
-            <li><a href="#components">Components</a></li>
-            <li><a href="#images">Images</a></li>
-            <li><a href="#locales">Locales</a></li>
-          </ul>
-        </li>
-        <li><a href="#building-assets">Building assets</a></li>
+        <li><a href="#development">Development</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#implemented-aspects">Implemented Aspects</a></li>
+        <li><a href="#future-work">Future work</a></li>
       </ul></nav><hr></div>
 
 
+<p>oCIS intends to make the aspects of existing storage systems available as transparently as possible, but the static sync algorithm of the desktop client relies on some form of recursive change time propagation on the server side to detect changes. While this can be bolted on top of existing file systems with inotify, the kernel audit or a fuse based overlay filesystem, a storage system that already implements this aspect is preferable. Aside from EOS, cephfs supports a recursive change time that oCIS can use to calculate an etag for the webdav API.</p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="intro">
-        Intro
-        <a data-clipboard-text="https://owncloud.dev/extensions/idp/theming/#intro" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Intro" href="#intro">
+    <h2 id="development">
+        Development
+        <a data-clipboard-text="https://owncloud.dev/ocis/storage-backends/cephfs/#development" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Development" href="#development">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><p>Our default IDP UI is built with the <a class="gdoc-markdown__link" href="https://github.com/libregraph/lico">LibreGraph Connect</a> React app. Even though this app comes already with a simple theming options, we have compiled our own edited version of the app with more advanced changes than the default theming offers. Because of that, it is not possible at the moment to do any kind of easy theming and including custom theme means again compiling custom assets.</p>
+</div><p>The cephfs development happens in a <a class="gdoc-markdown__link" href="https://github.com/cs3org/reva/pull/1209">Reva branch</a> and is currently driven by CERN.</p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="customizing-assets">
-        Customizing assets
-        <a data-clipboard-text="https://owncloud.dev/extensions/idp/theming/#customizing-assets" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Customizing assets" href="#customizing-assets">
+    <h2 id="architecture">
+        Architecture
+        <a data-clipboard-text="https://owncloud.dev/ocis/storage-backends/cephfs/#architecture" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Architecture" href="#architecture">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><p>Depending on what changes you wish to do with the theme, there are several files you can edit. All of them are located in the <code>idp/ui</code> folder.</p>
+</div><p>In the original approach the driver was based on the <a class="gdoc-markdown__link" href="https://github.com/cs3org/reva/blob/a8c61401b662d8e09175416c0556da8ef3ba8ed6/pkg/storage/utils/localfs/localfs.go">localfs</a> driver, relying on a locally mounted cephfs. It would interface with it using the POSIX apis. This has been changed to directly call the Ceph API using <a class="gdoc-markdown__link" href="https://github.com/ceph/go-ceph">https://github.com/ceph/go-ceph</a>. It allows using the ceph admin APIs to create subvolumes for user homes and maintain a file id to path mapping using symlinks.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="static-assets">
-        Static assets
-        <a data-clipboard-text="https://owncloud.dev/extensions/idp/theming/#static-assets" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Static assets" href="#static-assets">
+    <h2 id="implemented-aspects">
+        Implemented Aspects
+        <a data-clipboard-text="https://owncloud.dev/ocis/storage-backends/cephfs/#implemented-aspects" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Implemented Aspects" href="#implemented-aspects">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
-    </h3>
-</div><p>If you wish to add static assets like images, CSS, etc., you can add them to <code>idp/ui/public/static</code>. The <code>public</code> folder also contains the <code>index.html</code> file which can be adjusted to your needs.</p>
+    </h2>
+</div><p>The recursive change time built ino cephfs is used to implement the etag propagation expected by the ownCloud clients. This allows oCIS to pick up changes that have been made by external tools, bypassing any oCIS APIs.</p>
+<p>Like other filesystems cephfs uses inodes and like most other filesystems inodes are reused. To get stable file identifiers the current cephfs driver assigns every node a file id and maintains a custom fileid to path mapping in a system directory:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">/tmp/cephfs $ tree -a
+.
+├── reva
+│   └── einstein
+│       ├── Pictures
+│       └── welcome.txt
+└── .reva_hidden
+    ├── .fileids
+    │   ├── 50BC39D364A4703A20C58ED50E4EADC3_570078 -&gt; /tmp/cephfs/reva/einstein
+    │   ├── 571EFB3F0ACAE6762716889478E40156_570081 -&gt; /tmp/cephfs/reva/einstein/Pictures
+    │   └── C7A1397524D0419B38D04D539EA531F8_588108 -&gt; /tmp/cephfs/reva/einstein/welcome.txt
+    └── .uploads
+</code></pre></div><p>Versions are not file but snapshot based, a <a class="gdoc-markdown__link" href="https://docs.ceph.com/en/latest/dev/cephfs-snapshots/">native feature of cephfs</a>. The driver maps entries in the native cephfs <code>.snap</code> folder to the CS3 api recycle bin concept and makes them available in the web UI using the versions sidebar. Snapshots can be triggered by users themselves or on a schedule.</p>
+<p>Trash is not implemented, as cephfs has no native recycle bin and instead relies on the snapshot functionality that can be triggered by end users. It should be possible to automatically create a snapshot before deleting a file. This needs to be explored.</p>
+<p>Shares <a class="gdoc-markdown__link" href="https://github.com/cs3org/reva/pull/1209/files#diff-5e532e61f99bffb5754263bc6ce75f84a30c6f507a58ba506b0b487a50eda1d9R168-R224">are be mapped to ACLs</a> supported by cephfs. The share manager is used to persist the intent of a share and can be used to periodically verify or reset the ACLs on cephfs.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="css">
-        CSS
-        <a data-clipboard-text="https://owncloud.dev/extensions/idp/theming/#css" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor CSS" href="#css">
+    <h2 id="future-work">
+        Future work
+        <a data-clipboard-text="https://owncloud.dev/ocis/storage-backends/cephfs/#future-work" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Future work" href="#future-work">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
-    </h3>
-</div><p>LibreGraph Connect is built with <a class="gdoc-markdown__link" href="https://github.com/Kopano-dev/kpop">kpop</a>, a collection of React UI components. To include any custom styles on top of that collection, you can define them in the <code>idp/ui/src/app.css</code> file. These rules will take precedence over the kpop.</p>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="containers">
-        Containers
-        <a data-clipboard-text="https://owncloud.dev/extensions/idp/theming/#containers" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Containers" href="#containers">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p>Layouts of all pages are located in the <code>idp/ui/src/containers</code> folder. By editing any of files in that folder, you can do any kind of changes in the layout and create advanced themes. It is, however, important to be careful when touching this code as it imports also actions which are responsible for the login flow.</p>
-<div class="gdoc-page__anchorwrap">
-    <h4 id="what-pages-to-theme">
-        What pages to theme
-        <a data-clipboard-text="https://owncloud.dev/extensions/idp/theming/#what-pages-to-theme" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor What pages to theme" href="#what-pages-to-theme">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h4>
+    </h2>
 </div><ul>
-<li>Login
+<li>The spaces concept matches cephfs subvolumes. We can implement the CreateStorageSpace call with that, keep track of the list of storage spaces using symlinks, like for the id based lookup.</li>
+<li>The share manager needs a persistence layer.</li>
+<li>Currently we persist using a single json file.</li>
+<li>As it basically provides two lists, <em>shared with me</em> and <em>shared with others</em>, we could persist them directly on cephfs!
 <ul>
-<li>Login - login form used to authenticate the users</li>
-<li>Consent - consent page used to authorise apps for already signed in users</li>
-<li>Chooseaccount - page with a list of accounts to choose from</li>
+<li>If needed for redundancy, the share manager can be run multiple times, backed by the same cephfs</li>
+<li>To save disk io the data can be cached in memory, and invalidated using stat requests.</li>
 </ul>
 </li>
-<li>Goodbye
-<ul>
-<li>Goodbyescreen - goodbye message displayed to users after they signed out</li>
+<li>A good tradeoff would be a folder for each user with a json file for each list. That way, we only have to open and read a single file when the user want&rsquo;s to list the shares.</li>
+<li>To allow deprovisioning a user the data should by sharded by userid. That way all share information belonging to a user can easily be removed from the system. If necessary it can also be restored easily by copying the user specific folder back in place.</li>
+<li>For consistency over metadata any file blob data, backups can be done using snapshots.</li>
+<li>An example where einstein has shared a file with marie would look like this on disk:</li>
 </ul>
-</li>
-<li>Welcome
-<ul>
-<li>Welcomescreen - welcome message displayed to users after they signed in</li>
-</ul>
-</li>
-</ul>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="components">
-        Components
-        <a data-clipboard-text="https://owncloud.dev/extensions/idp/theming/#components" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Components" href="#components">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p><code>idp/ui/src/components</code> folder contains all custom components which are then imported into containers.</p>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="images">
-        Images
-        <a data-clipboard-text="https://owncloud.dev/extensions/idp/theming/#images" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Images" href="#images">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p>Every image placed in <code>idp/ui/src/images</code> can be directly import into components or containers and will be optimized when compiling assets.</p>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="locales">
-        Locales
-        <a data-clipboard-text="https://owncloud.dev/extensions/idp/theming/#locales" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Locales" href="#locales">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p>If you need to edit or add new locales, you can do so with json files in the <code>idp/ui/src/locales</code> folder. If adding new locale, make sure to add it also in the <code>index.js</code> file in the same folder.</p>
-<div class="gdoc-page__anchorwrap">
-    <h2 id="building-assets">
-        Building assets
-        <a data-clipboard-text="https://owncloud.dev/extensions/idp/theming/#building-assets" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Building assets" href="#building-assets">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h2>
-</div><p>In order to build all assets, run <code>yarn build</code> in the <code>idp</code> folder. This script will compile all assets and output them into <code>idp/assets</code> folder.</p>
-<p>At this point, you have two possible ways how to deploy your new theme:</p>
-<ul>
-<li>run <code>make generate</code> in the root folder of your oCIS clone and generate the new assets</li>
-<li>start the IDP service directly with custom assets by specifying the env var <code>IDP_ASSET_PATH</code></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">/tmp/cephfs $ tree -a
+.
+├── reva
+│   └── einstein
+│       ├── Pictures
+│       └── welcome.txt
+├── .reva_hidden
+│   ├── .fileids
+│   │   ├── 50BC39D364A4703A20C58ED50E4EADC3_570078 -&gt; /tmp/cephfs/reva/einstein
+│   │   ├── 571EFB3F0ACAE6762716889478E40156_570081 -&gt; /tmp/cephfs/reva/einstein/Pictures
+│   │   └── C7A1397524D0419B38D04D539EA531F8_588108 -&gt; /tmp/cephfs/reva/einstein/welcome.txt
+│   └── .uploads
+└── .reva_share_manager
+    ├── einstein
+    │   └── sharedWithOthers.json
+    └── marie
+        └── sharedWithMe.json
+</code></pre></div><ul>
+<li>The fileids should <a class="gdoc-markdown__link" href="https://github.com/cs3org/reva/pull/1209/files#diff-eba5c8b77ccdd1ac570c54ed86dfa7643b6b30e5625af191f789727874850172R125-R127">not be based on the path</a> and instead use a uuid that is also persisted in the extended attributes to allow rebuilding the index from scratch if necessary.</li>
 </ul>
 
     </article>

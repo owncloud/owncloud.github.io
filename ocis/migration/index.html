@@ -1330,6 +1330,30 @@
             
             
                 <span class="flex">
+                    <a href="/ocis/storage-backends/cephfs/" class="gdoc-nav__entry ">
+                        cephfs
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
                     <a href="/ocis/storage-backends/eos/" class="gdoc-nav__entry ">
                         EOS
                     </a>
@@ -4002,10 +4026,10 @@ Legacy clients relying on Basic auth or app passwords need to be migrated to Ope
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><p>Befor letting oCIS handle end user requests we will first make it available in the internal network. By subsequently adding services we can add functionality and verify the services work as intended.</p>
+</div><p>Before letting oCIS handle end user requests we will first make it available in the internal network. By subsequently adding services we can add functionality and verify the services work as intended.</p>
 <p>Start oCIS backend and make read only tests on existing data using the <code>owncloudsql</code> storage driver which will read (and write)</p>
 <ul>
-<li>blobs from the same datadirectory layout as in ownCloud 10</li>
+<li>blobs from the same data directory layout as in ownCloud 10</li>
 <li>metadata from the ownCloud 10 database:
 The oCIS share manager will read share information from the ownCloud database using an <code>owncloud</code> driver as well.</li>
 </ul>
@@ -4028,7 +4052,7 @@ The oCIS share manager will read share information from the ownCloud database us
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h4>
-</div><p>We are going to run and explore a series of services that will together handle the same requests as ownCloud 10. For initial exploration the oCIS binary is recommended. The services can later be deployed using a single oCIS runtime or in multiple cotainers.</p>
+</div><p>We are going to run and explore a series of services that will together handle the same requests as ownCloud 10. For initial exploration the oCIS binary is recommended. The services can later be deployed using a single oCIS runtime or in multiple containers.</p>
 <div class="gdoc-page__anchorwrap">
     <h5 id="storage-provider-for-file-metadata">
         Storage provider for file metadata
@@ -4037,7 +4061,7 @@ The oCIS share manager will read share information from the ownCloud database us
         </a>
     </h5>
 </div><ol>
-<li>Deploy OCIS storage provider with owncloudsql driver.</li>
+<li>Deploy OCIS storage provider with the <code>owncloudsql</code> driver.</li>
 <li>Set <code>read_only: true</code> in the storage provider config. <div class="editpage"><em>TODO @butonic add read only flag to storage drivers</em></div></li>
 <li>Use cli tool to list files using the CS3 api</li>
 </ol>
@@ -4138,7 +4162,7 @@ One pair for <code>/webdav/home</code> or <code>/dav/files/&lt;username&gt;/home
         </a>
     </h5>
 </div><ol>
-<li>Deploy Ocdav</li>
+<li>Deploy ocdav</li>
 <li>Use curl to send PROPFIND</li>
 </ol>
 <div class="gdoc-page__anchorwrap">
@@ -4161,7 +4185,7 @@ One pair for <code>/webdav/home</code> or <code>/dav/files/&lt;username&gt;/home
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h5>
-</div><p>Deploy share manager with owncloud driver</p>
+</div><p>Deploy share manager with ownCloud driver</p>
 <div class="gdoc-page__anchorwrap">
     <h5 id="reva-gateway">
         reva gateway
@@ -4179,7 +4203,7 @@ One pair for <code>/webdav/home</code> or <code>/dav/files/&lt;username&gt;/home
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h5>
-</div><p>Finally, deploy OCIS with a config to set up everything running in a single oCIS runtime or in multiple containers.</p>
+</div><p>Finally, deploy oCIS with a config to set up everything running in a single oCIS runtime or in multiple containers.</p>
 <div class="gdoc-page__anchorwrap">
     <h4 id="rollback-2">
         Rollback
@@ -4315,7 +4339,7 @@ With write access it becomes possible to manipulate existing files and shares.
         </a>
     </h5>
 </div><ol>
-<li>Change the routing policy for a user or an early adoptors group to <code>ocis</code> <div class="editpage"><em>TODO @butonic currently, the migration selector will use the <code>ocis</code> policy for users that have been added to the accounts service. IMO we need to evaluate a claim from the IdP.</em></div></li>
+<li>Change the routing policy for a user or an early adopters group to <code>ocis</code> <div class="editpage"><em>TODO @butonic currently, the migration selector will use the <code>ocis</code> policy for users that have been added to the accounts service. IMO we need to evaluate a claim from the IdP.</em></div></li>
 <li>Verify the requests are routed based on the oCIS routing policy <code>oc10</code> for &lsquo;migrated&rsquo; users.</li>
 </ol>
 <p>At this point you are ready to rock &amp; roll!</p>
@@ -4420,8 +4444,7 @@ The proxy is stateless, multiple instances can be deployed as needed.
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h4>
-</div><p>Running the two systems in parallel stage
-Try to keep the duration of this stage short. Until now we only added services and made the system more complex. oCIS aims to reduce the maintenance cost of an ownCloud instance. You will not get there if you keep both systems alive.</p>
+</div><p>Running the two systems in parallel requires additional maintenance effort. Try to keep the duration of this stage short. Until now, we only added services and made the system more complex. oCIS aims to reduce the maintenance cost of an ownCloud instance. You will not get there if you keep both systems alive.</p>
 <div class="editpage">
 <div class="gdoc-page__anchorwrap">
     <h4 id="faq-6">
@@ -4434,9 +4457,49 @@ Try to keep the duration of this stage short. Until now we only added services a
 </div>
 <div style="break-after: page"></div>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="stage-7-shut-down-owncloud-10">
-        Stage-7: shut down ownCloud 10
-        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-7-shut-down-owncloud-10" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-7: shut down ownCloud 10" href="#stage-7-shut-down-owncloud-10">
+    <h3 id="stage-7-introduce-spaces-using-ocis">
+        Stage-7: introduce spaces using ocis
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-7-introduce-spaces-using-ocis" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-7: introduce spaces using ocis" href="#stage-7-introduce-spaces-using-ocis">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>To encourage users to switch you can promote the workspaces feature that is built into oCIS. The ownCloud 10 storage backend can be used for existing users. New users and group or project spaces can be provided by storage providers that better suit the underlying storage system.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="steps-4">
+        Steps
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#steps-4" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Steps" href="#steps-4">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>First, the admin needs to</p>
+<ul>
+<li>deploy a storage provider with the storage driver that best fits the underlying storage system and requirements.</li>
+<li>register the storage in the storage registry with a new storage id (we recommend a uuid).</li>
+</ul>
+<p>Then a user with the necessary create storage space role can create a storage space and assign Managers.</p>
+<div class="editpage">
+<p><em>TODO @butonic a user with management permission needs to be presented with a list of storage spaces where he can see the amount of free space and decide on which storage provider the storage space should be created. For now a config option for the default storage provider for a specific type might be good enough.</em></p>
+</div>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="verification-2">
+        Verification
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#verification-2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Verification" href="#verification-2">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>The new storage space should show up in the <code>/graph/drives</code> endpoint for the managers and the creator of the space.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="notes-6">
+        Notes
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#notes-6" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Notes" href="#notes-6">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>Depending on the requirements and acceptable tradeoffs, a database less deployment using the ocis or s3ng storage driver is possible. There is also a <a class="gdoc-markdown__link" href="https://github.com/cs3org/reva/pull/1209">cephfs driver</a> on the way, that directly works on the API level instead of POSIX.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="stage-8-shut-down-owncloud-10">
+        Stage-8: shut down ownCloud 10
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-8-shut-down-owncloud-10" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-8: shut down ownCloud 10" href="#stage-8-shut-down-owncloud-10">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
@@ -4453,9 +4516,9 @@ Try to keep the duration of this stage short. Until now we only added services a
 <p><em>TODO @butonic recommend alternatives</em></p>
 </div>
 <div class="gdoc-page__anchorwrap">
-    <h4 id="steps-4">
+    <h4 id="steps-5">
         Steps
-        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#steps-4" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Steps" href="#steps-4">
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#steps-5" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Steps" href="#steps-5">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h4>
@@ -4464,9 +4527,9 @@ Try to keep the duration of this stage short. Until now we only added services a
 <li>DO NOT SHUT DOWN THE DATABASE, YET!</li>
 </ol>
 <div class="gdoc-page__anchorwrap">
-    <h4 id="verification-2">
+    <h4 id="verification-3">
         Verification
-        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#verification-2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Verification" href="#verification-2">
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#verification-3" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Verification" href="#verification-3">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h4>
@@ -4480,9 +4543,9 @@ Try to keep the duration of this stage short. Until now we only added services a
     </h4>
 </div><p>Redeploy ownCloud 10.</p>
 <div class="gdoc-page__anchorwrap">
-    <h4 id="notes-6">
+    <h4 id="notes-7">
         Notes
-        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#notes-6" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Notes" href="#notes-6">
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#notes-7" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Notes" href="#notes-7">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h4>
@@ -4500,9 +4563,9 @@ The database needs to remain online until the storage layer and share metadata h
 </div>
 <div style="break-after: page"></div>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="stage-8-storage-migration">
-        Stage 8: storage migration
-        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-8-storage-migration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage 8: storage migration" href="#stage-8-storage-migration">
+    <h3 id="stage-9-storage-migration">
+        Stage 9: storage migration
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-9-storage-migration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage 9: storage migration" href="#stage-9-storage-migration">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
@@ -4516,9 +4579,9 @@ The database needs to remain online until the storage layer and share metadata h
     </h4>
 </div><p>Noticeable performance improvements because we effectively shard the storage logic and persistence layer.</p>
 <div class="gdoc-page__anchorwrap">
-    <h4 id="steps-5">
+    <h4 id="steps-6">
         Steps
-        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#steps-5" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Steps" href="#steps-5">
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#steps-6" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Steps" href="#steps-6">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h4>
@@ -4529,16 +4592,16 @@ The database needs to remain online until the storage layer and share metadata h
 <div class="editpage">
 <p><em>TODO @butonic implement <code>ownclouds3</code> based on <code>s3ng</code></em>
 <em>TODO @butonic implement tiered storage provider for seamless migration</em>
-<em>TODO @butonic document how to manually do that until the storge registry can discover that on its own.</em></p>
+<em>TODO @butonic document how to manually do that until the storage registry can discover that on its own.</em></p>
 </div>
 <div class="gdoc-page__anchorwrap">
-    <h4 id="verification-3">
+    <h4 id="verification-4">
         Verification
-        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#verification-3" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Verification" href="#verification-3">
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#verification-4" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Verification" href="#verification-4">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h4>
-</div><p>Start with a test user, then move to early adoptors and finally migrate all users.</p>
+</div><p>Start with a test user, then move to early adopters and finally migrate all users.</p>
 <div class="gdoc-page__anchorwrap">
     <h4 id="rollback-7">
         Rollback
@@ -4548,9 +4611,9 @@ The database needs to remain online until the storage layer and share metadata h
     </h4>
 </div><p>To switch the storage provider again the same storage space migration can be performed again: copy medatata and blob data using the CS3 api, then change the responsible storage provider in the storage registry.</p>
 <div class="gdoc-page__anchorwrap">
-    <h4 id="notes-7">
+    <h4 id="notes-8">
         Notes
-        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#notes-7" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Notes" href="#notes-7">
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#notes-8" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Notes" href="#notes-8">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h4>
@@ -4569,9 +4632,9 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 </div>
 <div style="break-after: page"></div>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="stage-9-share-metadata-migration">
-        Stage-9: share metadata migration
-        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-9-share-metadata-migration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-9: share metadata migration" href="#stage-9-share-metadata-migration">
+    <h3 id="stage-10-share-metadata-migration">
+        Stage-10: share metadata migration
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-10-share-metadata-migration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-10: share metadata migration" href="#stage-10-share-metadata-migration">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
@@ -4584,15 +4647,15 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h4>
-</div><p>Depending on chosen the share manager provider some sharing requests should be faster: listing incoming and outgoing shares is no longer bound to the ownCloud 10 database but to whatever technology is used by the share provdier:</p>
+</div><p>Depending on chosen the share manager provider some sharing requests should be faster: listing incoming and outgoing shares is no longer bound to the ownCloud 10 database but to whatever technology is used by the share provider:</p>
 <ul>
 <li>For non HA scenarios they can be served from memory, backed by a simple json file.</li>
 <li>TODO: implement share manager with redis / nats / &hellip; key value store backend: use the micro store interface please &hellip;</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
-    <h4 id="steps-6">
+    <h4 id="steps-7">
         Steps
-        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#steps-6" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Steps" href="#steps-6">
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#steps-7" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Steps" href="#steps-7">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h4>
@@ -4609,13 +4672,13 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 <em>TODO for storage provider as source of truth persist ALL share data in the storage provider. Currently, part is stored in the share manager, part is in the storage provider. We can keep both, but the the share manager should directly persist its metadata to the storage system used by the storage provider so metadata is kept in sync</em></p>
 </div>
 <div class="gdoc-page__anchorwrap">
-    <h4 id="verification-4">
+    <h4 id="verification-5">
         Verification
-        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#verification-4" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Verification" href="#verification-4">
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#verification-5" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Verification" href="#verification-5">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h4>
-</div><p>After copying all metadata start a dedicated gateway and change the configuration to use the new share manager. Route a test user, a test group and early adoptors to the new gateway. When no problems occur you can stirt the desired number of share managers and roll out the change to all gateways.</p>
+</div><p>After copying all metadata start a dedicated gateway and change the configuration to use the new share manager. Route a test user, a test group and early adoptors to the new gateway. When no problems occur you can start the desired number of share managers and roll out the change to all gateways.</p>
 <div class="editpage">
 <p><em>TODO let the gateway write updates to multiple share managers &hellip; or rely on the tiered/chained share manager provider to persist to both providers</em></p>
 </div>
@@ -4629,13 +4692,13 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 </div><p>To switch the share manager to the database one revert routing users to the new share manager. If you already shut down the old share manager start it again. Use the tiered/chained share manager provider in reverse configuration (new share provider as read only, old as write) and migrate the shares again. You can alse restore a database backup if needed.</p>
 <div class="editpage">
 <div class="gdoc-page__anchorwrap">
-    <h3 id="stage-10">
-        Stage-10
-        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-10" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-10" href="#stage-10">
+    <h3 id="stage-11">
+        Stage-11
+        <a data-clipboard-text="https://owncloud.dev/ocis/migration/#stage-11" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Stage-11" href="#stage-11">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><p>Profit! Well, on the one hand you do not need to maintain a clustered database setup and can rely on the storage system. On the other hand you are now in microservice wonderland and will have to relearn how to identify bottlenecks and scale oCIS accordingly. The good thing is that tools like jaeger and prometheus have evolved and will help you understand what is going on. But this is a different Topic. See you on the other side!</p>
+</div><p>Profit! Well, on the one hand you do not need to maintain a clustered database setup and can rely on the storage system. On the other hand you are now in microservice wonderland and will have to relearn how to identify bottlenecks and scale oCIS accordingly. The good thing is that tools like jaeger and prometheus have evolved and will help you understand what is going on. But this is a different topic. See you on the other side!</p>
 <div class="gdoc-page__anchorwrap">
     <h4 id="faq-9">
         FAQ
