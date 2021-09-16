@@ -10,11 +10,11 @@
 
 
 
-    <meta name="description" content="ownCloud">
+    <meta name="description" content="Introduction Setting up the example &ldquo;skeleton app&rdquo; Configuration options Ways of providing an app Types of apps Accessing existing functionality     Introduction    In the new web frontend, the way custom/external apps are handled has fundamentally changed from the approach of PHP-based ownCloud X stack. Now, all you have to do is provide a bundled Vue app and reference it in your configuration!">
 
 
 
-    <title>Integrations | ownCloud</title>
+    <title>Custom Apps | ownCloud</title>
 
     <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -1516,7 +1516,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-8397230f" class="gdoc-nav__toggle" >
+            <input type="checkbox" id="navtree-8397230f" class="gdoc-nav__toggle" checked>
             <label for="navtree-8397230f" class="flex justify-between">
             
             
@@ -1682,7 +1682,7 @@
             
             
                 <span class="flex">
-                    <a href="/clients/web/custom-apps/" class="gdoc-nav__entry ">
+                    <a href="/clients/web/custom-apps/" class="gdoc-nav__entry is-active">
                         Custom Apps
                     </a>
                 </span>
@@ -3822,7 +3822,7 @@
 
 <div class="gdoc-page__header flex flex-wrap
      justify-between 
-     hidden-mobile 
+    
     " itemprop="breadcrumb">
     
     <div>
@@ -3840,7 +3840,23 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Integrations</span><meta itemprop='position' content='2' /></li>
+        
+        
+        
+        
+    
+    
+        
+        
+        
+        
+    
+    
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/clients/' href='/clients/'><span itemprop='name'>Clients</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/clients/web/' href='/clients/web/'><span itemprop='name'>ownCloud Web</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Custom Apps</span><meta itemprop='position' content='4' /></li>
+    
+
+    
+
     
 
     
@@ -3849,12 +3865,109 @@
     </div>
     
     
+    <div>
+        <span class="editpage">
+            <svg class="icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
+            <a href="https://github.com/owncloud/web/edit/master/docs/custom-apps/_index.md">
+                Edit this page
+            </a>
+        </span>
+    </div>
+    
 </div>
 
 
     <article class="gdoc-markdown gdoc-markdown__align--left">
-        <h1>Integrations</h1>
+        <h1>Custom Apps</h1>
         
+
+
+  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#setting-up-the-example-skeleton-app">Setting up the example &ldquo;skeleton app&rdquo;</a></li>
+        <li><a href="#configuration-options">Configuration options</a></li>
+        <li><a href="#ways-of-providing-an-app">Ways of providing an app</a></li>
+        <li><a href="#types-of-apps">Types of apps</a></li>
+        <li><a href="#accessing-existing-functionality">Accessing existing functionality</a></li>
+      </ul></nav><hr></div>
+
+
+<div class="gdoc-page__anchorwrap">
+    <h2 id="introduction">
+        Introduction
+        <a data-clipboard-text="https://owncloud.dev/clients/web/custom-apps/#introduction" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Introduction" href="#introduction">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>In the new <code>web</code> frontend, the way custom/external apps are handled has fundamentally changed from the approach of PHP-based ownCloud X stack.
+Now, all you have to do is provide a bundled Vue app and reference it in your configuration! Please note that any existing apps you may be used to can not simply be ported from the old to the new frontend.</p>
+<p>This page documents how you can set up an example app within your frontend repo and play around with different kinds of apps and extensions. This way, you can explore how to provide users of your ownCloud with more functionality.</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="setting-up-the-example-skeleton-app">
+        Setting up the example &ldquo;skeleton app&rdquo;
+        <a data-clipboard-text="https://owncloud.dev/clients/web/custom-apps/#setting-up-the-example-skeleton-app" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setting up the example &ldquo;skeleton app&rdquo;" href="#setting-up-the-example-skeleton-app">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><blockquote class="gdoc-hint info">
+  This guide assumes you have either an oCIS or ownCloud 10 backend running and followed the <a class="gdoc-markdown__link" href="https://owncloud.dev/clients/web/getting-started/">getting started guide</a> for setting up a development environment with the <code>web</code> frontend, having it running via either <code>yarn serve</code> or <code>yarn build:w</code>. You should be able to use the web UI on localhost using the respective port you&rsquo;ve assigned (defaults are <code>:8080</code> for OC10 and <code>:9200</code> for oCIS) and see changes to your .
+</blockquote>
+
+<p>From the root of the <a class="gdoc-markdown__link" href="https://github.com/owncloud/web">web repository</a>, change into the example skeleton app by running</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">cd</span> packages/web-app-skeleton/
+</code></pre></div><p>Then, you can install the necessary dependencies, bundle the code and start a development server by running</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">yarn install <span class="o">&amp;&amp;</span> yarn serve
+</code></pre></div><p>In your terminal, you should see a success message and rollup (our bundler of choice) serving the content under <code>localhost:3000</code>. However, there&rsquo;s nothing to find under this address.</p>
+<p>In your <code>config/config.json</code>, add the skeleton example app to the <code>&quot;external_apps&quot;</code> array like below:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;skeleton&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:3000/app.js&#34;</span>
+<span class="p">}</span>
+</code></pre></div><p>After saving the config file (make sure it&rsquo;s still a valid <code>JSON</code> format), your running <code>web</code> app should be updated automatically. Open your browsers development tools, reload the page and watch for <code>(SKELETON)</code> messages in the browser console.</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="configuration-options">
+        Configuration options
+        <a data-clipboard-text="https://owncloud.dev/clients/web/custom-apps/#configuration-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configuration options" href="#configuration-options">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">To be defined/documented
+- Name, ID, logo
+- Nav items, appswitcher items, quick actions
+- ...
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h2 id="ways-of-providing-an-app">
+        Ways of providing an app
+        <a data-clipboard-text="https://owncloud.dev/clients/web/custom-apps/#ways-of-providing-an-app" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Ways of providing an app" href="#ways-of-providing-an-app">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">To be defined/documented (Bundling, CDN, app store, ...)
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h2 id="types-of-apps">
+        Types of apps
+        <a data-clipboard-text="https://owncloud.dev/clients/web/custom-apps/#types-of-apps" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Types of apps" href="#types-of-apps">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">To be defined/documented
+- Application (renderable), e.g. iFrame
+- Extension, e.g. media-viewer
+- Quick action, e.g. based on WOPI/Appserver
+- ...
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h2 id="accessing-existing-functionality">
+        Accessing existing functionality
+        <a data-clipboard-text="https://owncloud.dev/clients/web/custom-apps/#accessing-existing-functionality" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Accessing existing functionality" href="#accessing-existing-functionality">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">To be defined/documented
+- Styles, Theming
+- Notifications
+- Authentication, SDK
+- ...
+</code></pre></div>
     </article>
 
                 
