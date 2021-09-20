@@ -3982,7 +3982,7 @@ While SAML and Shibboleth are protocols that solve that problem, they are limite
         </a>
     </h4>
 </div><p>When introducing OpenID Connect, the clients will detect the new authentication scheme when their current way of authenticating returns an error. Users will then have to
-reauthorize at the OpenID Connecd IdP, which again, may be configured to skip the consent step for trusted clients.</p>
+reauthorize at the OpenID Connect IdP, which again, may be configured to skip the consent step for trusted clients.</p>
 <div class="gdoc-page__anchorwrap">
     <h4 id="steps-1">
         Steps
@@ -4031,7 +4031,7 @@ reauthorize at the OpenID Connecd IdP, which again, may be configured to skip th
     </h4>
 </div><div style="break-after: avoid"></div>
 Legacy clients relying on Basic auth or app passwords need to be migrated to OpenId Connect to work with oCIS. For a transition period Basic auth in oCIS can be enabled with `PROXY_ENABLE_BASIC_AUTH=true`, but we strongly recommend adopting OpenID Connect for other tools as well.
-<p>While OpenID Connect providers will send an <code>iss</code> and <code>sub</code> claim that relying parties (services like oCIS or ownCloud 10) can use to identify users we recommend introducing a dedicated, globally unique, persistent, non-reassignable user identifier like a UUID for every user. This <code>ownclouduuid</code> shold be sent as an additional claim to save additional lookups on the server side. It will become the user id in oCIS, e.g. when searching for recipients the <code>ownclouduuid</code> will be used to persist permissions with the share manager. It has a different purpose than the ownCloud 10 username, which is used to login. Using UUIDs we can not only mitigate username collisions when merging multiple instances but also allow renaming usernames after the migration to oCIS has been completed.</p>
+<p>While OpenID Connect providers will send an <code>iss</code> and <code>sub</code> claim that relying parties (services like oCIS or ownCloud 10) can use to identify users we recommend introducing a dedicated, globally unique, persistent, non-reassignable user identifier like a UUID for every user. This <code>ownclouduuid</code> should be sent as an additional claim to save additional lookups on the server side. It will become the user id in oCIS, e.g. when searching for recipients the <code>ownclouduuid</code> will be used to persist permissions with the share manager. It has a different purpose than the ownCloud 10 username, which is used to login. Using UUIDs we can not only mitigate username collisions when merging multiple instances but also allow renaming usernames after the migration to oCIS has been completed.</p>
 <div class="editpage">
 <div class="gdoc-page__anchorwrap">
     <h4 id="faq-2">
@@ -4437,8 +4437,8 @@ The proxy is stateless, multiple instances can be deployed as needed.
     </h4>
 </div><p>There are several options to move users to the oCIS backend:</p>
 <ul>
-<li>Use a canary app to let users decide thamselves</li>
-<li>Use an early adoptors group with an opt in</li>
+<li>Use a canary app to let users decide themselves</li>
+<li>Use an early adopters group with an opt in</li>
 <li>Force migrate users in batch or one by one at the administrators will</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
@@ -4458,7 +4458,7 @@ The proxy is stateless, multiple instances can be deployed as needed.
     </h4>
 </div><p>Until now, the oCIS configuration mimics ownCloud 10 and uses the old data directory layout and the ownCloud 10 database. Users can seamlessly be switched from ownCloud 10 to oCIS and back again.</p>
 <div class="editpage">
-<p><em>TODO @butonic we need a canary app that allows users to decide for themself which backend to use</em></p>
+<p><em>TODO @butonic we need a canary app that allows users to decide for themselves which backend to use</em></p>
 </div>
 <div style="break-after: page"></div>
 <div class="gdoc-page__anchorwrap">
@@ -4633,7 +4633,7 @@ The database needs to remain online until the storage layer and share metadata h
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h4>
-</div><p>To switch the storage provider again the same storage space migration can be performed again: copy medatata and blob data using the CS3 api, then change the responsible storage provider in the storage registry.</p>
+</div><p>To switch the storage provider again the same storage space migration can be performed again: copy metadata and blob data using the CS3 api, then change the responsible storage provider in the storage registry.</p>
 <div class="gdoc-page__anchorwrap">
     <h4 id="notes-8">
         Notes
@@ -4702,7 +4702,7 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h4>
-</div><p>After copying all metadata start a dedicated gateway and change the configuration to use the new share manager. Route a test user, a test group and early adoptors to the new gateway. When no problems occur you can start the desired number of share managers and roll out the change to all gateways.</p>
+</div><p>After copying all metadata start a dedicated gateway and change the configuration to use the new share manager. Route a test user, a test group and early adopters to the new gateway. When no problems occur you can start the desired number of share managers and roll out the change to all gateways.</p>
 <div class="editpage">
 <p><em>TODO let the gateway write updates to multiple share managers &hellip; or rely on the tiered/chained share manager provider to persist to both providers</em></p>
 </div>
@@ -4835,7 +4835,7 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 <td>NULL</td>
 <td>auto_increment</td>
 <td></td>
-<td>MUST become the oCIS <code>opaqueid</code> of a file reference. <code>ocis</code> driver stores it in extendet attributes and can use numbers as node ids on disk. for eos see note below table</td>
+<td>MUST become the oCIS <code>opaqueid</code> of a file reference. <code>ocis</code> driver stores it in extended attributes and can use numbers as node ids on disk. for eos see note below table</td>
 </tr>
 <tr>
 <td><code>storage</code></td>
