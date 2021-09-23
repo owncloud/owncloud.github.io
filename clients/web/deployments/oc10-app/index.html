@@ -4034,7 +4034,11 @@ After completing this setup, ownCloud Web will be available on <code>https://&lt
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span>
-</code></pre></div><div class=table-wrap> <table>
+</code></pre></div><blockquote class="gdoc-hint info">
+  If any issues arise when trying to access the new design, a good start for debugging it is to run your <code>config.json</code> file through a json validator of your choice.
+</blockquote>
+
+<div class=table-wrap> <table>
 <thead>
 <tr>
 <th>config parameter</th>
@@ -4078,13 +4082,13 @@ After completing this setup, ownCloud Web will be available on <code>https://&lt
 
 <blockquote class="gdoc-hint ">
   <p>If you use OpenID Connect you need to replace the <code>&quot;auth&quot;</code> part with following configuration:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">  &#34;openIdConnect&#34;: {
-    &#34;metadata_url&#34;: &#34;&lt;fqdn-of-the-identity-provider&gt;/.well-known/openid-configuration&#34;,
-    &#34;authority&#34;: &#34;&lt;fqdn-of-the-identity-provider&gt;&#34;,
-    &#34;client_id&#34;: &#34;&lt;client-id-from-the-identity-provider&gt;&#34;,
-    &#34;response_type&#34;: &#34;code&#34;,
-    &#34;scope&#34;: &#34;openid profile email&#34;
-  },
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json">  <span class="s2">&#34;openIdConnect&#34;</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nt">&#34;metadata_url&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;fqdn-of-the-identity-provider&gt;/.well-known/openid-configuration&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;authority&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;fqdn-of-the-identity-provider&gt;&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;client_id&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;client-id-from-the-identity-provider&gt;&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;response_type&#34;</span><span class="p">:</span> <span class="s2">&#34;code&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;scope&#34;</span><span class="p">:</span> <span class="s2">&#34;openid profile email&#34;</span>
+  <span class="p">}</span>
 </code></pre></div>
 </blockquote>
 
@@ -4104,14 +4108,14 @@ After completing this setup, ownCloud Web will be available on <code>https://&lt
     </h3>
 </div><p>ownCloud Classic features that are not deeply integrated with the Classic UI (e.g., full screen apps) can be added to the ownCloud Web app switcher so that users can easily access them from ownCloud Web. You can use the following example and customize it according to your needs.</p>
 <p>To add new elements in the app switcher, paste the following into the <code>applications</code> section of <code>config.json</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    {
-      &#34;title&#34;: {
-        &#34;en&#34;: &#34;Custom Groups&#34;,
-        &#34;de&#34;: &#34;Benutzerdefinierte Gruppen&#34; 
-      },
-      &#34;icon&#34;: &#34;application&#34;,
-      &#34;url&#34;: &#34;https://&lt;your-owncloud-server&gt;/settings/personal?sectionid=customgroups&#34;
-    },
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json">    <span class="p">{</span>
+      <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;en&#34;</span><span class="p">:</span> <span class="s2">&#34;Custom Groups&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;de&#34;</span><span class="p">:</span> <span class="s2">&#34;Benutzerdefinierte Gruppen&#34;</span> 
+      <span class="p">},</span>
+      <span class="nt">&#34;icon&#34;</span><span class="p">:</span> <span class="s2">&#34;application&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://&lt;your-owncloud-server&gt;/settings/personal?sectionid=customgroups&#34;</span>
+    <span class="p">}</span>
 </code></pre></div><blockquote class="gdoc-hint info">
   The URL in the example might need adaptations depending on the configuration of your ownCloud Server. App switcher elements added this way will open the respective page in a new tab. This method can also be used to link external sites like Help pages or similar.
 </blockquote>
@@ -4124,16 +4128,16 @@ After completing this setup, ownCloud Web will be available on <code>https://&lt
         </a>
     </h3>
 </div><p>Just like adding links to the app switcher, you can also add links to the user menu.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    {
-      &#34;icon&#34;: &#34;application&#34;,
-      &#34;menu&#34;: &#34;user&#34;,
-      &#34;target&#34;: &#34;_self&#34;,
-      &#34;title&#34;: {
-        &#34;de&#34;: &#34;Hilfe&#34;,
-        &#34;en&#34;: &#34;Help&#34;
-      },
-      &#34;url&#34;: &#34;https://help-link.example&#34;
-    },
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json">    <span class="p">{</span>
+      <span class="nt">&#34;icon&#34;</span><span class="p">:</span> <span class="s2">&#34;application&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;menu&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;target&#34;</span><span class="p">:</span> <span class="s2">&#34;_self&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;de&#34;</span><span class="p">:</span> <span class="s2">&#34;Hilfe&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;en&#34;</span><span class="p">:</span> <span class="s2">&#34;Help&#34;</span>
+      <span class="p">},</span>
+      <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://help-link.example&#34;</span>
+    <span class="p">}</span>
 </code></pre></div><p>This will add a link to the specified URL in the user menu. This way, the link will open in the same tab. If you instead want to open it in a new tab, just remove the line <code>&quot;target&quot;: &quot;_self&quot;,</code>.</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="onlyoffice">
@@ -4150,12 +4154,12 @@ After completing this setup, ownCloud Web will be available on <code>https://&lt
 <li><a class="gdoc-markdown__link" href="https://marketplace.owncloud.com/apps/onlyoffice">ONLYOFFICE Connector for ownCloud 10</a> &gt;= 7.1.1</li>
 </ul>
 <p>Make sure that ONLYOFFICE works as expected in the Classic UI and add the following to <code>config.json</code> to make it available in ownCloud Web:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&#34;external_apps&#34;: [
-    {
-        &#34;id&#34;: &#34;onlyoffice&#34;,
-        &#34;path&#34;: &#34;https://&lt;your-owncloud-server&gt;/apps/onlyoffice/js/web/onlyoffice.js&#34;,
-    }
-]
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;external_apps&#34;</span><span class="err">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;onlyoffice&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;https://&lt;your-owncloud-server&gt;/apps/onlyoffice/js/web/onlyoffice.js&#34;</span>
+    <span class="p">}</span>
+<span class="p">]</span>
 </code></pre></div><blockquote class="gdoc-hint info">
   The URL in the example might need adaptations depending on the configuration of your ownCloud Server.
 </blockquote>
