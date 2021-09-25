@@ -10,12 +10,11 @@
 
 
 
-    <meta name="description" content="Configuration  Configuration using config files Environment variables Command-line flags accounts add accounts list accounts rebuildIndex accounts update accounts inspect accounts remove accounts ocis-accounts accounts server accounts version       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
-/etc/ocis $HOME/.ocis ./config For this configuration to be picked up, have a look at your extension root command and look for which default config name it has assigned.">
+    <meta name="description" content="What is Kubernetes  References and further reads How does oCIS fit in the Kubernetes model   What is Minikube What is kubectl What are Helm Charts, and why they are useful for oCIS  Installing Helm   Setting up Minikube  Start minikube   Run a chart  Requirements Setup   Setting up an external identity provider What is GCP  Can Helm charts run on GCP?">
 
 
 
-    <title>Configuration | ownCloud</title>
+    <title>Kubernetes | ownCloud</title>
 
     <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -892,7 +891,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-b3fc9a63" class="gdoc-nav__toggle" >
+            <input type="checkbox" id="navtree-b3fc9a63" class="gdoc-nav__toggle" checked>
             <label for="navtree-b3fc9a63" class="flex justify-between">
             
             
@@ -1126,7 +1125,7 @@
             
             
                 <span class="flex">
-                    <a href="/ocis/deployment/kubernetes/" class="gdoc-nav__entry ">
+                    <a href="/ocis/deployment/kubernetes/" class="gdoc-nav__entry is-active">
                         Kubernetes
                     </a>
                 </span>
@@ -2096,7 +2095,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-226998dd" class="gdoc-nav__toggle" checked>
+            <input type="checkbox" id="navtree-226998dd" class="gdoc-nav__toggle" >
             <label for="navtree-226998dd" class="flex justify-between">
             
             
@@ -2132,7 +2131,7 @@
             
             
                 <span class="flex">
-                    <a href="/extensions/accounts/configuration/" class="gdoc-nav__entry is-active">
+                    <a href="/extensions/accounts/configuration/" class="gdoc-nav__entry ">
                         Configuration
                     </a>
                 </span>
@@ -3879,7 +3878,7 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/extensions/' href='/extensions/'><span itemprop='name'>Extensions</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/extensions/accounts/' href='/extensions/accounts/'><span itemprop='name'>Accounts</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Configuration</span><meta itemprop='position' content='4' /></li>
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/deployment/' href='/ocis/deployment/'><span itemprop='name'>Deployment</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Kubernetes</span><meta itemprop='position' content='4' /></li>
     
 
     
@@ -3895,7 +3894,7 @@
     <div>
         <span class="editpage">
             <svg class="icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/accounts/templates/CONFIGURATION.tmpl">
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/deployment/kubernetes.md">
                 Edit this page
             </a>
         </span>
@@ -3905,308 +3904,344 @@
 
 
     <article class="gdoc-markdown gdoc-markdown__align--left">
-        <h1>Configuration</h1>
+        <h1>Kubernetes</h1>
         
 
 
   <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
-        <li><a href="#configuration">Configuration</a>
+        <li><a href="#what-is-kubernetes">What is Kubernetes</a>
           <ul>
-            <li><a href="#configuration-using-config-files">Configuration using config files</a></li>
-            <li><a href="#environment-variables">Environment variables</a></li>
-            <li><a href="#command-line-flags">Command-line flags</a></li>
-            <li><a href="#accounts-add">accounts add</a></li>
-            <li><a href="#accounts-list">accounts list</a></li>
-            <li><a href="#accounts-rebuildindex">accounts rebuildIndex</a></li>
-            <li><a href="#accounts-update">accounts update</a></li>
-            <li><a href="#accounts-inspect">accounts inspect</a></li>
-            <li><a href="#accounts-remove">accounts remove</a></li>
-            <li><a href="#accounts-ocis-accounts">accounts ocis-accounts</a></li>
-            <li><a href="#accounts-server">accounts server</a></li>
-            <li><a href="#accounts-version">accounts version</a></li>
+            <li><a href="#references-and-further-reads">References and further reads</a></li>
+            <li><a href="#how-does-ocis-fit-in-the-kubernetes-model">How does oCIS fit in the Kubernetes model</a></li>
           </ul>
         </li>
+        <li><a href="#what-is-minikube">What is Minikube</a></li>
+        <li><a href="#what-is-kubectl">What is <code>kubectl</code></a></li>
+        <li><a href="#what-are-helm-charts-and-why-they-are-useful-for-ocis">What are Helm Charts, and why they are useful for oCIS</a>
+          <ul>
+            <li><a href="#installing-helm">Installing Helm</a></li>
+          </ul>
+        </li>
+        <li><a href="#setting-up-minikube">Setting up Minikube</a>
+          <ul>
+            <li><a href="#start-minikube">Start minikube</a></li>
+          </ul>
+        </li>
+        <li><a href="#run-a-chart">Run a chart</a>
+          <ul>
+            <li><a href="#requirements">Requirements</a></li>
+            <li><a href="#setup">Setup</a></li>
+          </ul>
+        </li>
+        <li><a href="#setting-up-an-external-identity-provider">Setting up an external identity provider</a></li>
+        <li><a href="#what-is-gcp">What is GCP</a>
+          <ul>
+            <li><a href="#can-helm-charts-run-on-gcp">Can Helm charts run on GCP?</a></li>
+          </ul>
+        </li>
+        <li><a href="#todos">TODOs</a></li>
       </ul></nav><hr></div>
 
 
 <div class="gdoc-page__anchorwrap">
-    <h2 id="configuration">
-        Configuration
-        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#configuration" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configuration" href="#configuration">
+    <h2 id="what-is-kubernetes">
+        What is Kubernetes
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#what-is-kubernetes" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor What is Kubernetes" href="#what-is-kubernetes">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><div class="gdoc-page__anchorwrap">
-    <h3 id="configuration-using-config-files">
-        Configuration using config files
-        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#configuration-using-config-files" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Configuration using config files" href="#configuration-using-config-files">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p>Out of the box extensions will attempt to read configuration details from:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">/etc/ocis
-$HOME/.ocis
-./config
-</code></pre></div><p>For this configuration to be picked up, have a look at your extension <code>root</code> command and look for which default config name it has assigned. <em>i.e: ocis-accounts reads <code>accounts.json | yaml | toml ...</code></em>.</p>
-<p>So far we support the file formats <code>JSON</code> and <code>YAML</code>, if you want to get a full example configuration just take a look at <a class="gdoc-markdown__link" href="https://github.com/owncloud/ocis/tree/master/accounts/config">our repository</a>, there you can always see the latest configuration format. These example configurations include all available options and the default values. The configuration file will be automatically loaded if it&rsquo;s placed at <code>/etc/ocis/ocis.yml</code>, <code>${HOME}/.ocis/ocis.yml</code> or <code>$(pwd)/config/ocis.yml</code>.</p>
+</div><p>Formally described as:</p>
+<blockquote>
+<p>Kubernetes is a portable, extensible, open-source platform for managing containerized workloads and services, that facilitates both declarative configuration and automation.</p>
+</blockquote>
+<p><em><a class="gdoc-markdown__link" href="https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/">source</a></em></p>
+<p>Without getting too deep in definitions, and for the purpose of compactness, Kubernetes can be summarized as a way of managing containers that run applications to ensure that there is no downtime and a optimal usage of resources. It provides with a framework in which to run distributed systems.</p>
+<p>Kubernetes provides you with:</p>
+<ul>
+<li><strong>Service discovery and load balancing</strong>: Kubernetes can expose a container using the DNS name or using their own IP address. If traffic to a container is high, Kubernetes is able to load balance and distribute the network traffic so that the deployment is stable.</li>
+<li><strong>Storage orchestration</strong>: Kubernetes allows you to automatically mount a storage system of your choice, such as local storages, public cloud providers, and more.</li>
+<li><strong>Automated rollouts and rollbacks</strong>: You can describe the desired state for your deployed containers using Kubernetes, and it can change the actual state to the desired state at a controlled rate. For example, you can automate Kubernetes to create new containers for your deployment, remove existing containers and adopt all their resources to the new container.</li>
+<li><strong>Automatic bin packing</strong>: You provide Kubernetes with a cluster of nodes that it can use to run containerized tasks. You tell Kubernetes how much CPU and memory (RAM) each container needs. Kubernetes can fit containers onto your nodes to make the best use of your resources.</li>
+<li><strong>Self-healing</strong>: Kubernetes restarts containers that fail, replaces containers, kills containers that don&rsquo;t respond to your user-defined health check, and doesn&rsquo;t advertise them to clients until they are ready to serve.</li>
+<li><strong>Secret and configuration management</strong>: Kubernetes lets you store and manage sensitive information, such as passwords, OAuth tokens, and SSH keys. You can deploy and update secrets and application configuration without rebuilding your container images, and without exposing secrets in your stack configuration.</li>
+</ul>
+<p><em><a class="gdoc-markdown__link" href="https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/#why-you-need-kubernetes-and-what-can-it-do">extracted from k8s docs</a></em></p>
+<p>If that is still too abstract, <a class="gdoc-markdown__link" href="https://dev.to/miguelmota/comment/filh">here is an ELI5 writeup</a>.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="environment-variables">
-        Environment variables
-        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#environment-variables" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Environment variables" href="#environment-variables">
+    <h3 id="references-and-further-reads">
+        References and further reads
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#references-and-further-reads" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor References and further reads" href="#references-and-further-reads">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><p>If you prefer to configure the service with environment variables you can see the available variables below.</p>
-<p>If multiple variables are listed for one option, they are in order of precedence. This means the leftmost variable will always win if given.</p>
+</div><ul>
+<li><a class="gdoc-markdown__link" href="https://github.com/Deaddy">Marcel Wunderlich&rsquo;s</a> <a class="gdoc-markdown__link" href="http://deaddy.net/introduction-to-kubernetes-pt-1.html">4 series articles</a> on Kubernetes clarifying its declarative nature, deep diving into ingress networking, storage and monitoring.</li>
+</ul>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="command-line-flags">
-        Command-line flags
-        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#command-line-flags" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Command-line flags" href="#command-line-flags">
+    <h3 id="how-does-ocis-fit-in-the-kubernetes-model">
+        How does oCIS fit in the Kubernetes model
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#how-does-ocis-fit-in-the-kubernetes-model" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor How does oCIS fit in the Kubernetes model" href="#how-does-ocis-fit-in-the-kubernetes-model">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><p>If you prefer to configure the service with command-line flags you can see the available variables below. Command line flags are only working when calling the subcommand directly.</p>
+</div><p>oCIS was designed with running on Kubernetes in mind. We set up to adopt the <a class="gdoc-markdown__link" href="https://12factor.net/">Twelve-Factor App</a> principles regarding configuration, with almost every aspect of oCIS being modifiable via environment variables. This comes in handy when you especially have a look at how a helm chart&rsquo;s (we will introduce this concept shortly) <a class="gdoc-markdown__link" href="https://github.com/refs/ocis-charts/blob/d8735e3222d2050504303851d3461909c86fcc89/ocis/values.yaml">list of values</a> looks like.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="accounts-add">
-        accounts add
-        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-add" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts add" href="#accounts-add">
+    <h2 id="what-is-minikube">
+        What is Minikube
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#what-is-minikube" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor What is Minikube" href="#what-is-minikube">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
-    </h3>
-</div><p>Create a new account</p>
-<p>Usage: <code>accounts add [command options] [arguments...]</code></p>
-<dl>
-<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>&quot;com.owncloud.api&quot;</code>.</dd>
-<dt>-name |  $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>&quot;accounts&quot;</code>.</dd>
-<dt>-enabled |</dt>
-<dd>Enable the account.</dd>
-<dt>-displayname |</dt>
-<dd>Set the displayname for the account.</dd>
-<dt>-username |</dt>
-<dd>Username will be written to preferred-name and on_premises_sam_account_name.</dd>
-<dt>-preferred-name |</dt>
-<dd>Set the preferred-name for the account.</dd>
-<dt>-on-premises-sam-account-name |</dt>
-<dd>Set the on-premises-sam-account-name.</dd>
-<dt>-uidnumber |</dt>
-<dd>Set the uidnumber for the account.</dd>
-<dt>-gidnumber |</dt>
-<dd>Set the gidnumber for the account.</dd>
-<dt>-mail |</dt>
-<dd>Set the mail for the account.</dd>
-<dt>-description |</dt>
-<dd>Set the description for the account.</dd>
-<dt>-password |</dt>
-<dd>Set the password for the account.</dd>
-<dt>-password-policies |</dt>
-<dd>Possible policies: DisableStrongPassword, DisablePasswordExpiration.</dd>
-<dt>-force-password-change |</dt>
-<dd>Force password change on next sign-in.</dd>
-<dt>-force-password-change-mfa |</dt>
-<dd>Force password change on next sign-in with mfa.</dd>
-</dl>
+    </h2>
+</div><p><a class="gdoc-markdown__link" href="https://minikube.sigs.k8s.io/docs/">Minikube</a> lets you run a Kubernetes cluster locally. It is the most approachable way to test a deployment. It requires no extra configuration on any cloud platform, as everything runs on your local machine. For the purpose of these docs, this is the first approach we chose to run oCIS and will develop on how to set it up.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="accounts-list">
-        accounts list
-        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-list" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts list" href="#accounts-list">
+    <h2 id="what-is-kubectl">
+        What is <code>kubectl</code>
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#what-is-kubectl" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor What is kubectl" href="#what-is-kubectl">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
-    </h3>
-</div><p>List existing accounts</p>
-<p>Usage: <code>accounts list [command options] [arguments...]</code></p>
-<dl>
-<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>&quot;com.owncloud.api&quot;</code>.</dd>
-<dt>-name |  $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>&quot;accounts&quot;</code>.</dd>
-</dl>
+    </h2>
+</div><p><a class="gdoc-markdown__link" href="https://kubernetes.io/docs/tasks/tools/">kubectl</a> is the command-line tool for Kubernetes. It allows users to run commands against a k8s cluster the user has access to. It supports for having multiple contexts for as many clusters as you have access to. In these docs we will setup 2 contexts, a minikube and a GCP context.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="accounts-rebuildindex">
-        accounts rebuildIndex
-        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-rebuildindex" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts rebuildIndex" href="#accounts-rebuildindex">
+    <h2 id="what-are-helm-charts-and-why-they-are-useful-for-ocis">
+        What are Helm Charts, and why they are useful for oCIS
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#what-are-helm-charts-and-why-they-are-useful-for-ocis" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor What are Helm Charts, and why they are useful for oCIS" href="#what-are-helm-charts-and-why-they-are-useful-for-ocis">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
-    </h3>
-</div><p>Rebuilds the service&rsquo;s index, i.e. deleting and then re-adding all existing documents</p>
-<p>Usage: <code>accounts rebuildIndex [command options] [arguments...]</code></p>
+    </h2>
+</div><p><a class="gdoc-markdown__link" href="https://helm.sh/">Helm</a> is the equivalent of a package manager for Kubernetes. It can be described as a layer on top of how you would write pods, deployments or any other k8s resource declaration.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="accounts-update">
-        accounts update
-        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-update" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts update" href="#accounts-update">
+    <h3 id="installing-helm">
+        Installing Helm
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#installing-helm" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Installing Helm" href="#installing-helm">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><p>Make changes to an existing account</p>
-<p>Usage: <code>accounts update [command options] [arguments...]</code></p>
-<dl>
-<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>&quot;com.owncloud.api&quot;</code>.</dd>
-<dt>-name |  $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>&quot;accounts&quot;</code>.</dd>
-<dt>-enabled |</dt>
-<dd>Enable the account.</dd>
-<dt>-displayname |</dt>
-<dd>Set the displayname for the account.</dd>
-<dt>-preferred-name |</dt>
-<dd>Set the preferred-name for the account.</dd>
-<dt>-on-premises-sam-account-name |</dt>
-<dd>Set the on-premises-sam-account-name.</dd>
-<dt>-uidnumber |</dt>
-<dd>Set the uidnumber for the account.</dd>
-<dt>-gidnumber |</dt>
-<dd>Set the gidnumber for the account.</dd>
-<dt>-mail |</dt>
-<dd>Set the mail for the account.</dd>
-<dt>-description |</dt>
-<dd>Set the description for the account.</dd>
-<dt>-password |</dt>
-<dd>Set the password for the account.</dd>
-<dt>-password-policies |</dt>
-<dd>Possible policies: DisableStrongPassword, DisablePasswordExpiration.</dd>
-<dt>-force-password-change |</dt>
-<dd>Force password change on next sign-in.</dd>
-<dt>-force-password-change-mfa |</dt>
-<dd>Force password change on next sign-in with mfa.</dd>
-</dl>
+</div><p><a class="gdoc-markdown__link" href="https://helm.sh/docs/intro/install/">Follow the official installation guide</a>.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="accounts-inspect">
-        accounts inspect
-        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-inspect" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts inspect" href="#accounts-inspect">
+    <h2 id="setting-up-minikube">
+        Setting up Minikube
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#setting-up-minikube" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setting up Minikube" href="#setting-up-minikube">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
-    </h3>
-</div><p>Show detailed data on an existing account</p>
-<p>Usage: <code>accounts inspect [command options] [arguments...]</code></p>
-<dl>
-<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>&quot;com.owncloud.api&quot;</code>.</dd>
-<dt>-name |  $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>&quot;accounts&quot;</code>.</dd>
-</dl>
+    </h2>
+</div><p>For a guide on how to set minikube up follow the <a class="gdoc-markdown__link" href="https://minikube.sigs.k8s.io/docs/start/">official minikube start guide</a> for your specific OS.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="accounts-remove">
-        accounts remove
-        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-remove" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts remove" href="#accounts-remove">
+    <h3 id="start-minikube">
+        Start minikube
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#start-minikube" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Start minikube" href="#start-minikube">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><p>Removes an existing account</p>
-<p>Usage: <code>accounts remove [command options] [arguments...]</code></p>
-<dl>
-<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>&quot;com.owncloud.api&quot;</code>.</dd>
-<dt>-name |  $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>&quot;accounts&quot;</code>.</dd>
-</dl>
+</div><p>First off, verify your installation is correct:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">~/code/refs/ocis-charts
+❯ minikube status
+minikube
+type: Control Plane
+host: Stopped
+kubelet: Stopped
+apiserver: Stopped
+kubeconfig: Stopped
+</code></pre></div><p>After that, start the cluster:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">~/code/refs/ocis-charts
+❯ minikube start
+😄  minikube v1.23.0 on Darwin 11.4
+✨  Using the docker driver based on existing profile
+👍  Starting control plane node minikube in cluster minikube
+🚜  Pulling base image ...
+🔄  Restarting existing docker container for &#34;minikube&#34; ...
+🐳  Preparing Kubernetes v1.22.1 on Docker 20.10.8 ...
+🔎  Verifying Kubernetes components...
+    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
+🌟  Enabled addons: storage-provisioner, default-storageclass
+🏄  Done! kubectl is now configured to use &#34;minikube&#34; cluster and &#34;default&#34; namespace by default
+</code></pre></div><p><em>On these docs, we are using the Docker driver on Mac.</em></p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="accounts-ocis-accounts">
-        accounts ocis-accounts
-        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-ocis-accounts" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts ocis-accounts" href="#accounts-ocis-accounts">
+    <h2 id="run-a-chart">
+        Run a chart
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#run-a-chart" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Run a chart" href="#run-a-chart">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
-    </h3>
-</div><p>Provide accounts and groups for oCIS</p>
-<p>Usage: <code>accounts ocis-accounts [command options] [arguments...]</code></p>
-<dl>
-<dt>-log-level |  $ACCOUNTS_LOG_LEVEL , $OCIS_LOG_LEVEL</dt>
-<dd>Set logging level.</dd>
-<dt>-log-pretty |  $ACCOUNTS_LOG_PRETTY , $OCIS_LOG_PRETTY</dt>
-<dd>Enable pretty logging.</dd>
-<dt>-log-color |  $ACCOUNTS_LOG_COLOR , $OCIS_LOG_COLOR</dt>
-<dd>Enable colored logging.</dd>
-<dt>-extensions |</dt>
-<dd>Run specific extensions during supervised mode.</dd>
-</dl>
+    </h2>
+</div><p>The easiest way to run the entire package is by using the available charts on <a class="gdoc-markdown__link" href="https://github.com/refs/ocis-charts">https://github.com/refs/ocis-charts</a>. It is not the purpose of this guide to explain the inner working of Kubernetes or its resources, as Helm builds an abstraction oon top of it, letting you interact with a refined interface that roughly translates as &ldquo;helm install&rdquo; and &ldquo;helm uninstall&rdquo;.</p>
+<p>In order to host charts one can create a <a class="gdoc-markdown__link" href="https://helm.sh/docs/topics/chart_repository/">charts repository</a>, but this is outside the scope of this documentation. Having said that, we will assume you have access to a cli and git.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="accounts-server">
-        accounts server
-        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts server" href="#accounts-server">
+    <h3 id="requirements">
+        Requirements
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#requirements" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Requirements" href="#requirements">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><p>Start ocis accounts service</p>
-<p>Usage: <code>accounts server [command options] [arguments...]</code></p>
-<dl>
-<dt>-log-file |  $ACCOUNTS_LOG_FILE , $OCIS_LOG_FILE</dt>
-<dd>Enable log to file.</dd>
-<dt>-tracing-enabled |  $ACCOUNTS_TRACING_ENABLED , $OCIS_TRACING_ENABLED</dt>
-<dd>Enable sending traces.</dd>
-<dt>-tracing-type |  $ACCOUNTS_TRACING_TYPE , $OCIS_TRACING_TYPE</dt>
-<dd>Tracing backend type. Default: <code>&quot;jaeger&quot;</code>.</dd>
-<dt>-tracing-endpoint |  $ACCOUNTS_TRACING_ENDPOINT , $OCIS_TRACING_ENDPOINT</dt>
-<dd>Endpoint for the agent. Default: <code>&quot;&quot;</code>.</dd>
-<dt>-tracing-collector |  $ACCOUNTS_TRACING_COLLECTOR , $OCIS_TRACING_COLLECTOR</dt>
-<dd>Endpoint for the collector. Default: <code>&quot;&quot;</code>.</dd>
-<dt>-tracing-service |  $ACCOUNTS_TRACING_SERVICE</dt>
-<dd>Service name for tracing. Default: <code>&quot;accounts&quot;</code>.</dd>
-<dt>-http-namespace |  $ACCOUNTS_HTTP_NAMESPACE</dt>
-<dd>Set the base namespace for the http namespace. Default: <code>&quot;com.owncloud.web&quot;</code>.</dd>
-<dt>-http-addr |  $ACCOUNTS_HTTP_ADDR</dt>
-<dd>Address to bind http server. Default: <code>&quot;0.0.0.0:9181&quot;</code>.</dd>
-<dt>-http-root |  $ACCOUNTS_HTTP_ROOT</dt>
-<dd>Root path of http server. Default: <code>&quot;/&quot;</code>.</dd>
-<dt>-http-cache-ttl |  $ACCOUNTS_CACHE_TTL</dt>
-<dd>Set the static assets caching duration in seconds. Default: <code>604800</code>.</dd>
-<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>&quot;com.owncloud.api&quot;</code>.</dd>
-<dt>-grpc-addr |  $ACCOUNTS_GRPC_ADDR</dt>
-<dd>Address to bind grpc server. Default: <code>&quot;0.0.0.0:9180&quot;</code>.</dd>
-<dt>-name |  $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>&quot;accounts&quot;</code>.</dd>
-<dt>-accounts-hash-difficulty |  $ACCOUNTS_HASH_DIFFICULTY</dt>
-<dd>accounts password hash difficulty. Default: <code>11</code>.</dd>
-<dt>-demo-users-and-groups |  $ACCOUNTS_DEMO_USERS_AND_GROUPS</dt>
-<dd>Enable demo users and groups. Default: <code>true</code>.</dd>
-<dt>-asset-path |  $ACCOUNTS_ASSET_PATH</dt>
-<dd>Path to custom assets. Default: <code>&quot;&quot;</code>.</dd>
-<dt>-jwt-secret |  $ACCOUNTS_JWT_SECRET , $OCIS_JWT_SECRET</dt>
-<dd>Used to create JWT to talk to reva, should equal reva&rsquo;s jwt-secret. Default: <code>&quot;Pive-Fumkiu4&quot;</code>.</dd>
-<dt>-storage-disk-path |  $ACCOUNTS_STORAGE_DISK_PATH</dt>
-<dd>Path on the local disk, e.g. /var/tmp/ocis/accounts. Default: <code>&quot;&quot;</code>.</dd>
-<dt>-storage-cs3-provider-addr |  $ACCOUNTS_STORAGE_CS3_PROVIDER_ADDR</dt>
-<dd>bind address for the metadata storage provider. Default: <code>&quot;localhost:9215&quot;</code>.</dd>
-<dt>-storage-cs3-data-url |  $ACCOUNTS_STORAGE_CS3_DATA_URL</dt>
-<dd>http endpoint of the metadata storage. Default: <code>&quot;http://localhost:9216&quot;</code>.</dd>
-<dt>-storage-cs3-data-prefix |  $ACCOUNTS_STORAGE_CS3_DATA_PREFIX</dt>
-<dd>path prefix for the http endpoint of the metadata storage, without leading slash. Default: <code>&quot;data&quot;</code>.</dd>
-<dt>-storage-cs3-jwt-secret |  $ACCOUNTS_STORAGE_CS3_JWT_SECRET , $OCIS_JWT_SECRET</dt>
-<dd>Used to create JWT to talk to reva, should equal reva&rsquo;s jwt-secret. Default: <code>&quot;Pive-Fumkiu4&quot;</code>.</dd>
-<dt>-service-user-uuid |  $ACCOUNTS_SERVICE_USER_UUID</dt>
-<dd>uuid of the internal service user (required on EOS). Default: <code>&quot;95cb8724-03b2-11eb-a0a6-c33ef8ef53ad&quot;</code>.</dd>
-<dt>-service-user-username |  $ACCOUNTS_SERVICE_USER_USERNAME</dt>
-<dd>username of the internal service user (required on EOS). Default: <code>&quot;&quot;</code>.</dd>
-<dt>-service-user-uid |  $ACCOUNTS_SERVICE_USER_UID</dt>
-<dd>uid of the internal service user (required on EOS). Default: <code>0</code>.</dd>
-<dt>-service-user-gid |  $ACCOUNTS_SERVICE_USER_GID</dt>
-<dd>gid of the internal service user (required on EOS). Default: <code>0</code>.</dd>
-<dt>-uid-index-lower-bound |  $ACCOUNTS_UID_INDEX_LOWER_BOUND</dt>
-<dd>define a starting point for the account UID. Default: <code>0</code>.</dd>
-<dt>-gid-index-lower-bound |  $ACCOUNTS_GID_INDEX_LOWER_BOUND</dt>
-<dd>define a starting point for the account GID. Default: <code>1000</code>.</dd>
-<dt>-uid-index-upper-bound |  $ACCOUNTS_UID_INDEX_UPPER_BOUND</dt>
-<dd>define an ending point for the account UID. Default: <code>0</code>.</dd>
-<dt>-gid-index-upper-bound |  $ACCOUNTS_GID_INDEX_UPPER_BOUND</dt>
-<dd>define an ending point for the account GID. Default: <code>1000</code>.</dd>
-<dt>-extensions |</dt>
-<dd>Run specific extensions during supervised mode.</dd>
-</dl>
+</div><ol>
+<li>minikube up and running.</li>
+<li><code>kubectl</code> installed. By <a class="gdoc-markdown__link" href="https://minikube.sigs.k8s.io/docs/handbook/kubectl/">default you should be able to access the minikube&rsquo;s cluster</a>. If you chose not to install <code>kubectl</code>, minikube wraps <code>kubectl</code> as <code>minikube kubectl</code>.</li>
+<li>helm cli installed.</li>
+<li>git installed.</li>
+</ol>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="accounts-version">
-        accounts version
-        <a data-clipboard-text="https://owncloud.dev/extensions/accounts/configuration/#accounts-version" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor accounts version" href="#accounts-version">
+    <h3 id="setup">
+        Setup
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#setup" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setup" href="#setup">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><p>Print the versions of the running instances</p>
-<p>Usage: <code>accounts version [command options] [arguments...]</code></p>
-<dl>
-<dt>-grpc-namespace |  $ACCOUNTS_GRPC_NAMESPACE</dt>
-<dd>Set the base namespace for the grpc namespace. Default: <code>&quot;com.owncloud.api&quot;</code>.</dd>
-<dt>-name |  $ACCOUNTS_NAME</dt>
-<dd>service name. Default: <code>&quot;accounts&quot;</code>.</dd>
-</dl>
+</div><ol>
+<li>clone the charts: <code>git clone https://github.com/refs/ocis-charts.git /var/tmp/ocis-charts</code></li>
+<li>cd into the charts root: <code>cd /var/tmp/ocis-charts/ocis</code></li>
+<li>install the package: <code>helm install ocis .</code></li>
+<li>verify the application is running in the cluster: <code>kubectl get pods</code></li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">❯ kubectl get pods
+NAME                          READY   STATUS    RESTARTS         AGE
+glauth-5fb678b9cb-zs5qh       1/1     Running   3 (10m ago)      3h33m
+ocis-proxy-848f988687-g7fmb   1/1     Running   2 (10m ago)      130m
+ocs-6bb8896dd6-t4bkx          1/1     Running   3 (10m ago)      3h33m
+settings-6bf77f978d-27rdf     1/1     Running   3 (10m ago)      3h33m
+storages-6b45f9c4-2j696       10/10   Running   23 (4m43s ago)   112m
+store-cf79db94d-hvb7z         1/1     Running   3 (10m ago)      3h33m
+web-8685fdd574-tmkfb          1/1     Running   2 (10m ago)      157m
+webdav-f8d4dd7c6-vv4n7        1/1     Running   3 (10m ago)      3h33m
+</code></pre></div><ol start="5">
+<li>expose the proxy as a service to the host</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">~/code/refs/ocis-charts
+❯ minikube service proxy-service --url
+🏃  Starting tunnel for service proxy-service.
+|-----------|---------------|-------------|------------------------|
+| NAMESPACE |     NAME      | TARGET PORT |          URL           |
+|-----------|---------------|-------------|------------------------|
+| default   | proxy-service |             | http://127.0.0.1:63633 |
+|-----------|---------------|-------------|------------------------|
+http://127.0.0.1:63633
+❗  Because you are using a Docker driver on darwin, the terminal needs to be open to run it.
+</code></pre></div><ol start="6">
+<li>attempt a <code>PROPFIND</code> WebDAV request to the storage: <code>curl -v -k -u einstein:relativity -H &quot;depth: 0&quot; -X PROPFIND https://127.0.0.1:63633/remote.php/dav/files/ | xmllint --format -</code></li>
+</ol>
+<p>If all is correctly setup, you should expect a response back:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+<span class="nt">&lt;d:multistatus</span> <span class="na">xmlns:d=</span><span class="s">&#34;DAV:&#34;</span> <span class="na">xmlns:s=</span><span class="s">&#34;http://sabredav.org/ns&#34;</span> <span class="na">xmlns:oc=</span><span class="s">&#34;http://owncloud.org/ns&#34;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;d:response&gt;</span>
+    <span class="nt">&lt;d:href&gt;</span>/remote.php/dav/files/einstein/<span class="nt">&lt;/d:href&gt;</span>
+    <span class="nt">&lt;d:propstat&gt;</span>
+      <span class="nt">&lt;d:prop&gt;</span>
+        <span class="nt">&lt;oc:id&gt;</span>MTI4NGQyMzgtYWE5Mi00MmNlLWJkYzQtMGIwMDAwMDA5MTU3OjZlMWIyMjdmLWZmYTQtNDU4Ny1iNjQ5LWE1YjBlYzFkMTNmYw==<span class="nt">&lt;/oc:id&gt;</span>
+        <span class="nt">&lt;oc:fileid&gt;</span>MTI4NGQyMzgtYWE5Mi00MmNlLWJkYzQtMGIwMDAwMDA5MTU3OjZlMWIyMjdmLWZmYTQtNDU4Ny1iNjQ5LWE1YjBlYzFkMTNmYw==<span class="nt">&lt;/oc:fileid&gt;</span>
+        <span class="nt">&lt;d:getetag&gt;</span>&#34;92cc7f069c8496ee2ce33ad4f29de763&#34;<span class="nt">&lt;/d:getetag&gt;</span>
+        <span class="nt">&lt;oc:permissions&gt;</span>WCKDNVR<span class="nt">&lt;/oc:permissions&gt;</span>
+        <span class="nt">&lt;d:resourcetype&gt;</span>
+          <span class="nt">&lt;d:collection/&gt;</span>
+        <span class="nt">&lt;/d:resourcetype&gt;</span>
+        <span class="nt">&lt;d:getcontenttype&gt;</span>httpd/unix-directory<span class="nt">&lt;/d:getcontenttype&gt;</span>
+        <span class="nt">&lt;oc:size&gt;</span>4096<span class="nt">&lt;/oc:size&gt;</span>
+        <span class="nt">&lt;d:getlastmodified&gt;</span>Tue, 14 Sep 2021 12:45:29 +0000<span class="nt">&lt;/d:getlastmodified&gt;</span>
+        <span class="nt">&lt;oc:favorite&gt;</span>0<span class="nt">&lt;/oc:favorite&gt;</span>
+      <span class="nt">&lt;/d:prop&gt;</span>
+      <span class="nt">&lt;d:status&gt;</span>HTTP/1.1 200 OK<span class="nt">&lt;/d:status&gt;</span>
+    <span class="nt">&lt;/d:propstat&gt;</span>
+  <span class="nt">&lt;/d:response&gt;</span>
+<span class="nt">&lt;/d:multistatus&gt;</span>
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h2 id="setting-up-an-external-identity-provider">
+        Setting up an external identity provider
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#setting-up-an-external-identity-provider" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setting up an external identity provider" href="#setting-up-an-external-identity-provider">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>The previous setup works because the proxy is configured to run using basic auth, but if we want to actually use the WebUI we will need an external identity provider. From here on the setup is composed of:</p>
+<ul>
+<li>keycloak
+<ul>
+<li>traefik</li>
+<li>postgresql</li>
+</ul>
+</li>
+</ul>
+<p>Running on i.e: <code>https://keycloak.owncloud.works</code>. Because of this we have to adjust some of <code>values.yaml</code> key / values to:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/ocis/values.yaml b/ocis/values.yaml
+</span><span class="gh">index fbc229c..5b36fbd 100644
+</span><span class="gh"></span><span class="gd">--- a/ocis/values.yaml
+</span><span class="gd"></span><span class="gi">+++ b/ocis/values.yaml
+</span><span class="gi"></span><span class="gu">@@ -1,9 +1,9 @@
+</span><span class="gu"></span> # when in local tunnel mode, ingressDomain is the proxy address.
+ # sadly when in combination with --set, anchors are lost.
+<span class="gd">-ingressDomain: &amp;ingressDomain &#34;https://stale-wasp-86.loca.lt&#34;
+</span><span class="gd"></span><span class="gi">+ingressDomain: &amp;ingressDomain &#34;https://keycloak.owncloud.works&#34;
+</span><span class="gi"></span>
+ # base ocis image
+<span class="gd">-image: owncloud/ocis:1.0.0-rc8-linux-amd64
+</span><span class="gd"></span><span class="gi">+image: owncloud/ocis:1.11.0-linux-amd64
+</span><span class="gi"></span>
+ # set of ocis services to create deployments objects.
+ services:
+<span class="gu">@@ -22,6 +22,8 @@ services:
+</span><span class="gu"></span>       value: &#34;debug&#34;
+     - name: &#34;PROXY_REVA_GATEWAY_ADDR&#34;
+       value: &#34;storages-service:9142&#34;
+<span class="gi">+    - name: &#34;PROXY_OIDC_ISSUER&#34;
+</span><span class="gi">+      value: &#34;https://keycloak.ocis-keycloak.released.owncloud.works/auth/realms/oCIS&#34;
+</span><span class="gi"></span>     - name: &#34;PROXY_ENABLE_BASIC_AUTH&#34;
+       value: &#34;&#39;true&#39;&#34; # see https://stackoverflow.com/a/44692213/2295410
+     volumeMounts:
+<span class="gu">@@ -81,34 +85,6 @@ services:
+</span><span class="gu"></span>     labels:
+       app: &#34;glauth&#34;
+     args: [&#34;glauth&#34;]
+   settings:
+     metadata:
+       name: &#34;settings&#34;
+<span class="gu">@@ -135,11 +111,11 @@ services:
+</span><span class="gu"></span>     args: [&#34;web&#34;]
+     env:
+     - name: &#34;WEB_UI_CONFIG_SERVER&#34;
+<span class="gd">-      value: *ingressDomain
+</span><span class="gd"></span><span class="gi">+      value: &#34;https://127.0.0.1:51559/&#34;
+</span><span class="gi"></span>     - name: &#34;WEB_OIDC_METADATA_URL&#34;
+<span class="gd">-      value: *ingressDomain
+</span><span class="gd"></span><span class="gi">+      value: &#34;https://keycloak.owncloud.works/auth/realms/oCIS/.well-known/openid-configuration&#34;
+</span><span class="gi"></span>     - name: &#34;WEB_OIDC_AUTHORITY&#34;
+<span class="gd">-      value: *ingressDomain
+</span><span class="gd"></span><span class="gi">+      value: &#34;https://keycloak.owncloud.works/auth/realms/oCIS/.well-known/openid-configuration&#34;
+</span><span class="gi"></span>     ports:
+       values:
+       - name: &#34;http&#34;
+<span class="gu">@@ -231,4 +207,4 @@ kubeServices:
+</span><span class="gu"></span>       - protocol: TCP
+         port: 9100
+         targetPort: 9100
+</code></pre></div><p>NOTE: The IDP has to be properly configure with an oCIS realm and a <code>web</code> client configured. There are example config file that have to be adjusted depending on your environment on our <a class="gdoc-markdown__link" href="https://github.com/owncloud/ocis/tree/master/deployments/examples/ocis_keycloak/config/keycloak">docker-compose examples</a>.</p>
+<p>You might still need to adjust the IDP:</p>
+<ul>
+<li>Valid Redirect URIs (under clients &gt; web)</li>
+<li>Web Origins (under clients &gt; web)</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="what-is-gcp">
+        What is GCP
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#what-is-gcp" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor What is GCP" href="#what-is-gcp">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><blockquote>
+<p>Google Cloud Platform (GCP), offered by Google, is a suite of cloud computing services that runs on the same infrastructure that Google uses internally for its end-user products</p>
+</blockquote>
+<p>One of such offered services are <a class="gdoc-markdown__link" href="https://cloud.google.com/kubernetes-engine">Google Kubernetes Engines (GKE)</a>.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="can-helm-charts-run-on-gcp">
+        Can Helm charts run on GCP?
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#can-helm-charts-run-on-gcp" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Can Helm charts run on GCP?" href="#can-helm-charts-run-on-gcp">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Yes. The next logical step would be to deploy this charts on GKE. There is a pretty thorough guide <a class="gdoc-markdown__link" href="http://docs.shippable.com/deploy/tutorial/deploy-to-gcp-gke-helm/">at shippable.com</a> that, for the purposes of our docs, we are only interested on step 5, as we already explain the previous concepts, and provide with the Charts.</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="todos">
+        TODOs
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#todos" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor TODOs" href="#todos">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><ul>
+<li>While log-in works and creating folders work, uploading fails, most likely a configuration issue that has to be solved.</li>
+</ul>
 
     </article>
 
