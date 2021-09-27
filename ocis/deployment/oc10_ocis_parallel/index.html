@@ -10,13 +10,11 @@
 
 
 
-    <meta name="description" content="Variation  File Picker Location Picker   Actions  Select Cancel       It is possible to customise certain parts of the File Picker with the help of props.
-Variation    File picker comes in two different variations - File Picker and Location Picker. To specify which one should be used, set property variation to resource or location.
-File Picker    File picker variation is used to select resources from within your ownCloud instace.">
+    <meta name="description" content="Overview Server Deployment  Requirements Install this example   Local setup     This deployment example currently has known issues. See github.com/owncloud/ocis/issues/2549 for more information.  Overview     This setup reflects stage 6 of the oC10 to oCIS migration plan Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup OpenLDAP server with demo users LDAP admin interface to edit users Keycloak as OpenID Connect provider in federation with the LDAP server ownCloud 10 with MariaDB and Redis  ownCloud 10 is configured to synchronize users from the LDAP server ownCloud 10 is used to use OpenID Connect for authentication with Keycloak   oCIS running behind Traefik as reverse proxy  oCIS is using the ownCloud storage driver on the same files and same database as ownCloud 10 oCIS is using Keycloak as OpenID Connect provider oCIS is using the LDAP server as user backend   All requests to both oCIS and oC10 are routed through the oCIS proxy and will be routed based on an OIDC claim to one of them.">
 
 
 
-    <title>Customising | ownCloud</title>
+    <title>Parallel deployment of oC10 and oCIS | ownCloud</title>
 
     <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -893,7 +891,7 @@ File Picker    File picker variation is used to select resources from within you
 
             <li>
             
-            <input type="checkbox" id="navtree-b3fc9a63" class="gdoc-nav__toggle" >
+            <input type="checkbox" id="navtree-b3fc9a63" class="gdoc-nav__toggle" checked>
             <label for="navtree-b3fc9a63" class="flex justify-between">
             
             
@@ -1149,7 +1147,7 @@ File Picker    File picker variation is used to select resources from within you
             
             
                 <span class="flex">
-                    <a href="/ocis/deployment/oc10_ocis_parallel/" class="gdoc-nav__entry ">
+                    <a href="/ocis/deployment/oc10_ocis_parallel/" class="gdoc-nav__entry is-active">
                         Parallel deployment of oC10 and oCIS
                     </a>
                 </span>
@@ -3673,7 +3671,7 @@ File Picker    File picker variation is used to select resources from within you
 
             <li>
             
-            <input type="checkbox" id="navtree-3d0bb527" class="gdoc-nav__toggle" checked>
+            <input type="checkbox" id="navtree-3d0bb527" class="gdoc-nav__toggle" >
             <label for="navtree-3d0bb527" class="flex justify-between">
             
             
@@ -3787,7 +3785,7 @@ File Picker    File picker variation is used to select resources from within you
             
             
                 <span class="flex">
-                    <a href="/integration/file_picker/customisations/" class="gdoc-nav__entry is-active">
+                    <a href="/integration/file_picker/customisations/" class="gdoc-nav__entry ">
                         Customising
                     </a>
                 </span>
@@ -3928,7 +3926,7 @@ File Picker    File picker variation is used to select resources from within you
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/integration/' href='/integration/'><span itemprop='name'>Integrations</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/integration/file_picker/' href='/integration/file_picker/'><span itemprop='name'>File Picker</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Customising</span><meta itemprop='position' content='4' /></li>
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/deployment/' href='/ocis/deployment/'><span itemprop='name'>Deployment</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Parallel deployment of oC10 and oCIS</span><meta itemprop='position' content='4' /></li>
     
 
     
@@ -3944,7 +3942,7 @@ File Picker    File picker variation is used to select resources from within you
     <div>
         <span class="editpage">
             <svg class="icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
-            <a href="https://github.com/owncloud/file-picker/edit/master/docs/customising.md">
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/deployment/oc10_ocis_parallel.md">
                 Edit this page
             </a>
         </span>
@@ -3954,75 +3952,194 @@ File Picker    File picker variation is used to select resources from within you
 
 
     <article class="gdoc-markdown gdoc-markdown__align--left">
-        <h1>Customising</h1>
+        <h1>Parallel deployment of oC10 and oCIS</h1>
         
 
 
   <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
-        <li><a href="#variation">Variation</a>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#server-deployment">Server Deployment</a>
           <ul>
-            <li><a href="#file-picker">File Picker</a></li>
-            <li><a href="#location-picker">Location Picker</a></li>
+            <li><a href="#requirements">Requirements</a></li>
+            <li><a href="#install-this-example">Install this example</a></li>
           </ul>
         </li>
-        <li><a href="#actions">Actions</a>
-          <ul>
-            <li><a href="#select">Select</a></li>
-            <li><a href="#cancel">Cancel</a></li>
-          </ul>
-        </li>
+        <li><a href="#local-setup">Local setup</a></li>
       </ul></nav><hr></div>
 
 
-<p>It is possible to customise certain parts of the File Picker with the help of props.</p>
+<blockquote class="gdoc-hint warning">
+  This deployment example currently has known issues. See <a class="gdoc-markdown__link" href="https://github.com/owncloud/ocis/issues/2549">github.com/owncloud/ocis/issues/2549</a> for more information.
+</blockquote>
+
 <div class="gdoc-page__anchorwrap">
-    <h2 id="variation">
-        Variation
-        <a data-clipboard-text="https://owncloud.dev/integration/file_picker/customisations/#variation" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Variation" href="#variation">
+    <h2 id="overview">
+        Overview
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/oc10_ocis_parallel/#overview" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Overview" href="#overview">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><p>File picker comes in two different variations - File Picker and Location Picker. To specify which one should be used, set property <code>variation</code> to <code>resource</code> or <code>location</code>.</p>
+</div><ul>
+<li>This setup reflects <a class="gdoc-markdown__link" href="https://owncloud.dev/ocis/migration/#stage-6-parallel-deployment">stage 6 of the oC10 to oCIS migration plan</a></li>
+<li>Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup</li>
+<li>OpenLDAP server with demo users</li>
+<li>LDAP admin interface to edit users</li>
+<li>Keycloak as OpenID Connect provider in federation with the LDAP server</li>
+<li>ownCloud 10 with MariaDB and Redis
+<ul>
+<li>ownCloud 10 is configured to synchronize users from the LDAP server</li>
+<li>ownCloud 10 is used to use OpenID Connect for authentication with Keycloak</li>
+</ul>
+</li>
+<li>oCIS running behind Traefik as reverse proxy
+<ul>
+<li>oCIS is using the ownCloud storage driver on the same files and same database as ownCloud 10</li>
+<li>oCIS is using Keycloak as OpenID Connect provider</li>
+<li>oCIS is using the LDAP server as user backend</li>
+</ul>
+</li>
+<li>All requests to both oCIS and oC10 are routed through the oCIS proxy and will be routed based on an OIDC claim to one of them. Therefore admins can change on a user basis in the LDAP which backend is used.</li>
+</ul>
+<p><a class="gdoc-markdown__link" href="https://github.com/owncloud/ocis/tree/master/deployments/examples/oc10_ocis_parallel">Find this example on GitHub</a></p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="file-picker">
-        File Picker
-        <a data-clipboard-text="https://owncloud.dev/integration/file_picker/customisations/#file-picker" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor File Picker" href="#file-picker">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p>File picker variation is used to select resources from within your ownCloud instace. It is possible to select multiple files and folders.</p>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="location-picker">
-        Location Picker
-        <a data-clipboard-text="https://owncloud.dev/integration/file_picker/customisations/#location-picker" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Location Picker" href="#location-picker">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p>Location picker variation is used to select location inside of your ownCloud instance. It is only possible to select one folder.</p>
-<div class="gdoc-page__anchorwrap">
-    <h2 id="actions">
-        Actions
-        <a data-clipboard-text="https://owncloud.dev/integration/file_picker/customisations/#actions" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Actions" href="#actions">
+    <h2 id="server-deployment">
+        Server Deployment
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/oc10_ocis_parallel/#server-deployment" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Server Deployment" href="#server-deployment">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><p>If you do not wish to include the default File Picker actions (select and cancel), you can hide both of them.</p>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="select">
-        Select
-        <a data-clipboard-text="https://owncloud.dev/integration/file_picker/customisations/#select" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Select" href="#select">
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="requirements">
+        Requirements
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/oc10_ocis_parallel/#requirements" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Requirements" href="#requirements">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><p>Select resources/location button can be hidden by setting prop <code>isSelectBtnDisplayed</code> to <code>false</code>.</p>
+</div><ul>
+<li>Linux server with docker and docker-compose installed</li>
+<li>four domains set up and pointing to your server
+<ul>
+<li>cloud.* for serving oCIS</li>
+<li>keycloak.* for serving Keycloak</li>
+<li>ldap .* for serving the LDAP managment UI</li>
+<li>traefik.* for serving the Traefik dashboard</li>
+</ul>
+</li>
+</ul>
+<p>See also <a class="gdoc-markdown__link" href="https://owncloud.dev/ocis/deployment/preparing_server/">example server setup</a></p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="cancel">
-        Cancel
-        <a data-clipboard-text="https://owncloud.dev/integration/file_picker/customisations/#cancel" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Cancel" href="#cancel">
+    <h3 id="install-this-example">
+        Install this example
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/oc10_ocis_parallel/#install-this-example" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Install this example" href="#install-this-example">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><p>Hiding Cancel button slightly differes to the Select button. If you do not wish to display the cancel button, simply leave out any value for prop <code>cancelBtnLabel</code> and the component will be hidden by default.</p>
+</div><ul>
+<li>
+<p>Clone oCIS repository</p>
+<p><code>git clone https://github.com/owncloud/ocis.git</code></p>
+</li>
+<li>
+<p>Go to the deployment example</p>
+<p><code>cd ocis/deployment/examples/oc10_ocis_parallel</code></p>
+</li>
+<li>
+<p>Open the <code>.env</code> file in a text editor
+The file by default looks like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">    <span class="c1"># If you&#39;re on a internet facing server please comment out following line.</span>
+    <span class="c1"># It skips certificate validation for various parts of oCIS and is needed if you use self signed certificates.</span>
+    <span class="nv">INSECURE</span><span class="o">=</span><span class="nb">true</span>
+
+    <span class="c1">### Traefik settings ###</span>
+    <span class="nv">TRAEFIK_LOG_LEVEL</span><span class="o">=</span>
+    <span class="c1"># Serve Treafik dashboard. Defaults to &#34;false&#34;.</span>
+    <span class="nv">TRAEFIK_DASHBOARD</span><span class="o">=</span>
+    <span class="c1"># Domain of Traefik, where you can find the dashboard. Defaults to &#34;traefik.owncloud.test&#34;</span>
+    <span class="nv">TRAEFIK_DOMAIN</span><span class="o">=</span>
+    <span class="c1"># Basic authentication for the dashboard. Defaults to user &#34;admin&#34; and password &#34;admin&#34;</span>
+    <span class="nv">TRAEFIK_BASIC_AUTH_USERS</span><span class="o">=</span>
+    <span class="c1"># Email address for obtaining LetsEncrypt certificates, needs only be changed if this is a public facing server</span>
+    <span class="nv">TRAEFIK_ACME_MAIL</span><span class="o">=</span>
+
+    <span class="c1">### shared oCIS / oC10 settings ###</span>
+    <span class="c1"># Domain of oCIS / oC10, where you can find the frontend. Defaults to &#34;cloud.owncloud.test&#34;</span>
+    <span class="nv">CLOUD_DOMAIN</span><span class="o">=</span>
+
+    <span class="c1">### oCIS settings ###</span>
+    <span class="c1"># oCIS version. Defaults to &#34;latest&#34;</span>
+    <span class="nv">OCIS_DOCKER_TAG</span><span class="o">=</span>
+    <span class="c1"># JWT secret which is used for the storage provider. Must be changed in order to have a secure oCIS. Defaults to &#34;Pive-Fumkiu4&#34;</span>
+    <span class="nv">OCIS_JWT_SECRET</span><span class="o">=</span>
+    <span class="c1"># JWT secret which is used for uploads to create transfer tokens. Must be changed in order to have a secure oCIS. Defaults to &#34;replace-me-with-a-transfer-secret&#34;</span>
+    <span class="nv">STORAGE_TRANSFER_SECRET</span><span class="o">=</span>
+
+    <span class="c1">### oCIS settings ###</span>
+    <span class="c1"># oC10 version. Defaults to &#34;latest&#34;</span>
+    <span class="nv">OC10_DOCKER_TAG</span><span class="o">=</span>
+    <span class="c1"># client secret which the openidconnect app uses to authenticate to Keycloak. Defaults to &#34;oc10-oidc-secret&#34;</span>
+    <span class="nv">OC10_OIDC_CLIENT_SECRET</span><span class="o">=</span>
+    <span class="c1"># app which will be shown when opening the ownCloud 10 UI. Defaults to &#34;files&#34; but also could be set to &#34;web&#34;</span>
+    <span class="nv">OWNCLOUD_DEFAULT_APP</span><span class="o">=</span>
+    <span class="c1"># if set to &#34;false&#34; (default) links will be opened in the classic UI, if set to &#34;true&#34; ownCloud Web is used</span>
+    <span class="nv">OWNCLOUD_WEB_REWRITE_LINKS</span><span class="o">=</span>
+
+    <span class="c1">### LDAP settings ###</span>
+    <span class="c1"># password for the LDAP admin user &#34;cn=admin,dc=owncloud,dc=com&#34;, defaults to &#34;admin&#34;</span>
+    <span class="nv">LDAP_ADMIN_PASSWORD</span><span class="o">=</span>
+    <span class="c1"># Domain of the LDAP management frontend. Defaults to &#34;ldap.owncloud.test&#34;</span>
+    <span class="nv">LDAP_MANAGER_DOMAIN</span><span class="o">=</span>
+
+    <span class="c1">### Keycloak ###</span>
+    <span class="c1"># Domain of Keycloak, where you can find the managment and authentication frontend. Defaults to &#34;keycloak.owncloud.test&#34;</span>
+    <span class="nv">KEYCLOAK_DOMAIN</span><span class="o">=</span>
+    <span class="c1"># Realm which to be used with oC10 and oCIS. Defaults to &#34;owncloud&#34;</span>
+    <span class="nv">KEYCLOAK_REALM</span><span class="o">=</span>
+    <span class="c1"># Admin user login name. Defaults to &#34;admin&#34;</span>
+    <span class="nv">KEYCLOAK_ADMIN_USER</span><span class="o">=</span>
+    <span class="c1"># Admin user login password. Defaults to &#34;admin&#34;</span>
+    <span class="nv">KEYCLOAK_ADMIN_PASSWORD</span><span class="o">=</span>
+</code></pre></div><p>You are installing oCIS on a server and Traefik will obtain valid certificates for you so please remove <code>INSECURE=true</code> or set it to <code>false</code>.</p>
+<p>If you want to use the Traefik dashboard, set TRAEFIK_DASHBOARD to <code>true</code> (default is <code>false</code> and therefore not active). If you activate it, you must set a domain for the Traefik dashboard in <code>TRAEFIK_DOMAIN=</code> eg. <code>TRAEFIK_DOMAIN=traefik.owncloud.test</code>.</p>
+<p>The Traefik dashboard is secured by basic auth. Default credentials are the user <code>admin</code> with the password <code>admin</code>. To set your own credentials, generate a htpasswd (eg. by using <a class="gdoc-markdown__link" href="https://htpasswdgenerator.de/">an online tool</a> or a cli tool).</p>
+<p>Traefik will issue certificates with LetsEncrypt and therefore you must set an email address in <code>TRAEFIK_ACME_MAIL=</code>.</p>
+<p>By default oCIS will be started in the <code>latest</code> version. If you want to start a specific version of oCIS set the version to <code>OCIS_DOCKER_TAG=</code>. Available versions can be found on <a class="gdoc-markdown__link" href="https://hub.docker.com/r/owncloud/ocis/tags?page=1&amp;ordering=last_updated">Docker Hub</a>.</p>
+<p>Set your domain for the oC10 and oCIS frontend in <code>CLOUD_DOMAIN=</code>, eg. <code>CLOUD_DOMAIN=cloud.owncloud.test</code>.</p>
+<p>You also must override the default secrets in <code>STORAGE_TRANSFER_SECRET</code> and <code>OCIS_JWT_SECRET</code> in order to secure your oCIS instance. Choose some random strings eg. from the output of <code>openssl rand -base64 32</code>. For more information see <a class="gdoc-markdown__link" href="https://owncloud.dev/ocis/deployment/#secure-an-ocis-instance">secure an oCIS instance</a>.</p>
+<p>By default ownCloud 10 will be started in the <code>latest</code> version. If you want to start a specific version of oCIS set the version to <code>OC10_DOCKER_TAG=</code>. Available versions can be found on <a class="gdoc-markdown__link" href="https://hub.docker.com/r/owncloud/ocis/tags?page=1&amp;ordering=last_updated">Docker Hub</a>.</p>
+<p>You can switch the default application of ownCloud 10 by setting<code>OWNCLOUD_DEFAULT_APP=files</code> in oder to have the classic UI as frontend, which is also the default. If you prefer ownCloud Web as the default application in ownCloud 10 just set <code>OWNCLOUD_DEFAULT_APP=web</code>.</p>
+<p>In oder to change the default link open action which defaults to the classic UI (<code>OWNCLOUD_WEB_REWRITE_LINKS=false</code>) you can set it to <code>OWNCLOUD_WEB_REWRITE_LINKS=true</code>. This will lead to links being opened in ownCloud Web.</p>
+<p>The OpenLDAP server in this example deployment has an admin users, which is also used as bind user in order to keep theses examples simple. You can change the default password &ldquo;admin&rdquo; to a different one by setting it to <code>LDAP_ADMIN_PASSWORD=...</code>.</p>
+<p>Set your domain for the LDAP manager UI in <code>LDAP_MANAGER_DOMAIN=</code>, eg. <code>ldap.owncloud.test</code>.</p>
+<p>Set your domain for the Keycloak administration panel and authentication endpoints to <code>KEYCLOAK_DOMAIN=</code> eg. <code>KEYCLOAK_DOMAIN=keycloak.owncloud.test</code>.</p>
+<p>Changing the used Keycloak realm can be done by setting <code>KEYCLOAK_REALM=</code>. This defaults to the ownCloud realm <code>KEYCLOAK_REALM=owncloud</code>. The ownCloud realm will be automatically imported on startup and includes our demo users.</p>
+<p>You probably should secure your Keycloak admin account by setting <code>KEYCLOAK_ADMIN_USER=</code> and <code>KEYCLOAK_ADMIN_PASSWORD=</code> to values other than <code>admin</code>.</p>
+<p>Now you have configured everything and can save the file.</p>
+</li>
+<li>
+<p>Start the docker stack</p>
+<p><code>docker-compose up -d</code></p>
+</li>
+<li>
+<p>You now can visit the cloud, oC10 or oCIS depending on the user configuration. Marie defaults to oC10 and Richard and Einstein default to oCIS, but you can change the ownCloud selector at any time in the LDAP management UI.</p>
+</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="local-setup">
+        Local setup
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/oc10_ocis_parallel/#local-setup" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Local setup" href="#local-setup">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>For a more simple local ocis setup see <a class="gdoc-markdown__link" href="https://owncloud.dev/ocis/getting-started/">Getting started</a></p>
+<p>This docker stack can also be run locally. One downside is that Traefik can not obtain valid SSL certificates and therefore will create self signed ones. This means that your browser will show scary warnings. Another downside is that you can not point DNS entries to your localhost. So you have to add static host entries to your computer.</p>
+<p>On Linux and macOS you can add them to your <code>/etc/hosts</code> files like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">127.0.0.1 cloud.owncloud.test
+127.0.0.1 keycloak.owncloud.test
+127.0.0.1 ldap.owncloud.test
+127.0.0.1 traefik.owncloud.test
+</code></pre></div><p>After that you&rsquo;re ready to start the application stack:</p>
+<p><code>docker-compose up -d</code></p>
+<p>You now can visit the cloud, oC10 or oCIS depending on the user configuration. Marie defaults to oC10 and Richard and Einstein default to oCIS, but you can change the ownCloud selector at any time in the LDAP management UI.</p>
 
     </article>
 
