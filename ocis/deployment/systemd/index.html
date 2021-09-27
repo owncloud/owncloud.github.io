@@ -10,12 +10,12 @@
 
 
 
-    <meta name="description" content="Metrics    This service provides some Prometheus metrics through the debug endpoint, you can optionally secure the metrics endpoint by some random token, which has to be configured either through the flag --debug-token or the environment variable OCIS_DEBUG_TOKEN mentioned above. By default, the metrics endpoint is bound to http://0.0.0.0:8001/metrics.
- go_gc_duration_seconds A summary of the GC invocation durations go_gc_duration_seconds_sum A summary of the GC invocation durations go_gc_duration_seconds_count A summary of the GC invocation durations go_goroutines Number of goroutines that currently exist go_info Information about the Go environment go_memstats_alloc_bytes Number of bytes allocated and still in use go_memstats_alloc_bytes_total Total number of bytes allocated, even if freed go_memstats_buck_hash_sys_bytes Number of bytes used by the profiling bucket hash table go_memstats_frees_total Total number of frees go_memstats_gc_cpu_fraction The fraction of this program&rsquo;s available CPU time used by the GC since the program started go_memstats_gc_sys_bytes Number of bytes used for garbage collection system metadata go_memstats_heap_alloc_bytes Number of heap bytes allocated and still in use go_memstats_heap_idle_bytes Number of heap bytes waiting to be used go_memstats_heap_inuse_bytes Number of heap bytes that are in use go_memstats_heap_objects Number of allocated objects go_memstats_heap_released_bytes Number of heap bytes released to OS go_memstats_heap_sys_bytes Number of heap bytes obtained from system go_memstats_last_gc_time_seconds Number of seconds since 1970 of last garbage collection go_memstats_lookups_total Total number of pointer lookups go_memstats_mallocs_total Total number of mallocs go_memstats_mcache_inuse_bytes Number of bytes in use by mcache structures go_memstats_mcache_sys_bytes Number of bytes used for mcache structures obtained from system go_memstats_mspan_inuse_bytes Number of bytes in use by mspan structures go_memstats_mspan_sys_bytes Number of bytes used for mspan structures obtained from system go_memstats_next_gc_bytes Number of heap bytes when next garbage collection will take place go_memstats_other_sys_bytes Number of bytes used for other system allocations go_memstats_stack_inuse_bytes Number of bytes in use by the stack allocator go_memstats_stack_sys_bytes Number of bytes obtained from system for stack allocator go_memstats_sys_bytes Number of bytes obtained from system go_threads Number of OS threads created promhttp_metric_handler_requests_in_flight Current number of scrapes being served promhttp_metric_handler_requests_total Total number of scrapes by HTTP status code  ">
+    <meta name="description" content="Install the oCIS binary Systemd service definition Starting the oCIS service     Install the oCIS binary    Download the oCIS binary of your preferred version and for your CPU architecture and operating system from download.owncloud.com.
+Rename the downloaded binary to ocis and move it to /usr/bin/. As a next step, you need to mark it as executable with chmod &#43;x /usr/bin/ocis.">
 
 
 
-    <title>Metrics | ownCloud</title>
+    <title>Systemd service | ownCloud</title>
 
     <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -892,7 +892,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-b3fc9a63" class="gdoc-nav__toggle" >
+            <input type="checkbox" id="navtree-b3fc9a63" class="gdoc-nav__toggle" checked>
             <label for="navtree-b3fc9a63" class="flex justify-between">
             
             
@@ -1002,7 +1002,7 @@
             
             
                 <span class="flex">
-                    <a href="/ocis/deployment/systemd/" class="gdoc-nav__entry ">
+                    <a href="/ocis/deployment/systemd/" class="gdoc-nav__entry is-active">
                         Systemd service
                     </a>
                 </span>
@@ -1487,7 +1487,7 @@
             
             
                 <span class="flex">
-                    <a href="/ocis/metrics/" class="gdoc-nav__entry is-active">
+                    <a href="/ocis/metrics/" class="gdoc-nav__entry ">
                         Metrics
                     </a>
                 </span>
@@ -3897,7 +3897,15 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Metrics</span><meta itemprop='position' content='3' /></li>
+        
+        
+        
+        
+    
+    
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/deployment/' href='/ocis/deployment/'><span itemprop='name'>Deployment</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Systemd service</span><meta itemprop='position' content='4' /></li>
+    
+
     
 
     
@@ -3911,7 +3919,7 @@
     <div>
         <span class="editpage">
             <svg class="icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/metrics.md">
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/deployment/systemd.md">
                 Edit this page
             </a>
         </span>
@@ -3921,81 +3929,73 @@
 
 
     <article class="gdoc-markdown gdoc-markdown__align--left">
-        <h1>Metrics</h1>
-        <div class="gdoc-page__anchorwrap">
-    <h2 id="metrics">
-        Metrics
-        <a data-clipboard-text="https://owncloud.dev/ocis/metrics/#metrics" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Metrics" href="#metrics">
+        <h1>Systemd service</h1>
+        
+
+
+  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
+        <li><a href="#install-the-ocis-binary">Install the oCIS binary</a></li>
+        <li><a href="#systemd-service-definition">Systemd service definition</a></li>
+        <li><a href="#starting-the-ocis-service">Starting the oCIS service</a></li>
+      </ul></nav><hr></div>
+
+
+<div class="gdoc-page__anchorwrap">
+    <h2 id="install-the-ocis-binary">
+        Install the oCIS binary
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/systemd/#install-the-ocis-binary" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Install the oCIS binary" href="#install-the-ocis-binary">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><p>This service provides some <a class="gdoc-markdown__link" href="https://prometheus.io/">Prometheus</a> metrics through the debug endpoint, you can optionally secure the metrics endpoint by some random token, which has to be configured either through the flag <code>--debug-token</code> or the environment variable <code>OCIS_DEBUG_TOKEN</code> mentioned above. By default, the metrics endpoint is bound to <code>http://0.0.0.0:8001/metrics</code>.</p>
-<dl>
-<dt>go_gc_duration_seconds</dt>
-<dd>A summary of the GC invocation durations</dd>
-<dt>go_gc_duration_seconds_sum</dt>
-<dd>A summary of the GC invocation durations</dd>
-<dt>go_gc_duration_seconds_count</dt>
-<dd>A summary of the GC invocation durations</dd>
-<dt>go_goroutines</dt>
-<dd>Number of goroutines that currently exist</dd>
-<dt>go_info</dt>
-<dd>Information about the Go environment</dd>
-<dt>go_memstats_alloc_bytes</dt>
-<dd>Number of bytes allocated and still in use</dd>
-<dt>go_memstats_alloc_bytes_total</dt>
-<dd>Total number of bytes allocated, even if freed</dd>
-<dt>go_memstats_buck_hash_sys_bytes</dt>
-<dd>Number of bytes used by the profiling bucket hash table</dd>
-<dt>go_memstats_frees_total</dt>
-<dd>Total number of frees</dd>
-<dt>go_memstats_gc_cpu_fraction</dt>
-<dd>The fraction of this program&rsquo;s available CPU time used by the GC since the program started</dd>
-<dt>go_memstats_gc_sys_bytes</dt>
-<dd>Number of bytes used for garbage collection system metadata</dd>
-<dt>go_memstats_heap_alloc_bytes</dt>
-<dd>Number of heap bytes allocated and still in use</dd>
-<dt>go_memstats_heap_idle_bytes</dt>
-<dd>Number of heap bytes waiting to be used</dd>
-<dt>go_memstats_heap_inuse_bytes</dt>
-<dd>Number of heap bytes that are in use</dd>
-<dt>go_memstats_heap_objects</dt>
-<dd>Number of allocated objects</dd>
-<dt>go_memstats_heap_released_bytes</dt>
-<dd>Number of heap bytes released to OS</dd>
-<dt>go_memstats_heap_sys_bytes</dt>
-<dd>Number of heap bytes obtained from system</dd>
-<dt>go_memstats_last_gc_time_seconds</dt>
-<dd>Number of seconds since 1970 of last garbage collection</dd>
-<dt>go_memstats_lookups_total</dt>
-<dd>Total number of pointer lookups</dd>
-<dt>go_memstats_mallocs_total</dt>
-<dd>Total number of mallocs</dd>
-<dt>go_memstats_mcache_inuse_bytes</dt>
-<dd>Number of bytes in use by mcache structures</dd>
-<dt>go_memstats_mcache_sys_bytes</dt>
-<dd>Number of bytes used for mcache structures obtained from system</dd>
-<dt>go_memstats_mspan_inuse_bytes</dt>
-<dd>Number of bytes in use by mspan structures</dd>
-<dt>go_memstats_mspan_sys_bytes</dt>
-<dd>Number of bytes used for mspan structures obtained from system</dd>
-<dt>go_memstats_next_gc_bytes</dt>
-<dd>Number of heap bytes when next garbage collection will take place</dd>
-<dt>go_memstats_other_sys_bytes</dt>
-<dd>Number of bytes used for other system allocations</dd>
-<dt>go_memstats_stack_inuse_bytes</dt>
-<dd>Number of bytes in use by the stack allocator</dd>
-<dt>go_memstats_stack_sys_bytes</dt>
-<dd>Number of bytes obtained from system for stack allocator</dd>
-<dt>go_memstats_sys_bytes</dt>
-<dd>Number of bytes obtained from system</dd>
-<dt>go_threads</dt>
-<dd>Number of OS threads created</dd>
-<dt>promhttp_metric_handler_requests_in_flight</dt>
-<dd>Current number of scrapes being served</dd>
-<dt>promhttp_metric_handler_requests_total</dt>
-<dd>Total number of scrapes by HTTP status code</dd>
-</dl>
+</div><p>Download the oCIS binary of your preferred version and for your CPU architecture and operating system from <a class="gdoc-markdown__link" href="https://download.owncloud.com/ocis/ocis">download.owncloud.com</a>.</p>
+<p>Rename the downloaded binary to <code>ocis</code> and move it to <code>/usr/bin/</code>. As a next step, you need to mark it as executable with <code>chmod +x /usr/bin/ocis</code>.</p>
+<p>When you now run <code>ocis help</code> on your command line, you should see the available options for the oCIS command.</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="systemd-service-definition">
+        Systemd service definition
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/systemd/#systemd-service-definition" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Systemd service definition" href="#systemd-service-definition">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>Create the Systemd service definition for oCIS in the file <code>/etc/systemd/system/ocis.service</code> with following content:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[Unit]
+Description=OCIS server
+
+[Service]
+Type=simple
+User=root
+Group=root
+EnvironmentFile=/etc/ocis/ocis.env
+ExecStart=ocis server
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></div><p>For reasons of simplicity we are using the root user and group to run oCIS which is not recommended. Please use a non-root user in production environments and modify the oCIS service definition accordingly.</p>
+<p>In the service definition we referenced <code>/etc/ocis/ocis.env</code> as our file containing environment variables for the oCIS process.
+In order to create the file we need first to create the folder <code>/etc/ocis/</code> and than we can add the actual <code>/etc/ocis/ocis.env</code> with following content:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">OCIS_URL=https://some-hostname-or-ip:9200
+PROXY_HTTP_ADDR=0.0.0.0:9200
+
+OCIS_LOG_LEVEL=error
+
+GLAUTH_LDAPS_CERT=/etc/ocis/ldap/ldaps.crt
+GLAUTH_LDAPS_KEY=/etc/ocis/ldap/ldaps.key
+IDP_TRANSPORT_TLS_CERT=/etc/ocis/idp/server.crt
+IDP_TRANSPORT_TLS_KEY=/etc/ocis/idp/server.key
+PROXY_TRANSPORT_TLS_CERT=/etc/ocis/proxy/server.crt
+PROXY_TRANSPORT_TLS_KEY=/etc/ocis/proxy/server.key
+</code></pre></div><p>Please change your <code>OCIS_URL</code> in order to reflect your actual deployment.</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="starting-the-ocis-service">
+        Starting the oCIS service
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/systemd/#starting-the-ocis-service" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Starting the oCIS service" href="#starting-the-ocis-service">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>You can enable oCIS now by running <code>systemctl enable --now ocis</code>. It will ensure that oCIS also is restarted after a reboot of the host.</p>
+<p>If you need to restart oCIS because of configuration changes in <code>/etc/ocis/ocis.env</code>, run <code>systemctl restart ocis</code>.</p>
+<p>You can have a look at the logs of oCIS by issuing <code>journalctl -f -u ocis</code>.</p>
 
     </article>
 

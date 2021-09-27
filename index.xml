@@ -6,7 +6,7 @@
     <description>Recent content on ownCloud</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 27 Sep 2021 06:44:23 +0000</lastBuildDate><atom:link href="https://owncloud.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Sep 2021 08:09:32 +0000</lastBuildDate><atom:link href="https://owncloud.dev/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>1. Introduce an accounts service</title>
       <link>https://owncloud.dev/ocis/adr/0001-introduce-accounts-service/</link>
@@ -29,10 +29,10 @@ Context and Problem Statement    To attach metadata like shares to users ownClou
     <item>
       <title>Configuration</title>
       <link>https://owncloud.dev/ocis/configuration/</link>
-      <pubDate>Mon, 27 Sep 2021 06:44:19 +0000</pubDate>
+      <pubDate>Mon, 27 Sep 2021 08:09:31 +0000</pubDate>
       
       <guid>https://owncloud.dev/ocis/configuration/</guid>
-      <description>Configuration  Configuration using config files Environment variables Command-line flags   Root Command Sub Commands  ocis list ocis run ocis kill ocis health ocis server List of available Extension subcommands  ocis proxy ocis storage-metadata ocis ocs ocis glauth ocis storage-gateway ocis storage-public-link ocis storage-userprovider ocis web ocis idp ocis storage-sharing ocis store ocis storage-auth-bearer ocis storage-frontend ocis storage-groupprovider ocis accounts ocis settings ocis storage-users ocis storage-home ocis thumbnails ocis version ocis webdav ocis storage-app-provider ocis storage-auth-basic         Configuration    oCIS Single Binary is not responsible for configuring extensions.</description>
+      <description>Configuration  Configuration using config files Environment variables Command-line flags   Root Command Sub Commands  ocis list ocis server ocis health ocis kill ocis run List of available Extension subcommands  ocis storage-home ocis store ocis version ocis storage-app-provider ocis storage-metadata ocis thumbnails ocis webdav ocis proxy ocis storage-frontend ocis storage-groupprovider ocis storage-auth-bearer ocis glauth ocis ocs ocis storage-auth-basic ocis storage-public-link ocis accounts ocis storage-users ocis storage-sharing ocis storage-userprovider ocis settings ocis storage-gateway ocis web ocis idp         Configuration    oCIS Single Binary is not responsible for configuring extensions.</description>
     </item>
     
     <item>
@@ -268,6 +268,16 @@ Besides standard development tools like git and a text editor, you need the foll
     </item>
     
     <item>
+      <title>Systemd service</title>
+      <link>https://owncloud.dev/ocis/deployment/systemd/</link>
+      <pubDate>Sun, 27 Sep 2020 06:00:00 +0100</pubDate>
+      
+      <guid>https://owncloud.dev/ocis/deployment/systemd/</guid>
+      <description>Install the oCIS binary Systemd service definition Starting the oCIS service     Install the oCIS binary    Download the oCIS binary of your preferred version and for your CPU architecture and operating system from download.owncloud.com.
+Rename the downloaded binary to ocis and move it to /usr/bin/. As a next step, you need to mark it as executable with chmod +x /usr/bin/ocis.</description>
+    </item>
+    
+    <item>
       <title>Basic Remote Setup</title>
       <link>https://owncloud.dev/ocis/deployment/basic-remote-setup/</link>
       <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
@@ -289,8 +299,28 @@ Resources    A resource is a logical concept. Resources can be of different type
     
     <item>
       <title>Configuration</title>
+      <link>https://owncloud.dev/extensions/store/configuration/</link>
+      <pubDate>Mon, 27 Sep 2021 08:09:32 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/extensions/store/configuration/</guid>
+      <description>Configuration  Configuration using config files Environment variables Command-line flags store health store ocis-store store server store version       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
+/etc/ocis $HOME/.ocis ./config For this configuration to be picked up, have a look at your extension root command and look for which default config name it has assigned.</description>
+    </item>
+    
+    <item>
+      <title>Configuration</title>
+      <link>https://owncloud.dev/extensions/thumbnails/configuration/</link>
+      <pubDate>Mon, 27 Sep 2021 08:09:32 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/extensions/thumbnails/configuration/</guid>
+      <description>Configuration  Configuration using config files Environment variables Command-line flags thumbnails version thumbnails health thumbnails ocis-thumbnails thumbnails server       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
+/etc/ocis $HOME/.ocis ./config For this configuration to be picked up, have a look at your extension root command and look for which default config name it has assigned.</description>
+    </item>
+    
+    <item>
+      <title>Configuration</title>
       <link>https://owncloud.dev/extensions/web/configuration/</link>
-      <pubDate>Mon, 27 Sep 2021 06:44:23 +0000</pubDate>
+      <pubDate>Mon, 27 Sep 2021 08:09:32 +0000</pubDate>
       
       <guid>https://owncloud.dev/extensions/web/configuration/</guid>
       <description>Configuration  Configuration using config files Environment variables Command-line flags   Root Command Sub Commands  web health web server       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
@@ -300,46 +330,57 @@ Resources    A resource is a logical concept. Resources can be of different type
     <item>
       <title>Configuration</title>
       <link>https://owncloud.dev/extensions/webdav/configuration/</link>
-      <pubDate>Mon, 27 Sep 2021 06:44:23 +0000</pubDate>
+      <pubDate>Mon, 27 Sep 2021 08:09:32 +0000</pubDate>
       
       <guid>https://owncloud.dev/extensions/webdav/configuration/</guid>
-      <description>Configuration  Configuration using config files Environment variables Command-line flags   Root Command Sub Commands  webdav server webdav version webdav health       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
+      <description>Configuration  Configuration using config files Environment variables Command-line flags   Root Command Sub Commands  webdav health webdav server webdav version       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
 /etc/ocis $HOME/.ocis ./config For this configuration to be picked up, have a look at your extension root command and look for which default config name it has assigned.</description>
     </item>
     
     <item>
       <title>Configuration</title>
-      <link>https://owncloud.dev/extensions/thumbnails/configuration/</link>
-      <pubDate>Mon, 27 Sep 2021 06:44:22 +0000</pubDate>
+      <link>https://owncloud.dev/extensions/glauth/configuration/</link>
+      <pubDate>Mon, 27 Sep 2021 08:09:31 +0000</pubDate>
       
-      <guid>https://owncloud.dev/extensions/thumbnails/configuration/</guid>
-      <description>Configuration  Configuration using config files Environment variables Command-line flags thumbnails version thumbnails health thumbnails ocis-thumbnails thumbnails server       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
+      <guid>https://owncloud.dev/extensions/glauth/configuration/</guid>
+      <description>Configuration  Configuration using config files Environment variables Command-line flags glauth server glauth health glauth ocis-glauth       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
 /etc/ocis $HOME/.ocis ./config For this configuration to be picked up, have a look at your extension root command and look for which default config name it has assigned.</description>
     </item>
     
     <item>
       <title>Configuration</title>
-      <link>https://owncloud.dev/extensions/storage/configuration/</link>
-      <pubDate>Mon, 27 Sep 2021 06:44:21 +0000</pubDate>
+      <link>https://owncloud.dev/extensions/graph-explorer/configuration/</link>
+      <pubDate>Mon, 27 Sep 2021 08:09:31 +0000</pubDate>
       
-      <guid>https://owncloud.dev/extensions/storage/configuration/</guid>
-      <description>Configuration  Configuration using config files Environment variables Command-line flags   Root Command Sub Commands  storage storage-metadata storage storage-users storage frontend storage gateway storage storage storage health storage storage-home storage users storage groups storage sharing storage storage-public-link storage app-provider storage auth-basic storage auth-bearer   Config for the different Storage Drivers  Local Driver Eos Driver owCloud Driver ownCloudSQL Driver Ocis Driver S3ng Driver       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:</description>
+      <guid>https://owncloud.dev/extensions/graph-explorer/configuration/</guid>
+      <description>Configuration  Configuration using config files Environment variables Command-line flags   Root Command Sub Commands  graph-explorer health graph-explorer server       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
+/etc/ocis $HOME/.ocis ./config For this configuration to be picked up, have a look at your extension root command and look for which default config name it has assigned.</description>
     </item>
     
     <item>
       <title>Configuration</title>
-      <link>https://owncloud.dev/extensions/store/configuration/</link>
-      <pubDate>Mon, 27 Sep 2021 06:44:21 +0000</pubDate>
+      <link>https://owncloud.dev/extensions/graph/configuration/</link>
+      <pubDate>Mon, 27 Sep 2021 08:09:31 +0000</pubDate>
       
-      <guid>https://owncloud.dev/extensions/store/configuration/</guid>
-      <description>Configuration  Configuration using config files Environment variables Command-line flags store health store ocis-store store server store version       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
+      <guid>https://owncloud.dev/extensions/graph/configuration/</guid>
+      <description>Configuration  Configuration using config files Environment variables Command-line flags graph health graph ocis-graph graph server       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
+/etc/ocis $HOME/.ocis ./config For this configuration to be picked up, have a look at your extension root command and look for which default config name it has assigned.</description>
+    </item>
+    
+    <item>
+      <title>Configuration</title>
+      <link>https://owncloud.dev/extensions/idp/configuration/</link>
+      <pubDate>Mon, 27 Sep 2021 08:09:31 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/extensions/idp/configuration/</guid>
+      <description>Configuration  Configuration using config files Environment variables Command-line flags idp version idp health idp ocis-idp idp server       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
 /etc/ocis $HOME/.ocis ./config For this configuration to be picked up, have a look at your extension root command and look for which default config name it has assigned.</description>
     </item>
     
     <item>
       <title>Configuration</title>
       <link>https://owncloud.dev/extensions/ocs/configuration/</link>
-      <pubDate>Mon, 27 Sep 2021 06:44:20 +0000</pubDate>
+      <pubDate>Mon, 27 Sep 2021 08:09:31 +0000</pubDate>
       
       <guid>https://owncloud.dev/extensions/ocs/configuration/</guid>
       <description>Configuration  Configuration using config files Environment variables Command-line flags ocs health ocs ocis-ocs ocs server ocs version       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
@@ -349,7 +390,7 @@ Resources    A resource is a logical concept. Resources can be of different type
     <item>
       <title>Configuration</title>
       <link>https://owncloud.dev/extensions/proxy/configuration/</link>
-      <pubDate>Mon, 27 Sep 2021 06:44:20 +0000</pubDate>
+      <pubDate>Mon, 27 Sep 2021 08:09:31 +0000</pubDate>
       
       <guid>https://owncloud.dev/extensions/proxy/configuration/</guid>
       <description>Configuration  Configuration using config files Environment variables Command-line flags proxy health proxy ocis-proxy proxy server proxy version       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
@@ -359,7 +400,7 @@ Resources    A resource is a logical concept. Resources can be of different type
     <item>
       <title>Configuration</title>
       <link>https://owncloud.dev/extensions/settings/configuration/</link>
-      <pubDate>Mon, 27 Sep 2021 06:44:20 +0000</pubDate>
+      <pubDate>Mon, 27 Sep 2021 08:09:31 +0000</pubDate>
       
       <guid>https://owncloud.dev/extensions/settings/configuration/</guid>
       <description>Configuration  Configuration using config files Environment variables Command-line flags settings health settings ocis-settings settings server settings version       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
@@ -368,51 +409,20 @@ Resources    A resource is a logical concept. Resources can be of different type
     
     <item>
       <title>Configuration</title>
-      <link>https://owncloud.dev/extensions/graph-explorer/configuration/</link>
-      <pubDate>Mon, 27 Sep 2021 06:44:19 +0000</pubDate>
+      <link>https://owncloud.dev/extensions/storage/configuration/</link>
+      <pubDate>Mon, 27 Sep 2021 08:09:31 +0000</pubDate>
       
-      <guid>https://owncloud.dev/extensions/graph-explorer/configuration/</guid>
-      <description>Configuration  Configuration using config files Environment variables Command-line flags   Root Command Sub Commands  graph-explorer server graph-explorer health       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
-/etc/ocis $HOME/.ocis ./config For this configuration to be picked up, have a look at your extension root command and look for which default config name it has assigned.</description>
-    </item>
-    
-    <item>
-      <title>Configuration</title>
-      <link>https://owncloud.dev/extensions/graph/configuration/</link>
-      <pubDate>Mon, 27 Sep 2021 06:44:19 +0000</pubDate>
-      
-      <guid>https://owncloud.dev/extensions/graph/configuration/</guid>
-      <description>Configuration  Configuration using config files Environment variables Command-line flags graph server graph health graph ocis-graph       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
-/etc/ocis $HOME/.ocis ./config For this configuration to be picked up, have a look at your extension root command and look for which default config name it has assigned.</description>
-    </item>
-    
-    <item>
-      <title>Configuration</title>
-      <link>https://owncloud.dev/extensions/idp/configuration/</link>
-      <pubDate>Mon, 27 Sep 2021 06:44:19 +0000</pubDate>
-      
-      <guid>https://owncloud.dev/extensions/idp/configuration/</guid>
-      <description>Configuration  Configuration using config files Environment variables Command-line flags idp health idp ocis-idp idp server idp version       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
-/etc/ocis $HOME/.ocis ./config For this configuration to be picked up, have a look at your extension root command and look for which default config name it has assigned.</description>
-    </item>
-    
-    <item>
-      <title>Configuration</title>
-      <link>https://owncloud.dev/extensions/glauth/configuration/</link>
-      <pubDate>Mon, 27 Sep 2021 06:44:18 +0000</pubDate>
-      
-      <guid>https://owncloud.dev/extensions/glauth/configuration/</guid>
-      <description>Configuration  Configuration using config files Environment variables Command-line flags glauth health glauth ocis-glauth glauth server       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
-/etc/ocis $HOME/.ocis ./config For this configuration to be picked up, have a look at your extension root command and look for which default config name it has assigned.</description>
+      <guid>https://owncloud.dev/extensions/storage/configuration/</guid>
+      <description>Configuration  Configuration using config files Environment variables Command-line flags   Root Command Sub Commands  storage auth-bearer storage health storage storage storage storage-users storage users storage app-provider storage gateway storage sharing storage storage-metadata storage auth-basic storage frontend storage groups storage storage-home storage storage-public-link   Config for the different Storage Drivers  Local Driver Eos Driver owCloud Driver ownCloudSQL Driver Ocis Driver S3ng Driver       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:</description>
     </item>
     
     <item>
       <title>Configuration</title>
       <link>https://owncloud.dev/extensions/accounts/configuration/</link>
-      <pubDate>Mon, 27 Sep 2021 06:43:15 +0000</pubDate>
+      <pubDate>Mon, 27 Sep 2021 08:08:39 +0000</pubDate>
       
       <guid>https://owncloud.dev/extensions/accounts/configuration/</guid>
-      <description>Configuration  Configuration using config files Environment variables Command-line flags accounts add accounts list accounts rebuildIndex accounts remove accounts server accounts version accounts inspect accounts ocis-accounts accounts update       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
+      <description>Configuration  Configuration using config files Environment variables Command-line flags accounts ocis-accounts accounts server accounts update accounts add accounts inspect accounts list accounts rebuildIndex accounts remove accounts version       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
 /etc/ocis $HOME/.ocis ./config For this configuration to be picked up, have a look at your extension root command and look for which default config name it has assigned.</description>
     </item>
     
