@@ -10,7 +10,7 @@
 
 
 
-    <meta name="description" content="Configuration  Configuration using config files Environment variables Command-line flags glauth health glauth ocis-glauth glauth server       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
+    <meta name="description" content="Configuration  Configuration using config files Environment variables Command-line flags glauth ocis-glauth glauth server glauth health       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:
 /etc/ocis $HOME/.ocis ./config For this configuration to be picked up, have a look at your extension root command and look for which default config name it has assigned.">
 
 
@@ -3963,9 +3963,9 @@
             <li><a href="#configuration-using-config-files">Configuration using config files</a></li>
             <li><a href="#environment-variables">Environment variables</a></li>
             <li><a href="#command-line-flags">Command-line flags</a></li>
-            <li><a href="#glauth-health">glauth health</a></li>
             <li><a href="#glauth-ocis-glauth">glauth ocis-glauth</a></li>
             <li><a href="#glauth-server">glauth server</a></li>
+            <li><a href="#glauth-health">glauth health</a></li>
           </ul>
         </li>
       </ul></nav><hr></div>
@@ -4008,19 +4008,6 @@ $HOME/.ocis
         </a>
     </h3>
 </div><p>If you prefer to configure the service with command-line flags you can see the available variables below. Command line flags are only working when calling the subcommand directly.</p>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="glauth-health">
-        glauth health
-        <a data-clipboard-text="https://owncloud.dev/extensions/glauth/configuration/#glauth-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor glauth health" href="#glauth-health">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p>Check health status</p>
-<p>Usage: <code>glauth health [command options] [arguments...]</code></p>
-<dl>
-<dt>-debug-addr |  $GLAUTH_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>&quot;0.0.0.0:9129&quot;</code>.</dd>
-</dl>
 <div class="gdoc-page__anchorwrap">
     <h3 id="glauth-ocis-glauth">
         glauth ocis-glauth
@@ -4085,7 +4072,7 @@ $HOME/.ocis
 <dt>-ldaps-key |  $GLAUTH_LDAPS_KEY</dt>
 <dd>path to ldaps key in PEM format. Default: <code>flags.OverrideDefaultString(cfg.Ldaps.Key, path.Join(pkgos.MustUserConfigDir(&quot;ocis&quot;, &quot;ldap&quot;), &quot;ldap.key&quot;))</code>.</dd>
 <dt>-backend-basedn |  $GLAUTH_BACKEND_BASEDN</dt>
-<dd>base distinguished name to expose. Default: <code>&quot;dc=example,dc=org&quot;</code>.</dd>
+<dd>base distinguished name to expose. Default: <code>&quot;dc=ocis,dc=test&quot;</code>.</dd>
 <dt>-backend-name-format |  $GLAUTH_BACKEND_NAME_FORMAT</dt>
 <dd>name attribute for entries to expose. typically cn or uid. Default: <code>&quot;cn&quot;</code>.</dd>
 <dt>-backend-group-format |  $GLAUTH_BACKEND_GROUP_FORMAT</dt>
@@ -4097,11 +4084,11 @@ $HOME/.ocis
 <dt>-backend-insecure |  $GLAUTH_BACKEND_INSECURE</dt>
 <dd>Allow insecure requests to the datastore. Default: <code>false</code>.</dd>
 <dt>-backend-server |  $GLAUTH_BACKEND_SERVERS</dt>
-<dd><code>--backend-server http://internal1.example.com [--backend-server http://internal2.example.com]</code>. Default: <code>cli.NewStringSlice(&quot;https://demo.owncloud.com/apps/graphapi/v1.0&quot;)</code>.</dd>
+<dd><code>--backend-server https://demo.owncloud.com/apps/graphapi/v1.0 [--backend-server &quot;https://demo2.owncloud.com/apps/graphapi/v1.0&quot;]</code>. Default: <code>cli.NewStringSlice()</code>.</dd>
 <dt>-backend-use-graphapi |  $GLAUTH_BACKEND_USE_GRAPHAPI</dt>
 <dd>use Graph API, only for owncloud datastore. Default: <code>true</code>.</dd>
 <dt>-fallback-basedn |  $GLAUTH_FALLBACK_BASEDN</dt>
-<dd>base distinguished name to expose. Default: <code>&quot;dc=example,dc=org&quot;</code>.</dd>
+<dd>base distinguished name to expose. Default: <code>&quot;dc=ocis,dc=test&quot;</code>.</dd>
 <dt>-fallback-name-format |  $GLAUTH_FALLBACK_NAME_FORMAT</dt>
 <dd>name attribute for entries to expose. typically cn or uid. Default: <code>&quot;cn&quot;</code>.</dd>
 <dt>-fallback-group-format |  $GLAUTH_FALLBACK_GROUP_FORMAT</dt>
@@ -4118,6 +4105,19 @@ $HOME/.ocis
 <dd>use Graph API, only for owncloud datastore. Default: <code>true</code>.</dd>
 <dt>-extensions |</dt>
 <dd>Run specific extensions during supervised mode. This flag is set by the runtime.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="glauth-health">
+        glauth health
+        <a data-clipboard-text="https://owncloud.dev/extensions/glauth/configuration/#glauth-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor glauth health" href="#glauth-health">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Check health status</p>
+<p>Usage: <code>glauth health [command options] [arguments...]</code></p>
+<dl>
+<dt>-debug-addr |  $GLAUTH_DEBUG_ADDR</dt>
+<dd>Address to debug endpoint. Default: <code>&quot;0.0.0.0:9129&quot;</code>.</dd>
 </dl>
 
     </article>
