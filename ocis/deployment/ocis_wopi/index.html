@@ -10,7 +10,7 @@
 
 
 
-    <meta name="description" content="Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup     Overview     oCIS, Wopi server and Collabora running behind Traefik as reverse proxy Collabora enables you to edit text documents in your browser Wopi server acts as a bridge to make the oCIS storage accessible to Collabora Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup  Find this example on GitHub">
+    <meta name="description" content="Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup     OnlyOffice and CodiMD are not yet fully integrated and there are known issues. For the current state please have a look at owncloud/ocis#2595  Overview     oCIS, Wopi server, Collabora, OnlyOffice and CodiMD running behind Traefik as reverse proxy Collabora, OnlyOffice and CodiMD enable you to edit documents in your browser Wopi server acts as a bridge to make the oCIS storage accessible to Collabora, OnlyOffice and CodiMD Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup  Find this example on GitHub">
 
 
 
@@ -3968,6 +3968,10 @@
       </ul></nav><hr></div>
 
 
+<blockquote class="gdoc-hint warning">
+  OnlyOffice and CodiMD are not yet fully integrated and there are known issues. For the current state please have a look at <a class="gdoc-markdown__link" href="https://github.com/owncloud/ocis/issues/2595">owncloud/ocis#2595</a>
+</blockquote>
+
 <div class="gdoc-page__anchorwrap">
     <h2 id="overview">
         Overview
@@ -3976,16 +3980,16 @@
         </a>
     </h2>
 </div><ul>
-<li>oCIS, Wopi server and Collabora running behind Traefik as reverse proxy</li>
-<li>Collabora enables you to edit text documents in your browser</li>
-<li>Wopi server acts as a bridge to make the oCIS storage accessible to Collabora</li>
+<li>oCIS, Wopi server, Collabora, OnlyOffice and CodiMD running behind Traefik as reverse proxy</li>
+<li>Collabora, OnlyOffice and CodiMD enable you to edit documents in your browser</li>
+<li>Wopi server acts as a bridge to make the oCIS storage accessible to Collabora, OnlyOffice and CodiMD</li>
 <li>Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup</li>
 </ul>
 <p><a class="gdoc-markdown__link" href="https://github.com/owncloud/ocis/tree/master/deployments/examples/ocis_wopi">Find this example on GitHub</a></p>
-<p>The docker stack consists 5 containers. One of them is Traefik, a proxy which is terminating SSL and forwards the requests to oCIS in the internal docker network.</p>
-<p>The next container is oCIS itself in a configuration like the <a class="gdoc-markdown__link" href="https://owncloud.dev/ocis/deployment/ocis_traefik/">oCIS with Traefik example</a>, except that for this example a custom proxy and web UI configuration is used to enable the oCIS Wopi extension.</p>
-<p>The oCIS WOPI server extension is running in another container and enables you to open files in Collabora from within ownCloud Web.</p>
-<p>The last two containers are the WOPI server and Collabora.</p>
+<p>The docker stack consists of 10 containers. One of them is Traefik, a proxy which is terminating SSL and forwards the requests to oCIS in the internal docker network.</p>
+<p>The next container is oCIS itself in a configuration like the <a class="gdoc-markdown__link" href="https://owncloud.dev/ocis/deployment/ocis_traefik/">oCIS with Traefik example</a>, except that for this example a custom mimetype configuration is used.</p>
+<p>There are three oCIS app driver containers that register Collabora, OnlyOffice and CodiMD at the app registry.</p>
+<p>The last four containers are the WOPI server, Collabora, OnlyOffice and CodiMD.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="server-deployment">
         Server Deployment
@@ -4006,6 +4010,8 @@
 <ul>
 <li>ocis.* for serving oCIS</li>
 <li>collabora.* for serving Collabora</li>
+<li>onlyoffice.* for serving OnlyOffice</li>
+<li>codimd.* for serving CodiMD</li>
 <li>wopiserver.* for serving the WOPI server</li>
 <li>traefik.* for serving the Traefik dashboard</li>
 </ul>
@@ -4062,10 +4068,8 @@ The file by default looks like this:</p>
   <span class="nv">OCIS_MACHINE_AUTH_API_KEY</span><span class="o">=</span>
 
   <span class="c1">### Wopi server settings ###</span>
-  <span class="c1"># oCIS Wopi server version. Defaults to &#34;latest&#34;</span>
-  <span class="nv">OCIS_WOPISERVER_DOCKER_TAG</span><span class="o">=</span>
   <span class="c1"># cs3org wopi server version. Defaults to &#34;latest&#34;</span>
-  <span class="nv">CS3ORG_WOPISERVER_DOCKER_TAG</span><span class="o">=</span>
+  <span class="nv">WOPISERVER_DOCKER_TAG</span><span class="o">=</span>
   <span class="c1"># cs3org wopi server domain. Defaults to &#34;wopiserver.owncloud.test&#34;</span>
   <span class="nv">WOPISERVER_DOMAIN</span><span class="o">=</span>
   <span class="c1"># JWT secret which is used for the documents to be request by the Wopi client from the cs3org Wopi server. Must be change in order to have a secure Wopi server. Defaults to &#34;LoremIpsum567&#34;</span>
@@ -4078,9 +4082,18 @@ The file by default looks like this:</p>
   <span class="nv">COLLABORA_DOMAIN</span><span class="o">=</span>
   <span class="c1"># Admin user for Collabora. Defaults to blank, provide one to enable access</span>
   <span class="nv">COLLABORA_ADMIN_USER</span><span class="o">=</span>
-  <span class="c1"># Admin password for COllabora. Defaults to blank, provide one to enable access</span>
+  <span class="c1"># Admin password for Collabora. Defaults to blank, provide one to enable access</span>
   <span class="nv">COLLABORA_ADMIN_PASSWORD</span><span class="o">=</span>
 
+  <span class="c1">### OnlyOffice settings ###</span>
+  <span class="c1"># Domain of OnlyOffice, where you can find the frontend. Defaults to &#34;onlyoffice.owncloud.test&#34;</span>
+  <span class="nv">ONLYOFFICE_DOMAIN</span><span class="o">=</span>
+
+  <span class="c1">### CodiMD settings ###</span>
+  <span class="c1"># Domain of Collabora, where you can find the frontend. Defaults to &#34;codimd.owncloud.test&#34;</span>
+  <span class="nv">CODIMD_DOMAIN</span><span class="o">=</span>
+  <span class="c1"># Secret which is used for the communication with the WOPI server. Must be changed in order to have a secure CodiMD. Defaults to &#34;LoremIpsum456&#34;</span>
+  <span class="nv">CODIMD_SECRET</span><span class="o">=</span>
 </code></pre></div><p>You are installing oCIS on a server and Traefik will obtain valid certificates for you so please remove <code>INSECURE=true</code> or set it to <code>false</code>.</p>
 <p>If you want to use the Traefik dashboard, set TRAEFIK_DASHBOARD to <code>true</code> (default is <code>false</code> and therefore not active). If you activate it, you must set a domain for the Traefik dashboard in <code>TRAEFIK_DOMAIN=</code> eg. <code>TRAEFIK_DOMAIN=traefik.owncloud.test</code>.</p>
 <p>The Traefik dashboard is secured by basic auth. Default credentials are the user <code>admin</code> with the password <code>admin</code>. To set your own credentials, generate a htpasswd (eg. by using <a class="gdoc-markdown__link" href="https://htpasswdgenerator.de/">an online tool</a> or a cli tool).</p>
@@ -4088,12 +4101,13 @@ The file by default looks like this:</p>
 <p>By default oCIS will be started in the <code>latest</code> version. If you want to start a specific version of oCIS set the version to <code>OCIS_DOCKER_TAG=</code>. Available versions can be found on <a class="gdoc-markdown__link" href="https://hub.docker.com/r/owncloud/ocis/tags?page=1&amp;ordering=last_updated">Docker Hub</a>.</p>
 <p>Set your domain for the oCIS frontend in <code>OCIS_DOMAIN=</code>, eg. <code>OCIS_DOMAIN=ocis.owncloud.test</code>.</p>
 <p>You also must override three default secrets in <code>IDP_LDAP_BIND_PASSWORD</code>, <code>STORAGE_LDAP_BIND_PASSWORD</code> and <code>OCIS_JWT_SECRET</code> in order to secure your oCIS instance. Choose some random strings eg. from the output of <code>openssl rand -base64 32</code>. For more information see <a class="gdoc-markdown__link" href="https://owncloud.dev/ocis/deployment/#secure-an-ocis-instance">secure an oCIS instance</a>.</p>
-<p>By default the oCIS WOPI server extension will be started in the <code>latest</code> version. If you want to start a specific version of oCIS WOPI server set the version to <code>OCIS_WOPISERVER_DOCKER_TAG=</code>. Available versions can be found on <a class="gdoc-markdown__link" href="https://hub.docker.com/r/owncloud/ocis-wopiserver/tags?page=1&amp;ordering=last_updated">Docker Hub</a>.</p>
-<p>By default the CS3Org WOPI server will also be started in the <code>latest</code> version. If you want to start a specific version of it, you can set the version to <code>CS3ORG_WOPISERVER_DOCKER_TAG=</code>. Available versions can be found on <a class="gdoc-markdown__link" href="https://hub.docker.com/r/cs3org/wopiserver/tags?page=1&amp;ordering=last_updated">Docker Hub</a>.</p>
-<p>Set your domain for the CS3Org WOPI server in <code>WOPISERVER_DOMAIN=</code>, where Collabora can download the files.</p>
+<p>By default the CS3Org WOPI server will also be started in the <code>latest</code> version. If you want to start a specific version of it, you can set the version to <code>WOPISERVER_DOCKER_TAG=</code>. Available versions can be found on <a class="gdoc-markdown__link" href="https://hub.docker.com/r/cs3org/wopiserver/tags?page=1&amp;ordering=last_updated">Docker Hub</a>.</p>
+<p>Set your domain for the CS3Org WOPI server in <code>WOPISERVER_DOMAIN=</code>, where all office suites can download the files via the WOPI protocol.</p>
 <p>You also must override the default WOPI JWT secret and the WOPI IOP secret, in order to have a secure setup. Do this by setting <code>WOPI_JWT_SECRET</code> and <code>WOPI_IOP_SECRET</code> to a long and random string.</p>
-<p>Now it&rsquo;s time to set up Collabora and you need to configure the Domain of Collabora in <code>COLLABORA_DOMAIN=</code>.</p>
+<p>Now it&rsquo;s time to set up Collabora and you need to configure the domain of Collabora in <code>COLLABORA_DOMAIN=</code>.</p>
 <p>If you want to use the Collabora admin panel you need to set user name and passwort for in <code>COLLABORA_ADMIN_USER=</code> and <code>COLLABORA_ADMIN_PASSWORD=</code>.</p>
+<p>Next up is OnlyOffice, which also needs a domain in <code>ONLYOFFICE_DOMAIN=</code>.</p>
+<p>The last configuration options are for CodiMD, which needs a domain in <code>CODIMD_DOMAIN=</code> and a random secret in <code>CODIMD_SECRET=</code>.</p>
 <p>Now you have configured everything and can save the file.</p>
 </li>
 <li>
@@ -4117,10 +4131,12 @@ The file by default looks like this:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">127.0.0.1 ocis.owncloud.test
 127.0.0.1 traefik.owncloud.test
 127.0.0.1 collabora.owncloud.test
+127.0.0.1 onlyoffice.owncloud.test
+127.0.0.1 codimd.owncloud.test
 127.0.0.1 wopiserver.owncloud.test
 </code></pre></div><p>After that you&rsquo;re ready to start the application stack:</p>
 <p><code>docker-compose up -d</code></p>
-<p>Open <a class="gdoc-markdown__link" href="https://collabora.owncloud.test">https://collabora.owncloud.test</a> and <a class="gdoc-markdown__link" href="https://wopiserver.owncloud.test">https://wopiserver.owncloud.test</a>  in your browser and accept the invalid certificate warning.</p>
+<p>Open <a class="gdoc-markdown__link" href="https://collabora.owncloud.test">https://collabora.owncloud.test</a>, <a class="gdoc-markdown__link" href="https://onlyoffice.owncloud.test">https://onlyoffice.owncloud.test</a>, <a class="gdoc-markdown__link" href="https://codimd.owncloud.test">https://codimd.owncloud.test</a> and <a class="gdoc-markdown__link" href="https://wopiserver.owncloud.test">https://wopiserver.owncloud.test</a>  in your browser and accept the invalid certificate warning.</p>
 <p>Open <a class="gdoc-markdown__link" href="https://ocis.owncloud.test">https://ocis.owncloud.test</a> in your browser and accept the invalid certificate warning. You are now able to open an office document in your browser. You may need to wait some minutes until all services are fully ready, so make sure that you try to reload the pages from time to time.</p>
 
     </article>
