@@ -10,7 +10,7 @@
 
 
 
-    <meta name="description" content="Configuration  Configuration using config files Environment variables Command-line flags   Root Command Sub Commands  storage gateway storage groups storage storage-home storage storage-public-link storage auth-bearer storage storage storage storage-metadata storage users storage auth-basic storage health storage storage-users storage frontend storage sharing storage app-provider   Config for the different Storage Drivers  Local Driver Eos Driver owCloud Driver ownCloudSQL Driver Ocis Driver S3ng Driver       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:">
+    <meta name="description" content="Configuration  Configuration using config files Environment variables Command-line flags   Root Command Sub Commands  storage storage-home storage app-provider storage auth-bearer storage gateway storage health storage storage storage storage-metadata storage storage-public-link storage storage-users storage auth-basic storage frontend storage users storage sharing storage groups   Config for the different Storage Drivers  Local Driver Eos Driver owCloud Driver ownCloudSQL Driver Ocis Driver S3ng Driver       Configuration    Configuration using config files    Out of the box extensions will attempt to read configuration details from:">
 
 
 
@@ -3993,20 +3993,20 @@
         <li><a href="#root-command">Root Command</a></li>
         <li><a href="#sub-commands">Sub Commands</a>
           <ul>
-            <li><a href="#storage-gateway">storage gateway</a></li>
-            <li><a href="#storage-groups">storage groups</a></li>
             <li><a href="#storage-storage-home">storage storage-home</a></li>
-            <li><a href="#storage-storage-public-link">storage storage-public-link</a></li>
+            <li><a href="#storage-app-provider">storage app-provider</a></li>
             <li><a href="#storage-auth-bearer">storage auth-bearer</a></li>
+            <li><a href="#storage-gateway">storage gateway</a></li>
+            <li><a href="#storage-health">storage health</a></li>
             <li><a href="#storage-storage">storage storage</a></li>
             <li><a href="#storage-storage-metadata">storage storage-metadata</a></li>
-            <li><a href="#storage-users">storage users</a></li>
-            <li><a href="#storage-auth-basic">storage auth-basic</a></li>
-            <li><a href="#storage-health">storage health</a></li>
+            <li><a href="#storage-storage-public-link">storage storage-public-link</a></li>
             <li><a href="#storage-storage-users">storage storage-users</a></li>
+            <li><a href="#storage-auth-basic">storage auth-basic</a></li>
             <li><a href="#storage-frontend">storage frontend</a></li>
+            <li><a href="#storage-users">storage users</a></li>
             <li><a href="#storage-sharing">storage sharing</a></li>
-            <li><a href="#storage-app-provider">storage app-provider</a></li>
+            <li><a href="#storage-groups">storage groups</a></li>
           </ul>
         </li>
         <li><a href="#config-for-the-different-storage-drivers">Config for the different Storage Drivers</a>
@@ -4086,6 +4086,125 @@ $HOME/.ocis
         </a>
     </h2>
 </div><div class="gdoc-page__anchorwrap">
+    <h3 id="storage-storage-home">
+        storage storage-home
+        <a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-storage-home" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage storage-home" href="#storage-storage-home">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Start storage-home service</p>
+<p>Usage: <code>storage storage-home [command options] [arguments...]</code></p>
+<dl>
+<dt>-debug-addr |  $STORAGE_HOME_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>&quot;0.0.0.0:9156&quot;</code>.</dd>
+<dt>-grpc-network |  $STORAGE_HOME_GRPC_NETWORK</dt>
+<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>&quot;tcp&quot;</code>.</dd>
+<dt>-grpc-addr |  $STORAGE_HOME_GRPC_ADDR</dt>
+<dd>Address to bind storage service. Default: <code>&quot;0.0.0.0:9154&quot;</code>.</dd>
+<dt>-http-network |  $STORAGE_HOME_HTTP_NETWORK</dt>
+<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>&quot;tcp&quot;</code>.</dd>
+<dt>-http-addr |  $STORAGE_HOME_HTTP_ADDR</dt>
+<dd>Address to bind storage service. Default: <code>&quot;0.0.0.0:9155&quot;</code>.</dd>
+<dt>-driver |  $STORAGE_HOME_DRIVER</dt>
+<dd>storage driver for home mount: eg. local, eos, owncloud, ocis or s3. Default: <code>&quot;ocis&quot;</code>.</dd>
+<dt>-read-only |  $STORAGE_HOME_READ_ONLY , $OCIS_STORAGE_READ_ONLY</dt>
+<dd>use storage driver in read-only mode. Default: <code>false</code>.</dd>
+<dt>-mount-path |  $STORAGE_HOME_MOUNT_PATH</dt>
+<dd>mount path. Default: <code>&quot;/home&quot;</code>.</dd>
+<dt>-mount-id |  $STORAGE_HOME_MOUNT_ID</dt>
+<dd>mount id. Default: <code>&quot;1284d238-aa92-42ce-bdc4-0b0000009157&quot;</code>.</dd>
+<dt>-expose-data-server |  $STORAGE_HOME_EXPOSE_DATA_SERVER</dt>
+<dd>exposes a dedicated data server. Default: <code>false</code>.</dd>
+<dt>-data-server-url |  $STORAGE_HOME_DATA_SERVER_URL</dt>
+<dd>data server url. Default: <code>&quot;http://localhost:9155/data&quot;</code>.</dd>
+<dt>-http-prefix |  $STORAGE_HOME_HTTP_PREFIX</dt>
+<dd>prefix for the http endpoint, without leading slash. Default: <code>&quot;data&quot;</code>.</dd>
+<dt>-tmp-folder |  $STORAGE_HOME_TMP_FOLDER</dt>
+<dd>path to tmp folder. Default: <code>&quot;/var/tmp/ocis/tmp/home&quot;</code>.</dd>
+<dt>-reva-gateway-addr |  $REVA_GATEWAY</dt>
+<dd>Address of REVA gateway endpoint. Default: <code>&quot;127.0.0.1:9142&quot;</code>.</dd>
+<dt>-users-endpoint |  $STORAGE_USERPROVIDER_ENDPOINT</dt>
+<dd>endpoint to use for the storage service. Default: <code>&quot;localhost:9144&quot;</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="storage-app-provider">
+        storage app-provider
+        <a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-app-provider" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage app-provider" href="#storage-app-provider">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Start appprovider for providing apps</p>
+<p>Usage: <code>storage app-provider [command options] [arguments...]</code></p>
+<dl>
+<dt>-debug-addr |  $APP_PROVIDER_BASIC_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>&quot;0.0.0.0:9165&quot;</code>.</dd>
+<dt>-network |  $APP_PROVIDER_BASIC_GRPC_NETWORK</dt>
+<dd>Network to use for the storage auth-basic service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>&quot;tcp&quot;</code>.</dd>
+<dt>-addr |  $APP_PROVIDER_BASIC_GRPC_ADDR</dt>
+<dd>Address to bind storage service. Default: <code>&quot;0.0.0.0:9164&quot;</code>.</dd>
+<dt>-external-addr |  $APP_PROVIDER_BASIC_EXTERNAL_ADDR</dt>
+<dd>Address to connect to the storage service for other services. Default: <code>&quot;127.0.0.1:9164&quot;</code>.</dd>
+<dt>-service |  $APP_PROVIDER_BASIC_SERVICES</dt>
+<dd>&ndash;service appprovider [&ndash;service otherservice]. Default: <code>cli.NewStringSlice(&quot;appprovider&quot;)</code>.</dd>
+<dt>-driver |  $APP_PROVIDER_DRIVER</dt>
+<dd>Driver to use for app provider. Default: <code>&quot;&quot;</code>.</dd>
+<dt>-wopi-driver-app-apikey |  $APP_PROVIDER_WOPI_DRIVER_APP_API_KEY</dt>
+<dd>The API key used by the app, if applicable.. Default: <code>&quot;&quot;</code>.</dd>
+<dt>-wopi-driver-app-desktop-only |  $APP_PROVIDER_WOPI_DRIVER_APP_DESKTOP_ONLY</dt>
+<dd>Whether the app can be opened only on desktop. Default: <code>false</code>.</dd>
+<dt>-wopi-driver-app-icon-uri |  $APP_PROVIDER_WOPI_DRIVER_APP_ICON_URI</dt>
+<dd>IOP Secret (Shared with WOPI server). Default: <code>&quot;&quot;</code>.</dd>
+<dt>-wopi-driver-app-internal-url |  $APP_PROVIDER_WOPI_DRIVER_APP_INTERNAL_URL</dt>
+<dd>The internal app URL in case of dockerized deployments. Defaults to AppURL. Default: <code>&quot;&quot;</code>.</dd>
+<dt>-wopi-driver-app-name |  $APP_PROVIDER_WOPI_DRIVER_APP_NAME</dt>
+<dd>The App user-friendly name.. Default: <code>&quot;&quot;</code>.</dd>
+<dt>-wopi-driver-app-url |  $APP_PROVIDER_WOPI_DRIVER_APP_URL</dt>
+<dd>App server URL. Default: <code>&quot;&quot;</code>.</dd>
+<dt>-wopi-driver-insecure |  $APP_PROVIDER_WOPI_DRIVER_INSECURE</dt>
+<dd>Disable SSL certificate verification of WOPI server and WOPI bridge. Default: <code>false</code>.</dd>
+<dt>-wopi-driver-iopsecret |  $APP_PROVIDER_WOPI_DRIVER_IOP_SECRET</dt>
+<dd>IOP Secret (Shared with WOPI server). Default: <code>&quot;&quot;</code>.</dd>
+<dt>-wopi-driver-wopiurl |  $APP_PROVIDER_WOPI_DRIVER_WOPI_URL</dt>
+<dd>WOPI server URL. Default: <code>&quot;&quot;</code>.</dd>
+<dt>-reva-gateway-addr |  $REVA_GATEWAY</dt>
+<dd>Address of REVA gateway endpoint. Default: <code>&quot;127.0.0.1:9142&quot;</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="storage-auth-bearer">
+        storage auth-bearer
+        <a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-auth-bearer" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage auth-bearer" href="#storage-auth-bearer">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Start authprovider for bearer auth</p>
+<p>Usage: <code>storage auth-bearer [command options] [arguments...]</code></p>
+<dl>
+<dt>-debug-addr |  $STORAGE_AUTH_BEARER_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>&quot;0.0.0.0:9149&quot;</code>.</dd>
+<dt>-auth-driver |  $STORAGE_AUTH_BEARER_DRIVER</dt>
+<dd>bearer auth driver: &lsquo;oidc&rsquo; or &lsquo;machine&rsquo;. Default: <code>&quot;oidc&quot;</code>.</dd>
+<dt>-oidc-issuer |  $STORAGE_OIDC_ISSUER , $OCIS_URL</dt>
+<dd>OIDC issuer. Default: <code>&quot;https://localhost:9200&quot;</code>.</dd>
+<dt>-oidc-insecure |  $STORAGE_OIDC_INSECURE</dt>
+<dd>OIDC allow insecure communication. Default: <code>true</code>.</dd>
+<dt>-oidc-id-claim |  $STORAGE_OIDC_ID_CLAIM</dt>
+<dd>OIDC id claim. Default: <code>&quot;preferred_username&quot;</code>.</dd>
+<dt>-oidc-uid-claim |  $STORAGE_OIDC_UID_CLAIM</dt>
+<dd>OIDC uid claim. Default: <code>&quot;&quot;</code>.</dd>
+<dt>-oidc-gid-claim |  $STORAGE_OIDC_GID_CLAIM</dt>
+<dd>OIDC gid claim. Default: <code>&quot;&quot;</code>.</dd>
+<dt>-machine-auth-api-key |  $STORAGE_AUTH_BEARER_MACHINE_AUTH_API_KEY , $OCIS_MACHINE_AUTH_API_KEY</dt>
+<dd>the API key to be used for the machine auth driver in reva. Default: <code>&quot;change-me-please&quot;</code>.</dd>
+<dt>-network |  $STORAGE_AUTH_BEARER_GRPC_NETWORK</dt>
+<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>&quot;tcp&quot;</code>.</dd>
+<dt>-addr |  $STORAGE_AUTH_BEARER_GRPC_ADDR</dt>
+<dd>Address to bind storage service. Default: <code>&quot;0.0.0.0:9148&quot;</code>.</dd>
+<dt>-service |  $STORAGE_AUTH_BEARER_SERVICES</dt>
+<dd>&ndash;service authprovider [&ndash;service otherservice]. Default: <code>cli.NewStringSlice(&quot;authprovider&quot;)</code>.</dd>
+<dt>-reva-gateway-addr |  $REVA_GATEWAY</dt>
+<dd>Address of REVA gateway endpoint. Default: <code>&quot;127.0.0.1:9142&quot;</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap">
     <h3 id="storage-gateway">
         storage gateway
         <a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-gateway" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage gateway" href="#storage-gateway">
@@ -4167,132 +4286,17 @@ $HOME/.ocis
 <dd>mount path. Default: <code>&quot;/public&quot;</code>.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="storage-groups">
-        storage groups
-        <a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-groups" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage groups" href="#storage-groups">
+    <h3 id="storage-health">
+        storage health
+        <a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage health" href="#storage-health">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><p>Start groups service</p>
-<p>Usage: <code>storage groups [command options] [arguments...]</code></p>
+</div><p>Check health status</p>
+<p>Usage: <code>storage health [command options] [arguments...]</code></p>
 <dl>
-<dt>-debug-addr |  $STORAGE_GROUPPROVIDER_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>&quot;0.0.0.0:9161&quot;</code>.</dd>
-<dt>-reva-gateway-addr |  $REVA_GATEWAY</dt>
-<dd>Address of REVA gateway endpoint. Default: <code>&quot;127.0.0.1:9142&quot;</code>.</dd>
-<dt>-network |  $STORAGE_GROUPPROVIDER_NETWORK</dt>
-<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>&quot;tcp&quot;</code>.</dd>
-<dt>-addr |  $STORAGE_GROUPPROVIDER_ADDR</dt>
-<dd>Address to bind storage service. Default: <code>&quot;0.0.0.0:9160&quot;</code>.</dd>
-<dt>-endpoint |  $STORAGE_GROUPPROVIDER_ENDPOINT</dt>
-<dd>URL to use for the storage service. Default: <code>&quot;localhost:9160&quot;</code>.</dd>
-<dt>-service |  $STORAGE_GROUPPROVIDER_SERVICES</dt>
-<dd>&ndash;service groupprovider [&ndash;service otherservice]. Default: <code>cli.NewStringSlice(&quot;groupprovider&quot;)</code>.</dd>
-<dt>-driver |  $STORAGE_GROUPPROVIDER_DRIVER</dt>
-<dd>group driver: &lsquo;json&rsquo;, &lsquo;ldap&rsquo;, or &lsquo;rest&rsquo;. Default: <code>&quot;ldap&quot;</code>.</dd>
-<dt>-json-config |  $STORAGE_GROUPPROVIDER_JSON</dt>
-<dd>Path to groups.json file. Default: <code>&quot;&quot;</code>.</dd>
-<dt>-group-members-cache-expiration |  $STORAGE_GROUP_CACHE_EXPIRATION</dt>
-<dd>Time in minutes for redis cache expiration.. Default: <code>5</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="storage-storage-home">
-        storage storage-home
-        <a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-storage-home" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage storage-home" href="#storage-storage-home">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p>Start storage-home service</p>
-<p>Usage: <code>storage storage-home [command options] [arguments...]</code></p>
-<dl>
-<dt>-debug-addr |  $STORAGE_HOME_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>&quot;0.0.0.0:9156&quot;</code>.</dd>
-<dt>-grpc-network |  $STORAGE_HOME_GRPC_NETWORK</dt>
-<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>&quot;tcp&quot;</code>.</dd>
-<dt>-grpc-addr |  $STORAGE_HOME_GRPC_ADDR</dt>
-<dd>Address to bind storage service. Default: <code>&quot;0.0.0.0:9154&quot;</code>.</dd>
-<dt>-http-network |  $STORAGE_HOME_HTTP_NETWORK</dt>
-<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>&quot;tcp&quot;</code>.</dd>
-<dt>-http-addr |  $STORAGE_HOME_HTTP_ADDR</dt>
-<dd>Address to bind storage service. Default: <code>&quot;0.0.0.0:9155&quot;</code>.</dd>
-<dt>-driver |  $STORAGE_HOME_DRIVER</dt>
-<dd>storage driver for home mount: eg. local, eos, owncloud, ocis or s3. Default: <code>&quot;ocis&quot;</code>.</dd>
-<dt>-read-only |  $STORAGE_HOME_READ_ONLY , $OCIS_STORAGE_READ_ONLY</dt>
-<dd>use storage driver in read-only mode. Default: <code>false</code>.</dd>
-<dt>-mount-path |  $STORAGE_HOME_MOUNT_PATH</dt>
-<dd>mount path. Default: <code>&quot;/home&quot;</code>.</dd>
-<dt>-mount-id |  $STORAGE_HOME_MOUNT_ID</dt>
-<dd>mount id. Default: <code>&quot;1284d238-aa92-42ce-bdc4-0b0000009157&quot;</code>.</dd>
-<dt>-expose-data-server |  $STORAGE_HOME_EXPOSE_DATA_SERVER</dt>
-<dd>exposes a dedicated data server. Default: <code>false</code>.</dd>
-<dt>-data-server-url |  $STORAGE_HOME_DATA_SERVER_URL</dt>
-<dd>data server url. Default: <code>&quot;http://localhost:9155/data&quot;</code>.</dd>
-<dt>-http-prefix |  $STORAGE_HOME_HTTP_PREFIX</dt>
-<dd>prefix for the http endpoint, without leading slash. Default: <code>&quot;data&quot;</code>.</dd>
-<dt>-tmp-folder |  $STORAGE_HOME_TMP_FOLDER</dt>
-<dd>path to tmp folder. Default: <code>&quot;/var/tmp/ocis/tmp/home&quot;</code>.</dd>
-<dt>-enable-home |  $STORAGE_HOME_ENABLE_HOME</dt>
-<dd>enable the creation of home directories. Default: <code>true</code>.</dd>
-<dt>-reva-gateway-addr |  $REVA_GATEWAY</dt>
-<dd>Address of REVA gateway endpoint. Default: <code>&quot;127.0.0.1:9142&quot;</code>.</dd>
-<dt>-users-endpoint |  $STORAGE_USERPROVIDER_ENDPOINT</dt>
-<dd>endpoint to use for the storage service. Default: <code>&quot;localhost:9144&quot;</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="storage-storage-public-link">
-        storage storage-public-link
-        <a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-storage-public-link" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage storage-public-link" href="#storage-storage-public-link">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p>Start storage-public-link service</p>
-<p>Usage: <code>storage storage-public-link [command options] [arguments...]</code></p>
-<dl>
-<dt>-debug-addr |  $STORAGE_PUBLIC_LINK_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>&quot;0.0.0.0:9179&quot;</code>.</dd>
-<dt>-network |  $STORAGE_PUBLIC_LINK_GRPC_NETWORK</dt>
-<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>&quot;tcp&quot;</code>.</dd>
-<dt>-addr |  $STORAGE_PUBLIC_LINK_GRPC_ADDR</dt>
-<dd>Address to bind storage service. Default: <code>&quot;0.0.0.0:9178&quot;</code>.</dd>
-<dt>-mount-path |  $STORAGE_PUBLIC_LINK_MOUNT_PATH</dt>
-<dd>mount path. Default: <code>&quot;/public&quot;</code>.</dd>
-<dt>-reva-gateway-addr |  $REVA_GATEWAY</dt>
-<dd>Address of REVA gateway endpoint. Default: <code>&quot;127.0.0.1:9142&quot;</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="storage-auth-bearer">
-        storage auth-bearer
-        <a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-auth-bearer" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage auth-bearer" href="#storage-auth-bearer">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p>Start authprovider for bearer auth</p>
-<p>Usage: <code>storage auth-bearer [command options] [arguments...]</code></p>
-<dl>
-<dt>-debug-addr |  $STORAGE_AUTH_BEARER_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>&quot;0.0.0.0:9149&quot;</code>.</dd>
-<dt>-auth-driver |  $STORAGE_AUTH_BEARER_DRIVER</dt>
-<dd>bearer auth driver: &lsquo;oidc&rsquo; or &lsquo;machine&rsquo;. Default: <code>&quot;oidc&quot;</code>.</dd>
-<dt>-oidc-issuer |  $STORAGE_OIDC_ISSUER , $OCIS_URL</dt>
-<dd>OIDC issuer. Default: <code>&quot;https://localhost:9200&quot;</code>.</dd>
-<dt>-oidc-insecure |  $STORAGE_OIDC_INSECURE</dt>
-<dd>OIDC allow insecure communication. Default: <code>true</code>.</dd>
-<dt>-oidc-id-claim |  $STORAGE_OIDC_ID_CLAIM</dt>
-<dd>OIDC id claim. Default: <code>&quot;preferred_username&quot;</code>.</dd>
-<dt>-oidc-uid-claim |  $STORAGE_OIDC_UID_CLAIM</dt>
-<dd>OIDC uid claim. Default: <code>&quot;&quot;</code>.</dd>
-<dt>-oidc-gid-claim |  $STORAGE_OIDC_GID_CLAIM</dt>
-<dd>OIDC gid claim. Default: <code>&quot;&quot;</code>.</dd>
-<dt>-machine-auth-api-key |  $STORAGE_AUTH_BEARER_MACHINE_AUTH_API_KEY , $OCIS_MACHINE_AUTH_API_KEY</dt>
-<dd>the API key to be used for the machine auth driver in reva. Default: <code>&quot;change-me-please&quot;</code>.</dd>
-<dt>-network |  $STORAGE_AUTH_BEARER_GRPC_NETWORK</dt>
-<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>&quot;tcp&quot;</code>.</dd>
-<dt>-addr |  $STORAGE_AUTH_BEARER_GRPC_ADDR</dt>
-<dd>Address to bind storage service. Default: <code>&quot;0.0.0.0:9148&quot;</code>.</dd>
-<dt>-service |  $STORAGE_AUTH_BEARER_SERVICES</dt>
-<dd>&ndash;service authprovider [&ndash;service otherservice]. Default: <code>cli.NewStringSlice(&quot;authprovider&quot;)</code>.</dd>
-<dt>-reva-gateway-addr |  $REVA_GATEWAY</dt>
-<dd>Address of REVA gateway endpoint. Default: <code>&quot;127.0.0.1:9142&quot;</code>.</dd>
+<dt>-debug-addr |  $STORAGE_DEBUG_ADDR</dt>
+<dd>Address to debug endpoint. Default: <code>&quot;0.0.0.0:9109&quot;</code>.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap">
     <h3 id="storage-storage">
@@ -4351,95 +4355,27 @@ $HOME/.ocis
 <dd>Address of REVA gateway endpoint. Default: <code>&quot;127.0.0.1:9142&quot;</code>.</dd>
 <dt>-userprovider-endpoint |  $STORAGE_USERPROVIDER_ENDPOINT</dt>
 <dd>endpoint to use for the userprovider service. Default: <code>&quot;localhost:9144&quot;</code>.</dd>
-<dt>-storage-root |  $STORAGE_METADATA_ROOT</dt>
-<dd>the path to the metadata storage root. Default: <code>&quot;/var/tmp/ocis/storage/metadata&quot;</code>.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="storage-users">
-        storage users
-        <a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-users" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage users" href="#storage-users">
+    <h3 id="storage-storage-public-link">
+        storage storage-public-link
+        <a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-storage-public-link" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage storage-public-link" href="#storage-storage-public-link">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><p>Start users service</p>
-<p>Usage: <code>storage users [command options] [arguments...]</code></p>
+</div><p>Start storage-public-link service</p>
+<p>Usage: <code>storage storage-public-link [command options] [arguments...]</code></p>
 <dl>
-<dt>-debug-addr |  $STORAGE_USERPROVIDER_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>&quot;0.0.0.0:9145&quot;</code>.</dd>
-<dt>-reva-gateway-addr |  $REVA_GATEWAY</dt>
-<dd>Address of REVA gateway endpoint. Default: <code>&quot;127.0.0.1:9142&quot;</code>.</dd>
-<dt>-network |  $STORAGE_USERPROVIDER_NETWORK</dt>
+<dt>-debug-addr |  $STORAGE_PUBLIC_LINK_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>&quot;0.0.0.0:9179&quot;</code>.</dd>
+<dt>-network |  $STORAGE_PUBLIC_LINK_GRPC_NETWORK</dt>
 <dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>&quot;tcp&quot;</code>.</dd>
-<dt>-addr |  $STORAGE_USERPROVIDER_ADDR</dt>
-<dd>Address to bind storage service. Default: <code>&quot;0.0.0.0:9144&quot;</code>.</dd>
-<dt>-endpoint |  $STORAGE_USERPROVIDER_ENDPOINT</dt>
-<dd>URL to use for the storage service. Default: <code>&quot;localhost:9144&quot;</code>.</dd>
-<dt>-service |  $STORAGE_USERPROVIDER_SERVICES</dt>
-<dd>&ndash;service userprovider [&ndash;service otherservice]. Default: <code>cli.NewStringSlice(&quot;userprovider&quot;)</code>.</dd>
-<dt>-driver |  $STORAGE_USERPROVIDER_DRIVER</dt>
-<dd>user driver: &lsquo;demo&rsquo;, &lsquo;json&rsquo;, &lsquo;ldap&rsquo;, &lsquo;owncloudsql&rsquo; or &lsquo;rest&rsquo;. Default: <code>&quot;ldap&quot;</code>.</dd>
-<dt>-json-config |  $STORAGE_USERPROVIDER_JSON</dt>
-<dd>Path to users.json file. Default: <code>&quot;&quot;</code>.</dd>
-<dt>-user-groups-cache-expiration |  $STORAGE_USER_CACHE_EXPIRATION</dt>
-<dd>Time in minutes for redis cache expiration.. Default: <code>5</code>.</dd>
-<dt>-owncloudsql-dbhost |  $STORAGE_USERPROVIDER_OWNCLOUDSQL_DBHOST</dt>
-<dd>hostname of the mysql db. Default: <code>&quot;mysql&quot;</code>.</dd>
-<dt>-owncloudsql-dbport |  $STORAGE_USERPROVIDER_OWNCLOUDSQL_DBPORT</dt>
-<dd>port of the mysql db. Default: <code>3306</code>.</dd>
-<dt>-owncloudsql-dbname |  $STORAGE_USERPROVIDER_OWNCLOUDSQL_DBNAME</dt>
-<dd>database name of the owncloud db. Default: <code>&quot;owncloud&quot;</code>.</dd>
-<dt>-owncloudsql-dbuser |  $STORAGE_USERPROVIDER_OWNCLOUDSQL_DBUSER</dt>
-<dd>user name to use when connecting to the mysql owncloud db. Default: <code>&quot;owncloud&quot;</code>.</dd>
-<dt>-owncloudsql-dbpass |  $STORAGE_USERPROVIDER_OWNCLOUDSQL_DBPASS</dt>
-<dd>password to use when connecting to the mysql owncloud db. Default: <code>&quot;secret&quot;</code>.</dd>
-<dt>-owncloudsql-idp |  $STORAGE_USERPROVIDER_OWNCLOUDSQL_IDP , $OCIS_URL</dt>
-<dd>Identity provider to use for users. Default: <code>&quot;https://localhost:9200&quot;</code>.</dd>
-<dt>-owncloudsql-nobody |  $STORAGE_USERPROVIDER_OWNCLOUDSQL_NOBODY</dt>
-<dd>fallback user id to use when user has no id. Default: <code>99</code>.</dd>
-<dt>-owncloudsql-join-username |  $STORAGE_USERPROVIDER_OWNCLOUDSQL_JOIN_USERNAME</dt>
-<dd>join the username from the oc_preferences table. Default: <code>false</code>.</dd>
-<dt>-owncloudsql-join-ownclouduuid |  $STORAGE_USERPROVIDER_OWNCLOUDSQL_JOIN_OWNCLOUDUUID</dt>
-<dd>join the ownclouduuid from the oc_preferences table. Default: <code>false</code>.</dd>
-<dt>-owncloudsql-enable-medial-search |  $STORAGE_USERPROVIDER_OWNCLOUDSQL_ENABLE_MEDIAL_SEARCH</dt>
-<dd>enable medial search when finding users. Default: <code>false</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="storage-auth-basic">
-        storage auth-basic
-        <a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-auth-basic" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage auth-basic" href="#storage-auth-basic">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p>Start authprovider for basic auth</p>
-<p>Usage: <code>storage auth-basic [command options] [arguments...]</code></p>
-<dl>
-<dt>-debug-addr |  $STORAGE_AUTH_BASIC_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>&quot;0.0.0.0:9147&quot;</code>.</dd>
-<dt>-auth-driver |  $STORAGE_AUTH_DRIVER</dt>
-<dd>auth driver: &lsquo;demo&rsquo;, &lsquo;json&rsquo; or &lsquo;ldap&rsquo;. Default: <code>&quot;ldap&quot;</code>.</dd>
-<dt>-auth-json |  $STORAGE_AUTH_JSON</dt>
-<dd>Path to users.json file. Default: <code>&quot;&quot;</code>.</dd>
-<dt>-network |  $STORAGE_AUTH_BASIC_GRPC_NETWORK</dt>
-<dd>Network to use for the storage auth-basic service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>&quot;tcp&quot;</code>.</dd>
-<dt>-addr |  $STORAGE_AUTH_BASIC_GRPC_ADDR</dt>
-<dd>Address to bind storage service. Default: <code>&quot;0.0.0.0:9146&quot;</code>.</dd>
-<dt>-service |  $STORAGE_AUTH_BASIC_SERVICES</dt>
-<dd>&ndash;service authprovider [&ndash;service otherservice]. Default: <code>cli.NewStringSlice(&quot;authprovider&quot;)</code>.</dd>
+<dt>-addr |  $STORAGE_PUBLIC_LINK_GRPC_ADDR</dt>
+<dd>Address to bind storage service. Default: <code>&quot;0.0.0.0:9178&quot;</code>.</dd>
+<dt>-mount-path |  $STORAGE_PUBLIC_LINK_MOUNT_PATH</dt>
+<dd>mount path. Default: <code>&quot;/public&quot;</code>.</dd>
 <dt>-reva-gateway-addr |  $REVA_GATEWAY</dt>
 <dd>Address of REVA gateway endpoint. Default: <code>&quot;127.0.0.1:9142&quot;</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="storage-health">
-        storage health
-        <a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-health" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage health" href="#storage-health">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p>Check health status</p>
-<p>Usage: <code>storage health [command options] [arguments...]</code></p>
-<dl>
-<dt>-debug-addr |  $STORAGE_DEBUG_ADDR</dt>
-<dd>Address to debug endpoint. Default: <code>&quot;0.0.0.0:9109&quot;</code>.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap">
     <h3 id="storage-storage-users">
@@ -4481,6 +4417,31 @@ $HOME/.ocis
 <dd>Address of REVA gateway endpoint. Default: <code>&quot;127.0.0.1:9142&quot;</code>.</dd>
 <dt>-users-endpoint |  $STORAGE_USERPROVIDER_ENDPOINT</dt>
 <dd>endpoint to use for the storage service. Default: <code>&quot;localhost:9144&quot;</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="storage-auth-basic">
+        storage auth-basic
+        <a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-auth-basic" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage auth-basic" href="#storage-auth-basic">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Start authprovider for basic auth</p>
+<p>Usage: <code>storage auth-basic [command options] [arguments...]</code></p>
+<dl>
+<dt>-debug-addr |  $STORAGE_AUTH_BASIC_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>&quot;0.0.0.0:9147&quot;</code>.</dd>
+<dt>-auth-driver |  $STORAGE_AUTH_DRIVER</dt>
+<dd>auth driver: &lsquo;demo&rsquo;, &lsquo;json&rsquo; or &lsquo;ldap&rsquo;. Default: <code>&quot;ldap&quot;</code>.</dd>
+<dt>-auth-json |  $STORAGE_AUTH_JSON</dt>
+<dd>Path to users.json file. Default: <code>&quot;&quot;</code>.</dd>
+<dt>-network |  $STORAGE_AUTH_BASIC_GRPC_NETWORK</dt>
+<dd>Network to use for the storage auth-basic service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>&quot;tcp&quot;</code>.</dd>
+<dt>-addr |  $STORAGE_AUTH_BASIC_GRPC_ADDR</dt>
+<dd>Address to bind storage service. Default: <code>&quot;0.0.0.0:9146&quot;</code>.</dd>
+<dt>-service |  $STORAGE_AUTH_BASIC_SERVICES</dt>
+<dd>&ndash;service authprovider [&ndash;service otherservice]. Default: <code>cli.NewStringSlice(&quot;authprovider&quot;)</code>.</dd>
+<dt>-reva-gateway-addr |  $REVA_GATEWAY</dt>
+<dd>Address of REVA gateway endpoint. Default: <code>&quot;127.0.0.1:9142&quot;</code>.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap">
     <h3 id="storage-frontend">
@@ -4554,6 +4515,55 @@ $HOME/.ocis
 <dd>&ndash;user-agent-whitelist-lock-in=mirall:basic,foo:bearer Given a tuple of comma separated [UserAgent:challenge] values, it locks a given user agent to the authentication challenge. Particularly useful for old clients whose USer-Agent is known and only support one authentication challenge. When this flag is set in the storage-frontend it configures Reva..</dd>
 </dl>
 <div class="gdoc-page__anchorwrap">
+    <h3 id="storage-users">
+        storage users
+        <a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-users" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage users" href="#storage-users">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Start users service</p>
+<p>Usage: <code>storage users [command options] [arguments...]</code></p>
+<dl>
+<dt>-debug-addr |  $STORAGE_USERPROVIDER_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>&quot;0.0.0.0:9145&quot;</code>.</dd>
+<dt>-reva-gateway-addr |  $REVA_GATEWAY</dt>
+<dd>Address of REVA gateway endpoint. Default: <code>&quot;127.0.0.1:9142&quot;</code>.</dd>
+<dt>-network |  $STORAGE_USERPROVIDER_NETWORK</dt>
+<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>&quot;tcp&quot;</code>.</dd>
+<dt>-addr |  $STORAGE_USERPROVIDER_ADDR</dt>
+<dd>Address to bind storage service. Default: <code>&quot;0.0.0.0:9144&quot;</code>.</dd>
+<dt>-endpoint |  $STORAGE_USERPROVIDER_ENDPOINT</dt>
+<dd>URL to use for the storage service. Default: <code>&quot;localhost:9144&quot;</code>.</dd>
+<dt>-service |  $STORAGE_USERPROVIDER_SERVICES</dt>
+<dd>&ndash;service userprovider [&ndash;service otherservice]. Default: <code>cli.NewStringSlice(&quot;userprovider&quot;)</code>.</dd>
+<dt>-driver |  $STORAGE_USERPROVIDER_DRIVER</dt>
+<dd>user driver: &lsquo;demo&rsquo;, &lsquo;json&rsquo;, &lsquo;ldap&rsquo;, &lsquo;owncloudsql&rsquo; or &lsquo;rest&rsquo;. Default: <code>&quot;ldap&quot;</code>.</dd>
+<dt>-json-config |  $STORAGE_USERPROVIDER_JSON</dt>
+<dd>Path to users.json file. Default: <code>&quot;&quot;</code>.</dd>
+<dt>-user-groups-cache-expiration |  $STORAGE_USER_CACHE_EXPIRATION</dt>
+<dd>Time in minutes for redis cache expiration.. Default: <code>5</code>.</dd>
+<dt>-owncloudsql-dbhost |  $STORAGE_USERPROVIDER_OWNCLOUDSQL_DBHOST</dt>
+<dd>hostname of the mysql db. Default: <code>&quot;mysql&quot;</code>.</dd>
+<dt>-owncloudsql-dbport |  $STORAGE_USERPROVIDER_OWNCLOUDSQL_DBPORT</dt>
+<dd>port of the mysql db. Default: <code>3306</code>.</dd>
+<dt>-owncloudsql-dbname |  $STORAGE_USERPROVIDER_OWNCLOUDSQL_DBNAME</dt>
+<dd>database name of the owncloud db. Default: <code>&quot;owncloud&quot;</code>.</dd>
+<dt>-owncloudsql-dbuser |  $STORAGE_USERPROVIDER_OWNCLOUDSQL_DBUSER</dt>
+<dd>user name to use when connecting to the mysql owncloud db. Default: <code>&quot;owncloud&quot;</code>.</dd>
+<dt>-owncloudsql-dbpass |  $STORAGE_USERPROVIDER_OWNCLOUDSQL_DBPASS</dt>
+<dd>password to use when connecting to the mysql owncloud db. Default: <code>&quot;secret&quot;</code>.</dd>
+<dt>-owncloudsql-idp |  $STORAGE_USERPROVIDER_OWNCLOUDSQL_IDP , $OCIS_URL</dt>
+<dd>Identity provider to use for users. Default: <code>&quot;https://localhost:9200&quot;</code>.</dd>
+<dt>-owncloudsql-nobody |  $STORAGE_USERPROVIDER_OWNCLOUDSQL_NOBODY</dt>
+<dd>fallback user id to use when user has no id. Default: <code>99</code>.</dd>
+<dt>-owncloudsql-join-username |  $STORAGE_USERPROVIDER_OWNCLOUDSQL_JOIN_USERNAME</dt>
+<dd>join the username from the oc_preferences table. Default: <code>false</code>.</dd>
+<dt>-owncloudsql-join-ownclouduuid |  $STORAGE_USERPROVIDER_OWNCLOUDSQL_JOIN_OWNCLOUDUUID</dt>
+<dd>join the ownclouduuid from the oc_preferences table. Default: <code>false</code>.</dd>
+<dt>-owncloudsql-enable-medial-search |  $STORAGE_USERPROVIDER_OWNCLOUDSQL_ENABLE_MEDIAL_SEARCH</dt>
+<dd>enable medial search when finding users. Default: <code>false</code>.</dd>
+</dl>
+<div class="gdoc-page__anchorwrap">
     <h3 id="storage-sharing">
         storage sharing
         <a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-sharing" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage sharing" href="#storage-sharing">
@@ -4589,47 +4599,33 @@ $HOME/.ocis
 <dd>the time period in seconds after which to start a janitor run. Default: <code>60</code>.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="storage-app-provider">
-        storage app-provider
-        <a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-app-provider" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage app-provider" href="#storage-app-provider">
+    <h3 id="storage-groups">
+        storage groups
+        <a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#storage-groups" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor storage groups" href="#storage-groups">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><p>Start appprovider for providing apps</p>
-<p>Usage: <code>storage app-provider [command options] [arguments...]</code></p>
+</div><p>Start groups service</p>
+<p>Usage: <code>storage groups [command options] [arguments...]</code></p>
 <dl>
-<dt>-debug-addr |  $APP_PROVIDER_BASIC_DEBUG_ADDR</dt>
-<dd>Address to bind debug server. Default: <code>&quot;0.0.0.0:9165&quot;</code>.</dd>
-<dt>-network |  $APP_PROVIDER_BASIC_GRPC_NETWORK</dt>
-<dd>Network to use for the storage auth-basic service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>&quot;tcp&quot;</code>.</dd>
-<dt>-addr |  $APP_PROVIDER_BASIC_GRPC_ADDR</dt>
-<dd>Address to bind storage service. Default: <code>&quot;0.0.0.0:9164&quot;</code>.</dd>
-<dt>-external-addr |  $APP_PROVIDER_BASIC_EXTERNAL_ADDR</dt>
-<dd>Address to connect to the storage service for other services. Default: <code>&quot;127.0.0.1:9164&quot;</code>.</dd>
-<dt>-service |  $APP_PROVIDER_BASIC_SERVICES</dt>
-<dd>&ndash;service appprovider [&ndash;service otherservice]. Default: <code>cli.NewStringSlice(&quot;appprovider&quot;)</code>.</dd>
-<dt>-driver |  $APP_PROVIDER_DRIVER</dt>
-<dd>Driver to use for app provider. Default: <code>&quot;&quot;</code>.</dd>
-<dt>-wopi-driver-app-apikey |  $APP_PROVIDER_WOPI_DRIVER_APP_API_KEY</dt>
-<dd>The API key used by the app, if applicable.. Default: <code>&quot;&quot;</code>.</dd>
-<dt>-wopi-driver-app-desktop-only |  $APP_PROVIDER_WOPI_DRIVER_APP_DESKTOP_ONLY</dt>
-<dd>Whether the app can be opened only on desktop. Default: <code>false</code>.</dd>
-<dt>-wopi-driver-app-icon-uri |  $APP_PROVIDER_WOPI_DRIVER_APP_ICON_URI</dt>
-<dd>IOP Secret (Shared with WOPI server). Default: <code>&quot;&quot;</code>.</dd>
-<dt>-wopi-driver-app-internal-url |  $APP_PROVIDER_WOPI_DRIVER_APP_INTERNAL_URL</dt>
-<dd>The internal app URL in case of dockerized deployments. Defaults to AppURL. Default: <code>&quot;&quot;</code>.</dd>
-<dt>-wopi-driver-app-name |  $APP_PROVIDER_WOPI_DRIVER_APP_NAME</dt>
-<dd>The App user-friendly name.. Default: <code>&quot;&quot;</code>.</dd>
-<dt>-wopi-driver-app-url |  $APP_PROVIDER_WOPI_DRIVER_APP_URL</dt>
-<dd>App server URL. Default: <code>&quot;&quot;</code>.</dd>
-<dt>-wopi-driver-insecure |  $APP_PROVIDER_WOPI_DRIVER_INSECURE</dt>
-<dd>Disable SSL certificate verification of WOPI server and WOPI bridge. Default: <code>false</code>.</dd>
-<dt>-wopi-driver-iopsecret |  $APP_PROVIDER_WOPI_DRIVER_IOP_SECRET</dt>
-<dd>IOP Secret (Shared with WOPI server). Default: <code>&quot;&quot;</code>.</dd>
-<dt>-wopi-driver-wopiurl |  $APP_PROVIDER_WOPI_DRIVER_WOPI_URL</dt>
-<dd>WOPI server URL. Default: <code>&quot;&quot;</code>.</dd>
+<dt>-debug-addr |  $STORAGE_GROUPPROVIDER_DEBUG_ADDR</dt>
+<dd>Address to bind debug server. Default: <code>&quot;0.0.0.0:9161&quot;</code>.</dd>
 <dt>-reva-gateway-addr |  $REVA_GATEWAY</dt>
 <dd>Address of REVA gateway endpoint. Default: <code>&quot;127.0.0.1:9142&quot;</code>.</dd>
+<dt>-network |  $STORAGE_GROUPPROVIDER_NETWORK</dt>
+<dd>Network to use for the storage service, can be &lsquo;tcp&rsquo;, &lsquo;udp&rsquo; or &lsquo;unix&rsquo;. Default: <code>&quot;tcp&quot;</code>.</dd>
+<dt>-addr |  $STORAGE_GROUPPROVIDER_ADDR</dt>
+<dd>Address to bind storage service. Default: <code>&quot;0.0.0.0:9160&quot;</code>.</dd>
+<dt>-endpoint |  $STORAGE_GROUPPROVIDER_ENDPOINT</dt>
+<dd>URL to use for the storage service. Default: <code>&quot;localhost:9160&quot;</code>.</dd>
+<dt>-service |  $STORAGE_GROUPPROVIDER_SERVICES</dt>
+<dd>&ndash;service groupprovider [&ndash;service otherservice]. Default: <code>cli.NewStringSlice(&quot;groupprovider&quot;)</code>.</dd>
+<dt>-driver |  $STORAGE_GROUPPROVIDER_DRIVER</dt>
+<dd>group driver: &lsquo;json&rsquo;, &lsquo;ldap&rsquo;, or &lsquo;rest&rsquo;. Default: <code>&quot;ldap&quot;</code>.</dd>
+<dt>-json-config |  $STORAGE_GROUPPROVIDER_JSON</dt>
+<dd>Path to groups.json file. Default: <code>&quot;&quot;</code>.</dd>
+<dt>-group-members-cache-expiration |  $STORAGE_GROUP_CACHE_EXPIRATION</dt>
+<dd>Time in minutes for redis cache expiration.. Default: <code>5</code>.</dd>
 </dl>
 <div class="gdoc-page__anchorwrap">
     <h2 id="config-for-the-different-storage-drivers">
@@ -4649,150 +4645,42 @@ $HOME/.ocis
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><dl>
-<dt>-storage-local-root |  $STORAGE_DRIVER_LOCAL_ROOT</dt>
-<dd>the path to the local storage root. Default: <code>&quot;/var/tmp/ocis/storage/local&quot;</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap">
+</div><div class="gdoc-page__anchorwrap">
     <h3 id="eos-driver">
         Eos Driver
         <a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#eos-driver" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Eos Driver" href="#eos-driver">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><dl>
-<dt>-storage-eos-namespace |  $STORAGE_DRIVER_EOS_NAMESPACE</dt>
-<dd>Namespace for metadata operations. Default: <code>&quot;/eos/dockertest/reva&quot;</code>.</dd>
-<dt>-storage-eos-shadow-namespace |  $STORAGE_DRIVER_EOS_SHADOW_NAMESPACE</dt>
-<dd>Shadow namespace where share references are stored.</dd>
-<dt>-storage-eos-share-folder |  $STORAGE_DRIVER_EOS_SHARE_FOLDER</dt>
-<dd>name of the share folder. Default: <code>&quot;/Shares&quot;</code>.</dd>
-<dt>-storage-eos-binary |  $STORAGE_DRIVER_EOS_BINARY</dt>
-<dd>Location of the eos binary. Default: <code>&quot;/usr/bin/eos&quot;</code>.</dd>
-<dt>-storage-eos-xrdcopy-binary |  $STORAGE_DRIVER_EOS_XRDCOPY_BINARY</dt>
-<dd>Location of the xrdcopy binary. Default: <code>&quot;/usr/bin/xrdcopy&quot;</code>.</dd>
-<dt>-storage-eos-master-url |  $STORAGE_DRIVER_EOS_MASTER_URL</dt>
-<dd>URL of the Master EOS MGM. Default: <code>&quot;root://eos-mgm1.eoscluster.cern.ch:1094&quot;</code>.</dd>
-<dt>-storage-eos-slave-url |  $STORAGE_DRIVER_EOS_SLAVE_URL</dt>
-<dd>URL of the Slave EOS MGM. Default: <code>&quot;root://eos-mgm1.eoscluster.cern.ch:1094&quot;</code>.</dd>
-<dt>-storage-eos-cache-directory |  $STORAGE_DRIVER_EOS_CACHE_DIRECTORY</dt>
-<dd>Location on the local fs where to store reads. Default: <code>flags.OverrideDefaultString(cfg.Reva.Storages.EOS.CacheDirectory, os.TempDir())</code>.</dd>
-<dt>-storage-eos-enable-logging |  $STORAGE_DRIVER_EOS_ENABLE_LOGGING</dt>
-<dd>Enables logging of the commands executed.</dd>
-<dt>-storage-eos-show-hidden-sysfiles |  $STORAGE_DRIVER_EOS_SHOW_HIDDEN_SYSFILES</dt>
-<dd>show internal EOS files like .sys.v# and .sys.a# files..</dd>
-<dt>-storage-eos-force-singleuser-mode |  $STORAGE_DRIVER_EOS_FORCE_SINGLEUSER_MODE</dt>
-<dd>force connections to EOS to use SingleUsername.</dd>
-<dt>-storage-eos-use-keytab |  $STORAGE_DRIVER_EOS_USE_KEYTAB</dt>
-<dd>authenticate requests by using an EOS keytab.</dd>
-<dt>-storage-eos-enable-home |  $STORAGE_DRIVER_EOS_ENABLE_HOME</dt>
-<dd>enable the creation of home directories.</dd>
-<dt>-storage-eos-sec-protocol |  $STORAGE_DRIVER_EOS_SEC_PROTOCOL</dt>
-<dd>the xrootd security protocol to use between the server and EOS.</dd>
-<dt>-storage-eos-keytab |  $STORAGE_DRIVER_EOS_KEYTAB</dt>
-<dd>the location of the keytab to use to authenticate to EOS.</dd>
-<dt>-storage-eos-single-username |  $STORAGE_DRIVER_EOS_SINGLE_USERNAME</dt>
-<dd>the username to use when SingleUserMode is enabled.</dd>
-<dt>-storage-eos-layout |  $STORAGE_DRIVER_EOS_LAYOUT</dt>
-<dd><code>&quot;layout of the users home dir path on disk, in addition to {{.Username}}, {{.UsernameLower}} and {{.Provider}} also supports prefixing dirs: &quot;{{.UsernamePrefixCount.2}}/{{.UsernameLower}}&quot; will turn &quot;Einstein&quot; into &quot;Ei/Einstein&quot; </code>. Default: <code>&quot;{{substr 0 1 .Username}}/{{.Username}}&quot;</code>.</dd>
-<dt>-storage-eos-reva-gateway-addr |  $REVA_GATEWAY</dt>
-<dd>Address of REVA gateway endpoint. Default: <code>&quot;127.0.0.1:9142&quot;</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap">
+</div><div class="gdoc-page__anchorwrap">
     <h3 id="owcloud-driver">
         owCloud Driver
         <a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#owcloud-driver" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor owCloud Driver" href="#owcloud-driver">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><dl>
-<dt>-storage-owncloud-datadir |  $STORAGE_DRIVER_OWNCLOUD_DATADIR</dt>
-<dd>the path to the owncloud data directory. Default: <code>&quot;/var/tmp/ocis/storage/owncloud&quot;</code>.</dd>
-<dt>-storage-owncloud-uploadinfo-dir |  $STORAGE_DRIVER_OWNCLOUD_UPLOADINFO_DIR</dt>
-<dd>the path to the tus upload info directory. Default: <code>&quot;/var/tmp/ocis/storage/uploadinfo&quot;</code>.</dd>
-<dt>-storage-owncloud-share-folder |  $STORAGE_DRIVER_OWNCLOUD_SHARE_FOLDER</dt>
-<dd>name of the shares folder. Default: <code>&quot;/Shares&quot;</code>.</dd>
-<dt>-storage-owncloud-scan |  $STORAGE_DRIVER_OWNCLOUD_SCAN</dt>
-<dd>scan files on startup to add fileids. Default: <code>true</code>.</dd>
-<dt>-storage-owncloud-redis |  $STORAGE_DRIVER_OWNCLOUD_REDIS_ADDR</dt>
-<dd>the address of the redis server. Default: <code>&quot;:6379&quot;</code>.</dd>
-<dt>-storage-owncloud-enable-home |  $STORAGE_DRIVER_OWNCLOUD_ENABLE_HOME</dt>
-<dd>enable the creation of home storages. Default: <code>false</code>.</dd>
-<dt>-storage-owncloud-layout |  $STORAGE_DRIVER_OWNCLOUD_LAYOUT</dt>
-<dd><code>&quot;layout of the users home dir path on disk, in addition to {{.Username}}, {{.Mail}}, {{.Id.OpaqueId}}, {{.Id.Idp}} also supports prefixing dirs: &quot;{{substr 0 1 .Username}}/{{.Username}}&quot; will turn &quot;Einstein&quot; into &quot;Ei/Einstein&quot; </code>. Default: <code>&quot;{{.Id.OpaqueId}}&quot;</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap">
+</div><div class="gdoc-page__anchorwrap">
     <h3 id="owncloudsql-driver">
         ownCloudSQL Driver
         <a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#owncloudsql-driver" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ownCloudSQL Driver" href="#owncloudsql-driver">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><dl>
-<dt>-storage-owncloudsql-datadir |  $STORAGE_DRIVER_OWNCLOUDSQL_DATADIR</dt>
-<dd>the path to the owncloudsql data directory. Default: <code>&quot;/var/tmp/ocis/storage/owncloud&quot;</code>.</dd>
-<dt>-storage-owncloudsql-uploadinfo-dir |  $STORAGE_DRIVER_OWNCLOUDSQL_UPLOADINFO_DIR</dt>
-<dd>the path to the tus upload info directory. Default: <code>&quot;/var/tmp/ocis/storage/uploadinfo&quot;</code>.</dd>
-<dt>-storage-owncloudsql-share-folder |  $STORAGE_DRIVER_OWNCLOUDSQL_SHARE_FOLDER</dt>
-<dd>name of the shares folder. Default: <code>&quot;/Shares&quot;</code>.</dd>
-<dt>-storage-owncloudsql-enable-home |  $STORAGE_DRIVER_OWNCLOUDSQL_ENABLE_HOME</dt>
-<dd>enable the creation of home storages. Default: <code>false</code>.</dd>
-<dt>-storage-owncloudsql-layout |  $STORAGE_DRIVER_OWNCLOUDSQL_LAYOUT</dt>
-<dd><code>&quot;layout of the users home dir path on disk, in addition to {{.Username}}, {{.Mail}}, {{.Id.OpaqueId}}, {{.Id.Idp}} also supports prefixing dirs: &quot;{{substr 0 1 .Username}}/{{.Username}}&quot; will turn &quot;Einstein&quot; into &quot;Ei/Einstein&quot; </code>. Default: <code>&quot;{{.Username}}&quot;</code>.</dd>
-<dt>-storage-owncloudsql-dbusername |  $STORAGE_DRIVER_OWNCLOUDSQL_DBUSERNAME</dt>
-<dd><code>&quot;username for accessing the database&quot; </code>. Default: <code>&quot;owncloud&quot;</code>.</dd>
-<dt>-storage-owncloudsql-dbpassword |  $STORAGE_DRIVER_OWNCLOUDSQL_DBPASSWORD</dt>
-<dd><code>&quot;password for accessing the database&quot; </code>. Default: <code>&quot;owncloud&quot;</code>.</dd>
-<dt>-storage-owncloudsql-dbhost |  $STORAGE_DRIVER_OWNCLOUDSQL_DBHOST</dt>
-<dd><code>&quot;the database hostname or IP address&quot; </code>. Default: <code>cfg.Reva.Storages.OwnCloudSQL.DBHost</code>.</dd>
-<dt>-storage-owncloudsql-dbport |  $STORAGE_DRIVER_OWNCLOUDSQL_DBPORT</dt>
-<dd><code>&quot;port the database listens on&quot; </code>. Default: <code>3306</code>.</dd>
-<dt>-storage-owncloudsql-dbname |  $STORAGE_DRIVER_OWNCLOUDSQL_DBNAME</dt>
-<dd><code>&quot;the database name&quot; </code>. Default: <code>&quot;owncloud&quot;</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap">
+</div><div class="gdoc-page__anchorwrap">
     <h3 id="ocis-driver">
         Ocis Driver
         <a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#ocis-driver" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Ocis Driver" href="#ocis-driver">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><dl>
-<dt>-storage-ocis-root |  $STORAGE_DRIVER_OCIS_ROOT</dt>
-<dd>the path to the local storage root. Default: <code>&quot;/var/tmp/ocis/storage/users&quot;</code>.</dd>
-<dt>-storage-ocis-enable-home |  $STORAGE_DRIVER_OCIS_ENABLE_HOME</dt>
-<dd>enable the creation of home storages. Default: <code>false</code>.</dd>
-<dt>-storage-ocis-layout |  $STORAGE_DRIVER_OCIS_LAYOUT</dt>
-<dd><code>&quot;layout of the users home dir path on disk, in addition to {{.Username}}, {{.Mail}}, {{.Id.OpaqueId}}, {{.Id.Idp}} also supports prefixing dirs: &quot;{{substr 0 1 .Username}}/{{.Username}}&quot; will turn &quot;Einstein&quot; into &quot;Ei/Einstein&quot; </code>. Default: <code>&quot;{{.Id.OpaqueId}}&quot;</code>.</dd>
-<dt>-service-user-uuid |  $STORAGE_DRIVER_OCIS_SERVICE_USER_UUID</dt>
-<dd>uuid of the internal service user. Default: <code>95cb8724-03b2-11eb-a0a6-c33ef8ef53ad</code>.</dd>
-</dl>
-<div class="gdoc-page__anchorwrap">
+</div><div class="gdoc-page__anchorwrap">
     <h3 id="s3ng-driver">
         S3ng Driver
         <a data-clipboard-text="https://owncloud.dev/extensions/storage/configuration/#s3ng-driver" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor S3ng Driver" href="#s3ng-driver">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><dl>
-<dt>-storage-s3ng-root |  $STORAGE_DRIVER_S3NG_ROOT</dt>
-<dd>the path to the local storage root. Default: <code>&quot;/var/tmp/ocis/storage/users&quot;</code>.</dd>
-<dt>-storage-s3ng-enable-home |  $STORAGE_DRIVER_S3NG_ENABLE_HOME</dt>
-<dd>enable the creation of home storages. Default: <code>false</code>.</dd>
-<dt>-storage-s3ng-layout |  $STORAGE_DRIVER_S3NG_LAYOUT</dt>
-<dd><code>&quot;layout of the users home dir path on disk, in addition to {{.Username}}, {{.Mail}}, {{.Id.OpaqueId}}, {{.Id.Idp}} also supports prefixing dirs: &quot;{{substr 0 1 .Username}}/{{.Username}}&quot; will turn &quot;Einstein&quot; into &quot;Ei/Einstein&quot; </code>. Default: <code>&quot;{{.Id.OpaqueId}}&quot;</code>.</dd>
-<dt>-storage-s3ng-region |  $STORAGE_DRIVER_S3NG_REGION</dt>
-<dd><code>&quot;the s3 region&quot; </code>. Default: <code>default</code>.</dd>
-<dt>-storage-s3ng-accesskey |  $STORAGE_DRIVER_S3NG_ACCESS_KEY</dt>
-<dd><code>&quot;the s3 access key&quot; </code>.</dd>
-<dt>-storage-s3ng-secretkey |  $STORAGE_DRIVER_S3NG_SECRET_KEY</dt>
-<dd><code>&quot;the secret s3 api key&quot; </code>.</dd>
-<dt>-storage-s3ng-endpoint |  $STORAGE_DRIVER_S3NG_ENDPOINT</dt>
-<dd><code>&quot;s3 compatible API endpoint&quot; </code>.</dd>
-<dt>-storage-s3ng-bucket |  $STORAGE_DRIVER_S3NG_BUCKET</dt>
-<dd><code>&quot;bucket where the data will be stored in</code>.</dd>
-</dl>
-
+</div>
     </article>
 
                 
