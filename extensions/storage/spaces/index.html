@@ -10,8 +10,7 @@
 
 
 
-    <meta name="description" content="Editing a Storage Space  Updating a space property Updating a space description       Editing a Storage Space    The OData specification allows for a mirage of ways of addressing an entity. We will support addressing a Drive entity by its unique identifier, which is the one the graph-api returns when listing spaces, and its format is:
-{ &#34;id&#34;: &#34;1284d238-aa92-42ce-bdc4-0b0000009157!">
+    <meta name="description" content="Editing a Storage Space  Updating a space property Updating a space description Quotas  Quota Enforcement  Considerations           Editing a Storage Space    The OData specification allows for a mirage of ways of addressing an entity. We will support addressing a Drive entity by its unique identifier, which is the one the graph-api returns when listing spaces, and its format is:">
 
 
 
@@ -3962,6 +3961,15 @@
           <ul>
             <li><a href="#updating-a-space-property">Updating a space property</a></li>
             <li><a href="#updating-a-space-description">Updating a space description</a></li>
+            <li><a href="#quotas">Quotas</a>
+              <ul>
+                <li><a href="#quota-enforcement">Quota Enforcement</a>
+                  <ul>
+                    <li><a href="#considerations">Considerations</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
           </ul>
         </li>
       </ul></nav><hr></div>
@@ -4006,7 +4014,7 @@
     </h3>
 </div><p>Having introduced the above, one can refer to a Drive with the following URL format:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&#39;https://localhost:9200/graph/v1.0/Drive(1284d238-aa92-42ce-bdc4-0b0000009157!07c26b3a-9944-4f2b-ab33-b0b326fc7570&#34;)
-</code></pre></div><p>Udating an entity attribute:</p>
+</code></pre></div><p>Updating an entity attribute:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">curl -X PATCH &#39;https://localhost:9200/graph/v1.0/Drive(&#34;1284d238-aa92-42ce-bdc4-0b0000009157!07c26b3a-9944-4f2b-ab33-b0b326fc7570)&#39; -d &#39;{&#34;name&#34;:&#34;42&#34;}&#39; -v
 </code></pre></div><p>The previous URL resource path segment (<code>Drive(1284d238-aa92-42ce-bdc4-0b0000009157!07c26b3a-9944-4f2b-ab33-b0b326fc7570)</code>) is parsed and handed over to the storage registry in order to apply the patch changes in the body, in this case update the space name attribute to <code>42</code>. Since space names are not unique we only support addressing them by their unique identifiers, any other query would render too ambiguous and explode in complexity.</p>
 <div class="gdoc-page__anchorwrap">
@@ -4022,6 +4030,100 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">❯ curl -k https://localhost:9200/dav/spaces/1284d238-aa92-42ce-bdc4-0b0000009157\!07c26b3a-9944-4f2b-ab33-b0b326fc7570/.space/description.md -u admin:admin
 Add a description to your spaces
 </code></pre></div><p>This feature makes use of the internal storage layout and is completely abstracted from the end user.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="quotas">
+        Quotas
+        <a data-clipboard-text="https://owncloud.dev/extensions/storage/spaces/#quotas" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Quotas" href="#quotas">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Spaces capacity (quota) is independent of the Storage quota. As a Space admin you can set the quota for all users of a space, and as such, there are no limitations and is up to the admin to make a correct use of this.</p>
+<p>It is possible to have a space quota greater than the storage quota. A Space may also have &ldquo;infinite&rdquo; quota, meaning a single space without quota can occupy the entirety of a disk.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="quota-enforcement">
+        Quota Enforcement
+        <a data-clipboard-text="https://owncloud.dev/extensions/storage/spaces/#quota-enforcement" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Quota Enforcement" href="#quota-enforcement">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>Creating a Space with a quota of 10 bytes:</p>
+<p><code>curl -k -X POST 'https://localhost:9200/graph/v1.0/drives' -u admin:admin -d '{&quot;name&quot;:&quot;marketing&quot;, &quot;quota&quot;: {&quot;total&quot;: 10}}' -v</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">/var/tmp/ocis/storage/users
+├── blobs
+├── nodes
+│   ├── 627981c2-2a71-4adf-b680-177e245afdda
+│   ├── 9541e7c3-8fda-4b49-b697-e7e51457cf5a
+│   ├── b5692345-108d-4b80-9747-3a7e9739ad57
+│   └── root
+│       ├── 118351d7-67a4-4cdf-b495-6093d1e572ed -&gt; ../627981c2-2a71-4adf-b680-177e245afdda
+│       └── ddc2004c-0977-11eb-9d3f-a793888cd0f8 -&gt; ../b5692345-108d-4b80-9747-3a7e9739ad57
+├── spaces
+│   ├── personal
+│   │   └── b5692345-108d-4b80-9747-3a7e9739ad57 -&gt; ../../nodes/b5692345-108d-4b80-9747-3a7e9739ad57
+│   ├── project
+│   │   └── 627981c2-2a71-4adf-b680-177e245afdda -&gt; ../../nodes/627981c2-2a71-4adf-b680-177e245afdda
+│   └── share
+├── trash
+└── uploads
+</code></pre></div><p>Verify the new space has 10 bytes, and none of it is used:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;driveType&#34;</span><span class="p">:</span> <span class="s2">&#34;project&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;1284d238-aa92-42ce-bdc4-0b0000009157!627981c2-2a71-4adf-b680-177e245afdda&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;lastModifiedDateTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2021-10-15T11:16:26.029188+02:00&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;marketing&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;owner&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;ddc2004c-0977-11eb-9d3f-a793888cd0f8&#34;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;quota&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;remaining&#34;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="nt">&#34;total&#34;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="nt">&#34;used&#34;</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;root&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;1284d238-aa92-42ce-bdc4-0b0000009157!627981c2-2a71-4adf-b680-177e245afdda&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;webDavUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/dav/spaces/1284d238-aa92-42ce-bdc4-0b0000009157!627981c2-2a71-4adf-b680-177e245afdda&#34;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>Upload a 6 bytes file:</p>
+<p><code>curl -k -X PUT https://localhost:9200/dav/spaces/1284d238-aa92-42ce-bdc4-0b0000009157\!627981c2-2a71-4adf-b680-177e245afdda/6bytes.txt -d &quot;012345&quot; -u admin:admin -v</code></p>
+<p>Query the quota again:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="err">...</span>
+<span class="s2">&#34;quota&#34;</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nt">&#34;remaining&#34;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="nt">&#34;total&#34;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="nt">&#34;used&#34;</span><span class="p">:</span> <span class="mi">6</span>
+<span class="p">}</span><span class="err">,</span>
+<span class="err">...</span>
+</code></pre></div><p>Now attempt to upload 5 bytes to the space:</p>
+<p><code>curl -k -X PUT https://localhost:9200/dav/spaces/1284d238-aa92-42ce-bdc4-0b0000009157\!627981c2-2a71-4adf-b680-177e245afdda/5bytes.txt -d &quot;01234&quot; -u admin:admin -v</code></p>
+<p>The request will fail with <code>507 Insufficient Storage</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"> HTTP/1.1 507 Insufficient Storage
+&lt; Access-Control-Allow-Origin: *
+&lt; Content-Length: 0
+&lt; Content-Security-Policy: default-src &#39;none&#39;;
+&lt; Date: Fri, 15 Oct 2021 09:24:46 GMT
+&lt; Vary: Origin
+&lt; X-Content-Type-Options: nosniff
+&lt; X-Download-Options: noopen
+&lt; X-Frame-Options: SAMEORIGIN
+&lt; X-Permitted-Cross-Domain-Policies: none
+&lt; X-Robots-Tag: none
+&lt; X-Xss-Protection: 1; mode=block
+&lt;
+* Connection #0 to host localhost left intact
+* Closing connection 0
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h5 id="considerations">
+        Considerations
+        <a data-clipboard-text="https://owncloud.dev/extensions/storage/spaces/#considerations" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Considerations" href="#considerations">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h5>
+</div><ul>
+<li>If a Space quota is updated to unlimited, the upper limit is the entire available space on disk</li>
+</ul>
 
     </article>
 
