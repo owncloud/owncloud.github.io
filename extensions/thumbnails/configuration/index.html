@@ -4076,7 +4076,7 @@ $HOME/.ocis
 <dt>-grpc-namespace |  $THUMBNAILS_GRPC_NAMESPACE</dt>
 <dd>Set the base namespace for the grpc namespace. Default: <code>&quot;com.owncloud.api&quot;</code>.</dd>
 <dt>-filesystemstorage-root |  $THUMBNAILS_FILESYSTEMSTORAGE_ROOT</dt>
-<dd>Root path of the filesystem storage directory. Default: <code>/var/tmp/ocis/thumbnails</code>.</dd>
+<dd>Root path of the filesystem storage directory. Default: <code>flags.OverrideDefaultString(cfg.Thumbnail.FileSystemStorage.RootDirectory, path.Join(defaults.BaseDataPath(), &quot;thumbnails&quot;))</code>.</dd>
 <dt>-reva-gateway-addr |  $REVA_GATEWAY</dt>
 <dd>Address of REVA gateway endpoint. Default: <code>&quot;127.0.0.1:9142&quot;</code>.</dd>
 <dt>-webdavsource-insecure |  $THUMBNAILS_WEBDAVSOURCE_INSECURE</dt>
