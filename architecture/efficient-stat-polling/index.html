@@ -10,12 +10,12 @@
 
 
 
-    <meta name="description" content="Status: proposed Deciders: @c0rby  Date: 2021-06-10  Technical Story: [description | ticket/issue URL] Context and Problem Statement    We want to accelerate and simplify extension development by removing the necessity to type or copy the boilerplate code. Can we provide a template or a similar mechanism to aid when developing new extensions?
-Decision Drivers     The solution should be easily maintainable.  It should always be up-to-date.">
+    <meta name="description" content="The fallback sync mechanism uses the ETag to determine which part of a sync tree needs to be checked by recursively descending into folders whose ETag has changed. The ETag can be calculated using a stat() call in the filesystem and we are going to explore how many stat() calls are necessary and how the number might be reduced.
+ETag propagation    What does ETag propagation mean? Whenever a file changes its content or metadata the ETag or &ldquo;entity tag&rdquo; changes.">
 
 
 
-    <title>9. Extension Template | ownCloud</title>
+    <title>Efficient Stat Polling | ownCloud</title>
 
     <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -539,7 +539,7 @@ Decision Drivers     The solution should be easily maintainable.  It should alwa
 
             <li>
             
-            <input type="checkbox" id="navtree-307b2de1" class="gdoc-nav__toggle" checked>
+            <input type="checkbox" id="navtree-307b2de1" class="gdoc-nav__toggle" >
             <label for="navtree-307b2de1" class="flex justify-between">
             
             
@@ -783,7 +783,7 @@ Decision Drivers     The solution should be easily maintainable.  It should alwa
             
             
                 <span class="flex">
-                    <a href="/ocis/adr/0009-extension-template/" class="gdoc-nav__entry is-active">
+                    <a href="/ocis/adr/0009-extension-template/" class="gdoc-nav__entry ">
                         9. Extension Template
                     </a>
                 </span>
@@ -3905,7 +3905,7 @@ Decision Drivers     The solution should be easily maintainable.  It should alwa
             
             
                 <span class="flex">
-                    <a href="/architecture/efficient-stat-polling/" class="gdoc-nav__entry ">
+                    <a href="/architecture/efficient-stat-polling/" class="gdoc-nav__entry is-active">
                         Efficient Stat Polling
                     </a>
                 </span>
@@ -3981,15 +3981,7 @@ Decision Drivers     The solution should be easily maintainable.  It should alwa
         
     
     
-        
-        
-        
-        
-    
-    
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/adr/' href='/ocis/adr/'><span itemprop='name'>Architecture Decisions</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>9. Extension Template</span><meta itemprop='position' content='4' /></li>
-    
-
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/architecture/' href='/architecture/'><span itemprop='name'>Architecture</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Efficient Stat Polling</span><meta itemprop='position' content='3' /></li>
     
 
     
@@ -4003,7 +3995,7 @@ Decision Drivers     The solution should be easily maintainable.  It should alwa
     <div>
         <span class="editpage">
             <svg class="icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/adr/0009-extension-template.md">
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/architecture/efficient-stat-polling.md">
                 Edit this page
             </a>
         </span>
@@ -4013,123 +4005,254 @@ Decision Drivers     The solution should be easily maintainable.  It should alwa
 
 
     <article class="gdoc-markdown gdoc-markdown__align--left">
-        <h1>9. Extension Template</h1>
-        <ul>
-<li>Status: proposed</li>
-<li>Deciders: @c0rby <!-- optional --></li>
-<li>Date: 2021-06-10</li>
-</ul>
-<p>Technical Story: [description | ticket/issue URL] <!-- optional --></p>
+        <h1>Efficient Stat Polling</h1>
+        <p>The fallback sync mechanism uses the ETag to determine which part of a sync tree needs to be checked by recursively descending into folders whose ETag has changed. The ETag can be calculated using a <code>stat()</code> call in the filesystem and we are going to explore how many <code>stat()</code> calls are necessary and how the number might be reduced.</p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="context-and-problem-statement">
-        Context and Problem Statement
-        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0009-extension-template/#context-and-problem-statement" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Context and Problem Statement" href="#context-and-problem-statement">
+    <h2 id="etag-propagation">
+        ETag propagation
+        <a data-clipboard-text="https://owncloud.dev/architecture/efficient-stat-polling/#etag-propagation" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ETag propagation" href="#etag-propagation">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><p>We want to accelerate and simplify extension development by removing the necessity to type or copy the boilerplate code. Can we provide a template or a similar mechanism to aid when developing new extensions?</p>
+</div><p>What does ETag propagation mean? Whenever a file changes its content or metadata the ETag or &ldquo;entity tag&rdquo; changes. In the early days of ownCloud it was decided to extend this behavior to folders as well, which is outside of any WebDAV RFC specification. Nevertheless, here we are, using the ETag to reflect changes, not only on WebDAV resources but also WebDAV collections. The server will propagate the ETag change up to the root of the tree.</p>
+
+
+<script defer src="/js/mermaid-0aef8fa252.min.js"></script>
+<script defer src="/js/mermaid-loader-1bd1515cbf.min.js"></script>
+
+
+
+<pre class="gdoc-mermaid mermaid text-center">
+graph TD
+  linkStyle default interpolate basis
+  
+  subgraph final ETag propagation
+    ert3(( etag:N )) --- el3(( etag:O )) & er3(( etag:N ))
+    er3 --- erl3(( etag:O )) & err3(( etag:N ))
+  end
+
+  subgraph first ETag propagation
+    ert2(( etag:O )) --- el2(( etag:O )) & er2(( etag:N ))
+    er2 --- erl2(( etag:O )) & err2(( etag:N ))
+  end
+
+  subgraph initial file change 
+    ert(( etag:O )) --- el(( etag:O )) & er(( etag:O ))
+    er --- erl(( etag:O )) & err(( etag:N ))
+  end
+</pre>
+
+<p>The old <code>etag:O</code> is replaced by propagating the new <code>etag:N</code> up to the root, where the client will pick it up and explore the tree by comparing the old ETags known to him with the state of the current ETags on the server. This form of sync is called <em>state based sync</em>.</p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="decision-drivers----optional---">
-        Decision Drivers <!-- optional -->
-        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0009-extension-template/#decision-drivers----optional---" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Decision Drivers " href="#decision-drivers----optional---">
+    <h2 id="single-user-sync">
+        Single user sync
+        <a data-clipboard-text="https://owncloud.dev/architecture/efficient-stat-polling/#single-user-sync" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Single user sync" href="#single-user-sync">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><ul>
-<li>The solution should be easily maintainable.
+</div><p>To let the client detect changes in the drive (a tree of files and folders) of a user, we rely on the ETag of every node in the tree. The discovery phase starts at the root of the tree and checks if the ETag has changed since the last discovery:</p>
 <ul>
-<li>It should always be up-to-date.</li>
+<li>if it is still the same nothing has changed inside the tree</li>
+<li>if it changed the client will compare the ETag of all immediate children and recursively descend into every node that changed</li>
 </ul>
-</li>
-<li>The solution should be easy to use.</li>
-</ul>
+<p>This works, because the server side will propagate ETag changes in the tree up to the root.</p>
+
+
+<pre class="gdoc-mermaid mermaid text-center">
+graph TD
+  linkStyle default interpolate basis
+
+  ec( client ) -->|"stat()"|ert
+
+  subgraph  
+    ert(( )) --- el(( )) & er(( ))
+    er --- erl(( )) & err(( ))  
+  end
+</pre>
+
 <div class="gdoc-page__anchorwrap">
-    <h2 id="considered-options">
-        Considered Options
-        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0009-extension-template/#considered-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Considered Options" href="#considered-options">
+    <h2 id="multiple-users">
+        Multiple users
+        <a data-clipboard-text="https://owncloud.dev/architecture/efficient-stat-polling/#multiple-users" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Multiple users" href="#multiple-users">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><ul>
-<li>Use <a class="gdoc-markdown__link" href="https://github.com/tmrts/boilr">boilr</a></li>
-<li>Create a template git repository.</li>
-<li>Use <a class="gdoc-markdown__link" href="https://github.com/owncloud/ocis-hello/">ocis-hello</a> as a &ldquo;template&rdquo;</li>
-</ul>
+</div><p>On an ocis server there is not one user but many. Each of them may have one or more clients running. In the worst case all of them polling the ETag of his home root node every 30 seconds.</p>
+<p>Keep in mind that etags are only propagated inside each distinct tree. No sharing is considered yet.</p>
+
+
+<pre class="gdoc-mermaid mermaid text-center">
+graph TD
+  linkStyle default interpolate basis
+
+  ec( client ) -->|"stat()"|ert
+
+  subgraph  
+    ert(( )) --- el(( )) & er(( ))
+    er --- erl(( )) & err(( ))
+  end
+  
+  mc( client ) -->|"stat()"|mrt
+
+  subgraph  
+    mrt(( )) --- ml(( )) & mr(( ))
+    mr --- mrl(( )) & mrr(( ))
+  end
+
+  fc( client ) -->|"stat()"|frt
+
+  subgraph  
+    frt(( )) --- fl(( )) & fr(( ))
+    fr --- frl(( )) & frr(( ))
+  end
+</pre>
+
 <div class="gdoc-page__anchorwrap">
-    <h2 id="decision-outcome">
-        Decision Outcome
-        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0009-extension-template/#decision-outcome" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Decision Outcome" href="#decision-outcome">
+    <h2 id="sharing">
+        Sharing
+        <a data-clipboard-text="https://owncloud.dev/architecture/efficient-stat-polling/#sharing" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Sharing" href="#sharing">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><p>Chosen option: &ldquo;[option 1]&rdquo;, because [justification. e.g., only option, which meets k.o. criterion decision driver | which resolves force force | … | comes out best (see below)].</p>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="positive-consequences----optional---">
-        Positive Consequences: <!-- optional -->
-        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0009-extension-template/#positive-consequences----optional---" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Positive Consequences: " href="#positive-consequences----optional---">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><ul>
-<li>[e.g., improvement of quality attribute satisfaction, follow-up decisions required, …]</li>
-<li>…</li>
+</div><p><em>Storage providers</em> are responsible for persisting shares as close to the storage as possible.</p>
+<p>One implementation may persist shares using ACLs, another might use custom extended attributes. The chosen implementation is storage specific and always a tradeoff between various requirements. Yet, the goal is to treat the storage provider as the single source of truth for all metadata.</p>
+<p>If users can bypass the storage provider using eg. <code>ssh</code> additional mechanisms needs to make sure no inconsistencies arise:</p>
+<ul>
+<li>the ETag must still be propagated in a tree, eg using inotify, a policy engine or workflows triggered by other means</li>
+<li>deleted files should land in the trash (eg. <code>rm</code> could be wrapped to move files to trash)</li>
+<li>overwriting files should create a new version &hellip; other than a fuse fs I see no way of providing this for normal posix filesystems. Other storage backends that use the s3 protocol might provide versions natively.</li>
 </ul>
+<p>The storage provider is also responsible for keeps track of references eg. using a shadow tree that users normally cannot see or representing them as symbolic links in the filesystem (Beware of symbolic link cycles. The clients are currently unaware of them and would flood the filesystem).</p>
+<p>To prevent write amplification ETags must not propagate across references. When a file that was shared by einstein changes the ETag must not be propagated into any share recipients tree.</p>
+
+
+<pre class="gdoc-mermaid mermaid text-center">
+graph TD
+  linkStyle default interpolate basis
+
+
+  ec( einsteins client ) -->|"stat()"|ert
+
+  subgraph  
+    ml --- mlr(( ))
+    mrt(( )) --- ml(( )) & mr(( ))
+    mr --- mrl(( )) & mrr(( ))
+  end
+
+  mlr -. reference .-> er
+
+  subgraph  
+    ert(( )) --- el(( )) & er(( ))
+    er --- erl(( )) & err(( ))
+  end
+  
+  mc( maries client ) -->|"stat()"|mrt
+
+</pre>
+
+<p>But how can maries client detect the change?</p>
+<p>We are trading writes for reads: the client needs to stat the own tree &amp; all shares or entry points into other storage trees.</p>
+<p>It would require client changes that depend on the server side actually having an endpoint that can efficiently list all entry points into storages a user has access to including their current etag.</p>
+<p>But having to list n storages might become a bottleneck anyway, so we are going to have the gateway calculate a virtual root ETag for all entry points a user has access to and cache that.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="negative-consequences----optional---">
-        Negative consequences: <!-- optional -->
-        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0009-extension-template/#negative-consequences----optional---" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Negative consequences: " href="#negative-consequences----optional---">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><ul>
-<li>[e.g., compromising quality attribute, follow-up decisions required, …]</li>
-<li>…</li>
-</ul>
-<div class="gdoc-page__anchorwrap">
-    <h2 id="pros-and-cons-of-the-options----optional---">
-        Pros and Cons of the Options <!-- optional -->
-        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0009-extension-template/#pros-and-cons-of-the-options----optional---" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Pros and Cons of the Options " href="#pros-and-cons-of-the-options----optional---">
+    <h2 id="server-side-stat-polling">
+        Server Side Stat Polling
+        <a data-clipboard-text="https://owncloud.dev/architecture/efficient-stat-polling/#server-side-stat-polling" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Server Side Stat Polling" href="#server-side-stat-polling">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><div class="gdoc-page__anchorwrap">
-    <h3 id="boilrhttpsgithubcomtmrtsboilr">
-        <a class="gdoc-markdown__link" href="https://github.com/tmrts/boilr">boilr</a>
-        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0009-extension-template/#boilrhttpsgithubcomtmrtsboilr" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor boilr" href="#boilrhttpsgithubcomtmrtsboilr">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p>We have a boilr template already. <a class="gdoc-markdown__link" href="https://github.com/owncloud/boilr-ocis-extension/">boilr-ocis-extension</a>
-This approach is nice because it provides placeholders which can be filled during the generation of a new extension from the template. It also provides prompts for the placeholder values during generation.</p>
-<ul>
-<li>Good, because with the placeholders it is hard to miss values which should be changed</li>
-<li>Bad, because maintaining is more complex</li>
-</ul>
+</div><p>Every client polls the virtual root ETag (every 30 sec). The gateway will cache the virutal root ETag of every storage for 30 sec as well. That way every storage provider is only stated once every 30 sec (can be throttled dynamically to adapt to storage io load).</p>
+
+
+<pre class="gdoc-mermaid mermaid text-center">
+graph TD
+  linkStyle default interpolate basis
+
+  ec( client ) -->|"stat()"|evr
+
+  subgraph gateway caching virtual etags
+    evr(( ))
+    mvr(( ))
+    fvr(( ))
+  end
+
+  evr --- ert
+  mvr --- mrt
+  fvr --- frt
+
+  subgraph  
+    ert(( )) --- el(( )) & er(( ))
+    er --- erl(( )) & err(( ))
+  end
+  
+  mc( client ) -->|"stat()"|mvr
+
+  subgraph  
+    mrt(( )) --- ml(( )) & mr(( ))
+    ml --- mlm(( ))
+    mr --- mrl(( )) & mrr(( ))
+  end
+
+  mlm -.- er
+  mvr -.- er
+
+  fc( client ) -->|"stat()"|fvr
+
+  subgraph  
+    frt(( )) --- fl(( )) & fr(( ))
+    fr --- frl(( )) & frr(( ))
+  end
+
+</pre>
+
+<p>Since the active clients will poll the etag for all active users the gateway will have their ETag cached. This is where sharing comes into play: The gateway also needs to stat the ETag of all other entry points &hellip; or mount points. That may increases the number of stat like requests to storage providers by an order of magnitude.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="template-git-repository">
-        Template git repository
-        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0009-extension-template/#template-git-repository" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Template git repository" href="#template-git-repository">
+    <h3 id="ram-considerations">
+        Ram considerations
+        <a data-clipboard-text="https://owncloud.dev/architecture/efficient-stat-polling/#ram-considerations" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Ram considerations" href="#ram-considerations">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><p>Create a git repository with an extension containing the boilerplate code.</p>
-<ul>
-<li>Good, because we can use the usual tools for QA and dependency scanning/updating.</li>
-<li>Good, because it doesn&rsquo;t require any additional tool.</li>
-</ul>
+</div><p>For a single machine using a local posix storage the linux kernel already caches the inodes that contain the metadata that is necessary to calculate the ETag (even extended attributes are supported). With 4k inodes 256 nodes take 1Mb of RAM, 1k inodes take 4Mb and 1M inodes take 4Gb to completely cache the file metadata. For distributed filesystems a dedicated cache might make sense to prevent hammering it with stat like requests to calculate ETags.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="ocis-hellohttpsgithubcomowncloudocis-hello-as-a-template">
-        <a class="gdoc-markdown__link" href="https://github.com/owncloud/ocis-hello/">ocis-hello</a> as a &ldquo;template&rdquo;
-        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0009-extension-template/#ocis-hellohttpsgithubcomowncloudocis-hello-as-a-template" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ocis-hello as a &ldquo;template&rdquo;" href="#ocis-hellohttpsgithubcomowncloudocis-hello-as-a-template">
+    <h3 id="bandwith-considerations">
+        Bandwith considerations
+        <a data-clipboard-text="https://owncloud.dev/architecture/efficient-stat-polling/#bandwith-considerations" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Bandwith considerations" href="#bandwith-considerations">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><p>We have the ocis-hello repository which acts as an example extension containing a grpc and http service and a web UI. It also demonstrates the usage of the settings service.</p>
+</div><p>The bandwith for a single machine might be another bottleneck. Consider a propfind request with roughly 500 bytes and a response with roughly 800 bytes in size:</p>
 <ul>
-<li>Good, because it contains a bit more code than just the plain boilerplate</li>
-<li>Good, because the integration into oCIS is already tested for the Hello extension (eg. with Proxy and Settings). This will ensure, that the example extension is up to date.</li>
-<li>Bad, because if you don&rsquo;t require all features you have to delete stuff</li>
+<li>At 100Mbit (~10Mb/s) you can receive 20 000 PROPFIND requests</li>
+<li>At 1000Mbit (~100Mb/s) you can receive 200 000 PROPFIND requests</li>
+<li>At 10Gbit (~1Gb/s) you can receive 2 000 000 PROPFIND requests</li>
 </ul>
+<p>This can be scaled by adding more gateways and sharding users because these components are stateless.</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="share-mount-point-polling-cache">
+        Share mount point polling cache
+        <a data-clipboard-text="https://owncloud.dev/architecture/efficient-stat-polling/#share-mount-point-polling-cache" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Share mount point polling cache" href="#share-mount-point-polling-cache">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>What can we do to reduce the number of stat calls to storage providers. Well, the gateway queries the share manager for all mounted shares of a user (or all entry points, not only the users own root/home). The share references contain the storage provider that contains the share. If every user has it&rsquo;s own storage provider id the gateway could check in its own cache if the storage root etag has changed. It will be up to date because another client likely already polled for its etag.
+This would reduce the number of necessary stat requests to active storages.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="active-share-node-cache-invalidation">
+        Active share node cache invalidation
+        <a data-clipboard-text="https://owncloud.dev/architecture/efficient-stat-polling/#active-share-node-cache-invalidation" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Active share node cache invalidation" href="#active-share-node-cache-invalidation">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>We can extend the lifetime of share ETag cache entries and only invalidate them when the root of the storage that contains them changes its ETag. That would reduce the number of stat requests to the number of active users.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="push-notifications">
+        Push notifications
+        <a data-clipboard-text="https://owncloud.dev/architecture/efficient-stat-polling/#push-notifications" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Push notifications" href="#push-notifications">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>We can further enhance this by sending push notifications when the root of a storage changes. Which is becoming increasingly necessary for mobile devices anyway.</p>
 
     </article>
 
