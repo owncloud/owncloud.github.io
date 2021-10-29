@@ -10,12 +10,11 @@
 
 
 
-    <meta name="description" content="Request Flow    The following sequence diagram describes the general request flow. It shows where account provisioning and token minting are happening:
-  sequenceDiagram %% we have comments!! \o/ participant user as User participant client as Client participant proxy as ocis-proxy participant idp as IdP participant accounts as ocis-accounts participant ldap as corporate LDAP server user-&#43;client: What is the content of my home? client-&#43;proxy: PROPFIND Bearer auth using oidc auth token Note over client,proxy: What is in a bearer token?">
+    <meta name="description" content="Status: proposed Deciders: @pmaier1, @dragotin, @butonic, @micbar, @wkloucek Date: 2021-10-28  Context and Problem Statement    At the time of this writing no locking mechanisms exists in oCIS / REVA for both directories and files. The CS3org WOPI server implements a file based locking in order to lock files. This ADR discusses if this approach is ok for the general availability of oCIS or if changes are needed.">
 
 
 
-    <title>Request Flow | ownCloud</title>
+    <title>13. Locking | ownCloud</title>
 
     <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -539,7 +538,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-307b2de1" class="gdoc-nav__toggle" >
+            <input type="checkbox" id="navtree-307b2de1" class="gdoc-nav__toggle" checked>
             <label for="navtree-307b2de1" class="flex justify-between">
             
             
@@ -887,7 +886,7 @@
             
             
                 <span class="flex">
-                    <a href="/ocis/adr/0013-locking/" class="gdoc-nav__entry ">
+                    <a href="/ocis/adr/0013-locking/" class="gdoc-nav__entry is-active">
                         13. Locking
                     </a>
                 </span>
@@ -1283,7 +1282,7 @@
 
             <li>
             
-            <input type="checkbox" id="navtree-505c84fc" class="gdoc-nav__toggle" checked>
+            <input type="checkbox" id="navtree-505c84fc" class="gdoc-nav__toggle" >
             <label for="navtree-505c84fc" class="flex justify-between">
             
             
@@ -1341,7 +1340,7 @@
             
             
                 <span class="flex">
-                    <a href="/ocis/flow-docs/request-flow/" class="gdoc-nav__entry is-active">
+                    <a href="/ocis/flow-docs/request-flow/" class="gdoc-nav__entry ">
                         Request Flow
                     </a>
                 </span>
@@ -4013,7 +4012,7 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/flow-docs/' href='/ocis/flow-docs/'><span itemprop='name'>Flow documentation</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Request Flow</span><meta itemprop='position' content='4' /></li>
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/adr/' href='/ocis/adr/'><span itemprop='name'>Architecture Decisions</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>13. Locking</span><meta itemprop='position' content='4' /></li>
     
 
     
@@ -4029,7 +4028,7 @@
     <div>
         <span class="editpage">
             <svg class="icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/flow-docs/request-flow.md">
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/adr/0013-locking.md">
                 Edit this page
             </a>
         </span>
@@ -4039,105 +4038,135 @@
 
 
     <article class="gdoc-markdown gdoc-markdown__align--left">
-        <h1>Request Flow</h1>
-        <div class="gdoc-page__anchorwrap">
-    <h2 id="request-flow">
-        Request Flow
-        <a data-clipboard-text="https://owncloud.dev/ocis/flow-docs/request-flow/#request-flow" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Request Flow" href="#request-flow">
+        <h1>13. Locking</h1>
+        <ul>
+<li>Status: proposed</li>
+<li>Deciders: @pmaier1, @dragotin, @butonic, @micbar, @wkloucek</li>
+<li>Date: 2021-10-28</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="context-and-problem-statement">
+        Context and Problem Statement
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0013-locking/#context-and-problem-statement" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Context and Problem Statement" href="#context-and-problem-statement">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><p>The following sequence diagram describes the general request flow. It shows where account provisioning and token minting are happening:</p>
-
-
-<script defer src="/js/mermaid-0aef8fa252.min.js"></script>
-<script defer src="/js/mermaid-loader-1bd1515cbf.min.js"></script>
-
-
-
-<pre class="gdoc-mermaid mermaid text-center">
-sequenceDiagram
-    %% we have comments!! \o/
-    participant user as User
-    participant client as Client
-    participant proxy as ocis-proxy
-    participant idp as IdP
-    participant accounts as ocis-accounts
-    participant ldap as corporate LDAP server
-
-    user->>+client: What is the content of my home?
-
-        client->>+proxy: PROPFIND <br> Bearer auth using oidc auth token
-        Note over client,proxy: What is in a bearer token? <br> The spec recommends opaque tokens. <br> Treat it as random byte noise.
-        Note over client,proxy: the proxy MUST authenticate users <br> using ocis-accounts because it needs <br> to decide where to send the request
-        %% Mention introspection endpoint for opaque tokens
-        %% idp uses jwt, so we can save a request
-        %% either way the token can be used to look up the sub and iss of the user
-
-            %% or is token check enough?
-            proxy->>+idp: GET /userinfo
-            alt userinfo succeeds
-
-                idp-->>proxy:  200 OK
-                Note over proxy,accounts: Content-Type: application/json<br>{<br>"sub": "248289761001",<br>"name": "Jane Doe",<br>"given_name": "Jane",<br>"family_name": "Doe",<br>"preferred_username": "j.doe",<br>"email": "janedoe@example.com",<br>"picture": "http://example.com/janedoe/me.jpg"<br>}
-                %% see: https://openid.net/specs/openid-connect-core-1_0.html#UserInfoResponse
-
-            else userinfo fails
-
-                idp-->>-proxy: 401 Unauthorized
-                Note over proxy,accounts: WWW-Authenticate: error="invalid_token",<br>error_description="The Access Token expired"
-
-        proxy-->>client: 401 Unauthorized or <br>302 Found with redirect to idp
-        Note over client: start at login flow<br> or refresh the token
-
-            end
-
-            proxy->>+accounts: TODO API call to exchange sub@iss with account UUID
-            Note over proxy,accounts: does not autoprovision users. They are explicitly provisioned later.
-
-            alt account exists or has been migrated
-
-                accounts-->>proxy: existing account UUID
-            else account does not exist
-
-                opt oc10 endpoint is configured
-                Note over proxy,oc10: Check if user exists in oc10
-                    proxy->>+oc10: GET /apps/graphapi/v1.0/users/&lt;uuid&gt;
-                    opt user exists in oc10
-                        oc10-->>-proxy: 200
-                        %% TODO auth using internal token
-                        proxy->>+oc10: PROPFIND
-                        Note over proxy,oc10: forward existing bearer auth
-                        oc10-->>-proxy: Multistatus response
-            proxy-->>client: Multistatus response
-    client-->>user: List of Files X, Y, Z ...
-                    end
-                end
-
-                Note over proxy,accounts: provision a new account including displayname, email and sub@iss <br> TODO only if the user is allowed to login, based on group <br> membership in the ldap server
-                proxy->>proxy: generate new uuid
-                proxy->>+accounts: TODO create account with new generated uuid
-                accounts-->>-proxy: OK / error
-
-            else account has been disabled
-
-                accounts-->>-proxy: account is disabled
-        proxy-->>client: 401 Unauthorized or <br>302 Found with redirect to idp
-        Note over client: start at login flow<br> or refresh the token
-
-            end
-            proxy->>proxy: store uuid in context
-
-            %% what if oc10 does not support a certain request / API
-
-            proxy->>proxy: mint an internal jwt that includes the UUID and username using revas `x-access-token` header
-            proxy->>+reva: PROPFIND <br>Token auth using internal JWT
-            reva-->>-proxy: Multistatus response
-        proxy-->>-client: Multistatus response
-
-    client-->>-user: List of Files X, Y, Z ...
-</pre>
-
+</div><p>At the time of this writing no locking mechanisms exists in oCIS / REVA for both directories and files. The CS3org WOPI server implements a file based locking in order to lock files. This ADR discusses if this approach is ok for the general availability of oCIS or if changes are needed.</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="decision-drivers">
+        Decision Drivers
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0013-locking/#decision-drivers" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Decision Drivers" href="#decision-drivers">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><ul>
+<li>Is the current situation acceptable for the GA</li>
+<li>Is locking needed or can we have oCIS / REVA without locking</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="considered-options">
+        Considered Options
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0013-locking/#considered-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Considered Options" href="#considered-options">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><ol>
+<li>File based locking</li>
+<li>No locking</li>
+<li>CS3 API locking</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="decision-outcome">
+        Decision Outcome
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0013-locking/#decision-outcome" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Decision Outcome" href="#decision-outcome">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>// TODO, but recommendation against file based locking. Because file based locking does not work on file-only shares</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="pros-and-cons-of-the-options">
+        Pros and Cons of the Options
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0013-locking/#pros-and-cons-of-the-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Pros and Cons of the Options" href="#pros-and-cons-of-the-options">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="file-based-locking">
+        File based locking
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0013-locking/#file-based-locking" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor File based locking" href="#file-based-locking">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>The CS3org WOPI server creates a <code>.sys.wopilock.&lt;filename&gt;.</code> and <code>.~lock.&lt;filename&gt;#</code> file when opening a file in write mode</p>
+<p><strong>File based locking is good</strong>, because:</p>
+<ul>
+<li>it is already implemented in the current CS3org WOPI server</li>
+</ul>
+<p><strong>File based locking is bad</strong>, because:</p>
+<ul>
+<li>lock files should be checked by all partys manipulating files (eg. the WebDAV api)</li>
+<li>lock files can be deleted by everyone</li>
+<li>you can not lock files in a file-only share (you need a folder share to create a lock file besides the original file)</li>
+</ul>
+<p>If we have file based locks, we can also sync them with eg. the Desktop Client.</p>
+<p><strong>Syncing lock files is good</strong>: because</p>
+<ul>
+<li>native office applications can notice lock files by the WOPI server and vice versa (Libre Office also creates <code>.lock.&lt;filename&gt;#</code> files)</li>
+</ul>
+<p><strong>Syncing lock files is bad</strong>, because:</p>
+<ul>
+<li>if lockfile is not deleted, no one can edit the file</li>
+<li>creating lock files in a folder shared with 2000000 users creates a lot of noise and pressure on the server (etag propagation, therefore oC Desktop sync client has an ignore rule for <code>.~lock.*</code> files)</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="no-locking">
+        No locking
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0013-locking/#no-locking" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor No locking" href="#no-locking">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>We remove or disable the file based locking of the CS3org WOPI server.</p>
+<p><strong>No locking is good</strong>, because:</p>
+<ul>
+<li>you don&rsquo;t need to release locks</li>
+<li>overwriting a file just creates a new version of it</li>
+</ul>
+<p><strong>No locking is bad</strong>, because:</p>
+<ul>
+<li>merging changes from different versions is a pain, since there is no way to calculate differences for most of the files (eg. docx or xlsx files)</li>
+<li>no locking breaks the WOPI specs, as the CS3 WOPI server won&rsquo;t be capable to honor the WOPI Lock related operations</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="cs3-api-locking">
+        CS3 API locking
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0013-locking/#cs3-api-locking" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor CS3 API locking" href="#cs3-api-locking">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ul>
+<li>Add CS3 API for resource (files, directories) locking, unlocking and checking locks
+<ul>
+<li>locking always with timeout</li>
+<li>lock creation is a &ldquo;create-if-not-exists&rdquo; operation</li>
+<li>locks need to have arbitrary metadata (eg. the CS3 WOPI server is stateless by storing information on / in the locks)</li>
+</ul>
+</li>
+<li>Implement WebDAV locking using the CS3 API</li>
+<li>Implement Locking in storage drivers</li>
+<li>Change CS3 WOPI server to use CS3 API locking mechanism</li>
+<li>Optional: manual lock / unlock in ownCloud Web (who is allowed to unlock locks of another user?)</li>
+</ul>
+<p><strong>CS3 API locking is good</strong>, because:</p>
+<ul>
+<li>you can lock files on the actual storage (if the storage supports that -&gt; storage driver dependent)</li>
+<li>you can lock files in ownCloud 10 when using the ownCloudSQL storage driver in the migration deployment (but oC10 Collabora / OnlyOffice also need to implement locking, to fully leverage that)</li>
+<li>clients can get the lock information via the api without ignoring / hiding lock file changes</li>
+<li>clients can use the lock information to lock the file in their context (eg. via some file explorer integration)</li>
+</ul>
+<p><strong>CS3 API locking is bad</strong>, because:</p>
+<ul>
+<li>it needs to be defined and implemented, currently not planned for the GA</li>
+</ul>
 
     </article>
 
