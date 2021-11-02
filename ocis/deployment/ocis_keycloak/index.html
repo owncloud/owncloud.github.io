@@ -4068,7 +4068,8 @@ The docker stack consists 4 containers.">
 <li>Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup</li>
 </ul>
 <p><a class="gdoc-markdown__link" href="https://github.com/owncloud/ocis/tree/master/deployments/examples/ocis_keycloak">Find this example on GitHub</a></p>
-<p>The docker stack consists 4 containers. One of them is Traefik, a proxy which is terminating ssl and forwards the requests to oCIS in the internal docker network.</p>
+<p>The docker stack consists 4 containers. One of them is Traefik, a proxy which is terminating ssl and forwards the requests to oCIS in the internal docker network. It
+is also responsible for redirecting requests on the OIDC discovery endpoints (e.g. <code>.well-known/openid-configuration</code>) to the correct destination in Keycloak.</p>
 <p>Keycloak add two containers: Keycloak itself and a PostgreSQL as database. Keycloak will be configured as oCIS' IDP instead of the internal IDP <a class="gdoc-markdown__link" href="https://owncloud.dev/extensions/idp/">LibreGraph Connect</a></p>
 <p>The other container is oCIS itself running all extensions in one container. In this example oCIS uses <a class="gdoc-markdown__link" href="https://owncloud.dev/extensions/storage/storages/#storage-drivers">oCIS storage driver</a></p>
 <div class="gdoc-page__anchorwrap">
