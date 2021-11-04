@@ -10,7 +10,7 @@
 
 
 
-    <meta name="description" content="Status: proposed Deciders: @pmaier1, @dragotin, @butonic, @micbar, @wkloucek Date: 2021-10-28  Context and Problem Statement    At the time of this writing no locking mechanisms exists in oCIS / REVA for both directories and files. The CS3org WOPI server implements a file based locking in order to lock files. This ADR discusses if this approach is ok for the general availability of oCIS or if changes are needed.">
+    <meta name="description" content="Status: accepted Deciders: @hodyroff, @pmaier1, @jojowein, @dragotin, @micbar, @tbsbdr, @wkloucek Date: 2021-11-03  Context and Problem Statement    At the time of this writing no locking mechanisms exists in oCIS / REVA for both directories and files. The CS3org WOPI server implements a file based locking in order to lock files. This ADR discusses if this approach is ok for the general availability of oCIS or if changes are needed.">
 
 
 
@@ -4064,9 +4064,9 @@
     <article class="gdoc-markdown gdoc-markdown__align--left">
         <h1>13. Locking</h1>
         <ul>
-<li>Status: proposed</li>
-<li>Deciders: @pmaier1, @dragotin, @butonic, @micbar, @wkloucek</li>
-<li>Date: 2021-10-28</li>
+<li>Status: accepted</li>
+<li>Deciders: @hodyroff, @pmaier1, @jojowein, @dragotin, @micbar, @tbsbdr, @wkloucek</li>
+<li>Date: 2021-11-03</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h2 id="context-and-problem-statement">
@@ -4106,7 +4106,8 @@
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><p>// TODO, but recommendation against file based locking. Because file based locking does not work on file-only shares</p>
+</div><p>For the GA we chose option 2. Therefore we need to remove or disable the file based locking functionality of the CS3org WOPI server. The decision was taken because the current file based locking does not work on file-only shares. The current locking also does not guarantee exclusive access to a file since other parts of oCIS like the WebDAV API or other REVA services don&rsquo;t respect the locks.</p>
+<p>After the GA we need to implement option 3.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="pros-and-cons-of-the-options">
         Pros and Cons of the Options
