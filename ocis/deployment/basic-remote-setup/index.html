@@ -93,7 +93,7 @@ If you need to access oCIS running in a docker container, on a VM or a remote ma
         }
     },
     "url" : "https:\/\/owncloud.dev\/ocis\/deployment\/basic-remote-setup\/",
-    "wordCount" : "379",
+    "wordCount" : "414",
     "genre" : [ ]
 }
 </script>
@@ -4163,8 +4163,9 @@ If you need to access oCIS running in a docker container, on a VM or a remote ma
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><p>In order to run oCIS with automatically generated and self signed certificates please execute following command. You need to replace <code>your-host</code> with an IP or hostname.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">PROXY_HTTP_ADDR</span><span class="o">=</span>0.0.0.0:9200 <span class="se">\
+</div><p>In order to run oCIS with automatically generated and self signed certificates please execute following command. You need to replace <code>your-host</code> with an IP or hostname. Since you have only self signed certificates you need to have <code>OCIS_INSECURE</code> set to <code>true</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">OCIS_INSECURE</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span><span class="se"></span><span class="nv">PROXY_HTTP_ADDR</span><span class="o">=</span>0.0.0.0:9200 <span class="se">\
 </span><span class="se"></span><span class="nv">OCIS_URL</span><span class="o">=</span>https://your-host:9200 <span class="se">\
 </span><span class="se"></span>./ocis server
 </code></pre></div><div class="gdoc-page__anchorwrap">
@@ -4175,12 +4176,14 @@ If you need to access oCIS running in a docker container, on a VM or a remote ma
         </a>
     </h3>
 </div><p>If you have your own certificates already in place, you may want to make oCIS use them:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">PROXY_HTTP_ADDR</span><span class="o">=</span>0.0.0.0:9200 <span class="se">\
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">OCIS_INSECURE</span><span class="o">=</span><span class="nb">false</span> <span class="se">\
+</span><span class="se"></span><span class="nv">PROXY_HTTP_ADDR</span><span class="o">=</span>0.0.0.0:9200 <span class="se">\
 </span><span class="se"></span><span class="nv">OCIS_URL</span><span class="o">=</span>https://your-host:9200 <span class="se">\
 </span><span class="se"></span><span class="nv">PROXY_TRANSPORT_TLS_KEY</span><span class="o">=</span>./certs/your-host.key <span class="se">\
 </span><span class="se"></span><span class="nv">PROXY_TRANSPORT_TLS_CERT</span><span class="o">=</span>./certs/your-host.crt <span class="se">\
 </span><span class="se"></span>./ocis server
-</code></pre></div><p>For more configuration options check the configuration section in <a class="gdoc-markdown__link" href="https://owncloud.dev/ocis/configuration/">oCIS</a> and the oCIS extensions.</p>
+</code></pre></div><p>If you generated these certificates on your own, you might need to set <code>OCIS_INSECURE</code> to <code>true</code>.</p>
+<p>For more configuration options check the configuration section in <a class="gdoc-markdown__link" href="https://owncloud.dev/ocis/configuration/">oCIS</a> and the oCIS extensions.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="start-the-ocis-fullstack-server-with-docker-compose">
         Start the oCIS fullstack server with Docker Compose
