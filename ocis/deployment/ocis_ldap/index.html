@@ -10,13 +10,11 @@
 
 
 
-    <meta name="description" content="Overview about the proposed solution  Monitoring &amp; tracing clients Monitoring &amp; tracing server     Monitoring and tracing gives developers and admin insights into a complex system, in this case oCIS.
-If you are a developer and want to trace during developing you should have a look at example server setup.
-This documentation describes how to set up a long running monitoring &amp; tracing infrastructure for one or multiple oCIS servers or deployments.">
+    <meta name="description" content="Overview Server Deployment  Requirements Install this example   Local setup     Overview     Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup OpenLDAP server with demo users LDAP admin interface to edit users oCIS running behind Traefik as reverse proxy  oCIS is using the LDAP server as user backend    Find this example on GitHub">
 
 
 
-    <title>Monitoring &amp; Tracing | ownCloud</title>
+    <title>oCIS with LDAP | ownCloud</title>
 
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
@@ -24,21 +22,17 @@ This documentation describes how to set up a long running monitoring &amp; traci
 
     
 
-    <meta property="og:title" content="Monitoring &amp; Tracing" />
-<meta property="og:description" content="Overview about the proposed solution  Monitoring &amp; tracing clients Monitoring &amp; tracing server     Monitoring and tracing gives developers and admin insights into a complex system, in this case oCIS.
-If you are a developer and want to trace during developing you should have a look at example server setup.
-This documentation describes how to set up a long running monitoring &amp; tracing infrastructure for one or multiple oCIS servers or deployments." />
+    <meta property="og:title" content="oCIS with LDAP" />
+<meta property="og:description" content="Overview Server Deployment  Requirements Install this example   Local setup     Overview     Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup OpenLDAP server with demo users LDAP admin interface to edit users oCIS running behind Traefik as reverse proxy  oCIS is using the LDAP server as user backend    Find this example on GitHub" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://owncloud.dev/ocis/deployment/monitoring-tracing/" /><meta property="article:section" content="ocis" />
-<meta property="article:published_time" content="2020-02-27T20:35:00+01:00" />
-<meta property="article:modified_time" content="2020-02-27T20:35:00+01:00" />
+<meta property="og:url" content="https://owncloud.dev/ocis/deployment/ocis_ldap/" /><meta property="article:section" content="ocis" />
+<meta property="article:published_time" content="2020-10-12T14:04:00+01:00" />
+<meta property="article:modified_time" content="2020-10-12T14:04:00+01:00" />
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Monitoring &amp; Tracing"/>
-<meta name="twitter:description" content="Overview about the proposed solution  Monitoring &amp; tracing clients Monitoring &amp; tracing server     Monitoring and tracing gives developers and admin insights into a complex system, in this case oCIS.
-If you are a developer and want to trace during developing you should have a look at example server setup.
-This documentation describes how to set up a long running monitoring &amp; tracing infrastructure for one or multiple oCIS servers or deployments."/>
+<meta name="twitter:title" content="oCIS with LDAP"/>
+<meta name="twitter:description" content="Overview Server Deployment  Requirements Install this example   Local setup     Overview     Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup OpenLDAP server with demo users LDAP admin interface to edit users oCIS running behind Traefik as reverse proxy  oCIS is using the LDAP server as user backend    Find this example on GitHub"/>
 
 
     <script src="/js/darkmode-ce906ea916.min.js"></script>
@@ -69,21 +63,21 @@ This documentation describes how to set up a long running monitoring &amp; traci
     "@context": "http://schema.org",
     "@type": "TechArticle",
     "articleSection": "ocis",
-    "name": "Monitoring \u0026 Tracing",
-    "headline": "Monitoring \u0026 Tracing",
+    "name": "oCIS with LDAP",
+    "headline": "oCIS with LDAP",
     "alternativeHeadline": "",
-    "description": "Overview about the proposed solution  Monitoring \u0026amp; tracing clients Monitoring \u0026amp; tracing server     Monitoring and tracing gives developers and admin insights into a complex system, in this case oCIS.\nIf you are a developer and want to trace during developing you should have a look at example server setup.\nThis documentation describes how to set up a long running monitoring \u0026amp; tracing infrastructure for one or multiple oCIS servers or deployments.",
+    "description": "Overview Server Deployment  Requirements Install this example   Local setup     Overview     Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup OpenLDAP server with demo users LDAP admin interface to edit users oCIS running behind Traefik as reverse proxy  oCIS is using the LDAP server as user backend    Find this example on GitHub",
     "inLanguage": "en",
     "isFamilyFriendly": "true",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https:\/\/owncloud.dev\/ocis\/deployment\/monitoring-tracing\/"
+        "@id": "https:\/\/owncloud.dev\/ocis\/deployment\/ocis_ldap\/"
     },
     "copyrightHolder" : "ownCloud",
     "copyrightYear" : "2020",
-    "dateCreated": "2020-02-27T20:35:00.00Z",
-    "datePublished": "2020-02-27T20:35:00.00Z",
-    "dateModified": "2020-02-27T20:35:00.00Z",
+    "dateCreated": "2020-10-12T14:04:00.00Z",
+    "datePublished": "2020-10-12T14:04:00.00Z",
+    "dateModified": "2020-10-12T14:04:00.00Z",
     "publisher":{
         "@type":"Organization",
         "name": "ownCloud",
@@ -95,8 +89,8 @@ This documentation describes how to set up a long running monitoring &amp; traci
             "height":"32"
         }
     },
-    "url" : "https:\/\/owncloud.dev\/ocis\/deployment\/monitoring-tracing\/",
-    "wordCount" : "545",
+    "url" : "https:\/\/owncloud.dev\/ocis\/deployment\/ocis_ldap\/",
+    "wordCount" : "813",
     "genre" : [ ]
 }
 </script>
@@ -1220,7 +1214,7 @@ This documentation describes how to set up a long running monitoring &amp; traci
             
             
                 <span class="flex">
-                    <a href="/ocis/deployment/monitoring-tracing/" class="gdoc-nav__entry is-active">
+                    <a href="/ocis/deployment/monitoring-tracing/" class="gdoc-nav__entry ">
                         Monitoring &amp; Tracing
                     </a>
                 </span>
@@ -1356,7 +1350,7 @@ This documentation describes how to set up a long running monitoring &amp; traci
             
             
                 <span class="flex">
-                    <a href="/ocis/deployment/ocis_ldap/" class="gdoc-nav__entry ">
+                    <a href="/ocis/deployment/ocis_ldap/" class="gdoc-nav__entry is-active">
                         oCIS with LDAP
                     </a>
                 </span>
@@ -4373,7 +4367,7 @@ This documentation describes how to set up a long running monitoring &amp; traci
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/deployment/' href='/ocis/deployment/'><span itemprop='name'>Deployment</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Monitoring & Tracing</span><meta itemprop='position' content='4' /></li>
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/deployment/' href='/ocis/deployment/'><span itemprop='name'>Deployment</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>oCIS with LDAP</span><meta itemprop='position' content='4' /></li>
     
 
     
@@ -4389,7 +4383,7 @@ This documentation describes how to set up a long running monitoring &amp; traci
     <div>
         <span class="editpage">
             <svg class="icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
-            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/deployment/monitoring-tracing.md">
+            <a href="https://github.com/owncloud/ocis/edit/master/docs/ocis/deployment/ocis_ldap.md">
                 Edit this page
             </a>
         </span>
@@ -4399,339 +4393,153 @@ This documentation describes how to set up a long running monitoring &amp; traci
 
 
     <article class="gdoc-markdown gdoc-markdown__align--left">
-        <h1>Monitoring &amp; Tracing</h1>
+        <h1>oCIS with LDAP</h1>
         
 
 
-  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#overview-about-the-proposed-solution">Overview about the proposed solution</a>
-      <ul>
-        <li><a href="#monitoring--tracing-clients">Monitoring &amp; tracing clients</a></li>
-        <li><a href="#monitoring--tracing-server">Monitoring &amp; tracing server</a></li>
+  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#server-deployment">Server Deployment</a>
+          <ul>
+            <li><a href="#requirements">Requirements</a></li>
+            <li><a href="#install-this-example">Install this example</a></li>
+          </ul>
+        </li>
+        <li><a href="#local-setup">Local setup</a></li>
       </ul></nav><hr></div>
 
 
-<p>Monitoring and tracing gives developers and admin insights into a complex system, in this case oCIS.</p>
-<p>If you are a developer and want to trace during developing you should have a look at <a class="gdoc-markdown__link" href="https://owncloud.dev/ocis/development/tracing/">example server setup</a>.</p>
-<p>This documentation describes how to set up a long running monitoring &amp; tracing infrastructure for one or multiple oCIS servers or deployments. After reading this guide, you also should know everything needed to integrate oCIS into your existing monitoring and tracing infrastructure.</p>
 <div class="gdoc-page__anchorwrap">
-    <h1 id="overview-about-the-proposed-solution">
-        Overview about the proposed solution
-        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/monitoring-tracing/#overview-about-the-proposed-solution" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Overview about the proposed solution" href="#overview-about-the-proposed-solution">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h1>
-</div>
-  
-  <div>
-    <svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1515px" height="381px" viewBox="-0.5 -0.5 1515 381" content="&lt;mxfile host=&quot;fe155941-3aeb-4bf4-b46e-b61bd7a78d8b&quot; modified=&quot;2020-12-30T15:56:24.198Z&quot; agent=&quot;5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) code-oss/1.51.1 Chrome/83.0.4103.122 Electron/9.3.5 Safari/537.36&quot; etag=&quot;G7FMcV0joDvKYmZ0NmjB&quot; version=&quot;13.10.0&quot; type=&quot;embed&quot;&gt;&lt;diagram id=&quot;f7z5_SjKyMCIHCw8dba3&quot; name=&quot;Page-1&quot;&gt;7Vptc+MmEP41nmk/NCOBJNsfE8fN9Xq9ScedNv1IJCzRw8IF5Jf8+oKELMnIsa+xLeVa30xOrADB8+wuy8IAThabB46WyS8swnQAnGgzgPcDANyR46r/tGRrJMADhSTmJDKySjAjL9gIHSPNSIRFo6JkjEqybApDlqY4lA0Z4pytm9XmjDa/ukQxtgSzEFFb+geJZFJIR75TyT9gEifll13HvFmgsrIRiARFbF0TwekATjhjsnhabCaYavRKXIp2Px54uxsYx6k8pQEsGqwQzczczLjktpzsOiESz5Yo1OW1YnQA7xK5oKrkqsc5oXTCKON5bTj39T8lF5KzL7j2Jsh/ugVLZU1e/JTcHruZzgpziTc1kZnLA2YLLPlWVTFvoYG1VKyxKa8rlrxSltQYgkMjREYz4l3XFXjqweDXjmUwpc6DK5ynzx9/flpOJ59nL/QH99sC2GsCDJzOAf7GNDhwjyMcXBnhoYUoZ1kaYd3IUdNmXCYsZiminxhbGlT/wlJujetGmWRNzBVAfPtUL/ypO7vxy+L9xnRelLamdBBhwTIe4tdm4ZmFAvEYy1cqmno4aqwBNmEcUyTJqrkknB18z1LvR667TnAmjtByRO3PoazQbyorbFHWsk5dWccXc7e2rmoiZ6ZYaeq0kt69XZs3RD6V+qqea7qsSpUq68K2rtdXtQD/RAMY98oAYPCf8j5+r8D3Le/zEeEYcyX7NcPmA116INcZN9dLz7ddkNpxXNMFORYqV3RB7r9xQc61zCB4ly4oOGwFKgqkaoepIsGuLSGAfTOEsQXblCIhSTjDiIdJ54iNgr4h5tpr3f/RS4kN6Mp35E1vOUfbWoUlI6kUtZ4ftaC+MA2b2gVHfl0/jjfwxv6eQhVjqNRrN5k3aNyoPxoHXle5K6hOv7Z+5bBrDvSBozlKUeeu0wq7oNe17wSd7vyaYdewb3GXOz7RAkDQLxOwYwg2+WnWuf7v+/bOI4fyPKEG1G+Y4lj5i7eBpTEhIaK3lMSpkkltGGdJ1YO9RGe5FB3DEABwKRDtZH092eawTC4z2bnywf2sW5v2eS1ZN/9i2gf6E0VcKog4NYFTdtgTDwq890LNoS0FuNyyWB5/HiXV7VdCouXYtuGoSNpHPwXdzv2Unc/8wITehA1AgBYaguKvktyz8Eue4tGfJmH3hy0WnMPO4ex089jvTCc4NdXZr4AbvJLrvI01Cp2bwV7c6AX+aXFjcCkzKO3yymbQ3zOsMnHRE52G9hm6RZgK7SlJ8WR3YUxDFSGR7CgqN0Kf0DOmj0wQSZjeED0zKdni4E4JmVKo4FZW1Lx4wlJp+FWQmbIZk/4kEstiMHOy0eO4y5OOmE9XWOcei05Egpa6wWIT69t2N2gtvJtM5N/au9ni5L8zZYA8sJ8BCiw7HI5sMyxlb6HZJlTNd5U7qTnL12yWEsk4SePWtV1yFBbvSDrnSEiehTLj2FILBYZscmbxuU/7gkRRYeFYkBf0vGPTZIxVv/7dwL/XfSmjFob/Mx0CWbeHoEXKLh5obKrP4Bzt4Kpg5Tvx/Y6YInujhqNG8xU0hZRgk25/1/xY1+da6GnNeZxj7bLo+Z2ITOH1gnJXpnpPI/X3b32wX8DO5ooUqhF+VuQFsX7ahcOmuiYJv39mXDj0mnFFy10md9jCDfx6blSxuuJbHOVUN6Xh9B8=&lt;/diagram&gt;&lt;/mxfile&gt;">
-    <defs/>
-    <g>
-        <rect x="0" y="0" width="490" height="370" fill="#f5f5f5" stroke="#666666" pointer-events="all"/>
-        <rect x="10" y="10" width="490" height="370" fill="#f5f5f5" stroke="#666666" pointer-events="all"/>
-        <rect x="580" y="10" width="690" height="370" fill="#f5f5f5" stroke="#666666" pointer-events="all"/>
-        <path d="M 1390 172.3 L 1245.5 88.2" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 1240.97 85.56 L 1248.78 86.06 L 1245.5 88.2 L 1245.26 92.11 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
-        <rect x="605" y="40" width="635" height="90" fill="#ffffff" stroke="#000000" pointer-events="all"/>
-        <g transform="translate(-0.5 -0.5)">
-            <switch>
-                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 633px; height: 1px; padding-top: 85px; margin-left: 606px;">
-                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
-                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
-                                Prometheus
-                            </div>
-                        </div>
-                    </div>
-                </foreignObject>
-                <text x="923" y="89" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
-                    Prometheus
-                </text>
-            </switch>
-        </g>
-        <path d="M 1060 305 L 1016.37 305" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 1011.12 305 L 1018.12 301.5 L 1016.37 305 L 1018.12 308.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
-        <path d="M 1390 217.7 L 1245.5 301.8" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 1240.97 304.44 L 1245.26 297.89 L 1245.5 301.8 L 1248.78 303.94 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
-        <rect x="1060" y="260" width="180" height="90" fill="#ffffff" stroke="#000000" pointer-events="all"/>
-        <g transform="translate(-0.5 -0.5)">
-            <switch>
-                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 178px; height: 1px; padding-top: 305px; margin-left: 1061px;">
-                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
-                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
-                                Jaeger Query
-                            </div>
-                        </div>
-                    </div>
-                </foreignObject>
-                <text x="1150" y="309" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
-                    Jaeger Query
-                </text>
-            </switch>
-        </g>
-        <path d="M 780 305 L 823.63 305" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 828.88 305 L 821.88 308.5 L 823.63 305 L 821.88 301.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
-        <rect x="600" y="260" width="180" height="90" fill="#ffffff" stroke="#000000" pointer-events="all"/>
-        <g transform="translate(-0.5 -0.5)">
-            <switch>
-                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 178px; height: 1px; padding-top: 305px; margin-left: 601px;">
-                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
-                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
-                                Jaeger Collector
-                            </div>
-                        </div>
-                    </div>
-                </foreignObject>
-                <text x="690" y="309" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
-                    Jaeger Collector
-                </text>
-            </switch>
-        </g>
-        <rect x="830" y="260" width="180" height="90" fill="#ffffff" stroke="#000000" pointer-events="all"/>
-        <g transform="translate(-0.5 -0.5)">
-            <switch>
-                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 178px; height: 1px; padding-top: 305px; margin-left: 831px;">
-                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
-                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
-                                ElasticSearch
-                            </div>
-                        </div>
-                    </div>
-                </foreignObject>
-                <text x="920" y="309" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
-                    ElasticSearch
-                </text>
-            </switch>
-        </g>
-        <path d="M 1060 195 L 1040 195 L 1040 305 L 1016.37 305" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 1011.12 305 L 1018.12 301.5 L 1016.37 305 L 1018.12 308.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
-        <path d="M 1060 172.5 L 922.5 172.5 L 922.5 136.37" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 922.5 131.12 L 926 138.12 L 922.5 136.37 L 919 138.12 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
-        <rect x="1060" y="150" width="180" height="90" fill="#ffffff" stroke="#000000" pointer-events="all"/>
-        <g transform="translate(-0.5 -0.5)">
-            <switch>
-                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 178px; height: 1px; padding-top: 195px; margin-left: 1061px;">
-                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
-                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
-                                Grafana
-                            </div>
-                        </div>
-                    </div>
-                </foreignObject>
-                <text x="1150" y="199" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
-                    Grafana
-                </text>
-            </switch>
-        </g>
-        <path d="M 220 227.5 L 255 227.5 L 255 305 L 283.63 305" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 288.88 305 L 281.88 308.5 L 283.63 305 L 281.88 301.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
-        <rect x="40" y="160" width="180" height="90" fill="#ffffff" stroke="#000000" pointer-events="all"/>
-        <g transform="translate(-0.5 -0.5)">
-            <switch>
-                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 178px; height: 1px; padding-top: 205px; margin-left: 41px;">
-                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
-                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
-                                oCIS
-                            </div>
-                        </div>
-                    </div>
-                </foreignObject>
-                <text x="130" y="209" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
-                    oCIS
-                </text>
-            </switch>
-        </g>
-        <rect x="290" y="28" width="180" height="222" fill="#ffffff" stroke="#000000" pointer-events="all"/>
-        <g transform="translate(-0.5 -0.5)">
-            <switch>
-                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 178px; height: 1px; padding-top: 35px; margin-left: 291px;">
-                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
-                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
-                                Telegraf
-                            </div>
-                        </div>
-                    </div>
-                </foreignObject>
-                <text x="380" y="47" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
-                    Telegraf
-                </text>
-            </switch>
-        </g>
-        <rect x="305" y="60" width="145" height="50" fill="#ffffff" stroke="#000000" pointer-events="all"/>
-        <g transform="translate(-0.5 -0.5)">
-            <switch>
-                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 143px; height: 1px; padding-top: 85px; margin-left: 306px;">
-                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
-                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
-                                Prometheus output
-                            </div>
-                        </div>
-                    </div>
-                </foreignObject>
-                <text x="378" y="89" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
-                    Prometheus output
-                </text>
-            </switch>
-        </g>
-        <path d="M 605 85 L 456.37 85" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 451.12 85 L 458.12 81.5 L 456.37 85 L 458.12 88.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
-        <path d="M 305 145 L 262.5 145 L 262.5 182.5 L 226.37 182.5" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 221.12 182.5 L 228.12 179 L 226.37 182.5 L 228.12 186 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
-        <rect x="305" y="120" width="145" height="50" fill="#ffffff" stroke="#000000" pointer-events="all"/>
-        <g transform="translate(-0.5 -0.5)">
-            <switch>
-                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 143px; height: 1px; padding-top: 145px; margin-left: 306px;">
-                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
-                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
-                                Prometheus input
-                            </div>
-                        </div>
-                    </div>
-                </foreignObject>
-                <text x="378" y="149" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
-                    Prometheus input
-                </text>
-            </switch>
-        </g>
-        <rect x="305" y="180" width="145" height="50" fill="#ffffff" stroke="#000000" pointer-events="all"/>
-        <g transform="translate(-0.5 -0.5)">
-            <switch>
-                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 143px; height: 1px; padding-top: 205px; margin-left: 306px;">
-                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
-                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
-                                Host &amp; Docker metrics
-                            </div>
-                        </div>
-                    </div>
-                </foreignObject>
-                <text x="378" y="209" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
-                    Host &amp; Docker metrics
-                </text>
-            </switch>
-        </g>
-        <path d="M 470 305 L 593.63 305" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 598.88 305 L 591.88 308.5 L 593.63 305 L 591.88 301.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
-        <rect x="290" y="275" width="180" height="60" fill="#ffffff" stroke="#000000" pointer-events="all"/>
-        <g transform="translate(-0.5 -0.5)">
-            <switch>
-                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 178px; height: 1px; padding-top: 305px; margin-left: 291px;">
-                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
-                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
-                                Jaeger Agent
-                            </div>
-                        </div>
-                    </div>
-                </foreignObject>
-                <text x="380" y="309" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
-                    Jaeger Agent
-                </text>
-            </switch>
-        </g>
-        <path d="M 1390 195.1 L 1315 195.1 L 1315 195 L 1246.37 195" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 1241.12 195 L 1248.12 191.5 L 1246.37 195 L 1248.12 198.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
-        <rect x="1390" y="156" width="78" height="78" fill="none" stroke="none" pointer-events="all"/>
-        <path d="M 1419.59 194.06 C 1422.34 195.48 1425.46 196.28 1428.76 196.28 C 1432.06 196.28 1435.17 195.48 1437.92 194.07 C 1441.05 194.26 1444.73 195.8 1448.17 198.02 C 1451.91 200.45 1455.35 203.66 1457.59 206.49 C 1462.55 213.24 1464.73 219.41 1464.57 230.95 L 1393.05 230.95 C 1393.23 217.1 1395.5 211.87 1401.87 204.1 C 1404.8 200.86 1412.08 195.24 1419.59 194.06 Z M 1428.76 159.05 C 1438.24 159.05 1445.89 166.7 1445.89 176.17 C 1445.89 182.56 1442.4 188.12 1437.23 191.06 C 1437.15 191.06 1437.08 191.06 1437.01 191.06 L 1437.01 191.19 C 1434.56 192.53 1431.75 193.3 1428.76 193.3 C 1419.29 193.3 1411.64 185.65 1411.64 176.17 C 1411.64 166.7 1419.29 159.05 1428.76 159.05 Z M 1428.76 156.06 C 1417.67 156.06 1408.65 165.08 1408.65 176.17 C 1408.65 182.46 1411.56 188.09 1416.09 191.77 C 1408.77 193.84 1402.6 198.83 1399.63 202.13 C 1399.61 202.14 1399.59 202.16 1399.58 202.18 C 1392.74 210.53 1390 216.95 1390 232.45 C 1390 232.84 1390.16 233.22 1390.44 233.5 C 1390.72 233.78 1391.1 233.94 1391.49 233.94 L 1466.09 233.94 C 1466.9 233.94 1467.56 233.3 1467.59 232.49 C 1468 219.47 1465.45 212.14 1459.98 204.7 C 1459.97 204.69 1459.96 204.67 1459.95 204.66 C 1457.47 201.52 1453.84 198.15 1449.79 195.52 C 1447.17 193.82 1444.38 192.42 1441.57 191.66 C 1446.03 187.97 1448.87 182.4 1448.87 176.17 C 1448.87 165.08 1439.85 156.06 1428.76 156.06 Z" fill="#000000" stroke="none" pointer-events="all"/>
-        <rect x="580" y="13" width="250" height="20" fill="none" stroke="none" pointer-events="all"/>
-        <g transform="translate(-0.5 -0.5)">
-            <switch>
-                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 23px; margin-left: 705px;">
-                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
-                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">
-                                server for monitoring &amp; tracing infrastructure
-                            </div>
-                        </div>
-                    </div>
-                </foreignObject>
-                <text x="705" y="27" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
-                    server for monitoring &amp; tracing infrastru...
-                </text>
-            </switch>
-        </g>
-        <rect x="10" y="13" width="280" height="20" fill="none" stroke="none" pointer-events="all"/>
-        <g transform="translate(-0.5 -0.5)">
-            <switch>
-                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 23px; margin-left: 150px;">
-                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
-                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">
-                                server(s) for oCIS with monitoring &amp; tracing clients
-                            </div>
-                        </div>
-                    </div>
-                </foreignObject>
-                <text x="150" y="27" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
-                    server(s) for oCIS with monitoring &amp; tracing c...
-                </text>
-            </switch>
-        </g>
-        <rect x="1344" y="240" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
-        <g transform="translate(-0.5 -0.5)">
-            <switch>
-                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 255px; margin-left: 1429px;">
-                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
-                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">
-                                Visualization and querying of
-                                <br/>
-                                metrics and traces
-                            </div>
-                        </div>
-                    </div>
-                </foreignObject>
-                <text x="1429" y="259" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">
-                    Visualization and querying o...
-                </text>
-            </switch>
-        </g>
-    </g>
-    <switch>
-        <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
-        <a transform="translate(0,-5)" xlink:href="https://desk.draw.io/support/solutions/articles/16000042487" target="_blank">
-            <text text-anchor="middle" font-size="10px" x="50%" y="100%">
-                Viewer does not support full SVG 1.1
-            </text>
-        </a>
-    </switch>
-</svg>
-  </div>
-  
-
-
-<div class="gdoc-page__anchorwrap">
-    <h2 id="monitoring--tracing-clients">
-        Monitoring &amp; tracing clients
-        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/monitoring-tracing/#monitoring--tracing-clients" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Monitoring &amp; tracing clients" href="#monitoring--tracing-clients">
+    <h2 id="overview">
+        Overview
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_ldap/#overview" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Overview" href="#overview">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><p>We assume that you already have oCIS deployed on one or multiple servers by using our deployment examples (see rectangle on the left). On these servers our monitoring &amp; tracing clients, namely Telegraf and Jaeger agent, need to be added.</p>
-<p>Telegraf will collect host metrics (CPU, RAM, network, processes, &hellip;) and docker metrics (per container CPU, RAM, network, &hellip;). Telegraf is also configured to scrape metrics from Prometheus metric endpoints which oCIS exposes, this is done by the Prometheus input plugin . The metrics from oCIS and all other metrics gathered will be exposed with the Prometheus output plugin and can therefore be scraped by our monitoring &amp; tracing server.</p>
-<p>Jaeger agent is is being configured as target for traces in oCIS. It then will receive traces from all oCIS extensions, add some process tags to them and forward them to our Jaeger collector on our monitoring &amp; tracing server.</p>
-<p>For more information and how to deploy it, see <a class="gdoc-markdown__link" href="https://github.com/owncloud-devops/monitoring-tracing-client">monitoring &amp; tracing client</a>.</p>
+</div><ul>
+<li>Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup</li>
+<li>OpenLDAP server with demo users</li>
+<li>LDAP admin interface to edit users</li>
+<li>oCIS running behind Traefik as reverse proxy
+<ul>
+<li>oCIS is using the LDAP server as user backend</li>
+</ul>
+</li>
+</ul>
+<p><a class="gdoc-markdown__link" href="https://github.com/owncloud/ocis/tree/master/deployments/examples/ocis_ldap">Find this example on GitHub</a></p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="monitoring--tracing-server">
-        Monitoring &amp; tracing server
-        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/monitoring-tracing/#monitoring--tracing-server" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Monitoring &amp; tracing server" href="#monitoring--tracing-server">
+    <h2 id="server-deployment">
+        Server Deployment
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_ldap/#server-deployment" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Server Deployment" href="#server-deployment">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><p>A live version of the monitoring and tracing server for our demo instances is available here: <a class="gdoc-markdown__link" href="https://grafana.infra.owncloud.works">Grafana</a>, <a class="gdoc-markdown__link" href="https://prometheus.infra.owncloud.works">Prometheus</a> and <a class="gdoc-markdown__link" href="https://jaeger.infra.owncloud.works">Jaeger Query</a>.</p>
-<p>The monitoring &amp; tracing server is considered as shared infrastructure and is normally used for different services. This means that oCIS is not the only software whose metrics and traces are available on the monitoring server. It is also possible that data of multiple oCIS instances are available on the monitoring server.</p>
-<p>Metrics are scraped, stored and can be queried with Prometheus. For the visualization of these metrics Grafana is used. Because Prometheus is scraping the metrics from the oCIS server (pull model instead of a push model), the Prometheus server must have access to the exposed endpoint of the Telegraf Prometheus output plugin.</p>
-<p>Jaeger collector receives traces sent by the Jaeger agent on the oCIS servers and persists them in ElasticSearch. From there the user can query and visualize the traces in Jaeger query or in Grafana. Because Jaeger agent is actively sending traces to the monitoring &amp; tracing server, the server must be reachable from the oCIS server.</p>
-<p>For more information and how to deploy it, see <a class="gdoc-markdown__link" href="https://github.com/owncloud-devops/monitoring-tracing-server">monitoring &amp; tracing server</a>.</p>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="requirements">
+        Requirements
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_ldap/#requirements" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Requirements" href="#requirements">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ul>
+<li>Linux server with docker and docker-compose installed</li>
+<li>four domains set up and pointing to your server
+<ul>
+<li>ocis.* for serving oCIS</li>
+<li>ldap .* for serving the LDAP managment UI</li>
+<li>traefik.* for serving the Traefik dashboard</li>
+</ul>
+</li>
+</ul>
+<p>See also <a class="gdoc-markdown__link" href="https://owncloud.dev/ocis/deployment/preparing_server/">example server setup</a></p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="install-this-example">
+        Install this example
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_ldap/#install-this-example" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Install this example" href="#install-this-example">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ul>
+<li>
+<p>Clone oCIS repository</p>
+<p><code>git clone https://github.com/owncloud/ocis.git</code></p>
+</li>
+<li>
+<p>Go to the deployment example</p>
+<p><code>cd ocis/deployment/examples/ocis_ldap</code></p>
+</li>
+<li>
+<p>Open the <code>.env</code> file in a text editor
+The file by default looks like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># If you&#39;re on a internet facing server please comment out following line.</span>
+<span class="c1"># It skips certificate validation for various parts of oCIS and is needed if you use self signed certificates.</span>
+<span class="nv">INSECURE</span><span class="o">=</span><span class="nb">true</span>
+
+<span class="c1">### Traefik settings ###</span>
+<span class="c1"># Serve Treafik dashboard. Defaults to &#34;false&#34;.</span>
+<span class="nv">TRAEFIK_DASHBOARD</span><span class="o">=</span>
+<span class="c1"># Domain of Traefik, where you can find the dashboard. Defaults to &#34;traefik.owncloud.test&#34;</span>
+<span class="nv">TRAEFIK_DOMAIN</span><span class="o">=</span>
+<span class="c1"># Basic authentication for the dashboard. Defaults to user &#34;admin&#34; and password &#34;admin&#34;</span>
+<span class="nv">TRAEFIK_BASIC_AUTH_USERS</span><span class="o">=</span>
+<span class="c1"># Email address for obtaining LetsEncrypt certificates, needs only be changed if this is a public facing server</span>
+<span class="nv">TRAEFIK_ACME_MAIL</span><span class="o">=</span>
+
+<span class="c1">### oCIS settings ###</span>
+<span class="c1"># oCIS version. Defaults to &#34;latest&#34;</span>
+<span class="nv">OCIS_DOCKER_TAG</span><span class="o">=</span>
+<span class="c1"># Domain of oCIS, where you can find the frontend. Defaults to &#34;ocis.owncloud.test&#34;</span>
+<span class="nv">OCIS_DOMAIN</span><span class="o">=</span>
+<span class="c1"># JWT secret which is used for the storage provider. Must be changed in order to have a secure oCIS. Defaults to &#34;Pive-Fumkiu4&#34;</span>
+<span class="nv">OCIS_JWT_SECRET</span><span class="o">=</span>
+<span class="c1"># JWT secret which is used for uploads to create transfer tokens. Must be changed in order to have a secure oCIS. Defaults to &#34;replace-me-with-a-transfer-secret&#34;</span>
+<span class="nv">STORAGE_TRANSFER_SECRET</span><span class="o">=</span>
+<span class="c1"># Machine auth api key secret. Must be changed in order to have a secure oCIS. Defaults to &#34;change-me-please&#34;</span>
+<span class="nv">OCIS_MACHINE_AUTH_API_KEY</span><span class="o">=</span>
+
+<span class="c1">### LDAP server settings ###</span>
+<span class="c1"># Password of LDAP user &#34;cn=admin,dc=owncloud,dc=com&#34;. Defaults to &#34;admin&#34;</span>
+<span class="nv">LDAP_ADMIN_PASSWORD</span><span class="o">=</span>
+
+<span class="c1">### LDAP manager settings ###</span>
+<span class="c1"># Domain of LDAP manager. Defaults to &#34;ldap.owncloud.test&#34;</span>
+<span class="nv">LDAP_MANAGER_DOMAIN</span><span class="o">=</span>
+</code></pre></div><p>You are installing oCIS on a server and Traefik will obtain valid certificates for you so please remove <code>INSECURE=true</code> or set it to <code>false</code>.</p>
+<p>If you want to use the Traefik dashboard, set TRAEFIK_DASHBOARD to <code>true</code> (default is <code>false</code> and therefore not active). If you activate it, you must set a domain for the Traefik dashboard in <code>TRAEFIK_DOMAIN=</code> eg. <code>TRAEFIK_DOMAIN=traefik.owncloud.test</code>.</p>
+<p>The Traefik dashboard is secured by basic auth. Default credentials are the user <code>admin</code> with the password <code>admin</code>. To set your own credentials, generate a htpasswd (eg. by using <a class="gdoc-markdown__link" href="https://htpasswdgenerator.de/">an online tool</a> or a cli tool).</p>
+<p>Traefik will issue certificates with LetsEncrypt and therefore you must set an email address in <code>TRAEFIK_ACME_MAIL=</code>.</p>
+<p>By default oCIS will be started in the <code>latest</code> version. If you want to start a specific version of oCIS set the version to <code>OCIS_DOCKER_TAG=</code>. Available versions can be found on <a class="gdoc-markdown__link" href="https://hub.docker.com/r/owncloud/ocis/tags?page=1&amp;ordering=last_updated">Docker Hub</a>.</p>
+<p>Set your domain for the oCIS frontend in <code>OCIS_DOMAIN=</code>, eg. <code>OCIS_DOMAIN=cloud.owncloud.test</code>.</p>
+<p>You also must override the default secrets in <code>STORAGE_TRANSFER_SECRET</code> and <code>OCIS_JWT_SECRET</code> in order to secure your oCIS instance. Choose some random strings eg. from the output of <code>openssl rand -base64 32</code>. For more information see <a class="gdoc-markdown__link" href="https://owncloud.dev/ocis/deployment/#secure-an-ocis-instance">secure an oCIS instance</a>.</p>
+<p>The OpenLDAP server in this example deployment has an admin users, which is also used as bind user in order to keep theses examples simple. You can change the default password &ldquo;admin&rdquo; to a different one by setting it to <code>LDAP_ADMIN_PASSWORD=...</code>.</p>
+<p>Set your domain for the LDAP manager UI in <code>LDAP_MANAGER_DOMAIN=</code>, eg. <code>ldap.owncloud.test</code>.</p>
+<p>Now you have configured everything and can save the file.</p>
+</li>
+<li>
+<p>Start the docker stack</p>
+<p><code>docker-compose up -d</code></p>
+</li>
+<li>
+<p>You now can visit oCIS and Traefik dashboard on your configured domains. You may need to wait some minutes until all services are fully ready, so make sure that you try to reload the pages from time to time.</p>
+</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="local-setup">
+        Local setup
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_ldap/#local-setup" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Local setup" href="#local-setup">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>For a more simple local ocis setup see <a class="gdoc-markdown__link" href="https://owncloud.dev/ocis/getting-started/">Getting started</a></p>
+<p>This docker stack can also be run locally. One downside is that Traefik can not obtain valid SSL certificates and therefore will create self signed ones. This means that your browser will show scary warnings. Another downside is that you can not point DNS entries to your localhost. So you have to add static host entries to your computer.</p>
+<p>On Linux and macOS you can add them to your <code>/etc/hosts</code> files like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">127.0.0.1 cloud.owncloud.test
+127.0.0.1 keycloak.owncloud.test
+127.0.0.1 ldap.owncloud.test
+127.0.0.1 traefik.owncloud.test
+</code></pre></div><p>After that you&rsquo;re ready to start the application stack:</p>
+<p><code>docker-compose up -d</code></p>
+<p>Open <a class="gdoc-markdown__link" href="https://ocis.owncloud.test">https://ocis.owncloud.test</a> in your browser and accept the invalid certificate warning. You now can login to oCIS with the default users, which also can be found here: <a class="gdoc-markdown__link" href="https://owncloud.dev/ocis/getting-started/#login-to-ocis-web">Getting started</a>. You may need to wait some minutes until all services are fully ready, so make sure that you try to reload the pages from time to time.</p>
 
     </article>
 
