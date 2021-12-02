@@ -10,7 +10,7 @@
 
 
 
-    <meta name="description" content="Setup Selenium  Setup using Docker Setup using Docker Desktop for Mac Setup using standalone Selenium server   Setup backend  ownCloud 10 oCIS   Setup ownCloud Web Run tests  with oC10 backend with oCIS backend Visual Regression Testing  Running the visual regression tests Updating the snapshots     Available settings to be set by environment variables Tips  too many open files   Acceptance Tests in CI  1.">
+    <meta name="description" content="Setup Selenium  Setup using Docker Setup using Docker Desktop for Mac Setup using standalone Selenium server   Setup backend  ownCloud 10 oCIS   Setup the owncloud test Middleware Setup ownCloud Web Run tests  with oC10 backend with oCIS backend Visual Regression Testing  Running the visual regression tests Updating the snapshots     Available settings to be set by environment variables Tips  too many open files   Acceptance Tests in CI  1.">
 
 
 
@@ -23,7 +23,7 @@
     
 
     <meta property="og:title" content="Running acceptance tests - manual" />
-<meta property="og:description" content="Setup Selenium  Setup using Docker Setup using Docker Desktop for Mac Setup using standalone Selenium server   Setup backend  ownCloud 10 oCIS   Setup ownCloud Web Run tests  with oC10 backend with oCIS backend Visual Regression Testing  Running the visual regression tests Updating the snapshots     Available settings to be set by environment variables Tips  too many open files   Acceptance Tests in CI  1." />
+<meta property="og:description" content="Setup Selenium  Setup using Docker Setup using Docker Desktop for Mac Setup using standalone Selenium server   Setup backend  ownCloud 10 oCIS   Setup the owncloud test Middleware Setup ownCloud Web Run tests  with oC10 backend with oCIS backend Visual Regression Testing  Running the visual regression tests Updating the snapshots     Available settings to be set by environment variables Tips  too many open files   Acceptance Tests in CI  1." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/clients/web/testing-manual/" /><meta property="article:section" content="clients" />
 <meta property="article:published_time" content="2020-04-15T00:00:00+00:00" />
@@ -32,7 +32,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Running acceptance tests - manual"/>
-<meta name="twitter:description" content="Setup Selenium  Setup using Docker Setup using Docker Desktop for Mac Setup using standalone Selenium server   Setup backend  ownCloud 10 oCIS   Setup ownCloud Web Run tests  with oC10 backend with oCIS backend Visual Regression Testing  Running the visual regression tests Updating the snapshots     Available settings to be set by environment variables Tips  too many open files   Acceptance Tests in CI  1."/>
+<meta name="twitter:description" content="Setup Selenium  Setup using Docker Setup using Docker Desktop for Mac Setup using standalone Selenium server   Setup backend  ownCloud 10 oCIS   Setup the owncloud test Middleware Setup ownCloud Web Run tests  with oC10 backend with oCIS backend Visual Regression Testing  Running the visual regression tests Updating the snapshots     Available settings to be set by environment variables Tips  too many open files   Acceptance Tests in CI  1."/>
 
 
     <script src="/js/darkmode-ce906ea916.min.js"></script>
@@ -66,7 +66,7 @@
     "name": "Running acceptance tests - manual",
     "headline": "Running acceptance tests - manual",
     "alternativeHeadline": "",
-    "description": "Setup Selenium  Setup using Docker Setup using Docker Desktop for Mac Setup using standalone Selenium server   Setup backend  ownCloud 10 oCIS   Setup ownCloud Web Run tests  with oC10 backend with oCIS backend Visual Regression Testing  Running the visual regression tests Updating the snapshots     Available settings to be set by environment variables Tips  too many open files   Acceptance Tests in CI  1.",
+    "description": "Setup Selenium  Setup using Docker Setup using Docker Desktop for Mac Setup using standalone Selenium server   Setup backend  ownCloud 10 oCIS   Setup the owncloud test Middleware Setup ownCloud Web Run tests  with oC10 backend with oCIS backend Visual Regression Testing  Running the visual regression tests Updating the snapshots     Available settings to be set by environment variables Tips  too many open files   Acceptance Tests in CI  1.",
     "inLanguage": "en",
     "isFamilyFriendly": "true",
     "mainEntityOfPage": {
@@ -90,7 +90,7 @@
         }
     },
     "url" : "https:\/\/owncloud.dev\/clients\/web\/testing-manual\/",
-    "wordCount" : "1493",
+    "wordCount" : "1544",
     "genre" : [ ]
 }
 </script>
@@ -4411,6 +4411,7 @@
             <li><a href="#ocis">oCIS</a></li>
           </ul>
         </li>
+        <li><a href="#setup-the-owncloud-test-middleware">Setup the owncloud test Middleware</a></li>
         <li><a href="#setup-owncloud-web">Setup ownCloud Web</a></li>
         <li><a href="#run-tests">Run tests</a>
           <ul>
@@ -4530,6 +4531,14 @@ After all these changes Web will be accessible at <code>http://host.docker.inter
 </li>
 </ul>
 <div class="gdoc-page__anchorwrap">
+    <h2 id="setup-the-owncloud-test-middleware">
+        Setup the owncloud test Middleware
+        <a data-clipboard-text="https://owncloud.dev/clients/web/testing-manual/#setup-the-owncloud-test-middleware" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setup the owncloud test Middleware" href="#setup-the-owncloud-test-middleware">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>To run the tests, we need to run the <a class="gdoc-markdown__link" href="https://github.com/owncloud/owncloud-test-middleware">owncloud-test-middleware</a>. You can find the instructions on how to run the middleware server from its <a class="gdoc-markdown__link" href="https://github.com/owncloud/owncloud-test-middleware#starting-the-server">github page</a></p>
+<div class="gdoc-page__anchorwrap">
     <h2 id="setup-owncloud-web">
         Setup ownCloud Web
         <a data-clipboard-text="https://owncloud.dev/clients/web/testing-manual/#setup-owncloud-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setup ownCloud Web" href="#setup-owncloud-web">
@@ -4560,6 +4569,9 @@ After all these changes Web will be accessible at <code>http://host.docker.inter
 </li>
 <li>
 <p>set <code>BACKEND_HOST</code> to point to the URL of the backend, for example &ldquo;http://localhost/owncloud/&rdquo;</p>
+</li>
+<li>
+<p>set <code>MIDDLEWARE_HOST</code> to point to the URL of the <a class="gdoc-markdown__link" href="https://github.com/owncloud/owncloud-test-middleware">owncloud-test-middleware</a></p>
 </li>
 <li>
 <p>to be able to run federation tests, additional setup is needed:</p>
@@ -4619,7 +4631,7 @@ After all these changes Web will be accessible at <code>http://host.docker.inter
     </h4>
 </div><p>When you run the acceptance tests as usual, all the visual regression comparisons are skipped. To run the acceptance test suite with the visual comparison enabled you need to set the env variable, <code>VISUAL_TEST</code> to <code>true</code></p>
 <p>eg.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">VISUAL_TEST=true SERVER_HOST=http://&lt;server_host&gt; BACKEND_HOST=http://&lt;backend_host&gt; yarn test:acceptance:oc10 &lt;feature-file-to-test&gt;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">VISUAL_TEST=true yarn test:acceptance:oc10 &lt;feature-file-to-test&gt;
 </code></pre></div><div class="gdoc-page__anchorwrap">
     <h4 id="updating-the-snapshots">
         Updating the snapshots
@@ -4629,7 +4641,7 @@ After all these changes Web will be accessible at <code>http://host.docker.inter
     </h4>
 </div><p>If there is some change in the components, and you want to update the snapshots of the components you can run the tests with <code>UPDATE_VRT_SCREENSHOTS</code> set to <code>true</code>. When this env variable is set, the testrunner will ignore if the visual comparison fails and updates the baseline images with the latest images if the comparison fails.</p>
 <p>eg.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">VISUAL_TEST=true UPDATE_VRT_SCREENSHOTS=true SERVER_HOST=http://&lt;server_host&gt; BACKEND_HOST=http://&lt;backend_host&gt; yarn test:acceptance:oc10 &lt;feature-file-to-test&gt;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">VISUAL_TEST=true UPDATE_VRT_SCREENSHOTS=true yarn test:acceptance:oc10 &lt;feature-file-to-test&gt;
 </code></pre></div><p><strong>note</strong> Visual regression testing may not be completely reliable every time as small changes such as window size and screen resolution may affect the result. For better results it is recommended that you run the tests using the <code>selenium/standalone-chrome-debug</code> image of selenium and window size of <code>1280x1024</code></p>
 <p>see <a class="gdoc-markdown__link" href="#available-settings-to-be-set-by-environment-variables">available settings</a> for further setup if needed</p>
 <div class="gdoc-page__anchorwrap">
@@ -4652,12 +4664,12 @@ After all these changes Web will be accessible at <code>http://host.docker.inter
 <tr>
 <td><code>SERVER_HOST</code></td>
 <td>web URL</td>
-<td>http://localhost:9100</td>
+<td><a class="gdoc-markdown__link" href="http://host.docker.internal:8080/index.php/apps/web/index.html">http://host.docker.internal:8080/index.php/apps/web/index.html</a> or <a class="gdoc-markdown__link" href="https://host.docker.internal:9200">https://host.docker.internal:9200</a></td>
 </tr>
 <tr>
 <td><code>BACKEND_HOST</code></td>
 <td>ownCloud server URL (or reva service url for running with oCIS)</td>
-<td>http://localhost:8080</td>
+<td><a class="gdoc-markdown__link" href="http://host.docker.internal:8080">http://host.docker.internal:8080</a> or <a class="gdoc-markdown__link" href="https://host.docker.internal:9200">https://host.docker.internal:9200</a></td>
 </tr>
 <tr>
 <td><code>BACKEND_USERNAME</code></td>
@@ -4728,6 +4740,11 @@ After all these changes Web will be accessible at <code>http://host.docker.inter
 <td><code>UPDATE_VRT_SCREENSHOTS</code></td>
 <td>Update the baseline snapshots with the latest images for visual regression tests</td>
 <td>-</td>
+</tr>
+<tr>
+<td><code>MIDDLEWARE_HOST</code></td>
+<td>Middleware host URL</td>
+<td><a class="gdoc-markdown__link" href="http://host.docker.internal:3000">http://host.docker.internal:3000</a></td>
 </tr>
 </tbody>
 </table> </div>
