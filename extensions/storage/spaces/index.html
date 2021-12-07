@@ -4454,10 +4454,10 @@
         </a>
     </h3>
 </div><p>Having introduced the above, one can refer to a Drive with the following URL format:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&#39;https://localhost:9200/graph/v1.0/Drive(1284d238-aa92-42ce-bdc4-0b0000009157!07c26b3a-9944-4f2b-ab33-b0b326fc7570&#34;)
-</code></pre></div><p>Updating an entity attribute:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">curl -X PATCH &#39;https://localhost:9200/graph/v1.0/Drive(&#34;1284d238-aa92-42ce-bdc4-0b0000009157!07c26b3a-9944-4f2b-ab33-b0b326fc7570)&#39; -d &#39;{&#34;name&#34;:&#34;42&#34;}&#39; -v
-</code></pre></div><p>The previous URL resource path segment (<code>Drive(1284d238-aa92-42ce-bdc4-0b0000009157!07c26b3a-9944-4f2b-ab33-b0b326fc7570)</code>) is parsed and handed over to the storage registry in order to apply the patch changes in the body, in this case update the space name attribute to <code>42</code>. Since space names are not unique we only support addressing them by their unique identifiers, any other query would render too ambiguous and explode in complexity.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="go">&#39;https://localhost:9200/graph/v1.0/Drive(1284d238-aa92-42ce-bdc4-0b0000009157!07c26b3a-9944-4f2b-ab33-b0b326fc7570&#34;)
+</span></code></pre></div><p>Updating an entity attribute:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="go">curl -X PATCH &#39;https://localhost:9200/graph/v1.0/Drive(&#34;1284d238-aa92-42ce-bdc4-0b0000009157!07c26b3a-9944-4f2b-ab33-b0b326fc7570)&#39; -d &#39;{&#34;name&#34;:&#34;42&#34;}&#39; -v
+</span></code></pre></div><p>The previous URL resource path segment (<code>Drive(1284d238-aa92-42ce-bdc4-0b0000009157!07c26b3a-9944-4f2b-ab33-b0b326fc7570)</code>) is parsed and handed over to the storage registry in order to apply the patch changes in the body, in this case update the space name attribute to <code>42</code>. Since space names are not unique we only support addressing them by their unique identifiers, any other query would render too ambiguous and explode in complexity.</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="updating-a-space-description">
         Updating a space description
@@ -4489,24 +4489,24 @@ Add a description to your spaces
     </h4>
 </div><p>Creating a Space with a quota of 10 bytes:</p>
 <p><code>curl -k -X POST 'https://localhost:9200/graph/v1.0/drives' -u admin:admin -d '{&quot;name&quot;:&quot;marketing&quot;, &quot;quota&quot;: {&quot;total&quot;: 10}}' -v</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">/var/tmp/ocis/storage/users
-├── blobs
-├── nodes
-│   ├── 627981c2-2a71-4adf-b680-177e245afdda
-│   ├── 9541e7c3-8fda-4b49-b697-e7e51457cf5a
-│   ├── b5692345-108d-4b80-9747-3a7e9739ad57
-│   └── root
-│       ├── 118351d7-67a4-4cdf-b495-6093d1e572ed -&gt; ../627981c2-2a71-4adf-b680-177e245afdda
-│       └── ddc2004c-0977-11eb-9d3f-a793888cd0f8 -&gt; ../b5692345-108d-4b80-9747-3a7e9739ad57
-├── spaces
-│   ├── personal
-│   │   └── b5692345-108d-4b80-9747-3a7e9739ad57 -&gt; ../../nodes/b5692345-108d-4b80-9747-3a7e9739ad57
-│   ├── project
-│   │   └── 627981c2-2a71-4adf-b680-177e245afdda -&gt; ../../nodes/627981c2-2a71-4adf-b680-177e245afdda
-│   └── share
-├── trash
-└── uploads
-</code></pre></div><p>Verify the new space has 10 bytes, and none of it is used:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="go">/var/tmp/ocis/storage/users
+</span><span class="go">├── blobs
+</span><span class="go">├── nodes
+</span><span class="go">│   ├── 627981c2-2a71-4adf-b680-177e245afdda
+</span><span class="go">│   ├── 9541e7c3-8fda-4b49-b697-e7e51457cf5a
+</span><span class="go">│   ├── b5692345-108d-4b80-9747-3a7e9739ad57
+</span><span class="go">│   └── root
+</span><span class="go">│       ├── 118351d7-67a4-4cdf-b495-6093d1e572ed -&gt; ../627981c2-2a71-4adf-b680-177e245afdda
+</span><span class="go">│       └── ddc2004c-0977-11eb-9d3f-a793888cd0f8 -&gt; ../b5692345-108d-4b80-9747-3a7e9739ad57
+</span><span class="go">├── spaces
+</span><span class="go">│   ├── personal
+</span><span class="go">│   │   └── b5692345-108d-4b80-9747-3a7e9739ad57 -&gt; ../../nodes/b5692345-108d-4b80-9747-3a7e9739ad57
+</span><span class="go">│   ├── project
+</span><span class="go">│   │   └── 627981c2-2a71-4adf-b680-177e245afdda -&gt; ../../nodes/627981c2-2a71-4adf-b680-177e245afdda
+</span><span class="go">│   └── share
+</span><span class="go">├── trash
+</span><span class="go">└── uploads
+</span></code></pre></div><p>Verify the new space has 10 bytes, and none of it is used:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
     <span class="nt">&#34;driveType&#34;</span><span class="p">:</span> <span class="s2">&#34;project&#34;</span><span class="p">,</span>
     <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;1284d238-aa92-42ce-bdc4-0b0000009157!627981c2-2a71-4adf-b680-177e245afdda&#34;</span><span class="p">,</span>

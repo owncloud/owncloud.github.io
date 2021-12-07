@@ -4522,28 +4522,28 @@
         </a>
     </h3>
 </div><p>First off, verify your installation is correct:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">~/code/refs/ocis-charts
-❯ minikube status
-minikube
-type: Control Plane
-host: Stopped
-kubelet: Stopped
-apiserver: Stopped
-kubeconfig: Stopped
-</code></pre></div><p>After that, start the cluster:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">~/code/refs/ocis-charts
-❯ minikube start
-😄  minikube v1.23.0 on Darwin 11.4
-✨  Using the docker driver based on existing profile
-👍  Starting control plane node minikube in cluster minikube
-🚜  Pulling base image ...
-🔄  Restarting existing docker container for &#34;minikube&#34; ...
-🐳  Preparing Kubernetes v1.22.1 on Docker 20.10.8 ...
-🔎  Verifying Kubernetes components...
-    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
-🌟  Enabled addons: storage-provisioner, default-storageclass
-🏄  Done! kubectl is now configured to use &#34;minikube&#34; cluster and &#34;default&#34; namespace by default
-</code></pre></div><p><em>On these docs, we are using the Docker driver on Mac.</em></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="go">~/code/refs/ocis-charts
+</span><span class="go">❯ minikube status
+</span><span class="go">minikube
+</span><span class="go">type: Control Plane
+</span><span class="go">host: Stopped
+</span><span class="go">kubelet: Stopped
+</span><span class="go">apiserver: Stopped
+</span><span class="go">kubeconfig: Stopped
+</span></code></pre></div><p>After that, start the cluster:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="go">~/code/refs/ocis-charts
+</span><span class="go">❯ minikube start
+</span><span class="go">😄  minikube v1.23.0 on Darwin 11.4
+</span><span class="go">✨  Using the docker driver based on existing profile
+</span><span class="go">👍  Starting control plane node minikube in cluster minikube
+</span><span class="go">🚜  Pulling base image ...
+</span><span class="go">🔄  Restarting existing docker container for &#34;minikube&#34; ...
+</span><span class="go">🐳  Preparing Kubernetes v1.22.1 on Docker 20.10.8 ...
+</span><span class="go">🔎  Verifying Kubernetes components...
+</span><span class="go">    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
+</span><span class="go">🌟  Enabled addons: storage-provisioner, default-storageclass
+</span><span class="go">🏄  Done! kubectl is now configured to use &#34;minikube&#34; cluster and &#34;default&#34; namespace by default
+</span></code></pre></div><p><em>On these docs, we are using the Docker driver on Mac.</em></p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="run-a-chart">
         Run a chart
@@ -4579,30 +4579,30 @@ kubeconfig: Stopped
 <li>install the package: <code>helm install ocis .</code></li>
 <li>verify the application is running in the cluster: <code>kubectl get pods</code></li>
 </ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">❯ kubectl get pods
-NAME                          READY   STATUS    RESTARTS         AGE
-glauth-5fb678b9cb-zs5qh       1/1     Running   3 (10m ago)      3h33m
-ocis-proxy-848f988687-g7fmb   1/1     Running   2 (10m ago)      130m
-ocs-6bb8896dd6-t4bkx          1/1     Running   3 (10m ago)      3h33m
-settings-6bf77f978d-27rdf     1/1     Running   3 (10m ago)      3h33m
-storages-6b45f9c4-2j696       10/10   Running   23 (4m43s ago)   112m
-store-cf79db94d-hvb7z         1/1     Running   3 (10m ago)      3h33m
-web-8685fdd574-tmkfb          1/1     Running   2 (10m ago)      157m
-webdav-f8d4dd7c6-vv4n7        1/1     Running   3 (10m ago)      3h33m
-</code></pre></div><ol start="5">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="go">❯ kubectl get pods
+</span><span class="go">NAME                          READY   STATUS    RESTARTS         AGE
+</span><span class="go">glauth-5fb678b9cb-zs5qh       1/1     Running   3 (10m ago)      3h33m
+</span><span class="go">ocis-proxy-848f988687-g7fmb   1/1     Running   2 (10m ago)      130m
+</span><span class="go">ocs-6bb8896dd6-t4bkx          1/1     Running   3 (10m ago)      3h33m
+</span><span class="go">settings-6bf77f978d-27rdf     1/1     Running   3 (10m ago)      3h33m
+</span><span class="go">storages-6b45f9c4-2j696       10/10   Running   23 (4m43s ago)   112m
+</span><span class="go">store-cf79db94d-hvb7z         1/1     Running   3 (10m ago)      3h33m
+</span><span class="go">web-8685fdd574-tmkfb          1/1     Running   2 (10m ago)      157m
+</span><span class="go">webdav-f8d4dd7c6-vv4n7        1/1     Running   3 (10m ago)      3h33m
+</span></code></pre></div><ol start="5">
 <li>expose the proxy as a service to the host</li>
 </ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">~/code/refs/ocis-charts
-❯ minikube service proxy-service --url
-🏃  Starting tunnel for service proxy-service.
-|-----------|---------------|-------------|------------------------|
-| NAMESPACE |     NAME      | TARGET PORT |          URL           |
-|-----------|---------------|-------------|------------------------|
-| default   | proxy-service |             | http://127.0.0.1:63633 |
-|-----------|---------------|-------------|------------------------|
-http://127.0.0.1:63633
-❗  Because you are using a Docker driver on darwin, the terminal needs to be open to run it.
-</code></pre></div><ol start="6">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="go">~/code/refs/ocis-charts
+</span><span class="go">❯ minikube service proxy-service --url
+</span><span class="go">🏃  Starting tunnel for service proxy-service.
+</span><span class="go">|-----------|---------------|-------------|------------------------|
+</span><span class="go">| NAMESPACE |     NAME      | TARGET PORT |          URL           |
+</span><span class="go">|-----------|---------------|-------------|------------------------|
+</span><span class="go">| default   | proxy-service |             | http://127.0.0.1:63633 |
+</span><span class="go">|-----------|---------------|-------------|------------------------|
+</span><span class="go">http://127.0.0.1:63633
+</span><span class="go">❗  Because you are using a Docker driver on darwin, the terminal needs to be open to run it.
+</span></code></pre></div><ol start="6">
 <li>attempt a <code>PROPFIND</code> WebDAV request to the storage: <code>curl -v -k -u einstein:relativity -H &quot;depth: 0&quot; -X PROPFIND https://127.0.0.1:63633/remote.php/dav/files/ | xmllint --format -</code></li>
 </ol>
 <p>If all is correctly setup, you should expect a response back:</p>

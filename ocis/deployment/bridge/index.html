@@ -90,7 +90,7 @@
         }
     },
     "url" : "https:\/\/owncloud.dev\/ocis\/deployment\/bridge\/",
-    "wordCount" : "1679",
+    "wordCount" : "1716",
     "genre" : [ ]
 }
 </script>
@@ -4475,26 +4475,26 @@ $ composer install
     </h3>
 </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">occ a:e graphapi
 </code></pre></div><p>No configuration necessary. You can test with <code>curl</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ curl https://cloud.ocis.test/index.php/apps/graphapi/v1.0/users -u admin -s | jq
-Enter host password for user &#39;admin&#39;:
-{
-  &#34;value&#34;: [
-    {
-      &#34;id&#34;: &#34;admin&#34;,
-      &#34;displayName&#34;: &#34;admin&#34;,
-      &#34;mail&#34;: null
-    },
-    {
-      &#34;id&#34;: &#34;demo&#34;,
-      &#34;displayName&#34;: &#34;Demo&#34;,
-      &#34;mail&#34;: null
-    },
-    ...
-
-  ],
-  &#34;@odata.nextLink&#34;: &#34;https://cloud.ocis.test/apps/graphapi/v1.0/users?$top=10&amp;$skip=10&#34;
-}
-</code></pre></div><blockquote class="gdoc-hint ">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="gp">$ </span>curl https://cloud.ocis.test/index.php/apps/graphapi/v1.0/users -u admin -s <span class="p">|</span> jq
+<span class="go">Enter host password for user &#39;admin&#39;:
+</span><span class="go">{
+</span><span class="go">  &#34;value&#34;: [
+</span><span class="go">    {
+</span><span class="go">      &#34;id&#34;: &#34;admin&#34;,
+</span><span class="go">      &#34;displayName&#34;: &#34;admin&#34;,
+</span><span class="go">      &#34;mail&#34;: null
+</span><span class="go">    },
+</span><span class="go">    {
+</span><span class="go">      &#34;id&#34;: &#34;demo&#34;,
+</span><span class="go">      &#34;displayName&#34;: &#34;Demo&#34;,
+</span><span class="go">      &#34;mail&#34;: null
+</span><span class="go">    },
+</span><span class="go">    ...
+</span><span class="go"></span><span class="err">
+</span><span class="err"></span><span class="go">  ],
+</span><span class="go">  &#34;@odata.nextLink&#34;: &#34;https://cloud.ocis.test/apps/graphapi/v1.0/users?$top=10&amp;$skip=10&#34;
+</span><span class="go">}
+</span></code></pre></div><blockquote class="gdoc-hint ">
   The MS graph api actually asks for <code>Bearer</code> auth, but in order to check users passwords during an LDAP bind we are exploiting ownClouds authentication implementation that will grant access when <code>Basic</code> auth is used. An LDAP Bind you may ask? Read on!
 </blockquote>
 
@@ -4552,7 +4552,7 @@ Create a config file for ocis in either <code>/etc/ocis</code>, <code>$HOME/.oci
         </a>
     </h4>
 </div><p>For now, we only start the glauth extension:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ OCIS_LOG_PRETTY=true OCIS_LOG_COLOR=true ocis/bin/ocis server --extensions &#34;glauth&#34;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="gp">$ </span><span class="nv">OCIS_LOG_PRETTY</span><span class="o">=</span><span class="nb">true</span> <span class="nv">OCIS_LOG_COLOR</span><span class="o">=</span><span class="nb">true</span> ocis/bin/ocis server --extensions <span class="s2">&#34;glauth&#34;</span>
 </code></pre></div><div class="gdoc-page__anchorwrap">
     <h4 id="check-it-is-up-and-running">
         Check it is up and running
@@ -4561,9 +4561,9 @@ Create a config file for ocis in either <code>/etc/ocis</code>, <code>$HOME/.oci
         </a>
     </h4>
 </div><p>You should now be able to list accounts from your ownCloud 10 oc_accounts table using:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ ldapsearch -x -H ldap://127.0.0.1:9125 -b dc=ocis,dc=test -D &#34;cn=admin,dc=ocis,dc=test&#34; -W &#39;(objectclass=posixaccount)&#39;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="gp">$ </span>ldapsearch -x -H ldap://127.0.0.1:9125 -b <span class="nv">dc</span><span class="o">=</span>ocis,dc<span class="o">=</span><span class="nb">test</span> -D <span class="s2">&#34;cn=admin,dc=ocis,dc=test&#34;</span> -W <span class="s1">&#39;(objectclass=posixaccount)&#39;</span>
 </code></pre></div><p>Groups should work as well:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ ldapsearch -x -H ldap://127.0.0.1:9125 -b dc=ocis,dc=test -D &#34;cn=admin,dc=ocis,dc=test&#34; -W &#39;(objectclass=posixgroup)&#39;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="gp">$ </span>ldapsearch -x -H ldap://127.0.0.1:9125 -b <span class="nv">dc</span><span class="o">=</span>ocis,dc<span class="o">=</span><span class="nb">test</span> -D <span class="s2">&#34;cn=admin,dc=ocis,dc=test&#34;</span> -W <span class="s1">&#39;(objectclass=posixgroup)&#39;</span>
 </code></pre></div><blockquote class="gdoc-hint ">
   This is currently a readonly implementation and minimal to the usecase of authenticating users with an IDP.
 </blockquote>
@@ -4584,23 +4584,23 @@ Create a config file for ocis in either <code>/etc/ocis</code>, <code>$HOME/.oci
 <span class="nx">bindpassword</span> <span class="p">=</span> <span class="s2">&#34;secret&#34;</span>
 <span class="nx">userschema</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">uid</span> <span class="p">=</span> <span class="s2">&#34;uid&#34;</span><span class="p">,</span> <span class="nx">displayname</span> <span class="p">=</span> <span class="s2">&#34;givenname&#34;</span> <span class="p">}</span> <span class="c"># TODO make glauth return an ownclouduuid and displayname attribute</span>
 </code></pre></div><p>Now we can start all necessary services.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ OCIS_LOG_PRETTY=true OCIS_LOG_COLOR=true ocis/bin/ocis server --extensions &#34;glauth, storage-gateway, storage-authbasic, storage-userprovider&#34;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="gp">$ </span><span class="nv">OCIS_LOG_PRETTY</span><span class="o">=</span><span class="nb">true</span> <span class="nv">OCIS_LOG_COLOR</span><span class="o">=</span><span class="nb">true</span> ocis/bin/ocis server --extensions <span class="s2">&#34;glauth, storage-gateway, storage-authbasic, storage-userprovider&#34;</span>
 </code></pre></div><blockquote class="gdoc-hint warning">
   <p>Here I ran out of time. I tried to verify this step with the reva cli:
 <code>cmd/reva/reva -insecure -host localhost:9142</code>
 <code>login basic</code>
 but it tries to create the user home, which cannot be disabled in a config file: <a class="gdoc-markdown__link" href="https://github.com/owncloud/ocis/issues/2416#issuecomment-901197053">https://github.com/owncloud/ocis/issues/2416#issuecomment-901197053</a></p>
 <p>starting <code>STORAGE_GATEWAY_DISABLE_HOME_CREATION_ON_LOGIN=true OCIS_LOG_LEVEL=debug OCIS_LOG_PRETTY=true OCIS_LOG_COLOR=true ocis/bin/ocis server --extensions &quot;storage-gateway, storage-authbasic, storage-userprovider&quot;</code> let me login:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="err">✗</span><span class="w"> </span><span class="n">cmd</span><span class="o">/</span><span class="n">reva</span><span class="o">/</span><span class="n">reva</span><span class="w"> </span><span class="o">-</span><span class="n">insecure</span><span class="w"> </span><span class="o">-</span><span class="n">host</span><span class="w"> </span><span class="n">localhost</span><span class="p">:</span><span class="mi">9142</span><span class="w">
-</span><span class="w"></span><span class="n">reva</span><span class="o">-</span><span class="n">cli</span><span class="w"> </span><span class="n">v1</span><span class="p">.</span><span class="mi">11</span><span class="p">.</span><span class="mi">0</span><span class="o">-</span><span class="mi">27</span><span class="o">-</span><span class="nf">g95b1f2ee</span><span class="w"> </span><span class="p">(</span><span class="n">rev</span><span class="o">-</span><span class="mi">95</span><span class="n">b1f2ee</span><span class="p">)</span><span class="w">
-</span><span class="w"></span><span class="n">Please</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="o">`</span><span class="k">exit</span><span class="o">`</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="o">`</span><span class="n">Ctrl</span><span class="o">-</span><span class="n">D</span><span class="o">`</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">exit</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">program</span><span class="p">.</span><span class="w">
-</span><span class="w"></span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">login</span><span class="w"> </span><span class="n">basic</span><span class="w">
-</span><span class="w"></span><span class="n">username</span><span class="p">:</span><span class="w"> </span><span class="n">jfd</span><span class="w">
-</span><span class="w"></span><span class="n">password</span><span class="p">:</span><span class="w"> </span><span class="n">OK</span><span class="w">
-</span><span class="w"></span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">whoami</span><span class="w">
-</span><span class="w"></span><span class="n">id</span><span class="p">:</span><span class="o">&lt;</span><span class="n">idp</span><span class="p">:</span><span class="s2">&#34;https://ocis.ocis.test&#34;</span><span class="w"> </span><span class="n">opaque_id</span><span class="p">:</span><span class="s2">&#34;jfd&#34;</span><span class="w"> </span><span class="n">type</span><span class="p">:</span><span class="n">USER_TYPE_PRIMARY</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">username</span><span class="p">:</span><span class="s2">&#34;jfd&#34;</span><span class="w"> </span><span class="n">mail</span><span class="p">:</span><span class="s2">&#34;jfd@butonic.de&#34;</span><span class="w"> </span><span class="n">display_name</span><span class="p">:</span><span class="s2">&#34;J\303\266rn&#34;</span><span class="w"> </span><span class="n">uid_number</span><span class="p">:</span><span class="mi">99</span><span class="w"> </span><span class="n">gid_number</span><span class="p">:</span><span class="mi">99</span><span class="w"> 
-</span><span class="w"></span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="k">exit</span><span class="w">
-</span></code></pre></div><p>I hope <a class="gdoc-markdown__link" href="https://github.com/owncloud/ocis/pull/2024">https://github.com/owncloud/ocis/pull/2024</a> fixes the parsing order of things.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="go">✗ cmd/reva/reva -insecure -host localhost:9142
+</span><span class="go">reva-cli v1.11.0-27-g95b1f2ee (rev-95b1f2ee)
+</span><span class="go">Please use `exit` or `Ctrl-D` to exit this program.
+</span><span class="go"></span><span class="gp">&gt;</span>&gt; login basic
+<span class="go">username: jfd
+</span><span class="go">password: OK
+</span><span class="go"></span><span class="gp">&gt;</span>&gt; whoami
+<span class="go">id:&lt;idp:&#34;https://ocis.ocis.test&#34; opaque_id:&#34;jfd&#34; type:USER_TYPE_PRIMARY &gt; username:&#34;jfd&#34; mail:&#34;jfd@butonic.de&#34; display_name:&#34;J\303\266rn&#34; uid_number:99 gid_number:99 
+</span><span class="go"></span><span class="gp">&gt;</span>&gt; <span class="nb">exit</span>
+</code></pre></div><p>I hope <a class="gdoc-markdown__link" href="https://github.com/owncloud/ocis/pull/2024">https://github.com/owncloud/ocis/pull/2024</a> fixes the parsing order of things.</p>
 <p>everything below this is outdated</p>
 <p>&hellip; gotta run</p>
 
@@ -4613,14 +4613,14 @@ but it tries to create the user home, which cannot be disabled in a config file:
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">ocis/bin/ocis storage-userprovider --ldap-port 19126 --ldap-user-schema-uid uid --ldap-user-schema-displayName givenName --addr :19144
-</code></pre></div><p>TODO clone <code>git clone git@github.com:cs3org/cs3apis.git</code></p>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="go">ocis/bin/ocis storage-userprovider --ldap-port 19126 --ldap-user-schema-uid uid --ldap-user-schema-displayName givenName --addr :19144
+</span></code></pre></div><p>TODO clone <code>git clone git@github.com:cs3org/cs3apis.git</code></p>
 <p>query users using <a class="gdoc-markdown__link" href="https://github.com/fullstorydev/grpcurl">grpcurl</a></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">grpcurl -import-path ./cs3apis/ -proto ./cs3apis/cs3/identity/user/v1beta1/user_api.proto -plaintext localhost:19144 cs3.identity.user.v1beta1.UserAPI/FindUsers
-ERROR:
-  Code: Unauthenticated
-  Message: auth: core access token not found
-</code></pre></div><div class="gdoc-page__anchorwrap">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="go">grpcurl -import-path ./cs3apis/ -proto ./cs3apis/cs3/identity/user/v1beta1/user_api.proto -plaintext localhost:19144 cs3.identity.user.v1beta1.UserAPI/FindUsers
+</span><span class="go">ERROR:
+</span><span class="go">  Code: Unauthenticated
+</span><span class="go">  Message: auth: core access token not found
+</span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h3 id="start-ocis-idp">
         Start ocis idp
         <a data-clipboard-text="https://owncloud.dev/ocis/deployment/bridge/#start-ocis-idp" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Start ocis idp" href="#start-ocis-idp">
@@ -4635,15 +4635,15 @@ ERROR:
         </a>
     </h4>
 </div><p>The built in <a class="gdoc-markdown__link" href="https://github.com/libregraph/lico">libregraph/lico</a> needs environment variables to configure the LDAP server:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">export OCIS_URL=https://ocis.ocis.test
-export IDP_LDAP_URI=ldap://127.0.0.1:9125
-export IDP_LDAP_BASE_DN=&#34;dc=ocis,dc=test&#34;
-export IDP_LDAP_BIND_DN=&#34;cn=admin,dc=ocis,dc=test&#34;
-export IDP_LDAP_BIND_PASSWORD=&#34;its-a-secret&#34;
-export IDP_LDAP_SCOPE=sub
-export IDP_LDAP_LOGIN_ATTRIBUTE=uid
-export IDP_LDAP_NAME_ATTRIBUTE=givenName
-</code></pre></div><p>Don&rsquo;t forget to use an existing user with admin permissions (only admins are allowed to list all users via the graph api) and the correct password.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="go">export OCIS_URL=https://ocis.ocis.test
+</span><span class="go">export IDP_LDAP_URI=ldap://127.0.0.1:9125
+</span><span class="go">export IDP_LDAP_BASE_DN=&#34;dc=ocis,dc=test&#34;
+</span><span class="go">export IDP_LDAP_BIND_DN=&#34;cn=admin,dc=ocis,dc=test&#34;
+</span><span class="go">export IDP_LDAP_BIND_PASSWORD=&#34;its-a-secret&#34;
+</span><span class="go">export IDP_LDAP_SCOPE=sub
+</span><span class="go">export IDP_LDAP_LOGIN_ATTRIBUTE=uid
+</span><span class="go">export IDP_LDAP_NAME_ATTRIBUTE=givenName
+</span></code></pre></div><p>Don&rsquo;t forget to use an existing user with admin permissions (only admins are allowed to list all users via the graph api) and the correct password.</p>
 <blockquote class="gdoc-hint warning">
   <ul>
 <li>TODO: change the default values in glauth &amp; ocis to use an <code>ownclouduuid</code> attribute.</li>
@@ -4668,7 +4668,7 @@ export IDP_LDAP_NAME_ATTRIBUTE=givenName
         </a>
     </h4>
 </div><p>You can now bring up <code>ocis/bin/ocis idp</code> with:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ ocis/bin/ocis idp server --iss http://127.0.0.1:9130 --signing-kid gen1-2020-02-27
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="gp">$ </span>ocis/bin/ocis idp server --iss http://127.0.0.1:9130 --signing-kid gen1-2020-02-27
 </code></pre></div><p><code>ocis/bin/ocis idp</code> needs to know</p>
 <ul>
 <li><code>--iss http://127.0.0.1:9130</code> the issuer, which must be a reachable http endpoint. For testing an ip works. For openid connect HTTPS is NOT optional. This URL is exposed in the <code>http://127.0.0.1:9130/.well-known/openid-configuration</code> endpoint and clients need to be able to connect to it, securely. We will change this when introducing the proxy.</li>
@@ -4692,7 +4692,7 @@ export IDP_LDAP_NAME_ATTRIBUTE=givenName
 </div><ol>
 <li>Try getting the configuration:</li>
 </ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ curl http://127.0.0.1:9130/.well-known/openid-configuration
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="gp">$ </span>curl http://127.0.0.1:9130/.well-known/openid-configuration
 </code></pre></div><ol start="2">
 <li>Check if the login works at http://127.0.0.1:9130/signin/v1/identifier</li>
 </ol>
@@ -4754,7 +4754,7 @@ export IDP_LDAP_NAME_ATTRIBUTE=givenName
         </a>
     </h4>
 </div><p>Point <code>ocis-web</code> to your owncloud domain and tell it where to find the openid connect issuing authority:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ bin/web server --web-config-server https://cloud.example.com --oidc-authority https://192.168.1.100:9130 --oidc-metadata-url https://192.168.1.100:9130/.well-known/openid-configuration --oidc-client-id ocis
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="gp">$ </span>bin/web server --web-config-server https://cloud.example.com --oidc-authority https://192.168.1.100:9130 --oidc-metadata-url https://192.168.1.100:9130/.well-known/openid-configuration --oidc-client-id ocis
 </code></pre></div><p><code>ocis-web</code> needs to know</p>
 <ul>
 <li><code>--web-config-server https://cloud.example.com</code> is ownCloud url with webdav and ocs endpoints (oc10 or ocis)</li>
