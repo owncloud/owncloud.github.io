@@ -96,7 +96,7 @@ App provider capability    The capabilities endpoint (eg. https://localhost:9200
         }
     },
     "url" : "https:\/\/owncloud.dev\/extensions\/storage\/apps\/",
-    "wordCount" : "1010",
+    "wordCount" : "1337",
     "genre" : [ ]
 }
 </script>
@@ -4493,6 +4493,7 @@ App provider capability    The capabilities endpoint (eg. https://localhost:9200
 <p><strong>Request example</strong>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">curl <span class="s1">&#39;https://ocis.test/app/list&#39;</span>
 </code></pre></div><p><strong>Response example</strong>:</p>
+<p>HTTP status code: 200</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
   <span class="nt">&#34;mime-types&#34;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
@@ -4523,7 +4524,8 @@ App provider capability    The capabilities endpoint (eg. https://localhost:9200
       <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;OpenDocument&#34;</span><span class="p">,</span>
       <span class="nt">&#34;icon&#34;</span><span class="p">:</span> <span class="s2">&#34;https://some-website.test/opendocument-text-icon.png&#34;</span><span class="p">,</span>
       <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;OpenDocument text document&#34;</span><span class="p">,</span>
-      <span class="nt">&#34;allow_creation&#34;</span><span class="p">:</span> <span class="kc">true</span>
+      <span class="nt">&#34;allow_creation&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nt">&#34;default_application&#34;</span><span class="p">:</span> <span class="s2">&#34;Collabora&#34;</span>
     <span class="p">},</span>
     <span class="p">{</span>
       <span class="nt">&#34;mime_type&#34;</span><span class="p">:</span> <span class="s2">&#34;text/markdown&#34;</span><span class="p">,</span>
@@ -4536,7 +4538,8 @@ App provider capability    The capabilities endpoint (eg. https://localhost:9200
       <span class="p">],</span>
       <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Markdown file&#34;</span><span class="p">,</span>
       <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;Markdown file&#34;</span><span class="p">,</span>
-      <span class="nt">&#34;allow_creation&#34;</span><span class="p">:</span> <span class="kc">true</span>
+      <span class="nt">&#34;allow_creation&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nt">&#34;default_application&#34;</span><span class="p">:</span> <span class="s2">&#34;CodiMD&#34;</span>
     <span class="p">},</span>
     <span class="p">{</span>
       <span class="nt">&#34;mime_type&#34;</span><span class="p">:</span> <span class="s2">&#34;application/vnd.ms-word.document.macroenabled.12&#34;</span><span class="p">,</span>
@@ -4610,6 +4613,7 @@ curl -X POST <span class="s1">&#39;https://ocis.test/app/open?file_id=ZmlsZTppZA
 </code></pre></div><p><strong>Response examples</strong>:</p>
 <p>All apps are expected to be opened in an iframe and the response will give some parameters for that action.</p>
 <p>There are apps, which need to be opened in the iframe with a form post. The form post must include all form parameters included in the response. For these apps the response will look like this:</p>
+<p>HTTP status code: 200</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
   <span class="nt">&#34;app_url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://.....&#34;</span><span class="p">,</span>
   <span class="nt">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;POST&#34;</span><span class="p">,</span>
@@ -4620,6 +4624,7 @@ curl -X POST <span class="s1">&#39;https://ocis.test/app/open?file_id=ZmlsZTppZA
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>There are apps, which need to be opened in the iframe with a GET request. The GET request must have set all headers included in the response. For these apps the response will look like this:</p>
+<p>HTTP status code: 200</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
   <span class="nt">&#34;app_url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://...&#34;</span><span class="p">,</span>
   <span class="nt">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;GET&#34;</span><span class="p">,</span>
@@ -4632,24 +4637,130 @@ curl -X POST <span class="s1">&#39;https://ocis.test/app/open?file_id=ZmlsZTppZA
 </code></pre></div><p><strong>Example responses (error case)</strong>:</p>
 <ul>
 <li>
-<p>wrong <code>view_mode</code></p>
+<p>missing <code>file_id</code></p>
+<p>HTTP status code: 400</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;SERVER_ERROR&#34;</span><span class="p">,</span>
-  <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;Missing or invalid viewmode argument&#34;</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;INVALID_PARAMETER&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;missing file ID&#34;</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p>wrong <code>view_mode</code></p>
+<p>HTTP status code: 400</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;INVALID_PARAMETER&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;invalid view mode&#34;</span>
 <span class="p">}</span>
 </code></pre></div></li>
 <li>
 <p>unknown <code>app_name</code></p>
+<p>HTTP status code: 404</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;SERVER_ERROR&#34;</span><span class="p">,</span>
-  <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;error searching for app provider&#34;</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;RESOURCE_NOT_FOUND&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;error: not found: app &#39;Collabor&#39; not found&#34;</span>
 <span class="p">}</span>
 </code></pre></div></li>
 <li>
-<p>wrong / invalid file id / unauthorized to open the file</p>
+<p>wrong / invalid file id</p>
+<p>HTTP status code: 400</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;SERVER_ERROR&#34;</span><span class="p">,</span>
-  <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;error statting file&#34;</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;INVALID_PARAMETER&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;invalid file ID&#34;</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p>file id does not point to a file</p>
+<p>HTTP status code: 400</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;INVALID_PARAMETER&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;the given file id does not point to a file&#34;</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p>file does not exist / unauthorized to open the file</p>
+<p>HTTP status code: 404</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;RESOURCE_NOT_FOUND&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;file does not exist&#34;</span>
+<span class="p">}</span>
+</code></pre></div></li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="creating-a-file-with-the-app-provider">
+        Creating a file with the app provider
+        <a data-clipboard-text="https://owncloud.dev/extensions/storage/apps/#creating-a-file-with-the-app-provider" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Creating a file with the app provider" href="#creating-a-file-with-the-app-provider">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p><strong>Endpoint</strong>: specified in the capabilities in <code>new_file_url</code>, currently <code>/app/new</code></p>
+<p><strong>Method</strong>: HTTP POST</p>
+<p><strong>Authentication</strong> (one of them):</p>
+<ul>
+<li><code>Authorization</code> header with OIDC Bearer token for authenticated users or basic auth credentials (if enabled in oCIS)</li>
+<li><code>Public-Token</code> header with public link token for public links</li>
+<li><code>X-Access-Token</code> header with a REVA token for authenticated users</li>
+</ul>
+<p><strong>Query parameters</strong>:</p>
+<ul>
+<li><code>parent_container_id</code> (mandatory): ID of the folder in which the file will be created</li>
+<li><code>filename</code> (mandatory): name of the new file</li>
+<li><code>template</code> (optional): not yet implemented</li>
+</ul>
+<p><strong>Request examples</strong>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">curl -X POST <span class="s1">&#39;https://ocis.test/app/new?parent_container_id=c2lkOmNpZAo=&amp;filename=test.odt&#39;</span>
+</code></pre></div><p><strong>Response example</strong>:</p>
+<p>You will receive a file id of the freshly created file, which you can use to open the file in an editor.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;file_id&#34;</span><span class="p">:</span> <span class="s2">&#34;ZmlsZTppZAo=&#34;</span>
+<span class="p">}</span>
+</code></pre></div><p><strong>Example responses (error case)</strong>:</p>
+<ul>
+<li>
+<p>missing <code>parent_container_id</code></p>
+<p>HTTP status code: 400</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;INVALID_PARAMETER&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;missing parent container ID&#34;</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p>missing <code>filename</code></p>
+<p>HTTP status code: 400</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;INVALID_PARAMETER&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;missing filename&#34;</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p>parent container not found</p>
+<p>HTTP status code: 404</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;RESOURCE_NOT_FOUND&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;the parent container is not accessible or does not exist&#34;</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p><code>parent_container_id</code> does not point to a container</p>
+<p>HTTP status code: 400</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;INVALID_PARAMETER&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;the parent container id does not point to a container&#34;</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p><code>filename</code> is invalid (eg. includes a path segment)</p>
+<p>HTTP status code: 400</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;INVALID_PARAMETER&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;the filename must not contain a path segment&#34;</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p>file already exists</p>
+<p>HTTP status code: 403</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;RESOURCE_ALREADY_EXISTS&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;the file already exists&#34;</span>
 <span class="p">}</span>
 </code></pre></div></li>
 </ul>
