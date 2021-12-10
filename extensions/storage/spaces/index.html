@@ -4565,13 +4565,13 @@ Add a description to your spaces
 </code></pre></div><p>Upload a 6 bytes file:</p>
 <p><code>curl -k -X PUT https://localhost:9200/dav/spaces/1284d238-aa92-42ce-bdc4-0b0000009157\!627981c2-2a71-4adf-b680-177e245afdda/6bytes.txt -d &quot;012345&quot; -u admin:admin -v</code></p>
 <p>Query the quota again:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="err">...</span>
-<span class="s2">&#34;quota&#34;</span><span class="err">:</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;quota&#34;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&#34;remaining&#34;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
     <span class="nt">&#34;total&#34;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
     <span class="nt">&#34;used&#34;</span><span class="p">:</span> <span class="mi">6</span>
-<span class="p">}</span><span class="err">,</span>
-<span class="err">...</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><p>Now attempt to upload 5 bytes to the space:</p>
 <p><code>curl -k -X PUT https://localhost:9200/dav/spaces/1284d238-aa92-42ce-bdc4-0b0000009157\!627981c2-2a71-4adf-b680-177e245afdda/5bytes.txt -d &quot;01234&quot; -u admin:admin -v</code></p>
 <p>The request will fail with <code>507 Insufficient Storage</code>:</p>
