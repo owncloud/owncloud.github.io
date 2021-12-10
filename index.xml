@@ -126,6 +126,16 @@ Context and Problem Statement    Reva relies heavily on config files. A known im
     </item>
     
     <item>
+      <title>Spaces Provider</title>
+      <link>https://owncloud.dev/extensions/storage/spacesprovider/</link>
+      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/extensions/storage/spacesprovider/</guid>
+      <description>The current implementation in oCIS might not yet fully reflect this concept. Feel free to add links to ADRs, PRs and Issues in short warning boxes like this.  Spaces Provider    A storage provider manages resources identified by a reference by accessing a storage system with a storage driver.
+    oCIS spaces provider  [Software System]     oCIS spaces provider...      reva storage provider   [Component: golang]    hosts multiple storage spaces using a storage driver      reva storage provider.</description>
+    </item>
+    
+    <item>
       <title>Component reference</title>
       <link>https://owncloud.dev/integration/file_picker/component-reference/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -177,6 +187,15 @@ Decision Drivers     The solution should be easily maintainable.  It should alwa
     </item>
     
     <item>
+      <title>Spaces Registry</title>
+      <link>https://owncloud.dev/extensions/storage/spacesregistry/</link>
+      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/extensions/storage/spacesregistry/</guid>
+      <description>The current implementation in oCIS might not yet fully reflect this concept. Feel free to add links to ADRs, PRs and Issues in short warning boxes like this.  Storage Space Registries    A storage spaces registry manages the namespace for a user: it is used by clients to look up storage spaces a user has access to, the /dav/spaces endpoint to access it via WabDAV, and where the client should mount it in the users personal namespace.</description>
+    </item>
+    
+    <item>
       <title>10. Extension Policies</title>
       <link>https://owncloud.dev/ocis/adr/0010-policy-enforcement/</link>
       <pubDate>Wed, 30 Jun 2021 14:00:00 +0100</pubDate>
@@ -218,16 +237,6 @@ App provider capability    The capabilities endpoint (eg. https://localhost:9200
     </item>
     
     <item>
-      <title>Architecture</title>
-      <link>https://owncloud.dev/extensions/storage/architecture/</link>
-      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://owncloud.dev/extensions/storage/architecture/</guid>
-      <description>Frontend    The oCIS frontend service starts all services that handle incoming HTTP requests:
- ocdav for ownCloud flavoured WebDAV ocs for sharing, user provisioning, capabilities and other OCS API endpoints datagateway for up and downloads TODO: ocm      GET /data/&amp;lt;transfer_token&amp;gt;      GET /da...     PROPFIND /webdav      PROPFIN...     POST /ocs/v1/apps/files_sharing/api/v1/shares   path=/path/to/file   shareType=0   shareWith=&amp;lt;username&amp;gt;       POST /o.</description>
-    </item>
-    
-    <item>
       <title>Getting Started</title>
       <link>https://owncloud.dev/clients/web/getting-started/</link>
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
@@ -256,6 +265,17 @@ GET https://demo.owncloud.com/apps/files/?dir=/path/to/resource&amp;amp;fileid=5
       <guid>https://owncloud.dev/ocis/adr/0012-tracing/</guid>
       <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @mstingl, @pmaier1, @fschade Date: 2021-08-17  Context and Problem Statement    At the time of this writing we are in a situation where our logs have too much verbosity, rendering impossible or rather difficult to debug an instance. For this reason we are giving some care to our traces by updating dependencies from OpenCensus to OpenTelemetry.
 Decision Drivers     We don&amp;rsquo;t want to rely only on logs to debug an instance.</description>
+    </item>
+    
+    <item>
+      <title>Storage drivers</title>
+      <link>https://owncloud.dev/extensions/storage/storagedrivers/</link>
+      <pubDate>Mon, 27 Apr 2020 18:46:00 +0100</pubDate>
+      
+      <guid>https://owncloud.dev/extensions/storage/storagedrivers/</guid>
+      <description>A storage driver implements access to a storage system:
+It maps the path and id based CS3 references to an appropriate storage system specific reference, e.g.:
+ eos file ids posix inodes or paths deconstructed filesystem nodes  Storage providers    To manage the file tree oCIS uses storage providers that are accessing the underlying storage using a storage driver. The driver can be used to change the implementation of a storage aspect to better reflect the actual underlying storage capabilities.</description>
     </item>
     
     <item>
@@ -308,13 +328,33 @@ If you need to access oCIS running in a docker container, on a VM or a remote ma
     </item>
     
     <item>
+      <title>Users</title>
+      <link>https://owncloud.dev/extensions/storage/users/</link>
+      <pubDate>Thu, 16 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/extensions/storage/users/</guid>
+      <description>TODO add this to the storage overview? or is this a different part? That should be started as a separate service ? And documented elsewhere, eg. in the accounts?
+User and Group provisioning    In oc10 users are identified by a username, which cannot change, because it is used as a foreign key in several tables. For oCIS we are internally identifying users by a UUID, while using the username in the WebDAV and OCS APIs for backwards compatability.</description>
+    </item>
+    
+    <item>
       <title>Terminology</title>
       <link>https://owncloud.dev/extensions/storage/terminology/</link>
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.dev/extensions/storage/terminology/</guid>
       <description>Communication is hard. And clear communication is even harder. You may encounter the following terms throughout the documentation, in the code or when talking to other developers. Just keep in mind that whenever you hear or read storage, that term needs to be clarified, because on its own it is too vague. PR welcome.
-Resources    A resource is a logical concept. Resources can be of different types:</description>
+Logical concepts    Resources    A resource is the basic building block that oCIS manages.</description>
+    </item>
+    
+    <item>
+      <title>Proposed Changes</title>
+      <link>https://owncloud.dev/extensions/storage/proposedchanges/</link>
+      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/extensions/storage/proposedchanges/</guid>
+      <description>Some architectural changes still need to be clarified or changed. Maybe an ADR is in order for all of the below.
+Reva Gateway changes    A dedicated shares storage provider    Currently, when a user accepts a share, a cs3 reference is created in the users /home/shares folder. This reference represents the mount point of a share and can be renamed, similar to the share jail in ownCloud 10.</description>
     </item>
     
     <item>
@@ -548,28 +588,6 @@ Get the sources    git clone https://github.com/owncloud/ocis.git cd ocis Build 
     </item>
     
     <item>
-      <title>Users</title>
-      <link>https://owncloud.dev/extensions/storage/users/</link>
-      <pubDate>Thu, 16 Jan 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://owncloud.dev/extensions/storage/users/</guid>
-      <description>Demo driver    This is a simple user driver for testing. It contains three users:
-einstein:relativity marie:radioactivity richard:superfluidity In order to use the demo driver you need to export the relevant environment variable:
-export STORAGE_USERS_DRIVER=demo JSON driver    In order to switch from the ldap driver to JSON based users you need to export the relevant environment variables:
-export STORAGE_USERS_DRIVER=json export STORAGE_USERS_JSON=/path/to/users.json For the format of the users.</description>
-    </item>
-    
-    <item>
-      <title>Storages</title>
-      <link>https://owncloud.dev/extensions/storage/storages/</link>
-      <pubDate>Mon, 27 Apr 2020 18:46:00 +0100</pubDate>
-      
-      <guid>https://owncloud.dev/extensions/storage/storages/</guid>
-      <description>Storage commands    storage has multiple storage provider commands to preconfigure different default configurations for the reva storage provider service. While you could rerun storage storage-oc multiple times with different flags to get multiple instances we are giving the different commands the necessary default configuration to allow the ocis binary to simply start them and not deal with configuration.
-Storage providers    To manage the file tree oCIS uses storage providers that are accessing the underlying storage using a storage driver.</description>
-    </item>
-    
-    <item>
       <title>Testing</title>
       <link>https://owncloud.dev/ocis/development/testing/</link>
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
@@ -584,7 +602,7 @@ Storage providers    To manage the file tree oCIS uses storage providers that ar
       <pubDate>Mon, 27 Apr 2020 18:46:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/extensions/storage/spaces/</guid>
-      <description>Editing a Storage Space  Updating a space property Updating a space description Quotas  Quota Enforcement  Considerations           Editing a Storage Space    The OData specification allows for a mirage of ways of addressing an entity. We will support addressing a Drive entity by its unique identifier, which is the one the graph-api returns when listing spaces, and its format is:</description>
+      <description>Editing a Storage Space  Updating a space property Updating a space description Quotas  Quota Enforcement  Considerations       Storage Spaces Shares Notes     Editing a Storage Space    The OData specification allows for a mirage of ways of addressing an entity. We will support addressing a Drive entity by its unique identifier, which is the one the graph-api returns when listing spaces, and its format is:</description>
     </item>
     
     <item>
@@ -703,15 +721,6 @@ Tus-Resumable: 1.0.022 PATCH http...ocis-reva gateway
 REVA_GATEWAY_ADDR = 0.0.0.0:9142
 ocis-reva gateway...storage-registry
 storage-registry&amp;#xa;Expose: trueExpose: true24  PATCH http://ocis:9156/data/u-u-i-d24 PATCH http.</description>
-    </item>
-    
-    <item>
-      <title>Updating reva</title>
-      <link>https://owncloud.dev/extensions/storage/updating/</link>
-      <pubDate>Fri, 22 May 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://owncloud.dev/extensions/storage/updating/</guid>
-      <description>    Updating reva     Updating reva     Run go get github.com/cs3org/reva@master Create a changelog entry containing changes that were done in reva Create a Pull Request to ocis-reva master with those changes If test issues appear, you might need to adjust the tests After the PR is merged, consider doing a release of the storage submodule  </description>
     </item>
     
     <item>
@@ -844,6 +853,15 @@ Identifying settings values    A settings value is uniquely identified by four a
     </item>
     
     <item>
+      <title>Profiling</title>
+      <link>https://owncloud.dev/ocis/development/profiling/</link>
+      <pubDate>Tue, 24 Aug 2021 12:32:20 +0100</pubDate>
+      
+      <guid>https://owncloud.dev/ocis/development/profiling/</guid>
+      <description>0. Prerequisites  1. Clone Reva 2. Patch reva with the area that you want sampled. 3. Replace reva in oCIS go.mod with local version and build a new binary 4. Build a new ocis binary 5. Start oCIS server 6. Run pprof  Install pprof Collecting samples   Room for improvement References     0. Prerequisites     Go development kit of a supported version.</description>
+    </item>
+    
+    <item>
       <title>Running acceptance tests</title>
       <link>https://owncloud.dev/clients/web/testing/</link>
       <pubDate>Tue, 27 Jul 2021 00:00:00 +0000</pubDate>
@@ -851,16 +869,6 @@ Identifying settings values    A settings value is uniquely identified by four a
       <guid>https://owncloud.dev/clients/web/testing/</guid>
       <description>Introduction  Unit &amp;amp; Integration Tests Acceptance Tests  Prerequisites Prepare &amp;amp; start web Start Docker Run acceptance tests Watch the test run Watch the test report         Introduction    In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.
 All the steps below require you to have the web repo cloned locally and dependencies installed.</description>
-    </item>
-    
-    <item>
-      <title>Releasing</title>
-      <link>https://owncloud.dev/extensions/storage/releasing/</link>
-      <pubDate>Fri, 22 May 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://owncloud.dev/extensions/storage/releasing/</guid>
-      <description>Preparation Release     To release a new version of the storage submodule, you have to follow a few simple steps.
-Preparation     Before releasing, make sure that reva has been updated to the desired version  Release     Check out master git checkout master git pull origin master Create a new tag (preferably signed) and replace the version number accordingly.</description>
     </item>
     
     <item>
