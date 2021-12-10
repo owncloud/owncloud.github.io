@@ -93,7 +93,7 @@ Spaces API    The Spaces API makes use of the MS Graph API Drive resource to rep
         }
     },
     "url" : "https:\/\/owncloud.dev\/extensions\/graph\/spaces\/",
-    "wordCount" : "775",
+    "wordCount" : "780",
     "genre" : [ ]
 }
 </script>
@@ -4538,24 +4538,21 @@ user.ocis.space.name: marketing
     }
   }
 ]
-
-As we can see the response already contains a space-aware dav endpoint, which we can use to upload files to the space:
-
-</code></pre></div><p>curl -k https://localhost:9200/dav/spaces/1284d238-aa92-42ce-bdc4-0b0000009157!02dc1ec5-28b5-41c5-a48a-fabd4fa0562e/test.txt -X PUT -d &ldquo;beep-sboop&rdquo; -v -u einstein:relativity</p>
-<ul>
-<li>Trying ::1&hellip;</li>
-<li>TCP_NODELAY set</li>
-<li>Connected to localhost (::1) port 9200 (#0)</li>
-<li>upload completely sent off: 10 out of 10 bytes
+</code></pre></div><p>As we can see the response already contains a space-aware dav endpoint, which we can use to upload files to the space:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">curl -k https://localhost:9200/dav/spaces/1284d238-aa92-42ce-bdc4-0b0000009157\!02dc1ec5-28b5-41c5-a48a-fabd4fa0562e/test.txt -X PUT -d &#34;beep-sboop&#34; -v -u einstein:relativity
+*   Trying ::1...
+* TCP_NODELAY set
+* Connected to localhost (::1) port 9200 (#0)
+* upload completely sent off: 10 out of 10 bytes
 &lt; HTTP/1.1 201 Created
 &lt; Access-Control-Allow-Origin: *
 &lt; Content-Length: 0
-&lt; Content-Security-Policy: default-src &lsquo;none&rsquo;;
+&lt; Content-Security-Policy: default-src &#39;none&#39;;
 &lt; Content-Type: text/plain
 &lt; Date: Tue, 07 Sep 2021 12:45:54 GMT
-&lt; Etag: &ldquo;e2942565a4eb52e8754c2806f215fe93&rdquo;
+&lt; Etag: &#34;e2942565a4eb52e8754c2806f215fe93&#34;
 &lt; Last-Modified: Tue, 07 Sep 2021 12:45:54 +0000
-&lt; Oc-Etag: &ldquo;e2942565a4eb52e8754c2806f215fe93&rdquo;
+&lt; Oc-Etag: &#34;e2942565a4eb52e8754c2806f215fe93&#34;
 &lt; Oc-Fileid: MTI4NGQyMzgtYWE5Mi00MmNlLWJkYzQtMGIwMDAwMDA5MTU3OmU4ZDIwNDA5LTE1OWItNGI2Ny1iODZkLTlkM2U3ZjYyYmM0ZQ==
 &lt; Vary: Origin
 &lt; X-Content-Type-Options: nosniff
@@ -4564,14 +4561,11 @@ As we can see the response already contains a space-aware dav endpoint, which we
 &lt; X-Permitted-Cross-Domain-Policies: none
 &lt; X-Robots-Tag: none
 &lt; X-Xss-Protection: 1; mode=block
-&lt;</li>
-<li>Connection #0 to host localhost left intact</li>
-<li>Closing connection 0</li>
-</ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">
-This is the state after every transformation:
-
-</code></pre></div><p>tree -a /var/tmp/ocis/storage/users
+&lt;
+* Connection #0 to host localhost left intact
+* Closing connection 0
+</code></pre></div><p>This is the state after every transformation:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">tree -a /var/tmp/ocis/storage/users
 /var/tmp/ocis/storage/users
 ├── blobs
 │   └── 83842d56-91de-41d5-8800-b2fb7b2d31cf
@@ -4592,74 +4586,70 @@ This is the state after every transformation:
 │   │   └── 02dc1ec5-28b5-41c5-a48a-fabd4fa0562e -&gt; ../../nodes/02dc1ec5-28b5-41c5-a48a-fabd4fa0562e
 │   └── share
 ├── trash
-└── uploads</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">
-Observe the `test.txt` in the `02dc1ec5-28b5-41c5-a48a-fabd4fa0562e` node.
+└── uploads
+</code></pre></div><p>Observe the <code>test.txt</code> in the <code>02dc1ec5-28b5-41c5-a48a-fabd4fa0562e</code> node.</p>
+<p>To finalize, verify the new created file is webdav-listable:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml">curl -k https://localhost:9200/dav/spaces/1284d238-aa92-42ce-bdc4-0b0000009157\!02dc1ec5-28b5-41c5-a48a-fabd4fa0562e -X PROPFIND -v -u einstein:relativity | xmllint --format -
 
-To finalize, verify the new created file is webdav-listable:
-
-```xml
-curl -k https://localhost:9200/dav/spaces/1284d238-aa92-42ce-bdc4-0b0000009157\!02dc1ec5-28b5-41c5-a48a-fabd4fa0562e -X PROPFIND -v -u einstein:relativity | xmllint --format -
-
-&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;
-&lt;d:multistatus xmlns:d=&#34;DAV:&#34; xmlns:s=&#34;http://sabredav.org/ns&#34; xmlns:oc=&#34;http://owncloud.org/ns&#34;&gt;
-  &lt;d:response&gt;
-    &lt;d:href&gt;/dav/spaces/1284d238-aa92-42ce-bdc4-0b0000009157!02dc1ec5-28b5-41c5-a48a-fabd4fa0562e/&lt;/d:href&gt;
-    &lt;d:propstat&gt;
-      &lt;d:prop&gt;
-        &lt;oc:id&gt;MTI4NGQyMzgtYWE5Mi00MmNlLWJkYzQtMGIwMDAwMDA5MTU3OjAyZGMxZWM1LTI4YjUtNDFjNS1hNDhhLWZhYmQ0ZmEwNTYyZQ==&lt;/oc:id&gt;
-        &lt;oc:fileid&gt;MTI4NGQyMzgtYWE5Mi00MmNlLWJkYzQtMGIwMDAwMDA5MTU3OjAyZGMxZWM1LTI4YjUtNDFjNS1hNDhhLWZhYmQ0ZmEwNTYyZQ==&lt;/oc:fileid&gt;
-        &lt;d:getetag&gt;&#34;35a2ce5f56592d79d1b7233eff033347&#34;&lt;/d:getetag&gt;
-        &lt;oc:permissions&gt;RDNVCK&lt;/oc:permissions&gt;
-        &lt;d:resourcetype&gt;
-          &lt;d:collection/&gt;
-        &lt;/d:resourcetype&gt;
-        &lt;oc:size&gt;0&lt;/oc:size&gt;
-        &lt;d:getlastmodified&gt;Tue, 07 Sep 2021 12:45:54 GMT&lt;/d:getlastmodified&gt;
-        &lt;oc:favorite&gt;0&lt;/oc:favorite&gt;
-      &lt;/d:prop&gt;
-      &lt;d:status&gt;HTTP/1.1 200 OK&lt;/d:status&gt;
-    &lt;/d:propstat&gt;
-  &lt;/d:response&gt;
-  &lt;d:response&gt;
-    &lt;d:href&gt;/dav/spaces/1284d238-aa92-42ce-bdc4-0b0000009157!02dc1ec5-28b5-41c5-a48a-fabd4fa0562e/.space/&lt;/d:href&gt;
-    &lt;d:propstat&gt;
-      &lt;d:prop&gt;
-        &lt;oc:id&gt;MTI4NGQyMzgtYWE5Mi00MmNlLWJkYzQtMGIwMDAwMDA5MTU3OmU4NWQxODVmLWNkYWEtNDYxOC1hMzEyLWUzM2VhNDM1YWNmZQ==&lt;/oc:id&gt;
-        &lt;oc:fileid&gt;MTI4NGQyMzgtYWE5Mi00MmNlLWJkYzQtMGIwMDAwMDA5MTU3OmU4NWQxODVmLWNkYWEtNDYxOC1hMzEyLWUzM2VhNDM1YWNmZQ==&lt;/oc:fileid&gt;
-        &lt;d:getetag&gt;&#34;2e9a84bffce8b648ba626185800ee8fa&#34;&lt;/d:getetag&gt;
-        &lt;oc:permissions&gt;SRDNVCK&lt;/oc:permissions&gt;
-        &lt;d:resourcetype&gt;
-          &lt;d:collection/&gt;
-        &lt;/d:resourcetype&gt;
-        &lt;oc:size&gt;0&lt;/oc:size&gt;
-        &lt;d:getlastmodified&gt;Tue, 07 Sep 2021 12:42:39 GMT&lt;/d:getlastmodified&gt;
-        &lt;oc:favorite&gt;0&lt;/oc:favorite&gt;
-      &lt;/d:prop&gt;
-      &lt;d:status&gt;HTTP/1.1 200 OK&lt;/d:status&gt;
-    &lt;/d:propstat&gt;
-  &lt;/d:response&gt;
-  &lt;d:response&gt;
-    &lt;d:href&gt;/dav/spaces/1284d238-aa92-42ce-bdc4-0b0000009157!02dc1ec5-28b5-41c5-a48a-fabd4fa0562e/test.txt&lt;/d:href&gt;
-    &lt;d:propstat&gt;
-      &lt;d:prop&gt;
-        &lt;oc:id&gt;MTI4NGQyMzgtYWE5Mi00MmNlLWJkYzQtMGIwMDAwMDA5MTU3OmU4ZDIwNDA5LTE1OWItNGI2Ny1iODZkLTlkM2U3ZjYyYmM0ZQ==&lt;/oc:id&gt;
-        &lt;oc:fileid&gt;MTI4NGQyMzgtYWE5Mi00MmNlLWJkYzQtMGIwMDAwMDA5MTU3OmU4ZDIwNDA5LTE1OWItNGI2Ny1iODZkLTlkM2U3ZjYyYmM0ZQ==&lt;/oc:fileid&gt;
-        &lt;d:getetag&gt;&#34;e2942565a4eb52e8754c2806f215fe93&#34;&lt;/d:getetag&gt;
-        &lt;oc:permissions&gt;RDNVW&lt;/oc:permissions&gt;
-        &lt;d:resourcetype/&gt;
-        &lt;d:getcontentlength&gt;10&lt;/d:getcontentlength&gt;
-        &lt;d:getcontenttype&gt;text/plain&lt;/d:getcontenttype&gt;
-        &lt;d:getlastmodified&gt;Tue, 07 Sep 2021 12:45:54 GMT&lt;/d:getlastmodified&gt;
-        &lt;oc:checksums&gt;
-          &lt;oc:checksum&gt;SHA1:8f4b4c83c565fc5ec54b78c30c94a6b65e411de5 MD5:6a3a4eca9a6726eef8f7be5b03ea9011 ADLER32:151303ed&lt;/oc:checksum&gt;
-        &lt;/oc:checksums&gt;
-        &lt;oc:favorite&gt;0&lt;/oc:favorite&gt;
-      &lt;/d:prop&gt;
-      &lt;d:status&gt;HTTP/1.1 200 OK&lt;/d:status&gt;
-    &lt;/d:propstat&gt;
-  &lt;/d:response&gt;
-&lt;/d:multistatus&gt;
+<span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+<span class="nt">&lt;d:multistatus</span> <span class="na">xmlns:d=</span><span class="s">&#34;DAV:&#34;</span> <span class="na">xmlns:s=</span><span class="s">&#34;http://sabredav.org/ns&#34;</span> <span class="na">xmlns:oc=</span><span class="s">&#34;http://owncloud.org/ns&#34;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;d:response&gt;</span>
+    <span class="nt">&lt;d:href&gt;</span>/dav/spaces/1284d238-aa92-42ce-bdc4-0b0000009157!02dc1ec5-28b5-41c5-a48a-fabd4fa0562e/<span class="nt">&lt;/d:href&gt;</span>
+    <span class="nt">&lt;d:propstat&gt;</span>
+      <span class="nt">&lt;d:prop&gt;</span>
+        <span class="nt">&lt;oc:id&gt;</span>MTI4NGQyMzgtYWE5Mi00MmNlLWJkYzQtMGIwMDAwMDA5MTU3OjAyZGMxZWM1LTI4YjUtNDFjNS1hNDhhLWZhYmQ0ZmEwNTYyZQ==<span class="nt">&lt;/oc:id&gt;</span>
+        <span class="nt">&lt;oc:fileid&gt;</span>MTI4NGQyMzgtYWE5Mi00MmNlLWJkYzQtMGIwMDAwMDA5MTU3OjAyZGMxZWM1LTI4YjUtNDFjNS1hNDhhLWZhYmQ0ZmEwNTYyZQ==<span class="nt">&lt;/oc:fileid&gt;</span>
+        <span class="nt">&lt;d:getetag&gt;</span>&#34;35a2ce5f56592d79d1b7233eff033347&#34;<span class="nt">&lt;/d:getetag&gt;</span>
+        <span class="nt">&lt;oc:permissions&gt;</span>RDNVCK<span class="nt">&lt;/oc:permissions&gt;</span>
+        <span class="nt">&lt;d:resourcetype&gt;</span>
+          <span class="nt">&lt;d:collection/&gt;</span>
+        <span class="nt">&lt;/d:resourcetype&gt;</span>
+        <span class="nt">&lt;oc:size&gt;</span>0<span class="nt">&lt;/oc:size&gt;</span>
+        <span class="nt">&lt;d:getlastmodified&gt;</span>Tue, 07 Sep 2021 12:45:54 GMT<span class="nt">&lt;/d:getlastmodified&gt;</span>
+        <span class="nt">&lt;oc:favorite&gt;</span>0<span class="nt">&lt;/oc:favorite&gt;</span>
+      <span class="nt">&lt;/d:prop&gt;</span>
+      <span class="nt">&lt;d:status&gt;</span>HTTP/1.1 200 OK<span class="nt">&lt;/d:status&gt;</span>
+    <span class="nt">&lt;/d:propstat&gt;</span>
+  <span class="nt">&lt;/d:response&gt;</span>
+  <span class="nt">&lt;d:response&gt;</span>
+    <span class="nt">&lt;d:href&gt;</span>/dav/spaces/1284d238-aa92-42ce-bdc4-0b0000009157!02dc1ec5-28b5-41c5-a48a-fabd4fa0562e/.space/<span class="nt">&lt;/d:href&gt;</span>
+    <span class="nt">&lt;d:propstat&gt;</span>
+      <span class="nt">&lt;d:prop&gt;</span>
+        <span class="nt">&lt;oc:id&gt;</span>MTI4NGQyMzgtYWE5Mi00MmNlLWJkYzQtMGIwMDAwMDA5MTU3OmU4NWQxODVmLWNkYWEtNDYxOC1hMzEyLWUzM2VhNDM1YWNmZQ==<span class="nt">&lt;/oc:id&gt;</span>
+        <span class="nt">&lt;oc:fileid&gt;</span>MTI4NGQyMzgtYWE5Mi00MmNlLWJkYzQtMGIwMDAwMDA5MTU3OmU4NWQxODVmLWNkYWEtNDYxOC1hMzEyLWUzM2VhNDM1YWNmZQ==<span class="nt">&lt;/oc:fileid&gt;</span>
+        <span class="nt">&lt;d:getetag&gt;</span>&#34;2e9a84bffce8b648ba626185800ee8fa&#34;<span class="nt">&lt;/d:getetag&gt;</span>
+        <span class="nt">&lt;oc:permissions&gt;</span>SRDNVCK<span class="nt">&lt;/oc:permissions&gt;</span>
+        <span class="nt">&lt;d:resourcetype&gt;</span>
+          <span class="nt">&lt;d:collection/&gt;</span>
+        <span class="nt">&lt;/d:resourcetype&gt;</span>
+        <span class="nt">&lt;oc:size&gt;</span>0<span class="nt">&lt;/oc:size&gt;</span>
+        <span class="nt">&lt;d:getlastmodified&gt;</span>Tue, 07 Sep 2021 12:42:39 GMT<span class="nt">&lt;/d:getlastmodified&gt;</span>
+        <span class="nt">&lt;oc:favorite&gt;</span>0<span class="nt">&lt;/oc:favorite&gt;</span>
+      <span class="nt">&lt;/d:prop&gt;</span>
+      <span class="nt">&lt;d:status&gt;</span>HTTP/1.1 200 OK<span class="nt">&lt;/d:status&gt;</span>
+    <span class="nt">&lt;/d:propstat&gt;</span>
+  <span class="nt">&lt;/d:response&gt;</span>
+  <span class="nt">&lt;d:response&gt;</span>
+    <span class="nt">&lt;d:href&gt;</span>/dav/spaces/1284d238-aa92-42ce-bdc4-0b0000009157!02dc1ec5-28b5-41c5-a48a-fabd4fa0562e/test.txt<span class="nt">&lt;/d:href&gt;</span>
+    <span class="nt">&lt;d:propstat&gt;</span>
+      <span class="nt">&lt;d:prop&gt;</span>
+        <span class="nt">&lt;oc:id&gt;</span>MTI4NGQyMzgtYWE5Mi00MmNlLWJkYzQtMGIwMDAwMDA5MTU3OmU4ZDIwNDA5LTE1OWItNGI2Ny1iODZkLTlkM2U3ZjYyYmM0ZQ==<span class="nt">&lt;/oc:id&gt;</span>
+        <span class="nt">&lt;oc:fileid&gt;</span>MTI4NGQyMzgtYWE5Mi00MmNlLWJkYzQtMGIwMDAwMDA5MTU3OmU4ZDIwNDA5LTE1OWItNGI2Ny1iODZkLTlkM2U3ZjYyYmM0ZQ==<span class="nt">&lt;/oc:fileid&gt;</span>
+        <span class="nt">&lt;d:getetag&gt;</span>&#34;e2942565a4eb52e8754c2806f215fe93&#34;<span class="nt">&lt;/d:getetag&gt;</span>
+        <span class="nt">&lt;oc:permissions&gt;</span>RDNVW<span class="nt">&lt;/oc:permissions&gt;</span>
+        <span class="nt">&lt;d:resourcetype/&gt;</span>
+        <span class="nt">&lt;d:getcontentlength&gt;</span>10<span class="nt">&lt;/d:getcontentlength&gt;</span>
+        <span class="nt">&lt;d:getcontenttype&gt;</span>text/plain<span class="nt">&lt;/d:getcontenttype&gt;</span>
+        <span class="nt">&lt;d:getlastmodified&gt;</span>Tue, 07 Sep 2021 12:45:54 GMT<span class="nt">&lt;/d:getlastmodified&gt;</span>
+        <span class="nt">&lt;oc:checksums&gt;</span>
+          <span class="nt">&lt;oc:checksum&gt;</span>SHA1:8f4b4c83c565fc5ec54b78c30c94a6b65e411de5 MD5:6a3a4eca9a6726eef8f7be5b03ea9011 ADLER32:151303ed<span class="nt">&lt;/oc:checksum&gt;</span>
+        <span class="nt">&lt;/oc:checksums&gt;</span>
+        <span class="nt">&lt;oc:favorite&gt;</span>0<span class="nt">&lt;/oc:favorite&gt;</span>
+      <span class="nt">&lt;/d:prop&gt;</span>
+      <span class="nt">&lt;d:status&gt;</span>HTTP/1.1 200 OK<span class="nt">&lt;/d:status&gt;</span>
+    <span class="nt">&lt;/d:propstat&gt;</span>
+  <span class="nt">&lt;/d:response&gt;</span>
+<span class="nt">&lt;/d:multistatus&gt;</span>
 </code></pre></div>
     </article>
 
