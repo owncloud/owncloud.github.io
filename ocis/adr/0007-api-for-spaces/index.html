@@ -96,7 +96,7 @@ Context and Problem Statement    As one of the building blocks for Spaces in oCI
         }
     },
     "url" : "https:\/\/owncloud.dev\/ocis\/adr\/0007-api-for-spaces\/",
-    "wordCount" : "1014",
+    "wordCount" : "994",
     "genre" : [ ]
 }
 </script>
@@ -4492,7 +4492,7 @@ Context and Problem Statement    As one of the building blocks for Spaces in oCI
         </a>
     </h3>
 </div><p>ownCloud servers provide an API to query for available spaces of an user.</p>
-<p>See the openAPI Specification for the <a class="gdoc-markdown__link" href="https://owncloud.dev/open-graph-api/">open Graph API</a>.</p>
+<p>See the openAPI Specification for the <a class="gdoc-markdown__link" href="https://owncloud.dev/libre-graph-api/">Libre Graph API</a>.</p>
 <p>Most important, the API returns the WebDAV endpoint for each space. With that, clients do not have to make assumptions about WebDAV routes any more.</p>
 <p>See <a class="gdoc-markdown__link" href="https://docs.microsoft.com/en-us/graph/api/resources/onedrive?view=graph-rest-1.0">Drive item in Microsoft Graph API</a> for an overview of <code>drive</code> and <code>driveItem</code> resources. The concrete list of drives / spaces a user has access to can be obtained on multiple endpoints.</p>
 <div class="gdoc-page__anchorwrap">
@@ -4532,8 +4532,7 @@ Context and Problem Statement    As one of the building blocks for Spaces in oCI
   &#34;owner&#34;: { &#34;@odata.type&#34;: &#34;microsoft.graph.identitySet&#34; },
   &#34;quota&#34;: { &#34;@odata.type&#34;: &#34;microsoft.graph.quota&#34; },
   &#34;root&#34;:  { &#34;@odata.type&#34;: &#34;microsoft.graph.driveItem&#34; },
-  &#34;webUrl&#34;: &#34;url&#34;,
-  &#34;ocCoOwner&#34;: [ { &#34;@odata.type&#34;: &#34;microsoft.graph.identitySet&#34; } ]
+  &#34;webUrl&#34;: &#34;url&#34;
 }
 </code></pre></div><p>The meaning of the objects in Open Graph API context are:</p>
 <ol>
@@ -4543,7 +4542,6 @@ Context and Problem Statement    As one of the building blocks for Spaces in oCI
 <li><strong>quota</strong> - quota information about this space</li>
 <li><strong>root</strong>  - the root driveItem object.</li>
 <li><strong>webUrl</strong> - The URL to make this space visible in the browser.</li>
-<li><strong>ocCoOwner</strong> - optional array owner objects of the co-owners of a space (*)</li>
 </ol>
 <p>The following <em>driveType</em> values are available in the first step, but might be enhanced later:</p>
 <ul>

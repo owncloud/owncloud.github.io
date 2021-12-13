@@ -4489,10 +4489,10 @@
         </a>
     </h3>
 </div><p>Having introduced the above, one can refer to a Drive with the following URL format:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="go">&#39;https://localhost:9200/graph/v1.0/Drive(1284d238-aa92-42ce-bdc4-0b0000009157!07c26b3a-9944-4f2b-ab33-b0b326fc7570&#34;)
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="go">&#39;https://localhost:9200/graph/v1.0/drives/1284d238-aa92-42ce-bdc4-0b0000009157!07c26b3a-9944-4f2b-ab33-b0b326fc7570
 </span></code></pre></div><p>Updating an entity attribute:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="go">curl -X PATCH &#39;https://localhost:9200/graph/v1.0/Drive(&#34;1284d238-aa92-42ce-bdc4-0b0000009157!07c26b3a-9944-4f2b-ab33-b0b326fc7570)&#39; -d &#39;{&#34;name&#34;:&#34;42&#34;}&#39; -v
-</span></code></pre></div><p>The previous URL resource path segment (<code>Drive(1284d238-aa92-42ce-bdc4-0b0000009157!07c26b3a-9944-4f2b-ab33-b0b326fc7570)</code>) is parsed and handed over to the storage registry in order to apply the patch changes in the body, in this case update the space name attribute to <code>42</code>. Since space names are not unique we only support addressing them by their unique identifiers, any other query would render too ambiguous and explode in complexity.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="go">curl -X PATCH &#39;https://localhost:9200/graph/v1.0/drives/1284d238-aa92-42ce-bdc4-0b0000009157!07c26b3a-9944-4f2b-ab33-b0b326fc7570&#39; -d &#39;{&#34;name&#34;:&#34;42&#34;}&#39; -v
+</span></code></pre></div><p>The previous URL resource path segment (<code>1284d238-aa92-42ce-bdc4-0b0000009157!07c26b3a-9944-4f2b-ab33-b0b326fc7570</code>) is parsed and handed over to the storage registry in order to apply the patch changes in the body, in this case update the space name attribute to <code>42</code>. Since space names are not unique we only support addressing them by their unique identifiers, any other query would render too ambiguous and explode in complexity.</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="updating-a-space-description">
         Updating a space description
