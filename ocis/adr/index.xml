@@ -13,8 +13,7 @@
       <pubDate>Mon, 15 Jun 2020 20:21:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0001-introduce-accounts-service/</guid>
-      <description>Status: superseded by ADR-0003 Deciders: @butonic, @felixboehm, @micbar, @pmaier1 Date: 2020-06-15  Technical Story: persist accounts
-Context and Problem Statement    To attach metadata like shares to users ownCloud relies on persistent, non-reassignable, unique identifiers for users (and files). Email und username can change when a user changes his name. But even the OIDC sub+iss combination may change when the IdP changes. While there is an account porting protocol that describes how a relying party (RP) such as ownCloud should behave, it still requires the RP to maintain its own user identifiers.</description>
+      <description>Status: superseded by ADR-0003 Deciders: @butonic, @felixboehm, @micbar, @pmaier1 Date: 2020-06-15  Technical Story: persist accountsContext and Problem Statement     To attach metadata like shares to users ownCloud relies on persistent, non-reassignable, unique identifiers for users (and files). Email und username can change when a user changes his name. But even the OIDC sub+iss combination may change when the IdP changes. While there is an account porting protocolthat describes how a relying party (RP) such as ownCloud should behave, it still requires the RP to maintain its own user identifiers.</description>
     </item>
     
     <item>
@@ -23,8 +22,7 @@ Context and Problem Statement    To attach metadata like shares to users ownClou
       <pubDate>Fri, 21 Aug 2020 20:21:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0002-persist-accounts-using-cs3-storage/</guid>
-      <description>Status: accepted Deciders: @butonic, @felixboehm Date: 2020-08-21  Technical Story: File system based indexing
-Context and Problem Statement    To set up High Availability (HA) or a geo-replicated setup we need to persist accounts in a distributed way. To efficiently query the accounts by email or username, and not only by id, they need to be indexed. Unfortunately, the bleve index we currently store locally on disk cannot be shared by multiple instances, preventing a scale out deployment.</description>
+      <description>Status: accepted Deciders: @butonic, @felixboehm Date: 2020-08-21  Technical Story: File system based indexingContext and Problem Statement     To set up High Availability (HA) or a geo-replicated setup we need to persist accounts in a distributed way. To efficiently query the accounts by email or username, and not only by id, they need to be indexed. Unfortunately, the bleveindex we currently store locally on disk cannot be shared by multiple instances, preventing a scale out deployment.</description>
     </item>
     
     <item>
@@ -33,8 +31,7 @@ Context and Problem Statement    To set up High Availability (HA) or a geo-repli
       <pubDate>Wed, 09 Dec 2020 20:21:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0003-external-user-management/</guid>
-      <description>Status: accepted Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1 Date: 2020-12-09  Technical Story: Skip account-service by talking to CS3 user-api
-Context and Problem Statement    To attach metadata like shares to users ownCloud relies on persistent, non-reassignable, unique identifiers for users (and files). Email and username can change when a user changes his name. But even the OIDC sub+iss combination may change when the IdP changes. While there is an account porting protocol that describes how a relying party (RP) such as ownCloud should behave, it still requires the RP to maintain its own user identifiers.</description>
+      <description>Status: accepted Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1 Date: 2020-12-09  Technical Story: Skip account-service by talking to CS3 user-apiContext and Problem Statement     To attach metadata like shares to users ownCloud relies on persistent, non-reassignable, unique identifiers for users (and files). Email and username can change when a user changes his name. But even the OIDC sub+iss combination may change when the IdP changes. While there is an account porting protocolthat describes how a relying party (RP) such as ownCloud should behave, it still requires the RP to maintain its own user identifiers.</description>
     </item>
     
     <item>
@@ -44,8 +41,8 @@ Context and Problem Statement    To attach metadata like shares to users ownClou
       
       <guid>https://owncloud.dev/ocis/adr/0004-support-hot-migration/</guid>
       <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1 Date: 2021-03-16  Technical Story: [description | ticket/issue URL]
-Context and Problem Statement    Migration is one of the most important topics of the oCIS story. We need to provide a concept how to migrate from oC10 to oCIS.
-Decision Drivers     Do not lose file blob or meta data.  To prevent a sync surge from clients the etag for files should be migrated.</description>
+Context and Problem Statement     Migration is one of the most important topics of the oCIS story. We need to provide a concept how to migrate from oC10 to oCIS.
+Decision Drivers      Do not lose file blob or meta data.  To prevent a sync surge from clients the etag for files should be migrated.</description>
     </item>
     
     <item>
@@ -54,8 +51,7 @@ Decision Drivers     Do not lose file blob or meta data.  To prevent a sync surg
       <pubDate>Mon, 12 Apr 2021 15:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0005-cs3-api-account-management/</guid>
-      <description>Status: proposed Deciders: @refs, @butonic, @micbar, @dragotin, @pmaier1 Date: 2021-04-12  Technical Story: Write only management API for User and Group resources
-Context and Problem Statement    What would be a more effective way of using network resources and handle account management within the oCIS-Reva ecosystem? Separating account management at the service level is pragmatic and allows for fast iterations, but also steadily accumulates inconsistencies and bloats technical debt.</description>
+      <description>Status: proposed Deciders: @refs, @butonic, @micbar, @dragotin, @pmaier1 Date: 2021-04-12  Technical Story: Write only management API for User and Group resourcesContext and Problem Statement     What would be a more effective way of using network resources and handle account management within the oCIS-Reva ecosystem? Separating account management at the service level is pragmatic and allows for fast iterations, but also steadily accumulates inconsistencies and bloats technical debt.</description>
     </item>
     
     <item>
@@ -64,8 +60,7 @@ Context and Problem Statement    What would be a more effective way of using net
       <pubDate>Mon, 19 Apr 2021 13:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0006-service-discovery/</guid>
-      <description>Status: accepted Deciders: @refs, @butonic, @micbar, @dragotin, @pmaier1 Date: 2021-04-19  Technical Story: Introduce Named Services.
-Context and Problem Statement    Reva relies heavily on config files. A known implication of this approach are having to know a-priori where a service is running (host + port). We want to move away from hardcoded values and rely instead on named services for service discovery. Furthermore, we would like both platforms (Reva + oCIS) to have the same source of truth at any given time, not having one to notify the other whenever a service status changes.</description>
+      <description>Status: accepted Deciders: @refs, @butonic, @micbar, @dragotin, @pmaier1 Date: 2021-04-19  Technical Story: Introduce Named Services.Context and Problem Statement     Reva relies heavily on config files. A known implication of this approach are having to know a-priori where a service is running (host + port). We want to move away from hardcoded values and rely instead on named services for service discovery. Furthermore, we would like both platforms (Reva + oCIS) to have the same source of truth at any given time, not having one to notify the other whenever a service status changes.</description>
     </item>
     
     <item>
@@ -74,8 +69,7 @@ Context and Problem Statement    Reva relies heavily on config files. A known im
       <pubDate>Mon, 03 May 2021 09:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0007-api-for-spaces/</guid>
-      <description>Status: accepted Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1 Date: 2021-03-19  Technical Story: API to enable the concept of Spaces
-Context and Problem Statement    As one of the building blocks for Spaces in oCIS we plan to add an API that returns information about available spaces. This ADR discusses the API design oriented on the Microsoft Graph API.
+      <description>Status: accepted Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1 Date: 2021-03-19  Technical Story: API to enable the concept of SpacesContext and Problem Statement     As one of the building blocks for Spaces in oCIS we plan to add an API that returns information about available spaces. This ADR discusses the API design oriented on the Microsoft Graph API.
  Note: The term &amp;ldquo;spaces&amp;rdquo; is used here in the context of &amp;ldquo;a space where files can be saved&amp;rdquo;, similar to a directory.</description>
     </item>
     
@@ -85,7 +79,7 @@ Context and Problem Statement    As one of the building blocks for Spaces in oCI
       <pubDate>Mon, 03 May 2021 15:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0008-configuration/</guid>
-      <description>Status: proposed Deciders: @refs, @butonic, @micbar, @dragotin, @pmaier1 Date: 2021-05-03  Context and Problem Statement    As per urfave/cli&amp;rsquo;s doc:
+      <description>Status: proposed Deciders: @refs, @butonic, @micbar, @dragotin, @pmaier1 Date: 2021-05-03  Context and Problem Statement     As per urfave/cli&amp;rsquo;s doc:
  The precedence for flag value sources is as follows (highest to lowest):
 Command line flag value from user Environment variable (if specified) Configuration file (if specified) Default defined on the flag   An issue arises in point 2, in the sense that configuration file refers to a single file containing the value for the env variable.</description>
     </item>
@@ -96,8 +90,8 @@ Command line flag value from user Environment variable (if specified) Configurat
       <pubDate>Thu, 10 Jun 2021 15:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0009-extension-template/</guid>
-      <description>Status: proposed Deciders: @c0rby  Date: 2021-06-10  Technical Story: [description | ticket/issue URL] Context and Problem Statement    We want to accelerate and simplify extension development by removing the necessity to type or copy the boilerplate code. Can we provide a template or a similar mechanism to aid when developing new extensions?
-Decision Drivers     The solution should be easily maintainable.  It should always be up-to-date.</description>
+      <description>Status: proposed Deciders: @c0rby  Date: 2021-06-10  Technical Story: [description | ticket/issue URL] Context and Problem Statement     We want to accelerate and simplify extension development by removing the necessity to type or copy the boilerplate code. Can we provide a template or a similar mechanism to aid when developing new extensions?
+Decision Drivers      The solution should be easily maintainable.  It should always be up-to-date.</description>
     </item>
     
     <item>
@@ -106,8 +100,8 @@ Decision Drivers     The solution should be easily maintainable.  It should alwa
       <pubDate>Wed, 30 Jun 2021 14:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0010-policy-enforcement/</guid>
-      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1, @fschade Date: 2021-06-30  Context and Problem Statement    There should be a way to impose certain limitations in areas of the code that require licensing. This document researches an approach to achieve it.
-Decision Drivers     as a team, we want to have the licensing code concentrated in a central module we don&amp;rsquo;t want to stop/start the extension whenever a policy is updated (hot reload)  Considered Options     Build the evaluation engine in-house.</description>
+      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1, @fschade Date: 2021-06-30  Context and Problem Statement     There should be a way to impose certain limitations in areas of the code that require licensing. This document researches an approach to achieve it.
+Decision Drivers      as a team, we want to have the licensing code concentrated in a central module we don&amp;rsquo;t want to stop/start the extension whenever a policy is updated (hot reload)  Considered Options      Build the evaluation engine in-house.</description>
     </item>
     
     <item>
@@ -116,7 +110,7 @@ Decision Drivers     as a team, we want to have the licensing code concentrated 
       <pubDate>Wed, 07 Jul 2021 14:55:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0011-global-url-format/</guid>
-      <description>Status: accepted Deciders: @refs, @butonic, @micbar, @dragotin, @hodyroff, @pmaier1, @fschade, @tbsbdr, @kulmann Date: 2021-07-07  Context and Problem Statement    When speaking about URLs we have to make a difference between browser URLs and API URLs. Only browser URLs are visible to end users and will be bookmarked. The currently existing and bookmarked ownCloud 10 URLs look something like this:
+      <description>Status: accepted Deciders: @refs, @butonic, @micbar, @dragotin, @hodyroff, @pmaier1, @fschade, @tbsbdr, @kulmann Date: 2021-07-07  Context and Problem Statement     When speaking about URLs we have to make a difference between browser URLs and API URLs. Only browser URLs are visible to end users and will be bookmarked. The currently existing and bookmarked ownCloud 10 URLs look something like this:
 GET https://demo.owncloud.com/apps/files/?dir=/path/to/resource&amp;amp;fileid=5472225 303 Location: https://demo.owncloud.com/apps/files/?dir=/path/to/resource When the URL contains a fileid parameter the server will look up the corresponding dir, overwriting whatever was set before the redirect.</description>
     </item>
     
@@ -126,8 +120,8 @@ GET https://demo.owncloud.com/apps/files/?dir=/path/to/resource&amp;amp;fileid=5
       <pubDate>Tue, 17 Aug 2021 12:56:53 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0012-tracing/</guid>
-      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @mstingl, @pmaier1, @fschade Date: 2021-08-17  Context and Problem Statement    At the time of this writing we are in a situation where our logs have too much verbosity, rendering impossible or rather difficult to debug an instance. For this reason we are giving some care to our traces by updating dependencies from OpenCensus to OpenTelemetry.
-Decision Drivers     We don&amp;rsquo;t want to rely only on logs to debug an instance.</description>
+      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @mstingl, @pmaier1, @fschade Date: 2021-08-17  Context and Problem Statement     At the time of this writing we are in a situation where our logs have too much verbosity, rendering impossible or rather difficult to debug an instance. For this reason we are giving some care to our traces by updating dependencies from OpenCensus to OpenTelemetry.
+Decision Drivers      We don&amp;rsquo;t want to rely only on logs to debug an instance.</description>
     </item>
     
     <item>
@@ -136,7 +130,7 @@ Decision Drivers     We don&amp;rsquo;t want to rely only on logs to debug an in
       <pubDate>Tue, 17 Aug 2021 12:56:53 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0013-locking/</guid>
-      <description>Status: accepted Deciders: @hodyroff, @pmaier1, @jojowein, @dragotin, @micbar, @tbsbdr, @wkloucek Date: 2021-11-03  Context and Problem Statement    At the time of this writing no locking mechanisms exists in oCIS / REVA for both directories and files. The CS3org WOPI server implements a file based locking in order to lock files. This ADR discusses if this approach is ok for the general availability of oCIS or if changes are needed.</description>
+      <description>Status: accepted Deciders: @hodyroff, @pmaier1, @jojowein, @dragotin, @micbar, @tbsbdr, @wkloucek Date: 2021-11-03  Context and Problem Statement     At the time of this writing no locking mechanisms exists in oCIS / REVA for both directories and files. The CS3org WOPI server implements a file based locking in order to lock files. This ADR discusses if this approach is ok for the general availability of oCIS or if changes are needed.</description>
     </item>
     
   </channel>
