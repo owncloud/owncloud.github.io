@@ -151,7 +151,7 @@ It maps the path and id based CS3 references to an appropriate storage systemspe
         }
     },
     "url" : "https:\/\/owncloud.dev\/extensions\/storage\/storagedrivers\/",
-    "wordCount" : "2476",
+    "wordCount" : "2704",
     "genre" : [ ]
 }
 </script>
@@ -6546,6 +6546,33 @@ Modern POSIX filesystems support snapshotting of volumes. This is different from
 <p>The S3NG storage driver uses the same metadata layout on a POSIX storage as the oCIS driver, but it uses S3 as the blob storage.</p>
 <p>TODO add list of capabilities / tradeoffs</p>
 <div class="gdoc-page__anchorwrap">
+    <h4 id="related-kernel-limits">
+        Related Kernel limits
+        <a data-clipboard-text="https://owncloud.dev/extensions/storage/storagedrivers/#related-kernel-limits" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Related Kernel limits" href="#related-kernel-limits">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+<p>The decomposedfs currently stores CS3 grants in extended attributes. When listing extended attributes the result is currently limited to 64kB. Assuming a 20 byte uuid a grant has ~40 bytes. Which would limit the number of extended attributes to ~1630 entries or ~1600 shares. This can be extended by moving the grants from extended attributes into a dedicated file.</p>
+<p>From <a
+  class="gdoc-markdown__link"
+  href="https://en.wikipedia.org/wiki/Extended_file_attributes#Linux"
+  
+  >Wikipedia on Extended file attributes</a
+>:</p>
+<blockquote>
+<p>The Linux kernel allows extended attribute to have names of up to 255 bytes and values of up to 64 KiB,[14] as do XFS and ReiserFS, but ext2/3/4 and btrfs impose much smaller limits, requiring all the attributes (names and values) of one file to fit in one &ldquo;filesystem block&rdquo; (usually 4 KiB). Per POSIX.1e,[citation needed] the names are required to start with one of security, system, trusted, and user plus a period. This defines the four namespaces of extended attributes.[15]</p>
+</blockquote>
+<p>And from the <a
+  class="gdoc-markdown__link"
+  href="https://www.man7.org/linux/man-pages/man2/listxattr.2.html"
+  
+  >man page on listxattr</a
+>:</p>
+<blockquote>
+<p>As noted in xattr(7), the VFS imposes a limit of 64 kB on the size of the extended attribute name list returned by listxattr(7).  If the total size of attribute names attached to a file exceeds this limit, it is no longer possible to retrieve the list of attribute names.</p>
+</blockquote>
+<div class="gdoc-page__anchorwrap">
     <h3 id="local-storage-driver">
         Local Storage Driver
         <a data-clipboard-text="https://owncloud.dev/extensions/storage/storagedrivers/#local-storage-driver" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Local Storage Driver" href="#local-storage-driver">
@@ -6622,6 +6649,11 @@ Modern POSIX filesystems support snapshotting of volumes. This is different from
         </a>
     </h3>
 </div>
+<blockquote class="gdoc-hint info">
+  <strong>Deprecated</strong>
+The owncloud storage driver was used for testing purposes early on. For a parallel deployment focus has shifted to the owncloudsql.
+</blockquote>
+
 <p>This is the current default storage driver. While it implements the file tree (using redis, including id based lookup), ETag propagation, trash, versions and sharing (including expiry) using the data directory layout of ownCloud 10 it has <a
   class="gdoc-markdown__link"
   href="https://github.com/owncloud/core/issues/28095"
