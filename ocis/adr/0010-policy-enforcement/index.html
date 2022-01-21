@@ -9,8 +9,8 @@
 
 
 
-  <meta name="description" content="Status: proposed Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1, @fschade Date: 2021-06-30  Context and Problem Statement     There should be a way to impose certain limitations in areas of the code that require licensing. This document researches an approach to achieve it.
-Decision Drivers      as a team, we want to have the licensing code concentrated in a central module we don&rsquo;t want to stop/start the extension whenever a policy is updated (hot reload)  Considered Options      Build the evaluation engine in-house." />
+  <meta name="description" content="Status: proposed Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1, @fschade Date: 2021-06-30  Context and Problem Statement     There should be a way to impose certain limitations in areas of the code that require licensing. This document researches an approach to achieve this goal, while limiting the scope to the enforcement side of it. The architecture for a policy system must be composed of 2 parts:
+ License creation and validation Enforcement  It is desirable to keep both systems isolated, since the implementation of the latter has to be done within the constraints of the codebase." />
 
 
 
@@ -35,8 +35,8 @@ Decision Drivers      as a team, we want to have the licensing code concentrated
     
 
     <meta property="og:title" content="10. Extension Policies" />
-<meta property="og:description" content="Status: proposed Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1, @fschade Date: 2021-06-30  Context and Problem Statement     There should be a way to impose certain limitations in areas of the code that require licensing. This document researches an approach to achieve it.
-Decision Drivers      as a team, we want to have the licensing code concentrated in a central module we don&rsquo;t want to stop/start the extension whenever a policy is updated (hot reload)  Considered Options      Build the evaluation engine in-house." />
+<meta property="og:description" content="Status: proposed Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1, @fschade Date: 2021-06-30  Context and Problem Statement     There should be a way to impose certain limitations in areas of the code that require licensing. This document researches an approach to achieve this goal, while limiting the scope to the enforcement side of it. The architecture for a policy system must be composed of 2 parts:
+ License creation and validation Enforcement  It is desirable to keep both systems isolated, since the implementation of the latter has to be done within the constraints of the codebase." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/ocis/adr/0010-policy-enforcement/" /><meta property="article:section" content="ocis" />
 <meta property="article:published_time" content="2021-06-30T14:00:00+01:00" />
@@ -45,8 +45,8 @@ Decision Drivers      as a team, we want to have the licensing code concentrated
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="10. Extension Policies"/>
-<meta name="twitter:description" content="Status: proposed Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1, @fschade Date: 2021-06-30  Context and Problem Statement     There should be a way to impose certain limitations in areas of the code that require licensing. This document researches an approach to achieve it.
-Decision Drivers      as a team, we want to have the licensing code concentrated in a central module we don&rsquo;t want to stop/start the extension whenever a policy is updated (hot reload)  Considered Options      Build the evaluation engine in-house."/>
+<meta name="twitter:description" content="Status: proposed Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1, @fschade Date: 2021-06-30  Context and Problem Statement     There should be a way to impose certain limitations in areas of the code that require licensing. This document researches an approach to achieve this goal, while limiting the scope to the enforcement side of it. The architecture for a policy system must be composed of 2 parts:
+ License creation and validation Enforcement  It is desirable to keep both systems isolated, since the implementation of the latter has to be done within the constraints of the codebase."/>
 
 
     <script src="/js/main.bundle.min.js"></script>
@@ -124,7 +124,7 @@ Decision Drivers      as a team, we want to have the licensing code concentrated
     "name": "10. Extension Policies",
     "headline": "10. Extension Policies",
     "alternativeHeadline": "",
-    "description": "Status: proposed Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1, @fschade Date: 2021-06-30  Context and Problem Statement     There should be a way to impose certain limitations in areas of the code that require licensing. This document researches an approach to achieve it.\nDecision Drivers      as a team, we want to have the licensing code concentrated in a central module we don\u0026rsquo;t want to stop\/start the extension whenever a policy is updated (hot reload)  Considered Options      Build the evaluation engine in-house.",
+    "description": "Status: proposed Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1, @fschade Date: 2021-06-30  Context and Problem Statement     There should be a way to impose certain limitations in areas of the code that require licensing. This document researches an approach to achieve this goal, while limiting the scope to the enforcement side of it. The architecture for a policy system must be composed of 2 parts:\n License creation and validation Enforcement  It is desirable to keep both systems isolated, since the implementation of the latter has to be done within the constraints of the codebase.",
     "inLanguage": "en",
     "isFamilyFriendly": "true",
     "mainEntityOfPage": {
@@ -148,7 +148,7 @@ Decision Drivers      as a team, we want to have the licensing code concentrated
         }
     },
     "url" : "https:\/\/owncloud.dev\/ocis\/adr\/0010-policy-enforcement\/",
-    "wordCount" : "504",
+    "wordCount" : "799",
     "genre" : [ ]
 }
 </script>
@@ -6360,7 +6360,12 @@ Decision Drivers      as a team, we want to have the licensing code concentrated
         </a>
     </h2>
 </div>
-<p>There should be a way to impose certain limitations in areas of the code that require licensing. This document researches an approach to achieve it.</p>
+<p>There should be a way to impose certain limitations in areas of the code that require licensing. This document researches an approach to achieve this goal, while limiting the scope to the enforcement side of it. The architecture for a policy system must be composed of 2 parts:</p>
+<ol>
+<li>License creation and validation</li>
+<li>Enforcement</li>
+</ol>
+<p>It is desirable to keep both systems isolated, since the implementation of the latter has to be done within the constraints of the codebase. The alternative is running an enforcement service and have each and every single request evaluating whether the request is valid or not.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="decision-drivers">
         Decision Drivers
@@ -6370,8 +6375,8 @@ Decision Drivers      as a team, we want to have the licensing code concentrated
     </h2>
 </div>
 <ul>
-<li>as a team, we want to have the licensing code concentrated in a central module</li>
-<li>we don&rsquo;t want to stop/start the extension whenever a policy is updated (hot reload)</li>
+<li>As a team, we want to have the licensing code concentrated in a central module</li>
+<li>We don&rsquo;t want to stop/start the extension whenever a policy is updated (hot reload). It must happen during runtime.</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h2 id="considered-options">
@@ -6404,11 +6409,11 @@ Decision Drivers      as a team, we want to have the licensing code concentrated
 </div>
 <ul>
 <li>OPA is production battle tested.</li>
-<li>built around performance - policies evaluations are no longer than 1ms per request.</li>
-<li>middleware friendly: we use gRPC clients all over our ecosystem; wrappers (or middlewares) is a viable way to solve this problem instead of a dedicated service or its own package.</li>
-<li>community support.</li>
-<li>kubernetes friendly.</li>
-<li>supports envoy, kong, terraform, traefik, php, node and many more.</li>
+<li>Built around performance - policies evaluations are no longer than 1ms per request.</li>
+<li>Middleware friendly: we use gRPC clients all over our ecosystem; wrappers (or middlewares) is a viable way to solve this problem instead of a dedicated service or its own package.</li>
+<li>Community support.</li>
+<li>Kubernetes friendly.</li>
+<li>Supports envoy, kong, terraform, traefik, php, node and many more.</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h3 id="negative-consequences">
@@ -6419,7 +6424,7 @@ Decision Drivers      as a team, we want to have the licensing code concentrated
     </h3>
 </div>
 <ul>
-<li>more vendor code inside the binary (larger attack surface, larger footprint [to be quantified] )</li>
+<li>More vendor code inside the binary (larger attack surface, larger footprint [to be quantified] )</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h2 id="chosen-option-approach">
@@ -6445,15 +6450,15 @@ Decision Drivers      as a team, we want to have the licensing code concentrated
 </div>
 <p>New terms are defined to refer to new mental models:</p>
 <ul>
-<li>policy: self-imposed limitation of a piece of software. i.e: &ldquo;after 20 users limit the use of thumbnails&rdquo;.</li>
-<li>checkers: in the context of a middleware, a checker is in charge of defining logical conditions that prevent requests (users) from doing an action.</li>
-<li>policy file: a <a
+<li>Policy: self-imposed limitation of a piece of software. i.e: &ldquo;after 20 users limit the use of thumbnails&rdquo;.</li>
+<li>Checkers: in the context of a middleware, a checker is in charge of defining logical conditions that prevent requests (users) from doing an action.</li>
+<li>Policy file: a <a
   class="gdoc-markdown__link"
   href="https://www.openpolicyagent.org/docs/latest/policy-language/"
   
   >rego file</a
 >.</li>
-<li>policy evaluation: the act of piecing together input (from a request), data (from an external storage) and policies in order to make a decision.</li>
+<li>Policy evaluation: the act of piecing together input (from a request), data (from an external storage) and policies in order to make a decision.</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h4 id="temporary-new-interfaces-part-of-the-poc">
@@ -6466,6 +6471,24 @@ Decision Drivers      as a team, we want to have the licensing code concentrated
 <ul>
 <li>IStorage: provides means of extracting data from an external source (in case of the POC an etcd storage cluster).</li>
 </ul>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="external-data-storages">
+        External data storages
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0010-policy-enforcement/#external-data-storages" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor External data storages" href="#external-data-storages">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>However, for this to be usable it needs state. The Rego engine works with input and data, where data is essentially a database the input is tried against, in order to expand this poc to include functionality such as counters (i.e: give access to the thumbnails only to 50 users) we need an external storage, and consequentially, Rego needs to have an option to load data from an external storage. There is an entire chapter in the documentation regarding external data: <a
+  class="gdoc-markdown__link"
+  href="https://www.openpolicyagent.org/docs/latest/external-data/"
+  
+  >https://www.openpolicyagent.org/docs/latest/external-data/</a
+>. The most &ldquo;natural&rdquo; option (option 5) states:</p>
+<blockquote>
+<p>OPA includes functionality for reaching out to external servers during evaluation. This functionality handles those cases where there is too much data to synchronize into OPA, JWTs are ineffective, or policy requires information that must be as up to date as possible.</p>
+</blockquote>
+<p>This is a natural option because it requires service-to-service communication, and by definition using microservices it should come &ldquo;natural to us&rdquo;. Another approach is using JWT (which we already use) to encode the necessary data into the JWT and handing it over to rego as &ldquo;data&rdquo;. The issue with this approach is that depending on the features of the licenses the JWT might grow and be filled with noise and redundancy (this is, unless a new token is issued for licensing purposes).</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="future-ideas">
         Future ideas
