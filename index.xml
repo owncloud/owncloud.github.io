@@ -6,7 +6,7 @@
     <description>Recent content on ownCloud</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 23 Jan 2022 12:33:03 +0000</lastBuildDate><atom:link href="https://owncloud.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Feb 2022 08:31:50 +0000</lastBuildDate><atom:link href="https://owncloud.dev/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>1. Introduce an accounts service</title>
       <link>https://owncloud.dev/ocis/adr/0001-introduce-accounts-service/</link>
@@ -278,6 +278,15 @@ It maps the path and id based CS3 references to an appropriate storage systemspe
       
       <guid>https://owncloud.dev/ocis/adr/0013-locking/</guid>
       <description>Status: accepted Deciders: @hodyroff, @pmaier1, @jojowein, @dragotin, @micbar, @tbsbdr, @wkloucek Date: 2021-11-03  Context and Problem Statement     At the time of this writing no locking mechanisms exists in oCIS / REVA for both directories and files. The CS3org WOPI server implements a file based locking in order to lock files. This ADR discusses if this approach is ok for the general availability of oCIS or if changes are needed.</description>
+    </item>
+    
+    <item>
+      <title>14. Microservices Runtime</title>
+      <link>https://owncloud.dev/ocis/adr/0014-microservices-runtime/</link>
+      <pubDate>Fri, 21 Jan 2022 12:56:53 +0100</pubDate>
+      
+      <guid>https://owncloud.dev/ocis/adr/0014-microservices-runtime/</guid>
+      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @mstingl, @pmaier1, @fschade Date: 2022-01-21  Context and Problem Statement     In an environment where shipping a single binary makes it easier for the end user to use oCIS, embedding a whole family of microservices within a package and running it leveraging the use of the Go language has plenty of value. In such environment, a runtime is necessary to orchestrate the services that run within it.</description>
     </item>
     
     <item>
@@ -714,6 +723,89 @@ storage-registry&amp;#xa;Expose: trueExpose: true24  PATCH http://ocis:9156/dat
     </item>
     
     <item>
+      <title>ocis.messages.accounts.v0</title>
+      <link>https://owncloud.dev/grpc_apis/ocis.messages.accounts.v0</link>
+      <pubDate>Tue, 01 Feb 2022 08:31:50 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/grpc_apis/ocis.messages.accounts.v0</guid>
+      <description>ocis/messages/accounts/v0/accounts.proto  Account Group Identities OnPremisesProvisioningError PasswordProfile   Scalar Value Types      ocis/messages/accounts/v0/accounts.proto     Account     Account follows the properties of the ms graph api user resource. See https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0#properties   Field Type Label Description     id string  The unique identifier for the user. Key. Not nullable. Non reassignable. Read-only.   account_enabled bool  true if the account is enabled; otherwise, false.</description>
+    </item>
+    
+    <item>
+      <title>ocis.messages.settings.v0</title>
+      <link>https://owncloud.dev/grpc_apis/ocis.messages.settings.v0</link>
+      <pubDate>Tue, 01 Feb 2022 08:31:50 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/grpc_apis/ocis.messages.settings.v0</guid>
+      <description>ocis/messages/settings/v0/settings.proto  Bool Bundle Identifier Int ListOption ListOptionValue ListValue MultiChoiceList Permission Resource Setting SingleChoiceList String UserRoleAssignment Value ValueWithIdentifier Bundle.Type Permission.Constraint Permission.Operation Resource.Type   Scalar Value Types      ocis/messages/settings/v0/settings.proto     Bool        Field Type Label Description     default bool     label string      Bundle        Field Type Label Description     id string     name string     type Bundle.</description>
+    </item>
+    
+    <item>
+      <title>ocis.messages.store.v0</title>
+      <link>https://owncloud.dev/grpc_apis/ocis.messages.store.v0</link>
+      <pubDate>Tue, 01 Feb 2022 08:31:50 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/grpc_apis/ocis.messages.store.v0</guid>
+      <description>ocis/messages/store/v0/store.proto  DeleteOptions Field ListOptions ReadOptions ReadOptions.WhereEntry Record Record.MetadataEntry WriteOptions   Scalar Value Types      ocis/messages/store/v0/store.proto     DeleteOptions        Field Type Label Description     database string     table string      Field        Field Type Label Description     type string  type of value e.</description>
+    </item>
+    
+    <item>
+      <title>ocis.messages.thumbnails.v0</title>
+      <link>https://owncloud.dev/grpc_apis/ocis.messages.thumbnails.v0</link>
+      <pubDate>Tue, 01 Feb 2022 08:31:50 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/grpc_apis/ocis.messages.thumbnails.v0</guid>
+      <description>ocis/messages/thumbnails/v0/thumbnails.proto  CS3Source WebdavSource   Scalar Value Types      ocis/messages/thumbnails/v0/thumbnails.proto     CS3Source        Field Type Label Description     path string     authorization string      WebdavSource        Field Type Label Description     url string  REQUIRED.</description>
+    </item>
+    
+    <item>
+      <title>ocis.services.accounts.v0</title>
+      <link>https://owncloud.dev/grpc_apis/ocis.services.accounts.v0</link>
+      <pubDate>Tue, 01 Feb 2022 08:31:50 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/grpc_apis/ocis.services.accounts.v0</guid>
+      <description>ocis/services/accounts/v0/accounts.proto  AddMemberRequest CreateAccountRequest CreateGroupRequest DeleteAccountRequest DeleteGroupRequest GetAccountRequest GetGroupRequest ListAccountsRequest ListAccountsResponse ListGroupsRequest ListGroupsResponse ListMembersRequest ListMembersResponse RebuildIndexRequest RebuildIndexResponse RemoveMemberRequest UpdateAccountRequest UpdateGroupRequest AccountsService GroupsService IndexService   Scalar Value Types      ocis/services/accounts/v0/accounts.proto     AddMemberRequest        Field Type Label Description     group_id string  The id of the group to add a member to   account_id string  The account id to add    CreateAccountRequest        Field Type Label Description     account ocis.</description>
+    </item>
+    
+    <item>
+      <title>ocis.services.settings.v0</title>
+      <link>https://owncloud.dev/grpc_apis/ocis.services.settings.v0</link>
+      <pubDate>Tue, 01 Feb 2022 08:31:50 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/grpc_apis/ocis.services.settings.v0</guid>
+      <description>ocis/services/settings/v0/settings.proto  AddSettingToBundleRequest AddSettingToBundleResponse AssignRoleToUserRequest AssignRoleToUserResponse GetBundleRequest GetBundleResponse GetPermissionByIDRequest GetPermissionByIDResponse GetValueByUniqueIdentifiersRequest GetValueRequest GetValueResponse ListBundlesRequest ListBundlesResponse ListPermissionsByResourceRequest ListPermissionsByResourceResponse ListRoleAssignmentsRequest ListRoleAssignmentsResponse ListValuesRequest ListValuesResponse RemoveRoleFromUserRequest RemoveSettingFromBundleRequest SaveBundleRequest   requests and responses for settings bundles  SaveBundleResponse SaveValueRequest SaveValueResponse BundleService PermissionService RoleService ValueService   Scalar Value Types      ocis/services/settings/v0/settings.proto     AddSettingToBundleRequest        Field Type Label Description     bundle_id string     setting ocis.</description>
+    </item>
+    
+    <item>
+      <title>ocis.services.store.v0</title>
+      <link>https://owncloud.dev/grpc_apis/ocis.services.store.v0</link>
+      <pubDate>Tue, 01 Feb 2022 08:31:50 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/grpc_apis/ocis.services.store.v0</guid>
+      <description>ocis/services/store/v0/store.proto  DatabasesRequest DatabasesResponse DeleteRequest DeleteResponse ListRequest ListResponse ReadRequest ReadResponse TablesRequest TablesResponse WriteRequest WriteResponse Store   Scalar Value Types      ocis/services/store/v0/store.proto     DatabasesRequest     DatabasesResponse        Field Type Label Description     databases string repeated     DeleteRequest        Field Type Label Description     key string     options ocis.</description>
+    </item>
+    
+    <item>
+      <title>ocis.services.thumbnails.v0</title>
+      <link>https://owncloud.dev/grpc_apis/ocis.services.thumbnails.v0</link>
+      <pubDate>Tue, 01 Feb 2022 08:31:50 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/grpc_apis/ocis.services.thumbnails.v0</guid>
+      <description>ocis/services/thumbnails/v0/thumbnails.proto  GetThumbnailRequest GetThumbnailResponse GetThumbnailRequest.ThumbnailType ThumbnailService   Scalar Value Types      ocis/services/thumbnails/v0/thumbnails.proto     GetThumbnailRequest     A request to retrieve a thumbnail
+   Field Type Label Description     filepath string  The path to the source image   thumbnail_type GetThumbnailRequest.ThumbnailType  The type to which the thumbnail should get encoded to.</description>
+    </item>
+    
+    <item>
+      <title>Development</title>
+      <link>https://owncloud.dev/clients/web/development/</link>
+      <pubDate>Fri, 28 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/clients/web/development/</guid>
+      <description>Contributing to ownCloud web  Linting and tests Changelog items   Code Conventions  Early returns Translations TypeScript Dependencies        This is a collection of tips and conventions to follow when working on the ownCloud web frontend. It is a living document, please open a PR if you find something missing.
+Contributing to ownCloud web     Everyone is invited to contribute.</description>
+    </item>
+    
+    <item>
       <title>Settings Bundles</title>
       <link>https://owncloud.dev/extensions/settings/bundles/</link>
       <pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate>
@@ -744,39 +836,11 @@ As of now we support five different types of settings:
     
     <item>
       <title>GRPC API</title>
-      <link>https://owncloud.dev/extensions/accounts/grpc/</link>
-      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://owncloud.dev/extensions/accounts/grpc/</guid>
-      <description>proto/v0/thumbnails.proto  CS3Source GetThumbnailRequest GetThumbnailResponse WebdavSource GetThumbnailRequest.ThumbnailType ThumbnailService   Scalar Value Types      proto/v0/thumbnails.proto     CS3Source        Field Type Label Description     path string     authorization string      GetThumbnailRequest     A request to retrieve a thumbnail
-   Field Type Label Description     filepath string  The path to the source image   thumbnail_type GetThumbnailRequest.</description>
-    </item>
-    
-    <item>
-      <title>GRPC API</title>
       <link>https://owncloud.dev/extensions/ocis_hello/grpc/</link>
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.dev/extensions/ocis_hello/grpc/</guid>
       <description>hello.proto  GreetRequest GreetResponse Hello   Scalar Value Types      hello.proto     GreetRequest        Field Type Label Description     name string      GreetResponse        Field Type Label Description     message string      Hello        Method Name Request Type Response Type Description     Greet GreetRequest GreetResponse     Scalar Value Types        .</description>
-    </item>
-    
-    <item>
-      <title>GRPC API</title>
-      <link>https://owncloud.dev/extensions/settings/grpc/</link>
-      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://owncloud.dev/extensions/settings/grpc/</guid>
-      <description>proto/v0/settings.proto  AddSettingToBundleRequest AddSettingToBundleResponse AssignRoleToUserRequest AssignRoleToUserResponse Bool Bundle GetBundleRequest GetBundleResponse GetPermissionByIDRequest GetPermissionByIDResponse GetValueByUniqueIdentifiersRequest GetValueRequest GetValueResponse Identifier Int ListBundlesRequest ListBundlesResponse ListOption ListOptionValue ListPermissionsByResourceRequest ListPermissionsByResourceResponse ListRoleAssignmentsRequest ListRoleAssignmentsResponse ListValue ListValuesRequest ListValuesResponse MultiChoiceList Permission RemoveRoleFromUserRequest RemoveSettingFromBundleRequest Resource SaveBundleRequest   requests and responses for settings bundles  SaveBundleResponse SaveValueRequest SaveValueResponse Setting SingleChoiceList String UserRoleAssignment Value ValueWithIdentifier Bundle.Type Permission.Constraint Permission.Operation Resource.Type BundleService PermissionService RoleService ValueService   Scalar Value Types      proto/v0/settings.</description>
-    </item>
-    
-    <item>
-      <title>GRPC API</title>
-      <link>https://owncloud.dev/extensions/store/grpc/</link>
-      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://owncloud.dev/extensions/store/grpc/</guid>
-      <description>proto/v0/store.proto  DatabasesRequest DatabasesResponse DeleteOptions DeleteRequest DeleteResponse Field ListOptions ListRequest ListResponse ReadOptions ReadOptions.WhereEntry ReadRequest ReadResponse Record Record.MetadataEntry TablesRequest TablesResponse WriteOptions WriteRequest WriteResponse Store   Scalar Value Types      proto/v0/store.proto     DatabasesRequest     DatabasesResponse        Field Type Label Description     databases string repeated     DeleteOptions        Field Type Label Description     database string     table string      DeleteRequest        Field Type Label Description     key string     options DeleteOptions      DeleteResponse     Field        Field Type Label Description     type string  type of value e.</description>
     </item>
     
     <item>
@@ -853,19 +917,19 @@ Identifying settings values     A settings value is uniquely identified by four 
     
     <item>
       <title>Running acceptance tests</title>
-      <link>https://owncloud.dev/clients/web/testing/</link>
+      <link>https://owncloud.dev/clients/web/testing/testing/</link>
       <pubDate>Tue, 27 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://owncloud.dev/clients/web/testing/</guid>
-      <description>Introduction  Unit &amp;amp; Integration Tests Acceptance Tests  Prerequisites Prepare &amp;amp; start web Start Docker Run acceptance tests Watch the test run Watch the test report          Introduction     In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.</description>
+      <guid>https://owncloud.dev/clients/web/testing/testing/</guid>
+      <description>Introduction  Unit &amp;amp; Integration Tests E2E Tests (Playwright)  Prerequisites Prepare &amp;amp; start web Start Docker Run E2E tests Options   Acceptance Tests (Nightwatch)  Prerequisites Prepare &amp;amp; start web Start Docker Run acceptance tests Watch the test run Watch the test report          Introduction     In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.</description>
     </item>
     
     <item>
-      <title>Running acceptance tests - manual</title>
-      <link>https://owncloud.dev/clients/web/testing-manual/</link>
+      <title>Running acceptance tests - all options</title>
+      <link>https://owncloud.dev/clients/web/testing/acceptance-tests-all/</link>
       <pubDate>Wed, 15 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://owncloud.dev/clients/web/testing-manual/</guid>
+      <guid>https://owncloud.dev/clients/web/testing/acceptance-tests-all/</guid>
       <description>Setup backend  ownCloud 10 oCIS   Setup the ownCloud test Middleware Setup Selenium  Setup using Docker Setup using Docker Desktop for Mac Setup using standalone Selenium server   Setup ownCloud Web Run tests  with oC10 backend with oCIS backend Visual Regression Testing  Running the visual regression tests Updating the snapshots     Available settings to be set by environment variables Tips  too many open files   Acceptance Tests in CI  1.</description>
     </item>
     
