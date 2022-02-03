@@ -9,14 +9,13 @@
 
 
 
-  <meta name="description" content="Status: proposed Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1, @fschade Date: 2021-06-30  Context and Problem Statement     There should be a way to impose certain limitations in areas of the code that require licensing. This document researches an approach to achieve this goal, while limiting the scope to the enforcement side of it. The architecture for a policy system must be composed of 2 parts:
- License creation and validation Enforcement  It is desirable to keep both systems isolated, since the implementation of the latter has to be done within the constraints of the codebase." />
+  <meta name="description" content="Status: proposed Deciders: @butonic, @micbar, @dragotin, @c0rby, @wkloucek Date: 2022-01-21  Context and Problem Statement     Overview     To be able to implement simple, flexible and independent inter service communication there is the idea to implement an event system in oCIS. A service can send out events which are received by one or more other services. The receiving service can cause different kinds of actions based on the event by utilizing the information that the event carries." />
 
 
 
     <title>
       
-        10. Extension Policies | 
+        15. oCIS Event System | 
       ownCloud
     </title>
 
@@ -34,19 +33,17 @@
 
     
 
-    <meta property="og:title" content="10. Extension Policies" />
-<meta property="og:description" content="Status: proposed Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1, @fschade Date: 2021-06-30  Context and Problem Statement     There should be a way to impose certain limitations in areas of the code that require licensing. This document researches an approach to achieve this goal, while limiting the scope to the enforcement side of it. The architecture for a policy system must be composed of 2 parts:
- License creation and validation Enforcement  It is desirable to keep both systems isolated, since the implementation of the latter has to be done within the constraints of the codebase." />
+    <meta property="og:title" content="15. oCIS Event System" />
+<meta property="og:description" content="Status: proposed Deciders: @butonic, @micbar, @dragotin, @c0rby, @wkloucek Date: 2022-01-21  Context and Problem Statement     Overview     To be able to implement simple, flexible and independent inter service communication there is the idea to implement an event system in oCIS. A service can send out events which are received by one or more other services. The receiving service can cause different kinds of actions based on the event by utilizing the information that the event carries." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://owncloud.dev/ocis/adr/0010-policy-enforcement/" /><meta property="article:section" content="ocis" />
-<meta property="article:published_time" content="2021-06-30T14:00:00+01:00" />
-<meta property="article:modified_time" content="2021-06-30T14:00:00+01:00" />
+<meta property="og:url" content="https://owncloud.dev/ocis/adr/0015-events/" /><meta property="article:section" content="ocis" />
+<meta property="article:published_time" content="2022-02-01T12:56:53+01:00" />
+<meta property="article:modified_time" content="2022-02-01T12:56:53+01:00" />
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="10. Extension Policies"/>
-<meta name="twitter:description" content="Status: proposed Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1, @fschade Date: 2021-06-30  Context and Problem Statement     There should be a way to impose certain limitations in areas of the code that require licensing. This document researches an approach to achieve this goal, while limiting the scope to the enforcement side of it. The architecture for a policy system must be composed of 2 parts:
- License creation and validation Enforcement  It is desirable to keep both systems isolated, since the implementation of the latter has to be done within the constraints of the codebase."/>
+<meta name="twitter:title" content="15. oCIS Event System"/>
+<meta name="twitter:description" content="Status: proposed Deciders: @butonic, @micbar, @dragotin, @c0rby, @wkloucek Date: 2022-01-21  Context and Problem Statement     Overview     To be able to implement simple, flexible and independent inter service communication there is the idea to implement an event system in oCIS. A service can send out events which are received by one or more other services. The receiving service can cause different kinds of actions based on the event by utilizing the information that the event carries."/>
 
 
     <script src="/js/main-8b6f2ee8.bundle.min.js"></script>
@@ -121,21 +118,21 @@
     "@context": "http://schema.org",
     "@type": "TechArticle",
     "articleSection": "ocis",
-    "name": "10. Extension Policies",
-    "headline": "10. Extension Policies",
+    "name": "15. oCIS Event System",
+    "headline": "15. oCIS Event System",
     "alternativeHeadline": "",
-    "description": "Status: proposed Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1, @fschade Date: 2021-06-30  Context and Problem Statement     There should be a way to impose certain limitations in areas of the code that require licensing. This document researches an approach to achieve this goal, while limiting the scope to the enforcement side of it. The architecture for a policy system must be composed of 2 parts:\n License creation and validation Enforcement  It is desirable to keep both systems isolated, since the implementation of the latter has to be done within the constraints of the codebase.",
+    "description": "Status: proposed Deciders: @butonic, @micbar, @dragotin, @c0rby, @wkloucek Date: 2022-01-21  Context and Problem Statement     Overview     To be able to implement simple, flexible and independent inter service communication there is the idea to implement an event system in oCIS. A service can send out events which are received by one or more other services. The receiving service can cause different kinds of actions based on the event by utilizing the information that the event carries.",
     "inLanguage": "en",
     "isFamilyFriendly": "true",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https:\/\/owncloud.dev\/ocis\/adr\/0010-policy-enforcement\/"
+        "@id": "https:\/\/owncloud.dev\/ocis\/adr\/0015-events\/"
     },
     "copyrightHolder" : "ownCloud",
-    "copyrightYear" : "2021",
-    "dateCreated": "2021-06-30T14:00:00.00Z",
-    "datePublished": "2021-06-30T14:00:00.00Z",
-    "dateModified": "2021-06-30T14:00:00.00Z",
+    "copyrightYear" : "2022",
+    "dateCreated": "2022-02-01T12:56:53.00Z",
+    "datePublished": "2022-02-01T12:56:53.00Z",
+    "dateModified": "2022-02-01T12:56:53.00Z",
     "publisher":{
         "@type":"Organization",
         "name": "ownCloud",
@@ -147,8 +144,8 @@
             "height":"32"
         }
     },
-    "url" : "https:\/\/owncloud.dev\/ocis\/adr\/0010-policy-enforcement\/",
-    "wordCount" : "799",
+    "url" : "https:\/\/owncloud.dev\/ocis\/adr\/0015-events\/",
+    "wordCount" : "873",
     "genre" : [ ]
 }
 </script>
@@ -1511,7 +1508,7 @@
                 <span class="flex">
                   <a
                     href="/ocis/adr/0010-policy-enforcement/"
-                    class="gdoc-nav__entry is-active"
+                    class="gdoc-nav__entry "
                   >
                     10. Extension Policies
                   </a>
@@ -1736,7 +1733,7 @@
                 <span class="flex">
                   <a
                     href="/ocis/adr/0015-events/"
-                    class="gdoc-nav__entry "
+                    class="gdoc-nav__entry is-active"
                   >
                     15. oCIS Event System
                   </a>
@@ -6728,7 +6725,7 @@
     
   
   
-    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/adr/' href='/ocis/adr/'><span itemprop='name'>Architecture Decisions</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>10. Extension Policies</span><meta itemprop='position' content='4' /></li>
+    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/adr/' href='/ocis/adr/'><span itemprop='name'>Architecture Decisions</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>15. oCIS Event System</span><meta itemprop='position' content='4' /></li>
   
 
   
@@ -6745,7 +6742,7 @@
       <span class="editpage">
         <svg class="icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
         <a
-          href="https://github.com/owncloud/ocis/edit/master/docs/ocis/adr/0010-policy-enforcement.md"
+          href="https://github.com/owncloud/ocis/edit/master/docs/ocis/adr/0015-events.md"
         >
           Edit page
         </a>
@@ -6759,178 +6756,216 @@
   <article
     class="gdoc-markdown gdoc-markdown__align--left"
   >
-    <h1>10. Extension Policies</h1>
+    <h1>15. oCIS Event System</h1>
     <ul>
 <li>Status: proposed</li>
-<li>Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1, @fschade</li>
-<li>Date: 2021-06-30</li>
+<li>Deciders: @butonic, @micbar, @dragotin, @c0rby, @wkloucek</li>
+<li>Date: 2022-01-21</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h2 id="context-and-problem-statement">
         Context and Problem Statement
-        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0010-policy-enforcement/#context-and-problem-statement" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Context and Problem Statement" aria-label="Anchor to: Context and Problem Statement" href="#context-and-problem-statement">
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0015-events/#context-and-problem-statement" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Context and Problem Statement" aria-label="Anchor to: Context and Problem Statement" href="#context-and-problem-statement">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div>
-<p>There should be a way to impose certain limitations in areas of the code that require licensing. This document researches an approach to achieve this goal, while limiting the scope to the enforcement side of it. The architecture for a policy system must be composed of 2 parts:</p>
-<ol>
-<li>License creation and validation</li>
-<li>Enforcement</li>
-</ol>
-<p>It is desirable to keep both systems isolated, since the implementation of the latter has to be done within the constraints of the codebase. The alternative is running an enforcement service and have each and every single request evaluating whether the request is valid or not.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="overview">
+        Overview
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0015-events/#overview" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Overview" aria-label="Anchor to: Overview" href="#overview">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>To be able to implement simple, flexible and independent inter service communication there is the idea to implement an event system in oCIS. A service can send out events which are received by one or more other services. The receiving service can cause different kinds of actions based on the event by utilizing the information that the event carries.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="example-email-notification">
+        Example: Email Notification
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0015-events/#example-email-notification" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Example: Email Notification" aria-label="Anchor to: Example: Email Notification" href="#example-email-notification">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>A simple example is the notification feature for oCIS: Users should receive an email when another user shares a file with them. The information, that the file was shared should go out as an event from a storage provider or share manager, carrying the information which file was shared to which receiver. A potential notification service that sends out the email listens to these kind of events and sends the email out once on every received event of that specific type.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="decision-drivers">
         Decision Drivers
-        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0010-policy-enforcement/#decision-drivers" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Decision Drivers" aria-label="Anchor to: Decision Drivers" href="#decision-drivers">
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0015-events/#decision-drivers" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Decision Drivers" aria-label="Anchor to: Decision Drivers" href="#decision-drivers">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div>
 <ul>
-<li>As a team, we want to have the licensing code concentrated in a central module</li>
-<li>We don&rsquo;t want to stop/start the extension whenever a policy is updated (hot reload). It must happen during runtime.</li>
+<li>Events are supposed to decouple services and raise flexibility, also considering extensions that are not directly controlled by the ownCloud project.</li>
+<li>Events should bring flexibility in the implementation of sending and receiving services.</li>
+<li>Events should not obsolete other mechanisms to communicate, ie. grpc calls.</li>
+<li>Sending an event has to be as little resource consuming for the sender as possible.</li>
+<li>Events are never user visible.</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h2 id="considered-options">
         Considered Options
-        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0010-policy-enforcement/#considered-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Considered Options" aria-label="Anchor to: Considered Options" href="#considered-options">
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0015-events/#considered-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Considered Options" aria-label="Anchor to: Considered Options" href="#considered-options">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div>
 <ol>
-<li>Build the evaluation engine in-house.</li>
-<li>Use third party libraries such as Open Policy Agent (a CNCF approved project written in Go)</li>
+<li>Lightweight Events with Event Queue and &ldquo;At most once&rdquo; QoS</li>
+<li>As 1., but with &ldquo;At least once&rdquo; QoS</li>
 </ol>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="options">
+        Options
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0015-events/#options" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Options" aria-label="Anchor to: Options" href="#options">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="1-lightweight-events-with-event-queue-and-at-most-once-qos">
+        1. Lightweight Events with Event Queue and &ldquo;At most once&rdquo; QoS
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0015-events/#1-lightweight-events-with-event-queue-and-at-most-once-qos" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: 1. Lightweight Events with Event Queue and &ldquo;At most once&rdquo; QoS" aria-label="Anchor to: 1. Lightweight Events with Event Queue and &ldquo;At most once&rdquo; QoS" href="#1-lightweight-events-with-event-queue-and-at-most-once-qos">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>Reva will get a messaging service that is available to all services within oCIS and Reva. It is considered as one of the mandatory services of the oCIS system. If the messaging backend is not running, neither Reva nor oCIS can be considered healthy and should shut down.</p>
+<p>All oCIS- and Reva-services can connect to the messaging bus and send so called events. The sender gets an immediate return if handing the event to the message bus was succesful or not.</p>
+<p>The sender can not make any assumptions when the message is delivered to any receiving service. Depending on the QoS model (as proposed as alternatives in this ADR) it might even be not guaranteed that the event is delivered at all. Also, the sender can not know if zero, one or many services are listening to that event.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="event-data">
+        Event Data
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0015-events/#event-data" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Event Data" aria-label="Anchor to: Event Data" href="#event-data">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+<p>Events are identified by their namespace and their respective name. The namespace is delimited by dots and starts with either &ldquo;reva&rdquo; or &ldquo;ocis&rdquo; or an future extension name. It is followed by the name of the sending service and an unique name of the event.</p>
+<p>Example: <code>ocis.ocdav.delete</code> - an event with that name sent out if an WebDAV DELETE request arrived in the oCDav service.</p>
+<p>An event can carry a payload which is encoded as json object. (See for example <a
+  class="gdoc-markdown__link"
+  href="https://docs.nats.io/using-nats/developer/sending/structure"
+  
+  >NATS</a
+> ). There are no pre defined members in that object, it is fully up to the sender which data will be included in the payload. Receivers must be robust to deal with changes.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="quality-of-service">
+        Quality of Service
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0015-events/#quality-of-service" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Quality of Service" aria-label="Anchor to: Quality of Service" href="#quality-of-service">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+<p>Events are sent with &ldquo;At most once&rdquo; quality of service. That means, if a receiver is not present at the moment of publishing it might not receive the event. That requires that the sender and the receiver must have functionality to back up the situation that events were missed. That adds more state to the services because they always need to behave like a <a
+  class="gdoc-markdown__link"
+  href="https://en.wikipedia.org/wiki/Finite-state_machine"
+  
+  >FISM</a
+>. Given that the event queue can be considered the backbone of the system, it is unlikely that it is not running.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="transactions">
+        Transactions
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0015-events/#transactions" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Transactions" aria-label="Anchor to: Transactions" href="#transactions">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+<p>The described way of inter service communication with events is not transactional. It is not supposed to be, but only provides a lightweight, loosely coupled way to &ldquo;inform&rdquo;.</p>
+<p>If transactions are required, proper synchronous GRPC API calls should be used. Another way would be to build asynchronous flows with request- and reply events as in <a
+  class="gdoc-markdown__link"
+  href="https://microservices.io/patterns/data/saga.html"
+  
+  >saga pattern</a
+>. That is only recommended for special cases.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="pros">
+        Pros
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0015-events/#pros" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Pros" aria-label="Anchor to: Pros" href="#pros">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+<ul>
+<li>Simple setup</li>
+<li>Flexible way of connecting services</li>
+<li>Stateless event queue</li>
+<li>&ldquo;State of the art&rdquo; pattern in microservices architectures</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="cons">
+        Cons
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0015-events/#cons" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Cons" aria-label="Anchor to: Cons" href="#cons">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+<ul>
+<li>Over engineering: Can we do without an extra message queue component?</li>
+<li>Messages might get lost, so that eventual consistency is endangered</li>
+<li>A service needs to hold more state to ensure consistency</li>
+<li>Message queue needs to be implemented in Reva</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="2-lightweight-events-with-event-queue-and-at-least-once-qos">
+        2. Lightweight Events with Event Queue and &ldquo;At-least once&rdquo; QoS
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0015-events/#2-lightweight-events-with-event-queue-and-at-least-once-qos" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: 2. Lightweight Events with Event Queue and &ldquo;At-least once&rdquo; QoS" aria-label="Anchor to: 2. Lightweight Events with Event Queue and &ldquo;At-least once&rdquo; QoS" href="#2-lightweight-events-with-event-queue-and-at-least-once-qos">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>Exactly as described above, but with a higher service level quality.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="quality-of-service-1">
+        Quality of Service
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0015-events/#quality-of-service-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Quality of Service" aria-label="Anchor to: Quality of Service" href="#quality-of-service-1">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+<p>Events are sent with &ldquo;At least once&rdquo; quality of service. That means the events will remain in the queue until they are received by all receivers. This puts more responsability on the event bus and adds state to the events. Given that the event queue can be considered the backbone of the system, it is required to be running.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="pros-1">
+        Pros
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0015-events/#pros-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Pros" aria-label="Anchor to: Pros" href="#pros-1">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+<ul>
+<li>Better service level: Messages do not get lost</li>
+<li>Simplifies the design of the microservices because the events are &ldquo;fire-and-forget&rdquo;</li>
+<li>Events would be idempotent. If a service goes down the events will stay in the queue until they are consumed</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="cons-1">
+        Cons
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0015-events/#cons-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Cons" aria-label="Anchor to: Cons" href="#cons-1">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+<ul>
+<li>Stateful event system with higher cost in terms of compute and storage</li>
+<li>The queue could become a bottleneck and needs to be scaled</li>
+</ul>
 <div class="gdoc-page__anchorwrap">
     <h2 id="decision-outcome">
         Decision Outcome
-        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0010-policy-enforcement/#decision-outcome" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Decision Outcome" aria-label="Anchor to: Decision Outcome" href="#decision-outcome">
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0015-events/#decision-outcome" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Decision Outcome" aria-label="Anchor to: Decision Outcome" href="#decision-outcome">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div>
-<p>Chosen option: option 2; Use third party libraries such as Open Policy Agent (a CNCF approved project written in Go)</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="positive-consequences">
-        Positive Consequences
-        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0010-policy-enforcement/#positive-consequences" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Positive Consequences" aria-label="Anchor to: Positive Consequences" href="#positive-consequences">
+    <h3 id="design">
+        Design
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0015-events/#design" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Design" aria-label="Anchor to: Design" href="#design">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
 </div>
-<ul>
-<li>OPA is production battle tested.</li>
-<li>Built around performance - policies evaluations are no longer than 1ms per request.</li>
-<li>Middleware friendly: we use gRPC clients all over our ecosystem; wrappers (or middlewares) is a viable way to solve this problem instead of a dedicated service or its own package.</li>
-<li>Community support.</li>
-<li>Kubernetes friendly.</li>
-<li>Supports envoy, kong, terraform, traefik, php, node and many more.</li>
-</ul>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="negative-consequences">
-        Negative Consequences
-        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0010-policy-enforcement/#negative-consequences" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Negative Consequences" aria-label="Anchor to: Negative Consequences" href="#negative-consequences">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div>
-<ul>
-<li>More vendor code inside the binary (larger attack surface, larger footprint [to be quantified] )</li>
-</ul>
-<div class="gdoc-page__anchorwrap">
-    <h2 id="chosen-option-approach">
-        Chosen option approach
-        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0010-policy-enforcement/#chosen-option-approach" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Chosen option approach" aria-label="Anchor to: Chosen option approach" href="#chosen-option-approach">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h2>
-</div>
-<p>Make use of <a
-  class="gdoc-markdown__link"
-  href="https://www.openpolicyagent.org/docs/latest/external-data/#option-2-overload-input"
-  
-  >overloading Open Policy Agent&rsquo;s input</a
-> along with an external storage source (instead of an OPA service) in conjunction with go-micro&rsquo;s gRPC client wrappers (a.k.a middlewares) to leverage policy rules evaluation.</p>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="terminology">
-        Terminology
-        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0010-policy-enforcement/#terminology" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Terminology" aria-label="Anchor to: Terminology" href="#terminology">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div>
-<p>New terms are defined to refer to new mental models:</p>
-<ul>
-<li>Policy: self-imposed limitation of a piece of software. i.e: &ldquo;after 20 users limit the use of thumbnails&rdquo;.</li>
-<li>Checkers: in the context of a middleware, a checker is in charge of defining logical conditions that prevent requests (users) from doing an action.</li>
-<li>Policy file: a <a
-  class="gdoc-markdown__link"
-  href="https://www.openpolicyagent.org/docs/latest/policy-language/"
-  
-  >rego file</a
->.</li>
-<li>Policy evaluation: the act of piecing together input (from a request), data (from an external storage) and policies in order to make a decision.</li>
-</ul>
-<div class="gdoc-page__anchorwrap">
-    <h4 id="temporary-new-interfaces-part-of-the-poc">
-        Temporary new Interfaces part of the PoC
-        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0010-policy-enforcement/#temporary-new-interfaces-part-of-the-poc" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Temporary new Interfaces part of the PoC" aria-label="Anchor to: Temporary new Interfaces part of the PoC" href="#temporary-new-interfaces-part-of-the-poc">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h4>
-</div>
-<ul>
-<li>IStorage: provides means of extracting data from an external source (in case of the POC an etcd storage cluster).</li>
-</ul>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="external-data-storages">
-        External data storages
-        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0010-policy-enforcement/#external-data-storages" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: External data storages" aria-label="Anchor to: External data storages" href="#external-data-storages">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div>
-<p>However, for this to be usable it needs state. The Rego engine works with input and data, where data is essentially a database the input is tried against, in order to expand this poc to include functionality such as counters (i.e: give access to the thumbnails only to 50 users) we need an external storage, and consequentially, Rego needs to have an option to load data from an external storage. There is an entire chapter in the documentation regarding external data: <a
-  class="gdoc-markdown__link"
-  href="https://www.openpolicyagent.org/docs/latest/external-data/"
-  
-  >https://www.openpolicyagent.org/docs/latest/external-data/</a
->. The most &ldquo;natural&rdquo; option (option 5) states:</p>
-<blockquote>
-<p>OPA includes functionality for reaching out to external servers during evaluation. This functionality handles those cases where there is too much data to synchronize into OPA, JWTs are ineffective, or policy requires information that must be as up to date as possible.</p>
-</blockquote>
-<p>This is a natural option because it requires service-to-service communication, and by definition using microservices it should come &ldquo;natural to us&rdquo;. Another approach is using JWT (which we already use) to encode the necessary data into the JWT and handing it over to rego as &ldquo;data&rdquo;. The issue with this approach is that depending on the features of the licenses the JWT might grow and be filled with noise and redundancy (this is, unless a new token is issued for licensing purposes).</p>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="future-ideas">
-        Future ideas
-        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0010-policy-enforcement/#future-ideas" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Future ideas" aria-label="Anchor to: Future ideas" href="#future-ideas">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div>
-<p><a
-  class="gdoc-markdown__link"
-  href="https://github.com/owncloud/ocis/pull/2236"
-  
-  >This proof of concept</a
-> is very rigid in the sense that the <code>IStorage</code> interface only has one implementation that ties it to etcd, meaning running an oCIS cluster without an etcd service will result in a crash. This is by far ideal and less coupled implementations should be done. There is the case of using the storage metadata as a source to store data necessary to the policies, or even using the go-micro store as a kv store to achieve the exact same, since it already runs as its own service. The implementation of this is trivial and left out of the POC since it requires more time than the allotted for this task.</p>
-<div class="gdoc-page__anchorwrap">
-    <h4 id="message-broker">
-        Message Broker
-        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0010-policy-enforcement/#message-broker" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Message Broker" aria-label="Anchor to: Message Broker" href="#message-broker">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h4>
-</div>
-<p>This problem perfectly encompasses the use of a message broker, where services such as OCS will emit messages to a bus and only listeners react to them. In this case the following applies:</p>
-<p><img
-  src="https://i.imgur.com/sa1pANQ.jpg"
-  alt="message broker"
-  
-/></p>
-<p>The necessary interfaces are provided to us by go-micro, only implementations are to be done.</p>
 
   </article>
 
