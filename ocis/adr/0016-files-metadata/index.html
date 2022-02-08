@@ -9,15 +9,13 @@
 
 
 
-  <meta name="description" content="Currently, every service needs to be configured with a port so oCIS can start them on localhost. We will automate this by using a service registry for more services, until eventually only the proxy has to be configured with a public port.
-For now, the storage service uses these ports to preconfigure those services:
-   port service     9109 health, used by cli?   9140 frontend   9141 frontend debug   9142 gateway   9143 gateway debug   9144 users   9145 users debug   9146 authbasic   9147 authbasic debug   9148 authbearer   9149 authbearer debug   9150 sharing   9151 sharing debug   9154 storage home grpc   9155 storage home http   9156 storage home debug   9157 storage users grpc   9158 storage users http   9159 storage users debug   9160 groups   9161 groups debug   9164 storage appprovider   9165 storage appprovider debug   9178 storage public link   9179 storage public link data   9215 storage meta grpc   9216 storage meta http   9217 storage meta debug    " />
+  <meta name="description" content="Status: proposed Deciders: @butonic, @dragotin, @micbar, @C0rby Date: 2022-02-04  Context and Problem Statement     In addition to the file content we need to store metadata which is attached to a file. Metadata describes additional properties of a file. These properties need to be stored as close as possible to the file content to avoid inconsistencies. Metadata are key to workflows and search. We consider them as an additional value which enhances the file content." />
 
 
 
     <title>
       
-        Ports | 
+        16. Storage for Files Metadata | 
       ownCloud
     </title>
 
@@ -35,21 +33,17 @@ For now, the storage service uses these ports to preconfigure those services:
 
     
 
-    <meta property="og:title" content="Ports" />
-<meta property="og:description" content="Currently, every service needs to be configured with a port so oCIS can start them on localhost. We will automate this by using a service registry for more services, until eventually only the proxy has to be configured with a public port.
-For now, the storage service uses these ports to preconfigure those services:
-   port service     9109 health, used by cli?   9140 frontend   9141 frontend debug   9142 gateway   9143 gateway debug   9144 users   9145 users debug   9146 authbasic   9147 authbasic debug   9148 authbearer   9149 authbearer debug   9150 sharing   9151 sharing debug   9154 storage home grpc   9155 storage home http   9156 storage home debug   9157 storage users grpc   9158 storage users http   9159 storage users debug   9160 groups   9161 groups debug   9164 storage appprovider   9165 storage appprovider debug   9178 storage public link   9179 storage public link data   9215 storage meta grpc   9216 storage meta http   9217 storage meta debug    " />
+    <meta property="og:title" content="16. Storage for Files Metadata" />
+<meta property="og:description" content="Status: proposed Deciders: @butonic, @dragotin, @micbar, @C0rby Date: 2022-02-04  Context and Problem Statement     In addition to the file content we need to store metadata which is attached to a file. Metadata describes additional properties of a file. These properties need to be stored as close as possible to the file content to avoid inconsistencies. Metadata are key to workflows and search. We consider them as an additional value which enhances the file content." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://owncloud.dev/extensions/storage/ports/" /><meta property="article:section" content="extensions" />
-<meta property="article:published_time" content="2018-05-02T00:00:00+00:00" />
-<meta property="article:modified_time" content="2018-05-02T00:00:00+00:00" />
+<meta property="og:url" content="https://owncloud.dev/ocis/adr/0016-files-metadata/" /><meta property="article:section" content="ocis" />
+
+
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Ports"/>
-<meta name="twitter:description" content="Currently, every service needs to be configured with a port so oCIS can start them on localhost. We will automate this by using a service registry for more services, until eventually only the proxy has to be configured with a public port.
-For now, the storage service uses these ports to preconfigure those services:
-   port service     9109 health, used by cli?   9140 frontend   9141 frontend debug   9142 gateway   9143 gateway debug   9144 users   9145 users debug   9146 authbasic   9147 authbasic debug   9148 authbearer   9149 authbearer debug   9150 sharing   9151 sharing debug   9154 storage home grpc   9155 storage home http   9156 storage home debug   9157 storage users grpc   9158 storage users http   9159 storage users debug   9160 groups   9161 groups debug   9164 storage appprovider   9165 storage appprovider debug   9178 storage public link   9179 storage public link data   9215 storage meta grpc   9216 storage meta http   9217 storage meta debug    "/>
+<meta name="twitter:title" content="16. Storage for Files Metadata"/>
+<meta name="twitter:description" content="Status: proposed Deciders: @butonic, @dragotin, @micbar, @C0rby Date: 2022-02-04  Context and Problem Statement     In addition to the file content we need to store metadata which is attached to a file. Metadata describes additional properties of a file. These properties need to be stored as close as possible to the file content to avoid inconsistencies. Metadata are key to workflows and search. We consider them as an additional value which enhances the file content."/>
 
 
     <script src="/js/main-8b6f2ee8.bundle.min.js"></script>
@@ -123,22 +117,22 @@ For now, the storage service uses these ports to preconfigure those services:
 {
     "@context": "http://schema.org",
     "@type": "TechArticle",
-    "articleSection": "extensions",
-    "name": "Ports",
-    "headline": "Ports",
+    "articleSection": "ocis",
+    "name": "16. Storage for Files Metadata",
+    "headline": "16. Storage for Files Metadata",
     "alternativeHeadline": "",
-    "description": "Currently, every service needs to be configured with a port so oCIS can start them on localhost. We will automate this by using a service registry for more services, until eventually only the proxy has to be configured with a public port.\nFor now, the storage service uses these ports to preconfigure those services:\n   port service     9109 health, used by cli?   9140 frontend   9141 frontend debug   9142 gateway   9143 gateway debug   9144 users   9145 users debug   9146 authbasic   9147 authbasic debug   9148 authbearer   9149 authbearer debug   9150 sharing   9151 sharing debug   9154 storage home grpc   9155 storage home http   9156 storage home debug   9157 storage users grpc   9158 storage users http   9159 storage users debug   9160 groups   9161 groups debug   9164 storage appprovider   9165 storage appprovider debug   9178 storage public link   9179 storage public link data   9215 storage meta grpc   9216 storage meta http   9217 storage meta debug    ",
+    "description": "Status: proposed Deciders: @butonic, @dragotin, @micbar, @C0rby Date: 2022-02-04  Context and Problem Statement     In addition to the file content we need to store metadata which is attached to a file. Metadata describes additional properties of a file. These properties need to be stored as close as possible to the file content to avoid inconsistencies. Metadata are key to workflows and search. We consider them as an additional value which enhances the file content.",
     "inLanguage": "en",
     "isFamilyFriendly": "true",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https:\/\/owncloud.dev\/extensions\/storage\/ports\/"
+        "@id": "https:\/\/owncloud.dev\/ocis\/adr\/0016-files-metadata\/"
     },
     "copyrightHolder" : "ownCloud",
-    "copyrightYear" : "2018",
-    "dateCreated": "2018-05-02T00:00:00.00Z",
-    "datePublished": "2018-05-02T00:00:00.00Z",
-    "dateModified": "2018-05-02T00:00:00.00Z",
+    "copyrightYear" : "0001",
+    "dateCreated": "0001-01-01T00:00:00.00Z",
+    "datePublished": "0001-01-01T00:00:00.00Z",
+    "dateModified": "0001-01-01T00:00:00.00Z",
     "publisher":{
         "@type":"Organization",
         "name": "ownCloud",
@@ -150,8 +144,8 @@ For now, the storage service uses these ports to preconfigure those services:
             "height":"32"
         }
     },
-    "url" : "https:\/\/owncloud.dev\/extensions\/storage\/ports\/",
-    "wordCount" : "148",
+    "url" : "https:\/\/owncloud.dev\/ocis\/adr\/0016-files-metadata\/",
+    "wordCount" : "640",
     "genre" : [ ]
 }
 </script>
@@ -1042,7 +1036,7 @@ For now, the storage service uses these ports to preconfigure those services:
               type="checkbox"
               
                 class="gdoc-nav__toggle" id="navtree-307b2de1"
-                
+                checked
               
             />
             <label
@@ -1109,7 +1103,7 @@ For now, the storage service uses these ports to preconfigure those services:
                 <span class="flex">
                   <a
                     href="/ocis/adr/0016-files-metadata/"
-                    class="gdoc-nav__entry "
+                    class="gdoc-nav__entry is-active"
                   >
                     16. Storage for Files Metadata
                   </a>
@@ -5099,7 +5093,7 @@ For now, the storage service uses these ports to preconfigure those services:
               type="checkbox"
               
                 class="gdoc-nav__toggle" id="navtree-32265ebb"
-                checked
+                
               
             />
             <label
@@ -5563,7 +5557,7 @@ For now, the storage service uses these ports to preconfigure those services:
                 <span class="flex">
                   <a
                     href="/extensions/storage/ports/"
-                    class="gdoc-nav__entry is-active"
+                    class="gdoc-nav__entry "
                   >
                     Ports
                   </a>
@@ -6744,7 +6738,7 @@ For now, the storage service uses these ports to preconfigure those services:
   
     justify-between
   
-  
+  hidden-mobile
   "
   itemprop="breadcrumb"
 >
@@ -6776,7 +6770,7 @@ For now, the storage service uses these ports to preconfigure those services:
     
   
   
-    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/extensions/' href='/extensions/'><span itemprop='name'>Extensions</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/extensions/storage/' href='/extensions/storage/'><span itemprop='name'>Storage</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Ports</span><meta itemprop='position' content='4' /></li>
+    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/adr/' href='/ocis/adr/'><span itemprop='name'>Architecture Decisions</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>16. Storage for Files Metadata</span><meta itemprop='position' content='4' /></li>
   
 
   
@@ -6789,17 +6783,6 @@ For now, the storage service uses these ports to preconfigure those services:
     </div>
   
   
-    <div>
-      <span class="editpage">
-        <svg class="icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
-        <a
-          href="https://github.com/owncloud/ocis/edit/master/docs/extensions/storage/ports.md"
-        >
-          Edit page
-        </a>
-      </span>
-    </div>
-  
 </div>
 
 
@@ -6807,131 +6790,163 @@ For now, the storage service uses these ports to preconfigure those services:
   <article
     class="gdoc-markdown gdoc-markdown__align--left"
   >
-    <h1>Ports</h1>
-    <p>Currently, every service needs to be configured with a port so oCIS can start them on localhost. We will automate this by using a service registry for more services, until eventually only the proxy has to be configured with a public port.</p>
-<p>For now, the storage service uses these ports to preconfigure those services:</p>
-<div class=table-wrap> <table>
-<thead>
-<tr>
-<th>port</th>
-<th>service</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>9109</td>
-<td>health, used by cli?</td>
-</tr>
-<tr>
-<td>9140</td>
-<td>frontend</td>
-</tr>
-<tr>
-<td>9141</td>
-<td>frontend debug</td>
-</tr>
-<tr>
-<td>9142</td>
-<td>gateway</td>
-</tr>
-<tr>
-<td>9143</td>
-<td>gateway debug</td>
-</tr>
-<tr>
-<td>9144</td>
-<td>users</td>
-</tr>
-<tr>
-<td>9145</td>
-<td>users debug</td>
-</tr>
-<tr>
-<td>9146</td>
-<td>authbasic</td>
-</tr>
-<tr>
-<td>9147</td>
-<td>authbasic debug</td>
-</tr>
-<tr>
-<td>9148</td>
-<td>authbearer</td>
-</tr>
-<tr>
-<td>9149</td>
-<td>authbearer debug</td>
-</tr>
-<tr>
-<td>9150</td>
-<td>sharing</td>
-</tr>
-<tr>
-<td>9151</td>
-<td>sharing debug</td>
-</tr>
-<tr>
-<td>9154</td>
-<td>storage home grpc</td>
-</tr>
-<tr>
-<td>9155</td>
-<td>storage home http</td>
-</tr>
-<tr>
-<td>9156</td>
-<td>storage home debug</td>
-</tr>
-<tr>
-<td>9157</td>
-<td>storage users grpc</td>
-</tr>
-<tr>
-<td>9158</td>
-<td>storage users http</td>
-</tr>
-<tr>
-<td>9159</td>
-<td>storage users debug</td>
-</tr>
-<tr>
-<td>9160</td>
-<td>groups</td>
-</tr>
-<tr>
-<td>9161</td>
-<td>groups debug</td>
-</tr>
-<tr>
-<td>9164</td>
-<td>storage appprovider</td>
-</tr>
-<tr>
-<td>9165</td>
-<td>storage appprovider debug</td>
-</tr>
-<tr>
-<td>9178</td>
-<td>storage public link</td>
-</tr>
-<tr>
-<td>9179</td>
-<td>storage public link data</td>
-</tr>
-<tr>
-<td>9215</td>
-<td>storage meta grpc</td>
-</tr>
-<tr>
-<td>9216</td>
-<td>storage meta http</td>
-</tr>
-<tr>
-<td>9217</td>
-<td>storage meta debug</td>
-</tr>
-</tbody>
-</table> </div>
+    <h1>16. Storage for Files Metadata</h1>
+    <ul>
+<li>Status: proposed</li>
+<li>Deciders: @butonic, @dragotin, @micbar, @C0rby</li>
+<li>Date: 2022-02-04</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="context-and-problem-statement">
+        Context and Problem Statement
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0016-files-metadata/#context-and-problem-statement" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Context and Problem Statement" aria-label="Anchor to: Context and Problem Statement" href="#context-and-problem-statement">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>In addition to the file content we need to store metadata which is attached to a file. Metadata describes additional properties of a file. These properties need to be stored as close as possible to the file content to avoid inconsistencies. Metadata are key to workflows and search. We consider them as an additional value which enhances the file content.</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="decision-drivers">
+        Decision Drivers
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0016-files-metadata/#decision-drivers" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Decision Drivers" aria-label="Anchor to: Decision Drivers" href="#decision-drivers">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<ul>
+<li>Metadata will become more important in the future</li>
+<li>Metadata are key to automated data processing</li>
+<li>Metadata storage should be as close as possible to the file content</li>
+<li>Metadata should be always in sync with the file content</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="considered-options">
+        Considered Options
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0016-files-metadata/#considered-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Considered Options" aria-label="Anchor to: Considered Options" href="#considered-options">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<ul>
+<li>Database</li>
+<li>Extended file attributes</li>
+<li>Metadata file next to the file content</li>
+<li>Linked metadata in separate file</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="decision-outcome">
+        Decision Outcome
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0016-files-metadata/#decision-outcome" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Decision Outcome" aria-label="Anchor to: Decision Outcome" href="#decision-outcome">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>Chosen option: &ldquo;Extended File Attributes&rdquo;, because we guarantee the consistency of data and have arbitrary simple storage mechanism.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="positive-consequences">
+        Positive Consequences
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0016-files-metadata/#positive-consequences" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Positive Consequences" aria-label="Anchor to: Positive Consequences" href="#positive-consequences">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<ul>
+<li>Metadata is always attached to the file itself</li>
+<li>We can store arbitrary key/values</li>
+<li>No external dependencies are needed</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="negative-consequences">
+        Negative consequences
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0016-files-metadata/#negative-consequences" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Negative consequences" aria-label="Anchor to: Negative consequences" href="#negative-consequences">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<ul>
+<li>The storage inside extended file attributes has limits</li>
+<li>Changes to extended attributes are not atomic and need file locks</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="pros-and-cons-of-the-options----optional---">
+        Pros and Cons of the Options <!-- optional -->
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0016-files-metadata/#pros-and-cons-of-the-options----optional---" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Pros and Cons of the Options " aria-label="Anchor to: Pros and Cons of the Options " href="#pros-and-cons-of-the-options----optional---">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="database-or-key-value-store">
+        Database or Key-Value Store
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0016-files-metadata/#database-or-key-value-store" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Database or Key-Value Store" aria-label="Anchor to: Database or Key-Value Store" href="#database-or-key-value-store">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>Use a Database or an external key/value store to persist metadata.</p>
+<ul>
+<li>Good, because it scales well</li>
+<li>Good, because databases provide efficient lookup mechanisms</li>
+<li>Bad, because the file content and the metadata could run out of sync</li>
+<li>Bad, because a storage backup doesn&rsquo;t cover the file metadata</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="extended-file-attributes">
+        Extended File Attributes
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0016-files-metadata/#extended-file-attributes" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Extended File Attributes" aria-label="Anchor to: Extended File Attributes" href="#extended-file-attributes">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>Extended File Attributes allow to store arbitrary properties. There are 4 namespaces <code>user</code>, <code>system</code>, <code>trusted</code> and <code>security</code>. We can safely use the <code>user</code> namespace. An example attribute name would be <code>user.ocis.owner.id</code>. The linux kernel has length limits on attribute names and values.</p>
+<p>From Wikipedia on <a
+  class="gdoc-markdown__link"
+  href="https://en.wikipedia.org/wiki/Extended_file_attributes#Linux"
+  
+  >Extended file attributes</a
+>:</p>
+<blockquote>
+<p>The Linux kernel allows extended attribute to have names of up to 255 bytes and values of up to 64 KiB,[14] as do XFS and ReiserFS, but ext2/3/4 and btrfs impose much smaller limits, requiring all the attributes (names and values) of one file to fit in one “filesystem block” (usually 4 KiB). Per POSIX.1e,[citation needed] the names are required to start with one of security, system, trusted, and user plus a period. This defines the four namespaces of extended attributes.</p>
+</blockquote>
+<ul>
+<li>Good, because metadata is stored in the filesystem</li>
+<li>Good, because consistency is easy to maintain</li>
+<li>Good, because the data is attached to the file and survives file operations like copy and move</li>
+<li>Good, because a storage backup also covers the file metadata</li>
+<li>Bad, because we could hit the filesystem limit</li>
+<li>Bad, because changes to extended attributes are not atomic</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="metadata-file">
+        Metadata File
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0016-files-metadata/#metadata-file" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Metadata File" aria-label="Anchor to: Metadata File" href="#metadata-file">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>We could store metadata in a metadata file next to the file content which has a structured content format like .json, .yaml or .toml. That would give us more space to store bigger amounts of metadata.</p>
+<ul>
+<li>Good, because there are no size limits</li>
+<li>Good, because there is more freedom to the content format</li>
+<li>Good, because a storage backup also covers the file metadata</li>
+<li>Bad, because it doubles the amount of read / write operations</li>
+<li>Bad, because it needs additional measures against concurrent overwriting changes</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="link-metadata-with-an-id-in-the-extended-attributes">
+        Link metadata with an id in the extended attributes
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0016-files-metadata/#link-metadata-with-an-id-in-the-extended-attributes" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Link metadata with an id in the extended attributes" aria-label="Anchor to: Link metadata with an id in the extended attributes" href="#link-metadata-with-an-id-in-the-extended-attributes">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>To link metadata to file content a single extended attribute with a file id (unique per storage space) is sufficient. This would also allow putting metadata in better suited storage systems like SQLite or a key value store.</p>
+<ul>
+<li>Good, because it avoids extended attribute limits</li>
+<li>Good, because the same mechanism could be used to look up files by id, when the underlying filesystem is an existing POSIX filesystem.</li>
+<li>Bad, because backup needs to cover the metadata as well. Could be mitigated by sharing metadata per space and doing space wide snapshots.</li>
+<li>Bad, because it is a bit more effort to access it to read or index it.</li>
+</ul>
 
   </article>
 
