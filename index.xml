@@ -13,7 +13,8 @@
       <pubDate>Mon, 15 Jun 2020 20:21:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0001-introduce-accounts-service/</guid>
-      <description>Status: superseded by ADR-0003 Deciders: @butonic, @felixboehm, @micbar, @pmaier1 Date: 2020-06-15  Technical Story: persist accountsContext and Problem Statement     To attach metadata like shares to users ownCloud relies on persistent, non-reassignable, unique identifiers for users (and files). Email und username can change when a user changes his name. But even the OIDC sub+iss combination may change when the IdP changes. While there is an account porting protocolthat describes how a relying party (RP) such as ownCloud should behave, it still requires the RP to maintain its own user identifiers.</description>
+      <description>Status: superseded by ADR-0003 Deciders: @butonic, @felixboehm, @micbar, @pmaier1 Date: 2020-06-15  Technical Story: persist accounts
+Context and Problem Statement     To attach metadata like shares to users ownCloud relies on persistent, non-reassignable, unique identifiers for users (and files). Email und username can change when a user changes his name. But even the OIDC sub+iss combination may change when the IdP changes. While there is an account porting protocol that describes how a relying party (RP) such as ownCloud should behave, it still requires the RP to maintain its own user identifiers.</description>
     </item>
     
     <item>
@@ -22,7 +23,7 @@
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.dev/clients/web/deployments/oc10-app/</guid>
-      <description>Prerequisites Deploying ownCloud Web Configure oauth2 Configure ownCloud 10  Set ownCloud Web address Configure link routing Make ownCloud Web the default web interface   Configure ownCloud Web Integrate ownCloud Classic features in ownCloud Web  Add links to the app switcher Add links to the user menu ONLYOFFICE Collabora Online   Accessing ownCloud Web      The ownCloud Web is being deployed as an app to ownCloud marketplaceto enable easy early integration into existing ownCloud 10 instances.</description>
+      <description>Prerequisites Deploying ownCloud Web Configure oauth2 Configure ownCloud 10  Set ownCloud Web address Configure link routing Make ownCloud Web the default web interface   Configure ownCloud Web Integrate ownCloud Classic features in ownCloud Web  Add links to the app switcher Add links to the user menu ONLYOFFICE Collabora Online   Accessing ownCloud Web      The ownCloud Web is being deployed as an app to ownCloud marketplace to enable easy early integration into existing ownCloud 10 instances.</description>
     </item>
     
     <item>
@@ -40,7 +41,7 @@
       <pubDate>Wed, 26 Aug 2020 10:56:03 +0000</pubDate>
       
       <guid>https://owncloud.dev/integration/file_picker/getting-started/</guid>
-      <description>Components of the File picker  File picker Location picker        ownCloud File picker is a web component which can be integrated into existing web applications. It connects to an ownCloud server and enables a user to select resources which are then provided in a response of a fired event. Visit installationto see how to integrate the File picker into your product.</description>
+      <description>Components of the File picker  File picker Location picker        ownCloud File picker is a web component which can be integrated into existing web applications. It connects to an ownCloud server and enables a user to select resources which are then provided in a response of a fired event. Visit installation to see how to integrate the File picker into your product.</description>
     </item>
     
     <item>
@@ -49,7 +50,8 @@
       <pubDate>Fri, 21 Aug 2020 20:21:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0002-persist-accounts-using-cs3-storage/</guid>
-      <description>Status: accepted Deciders: @butonic, @felixboehm Date: 2020-08-21  Technical Story: File system based indexingContext and Problem Statement     To set up High Availability (HA) or a geo-replicated setup we need to persist accounts in a distributed way. To efficiently query the accounts by email or username, and not only by id, they need to be indexed. Unfortunately, the bleveindex we currently store locally on disk cannot be shared by multiple instances, preventing a scale out deployment.</description>
+      <description>Status: accepted Deciders: @butonic, @felixboehm Date: 2020-08-21  Technical Story: File system based indexing
+Context and Problem Statement     To set up High Availability (HA) or a geo-replicated setup we need to persist accounts in a distributed way. To efficiently query the accounts by email or username, and not only by id, they need to be indexed. Unfortunately, the bleve index we currently store locally on disk cannot be shared by multiple instances, preventing a scale out deployment.</description>
     </item>
     
     <item>
@@ -58,7 +60,8 @@
       <pubDate>Wed, 09 Dec 2020 20:21:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0003-external-user-management/</guid>
-      <description>Status: accepted Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1 Date: 2020-12-09  Technical Story: Skip account-service by talking to CS3 user-apiContext and Problem Statement     To attach metadata like shares to users ownCloud relies on persistent, non-reassignable, unique identifiers for users (and files). Email and username can change when a user changes his name. But even the OIDC sub+iss combination may change when the IdP changes. While there is an account porting protocolthat describes how a relying party (RP) such as ownCloud should behave, it still requires the RP to maintain its own user identifiers.</description>
+      <description>Status: accepted Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1 Date: 2020-12-09  Technical Story: Skip account-service by talking to CS3 user-api
+Context and Problem Statement     To attach metadata like shares to users ownCloud relies on persistent, non-reassignable, unique identifiers for users (and files). Email and username can change when a user changes his name. But even the OIDC sub+iss combination may change when the IdP changes. While there is an account porting protocol that describes how a relying party (RP) such as ownCloud should behave, it still requires the RP to maintain its own user identifiers.</description>
     </item>
     
     <item>
@@ -97,7 +100,8 @@ Access resources     &amp;lt;file-picker id=&amp;#34;file-picker&amp;#34; variat
       <pubDate>Mon, 12 Apr 2021 15:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0005-cs3-api-account-management/</guid>
-      <description>Status: proposed Deciders: @refs, @butonic, @micbar, @dragotin, @pmaier1 Date: 2021-04-12  Technical Story: Write only management API for User and Group resourcesContext and Problem Statement     What would be a more effective way of using network resources and handle account management within the oCIS-Reva ecosystem? Separating account management at the service level is pragmatic and allows for fast iterations, but also steadily accumulates inconsistencies and bloats technical debt.</description>
+      <description>Status: proposed Deciders: @refs, @butonic, @micbar, @dragotin, @pmaier1 Date: 2021-04-12  Technical Story: Write only management API for User and Group resources
+Context and Problem Statement     What would be a more effective way of using network resources and handle account management within the oCIS-Reva ecosystem? Separating account management at the service level is pragmatic and allows for fast iterations, but also steadily accumulates inconsistencies and bloats technical debt.</description>
     </item>
     
     <item>
@@ -116,7 +120,8 @@ Variation     File picker comes in two different variations - File Picker and Lo
       <pubDate>Mon, 19 Apr 2021 13:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0006-service-discovery/</guid>
-      <description>Status: accepted Deciders: @refs, @butonic, @micbar, @dragotin, @pmaier1 Date: 2021-04-19  Technical Story: Introduce Named Services.Context and Problem Statement     Reva relies heavily on config files. A known implication of this approach are having to know a-priori where a service is running (host + port). We want to move away from hardcoded values and rely instead on named services for service discovery. Furthermore, we would like both platforms (Reva + oCIS) to have the same source of truth at any given time, not having one to notify the other whenever a service status changes.</description>
+      <description>Status: accepted Deciders: @refs, @butonic, @micbar, @dragotin, @pmaier1 Date: 2021-04-19  Technical Story: Introduce Named Services.
+Context and Problem Statement     Reva relies heavily on config files. A known implication of this approach are having to know a-priori where a service is running (host + port). We want to move away from hardcoded values and rely instead on named services for service discovery. Furthermore, we would like both platforms (Reva + oCIS) to have the same source of truth at any given time, not having one to notify the other whenever a service status changes.</description>
     </item>
     
     <item>
@@ -125,7 +130,7 @@ Variation     File picker comes in two different variations - File Picker and Lo
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.dev/extensions/storage/spacesprovider/</guid>
-      <description>The current implementation in oCIS might not yet fully reflect this concept. Feel free to add links to ADRs, PRs and Issues in short warning boxes like this.  Spaces Provider     A storage provider manages resourcesidentified by a referenceby accessing a storage systemwith a storage driver.
+      <description>The current implementation in oCIS might not yet fully reflect this concept. Feel free to add links to ADRs, PRs and Issues in short warning boxes like this.  Spaces Provider     A storage provider manages resources identified by a reference by accessing a storage system with a storage driver.
     oCIS spaces provider  [Software System]     oCIS spaces provider...      reva storage provider   [Component: golang]    hosts multiple storage spaces using a storage driver      reva storage provider.</description>
     </item>
     
@@ -144,7 +149,8 @@ Variation     File picker comes in two different variations - File Picker and Lo
       <pubDate>Mon, 03 May 2021 09:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0007-api-for-spaces/</guid>
-      <description>Status: accepted Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1 Date: 2021-03-19  Technical Story: API to enable the concept of SpacesContext and Problem Statement     As one of the building blocks for Spaces in oCIS we plan to add an API that returns information about available spaces. This ADR discusses the API design oriented on the Microsoft Graph API.
+      <description>Status: accepted Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1 Date: 2021-03-19  Technical Story: API to enable the concept of Spaces
+Context and Problem Statement     As one of the building blocks for Spaces in oCIS we plan to add an API that returns information about available spaces. This ADR discusses the API design oriented on the Microsoft Graph API.
  Note: The term &amp;ldquo;spaces&amp;rdquo; is used here in the context of &amp;ldquo;a space where files can be saved&amp;rdquo;, similar to a directory.</description>
     </item>
     
@@ -185,7 +191,7 @@ Decision Drivers      The solution should be easily maintainable.  It should alw
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.dev/extensions/storage/spacesregistry/</guid>
-      <description>The current implementation in oCIS might not yet fully reflect this concept. Feel free to add links to ADRs, PRs and Issues in short warning boxes like this.  Storage Space Registries     A storage spaces registry manages the namespacefor a user: it is used by clients to look up storage spaces a user has access to, the /dav/spaces endpoint to access it via WabDAV, and where the client should mount it in the users personal namespace.</description>
+      <description>The current implementation in oCIS might not yet fully reflect this concept. Feel free to add links to ADRs, PRs and Issues in short warning boxes like this.  Storage Space Registries     A storage spaces registry manages the namespace for a user: it is used by clients to look up storage spaces a user has access to, the /dav/spaces endpoint to access it via WabDAV, and where the client should mount it in the users personal namespace.</description>
     </item>
     
     <item>
@@ -267,7 +273,7 @@ Decision Drivers      We don&amp;rsquo;t want to rely only on logs to debug an i
       
       <guid>https://owncloud.dev/extensions/storage/storagedrivers/</guid>
       <description>A storage driver implements access to a storage system:
-It maps the path and id based CS3 references to an appropriate storage systemspecific reference, e.g.:
+It maps the path and id based CS3 references to an appropriate storage system specific reference, e.g.:
  eos file ids posix inodes or paths deconstructed filesystem nodes  Storage providers     To manage the file tree oCIS uses storage providers that are accessing the underlying storage using a storage driver. The driver can be used to change the implementation of a storage aspect to better reflect the actual underlying storage capabilities.</description>
     </item>
     
@@ -385,8 +391,8 @@ Reva Gateway changes     A dedicated shares storage provider     Currently, when
       
       <guid>https://owncloud.dev/clients/rclone/webdav-sync-basic-auth/</guid>
       <description>WebDAV with Basic Authentication     Basic Authentication is disabled by default in oCIS because of security considerations. In order to make the following Rclone commands work the oCIS administrator needs to enable Basic Authentication eg. by setting the the environment variable PROXY_ENABLE_BASIC_AUTH to true.
-Please consider to use Rclone with OpenID Connectinstead.
- For the usage of a WebDAV remote with Rclone see also the Rclone documentationConfigure the WebDAV remote     First of all we need to set up our credentials and the WebDAV remote for Rclone.</description>
+Please consider to use Rclone with OpenID Connect instead.
+ For the usage of a WebDAV remote with Rclone see also the Rclone documentation</description>
     </item>
     
     <item>
@@ -396,7 +402,7 @@ Please consider to use Rclone with OpenID Connectinstead.
       
       <guid>https://owncloud.dev/clients/rclone/webdav-sync-oidc/</guid>
       <description>WebDAV with OpenID Connect     Rclone itself is not able to open and maintain an OpenID Connect session. But it is able to still use OpenID Connect for authentication by leveraging a so called OIDC-agent.
-Setting up the OIDC-agent     You need to install the OIDC-agentfrom your OS&#39; package repository (eg. Debianor MacOS).
+Setting up the OIDC-agent     You need to install the OIDC-agent from your OS&#39; package repository (eg. Debian or MacOS).
 Configuring the the OIDC-agent     Run the following command to add a OpenID Connect profile to your OIDC-agent.</description>
     </item>
     
@@ -416,7 +422,7 @@ Configuring the the OIDC-agent     Run the following command to add a OpenID Con
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.dev/extensions/ocis_hello/building/</guid>
-      <description>Frontend Backend Documentation      As this project is built with Go and NodeJS, so you need to install that first. The installation of Go and NodeJS is out of the scope of this document, please follow the official documentation for Go, NodeJSand Yarn, to build this project you have to install Go &amp;gt;= v1.16. After the installation of the required tools you need to get the sources:</description>
+      <description>Frontend Backend Documentation      As this project is built with Go and NodeJS, so you need to install that first. The installation of Go and NodeJS is out of the scope of this document, please follow the official documentation for Go, NodeJS and Yarn, to build this project you have to install Go &amp;gt;= v1.16. After the installation of the required tools you need to get the sources:</description>
     </item>
     
     <item>
@@ -425,7 +431,7 @@ Configuring the the OIDC-agent     Run the following command to add a OpenID Con
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.dev/extensions/ocis_wopiserver/building/</guid>
-      <description>Frontend Backend      As this project is built with Go and NodeJS, so you need to install that first. The installation of Go and NodeJS is out of the scope of this document, please follow the official documentation for Go, NodeJSand Yarn, to build this project you have to install Go &amp;gt;= v1.16. After the installation of the required tools you need to get the sources:</description>
+      <description>Frontend Backend      As this project is built with Go and NodeJS, so you need to install that first. The installation of Go and NodeJS is out of the scope of this document, please follow the official documentation for Go, NodeJS and Yarn, to build this project you have to install Go &amp;gt;= v1.16. After the installation of the required tools you need to get the sources:</description>
     </item>
     
     <item>
@@ -444,7 +450,7 @@ Configuring the the OIDC-agent     Run the following command to add a OpenID Con
       
       <guid>https://owncloud.dev/extensions/glauth/configuration-hints/</guid>
       <description>Configuration hints      Configuration hints     The default setup does not use a fallback backend. It can be enabled by setting the GLAUTH_FALLBACK_DATASTORE environment variable.
-When using owncloud make sure to use the full URL to the ownCloud 10 graph api appendpoint, eg.: GLAUTH_FALLBACK_SERVERS=&amp;quot;https://demo.owncloud.com/apps/graphapi/v1.0&amp;quot;</description>
+When using owncloud make sure to use the full URL to the ownCloud 10 graph api app endpoint, eg.: GLAUTH_FALLBACK_SERVERS=&amp;quot;https://demo.owncloud.com/apps/graphapi/v1.0&amp;quot;</description>
     </item>
     
     <item>
@@ -454,7 +460,7 @@ When using owncloud make sure to use the full URL to the ownCloud 10 graph api a
       
       <guid>https://owncloud.dev/extensions/graph/spaces/</guid>
       <description>Graph Service Spaces API  Methods   Examples  Starting conditions        Graph Service     The Graph service is a reference implementation of the MS Graph API. There are no libraries doing any work only a set of routes and handlers.
-Spaces API     The Spaces API makes use of the MS Graph API Drive resourceto represent the concept of a Storage Space.</description>
+Spaces API     The Spaces API makes use of the MS Graph API Drive resource to represent the concept of a Storage Space.</description>
     </item>
     
     <item>
@@ -463,7 +469,7 @@ Spaces API     The Spaces API makes use of the MS Graph API Drive resourceto rep
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.dev/extensions/idp/theming/</guid>
-      <description>Intro Customizing assets  Static assets CSS Containers  What pages to theme   Components Images Locales   Building assets      Intro     Our default IDP UI is built with the LibreGraph ConnectReact app. Even though this app comes already with a simple theming options, we have compiled our own edited version of the app with more advanced changes than the default theming offers.</description>
+      <description>Intro Customizing assets  Static assets CSS Containers  What pages to theme   Components Images Locales   Building assets      Intro     Our default IDP UI is built with the LibreGraph Connect React app. Even though this app comes already with a simple theming options, we have compiled our own edited version of the app with more advanced changes than the default theming offers.</description>
     </item>
     
     <item>
@@ -472,7 +478,7 @@ Spaces API     The Spaces API makes use of the MS Graph API Drive resourceto rep
       <pubDate>Mon, 12 Oct 2020 14:04:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/deployment/ocis_hello/</guid>
-      <description>Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup      Overview      oCIS running behind Traefik as reverse proxy oCIS Hello extension runs beside the main oCIS stack and providing the Hello functionality Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup  Find this example on GitHubThe docker stack consists of 3 containers.</description>
+      <description>Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup      Overview      oCIS running behind Traefik as reverse proxy oCIS Hello extension runs beside the main oCIS stack and providing the Hello functionality Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup  Find this example on GitHub</description>
     </item>
     
     <item>
@@ -481,7 +487,8 @@ Spaces API     The Spaces API makes use of the MS Graph API Drive resourceto rep
       <pubDate>Mon, 12 Oct 2020 14:04:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/deployment/ocis_keycloak/</guid>
-      <description>Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup      Overview      oCIS and Keycloak running behind Traefik as reverse proxy Keycloak acting as the IDP for oCIS Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup  Find this example on GitHubThe docker stack consists 4 containers.</description>
+      <description>Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup      Overview      oCIS and Keycloak running behind Traefik as reverse proxy Keycloak acting as the IDP for oCIS Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup  Find this example on GitHub
+The docker stack consists 4 containers.</description>
     </item>
     
     <item>
@@ -490,7 +497,7 @@ Spaces API     The Spaces API makes use of the MS Graph API Drive resourceto rep
       <pubDate>Mon, 12 Oct 2020 14:04:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/deployment/ocis_ldap/</guid>
-      <description>Overview Server Deployment  Requirements Install this example   Local setup      Overview      Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup OpenLDAP server with demo users LDAP admin interface to edit users oCIS running behind Traefik as reverse proxy  oCIS is using the LDAP server as user backend    Find this example on GitHubServer Deployment     Requirements      Linux server with docker and docker-compose installed four domains set up and pointing to your server  ocis.</description>
+      <description>Overview Server Deployment  Requirements Install this example   Local setup      Overview      Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup OpenLDAP server with demo users LDAP admin interface to edit users oCIS running behind Traefik as reverse proxy  oCIS is using the LDAP server as user backend    Find this example on GitHub</description>
     </item>
     
     <item>
@@ -499,7 +506,7 @@ Spaces API     The Spaces API makes use of the MS Graph API Drive resourceto rep
       <pubDate>Mon, 12 Oct 2020 14:04:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/deployment/ocis_s3/</guid>
-      <description>Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup      Overview      oCIS running behind Traefik as reverse proxy MinIO as S3 compatible storage provider oCIS is configured to use S3 as user storage provider Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup  Find this example on GitHubThe docker stack consists 3 containers.</description>
+      <description>Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup      Overview      oCIS running behind Traefik as reverse proxy MinIO as S3 compatible storage provider oCIS is configured to use S3 as user storage provider Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup  Find this example on GitHub</description>
     </item>
     
     <item>
@@ -508,7 +515,8 @@ Spaces API     The Spaces API makes use of the MS Graph API Drive resourceto rep
       <pubDate>Mon, 12 Oct 2020 14:04:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/deployment/ocis_traefik/</guid>
-      <description>Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup      Overview      oCIS running behind Traefik as reverse proxy Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup  Find this example on GitHubThe docker stack consists of two containers. One of them is Traefik, a proxy which is terminating ssl and forwards the requests to oCIS in the internal docker network.</description>
+      <description>Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup      Overview      oCIS running behind Traefik as reverse proxy Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup  Find this example on GitHub
+The docker stack consists of two containers. One of them is Traefik, a proxy which is terminating ssl and forwards the requests to oCIS in the internal docker network.</description>
     </item>
     
     <item>
@@ -517,7 +525,7 @@ Spaces API     The Spaces API makes use of the MS Graph API Drive resourceto rep
       <pubDate>Mon, 12 Oct 2020 14:04:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/deployment/ocis_wopi/</guid>
-      <description>Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup Local setup for web development      OnlyOffice and CodiMD are not yet fully integrated and there are known issues. For the current state please have a look at owncloud/ocis#2595 Overview      oCIS, Wopi server, Collabora, OnlyOffice and CodiMD running behind Traefik as reverse proxy Collabora, OnlyOffice and CodiMD enable you to edit documents in your browser Wopi server acts as a bridge to make the oCIS storage accessible to Collabora, OnlyOffice and CodiMD Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup  Find this example on GitHubThe docker stack consists of 10 containers.</description>
+      <description>Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup Local setup for web development      OnlyOffice and CodiMD are not yet fully integrated and there are known issues. For the current state please have a look at owncloud/ocis#2595  Overview      oCIS, Wopi server, Collabora, OnlyOffice and CodiMD running behind Traefik as reverse proxy Collabora, OnlyOffice and CodiMD enable you to edit documents in your browser Wopi server acts as a bridge to make the oCIS storage accessible to Collabora, OnlyOffice and CodiMD Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup  Find this example on GitHub</description>
     </item>
     
     <item>
@@ -545,7 +553,7 @@ Spaces API     The Spaces API makes use of the MS Graph API Drive resourceto rep
       
       <guid>https://owncloud.dev/clients/web/releasing/</guid>
       <description>Releasing ownCloud Web  Versioning Release Guide Next steps        Releasing ownCloud Web     OwnCloud Web can be hosted standalone, as ownCloud 10 app or as part of oCIS.
-Versioning     We follow the Semantic Versioningscheme. Therefore, each change is of one of the possible types: Bugfix, Change, Enhancement, Security.
+Versioning     We follow the Semantic Versioning scheme. Therefore, each change is of one of the possible types: Bugfix, Change, Enhancement, Security.
 The highest type before a new release determines the version update number, so if it&amp;rsquo;s only Bugfix and Security changes the next release will be a PATCH version bump, if there&amp;rsquo;s at least one Enhancement within the changes this leads to a MINOR version bump, while Change type changes make for a new MAJOR release version.</description>
     </item>
     
@@ -583,7 +591,8 @@ ETag propagation     What does ETag propagation mean? Whenever a file changes it
       <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/development/build/</guid>
-      <description>Build requirements Get the sources Build the oCIS binary Build a local oCIS docker image      Build requirements     see Development - Getting StartedGet the sources     git clone https://github.com/owncloud/ocis.git cd ocis Build the oCIS binary     You only need to run following command if you have changed protobuf definitions or the frontend part in one of the extensions.</description>
+      <description>Build requirements Get the sources Build the oCIS binary Build a local oCIS docker image      Build requirements     see Development - Getting Started
+Get the sources     git clone https://github.com/owncloud/ocis.git cd ocis Build the oCIS binary     You only need to run following command if you have changed protobuf definitions or the frontend part in one of the extensions.</description>
     </item>
     
     <item>
@@ -619,7 +628,7 @@ ETag propagation     What does ETag propagation mean? Whenever a file changes it
       <pubDate>Tue, 04 May 2021 14:01:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/storage_registry_discovery/</guid>
-      <description>Introduction     In order for an oCIS client to access oCIS storage spaces for an End-User, the client needs to know where the oCIS instance is. oCIS uses WebFinger RFC7033to locate the oCIS instance for an End-User.
+      <description>Introduction     In order for an oCIS client to access oCIS storage spaces for an End-User, the client needs to know where the oCIS instance is. oCIS uses WebFinger RFC7033 to locate the oCIS instance for an End-User.
 This discovery is optional. If the client has another way of discovering the OpenID instance, e.g. when logging in with a username a static domain might be configured or the domain in the URL might be used.</description>
     </item>
     
@@ -630,7 +639,7 @@ This discovery is optional. If the client has another way of discovering the Ope
       
       <guid>https://owncloud.dev/clients/web/backend-oc10/</guid>
       <description>Prerequisites Setting up the ownCloud Server  Adjusting config.php Setting up OAuth2 Setting up Web   Running Web Running acceptance tests      Prerequisites     Decide on which host and port Web will be served, for example https://web-host:9100/web-path/. In this document, we will refer to the following:
- &amp;lt;web-url&amp;gt; as the full URL, for example https://web-host:9100/web-path/ &amp;lt;web-domain&amp;gt; as the protocol, domain and port, for example: https://web-host:9100  Setting up the ownCloud Server     Make sure you have an ownCloud Serveralready installed.</description>
+ &amp;lt;web-url&amp;gt; as the full URL, for example https://web-host:9100/web-path/ &amp;lt;web-domain&amp;gt; as the protocol, domain and port, for example: https://web-host:9100  Setting up the ownCloud Server     Make sure you have an ownCloud Server already installed.</description>
     </item>
     
     <item>
@@ -689,7 +698,7 @@ For now, the storage service uses these ports to preconfigure those services:
       <pubDate>Mon, 04 May 2020 20:47:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/metrics/</guid>
-      <description>Metrics     This service provides some Prometheusmetrics through the debug endpoint, you can optionally secure the metrics endpoint by some random token, which has to be configured either through the flag --debug-token or the environment variable OCIS_DEBUG_TOKEN mentioned above. By default, the metrics endpoint is bound to http://0.0.0.0:8001/metrics.
+      <description>Metrics     This service provides some Prometheus metrics through the debug endpoint, you can optionally secure the metrics endpoint by some random token, which has to be configured either through the flag --debug-token or the environment variable OCIS_DEBUG_TOKEN mentioned above. By default, the metrics endpoint is bound to http://0.0.0.0:8001/metrics.
  go_gc_duration_seconds A summary of the GC invocation durations go_gc_duration_seconds_sum A summary of the GC invocation durations go_gc_duration_seconds_count A summary of the GC invocation durations go_goroutines Number of goroutines that currently exist go_info Information about the Go environment go_memstats_alloc_bytes Number of bytes allocated and still in use go_memstats_alloc_bytes_total Total number of bytes allocated, even if freed go_memstats_buck_hash_sys_bytes Number of bytes used by the profiling bucket hash table go_memstats_frees_total Total number of frees go_memstats_gc_cpu_fraction The fraction of this program&amp;rsquo;s available CPU time used by the GC since the program started go_memstats_gc_sys_bytes Number of bytes used for garbage collection system metadata go_memstats_heap_alloc_bytes Number of heap bytes allocated and still in use go_memstats_heap_idle_bytes Number of heap bytes waiting to be used go_memstats_heap_inuse_bytes Number of heap bytes that are in use go_memstats_heap_objects Number of allocated objects go_memstats_heap_released_bytes Number of heap bytes released to OS go_memstats_heap_sys_bytes Number of heap bytes obtained from system go_memstats_last_gc_time_seconds Number of seconds since 1970 of last garbage collection go_memstats_lookups_total Total number of pointer lookups go_memstats_mallocs_total Total number of mallocs go_memstats_mcache_inuse_bytes Number of bytes in use by mcache structures go_memstats_mcache_sys_bytes Number of bytes used for mcache structures obtained from system go_memstats_mspan_inuse_bytes Number of bytes in use by mspan structures go_memstats_mspan_sys_bytes Number of bytes used for mspan structures obtained from system go_memstats_next_gc_bytes Number of heap bytes when next garbage collection will take place go_memstats_other_sys_bytes Number of bytes used for other system allocations go_memstats_stack_inuse_bytes Number of bytes in use by the stack allocator go_memstats_stack_sys_bytes Number of bytes obtained from system for stack allocator go_memstats_sys_bytes Number of bytes obtained from system go_threads Number of OS threads created promhttp_metric_handler_requests_in_flight Current number of scrapes being served promhttp_metric_handler_requests_total Total number of scrapes by HTTP status code  </description>
     </item>
     
@@ -737,7 +746,8 @@ storage-registry&amp;#xa;Expose: trueExpose: true24  PATCH http://ocis:9156/dat
       <pubDate>Wed, 09 Feb 2022 04:15:27 +0000</pubDate>
       
       <guid>https://owncloud.dev/grpc_apis/ocis_messages_accounts_v0/</guid>
-      <description>ocis/messages/accounts/v0/accounts.proto  Account Group Identities OnPremisesProvisioningError PasswordProfile   Scalar Value Types      ocis/messages/accounts/v0/accounts.proto     Account     Account follows the properties of the ms graph api user resource. See https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0#properties   Field Type Label Description     id string  The unique identifier for the user. Key. Not nullable. Non reassignable. Read-only.   account_enabled bool  true if the account is enabled; otherwise, false.</description>
+      <description>ocis/messages/accounts/v0/accounts.proto  Account Group Identities OnPremisesProvisioningError PasswordProfile   Scalar Value Types      ocis/messages/accounts/v0/accounts.proto     Account     Account follows the properties of the ms graph api user resource. See https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0#properties
+   Field Type Label Description     id string  The unique identifier for the user. Key. Not nullable. Non reassignable. Read-only.   account_enabled bool  true if the account is enabled; otherwise, false.</description>
     </item>
     
     <item>
@@ -831,7 +841,7 @@ As of now we support five different types of settings:
       <pubDate>Wed, 15 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.dev/clients/web/backend-ocis/</guid>
-      <description>Setting up oCIS services Setting up Web Running Web Running acceptance tests      Setting up oCIS services      Setup oCIS by following the setup instructions. Kill the oCIS Web service ./ocis kill web  Setting up Web      Copy ./config/config.json.sample-ocis to ./config/config.json and adjust values if required  Running Web      in the Web checkout folder, run yarn serve open https://localhost:9200and accept the certificate.</description>
+      <description>Setting up oCIS services Setting up Web Running Web Running acceptance tests      Setting up oCIS services      Setup oCIS by following the setup instructions. Kill the oCIS Web service ./ocis kill web  Setting up Web      Copy ./config/config.json.sample-ocis to ./config/config.json and adjust values if required  Running Web      in the Web checkout folder, run yarn serve open https://localhost:9200 and accept the certificate.</description>
     </item>
     
     <item>
@@ -859,7 +869,7 @@ As of now we support five different types of settings:
       
       <guid>https://owncloud.dev/extensions/ocis_hello/running/</guid>
       <description>In order to use the Hello extension we need to configure and start oCIS first. After that we can run the Hello extension itself.
-Configure and start oCIS     You can either start oCIS from a binaryor build it from source.
+Configure and start oCIS     You can either start oCIS from a binary or build it from source.
 No matter which way you choose, we need to create a configuration file for ownCloud Web, so that the Hello extension will be loaded in the frontend.</description>
     </item>
     
@@ -902,7 +912,7 @@ Unit tests     Unit tests generally live inside *_test.go files in the /pkg dire
       
       <guid>https://owncloud.dev/extensions/settings/values/</guid>
       <description>A Settings Value is the value an authenticated user has chosen for a specific setting, defined in a settings bundle. For choosing settings values as a user the sole entry point is the ocis-web extension provided by this service.
-Identifying settings values     A settings value is uniquely identified by four attributes. Three of them are coming from the definition of the setting within it&amp;rsquo;s settings bundle (see Settings Bundlesfor an example).</description>
+Identifying settings values     A settings value is uniquely identified by four attributes. Three of them are coming from the definition of the setting within it&amp;rsquo;s settings bundle (see Settings Bundles for an example).</description>
     </item>
     
     <item>
@@ -911,7 +921,7 @@ Identifying settings values     A settings value is uniquely identified by four 
       <pubDate>Wed, 13 May 2020 12:09:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/development/tracing/</guid>
-      <description>By default, we use Jaegerfor request tracing within oCIS. You can follow these steps to get started:
+      <description>By default, we use Jaeger for request tracing within oCIS. You can follow these steps to get started:
  Start Jaeger by using the all-in-one docker image: docker run -d --name jaeger \ -e COLLECTOR_ZIPKIN_HTTP_PORT=9411 \ -p 5775:5775/udp \ -p 6831:6831/udp \ -p 6832:6832/udp \ -p 5778:5778 \ -p 16686:16686 \ -p 14268:14268 \ -p 14250:14250 \ -p 9411:9411 \ jaegertracing/all-in-one:1.17  Every single oCIS service has its own environment variables for enabling and configuring tracing.</description>
     </item>
     
@@ -948,7 +958,7 @@ Identifying settings values     A settings value is uniquely identified by four 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.dev/extensions/accounts/releasing/</guid>
-      <description>Requirements Releasing  Package Hierarchy        Requirements     You need a working installation of the Go programming language, the Node runtimeand the Yarn package managerinstalled to build the assets for a working release.
+      <description>Requirements Releasing  Package Hierarchy        Requirements     You need a working installation of the Go programming language, the Node runtime and the Yarn package manager installed to build the assets for a working release.
 Releasing     The accounts service doesn&amp;rsquo;t have a dedicated release process. Simply commit your changes, make sure linting and unit tests pass locally and open a pull request.</description>
     </item>
     
@@ -958,7 +968,7 @@ Releasing     The accounts service doesn&amp;rsquo;t have a dedicated release pr
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.dev/extensions/settings/releasing/</guid>
-      <description>Requirements Releasing  Package Hierarchy        Requirements     You need a working installation of the Go programming language, the Node runtimeand the Yarn package managerinstalled to build the assets for a working release.
+      <description>Requirements Releasing  Package Hierarchy        Requirements     You need a working installation of the Go programming language, the Node runtime and the Yarn package manager installed to build the assets for a working release.
 Releasing     The settings service doesn&amp;rsquo;t have a dedicated release process. Simply commit your changes, make sure linting and unit tests pass locally and open a pull request.</description>
     </item>
     
@@ -978,7 +988,7 @@ Configuration      System configuration e.g. service host names and ports Change
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.dev/extensions/accounts/tests/</guid>
-      <description>Requirements Acceptance Tests  In the web repo  Optional: Build web to test local changes Dockerized acceptance test services   In the oCIS repo  Optional: Build accounts UI to test local changes Start oCIS from binary Run accounts acceptance tests          Requirements     You need a working installation of the Go programming language, the Node runtimeand the Yarn package managerinstalled to run the acceptance tests.</description>
+      <description>Requirements Acceptance Tests  In the web repo  Optional: Build web to test local changes Dockerized acceptance test services   In the oCIS repo  Optional: Build accounts UI to test local changes Start oCIS from binary Run accounts acceptance tests          Requirements     You need a working installation of the Go programming language, the Node runtime and the Yarn package manager installed to run the acceptance tests.</description>
     </item>
     
     <item>
@@ -987,7 +997,7 @@ Configuration      System configuration e.g. service host names and ports Change
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.dev/extensions/settings/tests/</guid>
-      <description>Requirements Acceptance Tests  In the web repo  Optional: Build web to test local changes Dockerized acceptance test services   In the oCIS repo  Optional: Build settings UI to test local changes Start oCIS from binary Run settings acceptance tests          Requirements     You need a working installation of the Go programming language, the Node runtimeand the Yarn package managerinstalled to run the acceptance tests.</description>
+      <description>Requirements Acceptance Tests  In the web repo  Optional: Build web to test local changes Dockerized acceptance test services   In the oCIS repo  Optional: Build settings UI to test local changes Start oCIS from binary Run settings acceptance tests          Requirements     You need a working installation of the Go programming language, the Node runtime and the Yarn package manager installed to run the acceptance tests.</description>
     </item>
     
     <item>
@@ -996,7 +1006,7 @@ Configuration      System configuration e.g. service host names and ports Change
       <pubDate>Mon, 27 Jul 2020 08:39:38 +0000</pubDate>
       
       <guid>https://owncloud.dev/ocis/development/build-docs/</guid>
-      <description>Build the documentation Add changes to the documentation      Build the documentation     For building the documentation you need to have Make and Go 1.14 or higher installed.  Just run make -C docs docs-serve from within the root level of the oCIS git repository. This will make documentation available on localhost:1313and also do a hot reload if you change something in the (non autogenerated) documentation files.</description>
+      <description>Build the documentation Add changes to the documentation      Build the documentation     For building the documentation you need to have Make and Go 1.14 or higher installed.  Just run make -C docs docs-serve from within the root level of the oCIS git repository. This will make documentation available on localhost:1313 and also do a hot reload if you change something in the (non autogenerated) documentation files.</description>
     </item>
     
     <item>
@@ -1015,8 +1025,8 @@ Configuration      System configuration e.g. service host names and ports Change
       <pubDate>Thu, 01 Oct 2020 20:35:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/development/continuous-integration/</guid>
-      <description>Concepts Things done in CI Flags in commit message and PR title  Knowledge base        oCIS uses DRONEas CI system. You can find the pipeline logs hereor in your PR.
-Concepts     The pipeline is defined in Starlarkand transformed to YAML upon pipeline run. This enables us to do a highly dynamic and non repeating pipeline configuration.</description>
+      <description>Concepts Things done in CI Flags in commit message and PR title  Knowledge base        oCIS uses DRONE as CI system. You can find the pipeline logs here or in your PR.
+Concepts     The pipeline is defined in Starlark and transformed to YAML upon pipeline run. This enables us to do a highly dynamic and non repeating pipeline configuration.</description>
     </item>
     
     <item>
@@ -1025,7 +1035,7 @@ Concepts     The pipeline is defined in Starlarkand transformed to YAML upon pip
       <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/license/</guid>
-      <description>This project is licensed under the Apache 2.0license. For the license of the used libraries you have to check the respective sources.</description>
+      <description>This project is licensed under the Apache 2.0 license. For the license of the used libraries you have to check the respective sources.</description>
     </item>
     
     <item>
@@ -1053,7 +1063,7 @@ Our initial and also our current plan is to stick to SemVer as versioning scheme
       <pubDate>Thu, 27 Feb 2020 20:35:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/getting-started/demo-users/</guid>
-      <description>As long as oCIS is released as technology previewit will come with default demo users. These enable you to do quick testing and developing.
+      <description>As long as oCIS is released as technology preview it will come with default demo users. These enable you to do quick testing and developing.
 To skip the generation of demo users, run the inital setup step with an additional environment variable. ACCOUNTS_DEMO_USERS_AND_GROUPS=false ./bin/ocis server generates only the admin, and one user for IDP and Reva respectively.  Following users are available in the demo set:
    username password email role groups     admin admin admin@example.</description>
     </item>
