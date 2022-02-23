@@ -8,9 +8,10 @@
 <meta name="generator" content="Hugo 0.89.4" />
 
 
-  <meta name="description" content="oCIS is all about files, sync and share - but most of the time there is more you want to do with your files, e.g. having a different view on your photo collection or editing your offices files in an online file editor. ownCloud 10 faced the same problem and solved it with applications, which can extend the functionality of ownCloud 10 in a wide range. Since oCIS is different in its architecture compared to ownCloud 10, we had to come up with a similar (yet slightly different) solution." />
+  <meta name="description" content="Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup      Overview      oCIS running behind Traefik as reverse proxy Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup oCIS running as individual services (each extension in it&rsquo;s own containers)  Find this example on GitHub
+The docker stack consists of at least 24 containers." />
 
-    <title>Extensions | ownCloud</title>
+    <title>oCIS as individual services | ownCloud</title>
 
     <link
   rel="icon"
@@ -29,27 +30,29 @@
     
   <meta
     property="og:title"
-    content="Extensions"
+    content="oCIS as individual services"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="oCIS is all about files, sync and share - but most of the time there is more you want to do with your files, e.g. having a different view on your photo collection or editing your offices files in an online file editor. ownCloud 10 faced the same problem and solved it with applications, which can extend the functionality of ownCloud 10 in a wide range. Since oCIS is different in its architecture compared to ownCloud 10, we had to come up with a similar (yet slightly different) solution." />
+  <meta property="og:description" content="Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup      Overview      oCIS running behind Traefik as reverse proxy Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup oCIS running as individual services (each extension in it’s own containers)  Find this example on GitHub
+The docker stack consists of at least 24 containers." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://owncloud.dev/ocis/development/extensions/" />
+<meta property="og:url" content="https://owncloud.dev/ocis/deployment/ocis_individual_services/" />
 
 <meta property="article:section" content="Ocis" />
     <meta
       property="article:published_time"
-      content="2020-02-27T20:35:00+01:00"
+      content="2020-10-12T14:04:00+01:00"
     />
     <meta
       property="article:modified_time"
-      content="2020-02-27T20:35:00+01:00"
+      content="2020-10-12T14:04:00+01:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Extensions" />
-  <meta name="twitter:description" content="oCIS is all about files, sync and share - but most of the time there is more you want to do with your files, e.g. having a different view on your photo collection or editing your offices files in an online file editor. ownCloud 10 faced the same problem and solved it with applications, which can extend the functionality of ownCloud 10 in a wide range. Since oCIS is different in its architecture compared to ownCloud 10, we had to come up with a similar (yet slightly different) solution." />
+<meta name="twitter:title" content="oCIS as individual services" />
+  <meta name="twitter:description" content="Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup      Overview      oCIS running behind Traefik as reverse proxy Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup oCIS running as individual services (each extension in it’s own containers)  Find this example on GitHub
+The docker stack consists of at least 24 containers." />
 
 
   <script type="application/ld+json">
@@ -57,22 +60,22 @@
       "@context": "http://schema.org",
       "@type": "TechArticle",
       "articleSection": "Ocis",
-      "name": "Extensions",
-      "url" : "https://owncloud.dev/ocis/development/extensions/",
-      "headline": "Extensions",
-      "description": "oCIS is all about files, sync and share - but most of the time there is more you want to do with your files, e.g. having a different view on your photo collection or editing your offices files in an online file editor. ownCloud 10 faced the same problem and solved it with applications, which can extend the functionality of ownCloud 10 in a wide range. Since oCIS is different in its architecture compared to ownCloud 10, we had to come up with a similar (yet slightly different) solution.",
-      "wordCount" : "1064",
+      "name": "oCIS as individual services",
+      "url" : "https://owncloud.dev/ocis/deployment/ocis_individual_services/",
+      "headline": "oCIS as individual services",
+      "description": "Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup      Overview      oCIS running behind Traefik as reverse proxy Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup oCIS running as individual services (each extension in it’s own containers)  Find this example on GitHub\nThe docker stack consists of at least 24 containers.",
+      "wordCount" : "885",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://owncloud.dev/ocis/development/extensions/"
+          "@id": "https://owncloud.dev/ocis/deployment/ocis_individual_services/"
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2020",
-      "dateCreated": "2020-02-27T20:35:00.00Z",
-      "datePublished": "2020-02-27T20:35:00.00Z",
-      "dateModified": "2020-02-27T20:35:00.00Z",
+      "dateCreated": "2020-10-12T14:04:00.00Z",
+      "datePublished": "2020-10-12T14:04:00.00Z",
+      "dateModified": "2020-10-12T14:04:00.00Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -148,7 +151,7 @@
   href="/custom.css"
   media="all"
 />
-  <link href="https://owncloud.dev/ocis/development/extensions/" rel="canonical" type="text/html" />
+  <link href="https://owncloud.dev/ocis/deployment/ocis_individual_services/" rel="canonical" type="text/html" />
 
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
 
@@ -574,7 +577,7 @@
               type="checkbox"
               
                 class="gdoc-nav__toggle" id="navtree-dba039ca"
-                checked
+                
               
             />
             <label
@@ -769,7 +772,7 @@
                 <span class="flex">
                   <a
                     href="/ocis/development/extensions/"
-                    class="gdoc-nav__entry is-active"
+                    class="gdoc-nav__entry"
                   >
                     Extensions
                   </a>
@@ -1822,7 +1825,7 @@
               type="checkbox"
               
                 class="gdoc-nav__toggle" id="navtree-b3fc9a63"
-                
+                checked
               
             />
             <label
@@ -2053,7 +2056,7 @@
                 <span class="flex">
                   <a
                     href="/ocis/deployment/ocis_individual_services/"
-                    class="gdoc-nav__entry"
+                    class="gdoc-nav__entry is-active"
                   >
                     oCIS as individual services
                   </a>
@@ -6935,7 +6938,7 @@
     
   
   
-    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/development/' href='/ocis/development/'><span itemprop='name'>Development</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Extensions</span><meta itemprop='position' content='4' /></li>
+    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/deployment/' href='/ocis/deployment/'><span itemprop='name'>Deployment</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>oCIS as individual services</span><meta itemprop='position' content='4' /></li>
   
 
   
@@ -6952,7 +6955,7 @@
       <span class="editpage">
         <svg class="icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
         <a
-          href="https://github.com/owncloud/ocis/edit/master/docs/ocis/development/extensions.md"
+          href="https://github.com/owncloud/ocis/edit/master/docs/ocis/deployment/ocis_individual_services.md"
         >
           Edit page
         </a>
@@ -6966,146 +6969,192 @@
   <article
     class="gdoc-markdown gdoc-markdown__align--left"
   >
-    <h1>Extensions</h1>
-    <p>oCIS is all about files, sync and share - but most of the time there is more you want to do with your files, e.g. having a different view on your photo collection or editing your offices files in an online file editor. ownCloud 10 faced the same problem and solved it with <code>applications</code>, which can extend the functionality of ownCloud 10 in a wide range. Since oCIS is different in its architecture compared to ownCloud 10, we had to come up with a similar (yet slightly different) solution. To extend the functionality of oCIS, you can write or install <code>extensions</code>. An extension is basically any running code which integrates into oCIS and provides functionality to oCIS and its users. Because extensions are just microservices providing an API, you can technically choose any programming language you like - a huge improvement to ownCloud 10, where it was nearly impossible to use a different programming language than PHP.</p>
-<p>We will now introduce you to the oCIS extension system and show you how you can create a custom extension yourself.</p>
+    <h1>oCIS as individual services</h1>
+    
+
+
+  <div class="gdoc-toc gdoc-toc__level--3">
+    <nav id="TableOfContents"><ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#server-deployment">Server Deployment</a>
+          <ul>
+            <li><a href="#requirements">Requirements</a></li>
+            <li><a href="#install-ocis-and-traefik">Install oCIS and Traefik</a></li>
+          </ul>
+        </li>
+        <li><a href="#local-setup">Local setup</a></li>
+      </ul></nav>
+    <hr />
+  </div>
+
+
 <div class="gdoc-page__anchorwrap">
-    <h2 id="extension-examples">
-        Extension examples
-        <a data-clipboard-text="https://owncloud.dev/ocis/development/extensions/#extension-examples" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Extension examples" aria-label="Anchor to: Extension examples" href="#extension-examples">
+    <h2 id="overview">
+        Overview
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_individual_services/#overview" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Overview" aria-label="Anchor to: Overview" href="#overview">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div>
-<p>Technically every service in oCIS is an extension, even if oCIS would not really work without some of them. Therefore, you can draw inspiration from any of the plenty of extensions in the <a
-  class="gdoc-markdown__link"
-  href="https://github.com/owncloud/ocis"
-  
->oCIS monorepo</a>.</p>
-<p>Besides these &ldquo;default&rdquo; extensions in the oCIS monorepo, there are two more extensions you should be aware of:</p>
 <ul>
-<li><a
-  class="gdoc-markdown__link"
-  href="https://github.com/owncloud/ocis-hello"
-  
->Hello</a></li>
-<li><a
-  class="gdoc-markdown__link"
-  href="https://github.com/owncloud/ocis-wopiserver"
-  
->WOPI server</a></li>
+<li>oCIS running behind Traefik as reverse proxy</li>
+<li>Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup</li>
+<li>oCIS running as individual services (each extension in it&rsquo;s own containers)</li>
 </ul>
-<p>Differences between the extensions maintained inside the oCIS monorepo and the ones maintained in their own repository are:</p>
-<ul>
-<li>extensions inside the <a
+<p><a
   class="gdoc-markdown__link"
-  href="https://github.com/owncloud/ocis"
+  href="https://github.com/owncloud/ocis/tree/master/deployments/examples/ocis_individual_services"
   
->oCIS monorepo</a> are all written in Go, whereas other extensions may choose the programming language freely</li>
-<li>extensions inside the oCIS monorepo heavily share tooling to reduce maintenance efforts, whereas other extensions may use different tooling (e.g. a different CI system)</li>
-<li>extensions inside the oCIS monorepo will be all build into one binary and started with the <code>ocis server</code> command. All other extensions must be started individually besides oCIS.</li>
-</ul>
-<p>For quickstart purposes we also offer a <a
+>Find this example on GitHub</a></p>
+<p>The docker stack consists of at least 24 containers. One of them is Traefik, a proxy which is terminating ssl and forwards the requests to oCIS in the internal docker network.</p>
+<p>The other containers are oCIS extensions, running each one in a separate container. In this example oCIS uses its internal IDP <a
   class="gdoc-markdown__link"
-  href="https://github.com/owncloud/boilr-ocis-extension"
+  href="https://owncloud.dev/extensions/idp/"
   
->template project</a> which can be used to generate all the boilerplate code for you. But you also can decide to use your own project layout or even a different programming language.</p>
+>LibreGraph Connect</a> and the <a
+  class="gdoc-markdown__link"
+  href="https://owncloud.dev/extensions/storage/storagedrivers/"
+  
+>oCIS storage driver</a>. You also can start more than one container of each service by setting <code>OCIS_SCALE</code> to a number greater than 1. Currently this won&rsquo;t scale all services, but we are working on making all service easily scalable.</p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="integration-into-ocis">
-        Integration into oCIS
-        <a data-clipboard-text="https://owncloud.dev/ocis/development/extensions/#integration-into-ocis" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Integration into oCIS" aria-label="Anchor to: Integration into oCIS" href="#integration-into-ocis">
+    <h2 id="server-deployment">
+        Server Deployment
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_individual_services/#server-deployment" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Server Deployment" aria-label="Anchor to: Server Deployment" href="#server-deployment">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div>
-<p>Depending on the functionality of your extension, you might need to integrate with one or multiple of the components of oCIS mentioned below.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="owncloud-web">
-        ownCloud Web
-        <a data-clipboard-text="https://owncloud.dev/ocis/development/extensions/#owncloud-web" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: ownCloud Web" aria-label="Anchor to: ownCloud Web" href="#owncloud-web">
+    <h3 id="requirements">
+        Requirements
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_individual_services/#requirements" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Requirements" aria-label="Anchor to: Requirements" href="#requirements">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
 </div>
-<p>If your extension is not just doing something in the background, you will need a UI in order to allow the user to interact with your extension. You could just provide your own web frontend for that purpose, but for a better user experience you can easily integrate into the web frontend of oCIS, the new <a
+<ul>
+<li>Linux server with docker and docker-compose installed</li>
+<li>Two domains set up and pointing to your server
+<ul>
+<li>ocis.* for serving oCIS</li>
+<li>traefik.* for serving the Traefik dashboard</li>
+</ul>
+</li>
+</ul>
+<p>See also <a
   class="gdoc-markdown__link"
-  href="https://github.com/owncloud/web"
+  href="https://owncloud.dev/ocis/deployment/preparing_server/"
   
->ownCloud Web</a>.</p>
-<p>ownCloud Web allows you to write an extension for itself and therefore offers a seamless user experience. Upon login, the user will be able to use the application switcher to switch between the files view, settings and other available and installed extensions, yours included. Furthermore it is also possible to register your extension for different file actions. As an example, you could offer your extension to the user for creating and editing office documents. The user will then be able to create or open a file with your application directly from the files view. How to provide create an extension for ownCloud Web can be seen best in <a
-  class="gdoc-markdown__link"
-  href="https://github.com/owncloud/ocis-hello/blob/master/ui/app.js"
-  
->the Hello extension</a>, whereas plain file handling without any web frontend is available in the <a
-  class="gdoc-markdown__link"
-  href="https://github.com/owncloud/ocis-wopiserver/blob/master/ui/app.js"
-  
->WOPI server extension</a>.</p>
-<p>To make ownCloud Web pick up your extension, you need to activate it in the configuration like seen in the <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/extensions/ocis_hello/running/#configure-and-start-ocis"
-  
->Hello extension</a>.</p>
-<p>For a consistent look and feel, ownCloud Web uses a external design library, the <a
-  class="gdoc-markdown__link"
-  href="https://github.com/owncloud/owncloud-design-system"
-  
->ownCloud design system</a>. Since its classes and components are available through the wrapping <code>web runtime</code>, we highly recommend you to leverage it in your extension as well.</p>
+>example server setup</a></p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="settings">
-        Settings
-        <a data-clipboard-text="https://owncloud.dev/ocis/development/extensions/#settings" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Settings" aria-label="Anchor to: Settings" href="#settings">
+    <h3 id="install-ocis-and-traefik">
+        Install oCIS and Traefik
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_individual_services/#install-ocis-and-traefik" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Install oCIS and Traefik" aria-label="Anchor to: Install oCIS and Traefik" href="#install-ocis-and-traefik">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
 </div>
-<p>An extension likely has some behaviour which the user can configure. Fundamental configuration will often be done by administrators during deployment, via configuration files or by setting environment variables. But for other settings, which are supposed to change more often or which are even user specific, this is not a viable way. Therefore you need to offer the users a UI where they can configure your extension to their liking. Because implementing something like this is a repetitive task among extensions, oCIS already offers the settings extensions which does that for your extension. Your extension just needs to register settings bundles, respective permissions and finally read the current values from the settings service. You can read more on that on the <a
+<ul>
+<li>
+<p>Clone oCIS repository</p>
+<p><code>git clone https://github.com/owncloud/ocis.git</code></p>
+</li>
+<li>
+<p>Go to the deployment example</p>
+<p><code>cd ocis/deployment/examples/ocis_traefik</code></p>
+</li>
+<li>
+<p>Open the <code>.env</code> file in a text editor
+The file by default looks like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># If you&#39;re on a internet facing server please comment out following line.</span>
+<span class="c1"># It skips certificate validation for various parts of oCIS and is needed if you use self signed certificates.</span>
+<span class="nv">INSECURE</span><span class="o">=</span><span class="nb">true</span>
+
+<span class="c1">### Traefik settings ###</span>
+<span class="c1"># Serve Treafik dashboard. Defaults to &#34;false&#34;.</span>
+<span class="nv">TRAEFIK_DASHBOARD</span><span class="o">=</span>
+<span class="c1"># Domain of Traefik, where you can find the dashboard. Defaults to &#34;traefik.owncloud.test&#34;</span>
+<span class="nv">TRAEFIK_DOMAIN</span><span class="o">=</span>
+<span class="c1"># Basic authentication for the dashboard. Defaults to user &#34;admin&#34; and password &#34;admin&#34;</span>
+<span class="nv">TRAEFIK_BASIC_AUTH_USERS</span><span class="o">=</span>
+<span class="c1"># Email address for obtaining LetsEncrypt certificates, needs only be changed if this is a public facing server</span>
+<span class="nv">TRAEFIK_ACME_MAIL</span><span class="o">=</span>
+
+<span class="c1">### oCIS settings ###</span>
+<span class="c1"># oCIS version. Defaults to &#34;latest&#34;</span>
+<span class="nv">OCIS_DOCKER_TAG</span><span class="o">=</span>
+<span class="c1"># Domain of oCIS, where you can find the frontend. Defaults to &#34;ocis.owncloud.test&#34;</span>
+<span class="nv">OCIS_DOMAIN</span><span class="o">=</span>
+<span class="c1"># IDP LDAP bind password. Must be changed in order to have a secure oCIS. Defaults to &#34;idp&#34;.</span>
+<span class="nv">IDP_LDAP_BIND_PASSWORD</span><span class="o">=</span>
+<span class="c1"># Storage LDAP bind password. Must be changed in order to have a secure oCIS. Defaults to &#34;reva&#34;.</span>
+<span class="nv">STORAGE_LDAP_BIND_PASSWORD</span><span class="o">=</span>
+<span class="c1"># JWT secret which is used for the storage provider. Must be changed in order to have a secure oCIS. Defaults to &#34;Pive-Fumkiu4&#34;</span>
+<span class="nv">OCIS_JWT_SECRET</span><span class="o">=</span>
+<span class="c1"># JWT secret which is used for uploads to create transfer tokens. Must be changed in order to have a secure oCIS. Defaults to &#34;replace-me-with-a-transfer-secret&#34;</span>
+<span class="nv">STORAGE_TRANSFER_SECRET</span><span class="o">=</span>
+<span class="c1"># Machine auth api key secret. Must be changed in order to have a secure oCIS. Defaults to &#34;change-me-please&#34;</span>
+<span class="nv">OCIS_MACHINE_AUTH_API_KEY</span><span class="o">=</span>
+<span class="c1"># Number of services to run for extensions, that currently can be easily scaled. Defaults to 1.</span>
+<span class="nv">OCIS_SCALE</span><span class="o">=</span>
+</code></pre></div><p>You are installing oCIS on a server and Traefik will obtain valid certificates for you so please remove <code>INSECURE=true</code> or set it to <code>false</code>.</p>
+<p>If you want to use the Traefik dashboard, set TRAEFIK_DASHBOARD to <code>true</code> (default is <code>false</code> and therefore not active). If you activate it, you must set a domain for the Traefik dashboard in <code>TRAEFIK_DOMAIN=</code> eg. <code>TRAEFIK_DOMAIN=traefik.owncloud.test</code>.</p>
+<p>The Traefik dashboard is secured by basic auth. Default credentials are the user <code>admin</code> with the password <code>admin</code>. To set your own credentials, generate a htpasswd (eg. by using <a
   class="gdoc-markdown__link"
-  href="https://owncloud.dev/extensions/settings/"
+  href="https://htpasswdgenerator.de/"
   
->settings extension</a> and see how <a
+>an online tool</a> or a cli tool).</p>
+<p>Traefik will issue certificates with LetsEncrypt and therefore you must set an email address in <code>TRAEFIK_ACME_MAIL=</code>.</p>
+<p>By default ocis will be started in the <code>latest</code> version. If you want to start a specific version of oCIS set the version to <code>OCIS_DOCKER_TAG=</code>. Available versions can be found on <a
   class="gdoc-markdown__link"
-  href="https://owncloud.dev/extensions/ocis_hello/settings/"
+  href="https://hub.docker.com/r/owncloud/ocis/tags?page=1&amp;ordering=last_updated"
   
->oCIS Hello uses these settings</a>.</p>
+>Docker Hub</a>.</p>
+<p>Set your domain for the oCIS frontend in <code>OCIS_DOMAIN=</code>, eg. <code>OCIS_DOMAIN=ocis.owncloud.test</code>.</p>
+<p>You also must override the default secrets in <code>IDP_LDAP_BIND_PASSWORD</code>, <code>STORAGE_LDAP_BIND_PASSWORD</code>, <code>OCIS_JWT_SECRET</code>, <code>STORAGE_TRANSFER_SECRET</code> and <code>OCIS_MACHINE_AUTH_API_KEY</code>  in order to secure your oCIS instance. Choose some random strings eg. from the output of <code>openssl rand -base64 32</code>. For more information see <a
+  class="gdoc-markdown__link"
+  href="https://owncloud.dev/ocis/deployment/#secure-an-ocis-instance"
+  
+>secure an oCIS instance</a>.</p>
+<p>You also can run more than one instance of the service by setting <code>OCIS_SCALE</code> to number greater than one.</p>
+<p>Now you have configured everything and can save the file.</p>
+</li>
+<li>
+<p>Start the docker stack</p>
+<p><code>docker-compose up -d</code></p>
+</li>
+<li>
+<p>You now can visit oCIS and Traefik dashboard on your configured domains. You may need to wait some minutes until all services are fully ready, so make sure that you try to reload the pages from time to time.</p>
+</li>
+</ul>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="proxy">
-        Proxy
-        <a data-clipboard-text="https://owncloud.dev/ocis/development/extensions/#proxy" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Proxy" aria-label="Anchor to: Proxy" href="#proxy">
+    <h2 id="local-setup">
+        Local setup
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_individual_services/#local-setup" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Local setup" aria-label="Anchor to: Local setup" href="#local-setup">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
-    </h3>
+    </h2>
 </div>
-<p>The Proxy is an API gateway and acts as the single connection point where all external request from users and devices need to pass through.</p>
-<p>To make sure that requests can reach your extension&rsquo;s API, you need to register one or multiple endpoints at the proxy. The registration is a easy task and can be seen best on the <a
+<p>For a more simple local ocis setup see <a
   class="gdoc-markdown__link"
-  href="https://owncloud.dev/extensions/ocis_hello/running/#configure-and-start-ocis"
+  href="https://owncloud.dev/ocis/getting-started/"
   
->oCIS Hello example</a>.</p>
-<p>As files in ownCloud must always stay private (unless you share them with your friends or coworkers), requests to oCIS have an authenticated user context. This user context is also available to your extension and can be used to interact with the user&rsquo;s files. How to get the user context and authentication can be seen on the <a
+>Getting started</a></p>
+<p>This docker stack can also be run locally. One downside is that Traefik can not obtain valid SSL certificates and therefore will create self signed ones. This means that your browser will show scary warnings. Another downside is that you can not point DNS entries to your localhost. So you have to add static host entries to your computer.</p>
+<p>On Linux and macOS you can add them to your <code>/etc/hosts</code> files like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">127.0.0.1 ocis.owncloud.test
+127.0.0.1 traefik.owncloud.test
+</code></pre></div><p>After that you&rsquo;re ready to start the application stack:</p>
+<p><code>docker-compose up -d</code></p>
+<p>Open <a
   class="gdoc-markdown__link"
-  href="https://owncloud.dev/extensions/ocis_hello/settings/#account-uuid"
+  href="https://ocis.owncloud.test"
   
->oCIS Hello example</a>.</p>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="storage">
-        Storage
-        <a data-clipboard-text="https://owncloud.dev/ocis/development/extensions/#storage" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Storage" aria-label="Anchor to: Storage" href="#storage">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div>
-<p>oCIS leverages the CS3 APIs and <a
+>https://ocis.owncloud.test</a> in your browser and accept the invalid certificate warning. You now can login to oCIS with the default users, which also can be found here: <a
   class="gdoc-markdown__link"
-  href="https://github.com/cs3org/reva"
+  href="https://owncloud.dev/ocis/getting-started/#login-to-ocis-web"
   
->CS3 REVA</a> as a storage system because it offers a very flexible setup and supports a variety of storage backends like EOS, S3 and of course your local hard drive. REVA makes it easy to support more storage backends as needed.</p>
-<p>If you need to interact with files directly, you have the full power of the <a
-  class="gdoc-markdown__link"
-  href="https://cs3org.github.io/cs3apis/"
-  
->CS3 APIs</a> in your hand. With the user context and the user&rsquo;s authentication token, which your extensions gets from the proxy, your extension can make these request in behalf of the user.</p>
-<p>If your extension needs to store persistent data which is not supposed to live in the user&rsquo;s home folder, there is also a so-called metadata storage, intended for exactly that purpose. You should always use the metadata storage in favor of the local filesystem for persistent files, because your extension will then automatically use the storage backend the oCIS admin decides to use. For a temporary cache it is perfectly fine to use the local filesystem.</p>
+>Getting started</a>. You may need to wait some minutes until all services are fully ready, so make sure that you try to reload the pages from time to time.</p>
 
   </article>
 
