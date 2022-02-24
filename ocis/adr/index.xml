@@ -33,8 +33,8 @@ Context and Problem Statement     To set up High Availability (HA) or a geo-repl
       <pubDate>Wed, 09 Dec 2020 20:21:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0003-external-user-management/</guid>
-      <description>Status: accepted Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1 Date: 2020-12-09  Technical Story: Skip account-service by talking to CS3 user-api
-Context and Problem Statement     To attach metadata like shares to users ownCloud relies on persistent, non-reassignable, unique identifiers for users (and files). Email and username can change when a user changes his name. But even the OIDC sub+iss combination may change when the IdP changes. While there is an account porting protocol that describes how a relying party (RP) such as ownCloud should behave, it still requires the RP to maintain its own user identifiers.</description>
+      <description>Status: superseded by 17. Allow read only external User Management Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1 Date: 2022-02-08  Technical Story: Skip account-service by talking to CS3 user-api
+Context and Problem Statement     To attach metadata like shares to users ownCloud relies on persistent, non-reassignable, unique identifiers for users (and files). Email and username can change when a user changes his name. But even the OIDC sub+iss combination may change when the IdP changes.</description>
     </item>
     
     <item>
@@ -155,6 +155,15 @@ Decision Drivers      We don&amp;rsquo;t want to rely only on logs to debug an i
       
       <guid>https://owncloud.dev/ocis/adr/0015-events/</guid>
       <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @c0rby, @wkloucek Date: 2022-01-21  Context and Problem Statement     Overview     To be able to implement simple, flexible and independent inter service communication there is the idea to implement an event system in oCIS. A service can send out events which are received by one or more other services. The receiving service can cause different kinds of actions based on the event by utilizing the information that the event carries.</description>
+    </item>
+    
+    <item>
+      <title>17. Allow read only external User Management</title>
+      <link>https://owncloud.dev/ocis/adr/0017-allow-read-only-external-user-management/</link>
+      <pubDate>Tue, 08 Feb 2022 10:53:00 +0100</pubDate>
+      
+      <guid>https://owncloud.dev/ocis/adr/0017-allow-read-only-external-user-management/</guid>
+      <description>Status: proposed Deciders: @butonic, @micbar, @rhafer Date: 2022-02-08  Context and Problem Statement     oCIS needs to be integrated with various external Authentication and Identity Management Systems. Usually oCIS will have no administrative access to such a system and we will not be allowed to reconfigure it to suit our needs (e.g. we will not be able to enhance the schema of an already existing LDAP Directory).</description>
     </item>
     
     <item>
