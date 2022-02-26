@@ -7018,6 +7018,8 @@ ETag propagation     What does ETag propagation mean? Whenever a file changes it
 </div>
 <p>What does ETag propagation mean? Whenever a file changes its content or metadata the ETag or &ldquo;entity tag&rdquo; changes. In the early days of ownCloud it was decided to extend this behavior to folders as well, which is outside of any WebDAV RFC specification. Nevertheless, here we are, using the ETag to reflect changes, not only on WebDAV resources but also WebDAV collections. The server will propagate the ETag change up to the root of the tree.</p>
 
+
+  
   <script defer src="/js/mermaid-76abf77a.bundle.min.js"></script>
   
 
@@ -7061,6 +7063,7 @@ graph TD
 
 
 
+
 <pre class="gdoc-mermaid mermaid text-center">
 graph TD
   linkStyle default interpolate basis
@@ -7083,6 +7086,7 @@ graph TD
 </div>
 <p>On an ocis server there is not one user but many. Each of them may have one or more clients running. In the worst case all of them polling the ETag of his home root node every 30 seconds.</p>
 <p>Keep in mind that etags are only propagated inside each distinct tree. No sharing is considered yet.</p>
+
 
 
 
@@ -7133,6 +7137,7 @@ graph TD
 
 
 
+
 <pre class="gdoc-mermaid mermaid text-center">
 graph TD
   linkStyle default interpolate basis
@@ -7170,6 +7175,7 @@ graph TD
     </h2>
 </div>
 <p>Every client polls the virtual root ETag (every 30 sec). The gateway will cache the virutal root ETag of every storage for 30 sec as well. That way every storage provider is only stated once every 30 sec (can be throttled dynamically to adapt to storage io load).</p>
+
 
 
 
