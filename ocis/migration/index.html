@@ -64,7 +64,7 @@
       "url" : "https://owncloud.dev/ocis/migration/",
       "headline": "Migration",
       "description": "The migration happens in subsequent stages while the service is online. First all users need to migrate to the new architecture, then the global namespace needs to be introduced. Finally, the data on disk can be migrated user by user by switching the storage driver.\n@jfd: It might be easier to introduce the spaces api in oc10 and then migrate to oCIS. We cannot migrate both at the same time, the architecture to oCIS (which will change fileids) and introduce a global namespace (which requires stable fileids to let clients handle moves without redownloading).",
-      "wordCount" : "5466",
+      "wordCount" : "5463",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -8201,7 +8201,7 @@ For more details see: <a
         </a>
     </h4>
 </div>
-<p>Ensure switching back an forth between the classic ownCloud 10 web UI and ownCloud web works as at our <a
+<p>Ensure switching back and forth between the classic ownCloud 10 web UI and ownCloud web works as at our <a
   class="gdoc-markdown__link"
   href="https://demo.owncloud.com"
   
@@ -8290,7 +8290,7 @@ reauthorize at the OpenID Connect IdP, which again, may be configured to skip th
   class="gdoc-markdown__link"
   href="https://www.pingidentity.com/"
   
->Ping</a>. Please refer to the corresponding setup instructions for the product you intent to use.</li>
+>Ping</a>. Please refer to the corresponding setup instructions for the product you intend to use.</li>
 </ol>
 <div class="editpage">
 <p><em>TODO @butonic flesh out oCIS IDP documentation</em></p>
@@ -8758,7 +8758,7 @@ The proxy is stateless, multiple instances can be deployed as needed.
         </a>
     </h3>
 </div>
-<p>Running ownCloud 10 and oCIS in parallel is a crucial stage for the migration: it allows users access to group shares regardless of the system that is being used to to access the data. A user by user migration with multiple domains would technically break group shares when users vanish because they (and their data) are no longer available in the old system.</p>
+<p>Running ownCloud 10 and oCIS in parallel is a crucial stage for the migration: it allows users access to group shares regardless of the system that is being used to access the data. A user by user migration with multiple domains would technically break group shares when users vanish because they (and their data) are no longer available in the old system.</p>
 <p>Depending on the amount of power users on an instance, the admin may want to allow users to voluntarily migrate to the oCIS backend. A monitoring system can be used to visualize the behavior for the two systems and gain trust in the overall stability and performance.</p>
 <div class="gdoc-page__anchorwrap">
     <h4 id="user-impact-4">
@@ -8784,7 +8784,7 @@ The proxy is stateless, multiple instances can be deployed as needed.
 <p>There are several options to move users to the oCIS backend:</p>
 <ul>
 <li>Use a canary app to let users decide themselves</li>
-<li>Use an early adopters group with an opt in</li>
+<li>Use an early adopters group with an opt-in</li>
 <li>Force migrate users in batch or one by one at the administrators will</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
@@ -9068,8 +9068,8 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 <div class="editpage">
 <p><em>TODO for HA implement share manager with redis / nats / &hellip; key value store backend: use the micro store interface please &hellip;</em>
 <em>TODO for batch migration implement share data migration cli with progress that reads all shares via the cs3 api from one provider and writes them into another provider</em>
-<em>TODO for seamless migration implement tiered/chained share provider that reads share data from the old provider and writes newc shares to the new one</em>
-<em>TODO for storage provider as source of truth persist ALL share data in the storage provider. Currently, part is stored in the share manager, part is in the storage provider. We can keep both, but the the share manager should directly persist its metadata to the storage system used by the storage provider so metadata is kept in sync</em></p>
+<em>TODO for seamless migration implement tiered/chained share provider that reads share data from the old provider and writes new shares to the new one</em>
+<em>TODO for storage provider as source of truth persist ALL share data in the storage provider. Currently, part is stored in the share manager, part is in the storage provider. We can keep both, but the share manager should directly persist its metadata to the storage system used by the storage provider so metadata is kept in sync</em></p>
 </div>
 <div class="gdoc-page__anchorwrap">
     <h4 id="verification-5">
@@ -9374,7 +9374,7 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 </tbody>
 </table> </div>
 <blockquote>
-<p>Note: for EOS a hot migration only works seamlessly if file ids in oc10 are already read from eos. otherwise either a mapping from the oc10 filecache file id to the new eos file id has to be created under the assumption that these id sets do not intersect or files and corresponding shares need to be exported and imported offline to generate a new set of ids. While this will preserve public links, user, group and even federated shares, old internal links may still point to different files because they contain the oc10 fileid</p>
+<p>Note: for EOS a hot migration only works seamlessly if file ids in oc10 are already read from eos. Otherwise, either a mapping from the oc10 filecache file id to the new eos file id has to be created under the assumption that these id sets do not intersect or files and corresponding shares need to be exported and imported offline to generate a new set of ids. While this will preserve public links, user, group and even federated shares, old internal links may still point to different files because they contain the oc10 fileid</p>
 </blockquote>
 <div style="break-after: page"></div>
 <div class="gdoc-page__anchorwrap">
@@ -9906,7 +9906,7 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 <p>Users are migrated in two steps:</p>
 <ol>
 <li>They should all be authenticated using OpenID Connect, which already moves them to a common identity management system.</li>
-<li>To search share recipients, both, ownCloud 10 and oCIS need access to the same user directory using eg. LDAP.</li>
+<li>To search share recipients, both, ownCloud 10 and oCIS need access to the same user directory using e.g. LDAP.</li>
 </ol>
 <div class="editpage">
 <p><em>TODO add state to CS3 API, so we can &lsquo;disable&rsquo; users</em>
