@@ -8,10 +8,10 @@
 <meta name="generator" content="Hugo 0.89.4" />
 
 
-  <meta name="description" content="This repository provides a general guideline for creating tests for an oCIS extension. The tests can be written in various levels from unit, integration, and end-to-end. It is not essential to write tests on all these levels as it can be redundant in some cases. This repository provides a reference for all levels of tests.
-Unit tests     Unit tests generally live inside *_test.go files in the /pkg directory." />
+  <meta name="description" content="Using ocis with libregraph/idm      Using ocis with libregraph/idm     Currently, oCIS still runs the accounts and glauth services to manage users. Until the default is switched to libregraph/idm, oCIS has to be started with a custom configuration in order to use libregraph/idm as the users and groups backend (this setup also disables the glauth and accounts service):
+export GRAPH_IDENTITY_BACKEND=ldap export GRAPH_LDAP_URI=ldaps://localhost:9235 export GRAPH_LDAP_BIND_DN=&#34;uid=libregraph,ou=sysusers,o=libregraph-idm&#34; export GRAPH_LDAP_BIND_PASSWORD=idm export GRAPH_LDAP_USER_EMAIL_ATTRIBUTE=mail export GRAPH_LDAP_USER_NAME_ATTRIBUTE=uid export GRAPH_LDAP_USER_BASE_DN=&#34;ou=users,o=libregraph-idm&#34; export GRAPH_LDAP_GROUP_BASE_DN=&#34;ou=groups,o=libregraph-idm&#34; export GRAPH_LDAP_SERVER_WRITE_ENABLED=&#34;true&#34; export IDP_INSECURE=&#34;true&#34; export IDP_LDAP_FILTER=&#34;(&amp;(objectclass=inetOrgPerson)(objectClass=owncloud))&#34; export IDP_LDAP_URI=ldaps://localhost:9235 export IDP_LDAP_BIND_DN=&#34;uid=idp,ou=sysusers,o=libregraph-idm&#34; export IDP_LDAP_BIND_PASSWORD=&#34;idp&#34; export IDP_LDAP_BASE_DN=&#34;ou=users,o=libregraph-idm&#34; export IDP_LDAP_LOGIN_ATTRIBUTE=uid export IDP_LDAP_UUID_ATTRIBUTE=&#34;ownclouduuid&#34; export IDP_LDAP_UUID_ATTRIBUTE_TYPE=binary export PROXY_ACCOUNT_BACKEND_TYPE=cs3 export OCS_ACCOUNT_BACKEND_TYPE=cs3 export STORAGE_LDAP_HOSTNAME=localhost export STORAGE_LDAP_PORT=9235 export STORAGE_LDAP_INSECURE=&#34;true&#34; export STORAGE_LDAP_BASE_DN=&#34;o=libregraph-idm&#34; export STORAGE_LDAP_BIND_DN=&#34;uid=reva,ou=sysusers,o=libregraph-idm&#34; export STORAGE_LDAP_BIND_PASSWORD=reva export STORAGE_LDAP_LOGINFILTER=&#39;(&amp;(objectclass=inetOrgPerson)(objectclass=owncloud)(|(uid={{login}})(mail={{login}})))&#39; export STORAGE_LDAP_USERFILTER=&#39;(&amp;(objectclass=inetOrgPerson)(objectclass=owncloud)(|(ownclouduuid={{." />
 
-    <title>Testing | ownCloud</title>
+    <title>Service Setup | ownCloud</title>
 
     <link
   rel="icon"
@@ -30,29 +30,29 @@ Unit tests     Unit tests generally live inside *_test.go files in the /pkg dire
     
   <meta
     property="og:title"
-    content="Testing"
+    content="Service Setup"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="This repository provides a general guideline for creating tests for an oCIS extension. The tests can be written in various levels from unit, integration, and end-to-end. It is not essential to write tests on all these levels as it can be redundant in some cases. This repository provides a reference for all levels of tests.
-Unit tests     Unit tests generally live inside *_test.go files in the /pkg directory." />
+  <meta property="og:description" content="Using ocis with libregraph/idm      Using ocis with libregraph/idm     Currently, oCIS still runs the accounts and glauth services to manage users. Until the default is switched to libregraph/idm, oCIS has to be started with a custom configuration in order to use libregraph/idm as the users and groups backend (this setup also disables the glauth and accounts service):
+export GRAPH_IDENTITY_BACKEND=ldap export GRAPH_LDAP_URI=ldaps://localhost:9235 export GRAPH_LDAP_BIND_DN=&#34;uid=libregraph,ou=sysusers,o=libregraph-idm&#34; export GRAPH_LDAP_BIND_PASSWORD=idm export GRAPH_LDAP_USER_EMAIL_ATTRIBUTE=mail export GRAPH_LDAP_USER_NAME_ATTRIBUTE=uid export GRAPH_LDAP_USER_BASE_DN=&#34;ou=users,o=libregraph-idm&#34; export GRAPH_LDAP_GROUP_BASE_DN=&#34;ou=groups,o=libregraph-idm&#34; export GRAPH_LDAP_SERVER_WRITE_ENABLED=&#34;true&#34; export IDP_INSECURE=&#34;true&#34; export IDP_LDAP_FILTER=&#34;(&amp;(objectclass=inetOrgPerson)(objectClass=owncloud))&#34; export IDP_LDAP_URI=ldaps://localhost:9235 export IDP_LDAP_BIND_DN=&#34;uid=idp,ou=sysusers,o=libregraph-idm&#34; export IDP_LDAP_BIND_PASSWORD=&#34;idp&#34; export IDP_LDAP_BASE_DN=&#34;ou=users,o=libregraph-idm&#34; export IDP_LDAP_LOGIN_ATTRIBUTE=uid export IDP_LDAP_UUID_ATTRIBUTE=&#34;ownclouduuid&#34; export IDP_LDAP_UUID_ATTRIBUTE_TYPE=binary export PROXY_ACCOUNT_BACKEND_TYPE=cs3 export OCS_ACCOUNT_BACKEND_TYPE=cs3 export STORAGE_LDAP_HOSTNAME=localhost export STORAGE_LDAP_PORT=9235 export STORAGE_LDAP_INSECURE=&#34;true&#34; export STORAGE_LDAP_BASE_DN=&#34;o=libregraph-idm&#34; export STORAGE_LDAP_BIND_DN=&#34;uid=reva,ou=sysusers,o=libregraph-idm&#34; export STORAGE_LDAP_BIND_PASSWORD=reva export STORAGE_LDAP_LOGINFILTER=&#39;(&amp;(objectclass=inetOrgPerson)(objectclass=owncloud)(|(uid={{login}})(mail={{login}})))&#39; export STORAGE_LDAP_USERFILTER=&#39;(&amp;(objectclass=inetOrgPerson)(objectclass=owncloud)(|(ownclouduuid={{." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://owncloud.dev/extensions/ocis_hello/testing/" />
+<meta property="og:url" content="https://owncloud.dev/extensions/idm/setup/" />
 
 <meta property="article:section" content="Extensions" />
     <meta
       property="article:published_time"
-      content="2018-05-02T00:00:00+00:00"
+      content="2022-03-22T00:00:00+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2018-05-02T00:00:00+00:00"
+      content="2022-03-22T00:00:00+00:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Testing" />
-  <meta name="twitter:description" content="This repository provides a general guideline for creating tests for an oCIS extension. The tests can be written in various levels from unit, integration, and end-to-end. It is not essential to write tests on all these levels as it can be redundant in some cases. This repository provides a reference for all levels of tests.
-Unit tests     Unit tests generally live inside *_test.go files in the /pkg directory." />
+<meta name="twitter:title" content="Service Setup" />
+  <meta name="twitter:description" content="Using ocis with libregraph/idm      Using ocis with libregraph/idm     Currently, oCIS still runs the accounts and glauth services to manage users. Until the default is switched to libregraph/idm, oCIS has to be started with a custom configuration in order to use libregraph/idm as the users and groups backend (this setup also disables the glauth and accounts service):
+export GRAPH_IDENTITY_BACKEND=ldap export GRAPH_LDAP_URI=ldaps://localhost:9235 export GRAPH_LDAP_BIND_DN=&#34;uid=libregraph,ou=sysusers,o=libregraph-idm&#34; export GRAPH_LDAP_BIND_PASSWORD=idm export GRAPH_LDAP_USER_EMAIL_ATTRIBUTE=mail export GRAPH_LDAP_USER_NAME_ATTRIBUTE=uid export GRAPH_LDAP_USER_BASE_DN=&#34;ou=users,o=libregraph-idm&#34; export GRAPH_LDAP_GROUP_BASE_DN=&#34;ou=groups,o=libregraph-idm&#34; export GRAPH_LDAP_SERVER_WRITE_ENABLED=&#34;true&#34; export IDP_INSECURE=&#34;true&#34; export IDP_LDAP_FILTER=&#34;(&amp;(objectclass=inetOrgPerson)(objectClass=owncloud))&#34; export IDP_LDAP_URI=ldaps://localhost:9235 export IDP_LDAP_BIND_DN=&#34;uid=idp,ou=sysusers,o=libregraph-idm&#34; export IDP_LDAP_BIND_PASSWORD=&#34;idp&#34; export IDP_LDAP_BASE_DN=&#34;ou=users,o=libregraph-idm&#34; export IDP_LDAP_LOGIN_ATTRIBUTE=uid export IDP_LDAP_UUID_ATTRIBUTE=&#34;ownclouduuid&#34; export IDP_LDAP_UUID_ATTRIBUTE_TYPE=binary export PROXY_ACCOUNT_BACKEND_TYPE=cs3 export OCS_ACCOUNT_BACKEND_TYPE=cs3 export STORAGE_LDAP_HOSTNAME=localhost export STORAGE_LDAP_PORT=9235 export STORAGE_LDAP_INSECURE=&#34;true&#34; export STORAGE_LDAP_BASE_DN=&#34;o=libregraph-idm&#34; export STORAGE_LDAP_BIND_DN=&#34;uid=reva,ou=sysusers,o=libregraph-idm&#34; export STORAGE_LDAP_BIND_PASSWORD=reva export STORAGE_LDAP_LOGINFILTER=&#39;(&amp;(objectclass=inetOrgPerson)(objectclass=owncloud)(|(uid={{login}})(mail={{login}})))&#39; export STORAGE_LDAP_USERFILTER=&#39;(&amp;(objectclass=inetOrgPerson)(objectclass=owncloud)(|(ownclouduuid={{." />
 
 
   <script type="application/ld+json">
@@ -60,22 +60,22 @@ Unit tests     Unit tests generally live inside *_test.go files in the /pkg dire
       "@context": "http://schema.org",
       "@type": "TechArticle",
       "articleSection": "Extensions",
-      "name": "Testing",
-      "url" : "https://owncloud.dev/extensions/ocis_hello/testing/",
-      "headline": "Testing",
-      "description": "This repository provides a general guideline for creating tests for an oCIS extension. The tests can be written in various levels from unit, integration, and end-to-end. It is not essential to write tests on all these levels as it can be redundant in some cases. This repository provides a reference for all levels of tests.\nUnit tests     Unit tests generally live inside *_test.go files in the \/pkg directory.",
-      "wordCount" : "423",
+      "name": "Service Setup",
+      "url" : "https://owncloud.dev/extensions/idm/setup/",
+      "headline": "Service Setup",
+      "description": "Using ocis with libregraph\/idm      Using ocis with libregraph\/idm     Currently, oCIS still runs the accounts and glauth services to manage users. Until the default is switched to libregraph\/idm, oCIS has to be started with a custom configuration in order to use libregraph\/idm as the users and groups backend (this setup also disables the glauth and accounts service):\nexport GRAPH_IDENTITY_BACKEND=ldap export GRAPH_LDAP_URI=ldaps:\/\/localhost:9235 export GRAPH_LDAP_BIND_DN=\u0022uid=libregraph,ou=sysusers,o=libregraph-idm\u0022 export GRAPH_LDAP_BIND_PASSWORD=idm export GRAPH_LDAP_USER_EMAIL_ATTRIBUTE=mail export GRAPH_LDAP_USER_NAME_ATTRIBUTE=uid export GRAPH_LDAP_USER_BASE_DN=\u0022ou=users,o=libregraph-idm\u0022 export GRAPH_LDAP_GROUP_BASE_DN=\u0022ou=groups,o=libregraph-idm\u0022 export GRAPH_LDAP_SERVER_WRITE_ENABLED=\u0022true\u0022 export IDP_INSECURE=\u0022true\u0022 export IDP_LDAP_FILTER=\u0022(\u0026(objectclass=inetOrgPerson)(objectClass=owncloud))\u0022 export IDP_LDAP_URI=ldaps:\/\/localhost:9235 export IDP_LDAP_BIND_DN=\u0022uid=idp,ou=sysusers,o=libregraph-idm\u0022 export IDP_LDAP_BIND_PASSWORD=\u0022idp\u0022 export IDP_LDAP_BASE_DN=\u0022ou=users,o=libregraph-idm\u0022 export IDP_LDAP_LOGIN_ATTRIBUTE=uid export IDP_LDAP_UUID_ATTRIBUTE=\u0022ownclouduuid\u0022 export IDP_LDAP_UUID_ATTRIBUTE_TYPE=binary export PROXY_ACCOUNT_BACKEND_TYPE=cs3 export OCS_ACCOUNT_BACKEND_TYPE=cs3 export STORAGE_LDAP_HOSTNAME=localhost export STORAGE_LDAP_PORT=9235 export STORAGE_LDAP_INSECURE=\u0022true\u0022 export STORAGE_LDAP_BASE_DN=\u0022o=libregraph-idm\u0022 export STORAGE_LDAP_BIND_DN=\u0022uid=reva,ou=sysusers,o=libregraph-idm\u0022 export STORAGE_LDAP_BIND_PASSWORD=reva export STORAGE_LDAP_LOGINFILTER=\u0027(\u0026(objectclass=inetOrgPerson)(objectclass=owncloud)(|(uid={{login}})(mail={{login}})))\u0027 export STORAGE_LDAP_USERFILTER=\u0027(\u0026(objectclass=inetOrgPerson)(objectclass=owncloud)(|(ownclouduuid={{.",
+      "wordCount" : "126",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://owncloud.dev/extensions/ocis_hello/testing/"
+          "@id": "https://owncloud.dev/extensions/idm/setup/"
       },
       "copyrightHolder" : "ownCloud",
-      "copyrightYear" : "2018",
-      "dateCreated": "2018-05-02T00:00:00.00Z",
-      "datePublished": "2018-05-02T00:00:00.00Z",
-      "dateModified": "2018-05-02T00:00:00.00Z",
+      "copyrightYear" : "2022",
+      "dateCreated": "2022-03-22T00:00:00.00Z",
+      "datePublished": "2022-03-22T00:00:00.00Z",
+      "dateModified": "2022-03-22T00:00:00.00Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -151,7 +151,7 @@ Unit tests     Unit tests generally live inside *_test.go files in the /pkg dire
   href="/custom.css"
   media="all"
 />
-  <link href="https://owncloud.dev/extensions/ocis_hello/testing/" rel="canonical" type="text/html" />
+  <link href="https://owncloud.dev/extensions/idm/setup/" rel="canonical" type="text/html" />
 
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
 
@@ -3967,7 +3967,7 @@ Unit tests     Unit tests generally live inside *_test.go files in the /pkg dire
               type="checkbox"
               
                 class="gdoc-nav__toggle" id="navtree-2df38ebd"
-                checked
+                
               
             />
             <label
@@ -4227,7 +4227,7 @@ Unit tests     Unit tests generally live inside *_test.go files in the /pkg dire
                 <span class="flex">
                   <a
                     href="/extensions/ocis_hello/testing/"
-                    class="gdoc-nav__entry is-active"
+                    class="gdoc-nav__entry"
                   >
                     Testing
                   </a>
@@ -5071,7 +5071,7 @@ Unit tests     Unit tests generally live inside *_test.go files in the /pkg dire
               type="checkbox"
               
                 class="gdoc-nav__toggle" id="navtree-d31a8b8d"
-                
+                checked
               
             />
             <label
@@ -5175,7 +5175,7 @@ Unit tests     Unit tests generally live inside *_test.go files in the /pkg dire
                 <span class="flex">
                   <a
                     href="/extensions/idm/setup/"
-                    class="gdoc-nav__entry"
+                    class="gdoc-nav__entry is-active"
                   >
                     Service Setup
                   </a>
@@ -8140,7 +8140,7 @@ Unit tests     Unit tests generally live inside *_test.go files in the /pkg dire
     
   
   
-    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/extensions/' href='/extensions/'><span itemprop='name'>Extensions</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/extensions/ocis_hello/' href='/extensions/ocis_hello/'><span itemprop='name'>Hello (example extension)</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Testing</span><meta itemprop='position' content='4' /></li>
+    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/extensions/' href='/extensions/'><span itemprop='name'>Extensions</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/extensions/idm/' href='/extensions/idm/'><span itemprop='name'>IDM</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Service Setup</span><meta itemprop='position' content='4' /></li>
   
 
   
@@ -8157,7 +8157,7 @@ Unit tests     Unit tests generally live inside *_test.go files in the /pkg dire
       <span class="editpage">
         <svg class="icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
         <a
-          href="https://github.com/owncloud/ocis-hello/edit/master/docs/testing.md"
+          href="https://github.com/owncloud/ocis/edit/master/docs/extensions/idm/setup.md"
         >
           Edit page
         </a>
@@ -8171,93 +8171,64 @@ Unit tests     Unit tests generally live inside *_test.go files in the /pkg dire
   <article
     class="gdoc-markdown gdoc-markdown__align--left"
   >
-    <h1>Testing</h1>
-    <p>This repository provides a general guideline for creating tests for an oCIS extension. The tests can be written in various levels from unit, integration, and end-to-end. It is not essential to write tests on all these levels as it can be redundant in some cases. This repository provides a reference for all levels of tests.</p>
+    <h1>Service Setup</h1>
+    
+
+
+  <div class="gdoc-toc gdoc-toc__level--3">
+    <nav id="TableOfContents"><ul>
+        <li><a href="#using-ocis-with-libregraphidm">Using ocis with libregraph/idm</a></li>
+      </ul></nav>
+    <hr />
+  </div>
+
+
 <div class="gdoc-page__anchorwrap">
-    <h2 id="unit-tests">
-        Unit tests
-        <a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/testing/#unit-tests" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Unit tests" aria-label="Anchor to: Unit tests" href="#unit-tests">
+    <h2 id="using-ocis-with-libregraphidm">
+        Using ocis with libregraph/idm
+        <a data-clipboard-text="https://owncloud.dev/extensions/idm/setup/#using-ocis-with-libregraphidm" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Using ocis with libregraph/idm" aria-label="Anchor to: Using ocis with libregraph/idm" href="#using-ocis-with-libregraphidm">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div>
-<p>Unit tests generally live inside *_test.go files in the <code>/pkg</code> directory. One such example in this extension is in <code>/pkg/service/v0/service_test.go</code>. Similarly the unit test for the protobuf generated code can also be written just like in <code>/pkg/proto/hello.pb_test.go</code>.</p>
-<div class="gdoc-page__anchorwrap">
-    <h2 id="integration-tests">
-        Integration tests
-        <a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/testing/#integration-tests" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Integration tests" aria-label="Anchor to: Integration tests" href="#integration-tests">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h2>
-</div>
-<p>There are mainly 2 types of integration tests, namely HTTP tests, and GRPC tests. These tests mostly live in <code>/pkg/proto</code> directory where all the protobuf definitions are specified. The examples for the HTTP integration tests are in <code>/pkg/proto/hello.pb.web_test.go</code> whereas the GRPC tests are in <code>/pkg/proto/hello.pb.micro_test.go</code>.</p>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="end-to-end-tests">
-        End-to-End tests
-        <a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/testing/#end-to-end-tests" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: End-to-End tests" aria-label="Anchor to: End-to-End tests" href="#end-to-end-tests">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div>
-<p>For extensions with an UI, we can also write end-to-end tests using the Nightwatch test framework. These tests live in <code>/ui/tests</code> directory. We can reuse already existing Gherkin steps from the <a
-  class="gdoc-markdown__link"
-  href="https://github.com/owncloud/web"
-  
->ownCloud Web</a> tests here.</p>
-<div class="gdoc-page__anchorwrap">
-    <h2 id="running-the-tests">
-        Running the tests
-        <a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/testing/#running-the-tests" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Running the tests" aria-label="Anchor to: Running the tests" href="#running-the-tests">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h2>
-</div>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="unit-and-integration-tests">
-        Unit and integration tests
-        <a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/testing/#unit-and-integration-tests" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Unit and integration tests" aria-label="Anchor to: Unit and integration tests" href="#unit-and-integration-tests">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div>
-<p>The unit and integration tests are run using the simple <code>go test</code> command. If you wish to run all the tests with the coverage you can just use make command.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">make <span class="nb">test</span>
-</code></pre></div><p>You can also run a specific file with the go test command</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">go <span class="nb">test</span> &lt;path to package or file&gt;
-</code></pre></div><div class="gdoc-page__anchorwrap">
-    <h3 id="end-to-end-tests-1">
-        End-to-End tests
-        <a data-clipboard-text="https://owncloud.dev/extensions/ocis_hello/testing/#end-to-end-tests-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: End-to-End tests" aria-label="Anchor to: End-to-End tests" href="#end-to-end-tests-1">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div>
-<p>Running end-to-end tests is a bit more complicated than unit and integration tests. First of all we will need a complete oCIS setup with the Hello extension running. Please refer to <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/extensions/ocis_hello/running/"
-  
->foo</a></p>
-<p>Then we need to set up the test infrastructure following the instructions form <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/clients/web/testing/"
-  
->here</a></p>
-<p>Now we can run the tests. The tests will take several configuration variables which can be found <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/clients/web/testing/#available-settings-to-be-set-by-environment-variables"
-  
->here</a>. Without configuration, most of the defaults will work. We just need make sure to set these values through env variable.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">WEB_PATH</span><span class="o">=</span>&lt;path to ownCloud Web directory&gt;
-<span class="nb">export</span> <span class="nv">OCIS_SKELETON_DIR</span><span class="o">=</span>&lt;path to the skeleton directory&gt;
-<span class="nb">export</span> <span class="nv">WEB_UI_CONFIG</span><span class="o">=</span>&lt;path to the config.json file used by web&gt;
-</code></pre></div><p>While running oCIS we should always use a configuration file for ownCloud Web because our tests will read this file and sometimes even change it which cannot be done if you use environment variables or the default values.</p>
-<p>With all this in place we can just run the tests with a simple make command.
-First go to the Hello repository</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> &lt;path to hello&gt;
-</code></pre></div><p>Then run</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">make test-acceptance-webui
-</code></pre></div><p>To run just one feature you can run</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">make test-acceptance-webui &lt;path-to-feature file&gt;:&lt;line-number&gt;
+<p>Currently, oCIS still runs the accounts and glauth services to manage users. Until the default is switched
+to libregraph/idm, oCIS has to be started with a custom configuration in order to use libregraph/idm as
+the users and groups backend (this setup also disables the glauth and accounts service):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">export GRAPH_IDENTITY_BACKEND=ldap
+export GRAPH_LDAP_URI=ldaps://localhost:9235
+export GRAPH_LDAP_BIND_DN=&#34;uid=libregraph,ou=sysusers,o=libregraph-idm&#34;
+export GRAPH_LDAP_BIND_PASSWORD=idm
+export GRAPH_LDAP_USER_EMAIL_ATTRIBUTE=mail
+export GRAPH_LDAP_USER_NAME_ATTRIBUTE=uid
+export GRAPH_LDAP_USER_BASE_DN=&#34;ou=users,o=libregraph-idm&#34;
+export GRAPH_LDAP_GROUP_BASE_DN=&#34;ou=groups,o=libregraph-idm&#34;
+export GRAPH_LDAP_SERVER_WRITE_ENABLED=&#34;true&#34;
+export IDP_INSECURE=&#34;true&#34;
+export IDP_LDAP_FILTER=&#34;(&amp;(objectclass=inetOrgPerson)(objectClass=owncloud))&#34;
+export IDP_LDAP_URI=ldaps://localhost:9235
+export IDP_LDAP_BIND_DN=&#34;uid=idp,ou=sysusers,o=libregraph-idm&#34;
+export IDP_LDAP_BIND_PASSWORD=&#34;idp&#34;
+export IDP_LDAP_BASE_DN=&#34;ou=users,o=libregraph-idm&#34;
+export IDP_LDAP_LOGIN_ATTRIBUTE=uid
+export IDP_LDAP_UUID_ATTRIBUTE=&#34;ownclouduuid&#34;
+export IDP_LDAP_UUID_ATTRIBUTE_TYPE=binary
+export PROXY_ACCOUNT_BACKEND_TYPE=cs3
+export OCS_ACCOUNT_BACKEND_TYPE=cs3
+export STORAGE_LDAP_HOSTNAME=localhost
+export STORAGE_LDAP_PORT=9235
+export STORAGE_LDAP_INSECURE=&#34;true&#34;
+export STORAGE_LDAP_BASE_DN=&#34;o=libregraph-idm&#34;
+export STORAGE_LDAP_BIND_DN=&#34;uid=reva,ou=sysusers,o=libregraph-idm&#34;
+export STORAGE_LDAP_BIND_PASSWORD=reva
+export STORAGE_LDAP_LOGINFILTER=&#39;(&amp;(objectclass=inetOrgPerson)(objectclass=owncloud)(|(uid={{login}})(mail={{login}})))&#39;
+export STORAGE_LDAP_USERFILTER=&#39;(&amp;(objectclass=inetOrgPerson)(objectclass=owncloud)(|(ownclouduuid={{.OpaqueId}})(uid={{.OpaqueId}})))&#39;
+export STORAGE_LDAP_USERATTRIBUTEFILTER=&#39;(&amp;(objectclass=owncloud)({{attr}}={{value}}))&#39;
+export STORAGE_LDAP_USERFINDFILTER=&#39;(&amp;(objectclass=owncloud)(|(uid={{query}}*)(cn={{query}}*)(displayname={{query}}*)(mail={{query}}*)(description={{query}}*)))&#39;
+export STORAGE_LDAP_USERGROUPFILER=&#39;(&amp;(objectclass=groupOfNames)(member={{query}}*))&#39;
+export STORAGE_LDAP_GROUPFILTER=&#39;(&amp;(objectclass=groupOfNames)(objectclass=owncloud)(ownclouduuid={{.OpaqueId}}*))&#39;
+export OCIS_RUN_EXTENSIONS=settings,storage-metadata,graph,graph-explorer,ocs,store,thumbnails,web,webdav,storage-frontend,storage-gateway,storage-userprovider,storage-groupprovider,storage-authbasic,storage-authbearer,storage-authmachine,storage-users,storage-shares,storage-public-link,storage-appprovider,storage-sharing,proxy,idp,nats,idm
+export OCIS_INSECURE=true
+bin/ocis server
 </code></pre></div>
   </article>
 
