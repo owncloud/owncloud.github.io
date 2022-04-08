@@ -175,5 +175,36 @@ Decision Drivers      We don&amp;rsquo;t want to rely only on logs to debug an i
       <description>Status: proposed Deciders: @butonic, @micbar, @rhafer Date: 2022-02-08  Context and Problem Statement     oCIS needs to be integrated with various external Authentication and Identity Management Systems. Usually oCIS will have no administrative access to such a system and we will not be allowed to reconfigure it to suit our needs (e.g. we will not be able to enhance the schema of an already existing LDAP Directory).</description>
     </item>
     
+    <item>
+      <title>18. File Search API</title>
+      <link>https://owncloud.dev/ocis/adr/0018-file-search-api/</link>
+      <pubDate>Fri, 18 Mar 2022 09:00:00 +0100</pubDate>
+      
+      <guid>https://owncloud.dev/ocis/adr/0018-file-search-api/</guid>
+      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @C0rby Date: 2022-03-18  Context and Problem Statement     The ability to find files based on certain search terms is a key requirement for a system that provides the ability to store unstructured data on a large scale.
+Decision Drivers      Have a simple yet powerful, scalable and performant way of finding files in oCIS Be able to construct intelligent searches based on metadata Allow the user to filter the search queries based on metadata  Considered Options      Libre Graph API WebDAV API  Decision Outcome     Chosen option: WebDAV API because the current WebUI is compatible with that API.</description>
+    </item>
+    
+    <item>
+      <title>19. File Search Index</title>
+      <link>https://owncloud.dev/ocis/adr/0019-file-search-index/</link>
+      <pubDate>Fri, 18 Mar 2022 09:00:00 +0100</pubDate>
+      
+      <guid>https://owncloud.dev/ocis/adr/0019-file-search-index/</guid>
+      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @C0rby Date: 2022-03-18  Context and Problem Statement     The ability to find files based on certain search terms is a key requirement for a system that provides the ability to store unstructured data on a large scale.
+More sophisticated search capabilities are expected and can be implemented, especially based on metadata.
+To trigger the indexing of a file, the search service listens to create, update and delete events on the internal event bus of oCIS.</description>
+    </item>
+    
+    <item>
+      <title>20. File Search Query Language</title>
+      <link>https://owncloud.dev/ocis/adr/0020-file-search-query-language/</link>
+      <pubDate>Fri, 18 Mar 2022 09:00:00 +0100</pubDate>
+      
+      <guid>https://owncloud.dev/ocis/adr/0020-file-search-query-language/</guid>
+      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @C0rby Date: 2022-03-18  Context and Problem Statement     From the users perspective, the interface to search is just a single form field where the user enters one or more search terms. The minimum expectation is that the search returns file names and links to files that
+ have a file name that contains at least one of the search terms contain at least one of the search terms in the file contents have meta data that is equal or contains one of the search terms  Decision Drivers      The standard user should not be bothered by a query syntax The power user should also be able to narrow his search with an efficient and flexible syntax We need to consider different backend technologies which we need to access through an abstraction layer Using different indexing systems should lead to a slightly different feature set whitout changing the syntax completely  Considered Options      Simple Query Lucene Query Language Solr Query Language Elasticsearch Query Language  Decision Outcome     Chosen option: Simple Query, because it is a suitable MVP.</description>
+    </item>
+    
   </channel>
 </rss>
