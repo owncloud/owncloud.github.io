@@ -6,7 +6,7 @@
     <description>Recent content on ownCloud</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 13 Apr 2022 11:12:20 +0000</lastBuildDate><atom:link href="https://owncloud.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 13 Apr 2022 13:35:38 +0000</lastBuildDate><atom:link href="https://owncloud.dev/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>1. Introduce an accounts service</title>
       <link>https://owncloud.dev/ocis/adr/0001-introduce-accounts-service/</link>
@@ -420,7 +420,7 @@ To trigger the indexing of a file, the search service listens to create, update 
       
       <guid>https://owncloud.dev/extensions/idm/setup/</guid>
       <description>    Using ocis with libregraph/idm      Using ocis with libregraph/idm     Currently, oCIS still runs the accounts and glauth services to manage users. Until the default is switched to libregraph/idm, oCIS has to be started with a custom configuration in order to use libregraph/idm as the users and groups backend (this setup also disables the glauth and accounts service):
-export GRAPH_IDENTITY_BACKEND=ldap export LDAP_URI=ldaps://localhost:9235 export LDAP_INSECURE=&amp;#34;true&amp;#34; export LDAP_USER_BASE_DN=&amp;#34;ou=users,o=libregraph-idm&amp;#34; export LDAP_USER_SCHEMA_ID=&amp;#34;ownclouduuid&amp;#34; export LDAP_USER_SCHEMA_MAIL=&amp;#34;mail&amp;#34; export LDAP_USER_SCHEMA_USERNAME=&amp;#34;uid&amp;#34; export LDAP_USER_OBJECTCLASS=&amp;#34;inetOrgPerson&amp;#34; export LDAP_GROUP_BASE_DN=&amp;#34;ou=groups,o=libregraph-idm&amp;#34; export LDAP_GROUP_SCHEMA_ID=&amp;#34;ownclouduuid&amp;#34; export LDAP_GROUP_SCHEMA_MAIL=&amp;#34;mail&amp;#34; export LDAP_GROUP_SCHEMA_GROUPNAME=&amp;#34;member&amp;#34; export LDAP_GROUP_OBJECTCLASS=&amp;#34;groupOfNames&amp;#34; export GRAPH_LDAP_BIND_DN=&amp;#34;uid=libregraph,ou=sysusers,o=libregraph-idm&amp;#34; export GRAPH_LDAP_BIND_PASSWORD=idm export GRAPH_LDAP_SERVER_WRITE_ENABLED=&amp;#34;true&amp;#34; export IDP_INSECURE=&amp;#34;true&amp;#34; export IDP_LDAP_BIND_DN=&amp;#34;uid=idp,ou=sysusers,o=libregraph-idm&amp;#34; export IDP_LDAP_BIND_PASSWORD=&amp;#34;idp&amp;#34; export IDP_LDAP_LOGIN_ATTRIBUTE=uid export PROXY_ACCOUNT_BACKEND_TYPE=cs3 export OCS_ACCOUNT_BACKEND_TYPE=cs3 export STORAGE_LDAP_BIND_DN=&amp;#34;uid=reva,ou=sysusers,o=libregraph-idm&amp;#34; export STORAGE_LDAP_BIND_PASSWORD=reva export OCIS_RUN_EXTENSIONS=settings,storage-metadata,graph,graph-explorer,ocs,store,thumbnails,web,webdav,storage-frontend,storage-gateway,storage-userprovider,storage-groupprovider,storage-authbasic,storage-authbearer,storage-authmachine,storage-users,storage-shares,storage-public-link,storage-appprovider,storage-sharing,proxy,idp,nats,idm,ocdav export OCIS_INSECURE=true bin/ocis server </description>
+export GRAPH_IDENTITY_BACKEND=ldap export LDAP_URI=ldaps://localhost:9235 export LDAP_INSECURE=&amp;#34;true&amp;#34; export LDAP_USER_BASE_DN=&amp;#34;ou=users,o=libregraph-idm&amp;#34; export LDAP_USER_SCHEMA_ID=&amp;#34;ownclouduuid&amp;#34; export LDAP_USER_SCHEMA_MAIL=&amp;#34;mail&amp;#34; export LDAP_USER_SCHEMA_USERNAME=&amp;#34;uid&amp;#34; export LDAP_USER_OBJECTCLASS=&amp;#34;inetOrgPerson&amp;#34; export LDAP_GROUP_BASE_DN=&amp;#34;ou=groups,o=libregraph-idm&amp;#34; export LDAP_GROUP_SCHEMA_ID=&amp;#34;ownclouduuid&amp;#34; export LDAP_GROUP_SCHEMA_MAIL=&amp;#34;mail&amp;#34; export LDAP_GROUP_SCHEMA_GROUPNAME=&amp;#34;cn&amp;#34; export LDAP_GROUP_SCHEMA_MEMBER=&amp;#34;member&amp;#34; export LDAP_GROUP_OBJECTCLASS=&amp;#34;groupOfNames&amp;#34; export GRAPH_LDAP_BIND_DN=&amp;#34;uid=libregraph,ou=sysusers,o=libregraph-idm&amp;#34; export GRAPH_LDAP_BIND_PASSWORD=idm export GRAPH_LDAP_SERVER_WRITE_ENABLED=&amp;#34;true&amp;#34; export IDP_INSECURE=&amp;#34;true&amp;#34; export IDP_LDAP_BIND_DN=&amp;#34;uid=idp,ou=sysusers,o=libregraph-idm&amp;#34; export IDP_LDAP_BIND_PASSWORD=&amp;#34;idp&amp;#34; export IDP_LDAP_LOGIN_ATTRIBUTE=uid export PROXY_ACCOUNT_BACKEND_TYPE=cs3 export OCS_ACCOUNT_BACKEND_TYPE=cs3 export STORAGE_LDAP_BIND_DN=&amp;#34;uid=reva,ou=sysusers,o=libregraph-idm&amp;#34; export STORAGE_LDAP_BIND_PASSWORD=reva export OCIS_RUN_EXTENSIONS=settings,storage-metadata,graph,graph-explorer,ocs,store,thumbnails,web,webdav,storage-frontend,storage-gateway,storage-userprovider,storage-groupprovider,storage-authbasic,storage-authbearer,storage-authmachine,storage-users,storage-shares,storage-public-link,storage-appprovider,storage-sharing,proxy,idp,nats,idm,ocdav export OCIS_INSECURE=true bin/ocis server </description>
     </item>
     
     <item>
@@ -984,7 +984,7 @@ For now, the storage service uses these ports to preconfigure those services:
     <item>
       <title>ocis.messages.accounts.v0</title>
       <link>https://owncloud.dev/grpc_apis/ocis_messages_accounts_v0/</link>
-      <pubDate>Wed, 13 Apr 2022 11:12:20 +0000</pubDate>
+      <pubDate>Wed, 13 Apr 2022 13:35:38 +0000</pubDate>
       
       <guid>https://owncloud.dev/grpc_apis/ocis_messages_accounts_v0/</guid>
       <description>ocis/messages/accounts/v0/accounts.proto  Account Group Identities OnPremisesProvisioningError PasswordProfile   Scalar Value Types      ocis/messages/accounts/v0/accounts.proto     Account     Account follows the properties of the ms graph api user resource. See https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0#properties
@@ -994,7 +994,7 @@ For now, the storage service uses these ports to preconfigure those services:
     <item>
       <title>ocis.messages.settings.v0</title>
       <link>https://owncloud.dev/grpc_apis/ocis_messages_settings_v0/</link>
-      <pubDate>Wed, 13 Apr 2022 11:12:20 +0000</pubDate>
+      <pubDate>Wed, 13 Apr 2022 13:35:38 +0000</pubDate>
       
       <guid>https://owncloud.dev/grpc_apis/ocis_messages_settings_v0/</guid>
       <description>ocis/messages/settings/v0/settings.proto  Bool Bundle Identifier Int ListOption ListOptionValue ListValue MultiChoiceList Permission Resource Setting SingleChoiceList String UserRoleAssignment Value ValueWithIdentifier Bundle.Type Permission.Constraint Permission.Operation Resource.Type   Scalar Value Types      ocis/messages/settings/v0/settings.proto     Bool        Field Type Label Description     default bool     label string      Bundle        Field Type Label Description     id string     name string     type Bundle.</description>
@@ -1003,7 +1003,7 @@ For now, the storage service uses these ports to preconfigure those services:
     <item>
       <title>ocis.messages.store.v0</title>
       <link>https://owncloud.dev/grpc_apis/ocis_messages_store_v0/</link>
-      <pubDate>Wed, 13 Apr 2022 11:12:20 +0000</pubDate>
+      <pubDate>Wed, 13 Apr 2022 13:35:38 +0000</pubDate>
       
       <guid>https://owncloud.dev/grpc_apis/ocis_messages_store_v0/</guid>
       <description>ocis/messages/store/v0/store.proto  DeleteOptions Field ListOptions ReadOptions ReadOptions.WhereEntry Record Record.MetadataEntry WriteOptions   Scalar Value Types      ocis/messages/store/v0/store.proto     DeleteOptions        Field Type Label Description     database string     table string      Field        Field Type Label Description     type string  type of value e.</description>
@@ -1012,7 +1012,7 @@ For now, the storage service uses these ports to preconfigure those services:
     <item>
       <title>ocis.messages.thumbnails.v0</title>
       <link>https://owncloud.dev/grpc_apis/ocis_messages_thumbnails_v0/</link>
-      <pubDate>Wed, 13 Apr 2022 11:12:20 +0000</pubDate>
+      <pubDate>Wed, 13 Apr 2022 13:35:38 +0000</pubDate>
       
       <guid>https://owncloud.dev/grpc_apis/ocis_messages_thumbnails_v0/</guid>
       <description>ocis/messages/thumbnails/v0/thumbnails.proto  CS3Source WebdavSource ThumbnailType   Scalar Value Types      ocis/messages/thumbnails/v0/thumbnails.proto     CS3Source        Field Type Label Description     path string     authorization string      WebdavSource        Field Type Label Description     url string  REQUIRED.</description>
@@ -1021,7 +1021,7 @@ For now, the storage service uses these ports to preconfigure those services:
     <item>
       <title>ocis.services.accounts.v0</title>
       <link>https://owncloud.dev/grpc_apis/ocis_services_accounts_v0/</link>
-      <pubDate>Wed, 13 Apr 2022 11:12:20 +0000</pubDate>
+      <pubDate>Wed, 13 Apr 2022 13:35:38 +0000</pubDate>
       
       <guid>https://owncloud.dev/grpc_apis/ocis_services_accounts_v0/</guid>
       <description>ocis/services/accounts/v0/accounts.proto  AddMemberRequest CreateAccountRequest CreateGroupRequest DeleteAccountRequest DeleteGroupRequest GetAccountRequest GetGroupRequest ListAccountsRequest ListAccountsResponse ListGroupsRequest ListGroupsResponse ListMembersRequest ListMembersResponse RebuildIndexRequest RebuildIndexResponse RemoveMemberRequest UpdateAccountRequest UpdateGroupRequest AccountsService GroupsService IndexService   Scalar Value Types      ocis/services/accounts/v0/accounts.proto     AddMemberRequest        Field Type Label Description     group_id string  The id of the group to add a member to   account_id string  The account id to add    CreateAccountRequest        Field Type Label Description     account ocis.</description>
@@ -1030,7 +1030,7 @@ For now, the storage service uses these ports to preconfigure those services:
     <item>
       <title>ocis.services.settings.v0</title>
       <link>https://owncloud.dev/grpc_apis/ocis_services_settings_v0/</link>
-      <pubDate>Wed, 13 Apr 2022 11:12:20 +0000</pubDate>
+      <pubDate>Wed, 13 Apr 2022 13:35:38 +0000</pubDate>
       
       <guid>https://owncloud.dev/grpc_apis/ocis_services_settings_v0/</guid>
       <description>ocis/services/settings/v0/settings.proto  AddSettingToBundleRequest AddSettingToBundleResponse AssignRoleToUserRequest AssignRoleToUserResponse GetBundleRequest GetBundleResponse GetPermissionByIDRequest GetPermissionByIDResponse GetValueByUniqueIdentifiersRequest GetValueRequest GetValueResponse ListBundlesRequest ListBundlesResponse ListPermissionsByResourceRequest ListPermissionsByResourceResponse ListRoleAssignmentsRequest ListRoleAssignmentsResponse ListValuesRequest ListValuesResponse RemoveRoleFromUserRequest RemoveSettingFromBundleRequest SaveBundleRequest   requests and responses for settings bundles  SaveBundleResponse SaveValueRequest SaveValueResponse BundleService PermissionService RoleService ValueService   Scalar Value Types      ocis/services/settings/v0/settings.proto     AddSettingToBundleRequest        Field Type Label Description     bundle_id string     setting ocis.</description>
@@ -1039,7 +1039,7 @@ For now, the storage service uses these ports to preconfigure those services:
     <item>
       <title>ocis.services.store.v0</title>
       <link>https://owncloud.dev/grpc_apis/ocis_services_store_v0/</link>
-      <pubDate>Wed, 13 Apr 2022 11:12:20 +0000</pubDate>
+      <pubDate>Wed, 13 Apr 2022 13:35:38 +0000</pubDate>
       
       <guid>https://owncloud.dev/grpc_apis/ocis_services_store_v0/</guid>
       <description>ocis/services/store/v0/store.proto  DatabasesRequest DatabasesResponse DeleteRequest DeleteResponse ListRequest ListResponse ReadRequest ReadResponse TablesRequest TablesResponse WriteRequest WriteResponse Store   Scalar Value Types      ocis/services/store/v0/store.proto     DatabasesRequest     DatabasesResponse        Field Type Label Description     databases string repeated     DeleteRequest        Field Type Label Description     key string     options ocis.</description>
@@ -1048,7 +1048,7 @@ For now, the storage service uses these ports to preconfigure those services:
     <item>
       <title>ocis.services.thumbnails.v0</title>
       <link>https://owncloud.dev/grpc_apis/ocis_services_thumbnails_v0/</link>
-      <pubDate>Wed, 13 Apr 2022 11:12:20 +0000</pubDate>
+      <pubDate>Wed, 13 Apr 2022 13:35:38 +0000</pubDate>
       
       <guid>https://owncloud.dev/grpc_apis/ocis_services_thumbnails_v0/</guid>
       <description>ocis/services/thumbnails/v0/thumbnails.proto  GetThumbnailRequest GetThumbnailResponse ThumbnailService   Scalar Value Types      ocis/services/thumbnails/v0/thumbnails.proto     GetThumbnailRequest     A request to retrieve a thumbnail
