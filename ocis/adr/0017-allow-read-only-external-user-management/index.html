@@ -61,7 +61,7 @@
       "url" : "https://owncloud.dev/ocis/adr/0017-allow-read-only-external-user-management/",
       "headline": "17. Allow read only external User Management",
       "description": "Status: proposed Deciders: @butonic, @micbar, @rhafer Date: 2022-02-08  Context and Problem Statement     oCIS needs to be integrated with various external Authentication and Identity Management Systems. Usually oCIS will have no administrative access to such a system and we will not be allowed to reconfigure it to suit our needs (e.g. we will not be able to enhance the schema of an already existing LDAP Directory).",
-      "wordCount" : "802",
+      "wordCount" : "801",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -8366,7 +8366,7 @@ provider to another.</p>
 <p>There are different cases where oCIS requires access to users:</p>
 <ol>
 <li>While we settled on using OpenID Connect (OIDC) as the authentication protocol for oCIS, we
-we need to build a user object during authentication with at least an account UUID (to identify
+need to build a user object during authentication with at least an account UUID (to identify
 the account) and the email or a name (for display purposes).</li>
 <li>When searching for share recipients we need to be able to query existing users in the external
 identity management system</li>
@@ -8394,7 +8394,7 @@ rely on a specific claim being present.</li>
 <li>oCIS should be a single binary that can run out of the box without external dependencies like an
 LDAP server.</li>
 <li>Time: we want to build a release candidate asap.</li>
-<li>oCIS should be easy to integrate with standard external identity mangement systems</li>
+<li>oCIS should be easy to integrate with standard external identity management systems</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h2 id="considered-options">
@@ -8451,9 +8451,9 @@ to support both scenarios.</p>
     </h2>
 </div>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="external-identity-management-system-is-read-only-and-provides-an-interface-to-query-users-eg-coporate-active-directy">
-        External identity management system is read only and provides an interface to query users (e.g. Coporate Active Directy)
-        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0017-allow-read-only-external-user-management/#external-identity-management-system-is-read-only-and-provides-an-interface-to-query-users-eg-coporate-active-directy" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: External identity management system is read only and provides an interface to query users (e.g. Coporate Active Directy)" aria-label="Anchor to: External identity management system is read only and provides an interface to query users (e.g. Coporate Active Directy)" href="#external-identity-management-system-is-read-only-and-provides-an-interface-to-query-users-eg-coporate-active-directy">
+    <h3 id="external-identity-management-system-is-read-only-and-provides-an-interface-to-query-users-eg-corporate-active-directory">
+        External identity management system is read only and provides an interface to query users (e.g. Corporate Active Directory)
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0017-allow-read-only-external-user-management/#external-identity-management-system-is-read-only-and-provides-an-interface-to-query-users-eg-corporate-active-directory" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: External identity management system is read only and provides an interface to query users (e.g. Corporate Active Directory)" aria-label="Anchor to: External identity management system is read only and provides an interface to query users (e.g. Corporate Active Directory)" href="#external-identity-management-system-is-read-only-and-provides-an-interface-to-query-users-eg-corporate-active-directory">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
@@ -8465,13 +8465,13 @@ the APIs provided by the IdM.</p>
 <ul>
 <li>Good, because we can rely on the external identity management</li>
 <li>Good, because ocis services only need to know about the CS3 user provider API, which acts as an
-abstraction layer for different identitiy management systems</li>
+abstraction layer for different identity management systems</li>
 <li>Good, because there is only a single source of truth (the external IdM) and we don&rsquo;t need to
 implement a synchronization mechanism to maintain an internal user database (we will likely need
 some form of caching though, see below)</li>
-<li>Bad, because the identity managment needs to provide a stable, persistent, non-reassignable user
+<li>Bad, because the identity management needs to provide a stable, persistent, non-reassignable user
 identifier for an account, e.g. <code>owncloudUUID</code> or <code>ms-DS-ConsistencyGuid</code></li>
-<li>Bad, because we need to implment tools that can change the account id when it did change anyway</li>
+<li>Bad, because we need to implement tools that can change the account id when it did change anyway</li>
 <li>Bad, because without caching we will hammer the identity management system with lookup requests</li>
 </ul>
 <div class="gdoc-page__anchorwrap">

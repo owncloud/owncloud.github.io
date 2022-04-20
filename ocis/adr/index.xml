@@ -45,7 +45,7 @@ Context and Problem Statement     To attach metadata like shares to users ownClo
       <guid>https://owncloud.dev/ocis/adr/0004-support-hot-migration/</guid>
       <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1 Date: 2021-03-16  Technical Story: [description | ticket/issue URL]
 Context and Problem Statement     Migration is one of the most important topics of the oCIS story. We need to provide a concept how to migrate from oC10 to oCIS.
-Decision Drivers      Do not lose file blob or meta data.  To prevent a sync surge from clients the etag for files should be migrated.</description>
+Decision Drivers      Do not lose file blob or metadata.  To prevent a sync surge from clients the etag for files should be migrated.</description>
     </item>
     
     <item>
@@ -202,8 +202,8 @@ To trigger the indexing of a file, the search service listens to create, update 
       <pubDate>Fri, 18 Mar 2022 09:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0020-file-search-query-language/</guid>
-      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @C0rby Date: 2022-03-18  Context and Problem Statement     From the users perspective, the interface to search is just a single form field where the user enters one or more search terms. The minimum expectation is that the search returns file names and links to files that
- have a file name that contains at least one of the search terms contain at least one of the search terms in the file contents have meta data that is equal or contains one of the search terms  Decision Drivers      The standard user should not be bothered by a query syntax The power user should also be able to narrow his search with an efficient and flexible syntax We need to consider different backend technologies which we need to access through an abstraction layer Using different indexing systems should lead to a slightly different feature set whitout changing the syntax completely  Considered Options      Simple Query Lucene Query Language Solr Query Language Elasticsearch Query Language  Decision Outcome     Chosen option: Simple Query, because it is a suitable MVP.</description>
+      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @C0rby Date: 2022-03-18  Context and Problem Statement     From the users perspective, the interface to search is just a single form field where the user enters one or more search terms. The minimum expectation is that the search returns file names and links to files that:
+ have a file name that contains at least one of the search terms contain at least one of the search terms in the file contents have metadata that is equal or contains one of the search terms  Decision Drivers      The standard user should not be bothered by a query syntax The power user should also be able to narrow his search with an efficient and flexible syntax We need to consider different backend technologies which we need to access through an abstraction layer Using different indexing systems should lead to a slightly different feature set without changing the syntax completely  Considered Options      Simple Query Lucene Query Language Solr Query Language Elasticsearch Query Language  Decision Outcome     Chosen option: Simple Query, because it is a suitable MVP.</description>
     </item>
     
   </channel>

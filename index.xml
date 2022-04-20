@@ -6,7 +6,7 @@
     <description>Recent content on ownCloud</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 Apr 2022 08:33:19 +0000</lastBuildDate><atom:link href="https://owncloud.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 20 Apr 2022 08:38:06 +0000</lastBuildDate><atom:link href="https://owncloud.dev/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>1. Introduce an accounts service</title>
       <link>https://owncloud.dev/ocis/adr/0001-introduce-accounts-service/</link>
@@ -81,7 +81,7 @@ Context and Problem Statement     To attach metadata like shares to users ownClo
       <guid>https://owncloud.dev/ocis/adr/0004-support-hot-migration/</guid>
       <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1 Date: 2021-03-16  Technical Story: [description | ticket/issue URL]
 Context and Problem Statement     Migration is one of the most important topics of the oCIS story. We need to provide a concept how to migrate from oC10 to oCIS.
-Decision Drivers      Do not lose file blob or meta data.  To prevent a sync surge from clients the etag for files should be migrated.</description>
+Decision Drivers      Do not lose file blob or metadata.  To prevent a sync surge from clients the etag for files should be migrated.</description>
     </item>
     
     <item>
@@ -221,7 +221,7 @@ Decision Drivers      The solution should be easily maintainable.  It should alw
       <guid>https://owncloud.dev/ocis/deployment/monitoring-tracing/</guid>
       <description>Overview about the proposed solution  Monitoring &amp;amp; tracing clients Monitoring &amp;amp; tracing server      Monitoring and tracing gives developers and admin insights into a complex system, in this case oCIS.
 If you are a developer and want to trace during developing you should have a look at example server setup.
-This documentation describes how to set up a long running monitoring &amp;amp; tracing infrastructure for one or multiple oCIS servers or deployments.</description>
+This documentation describes how to set up a long-running monitoring &amp;amp; tracing infrastructure for one or multiple oCIS servers or deployments.</description>
     </item>
     
     <item>
@@ -231,7 +231,7 @@ This documentation describes how to set up a long running monitoring &amp;amp; t
       
       <guid>https://owncloud.dev/extensions/storage/apps/</guid>
       <description>oCIS is all about files. But most of the time you want to do something with files that is beyond the basic upload, download and share behavior. Therefore, oCIS has a concept for apps, that can handle specific file types, so called mime types.
-App provider capability     The capabilities endpoint (eg. https://localhost:9200/ocs/v1.php/cloud/capabilities?format=json) gives you following capabilities which are relevant for the app provider:
+App provider capability     The capabilities endpoint (e.g. https://localhost:9200/ocs/v1.php/cloud/capabilities?format=json) gives you following capabilities which are relevant for the app provider:
 { &amp;#34;ocs&amp;#34;: { &amp;#34;data&amp;#34;: { &amp;#34;capabilities&amp;#34;: { &amp;#34;files&amp;#34;: { &amp;#34;app_providers&amp;#34;: [ { &amp;#34;enabled&amp;#34;: true, &amp;#34;version&amp;#34;: &amp;#34;1.</description>
     </item>
     
@@ -350,7 +350,7 @@ Rename the downloaded binary to ocis and move it to /usr/bin/. As a next step, y
       
       <guid>https://owncloud.dev/ocis/deployment/basic-remote-setup/</guid>
       <description>Start the oCIS fullstack server from binary  Using automatically generated certificates Using already present certificates   Start the oCIS fullstack server with Docker Compose      The default configuration of the oCIS binary and the owncloud/ocis docker image assume, that you access oCIS on localhost. This enables you to do quick testing and development without any configuration.
-If you need to access oCIS running in a docker container, on a VM or a remote machine via an other hostname than localhost, you need to configure this hostname in oCIS.</description>
+If you need to access oCIS running in a docker container, on a VM or a remote machine via another hostname than localhost, you need to configure this hostname in oCIS.</description>
     </item>
     
     <item>
@@ -368,7 +368,7 @@ If you need to access oCIS running in a docker container, on a VM or a remote ma
       <pubDate>Thu, 16 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.dev/extensions/storage/users/</guid>
-      <description>TODO add this to the storage overview? or is this a different part? That should be started as a separate service ? And documented elsewhere, eg. in the accounts?
+      <description>TODO add this to the storage overview? or is this a different part? That should be started as a separate service ? And documented elsewhere, e.g. in the accounts?
 User and Group provisioning     In oc10 users are identified by a username, which cannot change, because it is used as a foreign key in several tables. For oCIS we are internally identifying users by a UUID, while using the username in the WebDAV and OCS APIs for backwards compatability.</description>
     </item>
     
@@ -429,8 +429,8 @@ export GRAPH_IDENTITY_BACKEND=ldap export LDAP_URI=ldaps://localhost:9235 export
       <pubDate>Fri, 18 Mar 2022 09:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0020-file-search-query-language/</guid>
-      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @C0rby Date: 2022-03-18  Context and Problem Statement     From the users perspective, the interface to search is just a single form field where the user enters one or more search terms. The minimum expectation is that the search returns file names and links to files that
- have a file name that contains at least one of the search terms contain at least one of the search terms in the file contents have meta data that is equal or contains one of the search terms  Decision Drivers      The standard user should not be bothered by a query syntax The power user should also be able to narrow his search with an efficient and flexible syntax We need to consider different backend technologies which we need to access through an abstraction layer Using different indexing systems should lead to a slightly different feature set whitout changing the syntax completely  Considered Options      Simple Query Lucene Query Language Solr Query Language Elasticsearch Query Language  Decision Outcome     Chosen option: Simple Query, because it is a suitable MVP.</description>
+      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @C0rby Date: 2022-03-18  Context and Problem Statement     From the users perspective, the interface to search is just a single form field where the user enters one or more search terms. The minimum expectation is that the search returns file names and links to files that:
+ have a file name that contains at least one of the search terms contain at least one of the search terms in the file contents have metadata that is equal or contains one of the search terms  Decision Drivers      The standard user should not be bothered by a query syntax The power user should also be able to narrow his search with an efficient and flexible syntax We need to consider different backend technologies which we need to access through an abstraction layer Using different indexing systems should lead to a slightly different feature set without changing the syntax completely  Considered Options      Simple Query Lucene Query Language Solr Query Language Elasticsearch Query Language  Decision Outcome     Chosen option: Simple Query, because it is a suitable MVP.</description>
     </item>
     
     <item>
@@ -461,7 +461,7 @@ Please consider to use Rclone with OpenID Connect instead.
       
       <guid>https://owncloud.dev/clients/rclone/webdav-sync-oidc/</guid>
       <description>WebDAV with OpenID Connect     Rclone itself is not able to open and maintain an OpenID Connect session. But it is able to still use OpenID Connect for authentication by leveraging a so called OIDC-agent.
-Setting up the OIDC-agent     You need to install the OIDC-agent from your OS&#39; package repository (eg. Debian or MacOS).
+Setting up the OIDC-agent     You need to install the OIDC-agent from your OS&#39; package repository (e.g. Debian or MacOS).
 Configuring the the OIDC-agent     Run the following command to add a OpenID Connect profile to your OIDC-agent.</description>
     </item>
     
@@ -509,7 +509,7 @@ Configuring the the OIDC-agent     Run the following command to add a OpenID Con
       
       <guid>https://owncloud.dev/extensions/glauth/configuration-hints/</guid>
       <description>Configuration hints      Configuration hints     The default setup does not use a fallback backend. It can be enabled by setting the GLAUTH_FALLBACK_DATASTORE environment variable.
-When using owncloud make sure to use the full URL to the ownCloud 10 graph api app endpoint, eg.: GLAUTH_FALLBACK_SERVERS=&amp;quot;https://demo.owncloud.com/apps/graphapi/v1.0&amp;quot;</description>
+When using owncloud make sure to use the full URL to the ownCloud 10 graph api app endpoint, e.g.: GLAUTH_FALLBACK_SERVERS=&amp;quot;https://demo.owncloud.com/apps/graphapi/v1.0&amp;quot;</description>
     </item>
     
     <item>
@@ -681,7 +681,7 @@ Spaces API     The Spaces API makes use of the MS Graph API Drive resource to re
       <pubDate>Mon, 12 Oct 2020 14:04:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/deployment/ocis_individual_services/</guid>
-      <description>Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup      Overview      oCIS running behind Traefik as reverse proxy Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup oCIS running as individual services (each extension in it&amp;rsquo;s own containers)  Find this example on GitHub
+      <description>Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup      Overview      oCIS running behind Traefik as reverse proxy Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup oCIS running as individual services (each extension in its own containers)  Find this example on GitHub
 The docker stack consists of at least 24 containers.</description>
     </item>
     
@@ -691,7 +691,7 @@ The docker stack consists of at least 24 containers.</description>
       <pubDate>Mon, 12 Oct 2020 14:04:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/deployment/ocis_hello/</guid>
-      <description>Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup      Overview      oCIS running behind Traefik as reverse proxy oCIS Hello extension runs beside the main oCIS stack and providing the Hello functionality Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup  Find this example on GitHub</description>
+      <description>Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup      Overview      oCIS running behind Traefik as reverse proxy oCIS Hello extension runs beside the main oCIS stack and providing the Hello functionality Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup  Find this example on GitHub</description>
     </item>
     
     <item>
@@ -700,7 +700,7 @@ The docker stack consists of at least 24 containers.</description>
       <pubDate>Mon, 12 Oct 2020 14:04:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/deployment/ocis_keycloak/</guid>
-      <description>Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup      Overview      oCIS and Keycloak running behind Traefik as reverse proxy Keycloak acting as the IDP for oCIS Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup  Find this example on GitHub
+      <description>Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup      Overview      oCIS and Keycloak running behind Traefik as reverse proxy Keycloak acting as the IDP for oCIS Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup  Find this example on GitHub
 The docker stack consists 4 containers.</description>
     </item>
     
@@ -710,7 +710,7 @@ The docker stack consists 4 containers.</description>
       <pubDate>Mon, 12 Oct 2020 14:04:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/deployment/ocis_ldap/</guid>
-      <description>Overview Server Deployment  Requirements Install this example   Local setup      Overview      Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup OpenLDAP server with demo users LDAP admin interface to edit users oCIS running behind Traefik as reverse proxy  oCIS is using the LDAP server as user backend    Find this example on GitHub</description>
+      <description>Overview Server Deployment  Requirements Install this example   Local setup      Overview      Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup OpenLDAP server with demo users LDAP admin interface to edit users oCIS running behind Traefik as reverse proxy  oCIS is using the LDAP server as user backend    Find this example on GitHub</description>
     </item>
     
     <item>
@@ -719,7 +719,7 @@ The docker stack consists 4 containers.</description>
       <pubDate>Mon, 12 Oct 2020 14:04:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/deployment/ocis_s3/</guid>
-      <description>Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup      Overview      oCIS running behind Traefik as reverse proxy MinIO as S3 compatible storage provider oCIS is configured to use S3 as user storage provider Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup  Find this example on GitHub</description>
+      <description>Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup      Overview      oCIS running behind Traefik as reverse proxy MinIO as S3 compatible storage provider oCIS is configured to use S3 as user storage provider Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup  Find this example on GitHub</description>
     </item>
     
     <item>
@@ -728,7 +728,7 @@ The docker stack consists 4 containers.</description>
       <pubDate>Mon, 12 Oct 2020 14:04:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/deployment/ocis_traefik/</guid>
-      <description>Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup      Overview      oCIS running behind Traefik as reverse proxy Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup  Find this example on GitHub
+      <description>Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup      Overview      oCIS running behind Traefik as reverse proxy Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup  Find this example on GitHub
 The docker stack consists of two containers. One of them is Traefik, a proxy which is terminating ssl and forwards the requests to oCIS in the internal docker network.</description>
     </item>
     
@@ -738,7 +738,7 @@ The docker stack consists of two containers. One of them is Traefik, a proxy whi
       <pubDate>Mon, 12 Oct 2020 14:04:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/deployment/ocis_wopi/</guid>
-      <description>Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup Local setup for web development      OnlyOffice and CodiMD are not yet fully integrated and there are known issues. For the current state please have a look at owncloud/ocis#2595  Overview      oCIS, Wopi server, Collabora, OnlyOffice and CodiMD running behind Traefik as reverse proxy Collabora, OnlyOffice and CodiMD enable you to edit documents in your browser Wopi server acts as a bridge to make the oCIS storage accessible to Collabora, OnlyOffice and CodiMD Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup  Find this example on GitHub</description>
+      <description>Overview Server Deployment  Requirements Install oCIS and Traefik   Local setup Local setup for web development      OnlyOffice and CodiMD are not yet fully integrated and there are known issues. For the current state please have a look at owncloud/ocis#2595  Overview      oCIS, Wopi server, Collabora, OnlyOffice and CodiMD running behind Traefik as reverse proxy Collabora, OnlyOffice and CodiMD enable you to edit documents in your browser Wopi server acts as a bridge to make the oCIS storage accessible to Collabora, OnlyOffice and CodiMD Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup  Find this example on GitHub</description>
     </item>
     
     <item>
@@ -747,7 +747,7 @@ The docker stack consists of two containers. One of them is Traefik, a proxy whi
       <pubDate>Mon, 12 Oct 2020 14:04:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/deployment/oc10_ocis_parallel/</guid>
-      <description>Overview Server Deployment  Requirements Install this example   Local setup      Overview      This setup reflects stage 6 of the oC10 to oCIS migration plan Traefik generating self signed certificates for local setup or obtaining valid SSL certificates for a server setup OpenLDAP server with demo users LDAP admin interface to edit users Keycloak as OpenID Connect provider in federation with the LDAP server ownCloud 10 with MariaDB and Redis  ownCloud 10 is configured to synchronize users from the LDAP server ownCloud 10 is used to use OpenID Connect for authentication with Keycloak   oCIS running behind Traefik as reverse proxy  oCIS is using the ownCloudSQL storage driver on the same files and same database as ownCloud 10 oCIS is using Keycloak as OpenID Connect provider oCIS is using the LDAP server as user backend   All requests to both oCIS and oC10 are routed through the oCIS proxy and will be routed based on an OIDC claim to one of them.</description>
+      <description>Overview Server Deployment  Requirements Install this example   Local setup      Overview      This setup reflects stage 6 of the oC10 to oCIS migration plan Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup OpenLDAP server with demo users LDAP admin interface to edit users Keycloak as OpenID Connect provider in federation with the LDAP server ownCloud 10 with MariaDB and Redis  ownCloud 10 is configured to synchronize users from the LDAP server ownCloud 10 is used to use OpenID Connect for authentication with Keycloak   oCIS running behind Traefik as reverse proxy  oCIS is using the ownCloudSQL storage driver on the same files and same database as ownCloud 10 oCIS is using Keycloak as OpenID Connect provider oCIS is using the LDAP server as user backend   All requests to both oCIS and oC10 are routed through the oCIS proxy and will be routed based on an OIDC claim to one of them.</description>
     </item>
     
     <item>
@@ -984,7 +984,7 @@ For now, the storage service uses these ports to preconfigure those services:
     <item>
       <title>ocis.messages.accounts.v0</title>
       <link>https://owncloud.dev/grpc_apis/ocis_messages_accounts_v0/</link>
-      <pubDate>Wed, 20 Apr 2022 08:33:19 +0000</pubDate>
+      <pubDate>Wed, 20 Apr 2022 08:38:06 +0000</pubDate>
       
       <guid>https://owncloud.dev/grpc_apis/ocis_messages_accounts_v0/</guid>
       <description>ocis/messages/accounts/v0/accounts.proto  Account Group Identities OnPremisesProvisioningError PasswordProfile   Scalar Value Types      ocis/messages/accounts/v0/accounts.proto     Account     Account follows the properties of the ms graph api user resource. See https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0#properties
@@ -994,7 +994,7 @@ For now, the storage service uses these ports to preconfigure those services:
     <item>
       <title>ocis.messages.settings.v0</title>
       <link>https://owncloud.dev/grpc_apis/ocis_messages_settings_v0/</link>
-      <pubDate>Wed, 20 Apr 2022 08:33:19 +0000</pubDate>
+      <pubDate>Wed, 20 Apr 2022 08:38:06 +0000</pubDate>
       
       <guid>https://owncloud.dev/grpc_apis/ocis_messages_settings_v0/</guid>
       <description>ocis/messages/settings/v0/settings.proto  Bool Bundle Identifier Int ListOption ListOptionValue ListValue MultiChoiceList Permission Resource Setting SingleChoiceList String UserRoleAssignment Value ValueWithIdentifier Bundle.Type Permission.Constraint Permission.Operation Resource.Type   Scalar Value Types      ocis/messages/settings/v0/settings.proto     Bool        Field Type Label Description     default bool     label string      Bundle        Field Type Label Description     id string     name string     type Bundle.</description>
@@ -1003,7 +1003,7 @@ For now, the storage service uses these ports to preconfigure those services:
     <item>
       <title>ocis.messages.store.v0</title>
       <link>https://owncloud.dev/grpc_apis/ocis_messages_store_v0/</link>
-      <pubDate>Wed, 20 Apr 2022 08:33:19 +0000</pubDate>
+      <pubDate>Wed, 20 Apr 2022 08:38:06 +0000</pubDate>
       
       <guid>https://owncloud.dev/grpc_apis/ocis_messages_store_v0/</guid>
       <description>ocis/messages/store/v0/store.proto  DeleteOptions Field ListOptions ReadOptions ReadOptions.WhereEntry Record Record.MetadataEntry WriteOptions   Scalar Value Types      ocis/messages/store/v0/store.proto     DeleteOptions        Field Type Label Description     database string     table string      Field        Field Type Label Description     type string  type of value e.</description>
@@ -1012,7 +1012,7 @@ For now, the storage service uses these ports to preconfigure those services:
     <item>
       <title>ocis.messages.thumbnails.v0</title>
       <link>https://owncloud.dev/grpc_apis/ocis_messages_thumbnails_v0/</link>
-      <pubDate>Wed, 20 Apr 2022 08:33:19 +0000</pubDate>
+      <pubDate>Wed, 20 Apr 2022 08:38:06 +0000</pubDate>
       
       <guid>https://owncloud.dev/grpc_apis/ocis_messages_thumbnails_v0/</guid>
       <description>ocis/messages/thumbnails/v0/thumbnails.proto  CS3Source WebdavSource ThumbnailType   Scalar Value Types      ocis/messages/thumbnails/v0/thumbnails.proto     CS3Source        Field Type Label Description     path string     authorization string      WebdavSource        Field Type Label Description     url string  REQUIRED.</description>
@@ -1021,7 +1021,7 @@ For now, the storage service uses these ports to preconfigure those services:
     <item>
       <title>ocis.services.accounts.v0</title>
       <link>https://owncloud.dev/grpc_apis/ocis_services_accounts_v0/</link>
-      <pubDate>Wed, 20 Apr 2022 08:33:19 +0000</pubDate>
+      <pubDate>Wed, 20 Apr 2022 08:38:06 +0000</pubDate>
       
       <guid>https://owncloud.dev/grpc_apis/ocis_services_accounts_v0/</guid>
       <description>ocis/services/accounts/v0/accounts.proto  AddMemberRequest CreateAccountRequest CreateGroupRequest DeleteAccountRequest DeleteGroupRequest GetAccountRequest GetGroupRequest ListAccountsRequest ListAccountsResponse ListGroupsRequest ListGroupsResponse ListMembersRequest ListMembersResponse RebuildIndexRequest RebuildIndexResponse RemoveMemberRequest UpdateAccountRequest UpdateGroupRequest AccountsService GroupsService IndexService   Scalar Value Types      ocis/services/accounts/v0/accounts.proto     AddMemberRequest        Field Type Label Description     group_id string  The id of the group to add a member to   account_id string  The account id to add    CreateAccountRequest        Field Type Label Description     account ocis.</description>
@@ -1030,7 +1030,7 @@ For now, the storage service uses these ports to preconfigure those services:
     <item>
       <title>ocis.services.settings.v0</title>
       <link>https://owncloud.dev/grpc_apis/ocis_services_settings_v0/</link>
-      <pubDate>Wed, 20 Apr 2022 08:33:19 +0000</pubDate>
+      <pubDate>Wed, 20 Apr 2022 08:38:06 +0000</pubDate>
       
       <guid>https://owncloud.dev/grpc_apis/ocis_services_settings_v0/</guid>
       <description>ocis/services/settings/v0/settings.proto  AddSettingToBundleRequest AddSettingToBundleResponse AssignRoleToUserRequest AssignRoleToUserResponse GetBundleRequest GetBundleResponse GetPermissionByIDRequest GetPermissionByIDResponse GetValueByUniqueIdentifiersRequest GetValueRequest GetValueResponse ListBundlesRequest ListBundlesResponse ListPermissionsByResourceRequest ListPermissionsByResourceResponse ListRoleAssignmentsRequest ListRoleAssignmentsResponse ListValuesRequest ListValuesResponse RemoveRoleFromUserRequest RemoveSettingFromBundleRequest SaveBundleRequest   requests and responses for settings bundles  SaveBundleResponse SaveValueRequest SaveValueResponse BundleService PermissionService RoleService ValueService   Scalar Value Types      ocis/services/settings/v0/settings.proto     AddSettingToBundleRequest        Field Type Label Description     bundle_id string     setting ocis.</description>
@@ -1039,7 +1039,7 @@ For now, the storage service uses these ports to preconfigure those services:
     <item>
       <title>ocis.services.store.v0</title>
       <link>https://owncloud.dev/grpc_apis/ocis_services_store_v0/</link>
-      <pubDate>Wed, 20 Apr 2022 08:33:19 +0000</pubDate>
+      <pubDate>Wed, 20 Apr 2022 08:38:06 +0000</pubDate>
       
       <guid>https://owncloud.dev/grpc_apis/ocis_services_store_v0/</guid>
       <description>ocis/services/store/v0/store.proto  DatabasesRequest DatabasesResponse DeleteRequest DeleteResponse ListRequest ListResponse ReadRequest ReadResponse TablesRequest TablesResponse WriteRequest WriteResponse Store   Scalar Value Types      ocis/services/store/v0/store.proto     DatabasesRequest     DatabasesResponse        Field Type Label Description     databases string repeated     DeleteRequest        Field Type Label Description     key string     options ocis.</description>
@@ -1048,7 +1048,7 @@ For now, the storage service uses these ports to preconfigure those services:
     <item>
       <title>ocis.services.thumbnails.v0</title>
       <link>https://owncloud.dev/grpc_apis/ocis_services_thumbnails_v0/</link>
-      <pubDate>Wed, 20 Apr 2022 08:33:19 +0000</pubDate>
+      <pubDate>Wed, 20 Apr 2022 08:38:06 +0000</pubDate>
       
       <guid>https://owncloud.dev/grpc_apis/ocis_services_thumbnails_v0/</guid>
       <description>ocis/services/thumbnails/v0/thumbnails.proto  GetThumbnailRequest GetThumbnailResponse ThumbnailService   Scalar Value Types      ocis/services/thumbnails/v0/thumbnails.proto     GetThumbnailRequest     A request to retrieve a thumbnail
@@ -1295,7 +1295,7 @@ The most prominent changes in ownCloud Infinite Scale 1.20.0 and ownCloud Web 5.
       <pubDate>Wed, 16 Dec 2020 20:35:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/release_roadmap/</guid>
-      <description>You may have asked yourself why there are major version 1 tags in our GitHub repository but the Readme still states ownCloud Infinite Scale is currently in a technical preview state. It will be subject to a lot of changes and is not yet ready for general production deployments.. How can that be if its a major version 1?
+      <description>You may have asked yourself why there are major version 1 tags in our GitHub repository but the Readme still states ownCloud Infinite Scale is currently in a technical preview state. It will be subject to a lot of changes and is not yet ready for general production deployments.. How can that be if it&amp;rsquo;s a major version 1?
 Our initial and also our current plan is to stick to SemVer as versioning scheme.</description>
     </item>
     
@@ -1306,7 +1306,7 @@ Our initial and also our current plan is to stick to SemVer as versioning scheme
       
       <guid>https://owncloud.dev/ocis/getting-started/demo-users/</guid>
       <description>oCIS has the option to create demo users during the first startup. These enable you to do quick testing and developing.
-To create the demo users, run the inital setup step with an additional environment variable. ACCOUNTS_DEMO_USERS_AND_GROUPS=true ./bin/ocis server will generate the demo users listed in the table below. By default, it only generates the admin and one user for IDP and Reva respectively.  Following users are available in the demo set:</description>
+To create the demo users, run the initial setup step with an additional environment variable. ACCOUNTS_DEMO_USERS_AND_GROUPS=true ./bin/ocis server will generate the demo users listed in the table below. By default, it only generates the admin and one user for IDP and Reva respectively.  Following users are available in the demo set:</description>
     </item>
     
     <item>

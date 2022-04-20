@@ -61,7 +61,7 @@
       "url" : "https://owncloud.dev/ocis/development/debugging/",
       "headline": "Debugging",
       "description": "Debugging  Start ocis  Use the debug binary and attach to the process as needed Start all services independently to replace one of them with a debug process   Gather error messages Managing dependencies and testing changes        Debugging     As a single binary for easy deployment running ocis server just forks itself to start all the services, which makes debugging those processes a little harder.",
-      "wordCount" : "1253",
+      "wordCount" : "1252",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -8372,7 +8372,7 @@
     </h2>
 </div>
 <p>As a single binary for easy deployment running <code>ocis server</code> just forks itself to start all the services, which makes debugging those processes a little harder.</p>
-<p>Ultimately, we want to be able to stop a single service using eg. <code>ocis kill web</code> so that you can start the service you want to debug in debug mode. We need to <a
+<p>Ultimately, we want to be able to stop a single service using e.g. <code>ocis kill web</code> so that you can start the service you want to debug in debug mode. We need to <a
   class="gdoc-markdown__link"
   href="https://github.com/owncloud/ocis/issues/77"
   
@@ -8501,7 +8501,7 @@ bin/ocis --log-level<span class="o">=</span><span class="nv">$LOG_LEVEL</span> p
 </ol>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="gp"># </span><span class="nb">kill</span> <span class="m">17628</span>
 </code></pre></div><ol start="4">
-<li>Start the service you are interested in in debug mode. When using make to build the binary there is already a <code>bin/ocis-debug</code> binary for you. When running an IDE tell it which service to start by providing the corresponding sub command, eg. <code>bin\ocis-debug reva-frontend</code>.</li>
+<li>Start the service you are interested in debug mode. When using make to build the binary there is already a <code>bin/ocis-debug</code> binary for you. When running an IDE tell it which service to start by providing the corresponding sub command, e.g. <code>bin\ocis-debug reva-frontend</code>.</li>
 </ol>
 <div class="gdoc-page__anchorwrap">
     <h3 id="gather-error-messages">
@@ -8528,7 +8528,7 @@ error sending a grpc stat request</p>
 </span><span class="go">  &lt;/meta&gt;
 </span><span class="go">&lt;/ocs&gt;
 </span></code></pre></div><p><blockquote class="gdoc-hint info">
-  The username and password only work when basic auth is available. Otherwise you have to obtain a bearer token, eg. by grabbing it from the browser.
+  The username and password only work when basic auth is available. Otherwise you have to obtain a bearer token, e.g. by grabbing it from the browser.
 </blockquote>
 
 <blockquote class="gdoc-hint danger">
@@ -8555,7 +8555,7 @@ error sending a grpc stat request</p>
 <span class="mi">93</span><span class="p">:</span> 	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
 <span class="mi">94</span><span class="p">:</span> 		<span class="nx">appctx</span><span class="p">.</span><span class="nf">GetLogger</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nf">Context</span><span class="p">()).</span><span class="nf">Error</span><span class="p">().</span><span class="nf">Err</span><span class="p">(</span><span class="nx">err</span><span class="p">).</span><span class="nf">Msg</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">OCS</span><span class="p">.</span><span class="nx">Meta</span><span class="p">.</span><span class="nx">Message</span><span class="p">)</span>
 <span class="mi">95</span><span class="p">:</span>     <span class="p">}</span>
-</code></pre></div><p>Ok, so this seems to be a convenience method that is called from multiple places an also handles errors. Unfortunately, this hides the actual source of the error. We could set a breakpoint in line 94 and reproduce the problem, which can be a lot harder than just clicking the share button or sending a curl request again. So let us see what else the log tells us.</p>
+</code></pre></div><p>Ok, so this seems to be a convenience method that is called from multiple places and also handles errors. Unfortunately, this hides the actual source of the error. We could set a breakpoint in line 94 and reproduce the problem, which can be a lot harder than just clicking the share button or sending a curl request again. So let us see what else the log tells us.</p>
 <p>The previous line tells us that a Stat request failed: <code>uri=/cs3.gateway.v1beta1.GatewayAPI/Stat</code>. This time the line is written by the grpc log interceptor. What else is there?</p>
 <p>The first line tells us that looking up the responsible storage provider seems to have succeeded: <code>uri=/cs3.storage.registry.v1beta1.RegistryAPI/GetStorageProvider</code>.</p>
 <p>At this point it your familiarity with the codebase starts to become a factor. If you are new you should probably go back to setting a break point on the log line and check the stack trace.</p>
@@ -8575,7 +8575,7 @@ replace github.com/owncloud/ocis-reva =&gt; ../ocis-reva
 // also use the local reva repo
 replace github.com/cs3org/reva =&gt; ../reva
 </code></pre></div><blockquote class="gdoc-hint info">
-  The username and password only work when basic auth is available. Otherwise you have to obtain a bearer token, eg. by grabbing it from the browser.
+  The username and password only work when basic auth is available. Otherwise you have to obtain a bearer token, e.g. by grabbing it from the browser.
 </blockquote>
 
 <p>Rebuild ocis to make sure the dependency is used. It should be sufficient to just restart the service you want to debug.</p>

@@ -64,7 +64,7 @@ Rename the downloaded binary to ocis and move it to /usr/bin/. As a next step, y
       "url" : "https://owncloud.dev/ocis/deployment/systemd/",
       "headline": "Systemd service",
       "description": "Install the oCIS binary Systemd service definition Starting the oCIS service      Install the oCIS binary     Download the oCIS binary of your preferred version and for your CPU architecture and operating system from download.owncloud.com.\nRename the downloaded binary to ocis and move it to \/usr\/bin\/. As a next step, you need to mark it as executable with chmod \u002bx \/usr\/bin\/ocis.",
-      "wordCount" : "281",
+      "wordCount" : "280",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -8396,7 +8396,7 @@ Restart=always
 WantedBy=multi-user.target
 </code></pre></div><p>For reasons of simplicity we are using the root user and group to run oCIS which is not recommended. Please use a non-root user in production environments and modify the oCIS service definition accordingly.</p>
 <p>In the service definition we referenced <code>/etc/ocis/ocis.env</code> as our file containing environment variables for the oCIS process.
-In order to create the file we need first to create the folder <code>/etc/ocis/</code> and than we can add the actual <code>/etc/ocis/ocis.env</code> with following content:</p>
+In order to create the file we need first to create the folder <code>/etc/ocis/</code> and then we can add the actual <code>/etc/ocis/ocis.env</code> with following content:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">OCIS_URL=https://some-hostname-or-ip:9200
 PROXY_HTTP_ADDR=0.0.0.0:9200
 OCIS_INSECURE=false
@@ -8409,7 +8409,7 @@ IDP_TRANSPORT_TLS_CERT=/etc/ocis/idp/server.crt
 IDP_TRANSPORT_TLS_KEY=/etc/ocis/idp/server.key
 PROXY_TRANSPORT_TLS_CERT=/etc/ocis/proxy/server.crt
 PROXY_TRANSPORT_TLS_KEY=/etc/ocis/proxy/server.key
-</code></pre></div><p>Please change your <code>OCIS_URL</code> in order to reflect your actual deployment. If you are using self signed certificates you need to set <code>OCIS_INSECURE=true</code> in <code>/etc/ocis/ocis.env</code>.</p>
+</code></pre></div><p>Please change your <code>OCIS_URL</code> in order to reflect your actual deployment. If you are using self-signed certificates you need to set <code>OCIS_INSECURE=true</code> in <code>/etc/ocis/ocis.env</code>.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="starting-the-ocis-service">
         Starting the oCIS service

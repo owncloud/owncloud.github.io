@@ -64,7 +64,7 @@ GET https://demo.owncloud.com/apps/files/?dir=/path/to/resource&amp;fileid=54722
       "url" : "https://owncloud.dev/ocis/adr/0011-global-url-format/",
       "headline": "11. WebUI URL format",
       "description": "Status: accepted Deciders: @refs, @butonic, @micbar, @dragotin, @hodyroff, @pmaier1, @fschade, @tbsbdr, @kulmann Date: 2021-07-07  Context and Problem Statement     When speaking about URLs we have to make a difference between browser URLs and API URLs. Only browser URLs are visible to end users and will be bookmarked. The currently existing and bookmarked ownCloud 10 URLs look something like this:\nGET https:\/\/demo.owncloud.com\/apps\/files\/?dir=\/path\/to\/resource\u0026fileid=5472225 303 Location: https:\/\/demo.owncloud.com\/apps\/files\/?dir=\/path\/to\/resource When the URL contains a fileid parameter the server will look up the corresponding dir, overwriting whatever was set before the redirect.",
-      "wordCount" : "2991",
+      "wordCount" : "2987",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -8362,13 +8362,13 @@ GET https://demo.owncloud.com/apps/files/?dir=/path/to/resource&amp;fileid=54722
 303 Location: https://demo.owncloud.com/apps/files/?dir=/path/to/resource
 </code></pre></div><p>When the URL contains a <code>fileid</code> parameter the server will look up the corresponding <code>dir</code>, overwriting whatever was set before the redirect. The <code>fileid</code> always takes precedence and the server is responsible for the lookup.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">GET https://demo.owncloud.com/apps/files/?dir=/path/to/resource
-</code></pre></div><p>The <code>dir</code> parameter is then used to make a WebDAV request against the <code>/dav/files</code> endpoint of the currently logged in user:</p>
+</code></pre></div><p>The <code>dir</code> parameter is then used to make a WebDAV request against the <code>/dav/files</code> endpoint of the currently logged-in user:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">PROPFIND https://demo.owncloud.com/remote.php/dav/files/demo/path/to/resource
 </code></pre></div><p>The resulting PROPFIND response is used to render the file listing. All good so far.</p>
 <p>For the new ocis web UI we want to clean up the user visible Browser URLs. They currently look like this:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">https://demo.owncloud.com/#/files/list/all/path/to/resource
 </code></pre></div><p>Currently, there is no <code>fileid</code> like parameter in the browser URL, making bookmarks of it fragile (they break when a bookmarked folder is renamed).</p>
-<p>The oCIS web UI just takes the path and uses the <code>/webdav</code> endpoint of the currently logged in user:</p>
+<p>The oCIS web UI just takes the path and uses the <code>/webdav</code> endpoint of the currently logged-in user:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">PROPFIND https://demo.owncloud.com/remote.php/webdav/path/to/resource
 </code></pre></div><p>With the new ownCloud web client (owncloud/web)</p>
 <p>needs to interpret them to make API calls. With this in mind, this is the current mapping on ownCloud Web with OC10 and OCIS backend:</p>
@@ -8423,7 +8423,7 @@ GET https://demo.owncloud.com/apps/files/?dir=/path/to/resource&amp;fileid=54722
 >https://github.com/owncloud/open-graph-api/issues/6</a></li>
 </ol>
 <blockquote class="gdoc-hint ">
-  @jfd: The graph api returns a <code>path</code> in the <code>parentReference</code>, which is part of the <code>root</code> in a <code>drive</code> resource. But it contains a value in the namespace of the <code>graph</code> endpoint, eg.: <code>/drive/root:/Bilder</code> for the <code>/Bilder</code> folder in the root of the currently logged in users personal drive/space. Which is again relative to the drive. To give the clients a way to determine the mount point we need to add a new <code>mountpath/point/alias</code> property.
+  @jfd: The graph api returns a <code>path</code> in the <code>parentReference</code>, which is part of the <code>root</code> in a <code>drive</code> resource. But it contains a value in the namespace of the <code>graph</code> endpoint, e.g.: <code>/drive/root:/Bilder</code> for the <code>/Bilder</code> folder in the root of the currently logged-in users personal drive/space. Which is again relative to the drive. To give the clients a way to determine the mount point we need to add a new <code>mountpath/point/alias</code> property.
 </blockquote>
 
 <div class="gdoc-page__anchorwrap">
@@ -8535,7 +8535,7 @@ GET https://demo.owncloud.com/apps/files/?dir=/path/to/resource&amp;fileid=54722
 <li>Bad, because URLs still contain a long prefix <code>(/index.php)/apps/files</code></li>
 <li>Bad, because the <code>fileid</code> needs to be accompanied by a <code>storageid</code> to allow efficient routing in ocis</li>
 <li>Bad, because if not configured properly an additional <code>/index.php</code> prefixes the route</li>
-<li>Bad, because powerusers cannot navigate by updating only the path in the URL, as the <code>fileid</code> takes precedence. They have to delete the <code>fileid</code> to navigate</li>
+<li>Bad, because power users cannot navigate by updating only the path in the URL, as the <code>fileid</code> takes precedence. They have to delete the <code>fileid</code> to navigate</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h3 id="id-based-urls">
@@ -8608,7 +8608,7 @@ GET https://demo.owncloud.com/apps/files/?dir=/path/to/resource&amp;fileid=54722
 </table> </div>
 <ul>
 <li>Good, because the URLs reveal the full path context to users</li>
-<li>Good, because powerusers can navigate by updating the path in the url</li>
+<li>Good, because power users can navigate by updating the path in the url</li>
 <li>Bad, because the web UI needs to look up the space id in a registry to build an API request for the <code>/dav/space</code> endpoint</li>
 <li>Bad, because the bookmarks break when someone renames a folder in the path</li>
 <li>Bad, because there is no id that can be used as a fallback lookup mechanism</li>
@@ -8662,7 +8662,7 @@ GET https://demo.owncloud.com/apps/files/?dir=/path/to/resource&amp;fileid=54722
 <li>Good, because the web UI does not need to look up the space id in a registry to build an API request for the <code>/dav/space</code> endpoint</li>
 <li>Good, because the URLs reveal a relevant path context to users</li>
 <li>Good, because everything after the <code>#</code> is not sent to the server, building the webdav request to list the folder is offloaded to the clients</li>
-<li>Good, because powerusers can navigate by updating the path in the url</li>
+<li>Good, because power users can navigate by updating the path in the url</li>
 <li>Bad, because the current ids are uuid based, leading to very long URLs where the path component nearly vanishes between two very long strings</li>
 <li>Bad, because the <code>#</code> in the URL is just a technical requirement</li>
 <li>Bad, because ocis web requires a <code>/#/files/s</code> at the root of the route to distinguish the files app from other apps</li>
@@ -8810,12 +8810,12 @@ The same URL with a SR <code>https://ocis.com/#/s/workspaceFoo/TEST?id=b78c2044-
 <li>An url shortener can create urls like <code>/s/&lt;token&gt;</code> which could be used as a stable link to a resource.</li>
 <li>Links for anonymous users will resolve to <code>/public/&lt;token&gt;</code></li>
 </ul>
-<p>The alias namespace hierarchy and depth can be pre determined by the admin. Even if aliases change the <code>id</code> parameter prevents bookmarks from breaking. A user can decide to build a different hierarchy by using his own registry.</p>
-<p>What about shares? Similar to <code>/home</code> it must reflect the user: <code>/shares/einstein</code> would list all shares <em>by</em> einstein for the currently logged in user. The ui needs to apply the same URL rewriting as for space based URLs: when navigating into a share the URL has to switch from <code>/personal/einstein/relative/path/to/shared/resource</code> to <code>/shares/einstein/&lt;unique and potentially namespaced alias for shared resource&gt;</code>. When more than one <code>resource</code> was shared a name collision would occur. To prevent this we can use ids <code>/shares/einstein/id/&lt;resource_id</code> or namespaced aliases <code>/shares/einstein/files/alias</code>. Similar to the <code>/trash</code> prefix we could treat <code>/shares</code> as a filter for the shared resources a user has access to, but that would disclose unshared path segments in personal spaces. We could make that a feature and let users create an alias for a shared resource, similar as for public links. Then they can decide if they want to disclose the full path in their personal space (or another workspace) or if they want to use an alias which is then accessed at <code>/shares/einstein/&lt;alias&gt;</code>. As a default we could take the alias at creation time from the filename. That way two shares to a resource with the same name, eg.: <code>/personal/einstein/project AAA/foo</code> and <code>/personal/einstein/project BBB/foo</code> would lead to <code>/shares/einstein/foo</code> (a CS3 internal reference to <code>/personal/einstein/project AAA/foo</code>) and <code>/shares/einstein/foo (2)</code> (a CS3 internal reference to <code>/personal/einstein/project BBB/foo</code>). <code>foo (2)</code> would keep its name even when <code>foo</code> is deleted or renamed. Well an id as the alias might be better then, because users might rename these aliases, which would break URLs if they have been bookmarked. In any case this would make end user more aware of what they share AND it would allow them to choose an arbitrary context for the links they want to send out: personal internal share URLs.</p>
+<p>The alias namespace hierarchy and depth can be pre-determined by the admin. Even if aliases change the <code>id</code> parameter prevents bookmarks from breaking. A user can decide to build a different hierarchy by using his own registry.</p>
+<p>What about shares? Similar to <code>/home</code> it must reflect the user: <code>/shares/einstein</code> would list all shares <em>by</em> einstein for the currently logged-in user. The ui needs to apply the same URL rewriting as for space based URLs: when navigating into a share the URL has to switch from <code>/personal/einstein/relative/path/to/shared/resource</code> to <code>/shares/einstein/&lt;unique and potentially namespaced alias for shared resource&gt;</code>. When more than one <code>resource</code> was shared a name collision would occur. To prevent this we can use ids <code>/shares/einstein/id/&lt;resource_id</code> or namespaced aliases <code>/shares/einstein/files/alias</code>. Similar to the <code>/trash</code> prefix we could treat <code>/shares</code> as a filter for the shared resources a user has access to, but that would disclose unshared path segments in personal spaces. We could make that a feature and let users create an alias for a shared resource, similar as for public links. Then they can decide if they want to disclose the full path in their personal space (or another workspace) or if they want to use an alias which is then accessed at <code>/shares/einstein/&lt;alias&gt;</code>. As a default we could take the alias at creation time from the filename. That way two shares to a resource with the same name, e.g.: <code>/personal/einstein/project AAA/foo</code> and <code>/personal/einstein/project BBB/foo</code> would lead to <code>/shares/einstein/foo</code> (a CS3 internal reference to <code>/personal/einstein/project AAA/foo</code>) and <code>/shares/einstein/foo (2)</code> (a CS3 internal reference to <code>/personal/einstein/project BBB/foo</code>). <code>foo (2)</code> would keep its name even when <code>foo</code> is deleted or renamed. Well an id as the alias might be better then, because users might rename these aliases, which would break URLs if they have been bookmarked. In any case this would make end user more aware of what they share AND it would allow them to choose an arbitrary context for the links they want to send out: personal internal share URLs.</p>
 <p>With these different namespaces the <code>/files</code> part in the URL becomes obsolete, because the files application can be registered for multiple namespaces: <code>/personal</code>, <code>/workspaces</code>, <code>/shares</code>, <code>/trash</code> &hellip;</p>
 <ul>
 <li>Good, because it contains a global path</li>
-<li>Good, because spaces with namespaced aliases can by bookmarked and copied into mails or chat without disclosing unshared path segments, as the space is supposed to be shared</li>
+<li>Good, because spaces with namespaced aliases can be bookmarked and copied into mails or chat without disclosing unshared path segments, as the space is supposed to be shared</li>
 <li>Good, because the UI can detect broken paths and notify the user to update his bookmark if the resource could be found by <code>id</code></li>
 <li>Good, because the <code>/files</code> part might only be required for <code>id</code> only based lookup to let the web ui know which app is responsible for the route</li>
 <li>Good, because it turns shares into deliberately named spaces in <code>/shares/&lt;owner&gt;/&lt;alias&gt;</code></li>
@@ -8852,11 +8852,11 @@ The same URL with a SR <code>https://ocis.com/#/s/workspaceFoo/TEST?id=b78c2044-
 <p>In contrast to ownCloud 10 path takes precedence and the user is warned when the fileid in his bookmark no longer matches the id on the server: sth. like &ldquo;The path of the resource has changed, please verify and update your bookmark!&rdquo;</p>
 <p>When a file is selected the filename also becomes part of the URL so individual files can be bookmarked.</p>
 <p>If navigation is id based we need to look up the path for the id so we can make a webdav request, or we need to implement the graph drives and driveItem resources.</p>
-<p>The URL  <code>https://&lt;host&gt;/files?id=&lt;resource_id&gt;̀</code> is sent to the server. It has to look up the correct path and redirect the request, including the the path. But that would make all bookmarks contain tha path again, even if paths were configured to not be part of the URL.</p>
+<p>The URL  <code>https://&lt;host&gt;/files?id=&lt;resource_id&gt;̀</code> is sent to the server. It has to look up the correct path and redirect the request, including the path. But that would make all bookmarks contain tha path again, even if paths were configured to not be part of the URL.</p>
 <p>The <code>/meta/&lt;fileid&gt;</code> webdav endpoint can be used to look up the path with property <code>meta-path-for-user</code>.</p>
 <p>For now, we would use path based navigation with URLs like this:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">https://&lt;host&gt;/files&lt;/namespaced/alias&gt;&lt;/relative/path/to/resource&gt;?id=&lt;resource_id&gt;
-</code></pre></div><p>This means that only the <em>resource path</em> is part of the URL path. Any other parameter, eg. file <code>id</code>, <code>page</code> or sort order must be given as URL parameters.</p>
+</code></pre></div><p>This means that only the <em>resource path</em> is part of the URL path. Any other parameter, e.g. file <code>id</code>, <code>page</code> or sort order must be given as URL parameters.</p>
 <ul>
 <li>
 <p><input disabled="" type="checkbox"> To make lookup by id possible we need to implement the <code>/meta/&lt;fileid&gt;</code> endpoint so the sdk can use it to look up the path. We should not implement a redirect on the ocis server side because the same redirect logic would need to be added to oc10. Having it in ocis web is the right place.</p>
@@ -8867,7 +8867,7 @@ The same URL with a SR <code>https://ocis.com/#/s/workspaceFoo/TEST?id=b78c2044-
 </ul>
 <p>Public links would have the same format: <code>https://&lt;host&gt;/files?id=&lt;resource_id&gt;</code> The web UI has to detect if the user is logged in or not and adjust the ui accordingly.</p>
 <blockquote class="gdoc-hint warning">
-  Since there is no difference between public and private files a logged in user cannot see the public version of a link unless he logs out.
+  Since there is no difference between public and private files a logged-in user cannot see the public version of a link unless he logs out.
 </blockquote>
 
 

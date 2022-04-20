@@ -61,7 +61,7 @@
       "url" : "https://owncloud.dev/ocis/adr/0013-locking/",
       "headline": "13. Locking",
       "description": "Status: accepted Deciders: @hodyroff, @pmaier1, @jojowein, @dragotin, @micbar, @tbsbdr, @wkloucek Date: 2021-11-03  Context and Problem Statement     At the time of this writing no locking mechanisms exists in oCIS \/ REVA for both directories and files. The CS3org WOPI server implements a file based locking in order to lock files. This ADR discusses if this approach is ok for the general availability of oCIS or if changes are needed.",
-      "wordCount" : "646",
+      "wordCount" : "645",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -8413,14 +8413,14 @@
 </ul>
 <p><strong>File based locking is bad</strong>, because:</p>
 <ul>
-<li>lock files should be checked by all partys manipulating files (eg. the WebDAV api)</li>
+<li>lock files should be checked by all parties manipulating files (e.g. the WebDAV api)</li>
 <li>lock files can be deleted by everyone</li>
 <li>you can not lock files in a file-only share (you need a folder share to create a lock file besides the original file)</li>
 </ul>
-<p>If we have file based locks, we can also sync them with eg. the Desktop Client.</p>
+<p>If we have file based locks, we can also sync them with e.g. the Desktop Client.</p>
 <p><strong>Syncing lock files is good</strong>: because</p>
 <ul>
-<li>native office applications can notice lock files by the WOPI server and vice versa (Libre Office also creates <code>.lock.&lt;filename&gt;#</code> files)</li>
+<li>native office applications can notice lock files by the WOPI server and vice versa (LibreOffice also creates <code>.lock.&lt;filename&gt;#</code> files)</li>
 </ul>
 <p><strong>Syncing lock files is bad</strong>, because:</p>
 <ul>
@@ -8443,7 +8443,7 @@
 </ul>
 <p><strong>No locking is bad</strong>, because:</p>
 <ul>
-<li>merging changes from different versions is a pain, since there is no way to calculate differences for most of the files (eg. docx or xlsx files)</li>
+<li>merging changes from different versions is a pain, since there is no way to calculate differences for most of the files (e.g. docx or xlsx files)</li>
 <li>no locking breaks the WOPI specs, as the CS3 WOPI server won&rsquo;t be capable to honor the WOPI Lock related operations</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
@@ -8459,7 +8459,7 @@
 <ul>
 <li>locking always with timeout</li>
 <li>lock creation is a &ldquo;create-if-not-exists&rdquo; operation</li>
-<li>locks need to have arbitrary metadata (eg. the CS3 WOPI server is stateless by storing information on / in the locks)</li>
+<li>locks need to have arbitrary metadata (e.g. the CS3 WOPI server is stateless by storing information on / in the locks)</li>
 </ul>
 </li>
 <li>Implement WebDAV locking using the CS3 API</li>
@@ -8472,7 +8472,7 @@
 <li>you can lock files on the actual storage (if the storage supports that -&gt; storage driver dependent)</li>
 <li>you can lock files in ownCloud 10 when using the ownCloudSQL storage driver in the migration deployment (but oC10 Collabora / OnlyOffice also need to implement locking, to fully leverage that)</li>
 <li>clients can get the lock information via the api without ignoring / hiding lock file changes</li>
-<li>clients can use the lock information to lock the file in their context (eg. via some file explorer integration)</li>
+<li>clients can use the lock information to lock the file in their context (e.g. via some file explorer integration)</li>
 </ul>
 <p><strong>CS3 API locking is bad</strong>, because:</p>
 <ul>

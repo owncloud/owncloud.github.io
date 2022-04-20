@@ -64,7 +64,7 @@
       "url" : "https://owncloud.dev/ocis/migration/",
       "headline": "Migration",
       "description": "The migration happens in subsequent stages while the service is online. First all users need to migrate to the new architecture, then the global namespace needs to be introduced. Finally, the data on disk can be migrated user by user by switching the storage driver.\n@jfd: It might be easier to introduce the spaces api in oc10 and then migrate to oCIS. We cannot migrate both at the same time, the architecture to oCIS (which will change fileids) and introduce a global namespace (which requires stable fileids to let clients handle moves without redownloading).",
-      "wordCount" : "5463",
+      "wordCount" : "5462",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -8872,7 +8872,7 @@ With write access it becomes possible to manipulate existing files and shares.
         </a>
     </h3>
 </div>
-<p>In the previous stages oCIS was only accessible for administrators with access to the network. To expose only a single service to the internet, oCIS comes with a user aware proxy that can be used to route requests to the existing ownCloud 10 installation or oCIS, based on the authenticated user. The proxy uses OIDC to identify the logged in user and route them to the configured backend.</p>
+<p>In the previous stages oCIS was only accessible for administrators with access to the network. To expose only a single service to the internet, oCIS comes with a user aware proxy that can be used to route requests to the existing ownCloud 10 installation or oCIS, based on the authenticated user. The proxy uses OIDC to identify the logged-in user and route them to the configured backend.</p>
 <div class="gdoc-page__anchorwrap">
     <h4 id="user-impact-3">
         User impact
@@ -9375,7 +9375,7 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 │   ├── thumbnails
 │   │   └── 123
 │   │   │   ├── 2048-1536-max.png
-│   │   │   └── 32-32.png                 // the file id, eg. of /Photos/Portugal.jpg
+│   │   │   └── 32-32.png                 // the file id, e.g. of /Photos/Portugal.jpg
 │   └── uploads
 ├── marie
 │   ├── cache
@@ -9388,7 +9388,7 @@ Multiple ownCloud instances can be merged into one oCIS instance. The file ids w
 ├── moss
 …
 </code></pre></div><p>The <em>data directory</em> may also contain subfolders for ownCloud 10 applications like <code>avatars</code>, <code>gallery</code>, <code>files_external</code> and <code>cache</code>.</p>
-<p>When an object storage is used as the primary storage all file blobs are stored by their file id and a prefix, eg.: <code>urn:oid:&lt;fileid&gt;</code>.</p>
+<p>When an object storage is used as the primary storage all file blobs are stored by their file id and a prefix, e.g.: <code>urn:oid:&lt;fileid&gt;</code>.</p>
 <p>The three types of blobs we need to migrate are stored in</p>
 <ul>
 <li><code>files</code> for file blobs, the current file content,</li>

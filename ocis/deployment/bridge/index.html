@@ -61,7 +61,7 @@
       "url" : "https://owncloud.dev/ocis/deployment/bridge/",
       "headline": "Bridge",
       "description": "Current status How to do it  Install the owncloud 10 graphapi app Enable the graphapi app Grab ocis! Start ocis glauth  configure it Run it! Check it is up and running   Start ocis storage-gateway, storage-authbasic and storage-userprovider Start ocis storage-userprovider Start ocis idp  Set environment variables   Configure clients  Run it! Check it is up and running   Start ocis proxy Start ocis-web  Run it!",
-      "wordCount" : "1716",
+      "wordCount" : "1714",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -8388,7 +8388,7 @@
   </div>
 
 
-<p>We are planning to build a bridge from ownCloud 10 to ocis. The idea is to have a reverse proxy infront of ownCloud 10 that will forward requests to ownCloud 10 or ocis-reva, depending on the migration status of the logged in user.</p>
+<p>We are planning to build a bridge from ownCloud 10 to ocis. The idea is to have a reverse proxy in front of ownCloud 10 that will forward requests to ownCloud 10 or ocis-reva, depending on the migration status of the logged-in user.</p>
 <p>This document is a work in progress of the current setup.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="current-status">
@@ -8489,7 +8489,7 @@ $ make -C ocis build
         </a>
     </h4>
 </div>
-<p>While ocis can be configured using environment variables, eg. for a docker compose setup we are going to use a more traditional config file here.
+<p>While ocis can be configured using environment variables, e.g. for a docker compose setup we are going to use a more traditional config file here.
 Create a config file for ocis in either <code>/etc/ocis</code>, <code>$HOME/.ocis</code> or <code>./.config</code>. You can use <code>.json</code>, <code>.yaml</code> or <code>.toml</code>. I will use toml here, because &hellip; reasons.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">glauth</span><span class="p">.</span><span class="nx">backend</span><span class="p">]</span>
 <span class="nx">datastore</span> <span class="p">=</span> <span class="s2">&#34;owncloud&#34;</span>                                   <span class="c"># switch to the owncloud datastore</span>
@@ -8613,7 +8613,7 @@ but it tries to create the user home, which cannot be disabled in a config file:
         </a>
     </h4>
 </div>
-<p>The built in <a
+<p>The built-in <a
   class="gdoc-markdown__link"
   href="https://github.com/libregraph/lico"
   
@@ -8662,7 +8662,7 @@ but it tries to create the user home, which cannot be disabled in a config file:
 <blockquote class="gdoc-hint warning">
   <ul>
 <li>TODO: the port in the <code>--iss</code> needs to be changed when hiding the idp behind the proxy</li>
-<li>TODO: the signing keys and encryption keys should be precerated so they are reused between restarts. Otherwise all client sessions will become invalid when restarting the IdP.</li>
+<li>TODO: the signing keys and encryption keys should be precreated so they are reused between restarts. Otherwise all client sessions will become invalid when restarting the IdP.</li>
 </ul>
 
 </blockquote>
@@ -8752,7 +8752,7 @@ but it tries to create the user home, which cannot be disabled in a config file:
 <ul>
 <li><code>--web-config-server https://cloud.example.com</code> is ownCloud url with webdav and ocs endpoints (oc10 or ocis)</li>
 <li><code>--oidc-authority https://192.168.1.100:9130</code> the openid connect issuing authority, in our case <code>oidc-idp</code>, running on port 9130</li>
-<li><code>--oidc-metadata-url https://192.168.1.100:9130/.well-known/openid-configuration</code> the openid connect configuration endpoint, typically the issuer host with <code>.well-known/openid-configuration</code>, but there are cases when another endpoint is used, eg. ping identity provides multiple endpoints to separate domains</li>
+<li><code>--oidc-metadata-url https://192.168.1.100:9130/.well-known/openid-configuration</code> the openid connect configuration endpoint, typically the issuer host with <code>.well-known/openid-configuration</code>, but there are cases when another endpoint is used, e.g. ping identity provides multiple endpoints to separate domains</li>
 <li><code>--oidc-client-id ocis</code> the client id we will register later with <code>ocis-idp</code> in the <code>identifier-registration.yaml</code></li>
 </ul>
 <div class="gdoc-page__anchorwrap">
@@ -8791,7 +8791,7 @@ $ composer install
     <span class="s1">&#39;client-id&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;ocis&#39;</span><span class="p">,</span>
     <span class="s1">&#39;loginButtonName&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;OpenId Connect @ Konnectd&#39;</span><span class="p">,</span>
   <span class="p">],</span>
-  <span class="s1">&#39;debug&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span> <span class="c1">// if using self signed certificates
+  <span class="s1">&#39;debug&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span> <span class="c1">// if using self-signed certificates
 </span><span class="c1"></span>  <span class="c1">// allow the different domains access to the ocs and webdav endpoints:
 </span><span class="c1"></span>  <span class="s1">&#39;cors.allowed-domains&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
     <span class="s1">&#39;https://cloud.example.com&#39;</span><span class="p">,</span>
