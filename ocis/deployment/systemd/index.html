@@ -64,7 +64,7 @@ Rename the downloaded binary to ocis and move it to /usr/bin/. As a next step, y
       "url" : "https://owncloud.dev/ocis/deployment/systemd/",
       "headline": "Systemd service",
       "description": "Install the oCIS binary Systemd service definition Starting the oCIS service      Install the oCIS binary     Download the oCIS binary of your preferred version and for your CPU architecture and operating system from download.owncloud.com.\nRename the downloaded binary to ocis and move it to \/usr\/bin\/. As a next step, you need to mark it as executable with chmod \u002bx \/usr\/bin\/ocis.",
-      "wordCount" : "280",
+      "wordCount" : "325",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -8381,19 +8381,19 @@ Rename the downloaded binary to ocis and move it to /usr/bin/. As a next step, y
     </h2>
 </div>
 <p>Create the Systemd service definition for oCIS in the file <code>/etc/systemd/system/ocis.service</code> with following content:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[Unit]
-Description=OCIS server
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-systemd" data-lang="systemd"><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">OCIS server</span>
 
-[Service]
-Type=simple
-User=root
-Group=root
-EnvironmentFile=/etc/ocis/ocis.env
-ExecStart=ocis server
-Restart=always
+<span class="k">[Service]</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
+<span class="na">User</span><span class="o">=</span><span class="s">root</span>
+<span class="na">Group</span><span class="o">=</span><span class="s">root</span>
+<span class="na">EnvironmentFile</span><span class="o">=</span><span class="s">/etc/ocis/ocis.env</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">ocis server</span>
+<span class="na">Restart</span><span class="o">=</span><span class="s">always</span>
 
-[Install]
-WantedBy=multi-user.target
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
 </code></pre></div><p>For reasons of simplicity we are using the root user and group to run oCIS which is not recommended. Please use a non-root user in production environments and modify the oCIS service definition accordingly.</p>
 <p>In the service definition we referenced <code>/etc/ocis/ocis.env</code> as our file containing environment variables for the oCIS process.
 In order to create the file we need first to create the folder <code>/etc/ocis/</code> and then we can add the actual <code>/etc/ocis/ocis.env</code> with following content:</p>
@@ -8403,13 +8403,11 @@ OCIS_INSECURE=false
 
 OCIS_LOG_LEVEL=error
 
-GLAUTH_LDAPS_CERT=/etc/ocis/ldap/ldaps.crt
-GLAUTH_LDAPS_KEY=/etc/ocis/ldap/ldaps.key
-IDP_TRANSPORT_TLS_CERT=/etc/ocis/idp/server.crt
-IDP_TRANSPORT_TLS_KEY=/etc/ocis/idp/server.key
-PROXY_TRANSPORT_TLS_CERT=/etc/ocis/proxy/server.crt
-PROXY_TRANSPORT_TLS_KEY=/etc/ocis/proxy/server.key
-</code></pre></div><p>Please change your <code>OCIS_URL</code> in order to reflect your actual deployment. If you are using self-signed certificates you need to set <code>OCIS_INSECURE=true</code> in <code>/etc/ocis/ocis.env</code>.</p>
+OCIS_CONFIG_DIR=/etc/ocis
+OCIS_BASE_DATA_PATH=/var/lib/ocis
+</code></pre></div><p>Since we set <code>OCIS_CONFIG_DIR</code> to <code>/etc/ocis</code> you can also place configuration files in this directory.</p>
+<p>Please change your <code>OCIS_URL</code> in order to reflect your actual deployment. If you are using self-signed certificates you need to set <code>OCIS_INSECURE=true</code> in <code>/etc/ocis/ocis.env</code>.</p>
+<p>oCIS will store all data in <code>/var/lib/ocis</code>, because we configured it so by setting <code>OCIS_BASE_DATA_PATH</code>. Therefore you need to create that directory and make it accessible to the user, you use to start oCIS.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="starting-the-ocis-service">
         Starting the oCIS service
