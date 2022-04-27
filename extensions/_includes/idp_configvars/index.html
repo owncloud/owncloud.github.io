@@ -53,7 +53,7 @@
       "url" : "https://owncloud.dev/extensions/_includes/idp_configvars/",
       "headline": "Idp Configvars",
       "description": "Environment Variables        Name Type Default Value Description     IDP_PASSWORD_RESET_URI string  The URI where a user can reset their password.   IDP_DEBUG_ADDR string 127.0.0.1:9134    IDP_DEBUG_TOKEN string     IDP_DEBUG_PPROF bool false    IDP_DEBUG_ZPAGES bool false    IDP_HTTP_ADDR string 127.0.0.1:9130    IDP_HTTP_ROOT string \/    IDP_TRANSPORT_TLS_CERT string ~\/.",
-      "wordCount" : "137",
+      "wordCount" : "140",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -8541,13 +8541,19 @@
 <tr>
 <td>LDAP_URI;IDP_LDAP_URI</td>
 <td>string</td>
-<td>ldap://localhost:9125</td>
+<td>ldaps://localhost:9235</td>
+<td></td>
+</tr>
+<tr>
+<td>LDAP_CACERT;IDP_LDAP_TLS_CACERT</td>
+<td>string</td>
+<td>~/.ocis/idm/ldap.crt</td>
 <td></td>
 </tr>
 <tr>
 <td>LDAP_BIND_DN;IDP_LDAP_BIND_DN</td>
 <td>string</td>
-<td>cn=idp,ou=sysusers,dc=ocis,dc=test</td>
+<td>uid=idp,ou=sysusers,o=libregraph-idm</td>
 <td></td>
 </tr>
 <tr>
@@ -8559,7 +8565,7 @@
 <tr>
 <td>LDAP_USER_BASE_DN,IDP_LDAP_BASE_DN</td>
 <td>string</td>
-<td>ou=users,dc=ocis,dc=test</td>
+<td>ou=users,o=libregraph-idm</td>
 <td></td>
 </tr>
 <tr>
@@ -8571,7 +8577,7 @@
 <tr>
 <td>IDP_LDAP_LOGIN_ATTRIBUTE</td>
 <td>string</td>
-<td>cn</td>
+<td>uid</td>
 <td></td>
 </tr>
 <tr>
@@ -8607,7 +8613,7 @@
 <tr>
 <td>LDAP_USER_OBJECTCLASS;IDP_LDAP_OBJECTCLASS</td>
 <td>string</td>
-<td>posixAccount</td>
+<td>inetOrgPerson</td>
 <td></td>
 </tr>
 </tbody>
