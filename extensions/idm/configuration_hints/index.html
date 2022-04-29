@@ -8,10 +8,10 @@
 <meta name="generator" content="Hugo 0.89.4" />
 
 
-  <meta name="description" content="    Using ocis with libregraph/idm      Using ocis with libregraph/idm     Currently, oCIS still runs the accounts and glauth services to manage users. Until the default is switched to libregraph/idm, oCIS has to be started with a custom configuration in order to use libregraph/idm as the users and groups backend (this setup also disables the glauth and accounts service):
-export GRAPH_IDENTITY_BACKEND=ldap export LDAP_URI=ldaps://localhost:9235 export LDAP_INSECURE=&#34;true&#34; export LDAP_USER_BASE_DN=&#34;ou=users,o=libregraph-idm&#34; export LDAP_USER_SCHEMA_ID=&#34;ownclouduuid&#34; export LDAP_USER_SCHEMA_MAIL=&#34;mail&#34; export LDAP_USER_SCHEMA_USERNAME=&#34;uid&#34; export LDAP_USER_OBJECTCLASS=&#34;inetOrgPerson&#34; export LDAP_GROUP_BASE_DN=&#34;ou=groups,o=libregraph-idm&#34; export LDAP_GROUP_SCHEMA_ID=&#34;ownclouduuid&#34; export LDAP_GROUP_SCHEMA_MAIL=&#34;mail&#34; export LDAP_GROUP_SCHEMA_GROUPNAME=&#34;cn&#34; export LDAP_GROUP_SCHEMA_MEMBER=&#34;member&#34; export LDAP_GROUP_OBJECTCLASS=&#34;groupOfNames&#34; export GRAPH_LDAP_BIND_DN=&#34;uid=libregraph,ou=sysusers,o=libregraph-idm&#34; export GRAPH_LDAP_BIND_PASSWORD=idm export GRAPH_LDAP_SERVER_WRITE_ENABLED=&#34;true&#34; export IDP_INSECURE=&#34;true&#34; export IDP_LDAP_BIND_DN=&#34;uid=idp,ou=sysusers,o=libregraph-idm&#34; export IDP_LDAP_BIND_PASSWORD=&#34;idp&#34; export IDP_LDAP_LOGIN_ATTRIBUTE=uid export PROXY_ACCOUNT_BACKEND_TYPE=cs3 export OCS_ACCOUNT_BACKEND_TYPE=cs3 export STORAGE_LDAP_BIND_DN=&#34;uid=reva,ou=sysusers,o=libregraph-idm&#34; export STORAGE_LDAP_BIND_PASSWORD=reva export OCIS_RUN_EXTENSIONS=settings,storage-metadata,graph,graph-explorer,ocs,store,thumbnails,web,webdav,storage-frontend,storage-gateway,storage-userprovider,storage-groupprovider,storage-authbasic,storage-authbearer,storage-authmachine,storage-users,storage-shares,storage-public-link,storage-appprovider,storage-sharing,proxy,idp,nats,idm,ocdav export OCIS_INSECURE=true bin/ocis server " />
+  <meta name="description" content="TLS Server Certificates     By default IDM generates a self-signed certificate and key on first startup to be able to provide TLS protected services. The certificate is stored in idm/ldap.crt inside the oCIS base data directory. The key is in idm/ldap.key in the same directory. You can use a custom server certificate by setting the IDM_LDAPS_CERT and IDM_LDAPS_KEY.
+Default / Demo Users     On startup IDM creates a set of default services users that are needed internally to provide access to IDM to other oCIS services." />
 
-    <title>Service Setup | ownCloud</title>
+    <title>Configuration Hints | ownCloud</title>
 
     <link
   rel="icon"
@@ -30,29 +30,21 @@ export GRAPH_IDENTITY_BACKEND=ldap export LDAP_URI=ldaps://localhost:9235 export
     
   <meta
     property="og:title"
-    content="Service Setup"
+    content="Configuration Hints"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="    Using ocis with libregraph/idm      Using ocis with libregraph/idm     Currently, oCIS still runs the accounts and glauth services to manage users. Until the default is switched to libregraph/idm, oCIS has to be started with a custom configuration in order to use libregraph/idm as the users and groups backend (this setup also disables the glauth and accounts service):
-export GRAPH_IDENTITY_BACKEND=ldap export LDAP_URI=ldaps://localhost:9235 export LDAP_INSECURE=&#34;true&#34; export LDAP_USER_BASE_DN=&#34;ou=users,o=libregraph-idm&#34; export LDAP_USER_SCHEMA_ID=&#34;ownclouduuid&#34; export LDAP_USER_SCHEMA_MAIL=&#34;mail&#34; export LDAP_USER_SCHEMA_USERNAME=&#34;uid&#34; export LDAP_USER_OBJECTCLASS=&#34;inetOrgPerson&#34; export LDAP_GROUP_BASE_DN=&#34;ou=groups,o=libregraph-idm&#34; export LDAP_GROUP_SCHEMA_ID=&#34;ownclouduuid&#34; export LDAP_GROUP_SCHEMA_MAIL=&#34;mail&#34; export LDAP_GROUP_SCHEMA_GROUPNAME=&#34;cn&#34; export LDAP_GROUP_SCHEMA_MEMBER=&#34;member&#34; export LDAP_GROUP_OBJECTCLASS=&#34;groupOfNames&#34; export GRAPH_LDAP_BIND_DN=&#34;uid=libregraph,ou=sysusers,o=libregraph-idm&#34; export GRAPH_LDAP_BIND_PASSWORD=idm export GRAPH_LDAP_SERVER_WRITE_ENABLED=&#34;true&#34; export IDP_INSECURE=&#34;true&#34; export IDP_LDAP_BIND_DN=&#34;uid=idp,ou=sysusers,o=libregraph-idm&#34; export IDP_LDAP_BIND_PASSWORD=&#34;idp&#34; export IDP_LDAP_LOGIN_ATTRIBUTE=uid export PROXY_ACCOUNT_BACKEND_TYPE=cs3 export OCS_ACCOUNT_BACKEND_TYPE=cs3 export STORAGE_LDAP_BIND_DN=&#34;uid=reva,ou=sysusers,o=libregraph-idm&#34; export STORAGE_LDAP_BIND_PASSWORD=reva export OCIS_RUN_EXTENSIONS=settings,storage-metadata,graph,graph-explorer,ocs,store,thumbnails,web,webdav,storage-frontend,storage-gateway,storage-userprovider,storage-groupprovider,storage-authbasic,storage-authbearer,storage-authmachine,storage-users,storage-shares,storage-public-link,storage-appprovider,storage-sharing,proxy,idp,nats,idm,ocdav export OCIS_INSECURE=true bin/ocis server " />
+  <meta property="og:description" content="TLS Server Certificates     By default IDM generates a self-signed certificate and key on first startup to be able to provide TLS protected services. The certificate is stored in idm/ldap.crt inside the oCIS base data directory. The key is in idm/ldap.key in the same directory. You can use a custom server certificate by setting the IDM_LDAPS_CERT and IDM_LDAPS_KEY.
+Default / Demo Users     On startup IDM creates a set of default services users that are needed internally to provide access to IDM to other oCIS services." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://owncloud.dev/extensions/idm/setup/" />
+<meta property="og:url" content="https://owncloud.dev/extensions/idm/configuration_hints/" />
 
 <meta property="article:section" content="Extensions" />
-    <meta
-      property="article:published_time"
-      content="2022-03-22T00:00:00+00:00"
-    />
-    <meta
-      property="article:modified_time"
-      content="2022-03-22T00:00:00+00:00"
-    />
 
 
   <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Service Setup" />
-  <meta name="twitter:description" content="    Using ocis with libregraph/idm      Using ocis with libregraph/idm     Currently, oCIS still runs the accounts and glauth services to manage users. Until the default is switched to libregraph/idm, oCIS has to be started with a custom configuration in order to use libregraph/idm as the users and groups backend (this setup also disables the glauth and accounts service):
-export GRAPH_IDENTITY_BACKEND=ldap export LDAP_URI=ldaps://localhost:9235 export LDAP_INSECURE=&#34;true&#34; export LDAP_USER_BASE_DN=&#34;ou=users,o=libregraph-idm&#34; export LDAP_USER_SCHEMA_ID=&#34;ownclouduuid&#34; export LDAP_USER_SCHEMA_MAIL=&#34;mail&#34; export LDAP_USER_SCHEMA_USERNAME=&#34;uid&#34; export LDAP_USER_OBJECTCLASS=&#34;inetOrgPerson&#34; export LDAP_GROUP_BASE_DN=&#34;ou=groups,o=libregraph-idm&#34; export LDAP_GROUP_SCHEMA_ID=&#34;ownclouduuid&#34; export LDAP_GROUP_SCHEMA_MAIL=&#34;mail&#34; export LDAP_GROUP_SCHEMA_GROUPNAME=&#34;cn&#34; export LDAP_GROUP_SCHEMA_MEMBER=&#34;member&#34; export LDAP_GROUP_OBJECTCLASS=&#34;groupOfNames&#34; export GRAPH_LDAP_BIND_DN=&#34;uid=libregraph,ou=sysusers,o=libregraph-idm&#34; export GRAPH_LDAP_BIND_PASSWORD=idm export GRAPH_LDAP_SERVER_WRITE_ENABLED=&#34;true&#34; export IDP_INSECURE=&#34;true&#34; export IDP_LDAP_BIND_DN=&#34;uid=idp,ou=sysusers,o=libregraph-idm&#34; export IDP_LDAP_BIND_PASSWORD=&#34;idp&#34; export IDP_LDAP_LOGIN_ATTRIBUTE=uid export PROXY_ACCOUNT_BACKEND_TYPE=cs3 export OCS_ACCOUNT_BACKEND_TYPE=cs3 export STORAGE_LDAP_BIND_DN=&#34;uid=reva,ou=sysusers,o=libregraph-idm&#34; export STORAGE_LDAP_BIND_PASSWORD=reva export OCIS_RUN_EXTENSIONS=settings,storage-metadata,graph,graph-explorer,ocs,store,thumbnails,web,webdav,storage-frontend,storage-gateway,storage-userprovider,storage-groupprovider,storage-authbasic,storage-authbearer,storage-authmachine,storage-users,storage-shares,storage-public-link,storage-appprovider,storage-sharing,proxy,idp,nats,idm,ocdav export OCIS_INSECURE=true bin/ocis server " />
+<meta name="twitter:title" content="Configuration Hints" />
+  <meta name="twitter:description" content="TLS Server Certificates     By default IDM generates a self-signed certificate and key on first startup to be able to provide TLS protected services. The certificate is stored in idm/ldap.crt inside the oCIS base data directory. The key is in idm/ldap.key in the same directory. You can use a custom server certificate by setting the IDM_LDAPS_CERT and IDM_LDAPS_KEY.
+Default / Demo Users     On startup IDM creates a set of default services users that are needed internally to provide access to IDM to other oCIS services." />
 
 
   <script type="application/ld+json">
@@ -60,22 +52,22 @@ export GRAPH_IDENTITY_BACKEND=ldap export LDAP_URI=ldaps://localhost:9235 export
       "@context": "http://schema.org",
       "@type": "TechArticle",
       "articleSection": "Extensions",
-      "name": "Service Setup",
-      "url" : "https://owncloud.dev/extensions/idm/setup/",
-      "headline": "Service Setup",
-      "description": "    Using ocis with libregraph\/idm      Using ocis with libregraph\/idm     Currently, oCIS still runs the accounts and glauth services to manage users. Until the default is switched to libregraph\/idm, oCIS has to be started with a custom configuration in order to use libregraph\/idm as the users and groups backend (this setup also disables the glauth and accounts service):\nexport GRAPH_IDENTITY_BACKEND=ldap export LDAP_URI=ldaps:\/\/localhost:9235 export LDAP_INSECURE=\u0022true\u0022 export LDAP_USER_BASE_DN=\u0022ou=users,o=libregraph-idm\u0022 export LDAP_USER_SCHEMA_ID=\u0022ownclouduuid\u0022 export LDAP_USER_SCHEMA_MAIL=\u0022mail\u0022 export LDAP_USER_SCHEMA_USERNAME=\u0022uid\u0022 export LDAP_USER_OBJECTCLASS=\u0022inetOrgPerson\u0022 export LDAP_GROUP_BASE_DN=\u0022ou=groups,o=libregraph-idm\u0022 export LDAP_GROUP_SCHEMA_ID=\u0022ownclouduuid\u0022 export LDAP_GROUP_SCHEMA_MAIL=\u0022mail\u0022 export LDAP_GROUP_SCHEMA_GROUPNAME=\u0022cn\u0022 export LDAP_GROUP_SCHEMA_MEMBER=\u0022member\u0022 export LDAP_GROUP_OBJECTCLASS=\u0022groupOfNames\u0022 export GRAPH_LDAP_BIND_DN=\u0022uid=libregraph,ou=sysusers,o=libregraph-idm\u0022 export GRAPH_LDAP_BIND_PASSWORD=idm export GRAPH_LDAP_SERVER_WRITE_ENABLED=\u0022true\u0022 export IDP_INSECURE=\u0022true\u0022 export IDP_LDAP_BIND_DN=\u0022uid=idp,ou=sysusers,o=libregraph-idm\u0022 export IDP_LDAP_BIND_PASSWORD=\u0022idp\u0022 export IDP_LDAP_LOGIN_ATTRIBUTE=uid export PROXY_ACCOUNT_BACKEND_TYPE=cs3 export OCS_ACCOUNT_BACKEND_TYPE=cs3 export STORAGE_LDAP_BIND_DN=\u0022uid=reva,ou=sysusers,o=libregraph-idm\u0022 export STORAGE_LDAP_BIND_PASSWORD=reva export OCIS_RUN_EXTENSIONS=settings,storage-metadata,graph,graph-explorer,ocs,store,thumbnails,web,webdav,storage-frontend,storage-gateway,storage-userprovider,storage-groupprovider,storage-authbasic,storage-authbearer,storage-authmachine,storage-users,storage-shares,storage-public-link,storage-appprovider,storage-sharing,proxy,idp,nats,idm,ocdav export OCIS_INSECURE=true bin\/ocis server ",
-      "wordCount" : "112",
+      "name": "Configuration Hints",
+      "url" : "https://owncloud.dev/extensions/idm/configuration_hints/",
+      "headline": "Configuration Hints",
+      "description": "TLS Server Certificates     By default IDM generates a self-signed certificate and key on first startup to be able to provide TLS protected services. The certificate is stored in idm\/ldap.crt inside the oCIS base data directory. The key is in idm\/ldap.key in the same directory. You can use a custom server certificate by setting the IDM_LDAPS_CERT and IDM_LDAPS_KEY.\nDefault \/ Demo Users     On startup IDM creates a set of default services users that are needed internally to provide access to IDM to other oCIS services.",
+      "wordCount" : "251",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://owncloud.dev/extensions/idm/setup/"
+          "@id": "https://owncloud.dev/extensions/idm/configuration_hints/"
       },
       "copyrightHolder" : "ownCloud",
-      "copyrightYear" : "2022",
-      "dateCreated": "2022-03-22T00:00:00.00Z",
-      "datePublished": "2022-03-22T00:00:00.00Z",
-      "dateModified": "2022-03-22T00:00:00.00Z",
+      "copyrightYear" : "0001",
+      "dateCreated": "0001-01-01T00:00:00.00Z",
+      "datePublished": "0001-01-01T00:00:00.00Z",
+      "dateModified": "0001-01-01T00:00:00.00Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -151,7 +143,7 @@ export GRAPH_IDENTITY_BACKEND=ldap export LDAP_URI=ldaps://localhost:9235 export
   href="/custom.css"
   media="all"
 />
-  <link href="https://owncloud.dev/extensions/idm/setup/" rel="canonical" type="text/html" />
+  <link href="https://owncloud.dev/extensions/idm/configuration_hints/" rel="canonical" type="text/html" />
 
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
 
@@ -5309,10 +5301,10 @@ export GRAPH_IDENTITY_BACKEND=ldap export LDAP_URI=ldaps://localhost:9235 export
               
                 <span class="flex">
                   <a
-                    href="/extensions/idm/configuration/"
-                    class="gdoc-nav__entry"
+                    href="/extensions/idm/configuration_hints/"
+                    class="gdoc-nav__entry is-active"
                   >
-                    Service Configuration
+                    Configuration Hints
                   </a>
                 </span>
               
@@ -5346,10 +5338,10 @@ export GRAPH_IDENTITY_BACKEND=ldap export LDAP_URI=ldaps://localhost:9235 export
               
                 <span class="flex">
                   <a
-                    href="/extensions/idm/setup/"
-                    class="gdoc-nav__entry is-active"
+                    href="/extensions/idm/configuration/"
+                    class="gdoc-nav__entry"
                   >
-                    Service Setup
+                    Service Configuration
                   </a>
                 </span>
               
@@ -8312,7 +8304,7 @@ export GRAPH_IDENTITY_BACKEND=ldap export LDAP_URI=ldaps://localhost:9235 export
     
   
   
-    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/extensions/' href='/extensions/'><span itemprop='name'>Extensions</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/extensions/idm/' href='/extensions/idm/'><span itemprop='name'>IDM</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Service Setup</span><meta itemprop='position' content='4' /></li>
+    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/extensions/' href='/extensions/'><span itemprop='name'>Extensions</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/extensions/idm/' href='/extensions/idm/'><span itemprop='name'>IDM</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Configuration Hints</span><meta itemprop='position' content='4' /></li>
   
 
   
@@ -8329,7 +8321,7 @@ export GRAPH_IDENTITY_BACKEND=ldap export LDAP_URI=ldaps://localhost:9235 export
       <span class="editpage">
         <svg class="icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
         <a
-          href="https://github.com/owncloud/ocis/edit/master/docs/extensions/idm/setup.md"
+          href="https://github.com/owncloud/ocis/edit/master/docs/extensions/idm/configuration_hints.md"
         >
           Edit page
         </a>
@@ -8343,57 +8335,62 @@ export GRAPH_IDENTITY_BACKEND=ldap export LDAP_URI=ldaps://localhost:9235 export
   <article
     class="gdoc-markdown gdoc-markdown__align--left"
   >
-    <h1>Service Setup</h1>
-    
-
-
-  <div class="gdoc-toc gdoc-toc__level--3">
-    <nav id="TableOfContents"><ul>
-        <li><a href="#using-ocis-with-libregraphidm">Using ocis with libregraph/idm</a></li>
-      </ul></nav>
-    <hr />
-  </div>
-
-
-<div class="gdoc-page__anchorwrap">
-    <h2 id="using-ocis-with-libregraphidm">
-        Using ocis with libregraph/idm
-        <a data-clipboard-text="https://owncloud.dev/extensions/idm/setup/#using-ocis-with-libregraphidm" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Using ocis with libregraph/idm" aria-label="Anchor to: Using ocis with libregraph/idm" href="#using-ocis-with-libregraphidm">
+    <h1>Configuration Hints</h1>
+    <div class="gdoc-page__anchorwrap">
+    <h2 id="tls-server-certificates">
+        TLS Server Certificates
+        <a data-clipboard-text="https://owncloud.dev/extensions/idm/configuration_hints/#tls-server-certificates" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: TLS Server Certificates" aria-label="Anchor to: TLS Server Certificates" href="#tls-server-certificates">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div>
-<p>Currently, oCIS still runs the accounts and glauth services to manage users. Until the default is switched
-to libregraph/idm, oCIS has to be started with a custom configuration in order to use libregraph/idm as
-the users and groups backend (this setup also disables the glauth and accounts service):</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">export GRAPH_IDENTITY_BACKEND=ldap
-export LDAP_URI=ldaps://localhost:9235
-export LDAP_INSECURE=&#34;true&#34;
-export LDAP_USER_BASE_DN=&#34;ou=users,o=libregraph-idm&#34;
-export LDAP_USER_SCHEMA_ID=&#34;ownclouduuid&#34;
-export LDAP_USER_SCHEMA_MAIL=&#34;mail&#34;
-export LDAP_USER_SCHEMA_USERNAME=&#34;uid&#34;
-export LDAP_USER_OBJECTCLASS=&#34;inetOrgPerson&#34;
-export LDAP_GROUP_BASE_DN=&#34;ou=groups,o=libregraph-idm&#34;
-export LDAP_GROUP_SCHEMA_ID=&#34;ownclouduuid&#34;
-export LDAP_GROUP_SCHEMA_MAIL=&#34;mail&#34;
-export LDAP_GROUP_SCHEMA_GROUPNAME=&#34;cn&#34;
-export LDAP_GROUP_SCHEMA_MEMBER=&#34;member&#34;
-export LDAP_GROUP_OBJECTCLASS=&#34;groupOfNames&#34;
-export GRAPH_LDAP_BIND_DN=&#34;uid=libregraph,ou=sysusers,o=libregraph-idm&#34;
-export GRAPH_LDAP_BIND_PASSWORD=idm
-export GRAPH_LDAP_SERVER_WRITE_ENABLED=&#34;true&#34;
-export IDP_INSECURE=&#34;true&#34;
-export IDP_LDAP_BIND_DN=&#34;uid=idp,ou=sysusers,o=libregraph-idm&#34;
-export IDP_LDAP_BIND_PASSWORD=&#34;idp&#34;
-export IDP_LDAP_LOGIN_ATTRIBUTE=uid
-export PROXY_ACCOUNT_BACKEND_TYPE=cs3
-export OCS_ACCOUNT_BACKEND_TYPE=cs3
-export STORAGE_LDAP_BIND_DN=&#34;uid=reva,ou=sysusers,o=libregraph-idm&#34;
-export STORAGE_LDAP_BIND_PASSWORD=reva
-export OCIS_RUN_EXTENSIONS=settings,storage-metadata,graph,graph-explorer,ocs,store,thumbnails,web,webdav,storage-frontend,storage-gateway,storage-userprovider,storage-groupprovider,storage-authbasic,storage-authbearer,storage-authmachine,storage-users,storage-shares,storage-public-link,storage-appprovider,storage-sharing,proxy,idp,nats,idm,ocdav
-export OCIS_INSECURE=true
-bin/ocis server
+<p>By default IDM generates a self-signed certificate and key on first startup to be
+able to provide TLS protected services. The certificate is stored in
+<code>idm/ldap.crt</code> inside the oCIS base data directory. The key is in
+<code>idm/ldap.key</code> in the same directory. You can use a custom server
+certificate by setting the <code>IDM_LDAPS_CERT</code> and <code>IDM_LDAPS_KEY</code>.</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="default--demo-users">
+        Default / Demo Users
+        <a data-clipboard-text="https://owncloud.dev/extensions/idm/configuration_hints/#default--demo-users" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Default / Demo Users" aria-label="Anchor to: Default / Demo Users" href="#default--demo-users">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>On startup IDM creates a set of default services users that are needed
+internally to provide access to IDM to other oCIS services. These users are stored
+in a separate subtree. The base DN of that subtree is:
+<code>ou=sysusers,o=libregraph-idm</code>. The service users are:</p>
+<ul>
+<li><code>uid=libregraph,ou=sysusers,o=libregraph-idm</code>: This is the only user with write
+access to the LDAP tree. It is used by the Graph service to lookup, create, delete and
+modify users and groups.</li>
+<li><code>uid=idp,ou=sysusers,o=libregraph-idm</code>: This user is used by the IDP service to
+perform user lookups for authentication.</li>
+<li><code>uid=reva,ou=sysusers,o=libregraph-idm</code>: This user is used by the &ldquo;reva&rdquo; services
+<code>user</code>, <code>group</code> and <code>auth-basic</code>.</li>
+</ul>
+<p>IDM is also able to create <a
+  class="gdoc-markdown__link"
+  href="../../../ocis/getting-started/demo-users"
+  
+>Demo Users</a>
+upon startup.</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="access-via-ldap-command-line-tools">
+        Access via LDAP command line tools
+        <a data-clipboard-text="https://owncloud.dev/extensions/idm/configuration_hints/#access-via-ldap-command-line-tools" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Access via LDAP command line tools" aria-label="Anchor to: Access via LDAP command line tools" href="#access-via-ldap-command-line-tools">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>For testing purposes it is sometimes helpful to query IDM using the ldap
+command line clients. To e.g. list all users, this command can be used:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">ldapsearch -x -H ldaps://127.0.0.1:9235 -x -D uid=libregraph,ou=sysusers,o=libregraph-idm -w idm -b o=libregraph-idm objectclass=inetorgperson
+</code></pre></div><p>When using the default configuration with the self-signed server certificate
+you might need to switch off the Certificate Validation using <code>LDAPTL_REQCERT</code> env
+variable:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">LDAPTLS_REQCERT=never ldapsearch -x -H ldaps://127.0.0.1:9235 -x -D uid=libregraph,ou=sysusers,o=libregraph-idm -w idm -b o=libregraph-idm objectclass=inetorgperson
 </code></pre></div>
   </article>
 

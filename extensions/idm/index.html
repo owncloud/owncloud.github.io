@@ -8,7 +8,8 @@
 <meta name="generator" content="Hugo 0.89.4" />
 
 
-  <meta name="description" content="Abstract     Table of Contents        Service Configuration      Service Setup      " />
+  <meta name="description" content="Abstract     The IDM service provides a minimal LDAP Service (based on https://github.com/libregraph/idm) for oCIS. It is started as part of the default configuration and serves as a central place for storing user and group information.
+It is mainly targeted at small oCIS installations. For larger setups it is recommended to replace IDM with a &ldquo;real&rdquo; LDAP server or to switch to an external Identity Management Solution." />
 
     <title>IDM | ownCloud</title>
 
@@ -32,7 +33,8 @@
     content="IDM"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Abstract     Table of Contents        Service Configuration      Service Setup      " />
+  <meta property="og:description" content="Abstract     The IDM service provides a minimal LDAP Service (based on https://github.com/libregraph/idm) for oCIS. It is started as part of the default configuration and serves as a central place for storing user and group information.
+It is mainly targeted at small oCIS installations. For larger setups it is recommended to replace IDM with a “real” LDAP server or to switch to an external Identity Management Solution." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/extensions/idm/" />
 
@@ -49,7 +51,8 @@
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="IDM" />
-  <meta name="twitter:description" content="Abstract     Table of Contents        Service Configuration      Service Setup      " />
+  <meta name="twitter:description" content="Abstract     The IDM service provides a minimal LDAP Service (based on https://github.com/libregraph/idm) for oCIS. It is started as part of the default configuration and serves as a central place for storing user and group information.
+It is mainly targeted at small oCIS installations. For larger setups it is recommended to replace IDM with a “real” LDAP server or to switch to an external Identity Management Solution." />
 
 
   <script type="application/ld+json">
@@ -60,8 +63,8 @@
       "name": "IDM",
       "url" : "https://owncloud.dev/extensions/idm/",
       "headline": "IDM",
-      "description": "Abstract     Table of Contents        Service Configuration      Service Setup      ",
-      "wordCount" : "8",
+      "description": "Abstract     The IDM service provides a minimal LDAP Service (based on https:\/\/github.com\/libregraph\/idm) for oCIS. It is started as part of the default configuration and serves as a central place for storing user and group information.\nIt is mainly targeted at small oCIS installations. For larger setups it is recommended to replace IDM with a “real” LDAP server or to switch to an external Identity Management Solution.",
+      "wordCount" : "185",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -5306,10 +5309,10 @@
               
                 <span class="flex">
                   <a
-                    href="/extensions/idm/configuration/"
+                    href="/extensions/idm/configuration_hints/"
                     class="gdoc-nav__entry"
                   >
-                    Service Configuration
+                    Configuration Hints
                   </a>
                 </span>
               
@@ -5343,10 +5346,10 @@
               
                 <span class="flex">
                   <a
-                    href="/extensions/idm/setup/"
+                    href="/extensions/idm/configuration/"
                     class="gdoc-nav__entry"
                   >
-                    Service Setup
+                    Service Configuration
                   </a>
                 </span>
               
@@ -8341,6 +8344,25 @@
         </a>
     </h2>
 </div>
+<p>The IDM service provides a minimal LDAP Service (based on <a
+  class="gdoc-markdown__link"
+  href="https://github.com/libregraph/idm"
+  
+>https://github.com/libregraph/idm</a>) for oCIS. It is started as part of
+the default configuration and serves as a central place for storing user and group information.</p>
+<p>It is mainly targeted at small oCIS installations. For larger setups it is recommended to replace IDM with a &ldquo;real&rdquo; LDAP server
+or to switch to an external Identity Management Solution.</p>
+<p>IDM listens on port 9325 by default. In the default configuration it only accepts TLS protected connections (LDAPS). The BaseDN
+of the LDAP tree is <code>o=libregraph-idm</code>. IDM gives LDAP write permissions to a single user
+(DN: <code>uid=libregraph,ou=sysusers,o=libregraph-idm</code>). Any other authenticated user has read-only access. IDM stores its data in a
+<a
+  class="gdoc-markdown__link"
+  href="https://github.com/etcd-io/bbolt"
+  
+>boltdb</a> file <code>idm/ocis.boltdb</code> inside the oCIS base data directory.</p>
+<p>Note: IDM is limited in its functionality. It only supports a subset of the LDAP operations (namely BIND, SEARCH, ADD, MODIFY, DELETE).
+Also IDM currently does not do any Schema Verification (e.g. structural vs. auxiliary Objectclasses, require and option Attributes,
+Syntax Checks, &hellip;). So it&rsquo;s not meant as a general purpose LDAP server.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="table-of-contents">
         Table of Contents
@@ -8361,8 +8383,8 @@
           <li>
             
               <span>
-                <a href="/extensions/idm/configuration/" class="gdoc-toc__entry">
-                  Service Configuration
+                <a href="/extensions/idm/configuration_hints/" class="gdoc-toc__entry">
+                  Configuration Hints
                 </a>
                 
               </span>
@@ -8377,8 +8399,8 @@
           <li>
             
               <span>
-                <a href="/extensions/idm/setup/" class="gdoc-toc__entry">
-                  Service Setup
+                <a href="/extensions/idm/configuration/" class="gdoc-toc__entry">
+                  Service Configuration
                 </a>
                 
               </span>
