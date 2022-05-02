@@ -61,7 +61,7 @@
       "url" : "https://owncloud.dev/ocis/development/testing/",
       "headline": "Testing",
       "description": "Testing with test suite in docker  Run full test suite Run single feature test oCIS image to be tested (or: skip build and take existing image) Test log output Cleanup   Testing with test suite natively installed  Getting the tests Run ocis Run the acceptance tests use existing tests for BDD   Running tests for parallel deployment  Setup the parallel deployment environment Getting the test helpers Run the acceptance tests        For running tests in the test suite you have two options.",
-      "wordCount" : "1159",
+      "wordCount" : "1161",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -8485,7 +8485,7 @@
     </h3>
 </div>
 <p>All you need to do to get the acceptance tests is check out the core repo:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">git clone https://github.com/owncloud/core.git
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/owncloud/core.git
 </code></pre></div><div class="gdoc-page__anchorwrap">
     <h3 id="run-ocis">
         Run ocis
@@ -8495,7 +8495,8 @@
     </h3>
 </div>
 <p>To start ocis:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">OCIS_INSECURE=true PROXY_ENABLE_BASIC_AUTH=true bin/ocis server
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ocis init
+<span class="nv">OCIS_INSECURE</span><span class="o">=</span><span class="nb">true</span> <span class="nv">PROXY_ENABLE_BASIC_AUTH</span><span class="o">=</span><span class="nb">true</span> bin/ocis server
 </code></pre></div><p><code>PROXY_ENABLE_BASIC_AUTH</code> will allow the acceptance tests to make requests against the provisioning api (and other endpoints) using basic auth.</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="run-the-acceptance-tests">
@@ -8507,14 +8508,14 @@
 </div>
 <p>First we will need to clone the testing app in owncloud which contains the skeleton files required for running the tests.
 In the ownCloud 10 core clone the testing app with the following command:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">git clone https://github.com/owncloud/testing apps/testing
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/owncloud/testing apps/testing
 </code></pre></div><p>Then run the api acceptance tests with the following command from the root of the ownCloud 10 core repository:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">make test-acceptance-api \
-TEST_SERVER_URL=https://localhost:9200 \
-TEST_OCIS=true \
-STORAGE_DRIVER=OCIS \
-SKELETON_DIR=apps/testing/data/apiSkeleton \
-BEHAT_FILTER_TAGS=&#39;~@notToImplementOnOCIS&amp;&amp;~@toImplementOnOCIS&#39;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">make test-acceptance-api <span class="se">\
+</span><span class="se"></span><span class="nv">TEST_SERVER_URL</span><span class="o">=</span>https://localhost:9200 <span class="se">\
+</span><span class="se"></span><span class="nv">TEST_OCIS</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span><span class="se"></span><span class="nv">STORAGE_DRIVER</span><span class="o">=</span>OCIS <span class="se">\
+</span><span class="se"></span><span class="nv">SKELETON_DIR</span><span class="o">=</span>apps/testing/data/apiSkeleton <span class="se">\
+</span><span class="se"></span><span class="nv">BEHAT_FILTER_TAGS</span><span class="o">=</span><span class="s1">&#39;~@notToImplementOnOCIS&amp;&amp;~@toImplementOnOCIS&#39;</span>
 </code></pre></div><p>Make sure to adjust the settings <code>TEST_SERVER_URL</code> and <code>OCIS_REVA_DATA_ROOT</code> according to your environment.</p>
 <p>This will run all tests that are relevant to oCIS.</p>
 <p>To run a single test add <code>BEHAT_FEATURE=&lt;feature file&gt;</code></p>
@@ -8546,11 +8547,11 @@ For that change <code>CORE_COMMITID</code> in <code>.drone.env</code>:</p>
 <li>
 <p>locally run each of the tests marked with that issue in the expected failures file.</p>
 <p>E.g.:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">make test-acceptance-api \
-TEST_SERVER_URL=https://localhost:9200 \
-TEST_OCIS=true \
-STORAGE_DRIVER=OCIS \
-BEHAT_FEATURE=&#39;tests/acceptance/features/apiComments/comments.feature:123&#39;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">make test-acceptance-api <span class="se">\
+</span><span class="se"></span><span class="nv">TEST_SERVER_URL</span><span class="o">=</span>https://localhost:9200 <span class="se">\
+</span><span class="se"></span><span class="nv">TEST_OCIS</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span><span class="se"></span><span class="nv">STORAGE_DRIVER</span><span class="o">=</span>OCIS <span class="se">\
+</span><span class="se"></span><span class="nv">BEHAT_FEATURE</span><span class="o">=</span><span class="s1">&#39;tests/acceptance/features/apiComments/comments.feature:123&#39;</span>
 </code></pre></div></li>
 <li>
 <p>the tests will fail, try to understand how and why they are failing</p>
@@ -8590,7 +8591,7 @@ BEHAT_FEATURE=&#39;tests/acceptance/features/apiComments/comments.feature:123&#3
   
 >here</a></p>
 <p>Edit the <code>.env</code> file and uncomment this line:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">COMPOSE_FILE=docker-compose.yml:testing/docker-compose-additions.yml
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">COMPOSE_FILE</span><span class="o">=</span>docker-compose.yml:testing/docker-compose-additions.yml
 </code></pre></div><p>Start the docker stack with the following command:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker-compose up -d
 </code></pre></div><div class="gdoc-page__anchorwrap">

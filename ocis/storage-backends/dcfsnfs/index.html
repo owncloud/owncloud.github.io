@@ -64,7 +64,7 @@ This document summarizes a few important considerations of the NFS setup and des
       "url" : "https://owncloud.dev/ocis/storage-backends/dcfsnfs/",
       "headline": "Decomposed FS on NFS",
       "description": "NFS Server Setup NFS Client Mount oCIS Start using the NFS Share      oCIS\u0027 default storage backend is the Decomposed FS. The Decomposed FS can be set up to run on a NFS share. That way the same storage can be provided over network to other nodes running oCIS.\nThis document summarizes a few important considerations of the NFS setup and describes a tested setup.",
-      "wordCount" : "409",
+      "wordCount" : "411",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -8408,7 +8408,8 @@ This document summarizes a few important considerations of the NFS setup and des
 </div>
 <p>The oCIS server can be instructed to set up the decomposed FS at a certain path by setting the environment variable <code>OCIS_BASE_DATA_PATH</code>.</p>
 <p>The test setup started an oCIS tech preview single binary release using this start command:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">OCIS_BASE_DATA_PATH=/mnt/ocisdata/ OCIS_LOG_LEVEL=debug OCIS_INSECURE=true PROXY_HTTP_ADDR=0.0.0.0:9200 OCIS_URL=https://hostname:9200  ./ocis-1.18.0-linux-amd64 server
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ocis init
+<span class="nv">OCIS_BASE_DATA_PATH</span><span class="o">=</span>/mnt/ocisdata/ <span class="nv">OCIS_LOG_LEVEL</span><span class="o">=</span>debug <span class="nv">OCIS_INSECURE</span><span class="o">=</span><span class="nb">true</span> <span class="nv">PROXY_HTTP_ADDR</span><span class="o">=</span>0.0.0.0:9200 <span class="nv">OCIS_URL</span><span class="o">=</span>https://hostname:9200  ./ocis-1.18.0-linux-amd64 server
 </code></pre></div><p>This starts oCIS and a decomposed FS skeleton file system structure is set up on the NFS share.</p>
 <p>The oCIS instance is passing a smoke test.</p>
 

@@ -61,7 +61,7 @@
       "url" : "https://owncloud.dev/ocis/deployment/oc10_ocis_parallel/",
       "headline": "Parallel deployment of oC10 and oCIS",
       "description": "Overview Server Deployment  Requirements Install this example   Local setup      Overview      This setup reflects stage 6 of the oC10 to oCIS migration plan Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup OpenLDAP server with demo users LDAP admin interface to edit users Keycloak as OpenID Connect provider in federation with the LDAP server ownCloud 10 with MariaDB and Redis  ownCloud 10 is configured to synchronize users from the LDAP server ownCloud 10 is used to use OpenID Connect for authentication with Keycloak   oCIS running behind Traefik as reverse proxy  oCIS is using the ownCloudSQL storage driver on the same files and same database as ownCloud 10 oCIS is using Keycloak as OpenID Connect provider oCIS is using the LDAP server as user backend   All requests to both oCIS and oC10 are routed through the oCIS proxy and will be routed based on an OIDC claim to one of them.",
-      "wordCount" : "1233",
+      "wordCount" : "1191",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -8517,11 +8517,6 @@ The file by default looks like this:</p>
   
 >Docker Hub</a>.</p>
 <p>Set your domain for the oC10 and oCIS frontend in <code>CLOUD_DOMAIN=</code>, e.g. <code>CLOUD_DOMAIN=cloud.owncloud.test</code>.</p>
-<p>You also must override the default secrets in <code>IDP_LDAP_BIND_PASSWORD</code>, <code>STORAGE_LDAP_BIND_PASSWORD</code>, <code>OCIS_JWT_SECRET</code>, <code>STORAGE_TRANSFER_SECRET</code> and <code>OCIS_MACHINE_AUTH_API_KEY</code>  in order to secure your oCIS instance. Choose some random strings e.g. from the output of <code>openssl rand -base64 32</code>. For more information see <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/ocis/deployment/#secure-an-ocis-instance"
-  
->secure an oCIS instance</a>.</p>
 <p>By default ownCloud 10 will be started in the <code>latest</code> version. If you want to start a specific version of oCIS set the version to <code>OC10_DOCKER_TAG=</code>. Available versions can be found on <a
   class="gdoc-markdown__link"
   href="https://hub.docker.com/r/owncloud/ocis/tags?page=1&amp;ordering=last_updated"

@@ -64,7 +64,7 @@ We also have some more variations of oCIS running and continuously deployed to r
       "url" : "https://owncloud.dev/ocis/getting-started/",
       "headline": "Getting Started",
       "description": "oCIS online demo Run oCIS  Binaries Docker   Usage  Login to ownCloud Web Basic Management Commands        oCIS online demo     We have an oCIS demo instance running on ocis.owncloud.com where you can get a first impression of it.\nWe also have some more variations of oCIS running and continuously deployed to reflect different scenarios in that oCIS might be used.",
-      "wordCount" : "590",
+      "wordCount" : "629",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -8435,11 +8435,14 @@ For this example, assuming version 1.20.0 of oCIS running on a Linux AMD64 host:
 </span><span class="err"></span><span class="gp"># </span>make binary executable
 <span class="go">chmod +x ocis
 </span><span class="go"></span><span class="err">
+</span><span class="err"></span><span class="gp"># </span>initialize a minimal oCIS configuration
+<span class="go">./ocis init
+</span><span class="go"></span><span class="err">
 </span><span class="err"></span><span class="gp"># </span>run with demo users
-<span class="go">OCIS_INSECURE=true ACCOUNTS_DEMO_USERS_AND_GROUPS=true ./ocis server
+<span class="go">IDM_CREATE_DEMO_USERS=true ./ocis server
 </span></code></pre></div><p>The default primary storage location is <code>~/.ocis</code> or <code>/var/lib/ocis</code> depending on the packaging format and your operating system user. You can change that value by configuration.</p>
 <blockquote class="gdoc-hint info">
-  When you&rsquo;re using oCIS with self-signed certificates, you need to set the environment variable <code>OCIS_INSECURE=true</code>, in order to make oCIS work.
+  When you&rsquo;re using oCIS with self-signed certificates, you need to answer the the question for certificate checking with &ldquo;yes&rdquo; or set the environment variable <code>OCIS_INSECURE=true</code>, in order to make oCIS work.
 </blockquote>
 
 <blockquote class="gdoc-hint warning">
@@ -8461,7 +8464,8 @@ For this example, assuming version 1.20.0 of oCIS running on a Linux AMD64 host:
 >Docker Hub</a>.</p>
 <p>The <code>latest</code> tag always reflects the current master branch.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="go">docker pull owncloud/ocis
-</span><span class="go">docker run --rm -ti -p 9200:9200 -e OCIS_INSECURE=true -e ACCOUNTS_DEMO_USERS_AND_GROUPS=true owncloud/ocis
+</span><span class="go">docker run --rm -it -v ocis-config:/etc/ocis owncloud/ocis init
+</span><span class="go">docker run --rm -p 9200:9200 -v ocis-config:/etc/ocis -v ocis-data:/var/lib/ocis -e IDM_CREATE_DEMO_USERS=true owncloud/ocis
 </span></code></pre></div><blockquote class="gdoc-hint info">
   When you&rsquo;re using oCIS with self-signed certificates, you need to set the environment variable <code>OCIS_INSECURE=true</code>, in order to make oCIS work.
 </blockquote>
@@ -8471,11 +8475,11 @@ For this example, assuming version 1.20.0 of oCIS running on a Linux AMD64 host:
   class="gdoc-markdown__link"
   href="https://owncloud.dev/ocis/getting-started/demo-users/"
   
->demo users</a> by setting <code>ACCOUNTS_DEMO_USERS_AND_GROUPS=true</code>, you need to be sure that this instance is not used in production because the passwords are public.
+>demo users</a> by setting <code>IDM_CREATE_DEMO_USERS=true</code>, you need to be sure that this instance is not used in production because the passwords are public.
 </blockquote>
 
 <blockquote class="gdoc-hint warning">
-  <p>In order to persist your data, you need to mount a docker volume or create a host bind-mount at <code>/var/lib/ocis</code>, for example with: <code>-v /some/host/dir:/var/lib/ocis</code></p>
+  <p>We are using named volumes for the oCIS configuration and oCIS data in the above example (<code>-v ocis-config:/etc/ocis -v ocis-data:/var/lib/ocis</code>). You could instead also use host bind-mounts instead, eg. <code>-v /some/host/dir:/var/lib/ocis</code>.</p>
 <p>You cannot use bind mounts on MacOS, since extended attributes are not supported (<a
   class="gdoc-markdown__link"
   href="https://github.com/owncloud/ocis/issues/182"
@@ -8530,6 +8534,8 @@ For this example, assuming version 1.20.0 of oCIS running on a Linux AMD64 host:
   href="https://owncloud.dev/ocis/config/"
   
 >docs</a>.</p>
+<p>To initialize the oCIS configuration:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt">ocis init</code></pre></div>
 <p>To start oCIS server:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt">ocis server</code></pre></div>
 <p>The list command prints all running oCIS extensions.

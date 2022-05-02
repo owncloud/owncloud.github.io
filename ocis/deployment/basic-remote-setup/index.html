@@ -64,7 +64,7 @@ If you need to access oCIS running in a docker container, on a VM or a remote ma
       "url" : "https://owncloud.dev/ocis/deployment/basic-remote-setup/",
       "headline": "Basic Remote Setup",
       "description": "Start the oCIS fullstack server from binary  Using automatically generated certificates Using already present certificates   Start the oCIS fullstack server with Docker Compose      The default configuration of the oCIS binary and the owncloud\/ocis docker image assume, that you access oCIS on localhost. This enables you to do quick testing and development without any configuration.\nIf you need to access oCIS running in a docker container, on a VM or a remote machine via another hostname than localhost, you need to configure this hostname in oCIS.",
-      "wordCount" : "428",
+      "wordCount" : "407",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -8371,18 +8371,11 @@ If you need to access oCIS running in a docker container, on a VM or a remote ma
         </a>
     </h2>
 </div>
+<p>Initialize the oCIS configuration by running <code>./bin/ocis init</code>.</p>
 <p>Upon first start of the oCIS fullstack server with <code>./bin/ocis server</code> it will generate a directory tree skeleton in <code>$HOME/.ocis</code>. If that is already existing it will not be overwritten as it contains all relevant data for oCIS.</p>
 <p>In <code>$HOME/.ocis/idp</code> is a file <code>identifier-registration.yaml</code>. It is used to configure the built-in identity provider and therefore contains the OpenID Connect issuer and also information about relying parties, for example ownCloud Web and our desktop and mobile applications.</p>
 <blockquote class="gdoc-hint warning">
   The <code>identifier-registration.yaml</code> file will only be generated if it does not exist yet. If you want to change certain environment variables like <code>OCIS_URL</code>, please delete this file first before doing so. Otherwise your changes will not be applied correctly and you will run into errors.
-</blockquote>
-
-<blockquote class="gdoc-hint warning">
-  oCIS is currently in a Tech Preview state and is shipped with demo users. In order to secure your oCIS instances please follow following guide: <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/ocis/deployment/#secure-an-ocis-instance"
-  
->secure an oCIS instance</a>
 </blockquote>
 
 <p>For the following examples you need to have the oCIS binary in your current working directory, we assume it is named <code>ocis</code> and it needs to be marked as executable. See <a

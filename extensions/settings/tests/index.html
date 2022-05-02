@@ -53,7 +53,7 @@
       "url" : "https://owncloud.dev/extensions/settings/tests/",
       "headline": "Tests",
       "description": "Requirements Acceptance Tests  In the web repo  Optional: Build web to test local changes Dockerized acceptance test services   In the oCIS repo  Optional: Build settings UI to test local changes Start oCIS from binary Run settings acceptance tests          Requirements     You need a working installation of the Go programming language, the Node runtime and the Yarn package manager installed to run the acceptance tests.",
-      "wordCount" : "374",
+      "wordCount" : "376",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -8405,7 +8405,7 @@
 >infinite scale repo</a> next to each other. If your file/folder structure is different, you&rsquo;ll have to change the paths below accordingly.</p>
 <blockquote class="gdoc-hint info">
   <p>For now, an IDP configuration file gets generated once and will fail upon changing the oCIS url as done below. To avoid any clashes, remove this file before starting the tests:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">rm ~/.ocis/idp/identifier-registration.yaml
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">rm ~/.ocis/idp/identifier-registration.yaml
 </code></pre></div>
 </blockquote>
 
@@ -8426,7 +8426,7 @@
     </h4>
 </div>
 <p>Install dependencies and bundle the frontend with a watcher by running</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">yarn &amp;&amp; yarn build:w
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">yarn <span class="o">&amp;&amp;</span> yarn build:w
 </code></pre></div><p>If you skip the step above, the currently bundled frontend from the oCIS binary will be used.</p>
 <div class="gdoc-page__anchorwrap">
     <h4 id="dockerized-acceptance-test-services">
@@ -8437,7 +8437,7 @@
     </h4>
 </div>
 <p>Start the necessary acceptance test services by using Docker (Compose):</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker compose up selenium middleware-ocis vnc
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker compose up selenium middleware-ocis vnc
 </code></pre></div><div class="gdoc-page__anchorwrap">
     <h3 id="in-the-ocis-repo">
         In the oCIS repo
@@ -8455,7 +8455,7 @@
     </h4>
 </div>
 <p>Navigate into the settings service via <code>cd ../settings/</code> and install dependencies and build the bundled settings UI with a watcher by running</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">yarn &amp;&amp; yarn watch
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">yarn <span class="o">&amp;&amp;</span> yarn watch
 </code></pre></div><div class="gdoc-page__anchorwrap">
     <h4 id="start-ocis-from-binary">
         Start oCIS from binary
@@ -8465,9 +8465,10 @@
     </h4>
 </div>
 <p>Navigate into the oCIS directory inside the oCIS repository and build the oCIS binary by running</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">make clean build
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">make clean build
 </code></pre></div><p>Then, start oCIS from the binary via</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">OCIS_URL=https://host.docker.internal:9200 OCIS_INSECURE=true PROXY_ENABLE_BASIC_AUTH=true WEB_UI_CONFIG=../../web/dev/docker/ocis.web.config.json ./bin/ocis server
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ocis init
+<span class="nv">OCIS_URL</span><span class="o">=</span>https://host.docker.internal:9200 <span class="nv">OCIS_INSECURE</span><span class="o">=</span><span class="nb">true</span> <span class="nv">PROXY_ENABLE_BASIC_AUTH</span><span class="o">=</span><span class="nb">true</span> <span class="nv">WEB_UI_CONFIG</span><span class="o">=</span>../../web/dev/docker/ocis.web.config.json ./bin/ocis server
 </code></pre></div><p>If you&rsquo;ve built the web bundle locally in its repository, you also need to reference the bundle output in the above command: <code>WEB_ASSET_PATH=../../web/dist</code></p>
 <p>If you&rsquo;ve built the settings UI bundle locally, you also need to reference the bundle output in the above command: <code>SETTINGS_ASSET_PATH=../settings/assets/</code></p>
 <div class="gdoc-page__anchorwrap">
@@ -8484,7 +8485,7 @@
   
 >http://host.docker.internal:6080/</a> in your browser and connect to the VNC client.</p>
 <p>Navigate into the settings service via <code>cd ../settings/</code> and start the acceptance tests by running</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">SERVER_HOST=https://host.docker.internal:9200 BACKEND_HOST=https://host.docker.internal:9200 RUN_ON_OCIS=true NODE_TLS_REJECT_UNAUTHORIZED=0 WEB_PATH=../../web WEB_UI_CONFIG=../../web/tests/drone/config-ocis.json MIDDLEWARE_HOST=http://host.docker.internal:3000 ./ui/tests/run-acceptance-test.sh ./ui/tests/acceptance/features/
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">SERVER_HOST</span><span class="o">=</span>https://host.docker.internal:9200 <span class="nv">BACKEND_HOST</span><span class="o">=</span>https://host.docker.internal:9200 <span class="nv">RUN_ON_OCIS</span><span class="o">=</span><span class="nb">true</span> <span class="nv">NODE_TLS_REJECT_UNAUTHORIZED</span><span class="o">=</span><span class="m">0</span> <span class="nv">WEB_PATH</span><span class="o">=</span>../../web <span class="nv">WEB_UI_CONFIG</span><span class="o">=</span>../../web/tests/drone/config-ocis.json <span class="nv">MIDDLEWARE_HOST</span><span class="o">=</span>http://host.docker.internal:3000 ./ui/tests/run-acceptance-test.sh ./ui/tests/acceptance/features/
 </code></pre></div>
   </article>
 
