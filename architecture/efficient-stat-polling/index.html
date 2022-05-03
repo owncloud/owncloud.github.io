@@ -8577,7 +8577,7 @@ graph TD
         </a>
     </h2>
 </div>
-<p>Every client polls the virtual root ETag (every 30 sec). The gateway will cache the virutal root ETag of every storage for 30 sec as well. That way every storage provider is only stated once every 30 sec (can be throttled dynamically to adapt to storage io load).</p>
+<p>Every client polls the virtual root ETag (every 30 sec). The gateway will cache the virtual root ETag of every storage for 30 sec as well. That way every storage provider is only stated once every 30 sec (can be throttled dynamically to adapt to storage io load).</p>
 
 
 
@@ -8634,14 +8634,14 @@ graph TD
 </div>
 <p>For a single machine using a local posix storage the linux kernel already caches the inodes that contain the metadata that is necessary to calculate the ETag (even extended attributes are supported). With 4k inodes 256 nodes take 1Mb of RAM, 1k inodes take 4Mb and 1M inodes take 4Gb to completely cache the file metadata. For distributed filesystems a dedicated cache might make sense to prevent hammering it with stat like requests to calculate ETags.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="bandwith-considerations">
-        Bandwith considerations
-        <a data-clipboard-text="https://owncloud.dev/architecture/efficient-stat-polling/#bandwith-considerations" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Bandwith considerations" aria-label="Anchor to: Bandwith considerations" href="#bandwith-considerations">
+    <h3 id="bandwidth-considerations">
+        Bandwidth considerations
+        <a data-clipboard-text="https://owncloud.dev/architecture/efficient-stat-polling/#bandwidth-considerations" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Bandwidth considerations" aria-label="Anchor to: Bandwidth considerations" href="#bandwidth-considerations">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
 </div>
-<p>The bandwith for a single machine might be another bottleneck. Consider a propfind request with roughly 500 bytes and a response with roughly 800 bytes in size:</p>
+<p>The bandwidth for a single machine might be another bottleneck. Consider a propfind request with roughly 500 bytes and a response with roughly 800 bytes in size:</p>
 <ul>
 <li>At 100Mbit (~10Mb/s) you can receive 20 000 PROPFIND requests</li>
 <li>At 1000Mbit (~100Mb/s) you can receive 200 000 PROPFIND requests</li>
