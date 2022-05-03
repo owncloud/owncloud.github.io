@@ -8,7 +8,7 @@
 <meta name="generator" content="Hugo 0.89.4" />
 
 
-  <meta name="description" content="Environment Variables        Name Type Default Value Description     FRONTEND_DEBUG_ADDR string 127.0.0.1:9141    FRONTEND_DEBUG_TOKEN string     FRONTEND_DEBUG_PPROF bool false    FRONTEND_DEBUG_ZPAGES bool false    FRONTEND_HTTP_ADDR string 127.0.0.1:9140 The address of the http service.   FRONTEND_HTTP_PROTOCOL string tcp The transport protocol of the http service.   STORAGE_TRANSFER_SECRET string     OCIS_MACHINE_AUTH_API_KEY;FRONTEND_MACHINE_AUTH_API_KEY string     FRONTEND_ENABLE_PROJECT_SPACES bool true Indicates to clients that project spaces are supposed to be made available." />
+  <meta name="description" content="Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLED;FRONTEND_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPE;FRONTEND_TRACING_TYPE string     OCIS_TRACING_ENDPOINT;FRONTEND_TRACING_ENDPOINT string  The endpoint to the tracing collector.   OCIS_TRACING_COLLECTOR;FRONTEND_TRACING_COLLECTOR string     OCIS_LOG_LEVEL;FRONTEND_LOG_LEVEL string  The log level.   OCIS_LOG_PRETTY;FRONTEND_LOG_PRETTY bool false Activates pretty log output.   OCIS_LOG_COLOR;FRONTEND_LOG_COLOR bool false Activates colorized log output." />
 
     <title>Frontend Configvars | ownCloud</title>
 
@@ -32,7 +32,7 @@
     content="Frontend Configvars"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Environment Variables        Name Type Default Value Description     FRONTEND_DEBUG_ADDR string 127.0.0.1:9141    FRONTEND_DEBUG_TOKEN string     FRONTEND_DEBUG_PPROF bool false    FRONTEND_DEBUG_ZPAGES bool false    FRONTEND_HTTP_ADDR string 127.0.0.1:9140 The address of the http service.   FRONTEND_HTTP_PROTOCOL string tcp The transport protocol of the http service.   STORAGE_TRANSFER_SECRET string     OCIS_MACHINE_AUTH_API_KEY;FRONTEND_MACHINE_AUTH_API_KEY string     FRONTEND_ENABLE_PROJECT_SPACES bool true Indicates to clients that project spaces are supposed to be made available." />
+  <meta property="og:description" content="Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLED;FRONTEND_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPE;FRONTEND_TRACING_TYPE string     OCIS_TRACING_ENDPOINT;FRONTEND_TRACING_ENDPOINT string  The endpoint to the tracing collector.   OCIS_TRACING_COLLECTOR;FRONTEND_TRACING_COLLECTOR string     OCIS_LOG_LEVEL;FRONTEND_LOG_LEVEL string  The log level.   OCIS_LOG_PRETTY;FRONTEND_LOG_PRETTY bool false Activates pretty log output.   OCIS_LOG_COLOR;FRONTEND_LOG_COLOR bool false Activates colorized log output." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/extensions/_includes/frontend_configvars/" />
 
@@ -41,7 +41,7 @@
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Frontend Configvars" />
-  <meta name="twitter:description" content="Environment Variables        Name Type Default Value Description     FRONTEND_DEBUG_ADDR string 127.0.0.1:9141    FRONTEND_DEBUG_TOKEN string     FRONTEND_DEBUG_PPROF bool false    FRONTEND_DEBUG_ZPAGES bool false    FRONTEND_HTTP_ADDR string 127.0.0.1:9140 The address of the http service.   FRONTEND_HTTP_PROTOCOL string tcp The transport protocol of the http service.   STORAGE_TRANSFER_SECRET string     OCIS_MACHINE_AUTH_API_KEY;FRONTEND_MACHINE_AUTH_API_KEY string     FRONTEND_ENABLE_PROJECT_SPACES bool true Indicates to clients that project spaces are supposed to be made available." />
+  <meta name="twitter:description" content="Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLED;FRONTEND_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPE;FRONTEND_TRACING_TYPE string     OCIS_TRACING_ENDPOINT;FRONTEND_TRACING_ENDPOINT string  The endpoint to the tracing collector.   OCIS_TRACING_COLLECTOR;FRONTEND_TRACING_COLLECTOR string     OCIS_LOG_LEVEL;FRONTEND_LOG_LEVEL string  The log level.   OCIS_LOG_PRETTY;FRONTEND_LOG_PRETTY bool false Activates pretty log output.   OCIS_LOG_COLOR;FRONTEND_LOG_COLOR bool false Activates colorized log output." />
 
 
   <script type="application/ld+json">
@@ -52,8 +52,8 @@
       "name": "Frontend Configvars",
       "url" : "https://owncloud.dev/extensions/_includes/frontend_configvars/",
       "headline": "Frontend Configvars",
-      "description": "Environment Variables        Name Type Default Value Description     FRONTEND_DEBUG_ADDR string 127.0.0.1:9141    FRONTEND_DEBUG_TOKEN string     FRONTEND_DEBUG_PPROF bool false    FRONTEND_DEBUG_ZPAGES bool false    FRONTEND_HTTP_ADDR string 127.0.0.1:9140 The address of the http service.   FRONTEND_HTTP_PROTOCOL string tcp The transport protocol of the http service.   STORAGE_TRANSFER_SECRET string     OCIS_MACHINE_AUTH_API_KEY;FRONTEND_MACHINE_AUTH_API_KEY string     FRONTEND_ENABLE_PROJECT_SPACES bool true Indicates to clients that project spaces are supposed to be made available.",
-      "wordCount" : "80",
+      "description": "Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLED;FRONTEND_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPE;FRONTEND_TRACING_TYPE string     OCIS_TRACING_ENDPOINT;FRONTEND_TRACING_ENDPOINT string  The endpoint to the tracing collector.   OCIS_TRACING_COLLECTOR;FRONTEND_TRACING_COLLECTOR string     OCIS_LOG_LEVEL;FRONTEND_LOG_LEVEL string  The log level.   OCIS_LOG_PRETTY;FRONTEND_LOG_PRETTY bool false Activates pretty log output.   OCIS_LOG_COLOR;FRONTEND_LOG_COLOR bool false Activates colorized log output.",
+      "wordCount" : "127",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -8415,6 +8415,54 @@
 </thead>
 <tbody>
 <tr>
+<td>OCIS_TRACING_ENABLED;FRONTEND_TRACING_ENABLED</td>
+<td>bool</td>
+<td>false</td>
+<td>Activates tracing.</td>
+</tr>
+<tr>
+<td>OCIS_TRACING_TYPE;FRONTEND_TRACING_TYPE</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OCIS_TRACING_ENDPOINT;FRONTEND_TRACING_ENDPOINT</td>
+<td>string</td>
+<td></td>
+<td>The endpoint to the tracing collector.</td>
+</tr>
+<tr>
+<td>OCIS_TRACING_COLLECTOR;FRONTEND_TRACING_COLLECTOR</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OCIS_LOG_LEVEL;FRONTEND_LOG_LEVEL</td>
+<td>string</td>
+<td></td>
+<td>The log level.</td>
+</tr>
+<tr>
+<td>OCIS_LOG_PRETTY;FRONTEND_LOG_PRETTY</td>
+<td>bool</td>
+<td>false</td>
+<td>Activates pretty log output.</td>
+</tr>
+<tr>
+<td>OCIS_LOG_COLOR;FRONTEND_LOG_COLOR</td>
+<td>bool</td>
+<td>false</td>
+<td>Activates colorized log output.</td>
+</tr>
+<tr>
+<td>OCIS_LOG_FILE;FRONTEND_LOG_FILE</td>
+<td>string</td>
+<td></td>
+<td>The target log file.</td>
+</tr>
+<tr>
 <td>FRONTEND_DEBUG_ADDR</td>
 <td>string</td>
 <td>127.0.0.1:9141</td>
@@ -8454,6 +8502,18 @@
 <td>STORAGE_TRANSFER_SECRET</td>
 <td>string</td>
 <td></td>
+<td></td>
+</tr>
+<tr>
+<td>OCIS_JWT_SECRET;FRONTEND_JWT_SECRET</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>REVA_GATEWAY</td>
+<td>string</td>
+<td>127.0.0.1:9142</td>
 <td></td>
 </tr>
 <tr>

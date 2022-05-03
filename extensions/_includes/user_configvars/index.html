@@ -8,7 +8,7 @@
 <meta name="generator" content="Hugo 0.89.4" />
 
 
-  <meta name="description" content="Environment Variables        Name Type Default Value Description     USERS_DEBUG_ADDR string 127.0.0.1:9145    USERS_DEBUG_TOKEN string     USERS_DEBUG_PPROF bool false    USERS_DEBUG_ZPAGES bool false    USERS_GRPC_ADDR string 127.0.0.1:9144 The address of the grpc service.   USERS_GRPC_PROTOCOL string tcp The transport protocol of the grpc service.   LDAP_URI;USERS_LDAP_URI string ldaps://localhost:9235    LDAP_CACERT;USERS_LDAP_CACERT string ~/." />
+  <meta name="description" content="Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLED;USERS_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPE;USERS_TRACING_TYPE string     OCIS_TRACING_ENDPOINT;USERS_TRACING_ENDPOINT string  The endpoint to the tracing collector.   OCIS_TRACING_COLLECTOR;USERS_TRACING_COLLECTOR string     OCIS_LOG_LEVEL;USERS_LOG_LEVEL string  The log level.   OCIS_LOG_PRETTY;USERS_LOG_PRETTY bool false Activates pretty log output.   OCIS_LOG_COLOR;USERS_LOG_COLOR bool false Activates colorized log output." />
 
     <title>User Configvars | ownCloud</title>
 
@@ -32,7 +32,7 @@
     content="User Configvars"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Environment Variables        Name Type Default Value Description     USERS_DEBUG_ADDR string 127.0.0.1:9145    USERS_DEBUG_TOKEN string     USERS_DEBUG_PPROF bool false    USERS_DEBUG_ZPAGES bool false    USERS_GRPC_ADDR string 127.0.0.1:9144 The address of the grpc service.   USERS_GRPC_PROTOCOL string tcp The transport protocol of the grpc service.   LDAP_URI;USERS_LDAP_URI string ldaps://localhost:9235    LDAP_CACERT;USERS_LDAP_CACERT string ~/." />
+  <meta property="og:description" content="Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLED;USERS_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPE;USERS_TRACING_TYPE string     OCIS_TRACING_ENDPOINT;USERS_TRACING_ENDPOINT string  The endpoint to the tracing collector.   OCIS_TRACING_COLLECTOR;USERS_TRACING_COLLECTOR string     OCIS_LOG_LEVEL;USERS_LOG_LEVEL string  The log level.   OCIS_LOG_PRETTY;USERS_LOG_PRETTY bool false Activates pretty log output.   OCIS_LOG_COLOR;USERS_LOG_COLOR bool false Activates colorized log output." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/extensions/_includes/user_configvars/" />
 
@@ -41,7 +41,7 @@
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="User Configvars" />
-  <meta name="twitter:description" content="Environment Variables        Name Type Default Value Description     USERS_DEBUG_ADDR string 127.0.0.1:9145    USERS_DEBUG_TOKEN string     USERS_DEBUG_PPROF bool false    USERS_DEBUG_ZPAGES bool false    USERS_GRPC_ADDR string 127.0.0.1:9144 The address of the grpc service.   USERS_GRPC_PROTOCOL string tcp The transport protocol of the grpc service.   LDAP_URI;USERS_LDAP_URI string ldaps://localhost:9235    LDAP_CACERT;USERS_LDAP_CACERT string ~/." />
+  <meta name="twitter:description" content="Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLED;USERS_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPE;USERS_TRACING_TYPE string     OCIS_TRACING_ENDPOINT;USERS_TRACING_ENDPOINT string  The endpoint to the tracing collector.   OCIS_TRACING_COLLECTOR;USERS_TRACING_COLLECTOR string     OCIS_LOG_LEVEL;USERS_LOG_LEVEL string  The log level.   OCIS_LOG_PRETTY;USERS_LOG_PRETTY bool false Activates pretty log output.   OCIS_LOG_COLOR;USERS_LOG_COLOR bool false Activates colorized log output." />
 
 
   <script type="application/ld+json">
@@ -52,8 +52,8 @@
       "name": "User Configvars",
       "url" : "https://owncloud.dev/extensions/_includes/user_configvars/",
       "headline": "User Configvars",
-      "description": "Environment Variables        Name Type Default Value Description     USERS_DEBUG_ADDR string 127.0.0.1:9145    USERS_DEBUG_TOKEN string     USERS_DEBUG_PPROF bool false    USERS_DEBUG_ZPAGES bool false    USERS_GRPC_ADDR string 127.0.0.1:9144 The address of the grpc service.   USERS_GRPC_PROTOCOL string tcp The transport protocol of the grpc service.   LDAP_URI;USERS_LDAP_URI string ldaps:\/\/localhost:9235    LDAP_CACERT;USERS_LDAP_CACERT string ~\/.",
-      "wordCount" : "112",
+      "description": "Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLED;USERS_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPE;USERS_TRACING_TYPE string     OCIS_TRACING_ENDPOINT;USERS_TRACING_ENDPOINT string  The endpoint to the tracing collector.   OCIS_TRACING_COLLECTOR;USERS_TRACING_COLLECTOR string     OCIS_LOG_LEVEL;USERS_LOG_LEVEL string  The log level.   OCIS_LOG_PRETTY;USERS_LOG_PRETTY bool false Activates pretty log output.   OCIS_LOG_COLOR;USERS_LOG_COLOR bool false Activates colorized log output.",
+      "wordCount" : "159",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -8415,6 +8415,54 @@
 </thead>
 <tbody>
 <tr>
+<td>OCIS_TRACING_ENABLED;USERS_TRACING_ENABLED</td>
+<td>bool</td>
+<td>false</td>
+<td>Activates tracing.</td>
+</tr>
+<tr>
+<td>OCIS_TRACING_TYPE;USERS_TRACING_TYPE</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OCIS_TRACING_ENDPOINT;USERS_TRACING_ENDPOINT</td>
+<td>string</td>
+<td></td>
+<td>The endpoint to the tracing collector.</td>
+</tr>
+<tr>
+<td>OCIS_TRACING_COLLECTOR;USERS_TRACING_COLLECTOR</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OCIS_LOG_LEVEL;USERS_LOG_LEVEL</td>
+<td>string</td>
+<td></td>
+<td>The log level.</td>
+</tr>
+<tr>
+<td>OCIS_LOG_PRETTY;USERS_LOG_PRETTY</td>
+<td>bool</td>
+<td>false</td>
+<td>Activates pretty log output.</td>
+</tr>
+<tr>
+<td>OCIS_LOG_COLOR;USERS_LOG_COLOR</td>
+<td>bool</td>
+<td>false</td>
+<td>Activates colorized log output.</td>
+</tr>
+<tr>
+<td>OCIS_LOG_FILE;USERS_LOG_FILE</td>
+<td>string</td>
+<td></td>
+<td>The target log file.</td>
+</tr>
+<tr>
 <td>USERS_DEBUG_ADDR</td>
 <td>string</td>
 <td>127.0.0.1:9145</td>
@@ -8449,6 +8497,18 @@
 <td>string</td>
 <td>tcp</td>
 <td>The transport protocol of the grpc service.</td>
+</tr>
+<tr>
+<td>OCIS_JWT_SECRET;USERS_JWT_SECRET</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>REVA_GATEWAY</td>
+<td>string</td>
+<td>127.0.0.1:9142</td>
+<td></td>
 </tr>
 <tr>
 <td>LDAP_URI;USERS_LDAP_URI</td>
