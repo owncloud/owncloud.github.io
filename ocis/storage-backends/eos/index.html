@@ -9985,8 +9985,8 @@ docker-compose exec ocis eos chown 2:2 /eos/dockertest/ocis/metadata
 </blockquote>
 
 <p>Kill the metadata storage. By default it uses the <code>ocis</code> storage driver. We need to switch it to the <code>eos</code> driver:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill storage-system
-docker-compose exec -e STORAGE_SYSTEM_DRIVER=eos -e STORAGE_SYSTEM_ROOT=/eos/dockertest/ocis/metadata ocis ./bin/ocis run storage-system
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose exec ocis ./bin/ocis kill storage-metadata
+docker-compose exec -e STORAGE_METADATA_DRIVER=eos -e STORAGE_METADATA_ROOT=/eos/dockertest/ocis/metadata ocis ./bin/ocis run storage-metadata
 </code></pre></div><div class="gdoc-page__anchorwrap">
     <h3 id="6-accounts-service">
         6. Accounts service
