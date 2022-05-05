@@ -9951,60 +9951,60 @@
 <li>
 <p>Open the <code>.env</code> file in a text editor
 The file by default looks like this:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">    <span class="c1"># If you&#39;re on a internet facing server please comment out following line.</span>
-    <span class="c1"># It skips certificate validation for various parts of oCIS and is needed if you use self signed certificates.</span>
-    <span class="nv">INSECURE</span><span class="o">=</span><span class="nb">true</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># If you&#39;re on a internet facing server please comment out following line.</span>
+<span class="c1"># It skips certificate validation for various parts of oCIS and is needed if you use self signed certificates.</span>
+<span class="nv">INSECURE</span><span class="o">=</span><span class="nb">true</span>
 
-    <span class="c1">### Traefik settings ###</span>
-    <span class="nv">TRAEFIK_LOG_LEVEL</span><span class="o">=</span>
-    <span class="c1"># Serve Traefik dashboard. Defaults to &#34;false&#34;.</span>
-    <span class="nv">TRAEFIK_DASHBOARD</span><span class="o">=</span>
-    <span class="c1"># Domain of Traefik, where you can find the dashboard. Defaults to &#34;traefik.owncloud.test&#34;</span>
-    <span class="nv">TRAEFIK_DOMAIN</span><span class="o">=</span>
-    <span class="c1"># Basic authentication for the dashboard. Defaults to user &#34;admin&#34; and password &#34;admin&#34;</span>
-    <span class="nv">TRAEFIK_BASIC_AUTH_USERS</span><span class="o">=</span>
-    <span class="c1"># Email address for obtaining LetsEncrypt certificates, needs only be changed if this is a public facing server</span>
-    <span class="nv">TRAEFIK_ACME_MAIL</span><span class="o">=</span>
+<span class="c1">### Traefik settings ###</span>
+<span class="nv">TRAEFIK_LOG_LEVEL</span><span class="o">=</span>
+<span class="c1"># Serve Traefik dashboard. Defaults to &#34;false&#34;.</span>
+<span class="nv">TRAEFIK_DASHBOARD</span><span class="o">=</span>
+<span class="c1"># Domain of Traefik, where you can find the dashboard. Defaults to &#34;traefik.owncloud.test&#34;</span>
+<span class="nv">TRAEFIK_DOMAIN</span><span class="o">=</span>
+<span class="c1"># Basic authentication for the dashboard. Defaults to user &#34;admin&#34; and password &#34;admin&#34;</span>
+<span class="nv">TRAEFIK_BASIC_AUTH_USERS</span><span class="o">=</span>
+<span class="c1"># Email address for obtaining LetsEncrypt certificates, needs only be changed if this is a public facing server</span>
+<span class="nv">TRAEFIK_ACME_MAIL</span><span class="o">=</span>
 
-    <span class="c1">### shared oCIS / oC10 settings ###</span>
-    <span class="c1"># Domain of oCIS / oC10, where you can find the frontend. Defaults to &#34;cloud.owncloud.test&#34;</span>
-    <span class="nv">CLOUD_DOMAIN</span><span class="o">=</span>
+<span class="c1">### shared oCIS / oC10 settings ###</span>
+<span class="c1"># Domain of oCIS / oC10, where you can find the frontend. Defaults to &#34;cloud.owncloud.test&#34;</span>
+<span class="nv">CLOUD_DOMAIN</span><span class="o">=</span>
 
-    <span class="c1">### oCIS settings ###</span>
-    <span class="c1"># oCIS version. Defaults to &#34;latest&#34;</span>
-    <span class="nv">OCIS_DOCKER_TAG</span><span class="o">=</span>
-    <span class="c1"># JWT secret which is used for the storage provider. Must be changed in order to have a secure oCIS. Defaults to &#34;Pive-Fumkiu4&#34;</span>
-    <span class="nv">OCIS_JWT_SECRET</span><span class="o">=</span>
-    <span class="c1"># JWT secret which is used for uploads to create transfer tokens. Must be changed in order to have a secure oCIS. Defaults to &#34;replace-me-with-a-transfer-secret&#34;</span>
-    <span class="nv">STORAGE_TRANSFER_SECRET</span><span class="o">=</span>
-    <span class="c1"># Machine auth api key secret. Must be changed in order to have a secure oCIS. Defaults to &#34;change-me-please&#34;</span>
-    <span class="nv">OCIS_MACHINE_AUTH_API_KEY</span><span class="o">=</span>
+<span class="c1">### oCIS settings ###</span>
+<span class="c1"># oCIS version. Defaults to &#34;latest&#34;</span>
+<span class="nv">OCIS_DOCKER_TAG</span><span class="o">=</span>
+<span class="c1"># JWT secret which is used for the storage provider. Must be changed in order to have a secure oCIS. Defaults to &#34;Pive-Fumkiu4&#34;</span>
+<span class="nv">OCIS_JWT_SECRET</span><span class="o">=</span>
+<span class="c1"># JWT secret which is used for uploads to create transfer tokens. Must be changed in order to have a secure oCIS. Defaults to &#34;replace-me-with-a-transfer-secret&#34;</span>
+<span class="nv">STORAGE_TRANSFER_SECRET</span><span class="o">=</span>
+<span class="c1"># Machine auth api key secret. Must be changed in order to have a secure oCIS. Defaults to &#34;change-me-please&#34;</span>
+<span class="nv">OCIS_MACHINE_AUTH_API_KEY</span><span class="o">=</span>
 
-    <span class="c1">### oCIS settings ###</span>
-    <span class="c1"># oC10 version. Defaults to &#34;latest&#34;</span>
-    <span class="nv">OC10_DOCKER_TAG</span><span class="o">=</span>
-    <span class="c1"># client secret which the openidconnect app uses to authenticate to Keycloak. Defaults to &#34;oc10-oidc-secret&#34;</span>
-    <span class="nv">OC10_OIDC_CLIENT_SECRET</span><span class="o">=</span>
-    <span class="c1"># app which will be shown when opening the ownCloud 10 UI. Defaults to &#34;files&#34; but also could be set to &#34;web&#34;</span>
-    <span class="nv">OWNCLOUD_DEFAULT_APP</span><span class="o">=</span>
-    <span class="c1"># if set to &#34;false&#34; (default) links will be opened in the classic UI, if set to &#34;true&#34; ownCloud Web is used</span>
-    <span class="nv">OWNCLOUD_WEB_REWRITE_LINKS</span><span class="o">=</span>
+<span class="c1">### oCIS settings ###</span>
+<span class="c1"># oC10 version. Defaults to &#34;latest&#34;</span>
+<span class="nv">OC10_DOCKER_TAG</span><span class="o">=</span>
+<span class="c1"># client secret which the openidconnect app uses to authenticate to Keycloak. Defaults to &#34;oc10-oidc-secret&#34;</span>
+<span class="nv">OC10_OIDC_CLIENT_SECRET</span><span class="o">=</span>
+<span class="c1"># app which will be shown when opening the ownCloud 10 UI. Defaults to &#34;files&#34; but also could be set to &#34;web&#34;</span>
+<span class="nv">OWNCLOUD_DEFAULT_APP</span><span class="o">=</span>
+<span class="c1"># if set to &#34;false&#34; (default) links will be opened in the classic UI, if set to &#34;true&#34; ownCloud Web is used</span>
+<span class="nv">OWNCLOUD_WEB_REWRITE_LINKS</span><span class="o">=</span>
 
-    <span class="c1">### LDAP settings ###</span>
-    <span class="c1"># password for the LDAP admin user &#34;cn=admin,dc=owncloud,dc=com&#34;, defaults to &#34;admin&#34;</span>
-    <span class="nv">LDAP_ADMIN_PASSWORD</span><span class="o">=</span>
-    <span class="c1"># Domain of the LDAP management frontend. Defaults to &#34;ldap.owncloud.test&#34;</span>
-    <span class="nv">LDAP_MANAGER_DOMAIN</span><span class="o">=</span>
+<span class="c1">### LDAP settings ###</span>
+<span class="c1"># password for the LDAP admin user &#34;cn=admin,dc=owncloud,dc=com&#34;, defaults to &#34;admin&#34;</span>
+<span class="nv">LDAP_ADMIN_PASSWORD</span><span class="o">=</span>
+<span class="c1"># Domain of the LDAP management frontend. Defaults to &#34;ldap.owncloud.test&#34;</span>
+<span class="nv">LDAP_MANAGER_DOMAIN</span><span class="o">=</span>
 
-    <span class="c1">### Keycloak ###</span>
-    <span class="c1"># Domain of Keycloak, where you can find the management and authentication frontend. Defaults to &#34;keycloak.owncloud.test&#34;</span>
-    <span class="nv">KEYCLOAK_DOMAIN</span><span class="o">=</span>
-    <span class="c1"># Realm which to be used with oC10 and oCIS. Defaults to &#34;owncloud&#34;</span>
-    <span class="nv">KEYCLOAK_REALM</span><span class="o">=</span>
-    <span class="c1"># Admin user login name. Defaults to &#34;admin&#34;</span>
-    <span class="nv">KEYCLOAK_ADMIN_USER</span><span class="o">=</span>
-    <span class="c1"># Admin user login password. Defaults to &#34;admin&#34;</span>
-    <span class="nv">KEYCLOAK_ADMIN_PASSWORD</span><span class="o">=</span>
+<span class="c1">### Keycloak ###</span>
+<span class="c1"># Domain of Keycloak, where you can find the management and authentication frontend. Defaults to &#34;keycloak.owncloud.test&#34;</span>
+<span class="nv">KEYCLOAK_DOMAIN</span><span class="o">=</span>
+<span class="c1"># Realm which to be used with oC10 and oCIS. Defaults to &#34;owncloud&#34;</span>
+<span class="nv">KEYCLOAK_REALM</span><span class="o">=</span>
+<span class="c1"># Admin user login name. Defaults to &#34;admin&#34;</span>
+<span class="nv">KEYCLOAK_ADMIN_USER</span><span class="o">=</span>
+<span class="c1"># Admin user login password. Defaults to &#34;admin&#34;</span>
+<span class="nv">KEYCLOAK_ADMIN_PASSWORD</span><span class="o">=</span>
 </code></pre></div><p>You are installing oCIS on a server and Traefik will obtain valid certificates for you so please remove <code>INSECURE=true</code> or set it to <code>false</code>.</p>
 <p>If you want to use the Traefik dashboard, set TRAEFIK_DASHBOARD to <code>true</code> (default is <code>false</code> and therefore not active). If you activate it, you must set a domain for the Traefik dashboard in <code>TRAEFIK_DOMAIN=</code> e.g. <code>TRAEFIK_DOMAIN=traefik.owncloud.test</code>.</p>
 <p>The Traefik dashboard is secured by basic auth. Default credentials are the user <code>admin</code> with the password <code>admin</code>. To set your own credentials, generate a htpasswd (e.g. by using <a
