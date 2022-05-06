@@ -8,7 +8,7 @@
 <meta name="generator" content="Hugo 0.89.4" />
 
 
-  <meta name="description" content="Testing with test suite in docker  Run full test suite Run single feature test oCIS image to be tested (or: skip build and take existing image) Test log output Cleanup   Testing with test suite natively installed  Getting the tests Run ocis Run the acceptance tests use existing tests for BDD   Running tests for parallel deployment  Setup the parallel deployment environment Getting the test helpers Run the acceptance tests        For running tests in the test suite you have two options." />
+  <meta name="description" content="Testing with test suite in docker  Run full test suite Run single feature test oCIS image to be tested (or: skip build and take existing image) Test log output Cleanup   Testing with test suite natively installed  Getting the tests Run ocis Run the acceptance tests use existing tests for BDD   Running tests for parallel deployment  Setup the parallel deployment environment Getting the test helpers Run the acceptance tests        To run tests in the test suite you have two options." />
 
     <title>Testing | ownCloud</title>
 
@@ -32,7 +32,7 @@
     content="Testing"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Testing with test suite in docker  Run full test suite Run single feature test oCIS image to be tested (or: skip build and take existing image) Test log output Cleanup   Testing with test suite natively installed  Getting the tests Run ocis Run the acceptance tests use existing tests for BDD   Running tests for parallel deployment  Setup the parallel deployment environment Getting the test helpers Run the acceptance tests        For running tests in the test suite you have two options." />
+  <meta property="og:description" content="Testing with test suite in docker  Run full test suite Run single feature test oCIS image to be tested (or: skip build and take existing image) Test log output Cleanup   Testing with test suite natively installed  Getting the tests Run ocis Run the acceptance tests use existing tests for BDD   Running tests for parallel deployment  Setup the parallel deployment environment Getting the test helpers Run the acceptance tests        To run tests in the test suite you have two options." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/ocis/development/testing/" />
 
@@ -49,7 +49,7 @@
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Testing" />
-  <meta name="twitter:description" content="Testing with test suite in docker  Run full test suite Run single feature test oCIS image to be tested (or: skip build and take existing image) Test log output Cleanup   Testing with test suite natively installed  Getting the tests Run ocis Run the acceptance tests use existing tests for BDD   Running tests for parallel deployment  Setup the parallel deployment environment Getting the test helpers Run the acceptance tests        For running tests in the test suite you have two options." />
+  <meta name="twitter:description" content="Testing with test suite in docker  Run full test suite Run single feature test oCIS image to be tested (or: skip build and take existing image) Test log output Cleanup   Testing with test suite natively installed  Getting the tests Run ocis Run the acceptance tests use existing tests for BDD   Running tests for parallel deployment  Setup the parallel deployment environment Getting the test helpers Run the acceptance tests        To run tests in the test suite you have two options." />
 
 
   <script type="application/ld+json">
@@ -60,8 +60,8 @@
       "name": "Testing",
       "url" : "https://owncloud.dev/ocis/development/testing/",
       "headline": "Testing",
-      "description": "Testing with test suite in docker  Run full test suite Run single feature test oCIS image to be tested (or: skip build and take existing image) Test log output Cleanup   Testing with test suite natively installed  Getting the tests Run ocis Run the acceptance tests use existing tests for BDD   Running tests for parallel deployment  Setup the parallel deployment environment Getting the test helpers Run the acceptance tests        For running tests in the test suite you have two options.",
-      "wordCount" : "1161",
+      "description": "Testing with test suite in docker  Run full test suite Run single feature test oCIS image to be tested (or: skip build and take existing image) Test log output Cleanup   Testing with test suite natively installed  Getting the tests Run ocis Run the acceptance tests use existing tests for BDD   Running tests for parallel deployment  Setup the parallel deployment environment Getting the test helpers Run the acceptance tests        To run tests in the test suite you have two options.",
+      "wordCount" : "1190",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -9877,7 +9877,7 @@
   </div>
 
 
-<p>For running tests in the test suite you have two options. You may go the easy way and just run the test suite in docker. But for some tasks you could also need to install the test suite natively, which requires a little bit more setup since PHP and some dependencies need to be installed.</p>
+<p>To run tests in the test suite you have two options. You may go the easy way and just run the test suite in docker. But for some tasks you could also need to install the test suite natively, which requires a little more setup since PHP and some dependencies need to be installed.</p>
 <p>Both ways to run tests with the test suites are described here.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="testing-with-test-suite-in-docker">
@@ -9902,12 +9902,12 @@
   
 >ownCloud feature tests and test suites</a></li>
 </ul>
-<p>At the moment both can be applied to oCIS since the api of oCIS is designed to be compatible to ownCloud.</p>
-<p>Since we have to offer a migration path to existing users of ownCloud, you can use your existing ownCloud as storage backend for oCIS. As another storage backend we offer oCIS native storage, also called &ldquo;oCIS&rdquo;. This stores files directly on disk. Which storage backend is used is also reflected in the tests, there are always different tests for oCIS storage and ownCloud storage.</p>
+<p>At the moment both can be applied to oCIS since the api of oCIS is designed to be compatible with ownCloud.</p>
+<p>Since we have to offer a migration path to existing users of ownCloud, you can use your existing ownCloud as the storage backend for oCIS. As another storage backend we offer oCIS native storage, also called &ldquo;oCIS&rdquo;. This stores files directly on disk. Which storage backend is used is also reflected in the tests, there are always different tests for oCIS storage and ownCloud storage.</p>
 <p>You can invoke two types of test suite runs:</p>
 <ul>
 <li>run a full test suite, which consists of multiple feature tests</li>
-<li>run a single feature test</li>
+<li>run a single feature or single scenario in a feature</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h3 id="run-full-test-suite">
@@ -9928,10 +9928,12 @@
         </a>
     </h3>
 </div>
-<p>The single feature tests can also be run against the different storage backends. Therefore multiple make targets with the schema test-<test source>-feature-<storage backend> exists. For selecting a single feature test you have to add an additional <code>BEHAT_FEATURE=...</code> parameter when invoking the make command:</p>
+<p>The single feature tests can also be run against the different storage backends. Therefore, multiple make targets with the schema test-<test source>-feature-<storage backend> exist. To select a single feature you have to add an additional <code>BEHAT_FEATURE=...</code> parameter when invoking the make command:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">make -C tests/acceptance/docker test-ocis-feature-ocis-storage BEHAT_FEATURE=&#39;tests/acceptance/features/apiAccountsHashDifficulty/addUser.feature&#39;
 </code></pre></div><p>This must be pointing to a valid feature definition.</p>
-<div class="gdoc-page__anchorwrap">
+<p>To run a single scenario in a feature, then mention the line number of the scenario:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">make -C tests/acceptance/docker test-ocis-feature-ocis-storage BEHAT_FEATURE=&#39;tests/acceptance/features/apiAccountsHashDifficulty/addUser.feature:20&#39;
+</code></pre></div><div class="gdoc-page__anchorwrap">
     <h3 id="ocis-image-to-be-tested-or-skip-build-and-take-existing-image">
         oCIS image to be tested (or: skip build and take existing image)
         <a data-clipboard-text="https://owncloud.dev/ocis/development/testing/#ocis-image-to-be-tested-or-skip-build-and-take-existing-image" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: oCIS image to be tested (or: skip build and take existing image)" aria-label="Anchor to: oCIS image to be tested (or: skip build and take existing image)" href="#ocis-image-to-be-tested-or-skip-build-and-take-existing-image">
@@ -9939,7 +9941,7 @@
         </a>
     </h3>
 </div>
-<p>By default, the tests will be run against the docker image built from your current working state of the oCIS repository. For some purposes it might also be handy to use a oCIS image from Docker Hub. Therefore you can provide the optional flag <code>OCIS_IMAGE_TAG=...</code> which must contain an available docker tag of the <a
+<p>By default, the tests will be run against the docker image built from your current working state of the oCIS repository. For some purposes it might also be handy to use an oCIS image from Docker Hub. Therefore, you can provide the optional flag <code>OCIS_IMAGE_TAG=...</code> which must contain an available docker tag of the <a
   class="gdoc-markdown__link"
   href="https://hub.docker.com/r/owncloud/ocis"
   
@@ -9996,9 +9998,14 @@
         </a>
     </h3>
 </div>
+<p>Create an up-to-date ocis binary by <a
+  class="gdoc-markdown__link"
+  href="https://owncloud.dev/ocis/development/build/"
+  
+>building oCIS</a></p>
 <p>To start ocis:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ocis init
-<span class="nv">OCIS_INSECURE</span><span class="o">=</span><span class="nb">true</span> <span class="nv">PROXY_ENABLE_BASIC_AUTH</span><span class="o">=</span><span class="nb">true</span> bin/ocis server
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">IDM_ADMIN_PASSWORD</span><span class="o">=</span>admin ocis/bin/ocis init --insecure <span class="nb">true</span>
+<span class="nv">OCIS_INSECURE</span><span class="o">=</span><span class="nb">true</span> <span class="nv">PROXY_ENABLE_BASIC_AUTH</span><span class="o">=</span><span class="nb">true</span> ocis/bin/ocis server
 </code></pre></div><p><code>PROXY_ENABLE_BASIC_AUTH</code> will allow the acceptance tests to make requests against the provisioning api (and other endpoints) using basic auth.</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="run-the-acceptance-tests">
@@ -10014,13 +10021,16 @@ In the ownCloud 10 core clone the testing app with the following command:</p>
 </code></pre></div><p>Then run the api acceptance tests with the following command from the root of the ownCloud 10 core repository:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">make test-acceptance-api <span class="se">\
 </span><span class="se"></span><span class="nv">TEST_SERVER_URL</span><span class="o">=</span>https://localhost:9200 <span class="se">\
+</span><span class="se"></span><span class="nv">TEST_WITH_GRAPH_API</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span><span class="se"></span><span class="nv">PATH_TO_OCIS</span><span class="o">=</span>/var/www/ocis <span class="se">\
+</span><span class="se"></span><span class="nv">PATH_TO_CORE</span><span class="o">=</span>. <span class="se">\
 </span><span class="se"></span><span class="nv">TEST_OCIS</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
 </span><span class="se"></span><span class="nv">STORAGE_DRIVER</span><span class="o">=</span>OCIS <span class="se">\
 </span><span class="se"></span><span class="nv">SKELETON_DIR</span><span class="o">=</span>apps/testing/data/apiSkeleton <span class="se">\
 </span><span class="se"></span><span class="nv">BEHAT_FILTER_TAGS</span><span class="o">=</span><span class="s1">&#39;~@notToImplementOnOCIS&amp;&amp;~@toImplementOnOCIS&#39;</span>
-</code></pre></div><p>Make sure to adjust the settings <code>TEST_SERVER_URL</code> and <code>OCIS_REVA_DATA_ROOT</code> according to your environment.</p>
+</code></pre></div><p>Make sure to adjust the settings <code>TEST_SERVER_URL</code> and <code>PATH_TO_OCIS</code> according to your environment.</p>
 <p>This will run all tests that are relevant to oCIS.</p>
-<p>To run a single test add <code>BEHAT_FEATURE=&lt;feature file&gt;</code></p>
+<p>To run a single feature add <code>BEHAT_FEATURE=&lt;feature file&gt;</code></p>
 <p>To run tests with a different storage driver set <code>STORAGE_DRIVER</code> to the correct value. It can be set to <code>OCIS</code> or <code>OWNCLOUD</code> and uses <code>OWNCLOUD</code> as the default value.</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="use-existing-tests-for-bdd">
@@ -10031,11 +10041,10 @@ In the ownCloud 10 core clone the testing app with the following command:</p>
     </h3>
 </div>
 <p>As a lot of scenarios are written for oC10, we can use those tests for Behaviour driven development in ocis.
-Every scenario that does not work in oCIS with &ldquo;owncloud&rdquo; storage, is listed in <code>tests/acceptance/expected-failures-on-OWNCLOUD-storage.md</code> with a link to the related issue.
 Every scenario that does not work in oCIS with &ldquo;ocis&rdquo; storage, is listed in <code>tests/acceptance/expected-failures-on-OCIS-storage.md</code> with a link to the related issue.</p>
 <p>Those scenarios are run in the ordinary acceptance test pipeline in CI. The scenarios that fail are checked against the
-expected failures. If there are any differences then the CI pipeline fails.
-Similarly, scenarios that do not work in oCIS with EOS storage are listed in <code>tests/acceptance/expected-failures-on-EOS-storage.md</code>.</p>
+expected failures. If there are any differences then the CI pipeline fails.</p>
+<p>The tests are not currently run in CI with the OWNCLOUD or EOS storage drivers, so there are no expected-failures files for those.</p>
 <p>If you want to work on a specific issue</p>
 <ol>
 <li>
@@ -10124,7 +10133,7 @@ For that change <code>CORE_COMMITID</code> in <code>.drone.env</code>:</p>
 </span><span class="se"></span><span class="nv">PATH_TO_CORE</span><span class="o">=</span><span class="s2">&#34;&lt;path_to_core&gt;&#34;</span> <span class="se">\
 </span><span class="se"></span><span class="nv">SKELETON_DIR</span><span class="o">=</span><span class="s2">&#34;&lt;path_to_core&gt;/apps/testing/data/apiSkeleton&#34;</span>
 </code></pre></div><p>Replace <code>&lt;path_to_core&gt;</code> with the actual path to the root directory of core repo that you have cloned earlier.</p>
-<p>In order to run a single test, use <code>BEHAT_FEATURE</code> environment variable.</p>
+<p>In order to run a single test, use the <code>BEHAT_FEATURE</code> environment variable.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">make test-paralleldeployment-api <span class="se">\
 </span><span class="se"></span>... <span class="se">\
 </span><span class="se"></span><span class="nv">BEHAT_FEATURE</span><span class="o">=</span><span class="s2">&#34;tests/parallelDeployAcceptance/features/apiShareManagement/acceptShares.feature&#34;</span>
