@@ -9896,7 +9896,10 @@ Rename the downloaded binary to ocis and move it to /usr/bin/. As a next step, y
 
 <span class="k">[Install]</span>
 <span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
-</code></pre></div><p>For reasons of simplicity we are using the root user and group to run oCIS which is not recommended. Please use a non-root user in production environments and modify the oCIS service definition accordingly.</p>
+</code></pre></div><blockquote class="gdoc-hint warning">
+  For reasons of simplicity we are using the root user and group to run oCIS which is not recommended. Please use a non-root user in production environments and modify the oCIS service definition accordingly.
+</blockquote>
+
 <p>In the service definition we referenced <code>/etc/ocis/ocis.env</code> as our file containing environment variables for the oCIS process.
 In order to create the file we need first to create the folder <code>/etc/ocis/</code> and then we can add the actual <code>/etc/ocis/ocis.env</code> with following content:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">OCIS_URL</span><span class="o">=</span>https://some-hostname-or-ip:9200
