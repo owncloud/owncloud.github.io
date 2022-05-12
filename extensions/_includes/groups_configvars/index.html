@@ -8,7 +8,7 @@
 <meta name="generator" content="Hugo 0.89.4" />
 
 
-  <meta name="description" content="Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDGROUPS_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPEGROUPS_TRACING_TYPE string     OCIS_TRACING_ENDPOINTGROUPS_TRACING_ENDPOINT string  The endpoint to the tracing collector.   OCIS_TRACING_COLLECTORGROUPS_TRACING_COLLECTOR string     OCIS_LOG_LEVELGROUPS_LOG_LEVEL string  The log level.   OCIS_LOG_PRETTYGROUPS_LOG_PRETTY bool false Activates pretty log output.   OCIS_LOG_COLORGROUPS_LOG_COLOR bool false Activates colorized log output." />
+  <meta name="description" content="Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDGROUPS_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPEGROUPS_TRACING_TYPE string  The sampler type: remote, const, probabilistic, ratelimiting (default remote). See also https://www.jaegertracing.io/docs/latest/sampling/.   OCIS_TRACING_ENDPOINTGROUPS_TRACING_ENDPOINT string  The endpoint to the tracing collector.   OCIS_TRACING_COLLECTORGROUPS_TRACING_COLLECTOR string  The HTTP endpoint for sending spans directly to a collector, i.e. http://jaeger-collector:14268/api/traces. If specified, the tracing endpoint is ignored." />
 
     <title>Groups Configvars | ownCloud</title>
 
@@ -32,7 +32,7 @@
     content="Groups Configvars"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDGROUPS_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPEGROUPS_TRACING_TYPE string     OCIS_TRACING_ENDPOINTGROUPS_TRACING_ENDPOINT string  The endpoint to the tracing collector.   OCIS_TRACING_COLLECTORGROUPS_TRACING_COLLECTOR string     OCIS_LOG_LEVELGROUPS_LOG_LEVEL string  The log level.   OCIS_LOG_PRETTYGROUPS_LOG_PRETTY bool false Activates pretty log output.   OCIS_LOG_COLORGROUPS_LOG_COLOR bool false Activates colorized log output." />
+  <meta property="og:description" content="Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDGROUPS_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPEGROUPS_TRACING_TYPE string  The sampler type: remote, const, probabilistic, ratelimiting (default remote). See also https://www.jaegertracing.io/docs/latest/sampling/.   OCIS_TRACING_ENDPOINTGROUPS_TRACING_ENDPOINT string  The endpoint to the tracing collector.   OCIS_TRACING_COLLECTORGROUPS_TRACING_COLLECTOR string  The HTTP endpoint for sending spans directly to a collector, i.e. http://jaeger-collector:14268/api/traces. If specified, the tracing endpoint is ignored." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/extensions/_includes/groups_configvars/" />
 
@@ -41,7 +41,7 @@
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Groups Configvars" />
-  <meta name="twitter:description" content="Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDGROUPS_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPEGROUPS_TRACING_TYPE string     OCIS_TRACING_ENDPOINTGROUPS_TRACING_ENDPOINT string  The endpoint to the tracing collector.   OCIS_TRACING_COLLECTORGROUPS_TRACING_COLLECTOR string     OCIS_LOG_LEVELGROUPS_LOG_LEVEL string  The log level.   OCIS_LOG_PRETTYGROUPS_LOG_PRETTY bool false Activates pretty log output.   OCIS_LOG_COLORGROUPS_LOG_COLOR bool false Activates colorized log output." />
+  <meta name="twitter:description" content="Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDGROUPS_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPEGROUPS_TRACING_TYPE string  The sampler type: remote, const, probabilistic, ratelimiting (default remote). See also https://www.jaegertracing.io/docs/latest/sampling/.   OCIS_TRACING_ENDPOINTGROUPS_TRACING_ENDPOINT string  The endpoint to the tracing collector.   OCIS_TRACING_COLLECTORGROUPS_TRACING_COLLECTOR string  The HTTP endpoint for sending spans directly to a collector, i.e. http://jaeger-collector:14268/api/traces. If specified, the tracing endpoint is ignored." />
 
 
   <script type="application/ld+json">
@@ -52,8 +52,8 @@
       "name": "Groups Configvars",
       "url" : "https://owncloud.dev/extensions/_includes/groups_configvars/",
       "headline": "Groups Configvars",
-      "description": "Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDGROUPS_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPEGROUPS_TRACING_TYPE string     OCIS_TRACING_ENDPOINTGROUPS_TRACING_ENDPOINT string  The endpoint to the tracing collector.   OCIS_TRACING_COLLECTORGROUPS_TRACING_COLLECTOR string     OCIS_LOG_LEVELGROUPS_LOG_LEVEL string  The log level.   OCIS_LOG_PRETTYGROUPS_LOG_PRETTY bool false Activates pretty log output.   OCIS_LOG_COLORGROUPS_LOG_COLOR bool false Activates colorized log output.",
-      "wordCount" : "191",
+      "description": "Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDGROUPS_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPEGROUPS_TRACING_TYPE string  The sampler type: remote, const, probabilistic, ratelimiting (default remote). See also https:\/\/www.jaegertracing.io\/docs\/latest\/sampling\/.   OCIS_TRACING_ENDPOINTGROUPS_TRACING_ENDPOINT string  The endpoint to the tracing collector.   OCIS_TRACING_COLLECTORGROUPS_TRACING_COLLECTOR string  The HTTP endpoint for sending spans directly to a collector, i.e. http:\/\/jaeger-collector:14268\/api\/traces. If specified, the tracing endpoint is ignored.",
+      "wordCount" : "674",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -9447,7 +9447,11 @@
 <td>OCIS_TRACING_TYPE<br/>GROUPS_TRACING_TYPE</td>
 <td>string</td>
 <td></td>
-<td></td>
+<td>The sampler type: remote, const, probabilistic, ratelimiting (default remote). See also <a
+  class="gdoc-markdown__link"
+  href="https://www.jaegertracing.io/docs/latest/sampling/"
+  
+>https://www.jaegertracing.io/docs/latest/sampling/</a>.</td>
 </tr>
 <tr>
 <td>OCIS_TRACING_ENDPOINT<br/>GROUPS_TRACING_ENDPOINT</td>
@@ -9459,7 +9463,7 @@
 <td>OCIS_TRACING_COLLECTOR<br/>GROUPS_TRACING_COLLECTOR</td>
 <td>string</td>
 <td></td>
-<td></td>
+<td>The HTTP endpoint for sending spans directly to a collector, i.e. http://jaeger-collector:14268/api/traces. If specified, the tracing endpoint is ignored.</td>
 </tr>
 <tr>
 <td>OCIS_LOG_LEVEL<br/>GROUPS_LOG_LEVEL</td>
@@ -9537,127 +9541,121 @@
 <td>GROUPS_SKIP_USER_GROUPS_IN_TOKEN</td>
 <td>bool</td>
 <td>false</td>
-<td></td>
+<td>Disables the encoding of the user&rsquo;s groupmember ships in the reva access token. To reduces token size, especially when users are members of a large number of groups.</td>
 </tr>
 <tr>
 <td>LDAP_URI<br/>GROUPS_LDAP_URI</td>
 <td>string</td>
 <td>ldaps://localhost:9235</td>
-<td></td>
+<td>URI of the LDAP Server to connect to. Supported URI schemes are &lsquo;ldaps://&rsquo; and &lsquo;ldap://&rsquo;</td>
 </tr>
 <tr>
 <td>LDAP_CACERT<br/>GROUPS_LDAP_CACERT</td>
 <td>string</td>
 <td>~/.ocis/idm/ldap.crt</td>
-<td></td>
+<td>Path to a CA certificate file for validating the LDAP server&rsquo;s TLS certificate. If empty the system default CA bundle will be used.</td>
 </tr>
 <tr>
 <td>LDAP_INSECURE<br/>GROUPS_LDAP_INSECURE</td>
 <td>bool</td>
 <td>false</td>
-<td></td>
+<td>Disable TLS certificate validation for the LDAP connections. Do not set this in production environments.</td>
 </tr>
 <tr>
 <td>LDAP_BIND_DN<br/>GROUPS_LDAP_BIND_DN</td>
 <td>string</td>
 <td>uid=reva,ou=sysusers,o=libregraph-idm</td>
-<td></td>
+<td>LDAP DN to use for simple bind authentication with the target LDAP server.</td>
 </tr>
 <tr>
 <td>LDAP_BIND_PASSWORD<br/>GROUPS_LDAP_BIND_PASSWORD</td>
 <td>string</td>
 <td></td>
-<td></td>
+<td>Password to use for authenticating the &lsquo;bind_dn&rsquo;.</td>
 </tr>
 <tr>
 <td>LDAP_USER_BASE_DN<br/>GROUPS_LDAP_USER_BASE_DN</td>
 <td>string</td>
 <td>ou=users,o=libregraph-idm</td>
-<td></td>
+<td>Search base DN for looking up LDAP users.</td>
 </tr>
 <tr>
 <td>LDAP_GROUP_BASE_DN<br/>GROUPS_LDAP_GROUP_BASE_DN</td>
 <td>string</td>
 <td>ou=groups,o=libregraph-idm</td>
-<td></td>
+<td>Search base DN for looking up LDAP groups.</td>
 </tr>
 <tr>
 <td>LDAP_USER_SCOPE<br/>GROUPS_LDAP_USER_SCOPE</td>
 <td>string</td>
 <td>sub</td>
-<td></td>
+<td>LDAP search scope to use when looking up users (&lsquo;base&rsquo;, &lsquo;one&rsquo;, &lsquo;sub&rsquo;).</td>
 </tr>
 <tr>
 <td>LDAP_GROUP_SCOPE<br/>GROUPS_LDAP_GROUP_SCOPE</td>
 <td>string</td>
 <td>sub</td>
-<td></td>
+<td>LDAP search scope to use when looking up gruops (&lsquo;base&rsquo;, &lsquo;one&rsquo;, &lsquo;sub&rsquo;).</td>
 </tr>
 <tr>
 <td>LDAP_USERFILTER<br/>GROUPS_LDAP_USERFILTER</td>
 <td>string</td>
 <td></td>
-<td></td>
+<td>LDAP filter to add to the default filters for user search (e.g. &lsquo;(objectclass=ownCloud)').</td>
 </tr>
 <tr>
-<td>LDAP_GROUPFILTER<br/>GROUPS_LDAP_USERFILTER</td>
+<td>LDAP_GROUPFILTER<br/>GROUPS_LDAP_GROUPFILTER</td>
 <td>string</td>
 <td></td>
-<td></td>
+<td>LDAP filter to add to the default filters for group searches.</td>
 </tr>
 <tr>
 <td>LDAP_USER_OBJECTCLASS<br/>GROUPS_LDAP_USER_OBJECTCLASS</td>
 <td>string</td>
 <td>inetOrgPerson</td>
-<td></td>
+<td>The object class to use for users in the default user search filter (&lsquo;inetOrgPerson&rsquo;).</td>
 </tr>
 <tr>
 <td>LDAP_GROUP_OBJECTCLASS<br/>GROUPS_LDAP_GROUP_OBJECTCLASS</td>
 <td>string</td>
 <td>groupOfNames</td>
-<td></td>
-</tr>
-<tr>
-<td>LDAP_LOGIN_ATTRIBUTES<br/>GROUPS_LDAP_LOGIN_ATTRIBUTES</td>
-<td></td>
-<td>[uid mail]</td>
-<td></td>
+<td>The object class to use for groups in the default group search filter (&lsquo;groupOfNames&rsquo;).</td>
 </tr>
 <tr>
 <td>OCIS_URL<br/>OCIS_OIDC_ISSUER<br/>GROUPS_IDP_URL</td>
 <td>string</td>
 <td>https://localhost:9200</td>
-<td></td>
+<td>The identity provider value to set in the groupids of the CS3 group objects for groups returned by this group provider.</td>
 </tr>
 <tr>
 <td>LDAP_USER_SCHEMA_ID<br/>GROUPS_LDAP_USER_SCHEMA_ID</td>
 <td>string</td>
 <td>ownclouduuid</td>
-<td></td>
+<td>LDAP Attribute to use as the unique id for users. This should be a stable globally unique id (e.g. a UUID).</td>
 </tr>
 <tr>
 <td>LDAP_USER_SCHEMA_ID_IS_OCTETSTRING<br/>GROUPS_LDAP_USER_SCHEMA_ID_IS_OCTETSTRING</td>
 <td>bool</td>
 <td>false</td>
-<td></td>
+<td>Set this to true if the defined &lsquo;id&rsquo; attribute for users is of the &lsquo;OCTETSTRING&rsquo; syntax. This is e.g. required when using the &lsquo;objectGUID&rsquo; attribute of Active Directory for the user ids.</td>
 </tr>
 <tr>
 <td>LDAP_USER_SCHEMA_MAIL<br/>GROUPS_LDAP_USER_SCHEMA_MAIL</td>
 <td>string</td>
 <td>mail</td>
-<td></td>
+<td>LDAP Attribute to use for the email address of users.</td>
 </tr>
 <tr>
 <td>LDAP_USER_SCHEMA_DISPLAYNAME<br/>GROUPS_LDAP_USER_SCHEMA_DISPLAYNAME</td>
 <td>string</td>
 <td>displayname</td>
-<td></td>
+<td>LDAP Attribute to use for the displayname of users.</td>
 </tr>
 <tr>
 <td>LDAP_USER_SCHEMA_USERNAME<br/>GROUPS_LDAP_USER_SCHEMA_USERNAME</td>
 <td>string</td>
 <td>uid</td>
-<td></td>
+<td>LDAP Attribute to use for username of users.</td>
 </tr>
 <tr>
 <td>LDAP_GROUP_SCHEMA_ID<br/>GROUPS_LDAP_GROUP_SCHEMA_ID</td>
@@ -9669,67 +9667,67 @@
 <td>LDAP_GROUP_SCHEMA_ID_IS_OCTETSTRING<br/>GROUPS_LDAP_GROUP_SCHEMA_ID_IS_OCTETSTRING</td>
 <td>bool</td>
 <td>false</td>
-<td></td>
+<td>Set this to true if the defined &lsquo;id&rsquo; attribute for groups is of the &lsquo;OCTETSTRING&rsquo; syntax. This is e.g. required when using the &lsquo;objectGUID&rsquo; attribute of Active Directory for the group ids.</td>
 </tr>
 <tr>
 <td>LDAP_GROUP_SCHEMA_MAIL<br/>GROUPS_LDAP_GROUP_SCHEMA_MAIL</td>
 <td>string</td>
 <td>mail</td>
-<td></td>
+<td>LDAP Attribute to use for the email address of groups (can be empty).</td>
 </tr>
 <tr>
 <td>LDAP_GROUP_SCHEMA_DISPLAYNAME<br/>GROUPS_LDAP_GROUP_SCHEMA_DISPLAYNAME</td>
 <td>string</td>
 <td>cn</td>
-<td></td>
+<td>LDAP Attribute to use for the displayname of groups (often the same as groupname attribute)</td>
 </tr>
 <tr>
 <td>LDAP_GROUP_SCHEMA_GROUPNAME<br/>GROUPS_LDAP_GROUP_SCHEMA_GROUPNAME</td>
 <td>string</td>
 <td>cn</td>
-<td></td>
+<td>LDAP Attribute to use for the name of groups</td>
 </tr>
 <tr>
 <td>LDAP_GROUP_SCHEMA_MEMBER<br/>GROUPS_LDAP_GROUP_SCHEMA_MEMBER</td>
 <td>string</td>
 <td>member</td>
-<td></td>
+<td>LDAP Attribute that is used for group members.</td>
 </tr>
 <tr>
 <td>GROUPS_OWNCLOUDSQL_DB_USERNAME</td>
 <td>string</td>
 <td>owncloud</td>
-<td></td>
+<td>Database user to use for authenticating with the owncloud database.</td>
 </tr>
 <tr>
 <td>GROUPS_OWNCLOUDSQL_DB_PASSWORD</td>
 <td>string</td>
 <td></td>
-<td></td>
+<td>Password for the database user.</td>
 </tr>
 <tr>
 <td>GROUPS_OWNCLOUDSQL_DB_HOST</td>
 <td>string</td>
 <td>mysql</td>
-<td></td>
+<td>Hostname of the database server.</td>
 </tr>
 <tr>
 <td>GROUPS_OWNCLOUDSQL_DB_PORT</td>
 <td>int</td>
 <td>3306</td>
-<td></td>
+<td>Network port to use for the database connection.</td>
 </tr>
 <tr>
 <td>GROUPS_OWNCLOUDSQL_DB_NAME</td>
 <td>string</td>
 <td>owncloud</td>
-<td></td>
+<td>Name of the owncloud database.</td>
 </tr>
 <tr>
 <td>GROUPS_OWNCLOUDSQL_IDP</td>
 <td>string</td>
 <td>https://localhost:9200</td>
-<td></td>
+<td>The identity provider value to set in the userids of the CS3 user objects for users returned by this user provider.</td>
 </tr>
 <tr>
 <td>GROUPS_OWNCLOUDSQL_NOBODY</td>
@@ -9741,7 +9739,7 @@
 <td>GROUPS_OWNCLOUDSQL_JOIN_USERNAME</td>
 <td>bool</td>
 <td>false</td>
-<td></td>
+<td>Join the user properties table to read usernames (boolean)</td>
 </tr>
 <tr>
 <td>GROUPS_OWNCLOUDSQL_JOIN_OWNCLOUD_UUID</td>
@@ -9753,7 +9751,7 @@
 <td>GROUPS_OWNCLOUDSQL_ENABLE_MEDIAL_SEARCH</td>
 <td>bool</td>
 <td>false</td>
-<td></td>
+<td>Allow &lsquo;medial search&rsquo; when searching for users instead of just doing a prefix search. (Allows finding &lsquo;Alice&rsquo; when searching for &lsquo;lic&rsquo;.)</td>
 </tr>
 </tbody>
 </table> </div>
