@@ -8,7 +8,7 @@
 <meta name="generator" content="Hugo 0.89.4" />
 
 
-  <meta name="description" content="Installation  Docker Source code   Configuration    Options     Setting up backend and running Running      Installation     Docker     Make sure to have Docker, Docker-Compose, Node.js and Yarn installed.
+  <meta name="description" content="Installation  Docker Source code   Configuration    Options   Sentry   Setting up backend and running Running      Installation     Docker     Make sure to have Docker, Docker-Compose, Node.js and Yarn installed.
 This setup currently doesn&rsquo;t work on Windows out of the box.
  Workaround One of our contributors has opened a PR to a dependency that prevents us from successfully bundling the frontend." />
 
@@ -34,7 +34,7 @@ This setup currently doesn&rsquo;t work on Windows out of the box.
     content="Getting Started"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Installation  Docker Source code   Configuration    Options     Setting up backend and running Running      Installation     Docker     Make sure to have Docker, Docker-Compose, Node.js and Yarn installed.
+  <meta property="og:description" content="Installation  Docker Source code   Configuration    Options   Sentry   Setting up backend and running Running      Installation     Docker     Make sure to have Docker, Docker-Compose, Node.js and Yarn installed.
 This setup currently doesn’t work on Windows out of the box.
  Workaround One of our contributors has opened a PR to a dependency that prevents us from successfully bundling the frontend." />
 <meta property="og:type" content="article" />
@@ -53,7 +53,7 @@ This setup currently doesn’t work on Windows out of the box.
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Getting Started" />
-  <meta name="twitter:description" content="Installation  Docker Source code   Configuration    Options     Setting up backend and running Running      Installation     Docker     Make sure to have Docker, Docker-Compose, Node.js and Yarn installed.
+  <meta name="twitter:description" content="Installation  Docker Source code   Configuration    Options   Sentry   Setting up backend and running Running      Installation     Docker     Make sure to have Docker, Docker-Compose, Node.js and Yarn installed.
 This setup currently doesn’t work on Windows out of the box.
  Workaround One of our contributors has opened a PR to a dependency that prevents us from successfully bundling the frontend." />
 
@@ -66,8 +66,8 @@ This setup currently doesn’t work on Windows out of the box.
       "name": "Getting Started",
       "url" : "https://owncloud.dev/clients/web/getting-started/",
       "headline": "Getting Started",
-      "description": "Installation  Docker Source code   Configuration    Options     Setting up backend and running Running      Installation     Docker     Make sure to have Docker, Docker-Compose, Node.js and Yarn installed.\nThis setup currently doesn’t work on Windows out of the box.\n Workaround One of our contributors has opened a PR to a dependency that prevents us from successfully bundling the frontend.",
-      "wordCount" : "615",
+      "description": "Installation  Docker Source code   Configuration    Options   Sentry   Setting up backend and running Running      Installation     Docker     Make sure to have Docker, Docker-Compose, Node.js and Yarn installed.\nThis setup currently doesn’t work on Windows out of the box.\n Workaround One of our contributors has opened a PR to a dependency that prevents us from successfully bundling the frontend.",
+      "wordCount" : "718",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -9666,6 +9666,7 @@ This setup currently doesn’t work on Windows out of the box.
                 <li><a href="#options">Options</a></li>
               </ul>
             </li>
+            <li><a href="#sentry">Sentry</a></li>
           </ul>
         </li>
         <li><a href="#setting-up-backend-and-running">Setting up backend and running</a></li>
@@ -9776,6 +9777,35 @@ allows ownCloud to get feedback from your user base through a dedicated survey w
 <li><code>options.sharingRecipientsPerPage</code> Sets the amount of users shown as recipients in the dropdown when sharing resources. Default amount is 200.</li>
 <li><code>options.sidebar.shares.showAllOnLoad</code> Sets the list of (link) shares list in the sidebar to be initially expanded (default is a collapsed state, only showing the first three shares).</li>
 </ul>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="sentry">
+        Sentry
+        <a data-clipboard-text="https://owncloud.dev/clients/web/getting-started/#sentry" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Sentry" aria-label="Anchor to: Sentry" href="#sentry">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>Web supports <a
+  class="gdoc-markdown__link"
+  href="https://sentry.io/welcome/"
+  
+>Sentry</a> to provide monitoring and error tracking.
+To enable sending data to a Sentry instance, you can use the following configuration keys:</p>
+<ul>
+<li><code>sentry.dsn</code> Should contain the DSN for your sentry project.</li>
+<li><code>sentry.environment</code>: Lets you specify the enviroment to use in Sentry. Defaults to <code>production</code>.</li>
+</ul>
+<p>Any other key under <code>sentry</code> will be forwarded to the Sentry initialization. You can find out more
+settings in the <a
+  class="gdoc-markdown__link"
+  href="https://docs.sentry.io/platforms/javascript/configuration/"
+  
+>Sentry docs</a>.</p>
+<blockquote class="gdoc-hint info">
+  If you are using an old version of Sentry (9 and before), you might want to add the setting <code>sentry.autoSessionTracking: false</code> to avoid errors related to breaking changes introduced in the
+integration libraries.
+</blockquote>
+
 <div class="gdoc-page__anchorwrap">
     <h2 id="setting-up-backend-and-running">
         Setting up backend and running
