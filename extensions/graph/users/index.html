@@ -8,7 +8,7 @@
 <meta name="generator" content="Hugo 0.89.4" />
 
 
-  <meta name="description" content="Users API  Reading users  GET /me GET /users GET /users/{userid or accountname}   Creating / Updating Users  POST /users  Request Body Response   DELETE /users/{id} PATCH /users/{id}          Users API     The Users API is implementing a subset of the functionality of the MS Graph User resource The JSON representation of a User handled by the Users API looks like this:" />
+  <meta name="description" content="Users API  Reading users  GET /me GET /users GET /users/{userid or accountname}   Creating / Updating Users  POST /users  Request Body Response   DELETE /users/{id} PATCH /users/{id}   Change password  POST /me/changePassword  Request Body            Users API     The Users API is implementing a subset of the functionality of the MS Graph User resource The JSON representation of a User handled by the Users API looks like this:" />
 
     <title>Users | ownCloud</title>
 
@@ -32,7 +32,7 @@
     content="Users"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Users API  Reading users  GET /me GET /users GET /users/{userid or accountname}   Creating / Updating Users  POST /users  Request Body Response   DELETE /users/{id} PATCH /users/{id}          Users API     The Users API is implementing a subset of the functionality of the MS Graph User resource The JSON representation of a User handled by the Users API looks like this:" />
+  <meta property="og:description" content="Users API  Reading users  GET /me GET /users GET /users/{userid or accountname}   Creating / Updating Users  POST /users  Request Body Response   DELETE /users/{id} PATCH /users/{id}   Change password  POST /me/changePassword  Request Body            Users API     The Users API is implementing a subset of the functionality of the MS Graph User resource The JSON representation of a User handled by the Users API looks like this:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/extensions/graph/users/" />
 
@@ -41,7 +41,7 @@
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Users" />
-  <meta name="twitter:description" content="Users API  Reading users  GET /me GET /users GET /users/{userid or accountname}   Creating / Updating Users  POST /users  Request Body Response   DELETE /users/{id} PATCH /users/{id}          Users API     The Users API is implementing a subset of the functionality of the MS Graph User resource The JSON representation of a User handled by the Users API looks like this:" />
+  <meta name="twitter:description" content="Users API  Reading users  GET /me GET /users GET /users/{userid or accountname}   Creating / Updating Users  POST /users  Request Body Response   DELETE /users/{id} PATCH /users/{id}   Change password  POST /me/changePassword  Request Body            Users API     The Users API is implementing a subset of the functionality of the MS Graph User resource The JSON representation of a User handled by the Users API looks like this:" />
 
 
   <script type="application/ld+json">
@@ -52,8 +52,8 @@
       "name": "Users",
       "url" : "https://owncloud.dev/extensions/graph/users/",
       "headline": "Users",
-      "description": "Users API  Reading users  GET \/me GET \/users GET \/users\/{userid or accountname}   Creating \/ Updating Users  POST \/users  Request Body Response   DELETE \/users\/{id} PATCH \/users\/{id}          Users API     The Users API is implementing a subset of the functionality of the MS Graph User resource The JSON representation of a User handled by the Users API looks like this:",
-      "wordCount" : "413",
+      "description": "Users API  Reading users  GET \/me GET \/users GET \/users\/{userid or accountname}   Creating \/ Updating Users  POST \/users  Request Body Response   DELETE \/users\/{id} PATCH \/users\/{id}   Change password  POST \/me\/changePassword  Request Body            Users API     The Users API is implementing a subset of the functionality of the MS Graph User resource The JSON representation of a User handled by the Users API looks like this:",
+      "wordCount" : "479",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -9660,6 +9660,15 @@
                 <li><a href="#patch-usersid"><code>PATCH /users/{id}</code></a></li>
               </ul>
             </li>
+            <li><a href="#change-password">Change password</a>
+              <ul>
+                <li><a href="#post-mechangepassword"><code>POST /me/changePassword</code></a>
+                  <ul>
+                    <li><a href="#request-body-1">Request Body</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
           </ul>
         </li>
       </ul></nav>
@@ -9865,7 +9874,41 @@ to be updated. E.g. to update the <code>displayName</code> Attribute:</p>
          --request PATCH  --data &#39;{&#34;displayName&#34;: &#34;Test User&#34; }&#39; \
 	 &#39;https://localhost:9200/graph/v1.0/users/c54b0588-7157-4521-bb52-c1c8ca84ea71&#39; -u user:password
 </code></pre></div><p>Similar to creating a user via <code>POST</code>,  the <code>PATCH</code> request will return the user object containing the new attribute values.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="change-password">
+        Change password
+        <a data-clipboard-text="https://owncloud.dev/extensions/graph/users/#change-password" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Change password" aria-label="Anchor to: Change password" href="#change-password">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="post-mechangepassword">
+        <code>POST /me/changePassword</code>
+        <a data-clipboard-text="https://owncloud.dev/extensions/graph/users/#post-mechangepassword" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: POST /me/changePassword" aria-label="Anchor to: POST /me/changePassword" href="#post-mechangepassword">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+<p>Users can change their own password by sending a POST request to <code>/me/changePassword</code></p>
+<div class="gdoc-page__anchorwrap">
+    <h5 id="request-body-1">
+        Request Body
+        <a data-clipboard-text="https://owncloud.dev/extensions/graph/users/#request-body-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Request Body" aria-label="Anchor to: Request Body" href="#request-body-1">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h5>
+</div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">{
+  &#34;currentPassword&#34;: &#34;current&#34;,
+  &#34;newPassword&#34;: &#34;new&#34;
+}
 
+</code></pre></div><p>When successful the API returns no response body and the HTTP status code 204 (No Content)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"> curl -i -k --header &#34;Content-Type: application/json&#34; \
+      --request POST  --data &#39;{&#34;currentPassword&#34;: &#34;current&#34;, &#34;newPassword&#34;: &#34;new&#34; }&#39; \
+      &#39;https://localhost:9200/graph/v1.0/me/changePassword&#39; -u user:current
+</code></pre></div>
   </article>
 
 
