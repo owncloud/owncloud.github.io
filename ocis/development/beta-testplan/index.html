@@ -61,7 +61,7 @@
       "url" : "https://owncloud.dev/ocis/development/beta-testplan/",
       "headline": "Beta testplan",
       "description": "Beta Testing     This document is supposed to give you some ideas how and what to test on ocis. It’s not meant to be an extensive list of all tests to be done, rather it should help you, as beta-tester, to get started and enable you to get creative and create your own test-cases. Derive from these examples, be creative, do unusual and unconventional things, to try to break things.",
-      "wordCount" : "2640",
+      "wordCount" : "2610",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -9985,12 +9985,11 @@ to access oCIS remotely please refer to the <a
 <span class="nv">USER</span><span class="o">=</span>admin
 <span class="nv">PASSWORD</span><span class="o">=</span>admin
 </code></pre></div><ul>
-<li>create a new user <code>curl -k -u $USER:$PASSWORD $SERVER_URI/$GRAPH_API_PATH/users -d '{&quot;displayName&quot;: &quot;&lt;display name&gt;&quot;, &quot;mail&quot;: &quot;&lt;mail-address&gt;&quot;, &quot;onPremisesSamAccountName&quot;: &quot;&lt;username&gt;&quot;, &quot;passwordProfile&quot;:{ &quot;password&quot;: &quot;&lt;password&gt;&quot; }}'</code></li>
-<li>give the user the &ldquo;Admin&rdquo; role
+<li>create a new user <code>curl -k -u $USER:$PASSWORD  &quot;$SERVER_URI/$GRAPH_API_PATH/users&quot; -X POST -d'{&quot;displayName&quot;:&quot;Example User&quot;,&quot;mail&quot;:&quot;example@example.org&quot;,&quot;onPremisesSamAccountName&quot;:&quot;example&quot;,&quot;passwordProfile&quot;:{&quot;password&quot;:&quot;ThePassword&quot;}}'</code></li>
+<li>give the user the &ldquo;Space Admin&rdquo; role
 <ol>
-<li>get the id of the admin role <code>curl -k -u $USER:$PASSWORD  $SERVER_URI/api/v0/settings/roles-list -d&quot;{}&quot; | jq '.bundles[] | select (.name | test(&quot;admin&quot;)) | .id'</code></li>
-<li>get the id of the user: <code>curl -k -u $USER:$PASSWORD  $SERVER_URI/$GRAPH_API_PATH/users/&lt;username&gt;&quot; | jq '.id'</code></li>
-<li>assign role user to role: <code>curl -k -u $USER:$PASSWORD  $SERVER_URI/api/v0/settings/assignments-add -d'{&quot;account_uuid&quot;:&quot;&lt;user-id&gt;&quot;,&quot;role_id&quot;:&quot;&lt;admin-role-id&gt;&quot;}</code></li>
+<li>get the id of the user: <code>curl -k -u $USER:$PASSWORD  $SERVER_URI/$GRAPH_API_PATH/users/&lt;user-name&gt; | jq '.id'</code></li>
+<li>assign role user to role: <code>curl -k -u $USER:$PASSWORD  $SERVER_URI/api/v0/settings/assignments-add -d'{&quot;account_uuid&quot;:&quot;&lt;user-id&gt;&quot;,&quot;role_id&quot;:&quot;2aadd357-682c-406b-8874-293091995fdd&quot;}</code></li>
 </ol>
 </li>
 <li>create a space: <code>curl -k -u $USER:$PASSWORD  &quot;$SERVER_URI/$GRAPH_API_PATH/drives&quot; -X POST -d'{&quot;Name&quot;:&quot;Space for finance&quot;,&quot;driveType&quot;:&quot;project&quot;, &quot;description&quot;:&quot;we need some space&quot;}'</code></li>
