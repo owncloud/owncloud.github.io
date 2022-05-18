@@ -8,9 +8,10 @@
 <meta name="generator" content="Hugo 0.89.4" />
 
 
-  <meta name="description" content="Introduction Setting up the example &ldquo;skeleton app&rdquo; Configuration options Ways of providing an app Types of apps Accessing existing functionality      Introduction     In the new web frontend, the way custom/external apps are handled has fundamentally changed from the approach of PHP-based ownCloud X stack. Now, all you have to do is provide a bundled Vue app and reference it in your configuration!" />
+  <meta name="description" content="The spaces concept allows clients to look up the space endpoints a user has access to and then do individual sync discoveries. Technically, we introduce an indirection that allows clients to rely on server provided URLs instead of hardcoded /webdav or /dav/files/{username} paths, that may change over time.
+Space discovery      %%{init: {&#34;sequence&#34;: { &#34;showSequenceNumbers&#34;:true, &#34;messageFontFamily&#34;:&#34;courier&#34;, &#34;messageFontWeight&#34;:&#34;normal&#34;, &#34;messageFontSize&#34;:&#34;11&#34;}}}%% %% font weight is a css bug: https://github.com/mermaid-js/mermaid/issues/1976 %% edit this diagram by pasting it into eg." />
 
-    <title>Custom Apps | ownCloud</title>
+    <title>Protocol changes | ownCloud</title>
 
     <link
   rel="icon"
@@ -29,50 +30,52 @@
     
   <meta
     property="og:title"
-    content="Custom Apps"
+    content="Protocol changes"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Introduction Setting up the example “skeleton app” Configuration options Ways of providing an app Types of apps Accessing existing functionality      Introduction     In the new web frontend, the way custom/external apps are handled has fundamentally changed from the approach of PHP-based ownCloud X stack. Now, all you have to do is provide a bundled Vue app and reference it in your configuration!" />
+  <meta property="og:description" content="The spaces concept allows clients to look up the space endpoints a user has access to and then do individual sync discoveries. Technically, we introduce an indirection that allows clients to rely on server provided URLs instead of hardcoded /webdav or /dav/files/{username} paths, that may change over time.
+Space discovery      %%{init: {&#34;sequence&#34;: { &#34;showSequenceNumbers&#34;:true, &#34;messageFontFamily&#34;:&#34;courier&#34;, &#34;messageFontWeight&#34;:&#34;normal&#34;, &#34;messageFontSize&#34;:&#34;11&#34;}}}%% %% font weight is a css bug: https://github.com/mermaid-js/mermaid/issues/1976 %% edit this diagram by pasting it into eg." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://owncloud.dev/clients/web/custom-apps/" />
+<meta property="og:url" content="https://owncloud.dev/architecture/protocol-changes/" />
 
-<meta property="article:section" content="Clients" />
+<meta property="article:section" content="Architecture" />
     <meta
       property="article:published_time"
-      content="2021-08-26T00:00:00+00:00"
+      content="2022-05-17T08:46:00+01:00"
     />
     <meta
       property="article:modified_time"
-      content="2021-08-26T00:00:00+00:00"
+      content="2022-05-17T08:46:00+01:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Custom Apps" />
-  <meta name="twitter:description" content="Introduction Setting up the example “skeleton app” Configuration options Ways of providing an app Types of apps Accessing existing functionality      Introduction     In the new web frontend, the way custom/external apps are handled has fundamentally changed from the approach of PHP-based ownCloud X stack. Now, all you have to do is provide a bundled Vue app and reference it in your configuration!" />
+<meta name="twitter:title" content="Protocol changes" />
+  <meta name="twitter:description" content="The spaces concept allows clients to look up the space endpoints a user has access to and then do individual sync discoveries. Technically, we introduce an indirection that allows clients to rely on server provided URLs instead of hardcoded /webdav or /dav/files/{username} paths, that may change over time.
+Space discovery      %%{init: {&#34;sequence&#34;: { &#34;showSequenceNumbers&#34;:true, &#34;messageFontFamily&#34;:&#34;courier&#34;, &#34;messageFontWeight&#34;:&#34;normal&#34;, &#34;messageFontSize&#34;:&#34;11&#34;}}}%% %% font weight is a css bug: https://github.com/mermaid-js/mermaid/issues/1976 %% edit this diagram by pasting it into eg." />
 
 
   <script type="application/ld+json">
   {
       "@context": "http://schema.org",
       "@type": "TechArticle",
-      "articleSection": "Clients",
-      "name": "Custom Apps",
-      "url" : "https://owncloud.dev/clients/web/custom-apps/",
-      "headline": "Custom Apps",
-      "description": "Introduction Setting up the example “skeleton app” Configuration options Ways of providing an app Types of apps Accessing existing functionality      Introduction     In the new web frontend, the way custom\/external apps are handled has fundamentally changed from the approach of PHP-based ownCloud X stack. Now, all you have to do is provide a bundled Vue app and reference it in your configuration!",
-      "wordCount" : "397",
+      "articleSection": "Architecture",
+      "name": "Protocol changes",
+      "url" : "https://owncloud.dev/architecture/protocol-changes/",
+      "headline": "Protocol changes",
+      "description": "The spaces concept allows clients to look up the space endpoints a user has access to and then do individual sync discoveries. Technically, we introduce an indirection that allows clients to rely on server provided URLs instead of hardcoded \/webdav or \/dav\/files\/{username} paths, that may change over time.\nSpace discovery      %%{init: {\u0022sequence\u0022: { \u0022showSequenceNumbers\u0022:true, \u0022messageFontFamily\u0022:\u0022courier\u0022, \u0022messageFontWeight\u0022:\u0022normal\u0022, \u0022messageFontSize\u0022:\u002211\u0022}}}%% %% font weight is a css bug: https:\/\/github.com\/mermaid-js\/mermaid\/issues\/1976 %% edit this diagram by pasting it into eg.",
+      "wordCount" : "185",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://owncloud.dev/clients/web/custom-apps/"
+          "@id": "https://owncloud.dev/architecture/protocol-changes/"
       },
       "copyrightHolder" : "ownCloud",
-      "copyrightYear" : "2021",
-      "dateCreated": "2021-08-26T00:00:00.00Z",
-      "datePublished": "2021-08-26T00:00:00.00Z",
-      "dateModified": "2021-08-26T00:00:00.00Z",
+      "copyrightYear" : "2022",
+      "dateCreated": "2022-05-17T08:46:00.00Z",
+      "datePublished": "2022-05-17T08:46:00.00Z",
+      "dateModified": "2022-05-17T08:46:00.00Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -148,7 +151,7 @@
   href="/custom.css"
   media="all"
 />
-  <link href="https://owncloud.dev/clients/web/custom-apps/" rel="canonical" type="text/html" />
+  <link href="https://owncloud.dev/architecture/protocol-changes/" rel="canonical" type="text/html" />
 
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
 
@@ -3297,7 +3300,7 @@
               type="checkbox"
               
                 class="gdoc-nav__toggle" id="navtree-8397230f"
-                checked
+                
               
             />
             <label
@@ -3626,7 +3629,7 @@
                 <span class="flex">
                   <a
                     href="/clients/web/custom-apps/"
-                    class="gdoc-nav__entry is-active"
+                    class="gdoc-nav__entry"
                   >
                     Custom Apps
                   </a>
@@ -9518,7 +9521,7 @@
                 <span class="flex">
                   <a
                     href="/architecture/protocol-changes/"
-                    class="gdoc-nav__entry"
+                    class="gdoc-nav__entry is-active"
                   >
                     Protocol changes
                   </a>
@@ -9641,15 +9644,7 @@
     
   
   
-    
-    
-    
-    
-  
-  
-    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/clients/' href='/clients/'><span itemprop='name'>Clients</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/clients/web/' href='/clients/web/'><span itemprop='name'>ownCloud Web</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Custom Apps</span><meta itemprop='position' content='4' /></li>
-  
-
+    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/architecture/' href='/architecture/'><span itemprop='name'>Architecture</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Protocol changes</span><meta itemprop='position' content='3' /></li>
   
 
   
@@ -9664,7 +9659,7 @@
       <span class="editpage">
         <svg class="icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
         <a
-          href="https://github.com/owncloud/web/edit/master/docs/custom-apps/_index.md"
+          href="https://github.com/owncloud/ocis/edit/master/docs/architecture/protocol-changes.md"
         >
           Edit page
         </a>
@@ -9678,113 +9673,53 @@
   <article
     class="gdoc-markdown gdoc-markdown__align--left"
   >
-    <h1>Custom Apps</h1>
-    
-
-
-  <div class="gdoc-toc gdoc-toc__level--3">
-    <nav id="TableOfContents"><ul>
-        <li><a href="#introduction">Introduction</a></li>
-        <li><a href="#setting-up-the-example-skeleton-app">Setting up the example &ldquo;skeleton app&rdquo;</a></li>
-        <li><a href="#configuration-options">Configuration options</a></li>
-        <li><a href="#ways-of-providing-an-app">Ways of providing an app</a></li>
-        <li><a href="#types-of-apps">Types of apps</a></li>
-        <li><a href="#accessing-existing-functionality">Accessing existing functionality</a></li>
-      </ul></nav>
-    <hr />
-  </div>
-
-
+    <h1>Protocol changes</h1>
+    <p>The spaces concept allows clients to look up the space endpoints a user has access to and then do individual sync discoveries. Technically, we introduce an indirection that allows clients to rely on server provided URLs instead of hardcoded <code>/webdav</code> or <code>/dav/files/{username}</code> paths, that may change over time.</p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="introduction">
-        Introduction
-        <a data-clipboard-text="https://owncloud.dev/clients/web/custom-apps/#introduction" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Introduction" aria-label="Anchor to: Introduction" href="#introduction">
+    <h2 id="space-discovery">
+        Space discovery
+        <a data-clipboard-text="https://owncloud.dev/architecture/protocol-changes/#space-discovery" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Space discovery" aria-label="Anchor to: Space discovery" href="#space-discovery">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div>
-<p>In the new <code>web</code> frontend, the way custom/external apps are handled has fundamentally changed from the approach of PHP-based ownCloud X stack.
-Now, all you have to do is provide a bundled Vue app and reference it in your configuration! Please note that any existing apps you may be used to can not simply be ported from the old to the new frontend.</p>
-<p>This page documents how you can set up an example app within your frontend repo and play around with different kinds of apps and extensions. This way, you can explore how to provide users of your ownCloud with more functionality.</p>
-<div class="gdoc-page__anchorwrap">
-    <h2 id="setting-up-the-example-skeleton-app">
-        Setting up the example &ldquo;skeleton app&rdquo;
-        <a data-clipboard-text="https://owncloud.dev/clients/web/custom-apps/#setting-up-the-example-skeleton-app" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Setting up the example &ldquo;skeleton app&rdquo;" aria-label="Anchor to: Setting up the example &ldquo;skeleton app&rdquo;" href="#setting-up-the-example-skeleton-app">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h2>
-</div>
-<blockquote class="gdoc-hint info">
-  This guide assumes you have either an oCIS or ownCloud 10 backend running and followed the <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/clients/web/getting-started/"
+
+
   
->getting started guide</a> for setting up a development environment with the <code>web</code> frontend, having it running via either <code>yarn serve</code> or <code>yarn build:w</code>. You should be able to use the web UI on localhost using the respective port you&rsquo;ve assigned (defaults are <code>:8080</code> for OC10 and <code>:9200</code> for oCIS) and see changes to your .
-</blockquote>
-
-<p>From the root of the <a
-  class="gdoc-markdown__link"
-  href="https://github.com/owncloud/web"
+  <script defer src="/js/mermaid-7da67bd0.bundle.min.js"></script>
   
->web repository</a>, change into the example skeleton app by running</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">cd</span> packages/web-app-skeleton/
-</code></pre></div><p>Then, you can install the necessary dependencies, bundle the code and start a development server by running</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">yarn install <span class="o">&amp;&amp;</span> yarn serve
-</code></pre></div><p>In your terminal, you should see a success message and rollup (our bundler of choice) serving the content under <code>localhost:3000</code>. However, there&rsquo;s nothing to find under this address.</p>
-<p>In your <code>config/config.json</code>, add the skeleton example app to the <code>&quot;external_apps&quot;</code> array like below:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;skeleton&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:3000/app.js&#34;</span>
-<span class="p">}</span>
-</code></pre></div><p>After saving the config file (make sure it&rsquo;s still a valid <code>JSON</code> format), your running <code>web</code> app should be updated automatically. Open your browser&rsquo;s development tools, reload the page and watch for <code>(SKELETON)</code> messages in the browser console.</p>
-<div class="gdoc-page__anchorwrap">
-    <h2 id="configuration-options">
-        Configuration options
-        <a data-clipboard-text="https://owncloud.dev/clients/web/custom-apps/#configuration-options" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Configuration options" aria-label="Anchor to: Configuration options" href="#configuration-options">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h2>
-</div>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">To be defined/documented
-- Name, ID, logo
-- Nav items, appswitcher items, quick actions
-- ...
-</code></pre></div><div class="gdoc-page__anchorwrap">
-    <h2 id="ways-of-providing-an-app">
-        Ways of providing an app
-        <a data-clipboard-text="https://owncloud.dev/clients/web/custom-apps/#ways-of-providing-an-app" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Ways of providing an app" aria-label="Anchor to: Ways of providing an app" href="#ways-of-providing-an-app">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h2>
-</div>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">To be defined/documented (Bundling, CDN, app store, ...)
-</code></pre></div><div class="gdoc-page__anchorwrap">
-    <h2 id="types-of-apps">
-        Types of apps
-        <a data-clipboard-text="https://owncloud.dev/clients/web/custom-apps/#types-of-apps" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Types of apps" aria-label="Anchor to: Types of apps" href="#types-of-apps">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h2>
-</div>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">To be defined/documented
-- Application (renderable), e.g. iFrame
-- Extension, e.g. preview
-- Quick action, e.g. based on WOPI/Appserver
-- ...
-</code></pre></div><div class="gdoc-page__anchorwrap">
-    <h2 id="accessing-existing-functionality">
-        Accessing existing functionality
-        <a data-clipboard-text="https://owncloud.dev/clients/web/custom-apps/#accessing-existing-functionality" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Accessing existing functionality" aria-label="Anchor to: Accessing existing functionality" href="#accessing-existing-functionality">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h2>
-</div>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">To be defined/documented
-- Styles, Theming
-- Notifications
-- Authentication, SDK
-- ...
-</code></pre></div>
+
+
+
+<pre class="gdoc-mermaid mermaid text-center">
+%%{init: {"sequence": { "showSequenceNumbers":true, "messageFontFamily":"courier", "messageFontWeight":"normal", "messageFontSize":"11"}}}%%
+%% font weight is a css bug: https://github.com/mermaid-js/mermaid/issues/1976
+%% edit this diagram by pasting it into eg. https://mermaid.live
+sequenceDiagram
+    participant Client
+    participant Graph
+    participant SpaceA
+    participant SpaceB
+    links Client: {"web": "https://owncloud.dev/clients/web/", "RClone": "https://owncloud.dev/clients/rclone/"}
+    link Graph: Documentation @ https://owncloud.dev/extensions/graph/
+
+    Note left of Client:  First, a clients looks<br/>up the spaces a user has access to
+    opt space lookup
+        Client->>+Graph: GET /me/drives
+        Graph-->>-Client: 200 OK JSON list of spaces, say A, B and C,<br/> each with a dedicated webDavURL, etag and quota
+    end
+
+    Note left of Client: Then it can do a parallel<br/>sync discovery on spaces<br/>whose etag changed
+    par Client to Space A
+        Client->>+SpaceA: PROPFIND {webDavURL for Space A}
+        SpaceA-->>-Client: 207 Multistatus PROPFIND response
+    and Client to Space B
+        Client->>+SpaceB: PROPFIND {webDavURL for space B}
+        SpaceB-->>-Client: 207 Multistatus PROPFIND response
+    end  
+</pre>
+
+
   </article>
 
 
