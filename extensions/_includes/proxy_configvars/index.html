@@ -53,7 +53,7 @@
       "url" : "https://owncloud.dev/extensions/_includes/proxy_configvars/",
       "headline": "Proxy Configvars",
       "description": "Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDPROXY_TRACING_ENABLED bool false    OCIS_TRACING_TYPEPROXY_TRACING_TYPE string     OCIS_TRACING_ENDPOINTPROXY_TRACING_ENDPOINT string     OCIS_TRACING_COLLECTORPROXY_TRACING_COLLECTOR string     OCIS_LOG_LEVELPROXY_LOG_LEVEL string     OCIS_LOG_PRETTYPROXY_LOG_PRETTY bool false    OCIS_LOG_COLORPROXY_LOG_COLOR bool false    OCIS_LOG_FILEPROXY_LOG_FILE string     PROXY_DEBUG_ADDR string 127.0.0.1:9205 Bind address of the debug server, where metrics, health, config and debug endpoints will be exposed.",
-      "wordCount" : "134",
+      "wordCount" : "271",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -9606,13 +9606,13 @@
 <td>OCIS_URL<br/>OCIS_OIDC_ISSUER<br/>PROXY_OIDC_ISSUER</td>
 <td>string</td>
 <td>https://localhost:9200</td>
-<td></td>
+<td>URL of the OpenID connect identity provider.</td>
 </tr>
 <tr>
 <td>OCIS_INSECURE<br/>PROXY_OIDC_INSECURE</td>
 <td>bool</td>
 <td>true</td>
-<td></td>
+<td>Disable TLS certificate validation for connections to the IDP. (not recommended for production environments.</td>
 </tr>
 <tr>
 <td>PROXY_OIDC_USERINFO_CACHE_SIZE</td>
@@ -9642,19 +9642,19 @@
 <td>PROXY_ACCOUNT_BACKEND_TYPE</td>
 <td>string</td>
 <td>cs3</td>
-<td></td>
+<td>Account backend the proxy should use, currenly only &lsquo;cs3&rsquo; is possible here.</td>
 </tr>
 <tr>
 <td>PROXY_USER_OIDC_CLAIM</td>
 <td>string</td>
 <td>email</td>
-<td></td>
+<td>The name of an OpenID Connect claim that should be used for resolving users with the account backend. Currently defaults to &lsquo;email&rsquo;.</td>
 </tr>
 <tr>
 <td>PROXY_USER_CS3_CLAIM</td>
 <td>string</td>
 <td>mail</td>
-<td></td>
+<td>The name of a CS3 user attribute (claim) that should be mapped to the &lsquo;user_oidc_claim&rsquo;. Currently defaults to &lsquo;mail&rsquo; (other possible values are: &lsquo;username&rsquo;, &lsquo;displayname&rsquo;)</td>
 </tr>
 <tr>
 <td>OCIS_MACHINE_AUTH_API_KEY<br/>PROXY_MACHINE_AUTH_API_KEY</td>
@@ -9666,19 +9666,19 @@
 <td>PROXY_AUTOPROVISION_ACCOUNTS</td>
 <td>bool</td>
 <td>false</td>
-<td></td>
+<td>Set this to &lsquo;true&rsquo; to automatically provsion users that do not yet exist in the users service on-demand upon first signin. To use this a write-enabled libregraph user backend needs to be setup an running.</td>
 </tr>
 <tr>
 <td>PROXY_ENABLE_BASIC_AUTH</td>
 <td>bool</td>
 <td>false</td>
-<td></td>
+<td>Set this to true to enable &lsquo;basic&rsquo; (username/password) authentication. (Default: false)</td>
 </tr>
 <tr>
 <td>PROXY_INSECURE_BACKENDS</td>
 <td>bool</td>
 <td>false</td>
-<td></td>
+<td>Disable TLS certificate validation for all http backend connections. (Default: false)</td>
 </tr>
 </tbody>
 </table> </div>
