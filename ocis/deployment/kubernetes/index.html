@@ -8,7 +8,8 @@
 <meta name="generator" content="Hugo 0.89.4" />
 
 
-  <meta name="description" content="What is Kubernetes  References and further reads How does oCIS fit in the Kubernetes model   What is Minikube What is kubectl What are Helm Charts, and why they are useful for oCIS  Installing Helm   Setting up Minikube  Start minikube   Run a chart  Requirements Setup   Setting up an external identity provider What is GCP  Can Helm charts run on GCP?" />
+  <meta name="description" content="What is Kubernetes  References and further reads How does oCIS fit in the Kubernetes model   What is Minikube What is kubectl What are Helm Charts, and why they are useful for oCIS  Installing Helm   Setting up Minikube oCIS charts  Run oCIS        What is Kubernetes     Formally described as:
+ Kubernetes is a portable, extensible, open-source platform for managing containerized workloads and services, that facilitates both declarative configuration and automation." />
 
     <title>Kubernetes | ownCloud</title>
 
@@ -32,7 +33,8 @@
     content="Kubernetes"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="What is Kubernetes  References and further reads How does oCIS fit in the Kubernetes model   What is Minikube What is kubectl What are Helm Charts, and why they are useful for oCIS  Installing Helm   Setting up Minikube  Start minikube   Run a chart  Requirements Setup   Setting up an external identity provider What is GCP  Can Helm charts run on GCP?" />
+  <meta property="og:description" content="What is Kubernetes  References and further reads How does oCIS fit in the Kubernetes model   What is Minikube What is kubectl What are Helm Charts, and why they are useful for oCIS  Installing Helm   Setting up Minikube oCIS charts  Run oCIS        What is Kubernetes     Formally described as:
+ Kubernetes is a portable, extensible, open-source platform for managing containerized workloads and services, that facilitates both declarative configuration and automation." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/ocis/deployment/kubernetes/" />
 
@@ -49,7 +51,8 @@
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Kubernetes" />
-  <meta name="twitter:description" content="What is Kubernetes  References and further reads How does oCIS fit in the Kubernetes model   What is Minikube What is kubectl What are Helm Charts, and why they are useful for oCIS  Installing Helm   Setting up Minikube  Start minikube   Run a chart  Requirements Setup   Setting up an external identity provider What is GCP  Can Helm charts run on GCP?" />
+  <meta name="twitter:description" content="What is Kubernetes  References and further reads How does oCIS fit in the Kubernetes model   What is Minikube What is kubectl What are Helm Charts, and why they are useful for oCIS  Installing Helm   Setting up Minikube oCIS charts  Run oCIS        What is Kubernetes     Formally described as:
+ Kubernetes is a portable, extensible, open-source platform for managing containerized workloads and services, that facilitates both declarative configuration and automation." />
 
 
   <script type="application/ld+json">
@@ -60,8 +63,8 @@
       "name": "Kubernetes",
       "url" : "https://owncloud.dev/ocis/deployment/kubernetes/",
       "headline": "Kubernetes",
-      "description": "What is Kubernetes  References and further reads How does oCIS fit in the Kubernetes model   What is Minikube What is kubectl What are Helm Charts, and why they are useful for oCIS  Installing Helm   Setting up Minikube  Start minikube   Run a chart  Requirements Setup   Setting up an external identity provider What is GCP  Can Helm charts run on GCP?",
-      "wordCount" : "1539",
+      "description": "What is Kubernetes  References and further reads How does oCIS fit in the Kubernetes model   What is Minikube What is kubectl What are Helm Charts, and why they are useful for oCIS  Installing Helm   Setting up Minikube oCIS charts  Run oCIS        What is Kubernetes     Formally described as:\n Kubernetes is a portable, extensible, open-source platform for managing containerized workloads and services, that facilitates both declarative configuration and automation.",
+      "wordCount" : "751",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -9513,24 +9516,12 @@
             <li><a href="#installing-helm">Installing Helm</a></li>
           </ul>
         </li>
-        <li><a href="#setting-up-minikube">Setting up Minikube</a>
+        <li><a href="#setting-up-minikube">Setting up Minikube</a></li>
+        <li><a href="#ocis-charts">oCIS charts</a>
           <ul>
-            <li><a href="#start-minikube">Start minikube</a></li>
+            <li><a href="#run-ocis">Run oCIS</a></li>
           </ul>
         </li>
-        <li><a href="#run-a-chart">Run a chart</a>
-          <ul>
-            <li><a href="#requirements">Requirements</a></li>
-            <li><a href="#setup">Setup</a></li>
-          </ul>
-        </li>
-        <li><a href="#setting-up-an-external-identity-provider">Setting up an external identity provider</a></li>
-        <li><a href="#what-is-gcp">What is GCP</a>
-          <ul>
-            <li><a href="#can-helm-charts-run-on-gcp">Can Helm charts run on GCP?</a></li>
-          </ul>
-        </li>
-        <li><a href="#todos">TODOs</a></li>
       </ul></nav>
     <hr />
   </div>
@@ -9675,76 +9666,27 @@
   
 >official minikube start guide</a> for your specific OS.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="start-minikube">
-        Start minikube
-        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#start-minikube" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Start minikube" aria-label="Anchor to: Start minikube" href="#start-minikube">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div>
-<p>First off, verify your installation is correct:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="go">~/code/owncloud/ocis-charts
-</span><span class="go">❯ minikube status
-</span><span class="go">minikube
-</span><span class="go">type: Control Plane
-</span><span class="go">host: Stopped
-</span><span class="go">kubelet: Stopped
-</span><span class="go">apiserver: Stopped
-</span><span class="go">kubeconfig: Stopped
-</span></code></pre></div><p>After that, start the cluster:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="go">~/code/owncloud/ocis-charts
-</span><span class="go">❯ minikube start
-</span><span class="go">😄  minikube v1.23.0 on Darwin 11.4
-</span><span class="go">✨  Using the docker driver based on existing profile
-</span><span class="go">👍  Starting control plane node minikube in cluster minikube
-</span><span class="go">🚜  Pulling base image ...
-</span><span class="go">🔄  Restarting existing docker container for &#34;minikube&#34; ...
-</span><span class="go">🐳  Preparing Kubernetes v1.22.1 on Docker 20.10.8 ...
-</span><span class="go">🔎  Verifying Kubernetes components...
-</span><span class="go">    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
-</span><span class="go">🌟  Enabled addons: storage-provisioner, default-storageclass
-</span><span class="go">🏄  Done! kubectl is now configured to use &#34;minikube&#34; cluster and &#34;default&#34; namespace by default
-</span></code></pre></div><p><em>On these docs, we are using the Docker driver on Mac.</em></p>
-<div class="gdoc-page__anchorwrap">
-    <h2 id="run-a-chart">
-        Run a chart
-        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#run-a-chart" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Run a chart" aria-label="Anchor to: Run a chart" href="#run-a-chart">
+    <h2 id="ocis-charts">
+        oCIS charts
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#ocis-charts" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: oCIS charts" aria-label="Anchor to: oCIS charts" href="#ocis-charts">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div>
-<p>The easiest way to run the entire package is by using the available charts on <a
+<p>We have not yet published the oCIS Helm charts, therefore you need to clone the git repository manually. It currently also does not support to be run on Kind or Minikube clusters. For known issues and planned features, please have a look at the <a
   class="gdoc-markdown__link"
-  href="https://github.com/owncloud/ocis-charts"
+  href="https://github.com/owncloud/ocis-charts/issues"
   
->https://github.com/owncloud/ocis-charts</a>. It is not the purpose of this guide to explain the inner working of Kubernetes or its resources, as Helm builds an abstraction oon top of it, letting you interact with a refined interface that roughly translates as &ldquo;helm install&rdquo; and &ldquo;helm uninstall&rdquo;.</p>
-<p>In order to host charts one can create a <a
+>GitHub issue tracker</a>.</p>
+<p>Configuration options are described <a
   class="gdoc-markdown__link"
-  href="https://helm.sh/docs/topics/chart_repository/"
+  href="https://github.com/owncloud/ocis-charts/tree/master/charts/ocis#configuration"
   
->charts repository</a>, but this is outside the scope of this documentation. Having said that, we will assume you have access to a cli and git.</p>
+>here</a>.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="requirements">
-        Requirements
-        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#requirements" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Requirements" aria-label="Anchor to: Requirements" href="#requirements">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div>
-<ol>
-<li>minikube up and running.</li>
-<li><code>kubectl</code> installed. By <a
-  class="gdoc-markdown__link"
-  href="https://minikube.sigs.k8s.io/docs/handbook/kubectl/"
-  
->default you should be able to access the minikube&rsquo;s cluster</a>. If you chose not to install <code>kubectl</code>, minikube wraps <code>kubectl</code> as <code>minikube kubectl</code>.</li>
-<li>helm cli installed.</li>
-<li>git installed.</li>
-</ol>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="setup">
-        Setup
-        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#setup" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Setup" aria-label="Anchor to: Setup" href="#setup">
+    <h3 id="run-ocis">
+        Run oCIS
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#run-ocis" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Run oCIS" aria-label="Anchor to: Run oCIS" href="#run-ocis">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
@@ -9752,177 +9694,9 @@
 <ol>
 <li>clone the charts: <code>git clone https://github.com/owncloud/ocis-charts.git /var/tmp/ocis-charts</code></li>
 <li>cd into the charts root: <code>cd /var/tmp/ocis-charts/ocis</code></li>
-<li>install the package: <code>helm install ocis .</code></li>
+<li>install the package: <code>helm install ocis .</code> (you need to set configuration values in almost all cases)</li>
 <li>verify the application is running in the cluster: <code>kubectl get pods</code></li>
 </ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="go">❯ kubectl get pods
-</span><span class="go">NAME                          READY   STATUS    RESTARTS         AGE
-</span><span class="go">glauth-5fb678b9cb-zs5qh       1/1     Running   3 (10m ago)      3h33m
-</span><span class="go">ocis-proxy-848f988687-g7fmb   1/1     Running   2 (10m ago)      130m
-</span><span class="go">ocs-6bb8896dd6-t4bkx          1/1     Running   3 (10m ago)      3h33m
-</span><span class="go">settings-6bf77f978d-27rdf     1/1     Running   3 (10m ago)      3h33m
-</span><span class="go">storages-6b45f9c4-2j696       10/10   Running   23 (4m43s ago)   112m
-</span><span class="go">store-cf79db94d-hvb7z         1/1     Running   3 (10m ago)      3h33m
-</span><span class="go">web-8685fdd574-tmkfb          1/1     Running   2 (10m ago)      157m
-</span><span class="go">webdav-f8d4dd7c6-vv4n7        1/1     Running   3 (10m ago)      3h33m
-</span></code></pre></div><ol start="5">
-<li>expose the proxy as a service to the host</li>
-</ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="go">~/code/owncloud/ocis-charts
-</span><span class="go">❯ minikube service proxy-service --url
-</span><span class="go">🏃  Starting tunnel for service proxy-service.
-</span><span class="go">|-----------|---------------|-------------|------------------------|
-</span><span class="go">| NAMESPACE |     NAME      | TARGET PORT |          URL           |
-</span><span class="go">|-----------|---------------|-------------|------------------------|
-</span><span class="go">| default   | proxy-service |             | http://127.0.0.1:63633 |
-</span><span class="go">|-----------|---------------|-------------|------------------------|
-</span><span class="go">http://127.0.0.1:63633
-</span><span class="go">❗  Because you are using a Docker driver on darwin, the terminal needs to be open to run it.
-</span></code></pre></div><ol start="6">
-<li>attempt a <code>PROPFIND</code> WebDAV request to the storage: <code>curl -v -k -u einstein:relativity -H &quot;depth: 0&quot; -X PROPFIND https://127.0.0.1:63633/remote.php/dav/files/ | xmllint --format -</code></li>
-</ol>
-<p>If all is correctly setup, you should expect a response back:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
-<span class="nt">&lt;d:multistatus</span> <span class="na">xmlns:d=</span><span class="s">&#34;DAV:&#34;</span> <span class="na">xmlns:s=</span><span class="s">&#34;http://sabredav.org/ns&#34;</span> <span class="na">xmlns:oc=</span><span class="s">&#34;http://owncloud.org/ns&#34;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;d:response&gt;</span>
-    <span class="nt">&lt;d:href&gt;</span>/remote.php/dav/files/einstein/<span class="nt">&lt;/d:href&gt;</span>
-    <span class="nt">&lt;d:propstat&gt;</span>
-      <span class="nt">&lt;d:prop&gt;</span>
-        <span class="nt">&lt;oc:id&gt;</span>MTI4NGQyMzgtYWE5Mi00MmNlLWJkYzQtMGIwMDAwMDA5MTU3OjZlMWIyMjdmLWZmYTQtNDU4Ny1iNjQ5LWE1YjBlYzFkMTNmYw==<span class="nt">&lt;/oc:id&gt;</span>
-        <span class="nt">&lt;oc:fileid&gt;</span>MTI4NGQyMzgtYWE5Mi00MmNlLWJkYzQtMGIwMDAwMDA5MTU3OjZlMWIyMjdmLWZmYTQtNDU4Ny1iNjQ5LWE1YjBlYzFkMTNmYw==<span class="nt">&lt;/oc:fileid&gt;</span>
-        <span class="nt">&lt;d:getetag&gt;</span>&#34;92cc7f069c8496ee2ce33ad4f29de763&#34;<span class="nt">&lt;/d:getetag&gt;</span>
-        <span class="nt">&lt;oc:permissions&gt;</span>WCKDNVR<span class="nt">&lt;/oc:permissions&gt;</span>
-        <span class="nt">&lt;d:resourcetype&gt;</span>
-          <span class="nt">&lt;d:collection/&gt;</span>
-        <span class="nt">&lt;/d:resourcetype&gt;</span>
-        <span class="nt">&lt;d:getcontenttype&gt;</span>httpd/unix-directory<span class="nt">&lt;/d:getcontenttype&gt;</span>
-        <span class="nt">&lt;oc:size&gt;</span>4096<span class="nt">&lt;/oc:size&gt;</span>
-        <span class="nt">&lt;d:getlastmodified&gt;</span>Tue, 14 Sep 2021 12:45:29 +0000<span class="nt">&lt;/d:getlastmodified&gt;</span>
-        <span class="nt">&lt;oc:favorite&gt;</span>0<span class="nt">&lt;/oc:favorite&gt;</span>
-      <span class="nt">&lt;/d:prop&gt;</span>
-      <span class="nt">&lt;d:status&gt;</span>HTTP/1.1 200 OK<span class="nt">&lt;/d:status&gt;</span>
-    <span class="nt">&lt;/d:propstat&gt;</span>
-  <span class="nt">&lt;/d:response&gt;</span>
-<span class="nt">&lt;/d:multistatus&gt;</span>
-</code></pre></div><div class="gdoc-page__anchorwrap">
-    <h2 id="setting-up-an-external-identity-provider">
-        Setting up an external identity provider
-        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#setting-up-an-external-identity-provider" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Setting up an external identity provider" aria-label="Anchor to: Setting up an external identity provider" href="#setting-up-an-external-identity-provider">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h2>
-</div>
-<p>The previous setup works because the proxy is configured to run using basic auth, but if we want to actually use the WebUI we will need an external identity provider. From here on the setup is composed of:</p>
-<ul>
-<li>keycloak
-<ul>
-<li>traefik</li>
-<li>postgresql</li>
-</ul>
-</li>
-</ul>
-<p>Running on i.e: <code>https://keycloak.owncloud.works</code>. Because of this we have to adjust some of <code>values.yaml</code> key / values to:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/ocis/values.yaml b/ocis/values.yaml
-</span><span class="gh">index fbc229c..5b36fbd 100644
-</span><span class="gh"></span><span class="gd">--- a/ocis/values.yaml
-</span><span class="gd"></span><span class="gi">+++ b/ocis/values.yaml
-</span><span class="gi"></span><span class="gu">@@ -1,9 +1,9 @@
-</span><span class="gu"></span> # when in local tunnel mode, ingressDomain is the proxy address.
- # sadly when in combination with --set, anchors are lost.
-<span class="gd">-ingressDomain: &amp;ingressDomain &#34;https://stale-wasp-86.loca.lt&#34;
-</span><span class="gd"></span><span class="gi">+ingressDomain: &amp;ingressDomain &#34;https://keycloak.owncloud.works&#34;
-</span><span class="gi"></span>
- # base ocis image
-<span class="gd">-image: owncloud/ocis:1.0.0-rc8-linux-amd64
-</span><span class="gd"></span><span class="gi">+image: owncloud/ocis:1.11.0-linux-amd64
-</span><span class="gi"></span>
- # set of ocis services to create deployments objects.
- services:
-<span class="gu">@@ -22,6 +22,8 @@ services:
-</span><span class="gu"></span>       value: &#34;debug&#34;
-     - name: &#34;PROXY_REVA_GATEWAY_ADDR&#34;
-       value: &#34;storages-service:9142&#34;
-<span class="gi">+    - name: &#34;PROXY_OIDC_ISSUER&#34;
-</span><span class="gi">+      value: &#34;https://keycloak.ocis-keycloak.released.owncloud.works/auth/realms/oCIS&#34;
-</span><span class="gi"></span>     - name: &#34;PROXY_ENABLE_BASIC_AUTH&#34;
-       value: &#34;&#39;true&#39;&#34; # see https://stackoverflow.com/a/44692213/2295410
-     volumeMounts:
-<span class="gu">@@ -81,34 +85,6 @@ services:
-</span><span class="gu"></span>     labels:
-       app: &#34;glauth&#34;
-     args: [&#34;glauth&#34;]
-   settings:
-     metadata:
-       name: &#34;settings&#34;
-<span class="gu">@@ -135,11 +111,11 @@ services:
-</span><span class="gu"></span>     args: [&#34;web&#34;]
-     env:
-     - name: &#34;WEB_UI_CONFIG_SERVER&#34;
-<span class="gd">-      value: *ingressDomain
-</span><span class="gd"></span><span class="gi">+      value: &#34;https://127.0.0.1:51559/&#34;
-</span><span class="gi"></span>     - name: &#34;WEB_OIDC_METADATA_URL&#34;
-<span class="gd">-      value: *ingressDomain
-</span><span class="gd"></span><span class="gi">+      value: &#34;https://keycloak.owncloud.works/auth/realms/oCIS/.well-known/openid-configuration&#34;
-</span><span class="gi"></span>     - name: &#34;WEB_OIDC_AUTHORITY&#34;
-<span class="gd">-      value: *ingressDomain
-</span><span class="gd"></span><span class="gi">+      value: &#34;https://keycloak.owncloud.works/auth/realms/oCIS/.well-known/openid-configuration&#34;
-</span><span class="gi"></span>     ports:
-       values:
-       - name: &#34;http&#34;
-<span class="gu">@@ -231,4 +207,4 @@ kubeServices:
-</span><span class="gu"></span>       - protocol: TCP
-         port: 9100
-         targetPort: 9100
-</code></pre></div><p>NOTE: The IDP has to be properly configure with an oCIS realm and a <code>web</code> client configured. There are example config file that have to be adjusted depending on your environment on our <a
-  class="gdoc-markdown__link"
-  href="https://github.com/owncloud/ocis/tree/master/deployments/examples/ocis_keycloak/config/keycloak"
-  
->docker-compose examples</a>.</p>
-<p>You might still need to adjust the IDP:</p>
-<ul>
-<li>Valid Redirect URIs (under clients &gt; web)</li>
-<li>Web Origins (under clients &gt; web)</li>
-</ul>
-<div class="gdoc-page__anchorwrap">
-    <h2 id="what-is-gcp">
-        What is GCP
-        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#what-is-gcp" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: What is GCP" aria-label="Anchor to: What is GCP" href="#what-is-gcp">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h2>
-</div>
-<blockquote>
-<p>Google Cloud Platform (GCP), offered by Google, is a suite of cloud computing services that runs on the same infrastructure that Google uses internally for its end-user products</p>
-</blockquote>
-<p>One of such offered services are <a
-  class="gdoc-markdown__link"
-  href="https://cloud.google.com/kubernetes-engine"
-  
->Google Kubernetes Engines (GKE)</a>.</p>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="can-helm-charts-run-on-gcp">
-        Can Helm charts run on GCP?
-        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#can-helm-charts-run-on-gcp" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: Can Helm charts run on GCP?" aria-label="Anchor to: Can Helm charts run on GCP?" href="#can-helm-charts-run-on-gcp">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div>
-<p>Yes. The next logical step would be to deploy this charts on GKE. There is a pretty thorough guide <a
-  class="gdoc-markdown__link"
-  href="http://docs.shippable.com/deploy/tutorial/deploy-to-gcp-gke-helm/"
-  
->at shippable.com</a> that, for the purposes of our docs, we are only interested on step 5, as we already explain the previous concepts, and provide with the Charts.</p>
-<div class="gdoc-page__anchorwrap">
-    <h2 id="todos">
-        TODOs
-        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/kubernetes/#todos" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: TODOs" aria-label="Anchor to: TODOs" href="#todos">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h2>
-</div>
-<ul>
-<li>While log-in works and creating folders work, uploading fails, most likely a configuration issue that has to be solved.</li>
-</ul>
 
   </article>
 
