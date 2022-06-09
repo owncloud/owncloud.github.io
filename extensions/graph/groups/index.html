@@ -12,7 +12,7 @@
 <meta name="generator" content="Hugo 0.89.4" />
 
 
-  <meta name="description" content="Groups API  Reading groups  GET /groups GET /groups/{groupid}   Getting Group Members  GET /groups/{groupid}/members   Creating / Updating Groups  POST /groups  Request Body Response   DELETE /groups/{id} PATCH /groups/{id}   Adding a single member to a group  POST /groups/{id}/members/$ref   Adding multiple members in a single request  PATCH /groups/{id}   Removing a member  DELETE /groups/{groupid}/members/{id}/$ref          Groups API     The Groups API is implementing a subset of the functionality of the MS Graph Group resource The JSON representation of a Group as handled by the Groups API looks like this:" />
+  <meta name="description" content="Groups API  Reading groups  GET /groups GET /groups?$expand=members GET /groups/{groupid} GET /groups/{groupid}?$expand=members   Getting Group Members  GET /groups/{groupid}/members   Creating / Updating Groups  POST /groups  Request Body Response   DELETE /groups/{id} PATCH /groups/{id}   Adding a single member to a group  POST /groups/{id}/members/$ref   Adding multiple members in a single request  PATCH /groups/{id}   Removing a member  DELETE /groups/{groupid}/members/{id}/$ref          Groups API     The Groups API is implementing a subset of the functionality of the MS Graph Group resource The JSON representation of a Group as handled by the Groups API looks like this:" />
 
     <title>Groups | ownCloud</title>
 
@@ -36,7 +36,7 @@
     content="Groups"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Groups API  Reading groups  GET /groups GET /groups/{groupid}   Getting Group Members  GET /groups/{groupid}/members   Creating / Updating Groups  POST /groups  Request Body Response   DELETE /groups/{id} PATCH /groups/{id}   Adding a single member to a group  POST /groups/{id}/members/$ref   Adding multiple members in a single request  PATCH /groups/{id}   Removing a member  DELETE /groups/{groupid}/members/{id}/$ref          Groups API     The Groups API is implementing a subset of the functionality of the MS Graph Group resource The JSON representation of a Group as handled by the Groups API looks like this:" />
+  <meta property="og:description" content="Groups API  Reading groups  GET /groups GET /groups?$expand=members GET /groups/{groupid} GET /groups/{groupid}?$expand=members   Getting Group Members  GET /groups/{groupid}/members   Creating / Updating Groups  POST /groups  Request Body Response   DELETE /groups/{id} PATCH /groups/{id}   Adding a single member to a group  POST /groups/{id}/members/$ref   Adding multiple members in a single request  PATCH /groups/{id}   Removing a member  DELETE /groups/{groupid}/members/{id}/$ref          Groups API     The Groups API is implementing a subset of the functionality of the MS Graph Group resource The JSON representation of a Group as handled by the Groups API looks like this:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/extensions/graph/groups/" />
 
@@ -45,7 +45,7 @@
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Groups" />
-  <meta name="twitter:description" content="Groups API  Reading groups  GET /groups GET /groups/{groupid}   Getting Group Members  GET /groups/{groupid}/members   Creating / Updating Groups  POST /groups  Request Body Response   DELETE /groups/{id} PATCH /groups/{id}   Adding a single member to a group  POST /groups/{id}/members/$ref   Adding multiple members in a single request  PATCH /groups/{id}   Removing a member  DELETE /groups/{groupid}/members/{id}/$ref          Groups API     The Groups API is implementing a subset of the functionality of the MS Graph Group resource The JSON representation of a Group as handled by the Groups API looks like this:" />
+  <meta name="twitter:description" content="Groups API  Reading groups  GET /groups GET /groups?$expand=members GET /groups/{groupid} GET /groups/{groupid}?$expand=members   Getting Group Members  GET /groups/{groupid}/members   Creating / Updating Groups  POST /groups  Request Body Response   DELETE /groups/{id} PATCH /groups/{id}   Adding a single member to a group  POST /groups/{id}/members/$ref   Adding multiple members in a single request  PATCH /groups/{id}   Removing a member  DELETE /groups/{groupid}/members/{id}/$ref          Groups API     The Groups API is implementing a subset of the functionality of the MS Graph Group resource The JSON representation of a Group as handled by the Groups API looks like this:" />
 
 
   <script type="application/ld+json">
@@ -56,8 +56,8 @@
       "name": "Groups",
       "url" : "https://owncloud.dev/extensions/graph/groups/",
       "headline": "Groups",
-      "description": "Groups API  Reading groups  GET \/groups GET \/groups\/{groupid}   Getting Group Members  GET \/groups\/{groupid}\/members   Creating \/ Updating Groups  POST \/groups  Request Body Response   DELETE \/groups\/{id} PATCH \/groups\/{id}   Adding a single member to a group  POST \/groups\/{id}\/members\/$ref   Adding multiple members in a single request  PATCH \/groups\/{id}   Removing a member  DELETE \/groups\/{groupid}\/members\/{id}\/$ref          Groups API     The Groups API is implementing a subset of the functionality of the MS Graph Group resource The JSON representation of a Group as handled by the Groups API looks like this:",
-      "wordCount" : "494",
+      "description": "Groups API  Reading groups  GET \/groups GET \/groups?$expand=members GET \/groups\/{groupid} GET \/groups\/{groupid}?$expand=members   Getting Group Members  GET \/groups\/{groupid}\/members   Creating \/ Updating Groups  POST \/groups  Request Body Response   DELETE \/groups\/{id} PATCH \/groups\/{id}   Adding a single member to a group  POST \/groups\/{id}\/members\/$ref   Adding multiple members in a single request  PATCH \/groups\/{id}   Removing a member  DELETE \/groups\/{groupid}\/members\/{id}\/$ref          Groups API     The Groups API is implementing a subset of the functionality of the MS Graph Group resource The JSON representation of a Group as handled by the Groups API looks like this:",
+      "wordCount" : "599",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -15362,7 +15362,9 @@ Copyright 2022 Fonticons, Inc.
             <li><a href="#reading-groups">Reading groups</a>
               <ul>
                 <li><a href="#get-groups"><code>GET /groups</code></a></li>
+                <li><a href="#get-groupsexpandmembers"><code>GET /groups?$expand=members</code></a></li>
                 <li><a href="#get-groupsgroupid"><code>GET /groups/{groupid}</code></a></li>
+                <li><a href="#get-groupsgroupidexpandmembers"><code>GET /groups/{groupid}?$expand=members</code></a></li>
               </ul>
             </li>
             <li><a href="#getting-group-members">Getting Group Members</a>
@@ -15474,6 +15476,53 @@ The JSON representation of a Group as handled by the Groups API looks like this:
     ]
 }
 </code></pre></div><div class="gdoc-page__anchorwrap">
+    <h4 id="get-groupsexpandmembers">
+        <code>GET /groups?$expand=members</code>
+        <a data-clipboard-text="https://owncloud.dev/extensions/graph/groups/#get-groupsexpandmembers" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: GET /groups?$expand=members" aria-label="Anchor to: GET /groups?$expand=members" href="#get-groupsexpandmembers">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+<p>Returns a list of all groups including its members</p>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">curl -k &#39;https://localhost:9200/graph/v1.0/groups?$expand=members&#39; -u user:password
+
+</code></pre></div><p>Response:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">{
+    &#34;value&#34;: [
+        {
+            &#34;displayName&#34;: &#34;group&#34;,
+            &#34;id&#34;: &#34;38580a2e-7018-42ed-aff6-b2af0b4e9790&#34;,
+            &#34;members&#34;: [
+                {
+                    &#34;displayName&#34;: &#34;user1&#34;,
+                    &#34;id&#34;: &#34;2e7b7e23-6c42-4d34-81b0-2bed34e51983&#34;,
+                    &#34;mail&#34;: &#34;user1@example.org&#34;,
+                    &#34;onPremisesSamAccountName&#34;: &#34;user1&#34;
+                },
+                {
+                    &#34;displayName&#34;: &#34;user2&#34;,
+                    &#34;id&#34;: &#34;b45c9e35-0d95-4165-96bc-68bff4a316ed&#34;,
+                    &#34;mail&#34;: &#34;user2@example.org&#34;,
+                    &#34;onPremisesSamAccountName&#34;: &#34;user2&#34;
+                }
+            ]
+        },
+        {
+            &#34;displayName&#34;: &#34;Example Users&#34;,
+            &#34;id&#34;: &#34;7a20f238-8a22-4458-902d-47674c317e5f&#34;,
+            &#34;members&#34;: [
+                {
+                    &#34;displayName&#34;: &#34;user3&#34;,
+                    &#34;id&#34;: &#34;026fbfef-79ef-4f5d-887b-9eaf42777239&#34;,
+                    &#34;mail&#34;: &#34;user3@example.org&#34;,
+                    &#34;onPremisesSamAccountName&#34;: &#34;user3&#34;
+                }
+            ]
+        }
+    ]
+}
+</code></pre></div><div class="gdoc-page__anchorwrap">
     <h4 id="get-groupsgroupid">
         <code>GET /groups/{groupid}</code>
         <a data-clipboard-text="https://owncloud.dev/extensions/graph/groups/#get-groupsgroupid" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: GET /groups/{groupid}" aria-label="Anchor to: GET /groups/{groupid}" href="#get-groupsgroupid">
@@ -15487,6 +15536,29 @@ The JSON representation of a Group as handled by the Groups API looks like this:
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">{
     &#34;displayName&#34;: &#34;Example Users&#34;,
     &#34;id&#34;: &#34;7a20f238-8a22-4458-902d-47674c317e5f&#34;
+}
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h4 id="get-groupsgroupidexpandmembers">
+        <code>GET /groups/{groupid}?$expand=members</code>
+        <a data-clipboard-text="https://owncloud.dev/extensions/graph/groups/#get-groupsgroupidexpandmembers" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: GET /groups/{groupid}?$expand=members" aria-label="Anchor to: GET /groups/{groupid}?$expand=members" href="#get-groupsgroupidexpandmembers">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">curl -k &#39;https://localhost:9200/graph/v1.0/groups/7a20f238-8a22-4458-902d-47674c317e5f?$expand=members&#39; -u user:password
+</code></pre></div><p>Response:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">{
+    &#34;displayName&#34;: &#34;Example Users&#34;,
+    &#34;id&#34;: &#34;7a20f238-8a22-4458-902d-47674c317e5f&#34;,
+    &#34;members&#34;: [
+        {
+            &#34;displayName&#34;: &#34;user3&#34;,
+            &#34;id&#34;: &#34;026fbfef-79ef-4f5d-887b-9eaf42777239&#34;,
+            &#34;mail&#34;: &#34;user3@example.org&#34;,
+            &#34;onPremisesSamAccountName&#34;: &#34;user3&#34;
+        }
+    ]
 }
 </code></pre></div><div class="gdoc-page__anchorwrap">
     <h3 id="getting-group-members">

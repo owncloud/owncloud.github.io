@@ -12,7 +12,7 @@
 <meta name="generator" content="Hugo 0.89.4" />
 
 
-  <meta name="description" content="Users API  Reading users  GET /me GET /users GET /users/{userid or accountname}   Creating / Updating Users  POST /users  Request Body Response   DELETE /users/{id} PATCH /users/{id}   Change password  POST /me/changePassword  Request Body            Users API     The Users API is implementing a subset of the functionality of the MS Graph User resource The JSON representation of a User handled by the Users API looks like this:" />
+  <meta name="description" content="Users API  Reading users  GET /me GET /users GET /users?$expand=memberOf GET /users/{userid or accountname} GET /users/{userid or accountname}?$expand=memberOf   Creating / Updating Users  POST /users  Request Body Response   DELETE /users/{id} PATCH /users/{id}   Change password  POST /me/changePassword  Request Body            Users API     The Users API is implementing a subset of the functionality of the MS Graph User resource The JSON representation of a User handled by the Users API looks like this:" />
 
     <title>Users | ownCloud</title>
 
@@ -36,7 +36,7 @@
     content="Users"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Users API  Reading users  GET /me GET /users GET /users/{userid or accountname}   Creating / Updating Users  POST /users  Request Body Response   DELETE /users/{id} PATCH /users/{id}   Change password  POST /me/changePassword  Request Body            Users API     The Users API is implementing a subset of the functionality of the MS Graph User resource The JSON representation of a User handled by the Users API looks like this:" />
+  <meta property="og:description" content="Users API  Reading users  GET /me GET /users GET /users?$expand=memberOf GET /users/{userid or accountname} GET /users/{userid or accountname}?$expand=memberOf   Creating / Updating Users  POST /users  Request Body Response   DELETE /users/{id} PATCH /users/{id}   Change password  POST /me/changePassword  Request Body            Users API     The Users API is implementing a subset of the functionality of the MS Graph User resource The JSON representation of a User handled by the Users API looks like this:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/extensions/graph/users/" />
 
@@ -45,7 +45,7 @@
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Users" />
-  <meta name="twitter:description" content="Users API  Reading users  GET /me GET /users GET /users/{userid or accountname}   Creating / Updating Users  POST /users  Request Body Response   DELETE /users/{id} PATCH /users/{id}   Change password  POST /me/changePassword  Request Body            Users API     The Users API is implementing a subset of the functionality of the MS Graph User resource The JSON representation of a User handled by the Users API looks like this:" />
+  <meta name="twitter:description" content="Users API  Reading users  GET /me GET /users GET /users?$expand=memberOf GET /users/{userid or accountname} GET /users/{userid or accountname}?$expand=memberOf   Creating / Updating Users  POST /users  Request Body Response   DELETE /users/{id} PATCH /users/{id}   Change password  POST /me/changePassword  Request Body            Users API     The Users API is implementing a subset of the functionality of the MS Graph User resource The JSON representation of a User handled by the Users API looks like this:" />
 
 
   <script type="application/ld+json">
@@ -56,8 +56,8 @@
       "name": "Users",
       "url" : "https://owncloud.dev/extensions/graph/users/",
       "headline": "Users",
-      "description": "Users API  Reading users  GET \/me GET \/users GET \/users\/{userid or accountname}   Creating \/ Updating Users  POST \/users  Request Body Response   DELETE \/users\/{id} PATCH \/users\/{id}   Change password  POST \/me\/changePassword  Request Body            Users API     The Users API is implementing a subset of the functionality of the MS Graph User resource The JSON representation of a User handled by the Users API looks like this:",
-      "wordCount" : "479",
+      "description": "Users API  Reading users  GET \/me GET \/users GET \/users?$expand=memberOf GET \/users\/{userid or accountname} GET \/users\/{userid or accountname}?$expand=memberOf   Creating \/ Updating Users  POST \/users  Request Body Response   DELETE \/users\/{id} PATCH \/users\/{id}   Change password  POST \/me\/changePassword  Request Body            Users API     The Users API is implementing a subset of the functionality of the MS Graph User resource The JSON representation of a User handled by the Users API looks like this:",
+      "wordCount" : "594",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -15363,7 +15363,9 @@ Copyright 2022 Fonticons, Inc.
               <ul>
                 <li><a href="#get-me"><code>GET /me</code></a></li>
                 <li><a href="#get-users"><code>GET /users</code></a></li>
+                <li><a href="#get-usersexpandmemberof"><code>GET /users?$expand=memberOf</code></a></li>
                 <li><a href="#get-usersuserid-or-accountname"><code>GET /users/{userid or accountname}</code></a></li>
+                <li><a href="#get-usersuserid-or-accountnameexpandmemberof"><code>GET /users/{userid or accountname}?$expand=memberOf</code></a></li>
               </ul>
             </li>
             <li><a href="#creating--updating-users">Creating / Updating Users</a>
@@ -15500,6 +15502,59 @@ The JSON representation of a User handled by the Users API looks like this:</p>
     ]
 }
 </code></pre></div><div class="gdoc-page__anchorwrap">
+    <h4 id="get-usersexpandmemberof">
+        <code>GET /users?$expand=memberOf</code>
+        <a data-clipboard-text="https://owncloud.dev/extensions/graph/users/#get-usersexpandmemberof" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: GET /users?$expand=memberOf" aria-label="Anchor to: GET /users?$expand=memberOf" href="#get-usersexpandmemberof">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+<p>Returns a list of all users</p>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">curl -k &#39;https://localhost:9200/graph/v1.0/users?$expand=memberOf&#39; -u user:password
+
+</code></pre></div><p>Response:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">{
+    &#34;value&#34;: [
+        {
+            &#34;displayName&#34;: &#34;Albert Einstein&#34;,
+            &#34;id&#34;: &#34;4c510ada-c86b-4815-8820-42cdf82c3d51&#34;,
+            &#34;mail&#34;: &#34;einstein@example.org&#34;,
+            &#34;onPremisesSamAccountName&#34;: &#34;einstein&#34;,
+            &#34;memberOf&#34;: [
+                {
+                    &#34;displayName&#34;: &#34;users&#34;,
+                    &#34;id&#34;: &#34;509a9dcd-bb37-4f4f-a01a-19dca27d9cfa&#34;
+                },
+                {
+                    &#34;displayName&#34;: &#34;sailing-lovers&#34;,
+                    &#34;id&#34;: &#34;6040aa17-9c64-4fef-9bd0-77234d71bad0&#34;
+                },
+                {
+                    &#34;displayName&#34;: &#34;violin-haters&#34;,
+                    &#34;id&#34;: &#34;dd58e5ec-842e-498b-8800-61f2ec6f911f&#34;
+                },
+                {
+                    &#34;displayName&#34;: &#34;physics-lovers&#34;,
+                    &#34;id&#34;: &#34;262982c1-2362-4afa-bfdf-8cbfef64a06e&#34;
+                }
+            ],
+        },
+        {
+            &#34;displayName&#34;: &#34;Maurice Moss&#34;,
+            &#34;id&#34;: &#34;058bff95-6708-4fe5-91e4-9ea3d377588b&#34;,
+            &#34;mail&#34;: &#34;moss@example.org&#34;,
+            &#34;onPremisesSamAccountName&#34;: &#34;moss&#34;,
+            &#34;memberOf&#34;: [
+                {
+                    &#34;displayName&#34;: &#34;users&#34;,
+                    &#34;id&#34;: &#34;509a9dcd-bb37-4f4f-a01a-19dca27d9cfa&#34;
+                }
+            ],
+        }
+    ]
+}
+</code></pre></div><div class="gdoc-page__anchorwrap">
     <h4 id="get-usersuserid-or-accountname">
         <code>GET /users/{userid or accountname}</code>
         <a data-clipboard-text="https://owncloud.dev/extensions/graph/users/#get-usersuserid-or-accountname" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: GET /users/{userid or accountname}" aria-label="Anchor to: GET /users/{userid or accountname}" href="#get-usersuserid-or-accountname">
@@ -15515,6 +15570,29 @@ The JSON representation of a User handled by the Users API looks like this:</p>
     &#34;id&#34;: &#34;058bff95-6708-4fe5-91e4-9ea3d377588b&#34;,
     &#34;mail&#34;: &#34;moss@example.org&#34;,
     &#34;onPremisesSamAccountName&#34;: &#34;moss&#34;
+}
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h4 id="get-usersuserid-or-accountnameexpandmemberof">
+        <code>GET /users/{userid or accountname}?$expand=memberOf</code>
+        <a data-clipboard-text="https://owncloud.dev/extensions/graph/users/#get-usersuserid-or-accountnameexpandmemberof" class="gdoc-page__anchor gdoc-page__anchor--right clip" title="Anchor to: GET /users/{userid or accountname}?$expand=memberOf" aria-label="Anchor to: GET /users/{userid or accountname}?$expand=memberOf" href="#get-usersuserid-or-accountnameexpandmemberof">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">curl -k &#39;https://localhost:9200/graph/v1.0/users/058bff95-6708-4fe5-91e4-9ea3d377588b?$expand=memberOf&#39; -u user:password
+</code></pre></div><p>Response:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">{
+    &#34;displayName&#34;: &#34;Maurice Moss&#34;,
+    &#34;id&#34;: &#34;058bff95-6708-4fe5-91e4-9ea3d377588b&#34;,
+    &#34;mail&#34;: &#34;moss@example.org&#34;,
+    &#34;onPremisesSamAccountName&#34;: &#34;moss&#34;,
+            &#34;memberOf&#34;: [
+                {
+                    &#34;displayName&#34;: &#34;users&#34;,
+                    &#34;id&#34;: &#34;509a9dcd-bb37-4f4f-a01a-19dca27d9cfa&#34;
+                }
+            ],
 }
 </code></pre></div><div class="gdoc-page__anchorwrap">
     <h3 id="creating--updating-users">
