@@ -12,11 +12,10 @@
 <meta name="generator" content="Hugo 0.89.4" />
 
 
-  <meta name="description" content="Currently, every service needs to be configured with a port so oCIS can start them on localhost. We will automate this by using a service registry for more services, until eventually only the proxy has to be configured with a public port.
-For now, the storage service uses these ports to preconfigure those services:
-   port service     9109 health, used by cli?   9140 frontend   9141 frontend debug   9142 gateway   9143 gateway debug   9144 users   9145 users debug   9146 authbasic   9147 authbasic debug   9148 authbearer   9149 authbearer debug   9150 sharing   9151 sharing debug   9154 storage home grpc   9155 storage home http   9156 storage home debug   9157 storage users grpc   9158 storage users http   9159 storage users debug   9160 groups   9161 groups debug   9164 storage app-provider   9165 storage app-provider debug   9178 storage public link   9179 storage public link data   9215 storage meta grpc   9216 storage meta http   9217 storage meta debug    " />
+  <meta name="description" content="TODO add this to the storage overview? or is this a different part? That should be started as a separate service ? And documented elsewhere, e.g. in the accounts?
+User and Group provisioning     In oc10 users are identified by a username, which cannot change, because it is used as a foreign key in several tables. For oCIS we are internally identifying users by a UUID, while using the username in the WebDAV and OCS APIs for backwards compatability." />
 
-    <title>Ports | ownCloud</title>
+    <title>Users | ownCloud</title>
 
     <link
   rel="icon"
@@ -35,54 +34,52 @@ For now, the storage service uses these ports to preconfigure those services:
     
   <meta
     property="og:title"
-    content="Ports"
+    content="Users"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Currently, every service needs to be configured with a port so oCIS can start them on localhost. We will automate this by using a service registry for more services, until eventually only the proxy has to be configured with a public port.
-For now, the storage service uses these ports to preconfigure those services:
-   port service     9109 health, used by cli?   9140 frontend   9141 frontend debug   9142 gateway   9143 gateway debug   9144 users   9145 users debug   9146 authbasic   9147 authbasic debug   9148 authbearer   9149 authbearer debug   9150 sharing   9151 sharing debug   9154 storage home grpc   9155 storage home http   9156 storage home debug   9157 storage users grpc   9158 storage users http   9159 storage users debug   9160 groups   9161 groups debug   9164 storage app-provider   9165 storage app-provider debug   9178 storage public link   9179 storage public link data   9215 storage meta grpc   9216 storage meta http   9217 storage meta debug    " />
+  <meta property="og:description" content="TODO add this to the storage overview? or is this a different part? That should be started as a separate service ? And documented elsewhere, e.g. in the accounts?
+User and Group provisioning     In oc10 users are identified by a username, which cannot change, because it is used as a foreign key in several tables. For oCIS we are internally identifying users by a UUID, while using the username in the WebDAV and OCS APIs for backwards compatability." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://owncloud.dev/extensions/storage/ports/" />
+<meta property="og:url" content="https://owncloud.dev/ocis/storage/users/" />
 
-<meta property="article:section" content="Extensions" />
+<meta property="article:section" content="Ocis" />
     <meta
       property="article:published_time"
-      content="2018-05-02T00:00:00+00:00"
+      content="2020-01-16T00:00:00+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2018-05-02T00:00:00+00:00"
+      content="2020-01-16T00:00:00+00:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Ports" />
-  <meta name="twitter:description" content="Currently, every service needs to be configured with a port so oCIS can start them on localhost. We will automate this by using a service registry for more services, until eventually only the proxy has to be configured with a public port.
-For now, the storage service uses these ports to preconfigure those services:
-   port service     9109 health, used by cli?   9140 frontend   9141 frontend debug   9142 gateway   9143 gateway debug   9144 users   9145 users debug   9146 authbasic   9147 authbasic debug   9148 authbearer   9149 authbearer debug   9150 sharing   9151 sharing debug   9154 storage home grpc   9155 storage home http   9156 storage home debug   9157 storage users grpc   9158 storage users http   9159 storage users debug   9160 groups   9161 groups debug   9164 storage app-provider   9165 storage app-provider debug   9178 storage public link   9179 storage public link data   9215 storage meta grpc   9216 storage meta http   9217 storage meta debug    " />
+<meta name="twitter:title" content="Users" />
+  <meta name="twitter:description" content="TODO add this to the storage overview? or is this a different part? That should be started as a separate service ? And documented elsewhere, e.g. in the accounts?
+User and Group provisioning     In oc10 users are identified by a username, which cannot change, because it is used as a foreign key in several tables. For oCIS we are internally identifying users by a UUID, while using the username in the WebDAV and OCS APIs for backwards compatability." />
 
 
   <script type="application/ld+json">
   {
       "@context": "http://schema.org",
       "@type": "TechArticle",
-      "articleSection": "Extensions",
-      "name": "Ports",
-      "url" : "https://owncloud.dev/extensions/storage/ports/",
-      "headline": "Ports",
-      "description": "Currently, every service needs to be configured with a port so oCIS can start them on localhost. We will automate this by using a service registry for more services, until eventually only the proxy has to be configured with a public port.\nFor now, the storage service uses these ports to preconfigure those services:\n   port service     9109 health, used by cli?   9140 frontend   9141 frontend debug   9142 gateway   9143 gateway debug   9144 users   9145 users debug   9146 authbasic   9147 authbasic debug   9148 authbearer   9149 authbearer debug   9150 sharing   9151 sharing debug   9154 storage home grpc   9155 storage home http   9156 storage home debug   9157 storage users grpc   9158 storage users http   9159 storage users debug   9160 groups   9161 groups debug   9164 storage app-provider   9165 storage app-provider debug   9178 storage public link   9179 storage public link data   9215 storage meta grpc   9216 storage meta http   9217 storage meta debug    ",
-      "wordCount" : "148",
+      "articleSection": "Ocis",
+      "name": "Users",
+      "url" : "https://owncloud.dev/ocis/storage/users/",
+      "headline": "Users",
+      "description": "TODO add this to the storage overview? or is this a different part? That should be started as a separate service ? And documented elsewhere, e.g. in the accounts?\nUser and Group provisioning     In oc10 users are identified by a username, which cannot change, because it is used as a foreign key in several tables. For oCIS we are internally identifying users by a UUID, while using the username in the WebDAV and OCS APIs for backwards compatability.",
+      "wordCount" : "306",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://owncloud.dev/extensions/storage/ports/"
+          "@id": "https://owncloud.dev/ocis/storage/users/"
       },
       "copyrightHolder" : "ownCloud",
-      "copyrightYear" : "2018",
-      "dateCreated": "2018-05-02T00:00:00.00Z",
-      "datePublished": "2018-05-02T00:00:00.00Z",
-      "dateModified": "2018-05-02T00:00:00.00Z",
+      "copyrightYear" : "2020",
+      "dateCreated": "2020-01-16T00:00:00.00Z",
+      "datePublished": "2020-01-16T00:00:00.00Z",
+      "dateModified": "2020-01-16T00:00:00.00Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -158,7 +155,7 @@ For now, the storage service uses these ports to preconfigure those services:
   href="/custom.css"
   media="all"
 />
-  <link href="https://owncloud.dev/extensions/storage/ports/" rel="canonical" type="text/html" />
+  <link href="https://owncloud.dev/ocis/storage/users/" rel="canonical" type="text/html" />
 
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
 
@@ -8700,6 +8697,406 @@ Copyright 2022 Fonticons, Inc.
           </li>
         
       
+        
+          
+          
+          
+          
+          
+          
+
+
+          <li>
+            <input
+              type="checkbox"
+              
+                class="gdoc-nav__toggle" id="navtree-22a2822d"
+                checked
+              
+            />
+            <label
+              
+                for="navtree-22a2822d" class="flex justify-between align-center"
+              
+            >
+              
+                <span class="flex">
+                  <a
+                    href="/ocis/storage/"
+                    class="gdoc-nav__entry"
+                  >
+                    Storage
+                  </a>
+                </span>
+              
+              
+                <svg class="gdoc-icon toggle gdoc_keyboard_arrow_left">
+                  <use xlink:href="#gdoc_keyboard_arrow_left"></use>
+                </svg>
+                <svg class="gdoc-icon toggle gdoc_keyboard_arrow_down">
+                  <use xlink:href="#gdoc_keyboard_arrow_down"></use>
+                </svg>
+              
+            </label>
+
+            
+              
+  
+
+
+  <ul class="gdoc-nav__list">
+    
+    
+      
+
+      
+        
+      
+
+      
+        
+          
+          
+          
+          
+          
+          
+
+
+          <li>
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              
+                <span class="flex">
+                  <a
+                    href="/ocis/storage/spacesprovider/"
+                    class="gdoc-nav__entry"
+                  >
+                    Spaces Provider
+                  </a>
+                </span>
+              
+              
+            </label>
+
+            
+          </li>
+        
+      
+    
+      
+
+      
+        
+      
+
+      
+        
+          
+          
+          
+          
+          
+          
+
+
+          <li>
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              
+                <span class="flex">
+                  <a
+                    href="/ocis/storage/spacesregistry/"
+                    class="gdoc-nav__entry"
+                  >
+                    Spaces Registry
+                  </a>
+                </span>
+              
+              
+            </label>
+
+            
+          </li>
+        
+      
+    
+      
+
+      
+        
+      
+
+      
+        
+          
+          
+          
+          
+          
+          
+
+
+          <li>
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              
+                <span class="flex">
+                  <a
+                    href="/ocis/storage/storagedrivers/"
+                    class="gdoc-nav__entry"
+                  >
+                    Storage drivers
+                  </a>
+                </span>
+              
+              
+            </label>
+
+            
+          </li>
+        
+      
+    
+      
+
+      
+        
+      
+
+      
+        
+          
+          
+          
+          
+          
+          
+
+
+          <li>
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              
+                <span class="flex">
+                  <a
+                    href="/ocis/storage/namespaces/"
+                    class="gdoc-nav__entry"
+                  >
+                    Namespaces
+                  </a>
+                </span>
+              
+              
+            </label>
+
+            
+          </li>
+        
+      
+    
+      
+
+      
+        
+      
+
+      
+        
+          
+          
+          
+          
+          
+          
+
+
+          <li>
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              
+                <span class="flex">
+                  <a
+                    href="/ocis/storage/terminology/"
+                    class="gdoc-nav__entry"
+                  >
+                    Terminology
+                  </a>
+                </span>
+              
+              
+            </label>
+
+            
+          </li>
+        
+      
+        
+          
+          
+          
+          
+          
+          
+
+
+          <li>
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              
+                <span class="flex">
+                  <a
+                    href="/ocis/storage/users/"
+                    class="gdoc-nav__entry is-active"
+                  >
+                    Users
+                  </a>
+                </span>
+              
+              
+            </label>
+
+            
+          </li>
+        
+      
+    
+      
+
+      
+        
+      
+
+      
+        
+          
+          
+          
+          
+          
+          
+
+
+          <li>
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              
+                <span class="flex">
+                  <a
+                    href="/ocis/storage/proposedchanges/"
+                    class="gdoc-nav__entry"
+                  >
+                    Proposed Changes
+                  </a>
+                </span>
+              
+              
+            </label>
+
+            
+          </li>
+        
+      
+    
+      
+
+      
+        
+      
+
+      
+        
+          
+          
+          
+          
+          
+          
+
+
+          <li>
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              
+                <span class="flex">
+                  <a
+                    href="/ocis/storage/spaces/"
+                    class="gdoc-nav__entry"
+                  >
+                    Spaces
+                  </a>
+                </span>
+              
+              
+            </label>
+
+            
+          </li>
+        
+      
+    
+  </ul>
+
+            
+          </li>
+        
+      
     
       
 
@@ -13011,450 +13408,6 @@ Copyright 2022 Fonticons, Inc.
             <input
               type="checkbox"
               
-                class="gdoc-nav__toggle" id="navtree-32265ebb"
-                checked
-              
-            />
-            <label
-              
-                for="navtree-32265ebb" class="flex justify-between align-center"
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/extensions/storage/"
-                    class="gdoc-nav__entry"
-                  >
-                    Storage
-                  </a>
-                </span>
-              
-              
-                <svg class="gdoc-icon toggle gdoc_keyboard_arrow_left">
-                  <use xlink:href="#gdoc_keyboard_arrow_left"></use>
-                </svg>
-                <svg class="gdoc-icon toggle gdoc_keyboard_arrow_down">
-                  <use xlink:href="#gdoc_keyboard_arrow_down"></use>
-                </svg>
-              
-            </label>
-
-            
-              
-  
-
-
-  <ul class="gdoc-nav__list">
-    
-    
-      
-
-      
-        
-      
-
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/extensions/storage/spacesprovider/"
-                    class="gdoc-nav__entry"
-                  >
-                    Spaces Provider
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-    
-      
-
-      
-        
-      
-
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/extensions/storage/spacesregistry/"
-                    class="gdoc-nav__entry"
-                  >
-                    Spaces Registry
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-    
-      
-
-      
-        
-      
-
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/extensions/storage/storagedrivers/"
-                    class="gdoc-nav__entry"
-                  >
-                    Storage drivers
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-    
-      
-
-      
-        
-      
-
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/extensions/storage/namespaces/"
-                    class="gdoc-nav__entry"
-                  >
-                    Namespaces
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-    
-      
-
-      
-        
-      
-
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/extensions/storage/terminology/"
-                    class="gdoc-nav__entry"
-                  >
-                    Terminology
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/extensions/storage/users/"
-                    class="gdoc-nav__entry"
-                  >
-                    Users
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-    
-      
-
-      
-        
-      
-
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/extensions/storage/proposedchanges/"
-                    class="gdoc-nav__entry"
-                  >
-                    Proposed Changes
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-    
-      
-
-      
-        
-      
-
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/extensions/storage/spaces/"
-                    class="gdoc-nav__entry"
-                  >
-                    Spaces
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-    
-      
-
-      
-        
-      
-
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/extensions/storage/ports/"
-                    class="gdoc-nav__entry is-active"
-                  >
-                    Ports
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-    
-  </ul>
-
-            
-          </li>
-        
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
                 class="gdoc-nav__toggle" id="navtree-74ad43c4"
                 
               
@@ -15337,7 +15290,7 @@ Copyright 2022 Fonticons, Inc.
     
   
   
-    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/extensions/' href='/extensions/'><span itemprop='name'>Extensions</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/extensions/storage/' href='/extensions/storage/'><span itemprop='name'>Storage</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Ports</span><meta itemprop='position' content='4' /></li>
+    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/storage/' href='/ocis/storage/'><span itemprop='name'>Storage</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Users</span><meta itemprop='position' content='4' /></li>
   
 
   
@@ -15354,7 +15307,7 @@ Copyright 2022 Fonticons, Inc.
       <span class="editpage">
         <svg class="gdoc-icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
         <a
-          href="https://github.com/owncloud/ocis/edit/master/docs/extensions/storage/ports.md"
+          href="https://github.com/owncloud/ocis/edit/master/docs/extensions/storage/users.md"
         >
           Edit page
         </a>
@@ -15368,131 +15321,88 @@ Copyright 2022 Fonticons, Inc.
   <article
     class="gdoc-markdown gdoc-markdown__align--left"
   >
-    <h1>Ports</h1>
-    <p>Currently, every service needs to be configured with a port so oCIS can start them on localhost. We will automate this by using a service registry for more services, until eventually only the proxy has to be configured with a public port.</p>
-<p>For now, the storage service uses these ports to preconfigure those services:</p>
-<div class="table-wrap"> <table>
-<thead>
-<tr>
-<th>port</th>
-<th>service</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>9109</td>
-<td>health, used by cli?</td>
-</tr>
-<tr>
-<td>9140</td>
-<td>frontend</td>
-</tr>
-<tr>
-<td>9141</td>
-<td>frontend debug</td>
-</tr>
-<tr>
-<td>9142</td>
-<td>gateway</td>
-</tr>
-<tr>
-<td>9143</td>
-<td>gateway debug</td>
-</tr>
-<tr>
-<td>9144</td>
-<td>users</td>
-</tr>
-<tr>
-<td>9145</td>
-<td>users debug</td>
-</tr>
-<tr>
-<td>9146</td>
-<td>authbasic</td>
-</tr>
-<tr>
-<td>9147</td>
-<td>authbasic debug</td>
-</tr>
-<tr>
-<td>9148</td>
-<td>authbearer</td>
-</tr>
-<tr>
-<td>9149</td>
-<td>authbearer debug</td>
-</tr>
-<tr>
-<td>9150</td>
-<td>sharing</td>
-</tr>
-<tr>
-<td>9151</td>
-<td>sharing debug</td>
-</tr>
-<tr>
-<td>9154</td>
-<td>storage home grpc</td>
-</tr>
-<tr>
-<td>9155</td>
-<td>storage home http</td>
-</tr>
-<tr>
-<td>9156</td>
-<td>storage home debug</td>
-</tr>
-<tr>
-<td>9157</td>
-<td>storage users grpc</td>
-</tr>
-<tr>
-<td>9158</td>
-<td>storage users http</td>
-</tr>
-<tr>
-<td>9159</td>
-<td>storage users debug</td>
-</tr>
-<tr>
-<td>9160</td>
-<td>groups</td>
-</tr>
-<tr>
-<td>9161</td>
-<td>groups debug</td>
-</tr>
-<tr>
-<td>9164</td>
-<td>storage app-provider</td>
-</tr>
-<tr>
-<td>9165</td>
-<td>storage app-provider debug</td>
-</tr>
-<tr>
-<td>9178</td>
-<td>storage public link</td>
-</tr>
-<tr>
-<td>9179</td>
-<td>storage public link data</td>
-</tr>
-<tr>
-<td>9215</td>
-<td>storage meta grpc</td>
-</tr>
-<tr>
-<td>9216</td>
-<td>storage meta http</td>
-</tr>
-<tr>
-<td>9217</td>
-<td>storage meta debug</td>
-</tr>
-</tbody>
-</table> </div>
+    <h1>Users</h1>
+    <p>TODO add this to the storage overview? or is this a different part? That should be started as a separate service ? And documented elsewhere, e.g. in the accounts?</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="user-and-group-provisioning">
+        User and Group provisioning
+        <a data-clipboard-text="https://owncloud.dev/ocis/storage/users/#user-and-group-provisioning" class="gdoc-page__anchor clip flex align-center" title="Anchor to: User and Group provisioning" aria-label="Anchor to: User and Group provisioning" href="#user-and-group-provisioning">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>In oc10 users are identified by a username, which cannot change, because it is used as a foreign key in several tables. For oCIS we are internally identifying users by a UUID, while using the username in the WebDAV and OCS APIs for backwards compatability. To distinguish this in the URLs we are using <code>&lt;username&gt;</code> instead of <code>&lt;userid&gt;</code>. You may have encountered <code>&lt;user_layout&gt;</code>, which refers to a template that can be configured to build several path segments by filling in user properties, e.g. the first  character of the username (<code>{{substr 0 1 .Username}}/{{.Username}}</code>), the identity provider (<code>{{.Id.Idp}}/{{.Username}}</code>) or the email (<code>{{.Mail}}</code>)</p>
+
+
+
+
+
+<blockquote class="gdoc-hint note">
+  <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
+  <div class="gdoc-hint__text">Make no mistake, the <a
+  class="gdoc-markdown__link"
+  href="https://doc.owncloud.com/server/developer_manual/core/apis/provisioning-api.html"
+  
+>OCS Provisioning API</a> uses <code>userid</code> while it actually is the username, because it is what you use to login.</div>
+</blockquote>
+
+<p>We are currently working on adding <a
+  class="gdoc-markdown__link"
+  href="https://github.com/owncloud/ocis/pull/1930"
+  
+>user management through the CS3 API</a> to handle user and group provisioning (and deprovisioning).</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="demo-driver">
+        Demo driver
+        <a data-clipboard-text="https://owncloud.dev/ocis/storage/users/#demo-driver" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Demo driver" aria-label="Anchor to: Demo driver" href="#demo-driver">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>This is a simple user driver for testing. It contains three users:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">einstein:relativity
+marie:radioactivity
+richard:superfluidity
+</code></pre></div><p>In order to use the <code>demo</code> driver you need to export the relevant environment variable:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">export STORAGE_USERS_DRIVER=demo
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h3 id="json-driver">
+        JSON driver
+        <a data-clipboard-text="https://owncloud.dev/ocis/storage/users/#json-driver" class="gdoc-page__anchor clip flex align-center" title="Anchor to: JSON driver" aria-label="Anchor to: JSON driver" href="#json-driver">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>In order to switch from the <code>ldap</code> driver to JSON based users you need to export the relevant environment variables:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">export STORAGE_USERS_DRIVER=json
+export STORAGE_USERS_JSON=/path/to/users.json
+</code></pre></div><p>For the format of the users.json have a look at the <a
+  class="gdoc-markdown__link"
+  href="https://github.com/cs3org/reva/blob/master/examples/oc-phoenix/users.demo.json"
+  
+>reva examples</a></p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="ldap-driver">
+        LDAP driver
+        <a data-clipboard-text="https://owncloud.dev/ocis/storage/users/#ldap-driver" class="gdoc-page__anchor clip flex align-center" title="Anchor to: LDAP driver" aria-label="Anchor to: LDAP driver" href="#ldap-driver">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>This is the default user driver.</p>
+<p>If the below defaults don&rsquo;t match your environment change them accordingly:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">export STORAGE_LDAP_HOSTNAME=localhost
+export STORAGE_LDAP_PORT=9126
+export STORAGE_LDAP_BASE_DN=&#39;dc=ocis,dc=test&#39;
+export STORAGE_LDAP_USER_FILTER=&#39;(&amp;(objectclass=posixAccount)(cn=%s))&#39;
+export STORAGE_LDAP_GROUP_FILTER=&#39;(&amp;(objectclass=posixGroup)(cn=%s))&#39;
+export STORAGE_LDAP_BIND_DN=&#39;cn=reva,ou=sysusers,dc=ocis,dc=test&#39;
+export STORAGE_LDAP_BIND_PASSWORD=reva
+export STORAGE_LDAP_USER_SCHEMA_UID=uid
+export STORAGE_LDAP_USER_SCHEMA_MAIL=mail
+export STORAGE_LDAP_USER_SCHEMA_DISPLAYNAME=sn
+export STORAGE_LDAP_USER_SCHEMA_CN=cn
+</code></pre></div><p>Then restart the <code>bin/storage users</code> and <code>bin/storage auth-basic</code> services for the changes to take effect.</p>
 
   </article>
 

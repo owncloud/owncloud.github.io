@@ -12,10 +12,10 @@
 <meta name="generator" content="Hugo 0.89.4" />
 
 
-  <meta name="description" content="A namespace is a set of paths with a common prefix. Depending on the endpoint you are talking to you will encounter a different kind of namespace: In ownCloud 10 all paths are considered relative to the users home. The CS3 API uses a global namespace and the storage providers use a local namespace with paths relative to the storage providers root.
- The different paths in the namespaces need to be translated while passing references from service to service." />
+  <meta name="description" content="Some architectural changes still need to be clarified or changed. Maybe an ADR is in order for all of the below.
+Reva Gateway changes     A dedicated shares storage provider     Currently, when a user accepts a share, a cs3 reference is created in the users /home/shares folder. This reference represents the mount point of a share and can be renamed, similar to the share jail in ownCloud 10." />
 
-    <title>Namespaces | ownCloud</title>
+    <title>Proposed Changes | ownCloud</title>
 
     <link
   rel="icon"
@@ -34,15 +34,15 @@
     
   <meta
     property="og:title"
-    content="Namespaces"
+    content="Proposed Changes"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="A namespace is a set of paths with a common prefix. Depending on the endpoint you are talking to you will encounter a different kind of namespace: In ownCloud 10 all paths are considered relative to the users home. The CS3 API uses a global namespace and the storage providers use a local namespace with paths relative to the storage providers root.
- The different paths in the namespaces need to be translated while passing references from service to service." />
+  <meta property="og:description" content="Some architectural changes still need to be clarified or changed. Maybe an ADR is in order for all of the below.
+Reva Gateway changes     A dedicated shares storage provider     Currently, when a user accepts a share, a cs3 reference is created in the users /home/shares folder. This reference represents the mount point of a share and can be renamed, similar to the share jail in ownCloud 10." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://owncloud.dev/extensions/storage/namespaces/" />
+<meta property="og:url" content="https://owncloud.dev/ocis/storage/proposedchanges/" />
 
-<meta property="article:section" content="Extensions" />
+<meta property="article:section" content="Ocis" />
     <meta
       property="article:published_time"
       content="2018-05-02T00:00:00+00:00"
@@ -54,26 +54,26 @@
 
 
   <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Namespaces" />
-  <meta name="twitter:description" content="A namespace is a set of paths with a common prefix. Depending on the endpoint you are talking to you will encounter a different kind of namespace: In ownCloud 10 all paths are considered relative to the users home. The CS3 API uses a global namespace and the storage providers use a local namespace with paths relative to the storage providers root.
- The different paths in the namespaces need to be translated while passing references from service to service." />
+<meta name="twitter:title" content="Proposed Changes" />
+  <meta name="twitter:description" content="Some architectural changes still need to be clarified or changed. Maybe an ADR is in order for all of the below.
+Reva Gateway changes     A dedicated shares storage provider     Currently, when a user accepts a share, a cs3 reference is created in the users /home/shares folder. This reference represents the mount point of a share and can be renamed, similar to the share jail in ownCloud 10." />
 
 
   <script type="application/ld+json">
   {
       "@context": "http://schema.org",
       "@type": "TechArticle",
-      "articleSection": "Extensions",
-      "name": "Namespaces",
-      "url" : "https://owncloud.dev/extensions/storage/namespaces/",
-      "headline": "Namespaces",
-      "description": "A namespace is a set of paths with a common prefix. Depending on the endpoint you are talking to you will encounter a different kind of namespace: In ownCloud 10 all paths are considered relative to the users home. The CS3 API uses a global namespace and the storage providers use a local namespace with paths relative to the storage providers root.\n The different paths in the namespaces need to be translated while passing references from service to service.",
-      "wordCount" : "1045",
+      "articleSection": "Ocis",
+      "name": "Proposed Changes",
+      "url" : "https://owncloud.dev/ocis/storage/proposedchanges/",
+      "headline": "Proposed Changes",
+      "description": "Some architectural changes still need to be clarified or changed. Maybe an ADR is in order for all of the below.\nReva Gateway changes     A dedicated shares storage provider     Currently, when a user accepts a share, a cs3 reference is created in the users \/home\/shares folder. This reference represents the mount point of a share and can be renamed, similar to the share jail in ownCloud 10.",
+      "wordCount" : "2076",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://owncloud.dev/extensions/storage/namespaces/"
+          "@id": "https://owncloud.dev/ocis/storage/proposedchanges/"
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2018",
@@ -155,7 +155,7 @@
   href="/custom.css"
   media="all"
 />
-  <link href="https://owncloud.dev/extensions/storage/namespaces/" rel="canonical" type="text/html" />
+  <link href="https://owncloud.dev/ocis/storage/proposedchanges/" rel="canonical" type="text/html" />
 
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
 
@@ -8697,6 +8697,406 @@ Copyright 2022 Fonticons, Inc.
           </li>
         
       
+        
+          
+          
+          
+          
+          
+          
+
+
+          <li>
+            <input
+              type="checkbox"
+              
+                class="gdoc-nav__toggle" id="navtree-22a2822d"
+                checked
+              
+            />
+            <label
+              
+                for="navtree-22a2822d" class="flex justify-between align-center"
+              
+            >
+              
+                <span class="flex">
+                  <a
+                    href="/ocis/storage/"
+                    class="gdoc-nav__entry"
+                  >
+                    Storage
+                  </a>
+                </span>
+              
+              
+                <svg class="gdoc-icon toggle gdoc_keyboard_arrow_left">
+                  <use xlink:href="#gdoc_keyboard_arrow_left"></use>
+                </svg>
+                <svg class="gdoc-icon toggle gdoc_keyboard_arrow_down">
+                  <use xlink:href="#gdoc_keyboard_arrow_down"></use>
+                </svg>
+              
+            </label>
+
+            
+              
+  
+
+
+  <ul class="gdoc-nav__list">
+    
+    
+      
+
+      
+        
+      
+
+      
+        
+          
+          
+          
+          
+          
+          
+
+
+          <li>
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              
+                <span class="flex">
+                  <a
+                    href="/ocis/storage/spacesprovider/"
+                    class="gdoc-nav__entry"
+                  >
+                    Spaces Provider
+                  </a>
+                </span>
+              
+              
+            </label>
+
+            
+          </li>
+        
+      
+    
+      
+
+      
+        
+      
+
+      
+        
+          
+          
+          
+          
+          
+          
+
+
+          <li>
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              
+                <span class="flex">
+                  <a
+                    href="/ocis/storage/spacesregistry/"
+                    class="gdoc-nav__entry"
+                  >
+                    Spaces Registry
+                  </a>
+                </span>
+              
+              
+            </label>
+
+            
+          </li>
+        
+      
+    
+      
+
+      
+        
+      
+
+      
+        
+          
+          
+          
+          
+          
+          
+
+
+          <li>
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              
+                <span class="flex">
+                  <a
+                    href="/ocis/storage/storagedrivers/"
+                    class="gdoc-nav__entry"
+                  >
+                    Storage drivers
+                  </a>
+                </span>
+              
+              
+            </label>
+
+            
+          </li>
+        
+      
+    
+      
+
+      
+        
+      
+
+      
+        
+          
+          
+          
+          
+          
+          
+
+
+          <li>
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              
+                <span class="flex">
+                  <a
+                    href="/ocis/storage/namespaces/"
+                    class="gdoc-nav__entry"
+                  >
+                    Namespaces
+                  </a>
+                </span>
+              
+              
+            </label>
+
+            
+          </li>
+        
+      
+    
+      
+
+      
+        
+      
+
+      
+        
+          
+          
+          
+          
+          
+          
+
+
+          <li>
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              
+                <span class="flex">
+                  <a
+                    href="/ocis/storage/terminology/"
+                    class="gdoc-nav__entry"
+                  >
+                    Terminology
+                  </a>
+                </span>
+              
+              
+            </label>
+
+            
+          </li>
+        
+      
+        
+          
+          
+          
+          
+          
+          
+
+
+          <li>
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              
+                <span class="flex">
+                  <a
+                    href="/ocis/storage/users/"
+                    class="gdoc-nav__entry"
+                  >
+                    Users
+                  </a>
+                </span>
+              
+              
+            </label>
+
+            
+          </li>
+        
+      
+    
+      
+
+      
+        
+      
+
+      
+        
+          
+          
+          
+          
+          
+          
+
+
+          <li>
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              
+                <span class="flex">
+                  <a
+                    href="/ocis/storage/proposedchanges/"
+                    class="gdoc-nav__entry is-active"
+                  >
+                    Proposed Changes
+                  </a>
+                </span>
+              
+              
+            </label>
+
+            
+          </li>
+        
+      
+    
+      
+
+      
+        
+      
+
+      
+        
+          
+          
+          
+          
+          
+          
+
+
+          <li>
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              
+                <span class="flex">
+                  <a
+                    href="/ocis/storage/spaces/"
+                    class="gdoc-nav__entry"
+                  >
+                    Spaces
+                  </a>
+                </span>
+              
+              
+            </label>
+
+            
+          </li>
+        
+      
+    
+  </ul>
+
+            
+          </li>
+        
+      
     
       
 
@@ -13008,450 +13408,6 @@ Copyright 2022 Fonticons, Inc.
             <input
               type="checkbox"
               
-                class="gdoc-nav__toggle" id="navtree-32265ebb"
-                checked
-              
-            />
-            <label
-              
-                for="navtree-32265ebb" class="flex justify-between align-center"
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/extensions/storage/"
-                    class="gdoc-nav__entry"
-                  >
-                    Storage
-                  </a>
-                </span>
-              
-              
-                <svg class="gdoc-icon toggle gdoc_keyboard_arrow_left">
-                  <use xlink:href="#gdoc_keyboard_arrow_left"></use>
-                </svg>
-                <svg class="gdoc-icon toggle gdoc_keyboard_arrow_down">
-                  <use xlink:href="#gdoc_keyboard_arrow_down"></use>
-                </svg>
-              
-            </label>
-
-            
-              
-  
-
-
-  <ul class="gdoc-nav__list">
-    
-    
-      
-
-      
-        
-      
-
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/extensions/storage/spacesprovider/"
-                    class="gdoc-nav__entry"
-                  >
-                    Spaces Provider
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-    
-      
-
-      
-        
-      
-
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/extensions/storage/spacesregistry/"
-                    class="gdoc-nav__entry"
-                  >
-                    Spaces Registry
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-    
-      
-
-      
-        
-      
-
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/extensions/storage/storagedrivers/"
-                    class="gdoc-nav__entry"
-                  >
-                    Storage drivers
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-    
-      
-
-      
-        
-      
-
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/extensions/storage/namespaces/"
-                    class="gdoc-nav__entry is-active"
-                  >
-                    Namespaces
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-    
-      
-
-      
-        
-      
-
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/extensions/storage/terminology/"
-                    class="gdoc-nav__entry"
-                  >
-                    Terminology
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/extensions/storage/users/"
-                    class="gdoc-nav__entry"
-                  >
-                    Users
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-    
-      
-
-      
-        
-      
-
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/extensions/storage/proposedchanges/"
-                    class="gdoc-nav__entry"
-                  >
-                    Proposed Changes
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-    
-      
-
-      
-        
-      
-
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/extensions/storage/spaces/"
-                    class="gdoc-nav__entry"
-                  >
-                    Spaces
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-    
-      
-
-      
-        
-      
-
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/extensions/storage/ports/"
-                    class="gdoc-nav__entry"
-                  >
-                    Ports
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-    
-  </ul>
-
-            
-          </li>
-        
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
                 class="gdoc-nav__toggle" id="navtree-74ad43c4"
                 
               
@@ -15334,7 +15290,7 @@ Copyright 2022 Fonticons, Inc.
     
   
   
-    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/extensions/' href='/extensions/'><span itemprop='name'>Extensions</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/extensions/storage/' href='/extensions/storage/'><span itemprop='name'>Storage</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Namespaces</span><meta itemprop='position' content='4' /></li>
+    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/storage/' href='/ocis/storage/'><span itemprop='name'>Storage</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Proposed Changes</span><meta itemprop='position' content='4' /></li>
   
 
   
@@ -15351,7 +15307,7 @@ Copyright 2022 Fonticons, Inc.
       <span class="editpage">
         <svg class="gdoc-icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
         <a
-          href="https://github.com/owncloud/ocis/edit/master/docs/extensions/storage/namespaces.md"
+          href="https://github.com/owncloud/ocis/edit/master/docs/extensions/storage/proposedchanges.md"
         >
           Edit page
         </a>
@@ -15365,176 +15321,36 @@ Copyright 2022 Fonticons, Inc.
   <article
     class="gdoc-markdown gdoc-markdown__align--left"
   >
-    <h1>Namespaces</h1>
-    <p>A <em>namespace</em> is a set of paths with a common prefix. Depending on the endpoint you are talking to you will encounter a different kind of namespace:
-In ownCloud 10 all paths are considered relative to the users home. The CS3 API uses a global namespace and the <em>storage providers</em> use a local namespace with paths relative to the storage providers root.</p>
-<figure><img src="/extensions/storage/static/namespaces.drawio.svg"/>
-</figure>
-
-<p>The different paths in the namespaces need to be translated while passing <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/extensions/storage/terminology/#references"
-  
-><em>references</em></a> from service to service. While the oc10 endpoints all work on paths we internally reference shared resources by id, so the shares don&rsquo;t break when a file is renamed or moved inside a storage <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/extensions/storage/spaces/"
-  
-><em>space</em></a>. The following table lists the various namespaces, paths and id based references:</p>
-<div class="table-wrap"> <table>
-<thead>
-<tr>
-<th>oc10 namespace</th>
-<th>CS3 global namespace</th>
-<th>storage provider</th>
-<th>reference</th>
-<th>content</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>/webdav/path/to/file.ext</code> <code>/dav/files/&lt;username&gt;/path/to/file.ext</code></td>
-<td><code>/home/path/to/file.ext</code></td>
-<td>home</td>
-<td><code>/&lt;user_layout&gt;/path/to/file.ext</code></td>
-<td>currently logged in users home</td>
-</tr>
-<tr>
-<td><code>/webdav/Shares/foo</code> <code>/dav/files/&lt;username&gt;/Shares/foo</code></td>
-<td><code>/home/Shares/foo</code></td>
-<td>users</td>
-<td>id based access</td>
-<td>all users, used to access collaborative shares</td>
-</tr>
-<tr>
-<td><code>/dav/public-files/&lt;token&gt;/rel/path/to/file.ext</code></td>
-<td><code>/public/&lt;token&gt;/rel/path/to/file.ext</code></td>
-<td>public</td>
-<td>id based access</td>
-<td>publicly shared files, used to access public links</td>
-</tr>
-</tbody>
-</table> </div>
-
-
-
-
-
-<blockquote class="gdoc-hint note">
-  <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
-  <div class="gdoc-hint__text">oCIS currently is configured to jail users into the CS3 <code>/home</code> namespace in the oc10 endpoints to mimic ownCloud 10. CernBox has been exposing a global namespace on <code>/webdav</code> for years already. The ocs service returns urls that are relative to the CS3 global namespace which makes both scenarios work, but only one of them at a time. Which is why the testsuite hiccups when trying to <a
-  class="gdoc-markdown__link"
-  href="https://github.com/cs3org/reva/pull/1605"
-  
->Allow full paths targets in reva#1605</a>.</div>
-</blockquote>
-
-
-
-
-
-
-<blockquote class="gdoc-hint note">
-  <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
-  <div class="gdoc-hint__text">In the global CS3 namespaces we plan to move <code>/home/Shares</code>, which currently lists all mounted shares of the currently logged-in user to a dedicated <code>/shares</code> namespace. See <a
-  class="gdoc-markdown__link"
-  href="#cs3-namespaces"
-  
->below</a> and <a
-  class="gdoc-markdown__link"
-  href="https://github.com/cs3org/reva/pull/1584"
-  
->Move shares folder out from home directory to a separate mount reva#1584</a>.</div>
-</blockquote>
-
+    <h1>Proposed Changes</h1>
+    <p>Some architectural changes still need to be clarified or changed. Maybe an ADR is in order for all of the below.</p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="owncloud-namespaces">
-        ownCloud namespaces
-        <a data-clipboard-text="https://owncloud.dev/extensions/storage/namespaces/#owncloud-namespaces" class="gdoc-page__anchor clip flex align-center" title="Anchor to: ownCloud namespaces" aria-label="Anchor to: ownCloud namespaces" href="#owncloud-namespaces">
+    <h2 id="reva-gateway-changes">
+        Reva Gateway changes
+        <a data-clipboard-text="https://owncloud.dev/ocis/storage/proposedchanges/#reva-gateway-changes" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Reva Gateway changes" aria-label="Anchor to: Reva Gateway changes" href="#reva-gateway-changes">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div>
-<p>In contrast to the global namespace of CS3, ownCloud always presented a user specific namespace on all endpoints. It will always list the users private files under <code>/</code>. Shares can be mounted at an arbitrary location in the users private spaces. See the <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/extensions/storage/spacesprovider/#webdav"
-  
->webdav</a> and <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/extensions/storage/spacesprovider/#sharing"
-  
->ocs</a> sections for more details end examples.</p>
-<p>With the spaces concept we are planning to introduce a global namespace to the ownCloud webdav endpoints. This will push the users private space down in the hierarchy: it will move from <code>/webdav</code> to <code>/webdav/home</code> or <code>/webdav/users/&lt;username&gt;</code>. The related <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/ocis/migration/"
-  
->migration stages</a> are subject to change.</p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="cs3-global-namespaces">
-        CS3 global namespaces
-        <a data-clipboard-text="https://owncloud.dev/extensions/storage/namespaces/#cs3-global-namespaces" class="gdoc-page__anchor clip flex align-center" title="Anchor to: CS3 global namespaces" aria-label="Anchor to: CS3 global namespaces" href="#cs3-global-namespaces">
+    <h2 id="a-dedicated-shares-storage-provider">
+        A dedicated shares storage provider
+        <a data-clipboard-text="https://owncloud.dev/ocis/storage/proposedchanges/#a-dedicated-shares-storage-provider" class="gdoc-page__anchor clip flex align-center" title="Anchor to: A dedicated shares storage provider" aria-label="Anchor to: A dedicated shares storage provider" href="#a-dedicated-shares-storage-provider">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div>
-<p>The <em>CS3 global namespace</em> in oCIS is configured in the storage <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/extensions/storage/spacesregistry/"
-  
-><em>spaces registry</em></a>. oCIS uses these defaults:</p>
-<div class="table-wrap"> <table>
-<thead>
-<tr>
-<th>global namespace</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>/home</code></td>
-<td>an alias for the currently logged in uses private space</td>
-</tr>
-<tr>
-<td><code>/users/&lt;user_layout&gt;</code></td>
-<td>user private spaces</td>
-</tr>
-<tr>
-<td><code>/shares</code></td>
-<td>a virtual listing of share spaces a user has access to</td>
-</tr>
-<tr>
-<td><code>/public/&lt;token&gt;</code></td>
-<td>a virtual folder listing public shares</td>
-</tr>
-<tr>
-<td><code>/spaces/&lt;spacename&gt;</code></td>
-<td><em>TODO: project or group spaces</em></td>
-</tr>
-</tbody>
-</table> </div>
-<p>Technically, the <code>/home</code> namespace is not necessary: the storage <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/extensions/storage/spacesregistry/"
-  
-><em>spaces registry</em></a> knows the path to a users private space in the <code>/users</code> namespace and the gateway can forward the requests to the responsible storage provider.</p>
-
-
-
-
-
-<blockquote class="gdoc-hint note">
-  <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
-  <div class="gdoc-hint__text">*@jfd: Why don&rsquo;t we use <code>/home/&lt;user_layout&gt;</code> instead of <code>/users/&lt;user_layout&gt;</code>. Then the paths would be consistent with most unix systems.</div>
-</blockquote>
-
-<p>The <code>/shares</code> namespace is used to solve two problems:</p>
+<p>Currently, when a user accepts a share, a cs3 reference is created in the users <code>/home/shares</code> folder. This reference represents the mount point of a share and can be renamed, similar to the share jail in ownCloud 10. This spreads the metadata of a share in two places:</p>
 <ul>
-<li>To query all shares the current user has access to the <em>share manager</em> can be used to list the resource ids. While the shares can then be navigated by resource id, they will return the relative path in the actual <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/extensions/storage/terminology/#storage-providers"
-  
-><em>storage provider</em></a>, leaking parent folders of the shared resource.</li>
-<li>When accepting a remote share e.g., for OCM the resource does not exist on the local instance. They are made accessible in the global namespace under the <code>/shares</code> namespace.</li>
+<li>the share is persisted in the <em>share manager</em></li>
+<li>the mount point of a share is persisted in the home <em>storage provider</em></li>
 </ul>
+<p>Furthermore, the <em>gateway</em> treats <code>/home/shares</code> different than any other path: it will stat all children and calculate an etag to allow clients to discover changes in accepted shares. This requires the storage provider to cooperate and provide this special <code>/shares</code> folder in the root of a users home when it is accessed as a home storage. That is the origin of the <code>enable_home</code> config flag that needs to be implemented for every storage driver.</p>
+<p>In order to have a single source of truth we need to make the <em>share manager</em> aware of the mount point. We can then move all the logic that aggregates the etag in the share folder to a dedicated <em>shares storage provider</em> that is using the <em>share manager</em> for persistence. The <em>shares storage provider</em> would provide a <code>/shares</code> namespace outside of <code>/home</code> that lists all accepted shares for the current user. As a result the storage drivers no longer need to have a <code>enable_home</code> flag that jails users into their home. The <code>/home/shares</code> folder would move outside of the <code>/home</code>. In fact <code>/home</code> will no longer be needed, because the home folder concept can be implemented as a space: <code>CreateHome</code> would create a <code>personal</code> space on the.</p>
+<p>Work on this is done in <a
+  class="gdoc-markdown__link"
+  href="https://github.com/cs3org/reva/pull/2023"
+  
+>https://github.com/cs3org/reva/pull/2023</a></p>
 
 
 
@@ -15542,94 +15358,268 @@ In ownCloud 10 all paths are considered relative to the users home. The CS3 API 
 
 <blockquote class="gdoc-hint note">
   <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
-  <div class="gdoc-hint__text"><em>@jfd: Should we split <code>/shares</code> into <code>/collaborations</code>, <code>/ocm</code> and <code>/links</code>? We also have <code>/public</code> which uses token based authentication. They may have different latencies or polling strategies? Well, I guess we can cache them differently regardless of the mount point.</em></div>
+  <div class="gdoc-hint__text"><p>What about copy pasting links from the browser? Well this storage is only really needed to have a path to ocm shares that actually reside on other instances. In the UI the shares would be listed by querying a <em>share manager</em>. It returns ResourceIds, which can be stated to fetch a path that is then accessible in the CS3 global namespace. Two caveats:</p>
+<ul>
+<li>This only works for resources that are actually hosted by the current instance. For those it would leak the parent path segments to a shared resource.</li>
+<li>For accepted OCM shares there must be a path in the <a
+  class="gdoc-markdown__link"
+  href="https://owncloud.dev/ocis/storage/namespaces/#cs3-global-namespaces"
+  
+><em>CS3 global namespace</em></a> that has to be the same for all users, otherwise they cannot copy and share those URLs.</li>
+</ul>
+</div>
 </blockquote>
 
 <div class="gdoc-page__anchorwrap">
-    <h2 id="browser-urls-vs-api-urls">
-        Browser URLs vs API URLs
-        <a data-clipboard-text="https://owncloud.dev/extensions/storage/namespaces/#browser-urls-vs-api-urls" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Browser URLs vs API URLs" aria-label="Anchor to: Browser URLs vs API URLs" href="#browser-urls-vs-api-urls">
+    <h3 id="the-gateway-should-be-responsible-for-path-transformations">
+        The gateway should be responsible for path transformations
+        <a data-clipboard-text="https://owncloud.dev/ocis/storage/proposedchanges/#the-gateway-should-be-responsible-for-path-transformations" class="gdoc-page__anchor clip flex align-center" title="Anchor to: The gateway should be responsible for path transformations" aria-label="Anchor to: The gateway should be responsible for path transformations" href="#the-gateway-should-be-responsible-for-path-transformations">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>Currently, storage providers are aware af their mount point, coupling them tightly with the gateway.</p>
+<p>Tracked in <a
+  class="gdoc-markdown__link"
+  href="https://github.com/cs3org/reva/issues/578"
+  
+>https://github.com/cs3org/reva/issues/578</a></p>
+<p>Work is done in <a
+  class="gdoc-markdown__link"
+  href="https://github.com/cs3org/reva/pull/1866"
+  
+>https://github.com/cs3org/reva/pull/1866</a></p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="url-escaped-string-representation-of-a-cs3-reference">
+        URL escaped string representation of a CS3 reference
+        <a data-clipboard-text="https://owncloud.dev/ocis/storage/proposedchanges/#url-escaped-string-representation-of-a-cs3-reference" class="gdoc-page__anchor clip flex align-center" title="Anchor to: URL escaped string representation of a CS3 reference" aria-label="Anchor to: URL escaped string representation of a CS3 reference" href="#url-escaped-string-representation-of-a-cs3-reference">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div>
-<p>In ownCloud 10 you can not only create <em>public links</em> but also <em>private links</em>. Both can be copy pasted into an email or chat to grant others access to a file. Most often though, end users will copy and paste the URL from their browsers location bar.</p>
-<div class="table-wrap"> <table>
-<thead>
-<tr>
-<th>URL</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a
-  class="gdoc-markdown__link"
-  href="https://demo.owncloud.com/apps/files/?dir=/Photos/Vacation&amp;fileid=24"
-  
->https://demo.owncloud.com/apps/files/?dir=/Photos/Vacation&fileid=24</a></td>
-<td>The normal browser URL</td>
-</tr>
-<tr>
-<td><a
-  class="gdoc-markdown__link"
-  href="https://demo.owncloud.com/apps/files/?fileid=24"
-  
->https://demo.owncloud.com/apps/files/?fileid=24</a></td>
-<td>the <code>dir</code> is actually not used to find the directory and will be filled when pasting this URL</td>
-</tr>
-<tr>
-<td><a
-  class="gdoc-markdown__link"
-  href="https://demo.owncloud.com/f/24"
-  
->https://demo.owncloud.com/f/24</a></td>
-<td><em>private links</em> are the shortened version of this and work in the same way</td>
-</tr>
-<tr>
-<td><a
-  class="gdoc-markdown__link"
-  href="https://demo.owncloud.com/s/piLdAAt1m3Bg0Fk"
-  
->https://demo.owncloud.com/s/piLdAAt1m3Bg0Fk</a></td>
-<td>public link</td>
-</tr>
-</tbody>
-</table> </div>
-
-
-
-
-
-<blockquote class="gdoc-hint note">
-  <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
-  <div class="gdoc-hint__text"><p>The <code>dir</code> parameter alone cannot be used to look up the directory, because the path for a file may be different depending on the currently logged-in user:</p>
-<ul>
-<li>User A shares his <code>/path/to/Photos</code> with User X.</li>
-<li>User B shares his <code>/other/path/to/Photos</code> with User X and Y.</li>
-<li>User A shares his <code>/path/to/Photos</code> with User Y.</li>
-</ul>
-<p>(Depending on the order in which they accept the shares) X and Y now have two folders <code>/shares/Photos</code> and <code>/shares/Photos (1)</code>. But if they were to copy paste a link with that path in the URL and if the directory were only looked up by path X and Y would end up in different folders.</p>
-<p>You could argue that the path should always use a global path in the CS3 namespace:</p>
-<ul>
-<li>User A shares his <code>/users/a/path/to/Photos</code> with User X.</li>
-<li>User B shares his <code>/users/b/other/path/to/Photos</code> with User X and Y.</li>
-<li>User A shares his <code>/users/a/path/to/Photos</code> with User Y.</li>
-</ul>
-<p>By using a global path like this X and Y would always end up in the correct folder. However, there are two caveats:</p>
-<ul>
-<li>This only works for resources that reside on the instance (because only they have unique and global path). Shares from other instances need to be identified by id, or they cannot be uniquely addressed</li>
-<li>User A may not want to leak path <code>path/to</code> segments leading to <code>Photos</code>. They might contain things like <code>low-priority</code> or personal data.</li>
-</ul>
-<p>That is the reason why URLs always have to contain some kind of stable identifier. By introducing the concept of <em>storage spaces</em> and treating user homes, project drives and shares we can create a URL that contains an identifier for the <em>storage space</em> and a path relative to the root of it.</p>
-</div>
-</blockquote>
-
-<p>In ocis we will unify the way links sharing works, however there will always be at least two types of URLs:</p>
+<p>For the spaces concept we introduced the <code>/dav/spaces/</code> endpoint. It encodes a cs3 <em>reference</em> in a URL compatible way.</p>
 <ol>
-<li>the URL you see in the browsers location bar, and</li>
-<li>the URL that a client uses to actually access a file.</li>
+<li>We can separate the path using a <code>/</code>: <code>/dav/spaces/&lt;spaceid&gt;/&lt;path&gt;</code></li>
+<li>The <code>spaceid</code> currently is a cs3 resourceid, consisting of <code>&lt;storageid&gt;</code> and <code>&lt;opaqueid&gt;</code>. Since the opaqueid might contain <code>/</code> e.g. for the local driver we have to urlencode the spaceid.</li>
 </ol>
+<p>To access resources by id we need to make the <code>/dav/meta/&lt;resourceid&gt;</code> able to list directories&hellip; Otherwise id based navigation first has to look up the path. Or we use the libregraph api for id based navigation.</p>
+<p>A <em>reference</em> is a logical concept. It identifies a <a
+  class="gdoc-markdown__link"
+  href="#resources"
+  
+><em>resource</em></a> and consists of a <code>&lt;resource_id&gt;</code> and a <code>&lt;path&gt;</code>. A <code>&lt;resource_id&gt;</code> consists of a <code>&lt;storage_id&gt;</code> and a <code>&lt;node_id&gt;</code>. They can be concatenated using the separators <code>!</code> and <code>:</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&lt;storage_id&gt;!&lt;node_id&gt;:&lt;path&gt;
+</code></pre></div><p>While all components are optional, only three cases are used:</p>
+<div class="table-wrap"> <table>
+<thead>
+<tr>
+<th>format</th>
+<th>example</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>!:&lt;absolute_path&gt;</code></td>
+<td><code>!:/absolute/path/to/file.ext</code></td>
+<td>absolute path</td>
+</tr>
+<tr>
+<td><code>&lt;storage_space&gt;!:&lt;relative_path&gt;</code></td>
+<td><code>ee1687e5-ac7f-426d-a6c0-03fed91d5f62!:path/to/file.ext</code></td>
+<td>path relative to the root of the storage space</td>
+</tr>
+<tr>
+<td><code>&lt;storage_space&gt;!&lt;root&gt;:&lt;relative_path&gt;</code></td>
+<td><code>ee1687e5-ac7f-426d-a6c0-03fed91d5f62!c3cf23bb-8f47-4719-a150-1d25a1f6fb56:to/file.ext</code></td>
+<td>path relative to the specified node in the storage space, used to reference resources without disclosing parent paths</td>
+</tr>
+</tbody>
+</table> </div>
+<p><code>&lt;storage_space&gt;</code> should be a UUID to prevent references from breaking when a <em>user</em> or <a
+  class="gdoc-markdown__link"
+  href="#storage-spaces"
+  
+><em>storage space</em></a> gets renamed. But it can also be derived from a migration of an oc10 instance by concatenating an instance identifier and the numeric storage id from oc10, e.g. <code>oc10-instance-a$1234</code>.</p>
+<p>A reference will often start as an absolute/global path, e.g. <code>!:/home/Projects/Foo</code>. The gateway will look up the storage provider that is responsible for the path</p>
+<div class="table-wrap"> <table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Who resolves it?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>!:/home/Projects/Foo</code></td>
+<td>the absolute path a client like davfs will use.</td>
+<td>The gateway uses the storage registry to look up the responsible storage provider</td>
+</tr>
+<tr>
+<td><code>ee1687e5-ac7f-426d-a6c0-03fed91d5f62!:/Projects/Foo</code></td>
+<td>the <code>storage_space</code> is the same as the <code>root</code>, the path becomes relative to the root</td>
+<td>the storage provider can use this reference to identify this resource</td>
+</tr>
+</tbody>
+</table> </div>
+<p>Now, the same file is accessed as a share</p>
+<div class="table-wrap"> <table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>!:/users/Einstein/Projects/Foo</code></td>
+<td><code>Foo</code> is the shared folder</td>
+</tr>
+<tr>
+<td><code>ee1687e5-ac7f-426d-a6c0-03fed91d5f62!56f7ceca-e7f8-4530-9a7a-fe4b7ec8089a:</code></td>
+<td><code>56f7ceca-e7f8-4530-9a7a-fe4b7ec8089a</code> is the id of <code>Foo</code>, the path is empty</td>
+</tr>
+</tbody>
+</table> </div>
+<p>The <code>:</code>, <code>!</code> and <code>$</code> are chosen from the set of <a
+  class="gdoc-markdown__link"
+  href="https://tools.ietf.org/html/rfc3986#section-2.2"
+  
+>RFC3986 sub delimiters</a> on purpose. They can be used in URLs without having to be encoded. In some cases, a delimiter can be left out if a component is not set:</p>
+<div class="table-wrap"> <table>
+<thead>
+<tr>
+<th>reference</th>
+<th>interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/absolute/path/to/file.ext</code></td>
+<td>absolute path, all delimiters omitted</td>
+</tr>
+<tr>
+<td><code>ee1687e5-ac7f-426d-a6c0-03fed91d5f62!path/to/file.ext</code></td>
+<td>relative path in the given storage space, root delimiter <code>:</code> omitted</td>
+</tr>
+<tr>
+<td><code>56f7ceca-e7f8-4530-9a7a-fe4b7ec8089a:to/file.ext</code></td>
+<td>relative path in the given root node, storage space delimiter <code>!</code> omitted</td>
+</tr>
+<tr>
+<td><code>ee1687e5-ac7f-426d-a6c0-03fed91d5f62!56f7ceca-e7f8-4530-9a7a-fe4b7ec8089a:</code></td>
+<td>node id in the given storage space, <code>:</code> must be present</td>
+</tr>
+<tr>
+<td><code>ee1687e5-ac7f-426d-a6c0-03fed91d5f62</code></td>
+<td>root of the storage space, all delimiters omitted, can be distinguished by the <code>/</code></td>
+</tr>
+</tbody>
+</table> </div>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="space-providers">
+        space providers
+        <a data-clipboard-text="https://owncloud.dev/ocis/storage/proposedchanges/#space-providers" class="gdoc-page__anchor clip flex align-center" title="Anchor to: space providers" aria-label="Anchor to: space providers" href="#space-providers">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>When looking up an id based resource the reference must use a logical space id, not a CS3 resource id. Otherwise id based requests, which only have a resourceid consisting of a storage id and a node id cannot be routed to the correct storage provider if the storage has moved from one storage provider to another.</p>
+<p>if the registry routes based on the storageid AND the nodeid it has to keep a cache of all nodeids in order to route all requests for a storage space (which consists of storage it + nodeid) to the correct storage provider. the correct resourceid for a node in a storage space would be <code>&lt;storageid&gt;$&lt;rootnodeid&gt;!&lt;nodeid&gt;</code>. The <code>&lt;storageid&gt;$&lt;rootnodeid&gt;</code> part allow the storage registry to route all id based requests to the correct storage provider. This becomes relevant when the storage space was moved from one storage provider to another. The storage space id remains the same, but the internal address and port change.</p>
+<p>TODO discuss to clarify further</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="storage-drivers">
+        Storage drivers
+        <a data-clipboard-text="https://owncloud.dev/ocis/storage/proposedchanges/#storage-drivers" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Storage drivers" aria-label="Anchor to: Storage drivers" href="#storage-drivers">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="allow-clients-to-send-a-uuid-on-upload">
+        allow clients to send a uuid on upload
+        <a data-clipboard-text="https://owncloud.dev/ocis/storage/proposedchanges/#allow-clients-to-send-a-uuid-on-upload" class="gdoc-page__anchor clip flex align-center" title="Anchor to: allow clients to send a uuid on upload" aria-label="Anchor to: allow clients to send a uuid on upload" href="#allow-clients-to-send-a-uuid-on-upload">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>iOS clients can only queue single requests to be executed in the background. They queue an upload and need to be able to identify the uploaded file after it has been uploaded to the server. The disconnected nature of the connection might cause workflows or manual user interaction with the file on the server to move the file to a different place or changing the content while the device is offline. However, on the device users might have marked the file as favorite or added it to other iOS specific collections. To be able to reliably identify the file the client can generate a <code>uuid</code> and attach it to the file metadata during the upload. While it is not necessary to look up files by this <code>uuid</code> having a second file id that serves exactly the same purpose as the <code>file id</code> is redundant.</p>
+<p>Another aspect for the <code>file id</code> / <code>uuid</code> is that it must be a logical identifier that can be set, at least by internal systems. Without a writeable fileid we cannot restore backups or migrate storage spaces from one storage provider to another storage provider.</p>
+<p>Technically, this means that every storage driver needs to have a map of a <code>uuid</code> to an internal resource identifier. This internal resource identifier can be</p>
+<ul>
+<li>an eos fileid, because eos can look up files by id</li>
+<li>an inode if the filesystem and the storage driver support looking up by inode</li>
+<li>a path if the storage driver has no way of looking up files by id.
+<ul>
+<li>In this case other mechanisms like inotify, kernel audit or a fuse overlay might be used to keep the paths up to date.</li>
+<li>to prevent excessive writes when deep folders are renamed a reverse map might be used: it will map the <code>uuid</code> to <code>&lt;parentuuid&gt;:&lt;childname&gt;</code>, in order to trade writes for reads</li>
+<li>as a fallback a sync job can read the file id from the metadata of the resources and populate the uuid to internal id map.</li>
+</ul>
+</li>
+</ul>
+<p>The TUS upload can take metadata, for PUT we might need a header.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="space-id-vs-resource-id-vs-storage-id">
+        Space id vs resource id vs storage id
+        <a data-clipboard-text="https://owncloud.dev/ocis/storage/proposedchanges/#space-id-vs-resource-id-vs-storage-id" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Space id vs resource id vs storage id" aria-label="Anchor to: Space id vs resource id vs storage id" href="#space-id-vs-resource-id-vs-storage-id">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>We have <code>/dav/meta/&lt;fileid&gt;</code> where the <code>fileid</code> is a string that was returned by a PROPFIND or by the <code>/graph/v1.0/me/drives/</code> endpoint? That returns a space id and the root drive item which has an <code>id</code></p>
+<p>Does that <code>id</code> have a specific format? We currently concatenate as <code>&lt;storageid&gt;!&lt;nodeid&gt;</code>.</p>
+<p>A request against <code>/dav/meta/fileid</code> will use the reva storage registry to look up a path.</p>
+<p>What if the storage space is moved to another storage provider. This happens during a migration:</p>
+<ol>
+<li>the current oc10 fileids need to be prefixed with at least the numeric storage id to shard them.</li>
+</ol>
+<p><code>123</code> becomes <code>instanceprefix$345!123</code> if we use a custom prefix that identifies an instance (so we can merge multiple instances into one ocis instance) and append  the numeric storageid <code>345</code>. The pattern is <code>&lt;instanceprefix&gt;$&lt;numericstorageid&gt;!&lt;fileid&gt;</code>.</p>
+<p>Every <code>&lt;instanceprefix&gt;$&lt;numericstorageid&gt;</code> identifies a space.</p>
+<ul>
+<li><input disabled="" type="checkbox"> the owncloudsql driver can return these spaceids when listing spaces.</li>
+</ul>
+<p>Why does it not work if we just use the fileid of the root node in the db?</p>
+<p>Say we have a space with three resources:
+<code>&lt;instanceprefix&gt;$&lt;numericstorageid&gt;!&lt;fileid&gt;</code>
+<code>instanceprefix$345!1</code>
+<code>instanceprefix$345!2</code>
+<code>instanceprefix$345!3</code></p>
+<p>All users have moved to ocis and the registry contains a regex to route all <code>instanceprefix.*</code> references to the storageprovider with the owncloudsql driver. It is up to the driver to locate the correct resource by using the filecache table. In this case the numeric storage id is unnecessary.</p>
+<p>Now we migrate the space <code>345</code> to another storage driver:</p>
+<ul>
+<li>the storage registry contains a new entry for <code>instanceprefix$345</code> to send all resource ids for that space to the new storage provider</li>
+<li>the new storage driver has to take into account the full storageid because the nodeid may only be unique per storage space.</li>
+</ul>
+<p>If we now have to fetch the path on the <code>/dav/meta/</code> endpoint:
+<code>/dav/meta/instanceprefix$345!1</code>
+<code>/dav/meta/instanceprefix$345!2</code>
+<code>/dav/meta/instanceprefix$345!3</code></p>
+<p>This would work because the registry always sees <code>instanceprefix$345</code> as the storageid.</p>
+<p>Now if we use the fileids directly and leave out the numeric storageid:
+<code>&lt;instanceprefix&gt;!&lt;fileid&gt;</code>
+<code>instanceprefix!1</code>
+<code>instanceprefix!2</code>
+<code>instanceprefix!3</code></p>
+<p>This is the current <code>&lt;storageid&gt;!&lt;nodeid&gt;</code> format.</p>
+<p>The reva storage registry contains a <code>instanceid</code> entry pointing to the storage provider with the owncloudsql driver.</p>
+<p>Resources can be looked up because the oc_filecache has a unique fileid over all storages.</p>
+<p>Now we again migrate the space <code>345</code> to another storage driver:</p>
+<ul>
+<li>the storage registry contains a new entry for <code>instanceprefix!1</code> so the storage space root now points to the new storage provider</li>
+<li>The registry needs to be aware of node ids to route properly. This is a no-go. We don&rsquo;t want to keep a cache of <em>all</em> nodeids in the registry. Only the root nodes of spaces.</li>
+<li>The new storage driver only has a nodeid which might collide with other nodeids from other storage spaces, e.g. when two instances are imported into one ocis instance. Although it would be possible to just set up two storage providers extra care would have to be taken to prevent nodeid collisions when importing a space.</li>
+</ul>
+<p>If we now have to fetch the path on the <code>/dav/meta/</code> endpoint:
+<code>/dav/meta/instanceprefix!1</code> would work because it is the root of a space
+<code>/dav/meta/instanceprefix!2</code> would cause the gateway to poll all storage providers because the registry has no way to determine the responsible storage provider
+<code>/dav/meta/instanceprefix!3</code> same</p>
+<p>The problem is that without a part in the storageid that allows differentiating storage spaces we cannot route them individually.</p>
+<p>Now, we could use the nodeid of the root of a storage space as the spaceid &hellip; if it is a uuid. If it is numeric it needs a prefix to distinguish it from other spaces.
+<code>&lt;space-root-uuid&gt;!&lt;fileid&gt;</code> would be easy for the decomposedfs.
+eos might use numeric ids: <code>&lt;eosprefix&gt;$&lt;space-root-fileid&gt;!&lt;fileid&gt;</code>, but it needs a custom prefix to distinguish multiple eos instances.</p>
+<p>Furthermore, when migrating spaces between storage providers we want to stay collision free, which is why we should recommend uuids.</p>
+<p>All this has implications for the decomposedfs, because it needs to split the nodes per space to prevent them from colliding.</p>
 
   </article>
 

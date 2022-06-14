@@ -6,7 +6,7 @@
     <description>Recent content on ownCloud</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Jun 2022 13:30:30 +0000</lastBuildDate><atom:link href="https://owncloud.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 14 Jun 2022 14:30:23 +0000</lastBuildDate><atom:link href="https://owncloud.dev/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>1. Introduce an accounts service</title>
       <link>https://owncloud.dev/ocis/adr/0001-introduce-accounts-service/</link>
@@ -126,10 +126,10 @@ Context and Problem Statement     Reva relies heavily on config files. A known i
     
     <item>
       <title>Spaces Provider</title>
-      <link>https://owncloud.dev/extensions/storage/spacesprovider/</link>
+      <link>https://owncloud.dev/ocis/storage/spacesprovider/</link>
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://owncloud.dev/extensions/storage/spacesprovider/</guid>
+      <guid>https://owncloud.dev/ocis/storage/spacesprovider/</guid>
       <description>The current implementation in oCIS might not yet fully reflect this concept. Feel free to add links to ADRs, PRs and Issues in short warning boxes like this.  Spaces Provider     A storage provider manages resources identified by a reference by accessing a storage system with a storage driver.
  Frontend     The oCIS frontend service starts all services that handle incoming HTTP requests:</description>
     </item>
@@ -187,10 +187,10 @@ Decision Drivers      The solution should be easily maintainable.  It should alw
     
     <item>
       <title>Spaces Registry</title>
-      <link>https://owncloud.dev/extensions/storage/spacesregistry/</link>
+      <link>https://owncloud.dev/ocis/storage/spacesregistry/</link>
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://owncloud.dev/extensions/storage/spacesregistry/</guid>
+      <guid>https://owncloud.dev/ocis/storage/spacesregistry/</guid>
       <description>The current implementation in oCIS might not yet fully reflect this concept. Feel free to add links to ADRs, PRs and Issues in short warning boxes like this.  Storage Space Registries     A storage spaces registry manages the namespace for a user: it is used by clients to look up storage spaces a user has access to, the /dav/spaces endpoint to access it via WabDAV, and where the client should mount it in the users personal namespace.</description>
     </item>
     
@@ -268,10 +268,10 @@ Decision Drivers      We don&amp;rsquo;t want to rely only on logs to debug an i
     
     <item>
       <title>Storage drivers</title>
-      <link>https://owncloud.dev/extensions/storage/storagedrivers/</link>
+      <link>https://owncloud.dev/ocis/storage/storagedrivers/</link>
       <pubDate>Mon, 27 Apr 2020 18:46:00 +0100</pubDate>
       
-      <guid>https://owncloud.dev/extensions/storage/storagedrivers/</guid>
+      <guid>https://owncloud.dev/ocis/storage/storagedrivers/</guid>
       <description>A storage driver implements access to a storage system:
 It maps the path and id based CS3 references to an appropriate storage system specific reference, e.g.:
  eos file ids posix inodes or paths deconstructed filesystem nodes  Storage providers     To manage the file tree oCIS uses storage providers that are accessing the underlying storage using a storage driver. The driver can be used to change the implementation of a storage aspect to better reflect the actual underlying storage capabilities.</description>
@@ -316,10 +316,10 @@ Besides standard development tools like git and a text editor, you need the foll
     
     <item>
       <title>Namespaces</title>
-      <link>https://owncloud.dev/extensions/storage/namespaces/</link>
+      <link>https://owncloud.dev/ocis/storage/namespaces/</link>
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://owncloud.dev/extensions/storage/namespaces/</guid>
+      <guid>https://owncloud.dev/ocis/storage/namespaces/</guid>
       <description>A namespace is a set of paths with a common prefix. Depending on the endpoint you are talking to you will encounter a different kind of namespace: In ownCloud 10 all paths are considered relative to the users home. The CS3 API uses a global namespace and the storage providers use a local namespace with paths relative to the storage providers root.
  The different paths in the namespaces need to be translated while passing references from service to service.</description>
     </item>
@@ -364,20 +364,20 @@ If you need to access oCIS running in a docker container, on a VM or a remote ma
     
     <item>
       <title>Users</title>
-      <link>https://owncloud.dev/extensions/storage/users/</link>
+      <link>https://owncloud.dev/ocis/storage/users/</link>
       <pubDate>Thu, 16 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://owncloud.dev/extensions/storage/users/</guid>
+      <guid>https://owncloud.dev/ocis/storage/users/</guid>
       <description>TODO add this to the storage overview? or is this a different part? That should be started as a separate service ? And documented elsewhere, e.g. in the accounts?
 User and Group provisioning     In oc10 users are identified by a username, which cannot change, because it is used as a foreign key in several tables. For oCIS we are internally identifying users by a UUID, while using the username in the WebDAV and OCS APIs for backwards compatability.</description>
     </item>
     
     <item>
       <title>Terminology</title>
-      <link>https://owncloud.dev/extensions/storage/terminology/</link>
+      <link>https://owncloud.dev/ocis/storage/terminology/</link>
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://owncloud.dev/extensions/storage/terminology/</guid>
+      <guid>https://owncloud.dev/ocis/storage/terminology/</guid>
       <description>Communication is hard. And clear communication is even harder. You may encounter the following terms throughout the documentation, in the code or when talking to other developers. Just keep in mind that whenever you hear or read storage, that term needs to be clarified, because on its own it is too vague. PR welcome.
 Logical concepts     Resources     A resource is the basic building block that oCIS manages.</description>
     </item>
@@ -394,10 +394,10 @@ Decision Drivers      Have a simple yet powerful, scalable and performant way of
     
     <item>
       <title>Proposed Changes</title>
-      <link>https://owncloud.dev/extensions/storage/proposedchanges/</link>
+      <link>https://owncloud.dev/ocis/storage/proposedchanges/</link>
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://owncloud.dev/extensions/storage/proposedchanges/</guid>
+      <guid>https://owncloud.dev/ocis/storage/proposedchanges/</guid>
       <description>Some architectural changes still need to be clarified or changed. Maybe an ADR is in order for all of the below.
 Reva Gateway changes     A dedicated shares storage provider     Currently, when a user accepts a share, a cs3 reference is created in the users /home/shares folder. This reference represents the mount point of a share and can be renamed, similar to the share jail in ownCloud 10.</description>
     </item>
@@ -973,10 +973,10 @@ Get the sources     git clone https://github.com/owncloud/ocis.git cd ocis Build
     
     <item>
       <title>Spaces</title>
-      <link>https://owncloud.dev/extensions/storage/spaces/</link>
+      <link>https://owncloud.dev/ocis/storage/spaces/</link>
       <pubDate>Mon, 27 Apr 2020 18:46:00 +0100</pubDate>
       
-      <guid>https://owncloud.dev/extensions/storage/spaces/</guid>
+      <guid>https://owncloud.dev/ocis/storage/spaces/</guid>
       <description>Editing a Storage Space  Updating a space property Updating a space description Quotas  Quota Enforcement  Considerations       Storage Spaces Shares Notes      Editing a Storage Space     The OData specification allows for a mirage of ways of addressing an entity. We will support addressing a Drive entity by its unique identifier, which is the one the graph-api returns when listing spaces, and its format is:</description>
     </item>
     
@@ -1039,17 +1039,6 @@ To update this package within all the deliveries, we need to update the package 
     </item>
     
     <item>
-      <title>Ports</title>
-      <link>https://owncloud.dev/extensions/storage/ports/</link>
-      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://owncloud.dev/extensions/storage/ports/</guid>
-      <description>Currently, every service needs to be configured with a port so oCIS can start them on localhost. We will automate this by using a service registry for more services, until eventually only the proxy has to be configured with a public port.
-For now, the storage service uses these ports to preconfigure those services:
-   port service     9109 health, used by cli?   9140 frontend   9141 frontend debug   9142 gateway   9143 gateway debug   9144 users   9145 users debug   9146 authbasic   9147 authbasic debug   9148 authbearer   9149 authbearer debug   9150 sharing   9151 sharing debug   9154 storage home grpc   9155 storage home http   9156 storage home debug   9157 storage users grpc   9158 storage users http   9159 storage users debug   9160 groups   9161 groups debug   9164 storage app-provider   9165 storage app-provider debug   9178 storage public link   9179 storage public link data   9215 storage meta grpc   9216 storage meta http   9217 storage meta debug    </description>
-    </item>
-    
-    <item>
       <title>Login Flow</title>
       <link>https://owncloud.dev/ocis/flow-docs/login-flow/</link>
       <pubDate>Mon, 04 May 2020 20:47:00 +0100</pubDate>
@@ -1092,7 +1081,7 @@ For now, the storage service uses these ports to preconfigure those services:
     <item>
       <title>ocis.messages.search.v0</title>
       <link>https://owncloud.dev/grpc_apis/ocis_messages_search_v0/</link>
-      <pubDate>Tue, 14 Jun 2022 13:30:30 +0000</pubDate>
+      <pubDate>Tue, 14 Jun 2022 14:30:23 +0000</pubDate>
       
       <guid>https://owncloud.dev/grpc_apis/ocis_messages_search_v0/</guid>
       <description>ocis/messages/search/v0/search.proto  Entity Match Reference ResourceID   Scalar Value Types      ocis/messages/search/v0/search.proto     Entity        Field Type Label Description     ref Reference     id ResourceID     name string     etag string     size uint64     last_modified_time google.</description>
@@ -1101,7 +1090,7 @@ For now, the storage service uses these ports to preconfigure those services:
     <item>
       <title>ocis.messages.settings.v0</title>
       <link>https://owncloud.dev/grpc_apis/ocis_messages_settings_v0/</link>
-      <pubDate>Tue, 14 Jun 2022 13:30:30 +0000</pubDate>
+      <pubDate>Tue, 14 Jun 2022 14:30:23 +0000</pubDate>
       
       <guid>https://owncloud.dev/grpc_apis/ocis_messages_settings_v0/</guid>
       <description>ocis/messages/settings/v0/settings.proto  Bool Bundle Identifier Int ListOption ListOptionValue ListValue MultiChoiceList Permission Resource Setting SingleChoiceList String UserRoleAssignment Value ValueWithIdentifier Bundle.Type Permission.Constraint Permission.Operation Resource.Type   Scalar Value Types      ocis/messages/settings/v0/settings.proto     Bool        Field Type Label Description     default bool     label string      Bundle        Field Type Label Description     id string     name string     type Bundle.</description>
@@ -1110,7 +1099,7 @@ For now, the storage service uses these ports to preconfigure those services:
     <item>
       <title>ocis.messages.store.v0</title>
       <link>https://owncloud.dev/grpc_apis/ocis_messages_store_v0/</link>
-      <pubDate>Tue, 14 Jun 2022 13:30:30 +0000</pubDate>
+      <pubDate>Tue, 14 Jun 2022 14:30:23 +0000</pubDate>
       
       <guid>https://owncloud.dev/grpc_apis/ocis_messages_store_v0/</guid>
       <description>ocis/messages/store/v0/store.proto  DeleteOptions Field ListOptions ReadOptions ReadOptions.WhereEntry Record Record.MetadataEntry WriteOptions   Scalar Value Types      ocis/messages/store/v0/store.proto     DeleteOptions        Field Type Label Description     database string     table string      Field        Field Type Label Description     type string  type of value e.</description>
@@ -1119,7 +1108,7 @@ For now, the storage service uses these ports to preconfigure those services:
     <item>
       <title>ocis.messages.thumbnails.v0</title>
       <link>https://owncloud.dev/grpc_apis/ocis_messages_thumbnails_v0/</link>
-      <pubDate>Tue, 14 Jun 2022 13:30:30 +0000</pubDate>
+      <pubDate>Tue, 14 Jun 2022 14:30:23 +0000</pubDate>
       
       <guid>https://owncloud.dev/grpc_apis/ocis_messages_thumbnails_v0/</guid>
       <description>ocis/messages/thumbnails/v0/thumbnails.proto  CS3Source WebdavSource ThumbnailType   Scalar Value Types      ocis/messages/thumbnails/v0/thumbnails.proto     CS3Source        Field Type Label Description     path string     authorization string      WebdavSource        Field Type Label Description     url string  REQUIRED.</description>
@@ -1128,7 +1117,7 @@ For now, the storage service uses these ports to preconfigure those services:
     <item>
       <title>ocis.services.search.v0</title>
       <link>https://owncloud.dev/grpc_apis/ocis_services_search_v0/</link>
-      <pubDate>Tue, 14 Jun 2022 13:30:30 +0000</pubDate>
+      <pubDate>Tue, 14 Jun 2022 14:30:23 +0000</pubDate>
       
       <guid>https://owncloud.dev/grpc_apis/ocis_services_search_v0/</guid>
       <description>ocis/services/search/v0/search.proto  IndexSpaceRequest IndexSpaceResponse SearchIndexRequest SearchIndexResponse SearchRequest SearchResponse IndexProvider SearchProvider   Scalar Value Types      ocis/services/search/v0/search.proto     IndexSpaceRequest        Field Type Label Description     space_id string     user_id string      IndexSpaceResponse     SearchIndexRequest        Field Type Label Description     page_size int32  Optional.</description>
@@ -1137,7 +1126,7 @@ For now, the storage service uses these ports to preconfigure those services:
     <item>
       <title>ocis.services.settings.v0</title>
       <link>https://owncloud.dev/grpc_apis/ocis_services_settings_v0/</link>
-      <pubDate>Tue, 14 Jun 2022 13:30:30 +0000</pubDate>
+      <pubDate>Tue, 14 Jun 2022 14:30:23 +0000</pubDate>
       
       <guid>https://owncloud.dev/grpc_apis/ocis_services_settings_v0/</guid>
       <description>ocis/services/settings/v0/settings.proto  AddSettingToBundleRequest AddSettingToBundleResponse AssignRoleToUserRequest AssignRoleToUserResponse GetBundleRequest GetBundleResponse GetPermissionByIDRequest GetPermissionByIDResponse GetValueByUniqueIdentifiersRequest GetValueRequest GetValueResponse ListBundlesRequest ListBundlesResponse ListPermissionsByResourceRequest ListPermissionsByResourceResponse ListRoleAssignmentsRequest ListRoleAssignmentsResponse ListValuesRequest ListValuesResponse RemoveRoleFromUserRequest RemoveSettingFromBundleRequest SaveBundleRequest   requests and responses for settings bundles  SaveBundleResponse SaveValueRequest SaveValueResponse BundleService PermissionService RoleService ValueService   Scalar Value Types      ocis/services/settings/v0/settings.proto     AddSettingToBundleRequest        Field Type Label Description     bundle_id string     setting ocis.</description>
@@ -1146,7 +1135,7 @@ For now, the storage service uses these ports to preconfigure those services:
     <item>
       <title>ocis.services.store.v0</title>
       <link>https://owncloud.dev/grpc_apis/ocis_services_store_v0/</link>
-      <pubDate>Tue, 14 Jun 2022 13:30:30 +0000</pubDate>
+      <pubDate>Tue, 14 Jun 2022 14:30:23 +0000</pubDate>
       
       <guid>https://owncloud.dev/grpc_apis/ocis_services_store_v0/</guid>
       <description>ocis/services/store/v0/store.proto  DatabasesRequest DatabasesResponse DeleteRequest DeleteResponse ListRequest ListResponse ReadRequest ReadResponse TablesRequest TablesResponse WriteRequest WriteResponse Store   Scalar Value Types      ocis/services/store/v0/store.proto     DatabasesRequest     DatabasesResponse        Field Type Label Description     databases string repeated     DeleteRequest        Field Type Label Description     key string     options ocis.</description>
@@ -1155,7 +1144,7 @@ For now, the storage service uses these ports to preconfigure those services:
     <item>
       <title>ocis.services.thumbnails.v0</title>
       <link>https://owncloud.dev/grpc_apis/ocis_services_thumbnails_v0/</link>
-      <pubDate>Tue, 14 Jun 2022 13:30:30 +0000</pubDate>
+      <pubDate>Tue, 14 Jun 2022 14:30:23 +0000</pubDate>
       
       <guid>https://owncloud.dev/grpc_apis/ocis_services_thumbnails_v0/</guid>
       <description>ocis/services/thumbnails/v0/thumbnails.proto  GetThumbnailRequest GetThumbnailResponse ThumbnailService   Scalar Value Types      ocis/services/thumbnails/v0/thumbnails.proto     GetThumbnailRequest     A request to retrieve a thumbnail
