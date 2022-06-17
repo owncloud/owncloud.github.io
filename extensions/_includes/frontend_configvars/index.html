@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/extensions/_includes/frontend_configvars/",
       "headline": "Frontend Configvars",
       "description": "Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDFRONTEND_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPEFRONTEND_TRACING_TYPE string  The type of tracing. Defaults to “”, which is the same as “jaeger”. Allowed tracing types are “jaeger” and \u0022\u0022 as of now.   OCIS_TRACING_ENDPOINTFRONTEND_TRACING_ENDPOINT string  The endpoint of the tracing agent.   OCIS_TRACING_COLLECTORFRONTEND_TRACING_COLLECTOR string  The HTTP endpoint for sending spans directly to a collector, i.",
-      "wordCount" : "289",
+      "wordCount" : "470",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -15594,7 +15594,7 @@ Copyright 2022 Fonticons, Inc.
 <td>FRONTEND_HTTP_PREFIX</td>
 <td>string</td>
 <td></td>
-<td></td>
+<td>The Path prefix where the frontend can be accessed (defaults to /).</td>
 </tr>
 <tr>
 <td>STORAGE_TRANSFER_SECRET</td>
@@ -15618,19 +15618,19 @@ Copyright 2022 Fonticons, Inc.
 <td>OCIS_MACHINE_AUTH_API_KEY<br/>FRONTEND_MACHINE_AUTH_API_KEY</td>
 <td>string</td>
 <td></td>
-<td></td>
+<td>Machine auth API key used for accessing the &lsquo;auth-machine&rsquo; service.</td>
 </tr>
 <tr>
 <td>FRONTEND_SKIP_USER_GROUPS_IN_TOKEN</td>
 <td>bool</td>
 <td>false</td>
-<td></td>
+<td>Disables the encoding of the user&rsquo;s group memberships in the reva access token. This reduces token size, especially when users are members of a large number of groups.</td>
 </tr>
 <tr>
 <td>FRONTEND_ENABLE_FAVORITES</td>
 <td>bool</td>
 <td>false</td>
-<td></td>
+<td>Disables the support for favorites in the frontend.</td>
 </tr>
 <tr>
 <td>FRONTEND_ENABLE_PROJECT_SPACES</td>
@@ -15648,49 +15648,49 @@ Copyright 2022 Fonticons, Inc.
 <td>FRONTEND_UPLOAD_MAX_CHUNK_SIZE</td>
 <td>int</td>
 <td>100000000</td>
-<td></td>
+<td>Sets the max chunk sizes for uploads via the frontend.</td>
 </tr>
 <tr>
 <td>FRONTEND_UPLOAD_HTTP_METHOD_OVERRIDE</td>
 <td>string</td>
 <td></td>
-<td></td>
+<td>Advise TUS to replace PATCH requests by POST requests.</td>
 </tr>
 <tr>
 <td>FRONTEND_DEFAULT_UPLOAD_PROTOCOL</td>
 <td>string</td>
 <td>tus</td>
-<td></td>
+<td>The default upload protocol to use in the frontend (e.g. tus).</td>
 </tr>
 <tr>
 <td>OCIS_URL<br/>FRONTEND_PUBLIC_URL</td>
 <td>string</td>
 <td>https://localhost:9200</td>
-<td></td>
+<td>The public facing url of the ocis frontend.</td>
 </tr>
 <tr>
 <td>OCIS_INSECURE<br/>FRONTEND_APP_HANDLER_INSECURE</td>
 <td>bool</td>
 <td>false</td>
-<td></td>
+<td>Allow insecure connections to the frontend.</td>
 </tr>
 <tr>
 <td>FRONTEND_ARCHIVER_MAX_NUM_FILES</td>
 <td>int64</td>
 <td>10000</td>
-<td></td>
+<td>Max number of files that can be packed into an archive.</td>
 </tr>
 <tr>
 <td>FRONTEND_ARCHIVER_MAX_SIZE</td>
 <td>int64</td>
 <td>1073741824</td>
-<td></td>
+<td>Max size of the zip archive the archiver can create.</td>
 </tr>
 <tr>
 <td>OCIS_INSECURE<br/>FRONTEND_ARCHIVER_INSECURE</td>
 <td>bool</td>
 <td>false</td>
-<td></td>
+<td>Allow insecure connections to the archiver.</td>
 </tr>
 <tr>
 <td>FRONTEND_DATA_GATEWAY_PREFIX</td>
@@ -15702,43 +15702,43 @@ Copyright 2022 Fonticons, Inc.
 <td>FRONTEND_OCS_PREFIX</td>
 <td>string</td>
 <td>ocs</td>
-<td></td>
+<td>Path prefix for the ocs service</td>
 </tr>
 <tr>
 <td>FRONTEND_OCS_SHARE_PREFIX</td>
 <td>string</td>
 <td>/Shares</td>
-<td></td>
+<td>Path prefix for shares.</td>
 </tr>
 <tr>
 <td>FRONTEND_OCS_HOME_NAMESPACE</td>
 <td>string</td>
 <td>/users/{{.Id.OpaqueId}}</td>
-<td></td>
+<td>Homespace namespace identifier.</td>
 </tr>
 <tr>
 <td>FRONTEND_OCS_ADDITIONAL_INFO_ATTRIBUTE</td>
 <td>string</td>
 <td>{{.Mail}}</td>
-<td></td>
+<td>Additional information attribute for the user (e.g. {{.Mail}}</td>
 </tr>
 <tr>
 <td>FRONTEND_OCS_RESOURCE_INFO_CACHE_TTL</td>
 <td>int</td>
 <td>0</td>
-<td></td>
+<td>Max TTL for the resource info cache</td>
 </tr>
 <tr>
 <td>FRONTEND_CHECKSUMS_SUPPORTED_TYPES</td>
 <td></td>
 <td>[sha1 md5 adler32]</td>
-<td></td>
+<td>Supported checksum types to be announced to the client (e.g. md5)</td>
 </tr>
 <tr>
 <td>FRONTEND_CHECKSUMS_PREFERRED_UPLOAD_TYPES</td>
 <td>string</td>
 <td></td>
-<td></td>
+<td>Preferred checksum types to be announced to the client for uploads (e.g. md5)</td>
 </tr>
 </tbody>
 </table> </div>
