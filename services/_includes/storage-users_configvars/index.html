@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/storage-users_configvars/",
       "headline": "Storage Users Configvars",
       "description": "Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDSTORAGE_USERS_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPESTORAGE_USERS_TRACING_TYPE string  The type of tracing. Defaults to “”, which is the same as “jaeger”. Allowed tracing types are “jaeger” and \u0022\u0022 as of now.   OCIS_TRACING_ENDPOINTSTORAGE_USERS_TRACING_ENDPOINT string  The endpoint of the tracing agent.   OCIS_TRACING_COLLECTORSTORAGE_USERS_TRACING_COLLECTOR string  The HTTP endpoint for sending spans directly to a collector, i.",
-      "wordCount" : "384",
+      "wordCount" : "617",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -15193,7 +15193,7 @@ Copyright 2022 Fonticons, Inc.
                     href="/services/webdav/"
                     class="gdoc-nav__entry"
                   >
-                    WebDaV
+                    WebDAV
                   </a>
                 </span>
               
@@ -15629,7 +15629,7 @@ Copyright 2022 Fonticons, Inc.
 <td>STORAGE_USERS_GRPC_ADDR</td>
 <td>string</td>
 <td>127.0.0.1:9157</td>
-<td>The address of the grpc service.</td>
+<td>The bind address of the GRPC service.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_GRPC_PROTOCOL</td>
@@ -15641,7 +15641,7 @@ Copyright 2022 Fonticons, Inc.
 <td>STORAGE_USERS_HTTP_ADDR</td>
 <td>string</td>
 <td>127.0.0.1:9158</td>
-<td>The address of the http service.</td>
+<td>The bind address of the HTTP service.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_HTTP_PROTOCOL</td>
@@ -15665,7 +15665,7 @@ Copyright 2022 Fonticons, Inc.
 <td>STORAGE_USERS_SKIP_USER_GROUPS_IN_TOKEN</td>
 <td>bool</td>
 <td>false</td>
-<td></td>
+<td>Disables the loading of user&rsquo;s group memberships from the reva access token.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_DRIVER</td>
@@ -15677,115 +15677,115 @@ Copyright 2022 Fonticons, Inc.
 <td>STORAGE_USERS_OCIS_ROOT</td>
 <td>string</td>
 <td>~/.ocis/storage/users</td>
-<td></td>
+<td>Path for the persistence directory.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_OCIS_USER_LAYOUT</td>
 <td>string</td>
 <td>{{.Id.OpaqueId}}</td>
-<td></td>
+<td>Template string for the user storage layout in the persistence directory.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_PERMISSION_ENDPOINT,STORAGE_USERS_OCIS_PERMISSIONS_ENDPOINT</td>
 <td>string</td>
 <td>127.0.0.1:9191</td>
-<td></td>
+<td>Endpoint of the permissions service.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_OCIS_PERSONAL_SPACE_ALIAS_TEMPLATE</td>
 <td>string</td>
 <td>{{.SpaceType}}/{{.User.Username | lower}}</td>
-<td></td>
+<td>Template string to construct personal space aliases.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_OCIS_GENERAL_SPACE_ALIAS_TEMPLATE</td>
 <td>string</td>
 <td>{{.SpaceType}}/{{.SpaceName | replace &quot; &quot; &quot;-&quot; | lower}}</td>
-<td></td>
+<td>Template string to construct general space aliases.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_OCIS_SHARE_FOLDER</td>
 <td>string</td>
 <td>/Shares</td>
-<td></td>
+<td>Name of the folder jailing all shares.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_S3NG_ROOT</td>
 <td>string</td>
 <td>~/.ocis/storage/users</td>
-<td></td>
+<td>Path for the persistence directory.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_S3NG_USER_LAYOUT</td>
 <td>string</td>
 <td>{{.Id.OpaqueId}}</td>
-<td></td>
+<td>Template string for the user storage layout in the persistence directory.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_PERMISSION_ENDPOINT<br/>STORAGE_USERS_S3NG_PERMISSIONS_ENDPOINT</td>
 <td>string</td>
 <td>127.0.0.1:9191</td>
-<td></td>
+<td>Endpoint of the permissions service.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_S3NG_REGION</td>
 <td>string</td>
 <td>default</td>
-<td></td>
+<td>Region of the S3 bucket.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_S3NG_ACCESS_KEY</td>
 <td>string</td>
 <td></td>
-<td></td>
+<td>Access key for the S3 bucket.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_S3NG_SECRET_KEY</td>
 <td>string</td>
 <td></td>
-<td></td>
+<td>Secret key for the S3 bucket.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_S3NG_ENDPOINT</td>
 <td>string</td>
 <td></td>
-<td></td>
+<td>Endpoint for the S3 bucket.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_S3NG_BUCKET</td>
 <td>string</td>
 <td></td>
-<td></td>
+<td>Name of the S3 bucket.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_S3NG_PERSONAL_SPACE_ALIAS_TEMPLATE</td>
 <td>string</td>
 <td>{{.SpaceType}}/{{.User.Username | lower}}</td>
-<td></td>
+<td>Template string to construct personal space aliases.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_S3NG_GENERAL_SPACE_ALIAS_TEMPLATE</td>
 <td>string</td>
 <td>{{.SpaceType}}/{{.SpaceName | replace &quot; &quot; &quot;-&quot; | lower}}</td>
-<td></td>
+<td>Template string to construct general space aliases.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_S3NG_SHARE_FOLDER</td>
 <td>string</td>
 <td>/Shares</td>
-<td></td>
+<td>Name of the folder jailing all shares.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_OWNCLOUDSQL_DATADIR</td>
 <td>string</td>
 <td>~/.ocis/storage/owncloud</td>
-<td></td>
+<td>Path for the persistence directory.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_OWNCLOUDSQL_SHARE_FOLDER</td>
 <td>string</td>
 <td>/Shares</td>
-<td></td>
+<td>name of the folder jailing all shares.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_OWNCLOUDSQL_LAYOUT</td>
@@ -15797,61 +15797,49 @@ Copyright 2022 Fonticons, Inc.
 <td>STORAGE_USERS_OWNCLOUDSQL_UPLOADINFO_DIR</td>
 <td>string</td>
 <td>~/.ocis/storage/uploadinfo</td>
-<td></td>
+<td>Path to a directory, where uploads will be stored temporarily.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_OWNCLOUDSQL_DB_USERNAME</td>
 <td>string</td>
 <td>owncloud</td>
-<td></td>
+<td>Username for the database.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_OWNCLOUDSQL_DB_PASSWORD</td>
 <td>string</td>
 <td>owncloud</td>
-<td></td>
+<td>Password for the database.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_OWNCLOUDSQL_DB_HOST</td>
 <td>string</td>
 <td></td>
-<td></td>
+<td>Hostname or IP of the database server.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_OWNCLOUDSQL_DB_PORT</td>
 <td>int</td>
 <td>3306</td>
-<td></td>
+<td>Port that the database server is listening on.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_OWNCLOUDSQL_DB_NAME</td>
 <td>string</td>
 <td>owncloud</td>
-<td></td>
+<td>Name of the database to be used.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_OWNCLOUDSQL_USERS_PROVIDER_ENDPOINT</td>
 <td>string</td>
 <td>localhost:9144</td>
-<td></td>
+<td>Endpoint of the users provider.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_DATA_SERVER_URL</td>
 <td>string</td>
 <td>http://localhost:9158/data</td>
-<td></td>
-</tr>
-<tr>
-<td>STORAGE_USERS_TEMP_FOLDER</td>
-<td>string</td>
-<td>~/.ocis/tmp/users</td>
-<td></td>
-</tr>
-<tr>
-<td>OCIS_INSECURE<br/>STORAGE_USERS_DATAPROVIDER_INSECURE</td>
-<td>bool</td>
-<td>false</td>
-<td></td>
+<td>URL of the data server, needs to be reachable by the data gateway provided by the frontend service or the user if directly exposed.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_EVENTS_ENDPOINT</td>
@@ -15869,19 +15857,19 @@ Copyright 2022 Fonticons, Inc.
 <td>STORAGE_USERS_MOUNT_ID</td>
 <td>string</td>
 <td>1284d238-aa92-42ce-bdc4-0b0000009157</td>
-<td></td>
+<td>Mount ID of this storage.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_EXPOSE_DATA_SERVER</td>
 <td>bool</td>
 <td>false</td>
-<td></td>
+<td>Exposes the data server directly to users and bypasses the data gateway. Ensure that the data server address is reachable by users.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_READ_ONLY</td>
 <td>bool</td>
 <td>false</td>
-<td></td>
+<td>Set this storage to be read-only.</td>
 </tr>
 </tbody>
 </table> </div>

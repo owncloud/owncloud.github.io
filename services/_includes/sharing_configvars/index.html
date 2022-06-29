@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/sharing_configvars/",
       "headline": "Sharing Configvars",
       "description": "Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDSHARING_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPESHARING_TRACING_TYPE string  The type of tracing. Defaults to “”, which is the same as “jaeger”. Allowed tracing types are “jaeger” and \u0022\u0022 as of now.   OCIS_TRACING_ENDPOINTSHARING_TRACING_ENDPOINT string  The endpoint of the tracing agent.   OCIS_TRACING_COLLECTORSHARING_TRACING_COLLECTOR string  The HTTP endpoint for sending spans directly to a collector, i.",
-      "wordCount" : "273",
+      "wordCount" : "513",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -15193,7 +15193,7 @@ Copyright 2022 Fonticons, Inc.
                     href="/services/webdav/"
                     class="gdoc-nav__entry"
                   >
-                    WebDaV
+                    WebDAV
                   </a>
                 </span>
               
@@ -15629,7 +15629,7 @@ Copyright 2022 Fonticons, Inc.
 <td>SHARING_GRPC_ADDR</td>
 <td>string</td>
 <td>127.0.0.1:9150</td>
-<td>The address of the grpc service.</td>
+<td>The bind address of the GRPC service.</td>
 </tr>
 <tr>
 <td>SHARING_GRPC_PROTOCOL</td>
@@ -15665,115 +15665,115 @@ Copyright 2022 Fonticons, Inc.
 <td>SHARING_SKIP_USER_GROUPS_IN_TOKEN</td>
 <td>bool</td>
 <td>false</td>
-<td></td>
+<td>Disables the loading of user&rsquo;s group memberships from the reva access token.</td>
 </tr>
 <tr>
 <td>SHARING_USER_DRIVER</td>
 <td>string</td>
 <td>cs3</td>
-<td></td>
+<td>Driver to be used to persist shares. Possible values: &ldquo;json&rdquo;, &ldquo;cs3&rdquo;, &ldquo;owncloudsql&rdquo;</td>
 </tr>
 <tr>
 <td>SHARING_USER_JSON_FILE</td>
 <td>string</td>
 <td>~/.ocis/storage/shares.json</td>
-<td></td>
+<td>Path to the json file where shares will be persisted.</td>
 </tr>
 <tr>
 <td>SHARING_USER_CS3_PROVIDER_ADDR</td>
 <td>string</td>
 <td>127.0.0.1:9215</td>
-<td></td>
+<td>GRPC address of the storage-system extension.</td>
 </tr>
 <tr>
 <td>OCIS_SYSTEM_USER_ID<br/>SHARING_USER_CS3_SYSTEM_USER_ID</td>
 <td>string</td>
 <td></td>
-<td></td>
+<td>ID of the oCIS storage-system system user. Admins need to set the ID for the storage-system system user in this config option which is then used to reference the user. Any reasonable long string is possible, preferably this would be an UUIDv4 format.</td>
 </tr>
 <tr>
 <td>OCIS_SYSTEM_USER_IDP<br/>SHARING_USER_CS3_SYSTEM_USER_IDP</td>
 <td>string</td>
 <td>internal</td>
-<td></td>
+<td>IDP of the oCIS storage-system system user.</td>
 </tr>
 <tr>
 <td>OCIS_SYSTEM_USER_API_KEY<br/>SHARING_USER_CS3_SYSTEM_USER_API_KEY</td>
 <td>string</td>
 <td></td>
-<td></td>
+<td>API key for the storage-system system user.</td>
 </tr>
 <tr>
 <td>SHARING_USER_OWNCLOUDSQL_DB_USERNAME</td>
 <td>string</td>
 <td>owncloud</td>
-<td></td>
+<td>Username for the database.</td>
 </tr>
 <tr>
 <td>SHARING_USER_OWNCLOUDSQL_DB_PASSWORD</td>
 <td>string</td>
 <td></td>
-<td></td>
+<td>Password for the database.</td>
 </tr>
 <tr>
 <td>SHARING_USER_OWNCLOUDSQL_DB_HOST</td>
 <td>string</td>
 <td>mysql</td>
-<td></td>
+<td>Hostname or IP of the database server.</td>
 </tr>
 <tr>
 <td>SHARING_USER_OWNCLOUDSQL_DB_PORT</td>
 <td>int</td>
 <td>3306</td>
-<td></td>
+<td>Port that the database server is listening on.</td>
 </tr>
 <tr>
 <td>SHARING_USER_OWNCLOUDSQL_DB_NAME</td>
 <td>string</td>
 <td>owncloud</td>
-<td></td>
+<td>Name of the database to be used.</td>
 </tr>
 <tr>
 <td>SHARING_USER_OWNCLOUDSQL_USER_STORAGE_MOUNT_ID</td>
 <td>string</td>
 <td></td>
-<td></td>
+<td>Mount ID of the ownCloudSQL users storage for mapping ownCloud 10 shares.</td>
 </tr>
 <tr>
 <td>SHARING_PUBLIC_DRIVER</td>
 <td>string</td>
 <td>cs3</td>
-<td></td>
+<td>Driver to be used to persist public shares. Possible values: &ldquo;json&rdquo;, &ldquo;cs3&rdquo;</td>
 </tr>
 <tr>
 <td>SHARING_PUBLIC_JSON_FILE</td>
 <td>string</td>
 <td>~/.ocis/storage/publicshares.json</td>
-<td></td>
+<td>Path to the JSON file where public share meta-data will be stored. This JSON file contains the information about public shares that have been created.</td>
 </tr>
 <tr>
 <td>SHARING_PUBLIC_CS3_PROVIDER_ADDR</td>
 <td>string</td>
 <td>127.0.0.1:9215</td>
-<td></td>
+<td>GRPC address of the storage-system extension.</td>
 </tr>
 <tr>
 <td>OCIS_SYSTEM_USER_ID<br/>SHARING_PUBLIC_CS3_SYSTEM_USER_ID</td>
 <td>string</td>
 <td></td>
-<td></td>
+<td>ID of the oCIS storage-system system user. Admins need to set the ID for the storage-system system user in this config option which is then used to reference the user. Any reasonable long string is possible, preferably this would be an UUIDv4 format.</td>
 </tr>
 <tr>
 <td>OCIS_SYSTEM_USER_IDP<br/>SHARING_PUBLIC_CS3_SYSTEM_USER_IDP</td>
 <td>string</td>
 <td>internal</td>
-<td></td>
+<td>IDP of the oCIS storage-system system user.</td>
 </tr>
 <tr>
 <td>OCIS_SYSTEM_USER_API_KEY<br/>SHARING_USER_CS3_SYSTEM_USER_API_KEY</td>
 <td>string</td>
 <td></td>
-<td></td>
+<td>API key for the storage-system system user.</td>
 </tr>
 </tbody>
 </table> </div>
