@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/sharing_configvars/",
       "headline": "Sharing Configvars",
       "description": "Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDSHARING_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPESHARING_TRACING_TYPE string  The type of tracing. Defaults to “”, which is the same as “jaeger”. Allowed tracing types are “jaeger” and \u0022\u0022 as of now.   OCIS_TRACING_ENDPOINTSHARING_TRACING_ENDPOINT string  The endpoint of the tracing agent.   OCIS_TRACING_COLLECTORSHARING_TRACING_COLLECTOR string  The HTTP endpoint for sending spans directly to a collector, i.",
-      "wordCount" : "513",
+      "wordCount" : "519",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -15611,13 +15611,13 @@ Copyright 2022 Fonticons, Inc.
 <td>SHARING_DEBUG_TOKEN</td>
 <td>string</td>
 <td></td>
-<td>Token to secure the metrics endpoint</td>
+<td>Token to secure the metrics endpoint.</td>
 </tr>
 <tr>
 <td>SHARING_DEBUG_PPROF</td>
 <td>bool</td>
 <td>false</td>
-<td>Enables pprof, which can be used for profiling</td>
+<td>Enables pprof, which can be used for profiling.</td>
 </tr>
 <tr>
 <td>SHARING_DEBUG_ZPAGES</td>
@@ -15635,7 +15635,7 @@ Copyright 2022 Fonticons, Inc.
 <td>SHARING_GRPC_PROTOCOL</td>
 <td>string</td>
 <td>tcp</td>
-<td>The transport protocol of the grpc service.</td>
+<td>The transport protocol of the GRPC service.</td>
 </tr>
 <tr>
 <td>OCIS_JWT_SECRET<br/>SHARING_JWT_SECRET</td>
@@ -15653,13 +15653,13 @@ Copyright 2022 Fonticons, Inc.
 <td>SHARING_EVENTS_ENDPOINT</td>
 <td>string</td>
 <td>127.0.0.1:9233</td>
-<td>the address of the streaming service</td>
+<td>The address of the streaming service</td>
 </tr>
 <tr>
 <td>SHARING_EVENTS_CLUSTER</td>
 <td>string</td>
 <td>ocis-cluster</td>
-<td>the clusterID of the streaming service. Mandatory when using nats</td>
+<td>The clusterID of the streaming service. Mandatory when using the NATS service</td>
 </tr>
 <tr>
 <td>SHARING_SKIP_USER_GROUPS_IN_TOKEN</td>
@@ -15671,37 +15671,37 @@ Copyright 2022 Fonticons, Inc.
 <td>SHARING_USER_DRIVER</td>
 <td>string</td>
 <td>cs3</td>
-<td>Driver to be used to persist shares. Possible values: &ldquo;json&rdquo;, &ldquo;cs3&rdquo;, &ldquo;owncloudsql&rdquo;</td>
+<td>Driver to be used to persist shares. Supported values are &lsquo;json&rsquo;, &lsquo;cs3&rsquo; and &lsquo;owncloudsql&rsquo;.</td>
 </tr>
 <tr>
 <td>SHARING_USER_JSON_FILE</td>
 <td>string</td>
 <td>~/.ocis/storage/shares.json</td>
-<td>Path to the json file where shares will be persisted.</td>
+<td>Path to the JSON file where shares will be persisted.</td>
 </tr>
 <tr>
 <td>SHARING_USER_CS3_PROVIDER_ADDR</td>
 <td>string</td>
 <td>127.0.0.1:9215</td>
-<td>GRPC address of the storage-system extension.</td>
+<td>GRPC address of the STORAGE-SYSTEM service.</td>
 </tr>
 <tr>
 <td>OCIS_SYSTEM_USER_ID<br/>SHARING_USER_CS3_SYSTEM_USER_ID</td>
 <td>string</td>
 <td></td>
-<td>ID of the oCIS storage-system system user. Admins need to set the ID for the storage-system system user in this config option which is then used to reference the user. Any reasonable long string is possible, preferably this would be an UUIDv4 format.</td>
+<td>ID of the oCIS STORAGE-SYSTEM system user. Admins need to set the ID for the STORAGE-SYSTEM system user in this config option which is then used to reference the user. Any reasonable long string is possible, preferably this would be an UUIDv4 format.</td>
 </tr>
 <tr>
 <td>OCIS_SYSTEM_USER_IDP<br/>SHARING_USER_CS3_SYSTEM_USER_IDP</td>
 <td>string</td>
 <td>internal</td>
-<td>IDP of the oCIS storage-system system user.</td>
+<td>IDP of the oCIS STORAGE-SYSTEM system user.</td>
 </tr>
 <tr>
 <td>OCIS_SYSTEM_USER_API_KEY<br/>SHARING_USER_CS3_SYSTEM_USER_API_KEY</td>
 <td>string</td>
 <td></td>
-<td>API key for the storage-system system user.</td>
+<td>API key for the STORAGE-SYSTEM system user.</td>
 </tr>
 <tr>
 <td>SHARING_USER_OWNCLOUDSQL_DB_USERNAME</td>
@@ -15743,7 +15743,7 @@ Copyright 2022 Fonticons, Inc.
 <td>SHARING_PUBLIC_DRIVER</td>
 <td>string</td>
 <td>cs3</td>
-<td>Driver to be used to persist public shares. Possible values: &ldquo;json&rdquo;, &ldquo;cs3&rdquo;</td>
+<td>Driver to be used to persist public shares. Supported values are &lsquo;json&rsquo; and &lsquo;cs3&rsquo;.</td>
 </tr>
 <tr>
 <td>SHARING_PUBLIC_JSON_FILE</td>
@@ -15755,25 +15755,25 @@ Copyright 2022 Fonticons, Inc.
 <td>SHARING_PUBLIC_CS3_PROVIDER_ADDR</td>
 <td>string</td>
 <td>127.0.0.1:9215</td>
-<td>GRPC address of the storage-system extension.</td>
+<td>GRPC address of the STORAGE-SYSTEM extension.</td>
 </tr>
 <tr>
 <td>OCIS_SYSTEM_USER_ID<br/>SHARING_PUBLIC_CS3_SYSTEM_USER_ID</td>
 <td>string</td>
 <td></td>
-<td>ID of the oCIS storage-system system user. Admins need to set the ID for the storage-system system user in this config option which is then used to reference the user. Any reasonable long string is possible, preferably this would be an UUIDv4 format.</td>
+<td>ID of the oCIS STORAGE-SYSTEM system user. Admins need to set the ID for the STORAGE-SYSTEM system user in this config option which is then used to reference the user. Any reasonable long string is possible, preferably this would be an UUIDv4 format.</td>
 </tr>
 <tr>
 <td>OCIS_SYSTEM_USER_IDP<br/>SHARING_PUBLIC_CS3_SYSTEM_USER_IDP</td>
 <td>string</td>
 <td>internal</td>
-<td>IDP of the oCIS storage-system system user.</td>
+<td>IDP of the oCIS STORAGE-SYSTEM system user.</td>
 </tr>
 <tr>
 <td>OCIS_SYSTEM_USER_API_KEY<br/>SHARING_USER_CS3_SYSTEM_USER_API_KEY</td>
 <td>string</td>
 <td></td>
-<td>API key for the storage-system system user.</td>
+<td>API key for the STORAGE-SYSTEM system user.</td>
 </tr>
 </tbody>
 </table> </div>
