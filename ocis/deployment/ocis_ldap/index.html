@@ -65,7 +65,7 @@
       "url" : "https://owncloud.dev/ocis/deployment/ocis_ldap/",
       "headline": "oCIS with LDAP",
       "description": "Overview Server Deployment  Requirements Install this example   Local setup      Overview      Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup OpenLDAP server with demo users LDAP admin interface to edit users oCIS running behind Traefik as reverse proxy  oCIS is using the LDAP server as user backend    Find this example on GitHub",
-      "wordCount" : "778",
+      "wordCount" : "824",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -15690,6 +15690,17 @@ The file by default looks like this:</p>
 <p>Set your domain for the oCIS frontend in <code>OCIS_DOMAIN=</code>, e.g. <code>OCIS_DOMAIN=cloud.owncloud.test</code>.</p>
 <p>The OpenLDAP server in this example deployment has an admin users, which is also used as bind user in order to keep these examples simple. You can change the default password &ldquo;admin&rdquo; to a different one by setting it to <code>LDAP_ADMIN_PASSWORD=...</code>.</p>
 <p>Set your domain for the LDAP manager UI in <code>LDAP_MANAGER_DOMAIN=</code>, e.g. <code>ldap.owncloud.test</code>.</p>
+<p>Grant the oCIS Admin role to the admin user from your LDAP in <code>OCIS_ADMIN_USER_ID:</code>. You need to enter the uuid of LDAP user.</p>
+
+
+
+
+
+<blockquote class="gdoc-hint tip">
+  <div class="gdoc-hint__title flex align-center"><i class="fa tip" title="Encoding"></i></div>
+  <div class="gdoc-hint__text">In the .ldif file in this example, the admin user id is base64 encoded. You need to decode it to make it work.</div>
+</blockquote>
+
 <p>Now you have configured everything and can save the file.</p>
 </li>
 <li>
