@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/proxy_configvars/",
       "headline": "Proxy Configvars",
       "description": "Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDPROXY_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPEPROXY_TRACING_TYPE string  The type of tracing. Defaults to “”, which is the same as “jaeger”. Allowed tracing types are “jaeger” and \u0022\u0022 as of now.   OCIS_TRACING_ENDPOINTPROXY_TRACING_ENDPOINT string  The endpoint of the tracing agent.   OCIS_TRACING_COLLECTORPROXY_TRACING_COLLECTOR string  The HTTP endpoint for sending spans directly to a collector, i.",
-      "wordCount" : "466",
+      "wordCount" : "629",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -15674,6 +15674,12 @@ Copyright 2022 Fonticons, Inc.
 <td>Disable TLS certificate validation for connections to the IDP. Note that this is not recommended for production environments.</td>
 </tr>
 <tr>
+<td>PROXY_OIDC_ACCESS_TOKEN_VERIFY_METHOD</td>
+<td>string</td>
+<td>jwt</td>
+<td>Sets how OIDC access tokens should be verified. Possible values are &lsquo;none&rsquo; and &lsquo;jwt&rsquo;. When using &lsquo;none&rsquo;, no special validation apart from using it for accessing the IPD&rsquo;s userinfo endpoint will be done. When using &lsquo;jwt&rsquo;, it tries to parse the access token as a jwt token and verifies the signature using the keys published on the IDP&rsquo;s &lsquo;jwks_uri&rsquo;.</td>
+</tr>
+<tr>
 <td>PROXY_OIDC_USERINFO_CACHE_SIZE</td>
 <td>int</td>
 <td>1024</td>
@@ -15684,6 +15690,30 @@ Copyright 2022 Fonticons, Inc.
 <td>int</td>
 <td>10</td>
 <td>Max TTL in seconds for the OIDC user info cache.</td>
+</tr>
+<tr>
+<td>PROXY_OIDC_JWKS_REFRESH_INTERVAL</td>
+<td>uint64</td>
+<td>60</td>
+<td>The interval for refreshing the JWKS (JSON Web Key Set) in minutes in the background via a new HTTP request to the IDP.</td>
+</tr>
+<tr>
+<td>PROXY_OIDC_JWKS_REFRESH_TIMEOUT</td>
+<td>uint64</td>
+<td>10</td>
+<td>The timeout in seconds for an outgoing JWKS request.</td>
+</tr>
+<tr>
+<td>PROXY_OIDC_JWKS_REFRESH_RATE_LIMIT</td>
+<td>uint64</td>
+<td>60</td>
+<td>Limits the rate in seconds at which refresh requests are performed for unknown keys. This is used to prevent malicious clients from imposing high network load on the IDP via ocis.</td>
+</tr>
+<tr>
+<td>PROXY_OIDC_JWKS_REFRESH_UNKNOWN_KID</td>
+<td>bool</td>
+<td>true</td>
+<td>If set to &lsquo;true&rsquo;, the JWKS refresh request will occur every time an unknown KEY ID (KID) is seen. Always set a &lsquo;refresh_limit&rsquo; when enabling this.</td>
 </tr>
 <tr>
 <td>OCIS_JWT_SECRET<br/>PROXY_JWT_SECRET</td>
