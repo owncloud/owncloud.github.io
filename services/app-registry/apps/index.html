@@ -71,7 +71,7 @@ App provider capability     The capabilities endpoint (e.g. https://localhost:92
       "url" : "https://owncloud.dev/services/app-registry/apps/",
       "headline": "Apps",
       "description": "oCIS is all about files. But most of the time you want to do something with files that is beyond the basic upload, download and share behavior. Therefore, oCIS has a concept for apps, that can handle specific file types, so-called mime types.\nApp provider capability     The capabilities endpoint (e.g. https:\/\/localhost:9200\/ocs\/v1.php\/cloud\/capabilities?format=json) gives you following capabilities which are relevant for the app provider:\n{ \u0022ocs\u0022: { \u0022data\u0022: { \u0022capabilities\u0022: { \u0022files\u0022: { \u0022app_providers\u0022: [ { \u0022enabled\u0022: true, \u0022version\u0022: \u00221.",
-      "wordCount" : "1336",
+      "wordCount" : "1494",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -15622,9 +15622,10 @@ Copyright 2022 Fonticons, Inc.
           <span class="nt">&#34;app_providers&#34;</span><span class="p">:</span> <span class="p">[</span>
             <span class="p">{</span>
               <span class="nt">&#34;enabled&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-              <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;1.0.0&#34;</span><span class="p">,</span>
+              <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;1.1.0&#34;</span><span class="p">,</span>
               <span class="nt">&#34;apps_url&#34;</span><span class="p">:</span> <span class="s2">&#34;/app/list&#34;</span><span class="p">,</span>
               <span class="nt">&#34;open_url&#34;</span><span class="p">:</span> <span class="s2">&#34;/app/open&#34;</span><span class="p">,</span>
+              <span class="nt">&#34;open_web_url&#34;</span><span class="p">:</span> <span class="s2">&#34;/app/open-with-web&#34;</span><span class="p">,</span>
               <span class="nt">&#34;new_url&#34;</span><span class="p">:</span> <span class="s2">&#34;/app/new&#34;</span>
             <span class="p">}</span>
           <span class="p">]</span>
@@ -15781,6 +15782,47 @@ Copyright 2022 Fonticons, Inc.
   <span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div><div class="gdoc-page__anchorwrap">
+    <h3 id="open-a-file-with-the-owncloud-web">
+        Open a file with the ownCloud Web
+        <a data-clipboard-text="https://owncloud.dev/services/app-registry/apps/#open-a-file-with-the-owncloud-web" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Open a file with the ownCloud Web" aria-label="Anchor to: Open a file with the ownCloud Web" href="#open-a-file-with-the-owncloud-web">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p><strong>Endpoint</strong>: specified in the capabilities in <code>open_web_url</code>, currently <code>/app/open-with-web</code></p>
+<p><strong>Method</strong>: HTTP POST</p>
+<p><strong>Authentication</strong> (one of them):</p>
+<ul>
+<li><code>Authorization</code> header with OIDC Bearer token for authenticated users or basic auth credentials (if enabled in oCIS)</li>
+<li><code>X-Access-Token</code> header with a REVA token for authenticated users</li>
+</ul>
+<p><strong>Query parameters</strong>:</p>
+<ul>
+<li><code>file_id</code> (mandatory): id of the file to be opened</li>
+<li><code>app_name</code> (optional)
+<ul>
+<li>default (not given): default app for mime type</li>
+<li>possible values depend on the app providers for a mimetype from the <code>/app/open</code> endpoint</li>
+</ul>
+</li>
+</ul>
+<p><strong>Request examples</strong>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">curl -X POST <span class="s1">&#39;https://ocis.test/app/open?file_id=ZmlsZTppZAo=&#39;</span>
+
+curl -X POST <span class="s1">&#39;https://ocis.test/app/open?file_id=ZmlsZTppZAo=&amp;app_name=Collabora&#39;</span>
+</code></pre></div><p><strong>Response examples</strong>:</p>
+<p>The URI from the response JSON is intended to be opened with a GET request in a browser. If the user has not yet a session in the browser, a login flow is handled by ownCloud Web.</p>
+<p>HTTP status code: 200</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;uri&#34;</span><span class="p">:</span> <span class="s2">&#34;https://.....&#34;</span>
+<span class="p">}</span>
+</code></pre></div><p><strong>Example responses (error case)</strong>:</p>
+<p>See error cases for <a
+  class="gdoc-markdown__link"
+  href="#open-a-file-with-the-app-provider"
+  
+>Open a file with the app provider</a></p>
+<div class="gdoc-page__anchorwrap">
     <h3 id="open-a-file-with-the-app-provider">
         Open a file with the app provider
         <a data-clipboard-text="https://owncloud.dev/services/app-registry/apps/#open-a-file-with-the-app-provider" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Open a file with the app provider" aria-label="Anchor to: Open a file with the app provider" href="#open-a-file-with-the-app-provider">
