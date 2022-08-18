@@ -71,7 +71,7 @@ App provider capability     The capabilities endpoint (e.g. https://localhost:92
       "url" : "https://owncloud.dev/services/app-registry/apps/",
       "headline": "Apps",
       "description": "oCIS is all about files. But most of the time you want to do something with files that is beyond the basic upload, download and share behavior. Therefore, oCIS has a concept for apps, that can handle specific file types, so-called mime types.\nApp provider capability     The capabilities endpoint (e.g. https:\/\/localhost:9200\/ocs\/v1.php\/cloud\/capabilities?format=json) gives you following capabilities which are relevant for the app provider:\n{ \u0022ocs\u0022: { \u0022data\u0022: { \u0022capabilities\u0022: { \u0022files\u0022: { \u0022app_providers\u0022: [ { \u0022enabled\u0022: true, \u0022version\u0022: \u00221.",
-      "wordCount" : "1494",
+      "wordCount" : "1551",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -15859,9 +15859,24 @@ curl -X POST <span class="s1">&#39;https://ocis.test/app/open?file_id=ZmlsZTppZA
 </li>
 </ul>
 </li>
+<li><code>lang</code> (optional)
+<ul>
+<li>default (not given): default language of the application (which might maybe use the browser language)</li>
+<li>possible value is any ISO 639-1 language code. Examples:
+<ul>
+<li>de</li>
+<li>en</li>
+<li>es</li>
+<li>&hellip;</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <p><strong>Request examples</strong>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">curl -X POST <span class="s1">&#39;https://ocis.test/app/open?file_id=ZmlsZTppZAo=&#39;</span>
+
+curl -X POST <span class="s1">&#39;https://ocis.test/app/open?file_id=ZmlsZTppZAo=&amp;lang=de&#39;</span>
 
 curl -X POST <span class="s1">&#39;https://ocis.test/app/open?file_id=ZmlsZTppZAo=&amp;app_name=Collabora&#39;</span>
 
@@ -15940,6 +15955,14 @@ curl -X POST <span class="s1">&#39;https://ocis.test/app/open?file_id=ZmlsZTppZA
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
   <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;RESOURCE_NOT_FOUND&#34;</span><span class="p">,</span>
   <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;file does not exist&#34;</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p>invalid language code</p>
+<p>HTTP status code: 400</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;INVALID_PARAMETER&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;lang parameter does not contain a valid ISO 639-1 language code&#34;</span>
 <span class="p">}</span>
 </code></pre></div></li>
 </ul>
