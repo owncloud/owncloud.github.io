@@ -12,7 +12,9 @@
 <meta name="generator" content="Hugo 0.89.4" />
 
 
-  <meta name="description" content="Abstract     Table of Contents        Service Configuration      " />
+  <meta name="description" content="Abstract     The frontend service provides multiple HTTP endpoints to translate OCS, archiver and approvider requests into CS3 requests.
+Table of Contents        Service Configuration      OCS     The OCS endpoint implements the open collaboration services API in a backwards compatible manner.
+Sharing     Aggregating share information is one of the most time consuming operations in OCIS." />
 
     <title>Frontend | ownCloud</title>
 
@@ -36,7 +38,9 @@
     content="Frontend"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Abstract     Table of Contents        Service Configuration      " />
+  <meta property="og:description" content="Abstract     The frontend service provides multiple HTTP endpoints to translate OCS, archiver and approvider requests into CS3 requests.
+Table of Contents        Service Configuration      OCS     The OCS endpoint implements the open collaboration services API in a backwards compatible manner.
+Sharing     Aggregating share information is one of the most time consuming operations in OCIS." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/frontend/" />
 
@@ -53,7 +57,9 @@
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Frontend" />
-  <meta name="twitter:description" content="Abstract     Table of Contents        Service Configuration      " />
+  <meta name="twitter:description" content="Abstract     The frontend service provides multiple HTTP endpoints to translate OCS, archiver and approvider requests into CS3 requests.
+Table of Contents        Service Configuration      OCS     The OCS endpoint implements the open collaboration services API in a backwards compatible manner.
+Sharing     Aggregating share information is one of the most time consuming operations in OCIS." />
 
 
   <script type="application/ld+json">
@@ -64,8 +70,8 @@
       "name": "Frontend",
       "url" : "https://owncloud.dev/services/frontend/",
       "headline": "Frontend",
-      "description": "Abstract     Table of Contents        Service Configuration      ",
-      "wordCount" : "6",
+      "description": "Abstract     The frontend service provides multiple HTTP endpoints to translate OCS, archiver and approvider requests into CS3 requests.\nTable of Contents        Service Configuration      OCS     The OCS endpoint implements the open collaboration services API in a backwards compatible manner.\nSharing     Aggregating share information is one of the most time consuming operations in OCIS.",
+      "wordCount" : "196",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -15598,6 +15604,7 @@ Copyright 2022 Fonticons, Inc.
         </a>
     </h2>
 </div>
+<p>The frontend service provides multiple HTTP endpoints to translate OCS, archiver and approvider requests into CS3 requests.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="table-of-contents">
         Table of Contents
@@ -15622,6 +15629,44 @@ Copyright 2022 Fonticons, Inc.
 
 
 
+<div class="gdoc-page__anchorwrap">
+    <h2 id="ocs">
+        OCS
+        <a data-clipboard-text="https://owncloud.dev/services/frontend/#ocs" class="gdoc-page__anchor clip flex align-center" title="Anchor to: OCS" aria-label="Anchor to: OCS" href="#ocs">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>The OCS endpoint implements the open collaboration services API in a backwards compatible manner.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="sharing">
+        Sharing
+        <a data-clipboard-text="https://owncloud.dev/services/frontend/#sharing" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Sharing" aria-label="Anchor to: Sharing" href="#sharing">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>Aggregating share information is one of the most time consuming operations in OCIS. The service fetches a list of either received or created shares and has to stat every resource individually. While stats are fast, the default behavior scales linearly with the number of shares.</p>
+<p>To save network trips the sharing implementation can cache the stat requests with an in memory cache or in redis. It will shorten the response time by the network rountrip overhead at the cost of the API only eventually being updated.</p>
+<p>Setting <code>FRONTEND_OCS_RESOURCE_INFO_CACHE_TTL=60</code> would cache the stat info for 60 seconds. Increasing this value makes sense for large deployments with thousands of active users that keep the cache up to date. Low frequency usage scenarios should not expect a noticeable improvement.</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="archiver">
+        Archiver
+        <a data-clipboard-text="https://owncloud.dev/services/frontend/#archiver" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Archiver" aria-label="Anchor to: Archiver" href="#archiver">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>The archiver endpoint provides bundled downloads of multiple files and folders.</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="appprovider">
+        Appprovider
+        <a data-clipboard-text="https://owncloud.dev/services/frontend/#appprovider" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Appprovider" aria-label="Anchor to: Appprovider" href="#appprovider">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>The appprovider endpoint is used to manage available apps that can be used to open different file types.</p>
 
   </article>
 
