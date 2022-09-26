@@ -71,7 +71,7 @@ It maps the path and id based CS3 references to an appropriate storage system sp
       "url" : "https://owncloud.dev/ocis/storage/storagedrivers/",
       "headline": "Storage drivers",
       "description": "A storage driver implements access to a storage system:\nIt maps the path and id based CS3 references to an appropriate storage system specific reference, e.g.:\n eos file ids posix inodes or paths deconstructed filesystem nodes  Storage providers     To manage the file tree oCIS uses storage providers that are accessing the underlying storage using a storage driver. The driver can be used to change the implementation of a storage aspect to better reflect the actual underlying storage capabilities.",
-      "wordCount" : "2262",
+      "wordCount" : "2362",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -15589,7 +15589,7 @@ Copyright 2022 Fonticons, Inc.
       <span class="editpage">
         <svg class="gdoc-icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
         <a
-          href="https://github.com/owncloud/ocis/edit/master/docs/extensions/storage/storages.md"
+          href="https://github.com/owncloud/ocis/edit/master/docs/ocis/storage/storages.md"
         >
           Edit page
         </a>
@@ -15819,9 +15819,31 @@ Modern POSIX filesystems support snapshotting of volumes. This is different from
         </a>
     </h3>
 </div>
-<p>The oCIS storage driver is the default storage driver. It decomposes the metadata and persists it in a POSIX filesystem. Blobs are stored on the filesystem as well. The layout makes extensive use of symlinks and extended attributes. A filesystem like xfs or zfs without inode size limitations is recommended. We will evolve this to further integrate with file systems like cephfs or gpfs.</p>
+<p>The oCIS storage driver is the default storage driver. It decomposes the metadata and persists it in a POSIX filesystem. Blobs are stored on the filesystem as well. The layout makes extensive use of symlinks and extended attributes. A filesystem like xfs or zfs without practical inode size limitations is recommended. We will evolve this to further integrate with file systems like cephfs or gpfs.</p>
+
+
+
+
+
+<blockquote class="gdoc-hint note">
+  <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
+  <div class="gdoc-hint__text">Ext4 limits the number of bytes that can be used for extended attribute names and their values to the size of a single block (by default 4k). This reduces the number of shares for a single file or folder to roughly 20-30, as grants have to share the available space with other metadata.</div>
+</blockquote>
+
 <p>The S3NG storage driver uses the same metadata layout on a POSIX storage as the oCIS driver, but it uses S3 as the blob storage.</p>
-<p>TODO add list of capabilities / tradeoffs</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="tradeoffs">
+        Tradeoffs
+        <a data-clipboard-text="https://owncloud.dev/ocis/storage/storagedrivers/#tradeoffs" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Tradeoffs" aria-label="Anchor to: Tradeoffs" href="#tradeoffs">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+<p>➕ Efficient ID based lookup</p>
+<p>➕ Leverages Kernel VFS cache</p>
+<p>➕ No database needed</p>
+<p>➖ Not intended to be accessed by end users on the server side as it does not reflect a normal filesystem on disk</p>
+<p>➖ Metadata limited by Kernel VFS limits (see below)</p>
 <div class="gdoc-page__anchorwrap">
     <h4 id="related-kernel-limits">
         Related Kernel limits
@@ -15830,7 +15852,11 @@ Modern POSIX filesystems support snapshotting of volumes. This is different from
         </a>
     </h4>
 </div>
-<p>The decomposedfs currently stores CS3 grants in extended attributes. When listing extended attributes the result is currently limited to 64kB. Assuming a 20 byte uuid a grant has ~40 bytes. Which would limit the number of extended attributes to ~1630 entries or ~1600 shares. This can be extended by moving the grants from extended attributes into a dedicated file.</p>
+<p>The Decomposed FS currently stores CS3 grants in extended attributes. When listing extended attributes the result is currently limited to 64kB. Assuming a 20 byte uuid a grant has ~40 bytes. Which would limit the number of extended attributes to ~1630 entries or ~1600 shares. This can be extended by moving the grants from extended attributes into a dedicated file and is tracked in <a
+  class="gdoc-markdown__link"
+  href="https://github.com/owncloud/ocis/issues/4638"
+  
+>ocis/issues/4638</a>.</p>
 <p>From <a
   class="gdoc-markdown__link"
   href="https://en.wikipedia.org/wiki/Extended_file_attributes#Linux"
