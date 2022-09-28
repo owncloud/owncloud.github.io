@@ -12,7 +12,7 @@
 <meta name="generator" content="Hugo 0.89.4" />
 
 
-  <meta name="description" content="Introduction  Unit Tests  Unit test file structure   E2E Tests (Playwright)  Prerequisites Prepare &amp; start web Start Docker Run E2E tests Options   Acceptance Tests (Nightwatch)  Prerequisites Prepare &amp; start web Start Docker Run acceptance tests Watch the test run Watch the test report          Introduction     In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository." />
+  <meta name="description" content="Introduction  Unit Tests  Unit test file structure   E2E Tests (Playwright)  Prerequisites Prepare &amp; start web Start Docker Run E2E tests Options   Acceptance Tests (Nightwatch)  Prerequisites Prepare &amp; start web Start Docker Run acceptance tests Watch the test run   Watch the test report        Introduction     In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository." />
 
     <title>Running acceptance tests | ownCloud</title>
 
@@ -36,7 +36,7 @@
     content="Running acceptance tests"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Introduction  Unit Tests  Unit test file structure   E2E Tests (Playwright)  Prerequisites Prepare &amp; start web Start Docker Run E2E tests Options   Acceptance Tests (Nightwatch)  Prerequisites Prepare &amp; start web Start Docker Run acceptance tests Watch the test run Watch the test report          Introduction     In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository." />
+  <meta property="og:description" content="Introduction  Unit Tests  Unit test file structure   E2E Tests (Playwright)  Prerequisites Prepare &amp; start web Start Docker Run E2E tests Options   Acceptance Tests (Nightwatch)  Prerequisites Prepare &amp; start web Start Docker Run acceptance tests Watch the test run   Watch the test report        Introduction     In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/clients/web/testing/testing/" />
 
@@ -53,7 +53,7 @@
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Running acceptance tests" />
-  <meta name="twitter:description" content="Introduction  Unit Tests  Unit test file structure   E2E Tests (Playwright)  Prerequisites Prepare &amp; start web Start Docker Run E2E tests Options   Acceptance Tests (Nightwatch)  Prerequisites Prepare &amp; start web Start Docker Run acceptance tests Watch the test run Watch the test report          Introduction     In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository." />
+  <meta name="twitter:description" content="Introduction  Unit Tests  Unit test file structure   E2E Tests (Playwright)  Prerequisites Prepare &amp; start web Start Docker Run E2E tests Options   Acceptance Tests (Nightwatch)  Prerequisites Prepare &amp; start web Start Docker Run acceptance tests Watch the test run   Watch the test report        Introduction     In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository." />
 
 
   <script type="application/ld+json">
@@ -64,8 +64,8 @@
       "name": "Running acceptance tests",
       "url" : "https://owncloud.dev/clients/web/testing/testing/",
       "headline": "Running acceptance tests",
-      "description": "Introduction  Unit Tests  Unit test file structure   E2E Tests (Playwright)  Prerequisites Prepare \u0026 start web Start Docker Run E2E tests Options   Acceptance Tests (Nightwatch)  Prerequisites Prepare \u0026 start web Start Docker Run acceptance tests Watch the test run Watch the test report          Introduction     In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.",
-      "wordCount" : "849",
+      "description": "Introduction  Unit Tests  Unit test file structure   E2E Tests (Playwright)  Prerequisites Prepare \u0026 start web Start Docker Run E2E tests Options   Acceptance Tests (Nightwatch)  Prerequisites Prepare \u0026 start web Start Docker Run acceptance tests Watch the test run   Watch the test report        Introduction     In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.",
+      "wordCount" : "906",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -15631,9 +15631,9 @@ Copyright 2022 Fonticons, Inc.
                 <li><a href="#start-docker-1">Start Docker</a></li>
                 <li><a href="#run-acceptance-tests">Run acceptance tests</a></li>
                 <li><a href="#watch-the-test-run">Watch the test run</a></li>
-                <li><a href="#watch-the-test-report">Watch the test report</a></li>
               </ul>
             </li>
+            <li><a href="#watch-the-test-report">Watch the test report</a></li>
           </ul>
         </li>
       </ul></nav>
@@ -15881,18 +15881,22 @@ This also applies for running our acceptance tests. To run the tests without Doc
   
 >http://host.docker.internal:6080/</a> in the browser to access your VNC client.</p>
 <div class="gdoc-page__anchorwrap">
-    <h4 id="watch-the-test-report">
+    <h3 id="watch-the-test-report">
         Watch the test report
         <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#watch-the-test-report" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Watch the test report" aria-label="Anchor to: Watch the test report" href="#watch-the-test-report">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
-    </h4>
+    </h3>
 </div>
-<p>If you want to create a report after the tests are done, run the command <code>node tests/e2e/cucumber/report</code>.
-By default, the report gets generated to reports/e2e/cucumber/releaseReport/cucumber_report.html.
+<p>The cucumber library is used as the test runner for both e2e and acceptance tests. The report generator script lives inside the <code>tests/e2e/cucumber/report</code> folder. If you want to create a report after the tests are done, run the command:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">node tests/e2e/cucumber/report --report-input<span class="o">=</span>tests/e2e/cucumber/report/report.json
+</code></pre></div><p><code>--report-input</code> is the path to the report file generated by the test runner. If you want to generate a report for the acceptance tests, you can run the command</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">node tests/e2e/cucumber/report --report-input<span class="o">=</span>tests/acceptance/report/report.json
+</code></pre></div><p>By default, the report gets generated to reports/e2e/cucumber/releaseReport/cucumber_report.html.
 The location can be changed by adding the <code>--report-location</code> flag.</p>
-<p>To see all available options run <code>node tests/e2e/cucumber/report --help</code>.</p>
-
+<p>To see all available options run</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">node tests/e2e/cucumber/report --help
+</code></pre></div>
   </article>
 
 
