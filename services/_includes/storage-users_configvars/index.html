@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/storage-users_configvars/",
       "headline": "Storage Users Configvars",
       "description": "Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDSTORAGE_USERS_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPESTORAGE_USERS_TRACING_TYPE string  The type of tracing. Defaults to “”, which is the same as “jaeger”. Allowed tracing types are “jaeger” and \u0022\u0022 as of now.   OCIS_TRACING_ENDPOINTSTORAGE_USERS_TRACING_ENDPOINT string  The endpoint of the tracing agent.   OCIS_TRACING_COLLECTORSTORAGE_USERS_TRACING_COLLECTOR string  The HTTP endpoint for sending spans directly to a collector, i.",
-      "wordCount" : "731",
+      "wordCount" : "774",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -15621,13 +15621,13 @@ Copyright 2022 Fonticons, Inc.
 <td>STORAGE_USERS_OCIS_ROOT</td>
 <td>string</td>
 <td>~/.ocis/storage/users</td>
-<td>Path for the persistence directory.</td>
+<td>The directory where the filesystem storage will store user files. If not definied, the root directory derives from $OCIS_BASE_DATA_PATH:/storage/users.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_OCIS_USER_LAYOUT</td>
 <td>string</td>
 <td>{{.Id.OpaqueId}}</td>
-<td>Template string for the user storage layout in the persistence directory.</td>
+<td>Template string for the user storage layout in the user directory.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_PERMISSION_ENDPOINT,STORAGE_USERS_OCIS_PERMISSIONS_ENDPOINT</td>
@@ -15657,13 +15657,13 @@ Copyright 2022 Fonticons, Inc.
 <td>STORAGE_USERS_S3NG_ROOT</td>
 <td>string</td>
 <td>~/.ocis/storage/users</td>
-<td>Path for the persistence directory.</td>
+<td>The directory where the filesystem storage will store user files. If not definied, the root directory derives from $OCIS_BASE_DATA_PATH:/storage/users.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_S3NG_USER_LAYOUT</td>
 <td>string</td>
 <td>{{.Id.OpaqueId}}</td>
-<td>Template string for the user storage layout in the persistence directory.</td>
+<td>Template string for the user storage layout in the user directory.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_PERMISSION_ENDPOINT<br/>STORAGE_USERS_S3NG_PERMISSIONS_ENDPOINT</td>
@@ -15723,7 +15723,7 @@ Copyright 2022 Fonticons, Inc.
 <td>STORAGE_USERS_OWNCLOUDSQL_DATADIR</td>
 <td>string</td>
 <td>~/.ocis/storage/owncloud</td>
-<td>Path for the persistence directory.</td>
+<td>The directory where the filesystem storage will store SQL migration data. If not definied, the root directory derives from $OCIS_BASE_DATA_PATH:/storage/owncloud.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_OWNCLOUDSQL_SHARE_FOLDER</td>
