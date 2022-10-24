@@ -65,7 +65,7 @@
       "url" : "https://owncloud.dev/clients/web/testing/testing/",
       "headline": "Running acceptance tests",
       "description": "Introduction  Unit Tests  Unit test file structure   E2E Tests (Playwright)  Prerequisites Prepare \u0026 start web Start Docker Run E2E tests Options   Acceptance Tests (Nightwatch)  Prerequisites Prepare \u0026 start web Start Docker Run acceptance tests Watch the test run   Watch the test report        Introduction     In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.",
-      "wordCount" : "906",
+      "wordCount" : "907",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -15552,7 +15552,7 @@ Copyright 2022 Fonticons, Inc.
 This can be achieved by running</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ git clone https://github.com/owncloud/web.git
 $ <span class="nb">cd</span> web
-$ yarn
+$ pnpm install
 </code></pre></div><div class="gdoc-page__anchorwrap">
     <h3 id="unit-tests">
         Unit Tests
@@ -15562,8 +15562,8 @@ $ yarn
     </h3>
 </div>
 <p>We have a steadily growing coverage of unit tests. You can run them locally via</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ yarn test:unit
-</code></pre></div><p>You can also specify which tests to run by giving a path param, like so: <code>yarn test:unit packages/&lt;app-name&gt;/tests/unit/path/to/test.spec.js</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ pnpm test:unit
+</code></pre></div><p>You can also specify which tests to run by giving a path param, like so: <code>pnpm test:unit packages/&lt;app-name&gt;/tests/unit/path/to/test.spec.js</code>.</p>
 <div class="gdoc-page__anchorwrap">
     <h4 id="unit-test-file-structure">
         Unit test file structure
@@ -15604,7 +15604,7 @@ which makes it easy to write tests, debug them and have them run cross-browser w
 <ul>
 <li>docker</li>
 <li>docker-compose</li>
-<li>yarn</li>
+<li>pnpm</li>
 <li>node</li>
 </ul>
 <p>Please also make sure to point <code>http://host.docker.internal/</code> to <code>127.0.0.1</code> by adding it to your hosts.</p>
@@ -15617,7 +15617,7 @@ which makes it easy to write tests, debug them and have them run cross-browser w
     </h4>
 </div>
 <p>Bundle the web frontend, which then gets mounted into the respective backends. It also gets recompiled on changes.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ yarn build:w
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ pnpm build:w
 </code></pre></div><div class="gdoc-page__anchorwrap">
     <h4 id="start-docker">
         Start Docker
@@ -15649,9 +15649,9 @@ which makes it easy to write tests, debug them and have them run cross-browser w
     </h4>
 </div>
 <p>Depending on the backend you want to run the tests on, you can either run</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ yarn test:e2e:cucumber tests/e2e/cucumber/**/*<span class="o">[</span>!.ocis<span class="o">]</span>.feature
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ pnpm test:e2e:cucumber tests/e2e/cucumber/**/*<span class="o">[</span>!.ocis<span class="o">]</span>.feature
 </code></pre></div><p>for an ownCloud 10 backend or</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ <span class="nv">OCIS</span><span class="o">=</span><span class="nb">true</span> yarn test:e2e:cucumber tests/e2e/cucumber/**/*<span class="o">[</span>!.oc10<span class="o">]</span>.feature
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ <span class="nv">OCIS</span><span class="o">=</span><span class="nb">true</span> pnpm test:e2e:cucumber tests/e2e/cucumber/**/*<span class="o">[</span>!.oc10<span class="o">]</span>.feature
 </code></pre></div><p>for an oCIS backend.</p>
 <div class="gdoc-page__anchorwrap">
     <h4 id="options">
@@ -15661,7 +15661,7 @@ which makes it easy to write tests, debug them and have them run cross-browser w
         </a>
     </h4>
 </div>
-<p>To run a particular test, simply add the feature file and line number to the test command, e.g. <code>yarn test:e2e:cucumber tests/e2e/cucumber/shareFileJourney.feature:13</code></p>
+<p>To run a particular test, simply add the feature file and line number to the test command, e.g. <code>pnpm test:e2e:cucumber tests/e2e/cucumber/shareFileJourney.feature:13</code></p>
 <p>Various options are available via ENV variables, e.g.</p>
 <ul>
 <li><code>OCIS=true</code> to run the E2E tests against an oCIS backend</li>
@@ -15707,7 +15707,7 @@ This also applies for running our acceptance tests. To run the tests without Doc
 <ul>
 <li>docker</li>
 <li>docker-compose</li>
-<li>yarn</li>
+<li>pnpm</li>
 <li>node</li>
 </ul>
 <p>Please also make sure to point <code>http://host.docker.internal/</code> to <code>127.0.0.1</code> by adding it to your hosts.</p>
@@ -15720,7 +15720,7 @@ This also applies for running our acceptance tests. To run the tests without Doc
     </h4>
 </div>
 <p>Bundle the web frontend, which then gets mounted into the respective backends. It also gets recompiled on changes.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ yarn build:w
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ pnpm build:w
 </code></pre></div><div class="gdoc-page__anchorwrap">
     <h4 id="start-docker-1">
         Start Docker
@@ -15757,13 +15757,13 @@ This also applies for running our acceptance tests. To run the tests without Doc
 <p>Change the directory to <code>tests/acceptance</code></p>
 </li>
 <li>
-<p>Install all the test dependencies with <code>yarn</code> command</p>
+<p>Install all the test dependencies with <code>pnpm</code> command</p>
 </li>
 <li>
 <p>Depending on the backend you&rsquo;re running the tests on, you can either run</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ yarn test:acceptance:oc10 features/path/to/test
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ pnpm test:acceptance:oc10 features/path/to/test
 </code></pre></div><p>for ownCloud 10.X or</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ yarn test:acceptance:ocis features/path/to/test
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ pnpm test:acceptance:ocis features/path/to/test
 </code></pre></div><p>for oCIS acceptance tests.</p>
 </li>
 </ul>
