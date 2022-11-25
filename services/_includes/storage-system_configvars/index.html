@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/storage-system_configvars/",
       "headline": "Storage System Configvars",
       "description": "Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDSTORAGE_SYSTEM_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPESTORAGE_SYSTEM_TRACING_TYPE string  The type of tracing. Defaults to “”, which is the same as “jaeger”. Allowed tracing types are “jaeger” and \u0022\u0022 as of now.   OCIS_TRACING_ENDPOINTSTORAGE_SYSTEM_TRACING_ENDPOINT string  The endpoint of the tracing agent.   OCIS_TRACING_COLLECTORSTORAGE_SYSTEM_TRACING_COLLECTOR string  The HTTP endpoint for sending spans directly to a collector, i.",
-      "wordCount" : "488",
+      "wordCount" : "578",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -15628,6 +15628,18 @@ Copyright 2022 Fonticons, Inc.
 <td>string</td>
 <td>~/.ocis/storage/metadata</td>
 <td>Path for the directory where the STORAGE-SYSTEM service stores it&rsquo;s persistent data.</td>
+</tr>
+<tr>
+<td>STORAGE_SYSTEM_OCIS_MAX_ACQUIRE_LOCK_CYCLES</td>
+<td>int</td>
+<td>20</td>
+<td>When trying to lock files, ocis will try this amount of times to acquire the lock before failing. After each try it will wait for an increasing amount of time. Values of 0 or below will be ignored and the default value of 20 will be used.</td>
+</tr>
+<tr>
+<td>STORAGE_SYSTEM_OCIS_LOCK_CYCLE_DURATION_FACTOR</td>
+<td>int</td>
+<td>30</td>
+<td>When trying to lock files, ocis will multiply the cycle with this factor and use it as a millisecond timeout. Values of 0 or below will be ignored and the default value of 30 will be used.</td>
 </tr>
 <tr>
 <td>STORAGE_SYSTEM_DATA_SERVER_URL</td>
