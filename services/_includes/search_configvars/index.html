@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/search_configvars/",
       "headline": "Search Configvars",
       "description": "Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDSEARCH_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPESEARCH_TRACING_TYPE string  The type of tracing. Defaults to “”, which is the same as “jaeger”. Allowed tracing types are “jaeger” and \u0022\u0022 as of now.   OCIS_TRACING_ENDPOINTSEARCH_TRACING_ENDPOINT string  The endpoint of the tracing agent.   OCIS_TRACING_COLLECTORSEARCH_TRACING_COLLECTOR string  The HTTP endpoint for sending spans directly to a collector, i.",
-      "wordCount" : "612",
+      "wordCount" : "635",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -15296,18 +15296,6 @@ Copyright 2022 Fonticons, Inc.
 <td>Path/File name for the TLS certificate key (in PEM format) for the server certificate to use for the grpc services.</td>
 </tr>
 <tr>
-<td>SEARCH_DATA_PATH</td>
-<td>string</td>
-<td>~/.ocis/search</td>
-<td>The directory where the filesystem storage will store search data. If not definied, the root directory derives from $OCIS_BASE_DATA_PATH:/search.</td>
-</tr>
-<tr>
-<td>SEARCH_REINDEX_DEBOUNCE_DURATION</td>
-<td>int</td>
-<td>1000</td>
-<td>The duration in milliseconds the reindex debouncer waits before triggering a reindex of a space that was modified.</td>
-</tr>
-<tr>
 <td>REVA_GATEWAY</td>
 <td>string</td>
 <td>127.0.0.1:9142</td>
@@ -15350,10 +15338,22 @@ Copyright 2022 Fonticons, Inc.
 <td>The clusterID of the event system. The event system is the message queuing service. It is used as message broker for the microservice architecture. Mandatory when using NATS as event system.</td>
 </tr>
 <tr>
-<td>SEARCH_EVENTS_GROUP</td>
-<td>string</td>
-<td>search</td>
-<td>The customer group of the service. One group will only get one copy of an event</td>
+<td>STORAGE_USERS_OCIS_ASYNC_UPLOADS<br/>SEARCH_EVENTS_ASYNC_UPLOADS</td>
+<td>bool</td>
+<td>false</td>
+<td>Enable asynchronous file uploads.</td>
+</tr>
+<tr>
+<td>SEARCH_EVENTS_NUM_CONSUMERS</td>
+<td>int</td>
+<td>0</td>
+<td>number of event consumers per service instance</td>
+</tr>
+<tr>
+<td>SEARCH_EVENTS_REINDEX_DEBOUNCE_DURATION</td>
+<td>int</td>
+<td>1000</td>
+<td>The duration in milliseconds the reindex debouncer waits before triggering a reindex of a space that was modified.</td>
 </tr>
 <tr>
 <td>OCIS_INSECURE<br/>SEARCH_EVENTS_TLS_INSECURE</td>
@@ -15372,6 +15372,36 @@ Copyright 2022 Fonticons, Inc.
 <td>bool</td>
 <td>false</td>
 <td>Enable TLS for the connection to the events broker. The events broker is the ocis service which receives and delivers events between the services..</td>
+</tr>
+<tr>
+<td>SEARCH_ENGINE_TYPE</td>
+<td>string</td>
+<td>bleve</td>
+<td>Defines which search engine to use.</td>
+</tr>
+<tr>
+<td>SEARCH_ENGINE_BLEVE_DATA_PATH</td>
+<td>string</td>
+<td>~/.ocis/search</td>
+<td>Path for the search persistence directory.</td>
+</tr>
+<tr>
+<td>SEARCH_EXTRACTOR_TYPE</td>
+<td>string</td>
+<td>basic</td>
+<td>Defines the content extraction engine.</td>
+</tr>
+<tr>
+<td>OCIS_INSECURE<br/>SEARCH_EXTRACTOR_CS3SOURCE_INSECURE</td>
+<td>bool</td>
+<td>false</td>
+<td>Ignore untrusted SSL certificates when connecting to the CS3 source.</td>
+</tr>
+<tr>
+<td>SEARCH_EXTRACTOR_TIKA_TIKA_URL</td>
+<td>string</td>
+<td>http://127.0.0.1:9998</td>
+<td>URL of the tika server.</td>
 </tr>
 <tr>
 <td>OCIS_MACHINE_AUTH_API_KEY<br/>SEARCH_MACHINE_AUTH_API_KEY</td>
