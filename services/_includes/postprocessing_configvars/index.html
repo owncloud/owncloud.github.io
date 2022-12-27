@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/postprocessing_configvars/",
       "headline": "Postprocessing Configvars",
       "description": "Environment Variables        Name Type Default Value Description     OCIS_LOG_LEVELPOSTPROCESSING_LOG_LEVEL string  The log level. Valid values are: “panic”, “fatal”, “error”, “warn”, “info”, “debug”, “trace”.   OCIS_LOG_PRETTYPOSTPROCESSING_LOG_PRETTY bool false Activates pretty log output.   OCIS_LOG_COLORPOSTPROCESSING_LOG_COLOR bool false Activates colorized log output.   OCIS_LOG_FILEPOSTPROCESSING_LOG_FILE string  The path to the log file. Activates logging to this file if set.   POSTPROCESSING_EVENTS_ENDPOINT string 127.",
-      "wordCount" : "149",
+      "wordCount" : "251",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -15409,43 +15409,43 @@ Copyright 2022 Fonticons, Inc.
 <td>POSTPROCESSING_EVENTS_ENDPOINT</td>
 <td>string</td>
 <td>127.0.0.1:9233</td>
-<td>Endpoint of the event system.</td>
+<td>The address of the event system. The event system is the message queuing service. It is used as message broker for the microservice architecture.</td>
 </tr>
 <tr>
 <td>POSTPROCESSING_EVENTS_CLUSTER</td>
 <td>string</td>
 <td>ocis-cluster</td>
-<td>Cluster ID of the event system.</td>
+<td>The clusterID of the event system. The event system is the message queuing service. It is used as message broker for the microservice architecture. Mandatory when using NATS as event system.</td>
 </tr>
 <tr>
-<td>OCIS_INSECURE<br/>POSTPROCESSING_EVENTS_TLS_INSECURE</td>
+<td>OCIS_INSECURE<br/>SEARCH_EVENTS_TLS_INSECURE</td>
 <td>bool</td>
 <td>false</td>
-<td>Whether to verify the server TLS certificates.</td>
+<td>Whether the ocis server should skip the client certificate verification during the TLS handshake.</td>
 </tr>
 <tr>
-<td>POSTPROCESSING_EVENTS_TLS_ROOT_CA_CERTIFICATE</td>
+<td>SEARCH_EVENTS_TLS_ROOT_CA_CERTIFICATE</td>
 <td>string</td>
 <td></td>
-<td>The root CA certificate used to validate the server&rsquo;s TLS certificate. If provided POSTPROCESSING_EVENTS_TLS_INSECURE will be seen as false.</td>
+<td>The root CA certificate used to validate the server&rsquo;s TLS certificate. If provided SEARCH_EVENTS_TLS_INSECURE will be seen as false.</td>
 </tr>
 <tr>
 <td>OCIS_EVENTS_ENABLE_TLS<br/>POSTPROCESSING_EVENTS_ENABLE_TLS</td>
 <td>bool</td>
 <td>false</td>
-<td>Enable TLS for the connection to the events broker. The events broker is the ocis service which receives and delivers events between the services..</td>
+<td>Enable TLS for the connection to the events broker. The events broker is the ocis service which receives and delivers events between the services.</td>
 </tr>
 <tr>
 <td>POSTPROCESSING_VIRUSSCAN</td>
 <td>bool</td>
 <td>false</td>
-<td>should the system do a virusscan? Needs antivirus service</td>
+<td>After uploading a file but before making it available for download, virus scanning the file can be enabled. Needs as prerequisite the antivirus service to be enabled and configured.</td>
 </tr>
 <tr>
 <td>POSTPROCESSING_DELAY</td>
 <td>Duration</td>
 <td>0s</td>
-<td>the sytem sleeps for this time while postprocessing</td>
+<td>After uploading a file but before making it available for download, a delay step can be added. Intended for developing purposes only. The duration can be set as number followed by a unit identifier like s, m or h.</td>
 </tr>
 </tbody>
 </table> </div>
