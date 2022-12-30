@@ -12,7 +12,7 @@
 <meta name="generator" content="Hugo 0.89.4" />
 
 
-  <meta name="description" content="Infinite Scale provides a large set of different application programming interfaces (APIs). Infinite Scale is built by microservices. That means many calls to &ldquo;functions&rdquo; in the code are remote calls." />
+  <meta name="description" content="gRPC      Http      LibreGraph      Spaces      Users      Groups          Infinite Scale provides a large set of different application programming interfaces (APIs). Infinite Scale is built by microservices. That means many calls to &ldquo;functions&rdquo; in the code are remote calls." />
 
     <title>APIs | ownCloud</title>
 
@@ -36,7 +36,7 @@
     content="APIs"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Infinite Scale provides a large set of different application programming interfaces (APIs). Infinite Scale is built by microservices. That means many calls to “functions” in the code are remote calls." />
+  <meta property="og:description" content="gRPC      Http      LibreGraph      Spaces      Users      Groups          Infinite Scale provides a large set of different application programming interfaces (APIs). Infinite Scale is built by microservices. That means many calls to “functions” in the code are remote calls." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/apis/" />
 
@@ -49,7 +49,7 @@
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="APIs" />
-  <meta name="twitter:description" content="Infinite Scale provides a large set of different application programming interfaces (APIs). Infinite Scale is built by microservices. That means many calls to “functions” in the code are remote calls." />
+  <meta name="twitter:description" content="gRPC      Http      LibreGraph      Spaces      Users      Groups          Infinite Scale provides a large set of different application programming interfaces (APIs). Infinite Scale is built by microservices. That means many calls to “functions” in the code are remote calls." />
 
 
   <script type="application/ld+json">
@@ -60,8 +60,8 @@
       "name": "APIs",
       "url" : "https://owncloud.dev/apis/",
       "headline": "APIs",
-      "description": "Infinite Scale provides a large set of different application programming interfaces (APIs). Infinite Scale is built by microservices. That means many calls to “functions” in the code are remote calls.",
-      "wordCount" : "30",
+      "description": "gRPC      Http      LibreGraph      Spaces      Users      Groups          Infinite Scale provides a large set of different application programming interfaces (APIs). Infinite Scale is built by microservices. That means many calls to “functions” in the code are remote calls.",
+      "wordCount" : "430",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -15379,7 +15379,180 @@ Copyright 2022 Fonticons, Inc.
     class="gdoc-markdown gdoc-markdown__align--left"
   >
     <h1>APIs</h1>
-    <p>Infinite Scale provides a large set of different <strong>application programming interfaces (APIs)</strong>. Infinite Scale is built by microservices. That means many calls to &ldquo;functions&rdquo; in the code are remote calls.</p>
+    
+  <div class="gdoc-toc gdoc-toc__level--3">
+    
+  <ul>
+          <li>
+              <span>
+                <a href="/apis/grpc_apis/" class="gdoc-toc__entry">gRPC
+                </a>
+              </span>
+          </li>
+          <li>
+              <span>
+                <a href="/apis/http/" class="gdoc-toc__entry">Http
+                </a>
+              </span>
+  <ul>
+          <li>
+              <span>
+                <a href="/apis/http/graph/" class="gdoc-toc__entry">LibreGraph
+                </a>
+              </span>
+  <ul>
+          <li>
+              <span>
+                <a href="/apis/http/graph/spaces/" class="gdoc-toc__entry">Spaces
+                </a>
+              </span>
+          </li>
+          <li>
+              <span>
+                <a href="/apis/http/graph/users/" class="gdoc-toc__entry">Users
+                </a>
+              </span>
+          </li>
+          <li>
+              <span>
+                <a href="/apis/http/graph/groups/" class="gdoc-toc__entry">Groups
+                </a>
+              </span>
+          </li>
+  </ul>
+          </li>
+  </ul>
+          </li>
+  </ul>
+  </div>
+
+
+
+
+<p>Infinite Scale provides a large set of different <strong>application programming interfaces (APIs)</strong>. Infinite Scale is built by microservices. That means many calls to &ldquo;functions&rdquo; in the code are remote calls.</p>
+<p>Basically we have two different API &ldquo;universes&rdquo;: <a
+  class="gdoc-markdown__link"
+  href="http"
+  
+>HTTP</a> and <a
+  class="gdoc-markdown__link"
+  href="grpc_apis"
+  
+>gRPC</a>.</p>
+<div class="gdoc-columns flex flex-wrap flex-mobile-column">
+  
+    <div class="gdoc-columns__content gdoc-markdown--nested flex-even">
+       <!-- begin columns block -->
+<figure><img src="/ocis/static/http-logo.png"
+         alt="Image sourced from https://commons.wikimedia.org/ free of licenses" width="70%"/>
+</figure>
+
+    </div>
+  
+    <div class="gdoc-columns__content gdoc-markdown--nested flex-even">
+      <figure><img src="/ocis/static/grpc-logo.png"
+         alt="Image sourced from https://grpc.io/ under CC 4.0 BY license" width="70%"/>
+</figure>
+
+    </div>
+  
+</div>
+
+<p>For inter-service-communication we are using mostly gRPC calls because it has some advantages. In the future, clients may decide to use gRPC directly to make use of these advantages.</p>
+<figure class="page-image"><img src="/ocis/static/ocis-apis.drawio.svg"/>
+</figure>
+
+<div class="gdoc-page__anchorwrap">
+    <h2 id="httphttp">
+        <a
+  class="gdoc-markdown__link"
+  href="http"
+  
+>HTTP</a>
+        <a data-clipboard-text="https://owncloud.dev/apis/#httphttp" class="gdoc-page__anchor clip flex align-center" title="Anchor to: HTTP" aria-label="Anchor to: HTTP" href="#httphttp">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>HTTP APIs are mostly used for client &lt;-&gt; server communication. Modern applications are embracing a <a
+  class="gdoc-markdown__link"
+  href="https://en.wikipedia.org/wiki/Representational_state_transfer"
+  
+>RESTful</a> software architecture style. REST APIs are using the HTTP protocol to transfer data between clients and servers. All our clients talk to the Server using HTTP APIs. This has legacy reasons and is well-supported across many platforms and technologies. Infinite Scale uses an <a
+  class="gdoc-markdown__link"
+  href="../services/proxy"
+  
+>HTTP API gateway</a> to route client requests to the correct service.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="openapi">
+        OpenAPI
+        <a data-clipboard-text="https://owncloud.dev/apis/#openapi" class="gdoc-page__anchor clip flex align-center" title="Anchor to: OpenAPI" aria-label="Anchor to: OpenAPI" href="#openapi">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>It is best practise to define APIs and their behavior by a spec. We are using the OpenAPI standard for all new APIs. The <a
+  class="gdoc-markdown__link"
+  href="https://swagger.io/specification/"
+  
+>OpenAPI Specification</a>, previously known as the Swagger Specification, is a specification for a machine-readable interface definition language for describing, producing, consuming and visualizing RESTful web services. Previously part of the Swagger framework, it became a separate project in 2016, overseen by the OpenAPI Initiative, an open-source collaboration project of the Linux Foundation. Swagger and some other tools can generate code, documentation and test cases from interface files.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="rfc">
+        RFC
+        <a data-clipboard-text="https://owncloud.dev/apis/#rfc" class="gdoc-page__anchor clip flex align-center" title="Anchor to: RFC" aria-label="Anchor to: RFC" href="#rfc">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>Some APIs have become a de facto standard and are additionally covered by an <a
+  class="gdoc-markdown__link"
+  href="https://en.wikipedia.org/wiki/Request_for_Comments"
+  
+>RFC</a>.</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="grpcgrpc_apis">
+        <a
+  class="gdoc-markdown__link"
+  href="grpc_apis"
+  
+>gRPC</a>
+        <a data-clipboard-text="https://owncloud.dev/apis/#grpcgrpc_apis" class="gdoc-page__anchor clip flex align-center" title="Anchor to: gRPC" aria-label="Anchor to: gRPC" href="#grpcgrpc_apis">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>In gRPC, a client application can directly call methods on a server application on a different machine as if it was a local object. This makes it easier to create distributed applications based on microservices. In gRPC we can define a service and specify the methods that can be called remotely. A gRPC client has a stub that provides the same methods and types as the server.
+Infinite Scale uses a <a
+  class="gdoc-markdown__link"
+  href="../services/gateway"
+  
+>gRPC API Gateway</a> to route the requests to the correct service.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="protobuf">
+        Protobuf
+        <a data-clipboard-text="https://owncloud.dev/apis/#protobuf" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Protobuf" aria-label="Anchor to: Protobuf" href="#protobuf">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>gRPC APIs are typically defined by <a
+  class="gdoc-markdown__link"
+  href="https://developers.google.com/protocol-buffers/docs/overview"
+  
+>Protocol buffers</a>. The different client and server stubs are created from <code>*.proto</code> files by code generation tools.</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="versioning">
+        Versioning
+        <a data-clipboard-text="https://owncloud.dev/apis/#versioning" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Versioning" aria-label="Anchor to: Versioning" href="#versioning">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>There are different standards for API versioning: Through URL, through request parameter, through custom header and through content negotiation. Ocis uses the versioning by URL concept although this creates a big code footprint. The versioning follows <a
+  class="gdoc-markdown__link"
+  href="https://semver.org"
+  
+>SemVer</a>. We update the major version number when breaking changes are needed. Clients can decide which major version they use through the request URL. The specific implementation is documented on each API.</p>
 
   </article>
 
