@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/postprocessing_configvars/",
       "headline": "Postprocessing Configvars",
       "description": "Environment Variables        Name Type Default Value Description     OCIS_LOG_LEVELPOSTPROCESSING_LOG_LEVEL string  The log level. Valid values are: “panic”, “fatal”, “error”, “warn”, “info”, “debug”, “trace”.   OCIS_LOG_PRETTYPOSTPROCESSING_LOG_PRETTY bool false Activates pretty log output.   OCIS_LOG_COLORPOSTPROCESSING_LOG_COLOR bool false Activates colorized log output.   OCIS_LOG_FILEPOSTPROCESSING_LOG_FILE string  The path to the log file. Activates logging to this file if set.   POSTPROCESSING_EVENTS_ENDPOINT string 127.",
-      "wordCount" : "251",
+      "wordCount" : "330",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -15454,6 +15454,12 @@ Copyright 2022 Fonticons, Inc.
 <td>Enable TLS for the connection to the events broker. The events broker is the ocis service which receives and delivers events between the services.</td>
 </tr>
 <tr>
+<td>POSTPROCESSING_STEPS</td>
+<td>[]string</td>
+<td>[]</td>
+<td>A comma separated list of postprocessing steps, processed in order of their appearance. Currently supported values by the system are: &lsquo;virusscan&rsquo; and &lsquo;delay&rsquo;. Custom steps are allowed. See the documentation for instructions.</td>
+</tr>
+<tr>
 <td>POSTPROCESSING_VIRUSSCAN</td>
 <td>bool</td>
 <td>false</td>
@@ -15463,7 +15469,7 @@ Copyright 2022 Fonticons, Inc.
 <td>POSTPROCESSING_DELAY</td>
 <td>Duration</td>
 <td>0s</td>
-<td>After uploading a file but before making it available for download, a delay step can be added. Intended for developing purposes only. The duration can be set as number followed by a unit identifier like s, m or h.</td>
+<td>After uploading a file but before making it available for download, a delay step can be added. Intended for developing purposes only. The duration can be set as number followed by a unit identifier like s, m or h. If a duration is set but the keyword &lsquo;delay&rsquo; is not explicitely added to &lsquo;POSTPROCESSING_STEPS&rsquo;, the delay step will be processed as last step. In such a case, a log entry will be written on service startup to remind the admin about that situation.</td>
 </tr>
 </tbody>
 </table> </div>
