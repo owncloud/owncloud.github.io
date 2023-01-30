@@ -12,9 +12,10 @@
 <meta name="generator" content="Hugo 0.89.4" />
 
 
-  <meta name="description" content="Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDAPP_REGISTRY_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPEAPP_REGISTRY_TRACING_TYPE string  The type of tracing. Defaults to &ldquo;&rdquo;, which is the same as &ldquo;jaeger&rdquo;. Allowed tracing types are &ldquo;jaeger&rdquo; and &quot;&quot; as of now.   OCIS_TRACING_ENDPOINTAPP_REGISTRY_TRACING_ENDPOINT string  The endpoint of the tracing agent.   OCIS_TRACING_COLLECTORAPP_REGISTRY_TRACING_COLLECTOR string  The HTTP endpoint for sending spans directly to a collector, i." />
+  <meta name="description" content="Status: proposed Deciders: @butonic, @C0rby Date: 2023-01-18  Context and Problem Statement     There are three levels of security checks in a microservice web application that uses OpenID Connect:
+ scope claims limit the possible operations to what the user (or admin on behalf of the organization) consented to service authorization limit the possible operations to what specific services are allowed to do, on behalf of users or even without them permission checks limit the possible operations to the relationships between subject, permission and resource allow  This ADR deals with a prerequisite for service authorization: service accounts." />
 
-    <title>App Registry Configvars | ownCloud</title>
+    <title>21. Service accounts | ownCloud</title>
 
     <link
   rel="icon"
@@ -33,42 +34,52 @@
     
   <meta
     property="og:title"
-    content="App Registry Configvars"
+    content="21. Service accounts"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDAPP_REGISTRY_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPEAPP_REGISTRY_TRACING_TYPE string  The type of tracing. Defaults to “”, which is the same as “jaeger”. Allowed tracing types are “jaeger” and &#34;&#34; as of now.   OCIS_TRACING_ENDPOINTAPP_REGISTRY_TRACING_ENDPOINT string  The endpoint of the tracing agent.   OCIS_TRACING_COLLECTORAPP_REGISTRY_TRACING_COLLECTOR string  The HTTP endpoint for sending spans directly to a collector, i." />
+  <meta property="og:description" content="Status: proposed Deciders: @butonic, @C0rby Date: 2023-01-18  Context and Problem Statement     There are three levels of security checks in a microservice web application that uses OpenID Connect:
+ scope claims limit the possible operations to what the user (or admin on behalf of the organization) consented to service authorization limit the possible operations to what specific services are allowed to do, on behalf of users or even without them permission checks limit the possible operations to the relationships between subject, permission and resource allow  This ADR deals with a prerequisite for service authorization: service accounts." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://owncloud.dev/services/_includes/app-registry_configvars/" />
+<meta property="og:url" content="https://owncloud.dev/ocis/adr/0021-service-accounts/" />
 
-<meta property="article:section" content="Services" />
+<meta property="article:section" content="Ocis" />
+    <meta
+      property="article:published_time"
+      content="2023-01-18T16:07:00+01:00"
+    />
+    <meta
+      property="article:modified_time"
+      content="2023-01-18T16:07:00+01:00"
+    />
 
 
   <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="App Registry Configvars" />
-  <meta name="twitter:description" content="Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDAPP_REGISTRY_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPEAPP_REGISTRY_TRACING_TYPE string  The type of tracing. Defaults to “”, which is the same as “jaeger”. Allowed tracing types are “jaeger” and &#34;&#34; as of now.   OCIS_TRACING_ENDPOINTAPP_REGISTRY_TRACING_ENDPOINT string  The endpoint of the tracing agent.   OCIS_TRACING_COLLECTORAPP_REGISTRY_TRACING_COLLECTOR string  The HTTP endpoint for sending spans directly to a collector, i." />
+<meta name="twitter:title" content="21. Service accounts" />
+  <meta name="twitter:description" content="Status: proposed Deciders: @butonic, @C0rby Date: 2023-01-18  Context and Problem Statement     There are three levels of security checks in a microservice web application that uses OpenID Connect:
+ scope claims limit the possible operations to what the user (or admin on behalf of the organization) consented to service authorization limit the possible operations to what specific services are allowed to do, on behalf of users or even without them permission checks limit the possible operations to the relationships between subject, permission and resource allow  This ADR deals with a prerequisite for service authorization: service accounts." />
 
 
   <script type="application/ld+json">
   {
       "@context": "http://schema.org",
       "@type": "TechArticle",
-      "articleSection": "Services",
-      "name": "App Registry Configvars",
-      "url" : "https://owncloud.dev/services/_includes/app-registry_configvars/",
-      "headline": "App Registry Configvars",
-      "description": "Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDAPP_REGISTRY_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPEAPP_REGISTRY_TRACING_TYPE string  The type of tracing. Defaults to “”, which is the same as “jaeger”. Allowed tracing types are “jaeger” and \u0022\u0022 as of now.   OCIS_TRACING_ENDPOINTAPP_REGISTRY_TRACING_ENDPOINT string  The endpoint of the tracing agent.   OCIS_TRACING_COLLECTORAPP_REGISTRY_TRACING_COLLECTOR string  The HTTP endpoint for sending spans directly to a collector, i.",
-      "wordCount" : "354",
+      "articleSection": "Ocis",
+      "name": "21. Service accounts",
+      "url" : "https://owncloud.dev/ocis/adr/0021-service-accounts/",
+      "headline": "21. Service accounts",
+      "description": "Status: proposed Deciders: @butonic, @C0rby Date: 2023-01-18  Context and Problem Statement     There are three levels of security checks in a microservice web application that uses OpenID Connect:\n scope claims limit the possible operations to what the user (or admin on behalf of the organization) consented to service authorization limit the possible operations to what specific services are allowed to do, on behalf of users or even without them permission checks limit the possible operations to the relationships between subject, permission and resource allow  This ADR deals with a prerequisite for service authorization: service accounts.",
+      "wordCount" : "986",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://owncloud.dev/services/_includes/app-registry_configvars/"
+          "@id": "https://owncloud.dev/ocis/adr/0021-service-accounts/"
       },
       "copyrightHolder" : "ownCloud",
-      "copyrightYear" : "0001",
-      "dateCreated": "0001-01-01T00:00:00.00Z",
-      "datePublished": "0001-01-01T00:00:00.00Z",
-      "dateModified": "0001-01-01T00:00:00.00Z",
+      "copyrightYear" : "2023",
+      "dateCreated": "2023-01-18T16:07:00.00Z",
+      "datePublished": "2023-01-18T16:07:00.00Z",
+      "dateModified": "2023-01-18T16:07:00.00Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -146,7 +157,7 @@
   href="/custom.css"
   media="all"
 />
-  <link href="https://owncloud.dev/services/_includes/app-registry_configvars/" rel="canonical" type="text/html" />
+  <link href="https://owncloud.dev/ocis/adr/0021-service-accounts/" rel="canonical" type="text/html" />
 
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
 
@@ -7345,7 +7356,7 @@ Copyright 2022 Fonticons, Inc.
               type="checkbox"
               
                 class="gdoc-nav__toggle" id="navtree-307b2de1"
-                
+                checked
               
             />
             <label
@@ -8291,7 +8302,7 @@ Copyright 2022 Fonticons, Inc.
                 <span class="flex">
                   <a
                     href="/ocis/adr/0021-service-accounts/"
-                    class="gdoc-nav__entry"
+                    class="gdoc-nav__entry is-active"
                   >
                     21. Service accounts
                   </a>
@@ -15372,7 +15383,7 @@ Copyright 2022 Fonticons, Inc.
   
     justify-between
   
-  hidden-mobile
+  
   "
   itemprop="breadcrumb"
 >
@@ -15404,7 +15415,7 @@ Copyright 2022 Fonticons, Inc.
     
   
   
-    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/services/' href='/services/'><span itemprop='name'>Services</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/services/_includes/' href='/services/_includes/'><span itemprop='name'>Includes</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>App Registry Configvars</span><meta itemprop='position' content='4' /></li>
+    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/adr/' href='/ocis/adr/'><span itemprop='name'>Architecture Decisions</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>21. Service accounts</span><meta itemprop='position' content='4' /></li>
   
 
   
@@ -15417,6 +15428,17 @@ Copyright 2022 Fonticons, Inc.
     </div>
   
   
+    <div>
+      <span class="editpage">
+        <svg class="gdoc-icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
+        <a
+          href="https://github.com/owncloud/ocis/edit/master/docs/ocis/adr/0021-service-accounts.md"
+        >
+          Edit page
+        </a>
+      </span>
+    </div>
+  
 </div>
 
 
@@ -15424,153 +15446,184 @@ Copyright 2022 Fonticons, Inc.
   <article
     class="gdoc-markdown gdoc-markdown__align--left"
   >
-    <h1>App Registry Configvars</h1>
-    <div class="gdoc-page__anchorwrap">
-    <h2 id="environment-variables">
-        Environment Variables
-        <a data-clipboard-text="https://owncloud.dev/services/_includes/app-registry_configvars/#environment-variables" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Environment Variables" aria-label="Anchor to: Environment Variables" href="#environment-variables">
+    <h1>21. Service accounts</h1>
+    <ul>
+<li>Status: proposed</li>
+<li>Deciders: @butonic, @C0rby</li>
+<li>Date: 2023-01-18</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="context-and-problem-statement">
+        Context and Problem Statement
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0021-service-accounts/#context-and-problem-statement" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Context and Problem Statement" aria-label="Anchor to: Context and Problem Statement" href="#context-and-problem-statement">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div>
-<div class="table-wrap"> <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Default Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>OCIS_TRACING_ENABLED<br/>APP_REGISTRY_TRACING_ENABLED</td>
-<td>bool</td>
-<td>false</td>
-<td>Activates tracing.</td>
-</tr>
-<tr>
-<td>OCIS_TRACING_TYPE<br/>APP_REGISTRY_TRACING_TYPE</td>
-<td>string</td>
-<td></td>
-<td>The type of tracing. Defaults to &ldquo;&rdquo;, which is the same as &ldquo;jaeger&rdquo;. Allowed tracing types are &ldquo;jaeger&rdquo; and &quot;&quot; as of now.</td>
-</tr>
-<tr>
-<td>OCIS_TRACING_ENDPOINT<br/>APP_REGISTRY_TRACING_ENDPOINT</td>
-<td>string</td>
-<td></td>
-<td>The endpoint of the tracing agent.</td>
-</tr>
-<tr>
-<td>OCIS_TRACING_COLLECTOR<br/>APP_REGISTRY_TRACING_COLLECTOR</td>
-<td>string</td>
-<td></td>
-<td>The HTTP endpoint for sending spans directly to a collector, i.e. http://jaeger-collector:14268/api/traces. Only used if the tracing endpoint is unset.</td>
-</tr>
-<tr>
-<td>OCIS_LOG_LEVEL<br/>APP_REGISTRY_LOG_LEVEL</td>
-<td>string</td>
-<td></td>
-<td>The log level. Valid values are: &ldquo;panic&rdquo;, &ldquo;fatal&rdquo;, &ldquo;error&rdquo;, &ldquo;warn&rdquo;, &ldquo;info&rdquo;, &ldquo;debug&rdquo;, &ldquo;trace&rdquo;.</td>
-</tr>
-<tr>
-<td>OCIS_LOG_PRETTY<br/>APP_REGISTRY_LOG_PRETTY</td>
-<td>bool</td>
-<td>false</td>
-<td>Activates pretty log output.</td>
-</tr>
-<tr>
-<td>OCIS_LOG_COLOR<br/>APP_REGISTRY_LOG_COLOR</td>
-<td>bool</td>
-<td>false</td>
-<td>Activates colorized log output.</td>
-</tr>
-<tr>
-<td>OCIS_LOG_FILE<br/>APP_REGISTRY_LOG_FILE</td>
-<td>string</td>
-<td></td>
-<td>The path to the log file. Activates logging to this file if set.</td>
-</tr>
-<tr>
-<td>APP_REGISTRY_DEBUG_ADDR</td>
-<td>string</td>
-<td>127.0.0.1:9243</td>
-<td>Bind address of the debug server, where metrics, health, config and debug endpoints will be exposed.</td>
-</tr>
-<tr>
-<td>APP_REGISTRY_DEBUG_TOKEN</td>
-<td>string</td>
-<td></td>
-<td>Token to secure the metrics endpoint.</td>
-</tr>
-<tr>
-<td>APP_REGISTRY_DEBUG_PPROF</td>
-<td>bool</td>
-<td>false</td>
-<td>Enables pprof, which can be used for profiling.</td>
-</tr>
-<tr>
-<td>APP_REGISTRY_DEBUG_ZPAGES</td>
-<td>bool</td>
-<td>false</td>
-<td>Enables zpages, which can be used for collecting and viewing in-memory traces.</td>
-</tr>
-<tr>
-<td>APP_REGISTRY_GRPC_ADDR</td>
-<td>string</td>
-<td>127.0.0.1:9242</td>
-<td>The bind address of the GRPC service.</td>
-</tr>
-<tr>
-<td>OCIS_GRPC_TLS_ENABLED</td>
-<td>bool</td>
-<td>false</td>
-<td>Activates TLS for the grpc based services using the server certifcate and key configured via OCIS_GRPC_TLS_CERTIFICATE and OCIS_GRPC_TLS_KEY. If OCIS_GRPC_TLS_CERTIFICATE is not set a temporary server certificate is generated - to be used with OCIS_GRPC_CLIENT_TLS_MODE=insecure.</td>
-</tr>
-<tr>
-<td>OCIS_GRPC_TLS_CERTIFICATE</td>
-<td>string</td>
-<td></td>
-<td>Path/File name of the TLS server certificate (in PEM format) for the grpc services.</td>
-</tr>
-<tr>
-<td>OCIS_GRPC_TLS_KEY</td>
-<td>string</td>
-<td></td>
-<td>Path/File name for the TLS certificate key (in PEM format) for the server certificate to use for the grpc services.</td>
-</tr>
-<tr>
-<td>APP_REGISTRY_GRPC_PROTOCOL</td>
-<td>string</td>
-<td>tcp</td>
-<td>The transport protocol of the GRPC service.</td>
-</tr>
-<tr>
-<td>OCIS_JWT_SECRET<br/>APP_REGISTRY_JWT_SECRET</td>
-<td>string</td>
-<td></td>
-<td>The secret to mint and validate jwt tokens.</td>
-</tr>
-<tr>
-<td>REVA_GATEWAY</td>
-<td>string</td>
-<td>127.0.0.1:9142</td>
-<td>The CS3 gateway endpoint.</td>
-</tr>
-<tr>
-<td>OCIS_GRPC_CLIENT_TLS_MODE</td>
-<td>string</td>
-<td></td>
-<td>TLS mode for grpc connection to the go-micro based grpc services. Possible values are &lsquo;off&rsquo;, &lsquo;insecure&rsquo; and &lsquo;on&rsquo;. &lsquo;off&rsquo;: disables transport security for the clients. &lsquo;insecure&rsquo; allows to use transport security, but disables certificate verification (to be used with the autogenerated self-signed certificates). &lsquo;on&rsquo; enables transport security, including server ceritificate verification.</td>
-</tr>
-<tr>
-<td>OCIS_GRPC_CLIENT_TLS_CACERT</td>
-<td>string</td>
-<td></td>
-<td>Path/File name for the root CA certificate (in PEM format) used to validate TLS server certificates of the go-micro based grpc services.</td>
-</tr>
-</tbody>
-</table> </div>
+<p>There are three levels of security checks in a microservice web application that uses OpenID Connect:</p>
+<ol>
+<li><strong>scope claims</strong> limit the possible operations to what the user (or admin on behalf of the organization) consented to</li>
+<li><strong>service authorization</strong> limit the possible operations to what specific services are allowed to do, on behalf of users or even without them</li>
+<li><strong>permission checks</strong> limit the possible operations to the relationships between subject, permission and resource allow</li>
+</ol>
+<p>This ADR deals with a prerequisite for service authorization: service accounts.</p>
+<p>Some services need access to file content without a user being logged in. We currently pass the owner or manager
+of a space in events which allows the search service to impersonate that user to extract metadata from the changed resource.
+There are two problems with this:</p>
+<ol>
+<li>The service could get all permissions of the user and gain write permission</li>
+<li>There is a race condition where the user in the event might no longer have read permission, causing the index to go stale</li>
+</ol>
+<p>The race condition will become more of an issue when we start working on a workflow engine.</p>
+<p>How can we grant services the least amount of permissions required for their purpose?</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="decision-drivers">
+        Decision Drivers
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0021-service-accounts/#decision-drivers" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Decision Drivers" aria-label="Anchor to: Decision Drivers" href="#decision-drivers">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<ul>
+<li>It should be possible to represent this as servicePrincipals in the libregraph API, similar to the <a
+  class="gdoc-markdown__link"
+  href="https://learn.microsoft.com/en-us/graph/api/resources/serviceprincipal?view=graph-rest-1.0"
+>MS Graph servicePrincipal</a>.</li>
+<li>Services should check permissions using the oCIS permissions or reva auth service, we don&rsquo;t want to introduce a new mechanism for this</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="considered-options">
+        Considered Options
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0021-service-accounts/#considered-options" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Considered Options" aria-label="Anchor to: Considered Options" href="#considered-options">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<ul>
+<li><a
+  class="gdoc-markdown__link"
+  href="#service-accounts"
+>Service Accounts</a></li>
+<li><a
+  class="gdoc-markdown__link"
+  href="#impersonate-space-owners"
+>Impersonate Space-Owners</a></li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="decision-outcome">
+        Decision Outcome
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0021-service-accounts/#decision-outcome" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Decision Outcome" aria-label="Anchor to: Decision Outcome" href="#decision-outcome">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>Chosen option: <a
+  class="gdoc-markdown__link"
+  href="#service-accounts"
+>Service Accounts</a></p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="consequences">
+        Consequences
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0021-service-accounts/#consequences" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Consequences" aria-label="Anchor to: Consequences" href="#consequences">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<ul>
+<li>Good, because it allows provisioning permissions for services</li>
+<li>Good, because it uses existing CS3 concepts</li>
+<li>Good, because it uses the existing permissions service</li>
+<li>Good, because it can be mapped to libre graph permissions</li>
+<li>Bad, because we have to make the reva auth manager aware of CS3 <a
+  class="gdoc-markdown__link--code"
+  href="https://cs3org.github.io/cs3apis/#cs3.identity.user.v1beta1.UserType"
+><code>USER_TYPE_SERVICE</code></a></li>
+<li>Bad, because we have to provision and manage service accounts on init</li>
+<li>Bad, because external APIs may need to filter out service accounts</li>
+<li>Bad, because we need to persist service accounts in addition to normal user accounts</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="pros-and-cons-of-the-options">
+        Pros and Cons of the Options
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0021-service-accounts/#pros-and-cons-of-the-options" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Pros and Cons of the Options" aria-label="Anchor to: Pros and Cons of the Options" href="#pros-and-cons-of-the-options">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="service-accounts">
+        Service Accounts
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0021-service-accounts/#service-accounts" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Service Accounts" aria-label="Anchor to: Service Accounts" href="#service-accounts">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>Make the reva auth manager and registry aware of CS3 users of type <a
+  class="gdoc-markdown__link--code"
+  href="https://cs3org.github.io/cs3apis/#cs3.identity.user.v1beta1.UserType"
+><code>USER_TYPE_SERVICE</code></a>. Then we can provision service accounts at oCIS initialization and use the permissions service to check permissions.
+When assigning permissions we use the permission constraints to define the scope of permissions, see <a
+  class="gdoc-markdown__link"
+  href="#permission-checks"
+>Permission Checks</a> for more details.</p>
+<p>To authenticate service accounts the static reva auth registry needs to be configured with a new auth provider for type <code>service</code>. The actual provider can use a plain JSON file or JSONCS3 that is provisioned once with <code>ocis init</code>. TODO Furthermore, the user provider needs to be able to return users for service accounts.</p>
+<ul>
+<li>Good, because we could replace machine auth with specific service accounts and no longer have to distribute a shared secret everywhere</li>
+<li>Bad, because we don&rsquo;t know if a there are places in the code that try to look up a user with USER_TYPE_SERVICE at the cs3 users service &hellip; they might not exist there &hellip; or do we have to implement a userregistry, similar to the authregistry?</li>
+<li>Bad, because we have to provision and manage service accounts on init</li>
+<li>Bad, because we have to write code to manage service accounts or at least filter them out in the admin ui</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="impersonate-space-owners">
+        Impersonate Space-Owners
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0021-service-accounts/#impersonate-space-owners" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Impersonate Space-Owners" aria-label="Anchor to: Impersonate Space-Owners" href="#impersonate-space-owners">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>We could implement a new auth manager that can authenticate space owners, a CS3 user type we introduced for project spaces which &lsquo;have no owner&rsquo;, only one or more managers.</p>
+<ul>
+<li>Good, because it reuses the space owner user type</li>
+<li>Bad, because the space owner always has write permisson</li>
+<li>Bad, because we don&rsquo;t know if a there are places in the code that try to look up a user with USER_TYPE_SPACE_OWNER at the cs3 users service &hellip; they might not exist there &hellip; or do we have to implement a userregistry, similar to the authregistry?</li>
+<li>Bad, because it feels like another hack and does not protect against compromized services that try to execute operations that the user did not consent to.</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="links">
+        Links
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0021-service-accounts/#links" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Links" aria-label="Anchor to: Links" href="#links">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<ul>
+<li><a
+  class="gdoc-markdown__link"
+  href="https://learn.microsoft.com/en-us/graph/api/resources/serviceprincipal?view=graph-rest-1.0"
+>MS Graph servicePrincipal</a></li>
+<li><a
+  class="gdoc-markdown__link"
+  href="https://reva.link/docs/config/packages/auth/manager/"
+>reva auth managers</a> - lacks docs for <code>auth_machine</code>, to be found <a
+  class="gdoc-markdown__link"
+  href="https://github.com/cs3org/reva/blob/edge/pkg/auth/manager/machine/machine.go"
+>in the code</a></li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="permission-checks">
+        Permission checks
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0021-service-accounts/#permission-checks" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Permission checks" aria-label="Anchor to: Permission checks" href="#permission-checks">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>When checking permissions we do not check for global permissions but for the concrete permission. Global permissions describe permissions that are used when assigning permissions, e.g. the index service account has the read permission constrained to tenant. The concrete permission check always contains a resource and a specific permission like <code>Resource.Read</code> or <code>Space.Delete</code>. That we currently check if a user has the <code>delete-all-spaces</code> permission is wrong. It should instead check if the user has the permission <code>Space.Delete</code> on a specific space. The permissions service can implement the check by taking the permission constraint into account.</p>
+<p>Another example would be a <code>Resource.Read</code> check for a specific resource. Normal users like the demo users Einstein and Marie would have the permission <code>Resource.ReadWrite</code> with the constraint ALL (which limits them to all files they own and that have been shared with them). The permissions service can return true. Service accounts like the indexer would have  <code>Resource.Read</code> with the constraint TENANT and thus be granted read access to all resources.</p>
+<p>In the storage drive implementation we can check the ACLs first (which would allow service accounts that are known to the underlying storage system, e.g. EOS to access the resource) and then make a call to the permissions service. At least for the Read Resource permission. Other permission checks can be introduced as needed.</p>
+<p>The permission names and constraints are different from the MS Graph API. Giving permission like <a
+  class="gdoc-markdown__link--code"
+  href="https://learn.microsoft.com/en-us/graph/permissions-reference#user-permissions"
+><code>Files.ReadWrite.All</code></a> a different meaning, depending on the type of user (for normal users it means all files they have access to, for service accounts it means all files in the organization) is a source of confusion which only gets worse when there are two different UUIDs for this.</p>
 
   </article>
 
