@@ -12,8 +12,7 @@
 <meta name="generator" content="Hugo 0.89.4" />
 
 
-  <meta name="description" content="Graph Service Spaces API  Methods   Examples  Starting conditions        Graph Service     The Graph service is a reference implementation of the MS Graph API. There are no libraries doing any work only a set of routes and handlers.
-Spaces API     The Spaces API makes use of the MS Graph API Drive resource to represent the concept of a Storage Space." />
+  <meta name="description" content="Spaces API  Example Space   Creating Spaces  Create a single space POST /drives   Reading Spaces  List all spaces GET /drives List My Spaces GET /me/drives List my spaces with filters GET /me/drives/$filter=&lt;attribute&gt; &lt;comparison operator&gt; &lt;value&gt;  Example filters   List my spaces with ordering GET /me/drives/$orderby=&lt;key&gt; &lt;order&gt;  Ordering examples     Modifying Spaces  Set the space quota to 5GB PATCH /drives/{drive-id} Change the space name, subtitle and alias PATCH /drives/{drive-id}   Disabling / Deleting Spaces  Disable a space DELETE /drives/{drive-id} Restore a space PATCH /drives/{drive-id} Permanently delete a space DELETE /drives/{drive-id}        Spaces API     The Spaces API is implementing a subset of the functionality of the MS Graph Drives resource." />
 
     <title>Spaces | ownCloud</title>
 
@@ -37,8 +36,7 @@ Spaces API     The Spaces API makes use of the MS Graph API Drive resource to re
     content="Spaces"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Graph Service Spaces API  Methods   Examples  Starting conditions        Graph Service     The Graph service is a reference implementation of the MS Graph API. There are no libraries doing any work only a set of routes and handlers.
-Spaces API     The Spaces API makes use of the MS Graph API Drive resource to represent the concept of a Storage Space." />
+  <meta property="og:description" content="Spaces API  Example Space   Creating Spaces  Create a single space POST /drives   Reading Spaces  List all spaces GET /drives List My Spaces GET /me/drives List my spaces with filters GET /me/drives/$filter=&lt;attribute&gt; &lt;comparison operator&gt; &lt;value&gt;  Example filters   List my spaces with ordering GET /me/drives/$orderby=&lt;key&gt; &lt;order&gt;  Ordering examples     Modifying Spaces  Set the space quota to 5GB PATCH /drives/{drive-id} Change the space name, subtitle and alias PATCH /drives/{drive-id}   Disabling / Deleting Spaces  Disable a space DELETE /drives/{drive-id} Restore a space PATCH /drives/{drive-id} Permanently delete a space DELETE /drives/{drive-id}        Spaces API     The Spaces API is implementing a subset of the functionality of the MS Graph Drives resource." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/apis/http/graph/spaces/" />
 
@@ -47,8 +45,7 @@ Spaces API     The Spaces API makes use of the MS Graph API Drive resource to re
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Spaces" />
-  <meta name="twitter:description" content="Graph Service Spaces API  Methods   Examples  Starting conditions        Graph Service     The Graph service is a reference implementation of the MS Graph API. There are no libraries doing any work only a set of routes and handlers.
-Spaces API     The Spaces API makes use of the MS Graph API Drive resource to represent the concept of a Storage Space." />
+  <meta name="twitter:description" content="Spaces API  Example Space   Creating Spaces  Create a single space POST /drives   Reading Spaces  List all spaces GET /drives List My Spaces GET /me/drives List my spaces with filters GET /me/drives/$filter=&lt;attribute&gt; &lt;comparison operator&gt; &lt;value&gt;  Example filters   List my spaces with ordering GET /me/drives/$orderby=&lt;key&gt; &lt;order&gt;  Ordering examples     Modifying Spaces  Set the space quota to 5GB PATCH /drives/{drive-id} Change the space name, subtitle and alias PATCH /drives/{drive-id}   Disabling / Deleting Spaces  Disable a space DELETE /drives/{drive-id} Restore a space PATCH /drives/{drive-id} Permanently delete a space DELETE /drives/{drive-id}        Spaces API     The Spaces API is implementing a subset of the functionality of the MS Graph Drives resource." />
 
 
   <script type="application/ld+json">
@@ -59,8 +56,8 @@ Spaces API     The Spaces API makes use of the MS Graph API Drive resource to re
       "name": "Spaces",
       "url" : "https://owncloud.dev/apis/http/graph/spaces/",
       "headline": "Spaces",
-      "description": "Graph Service Spaces API  Methods   Examples  Starting conditions        Graph Service     The Graph service is a reference implementation of the MS Graph API. There are no libraries doing any work only a set of routes and handlers.\nSpaces API     The Spaces API makes use of the MS Graph API Drive resource to represent the concept of a Storage Space.",
-      "wordCount" : "780",
+      "description": "Spaces API  Example Space   Creating Spaces  Create a single space POST \/drives   Reading Spaces  List all spaces GET \/drives List My Spaces GET \/me\/drives List my spaces with filters GET \/me\/drives\/$filter=\u003cattribute\u003e \u003ccomparison operator\u003e \u003cvalue\u003e  Example filters   List my spaces with ordering GET \/me\/drives\/$orderby=\u003ckey\u003e \u003corder\u003e  Ordering examples     Modifying Spaces  Set the space quota to 5GB PATCH \/drives\/{drive-id} Change the space name, subtitle and alias PATCH \/drives\/{drive-id}   Disabling \/ Deleting Spaces  Disable a space DELETE \/drives\/{drive-id} Restore a space PATCH \/drives\/{drive-id} Permanently delete a space DELETE \/drives\/{drive-id}        Spaces API     The Spaces API is implementing a subset of the functionality of the MS Graph Drives resource.",
+      "wordCount" : "1646",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -15449,29 +15446,48 @@ Copyright 2022 Fonticons, Inc.
     <h1>Spaces</h1>
     <div class="gdoc-toc gdoc-toc__level--3">
       <nav id="TableOfContents"><ul>
-        <li><a href="#graph-service">Graph Service</a></li>
         <li><a href="#spaces-api">Spaces API</a>
           <ul>
-            <li><a href="#methods">Methods</a></li>
+            <li><a href="#example-space">Example Space</a></li>
           </ul>
         </li>
-        <li><a href="#examples">Examples</a>
+        <li><a href="#creating-spaces">Creating Spaces</a>
           <ul>
-            <li><a href="#starting-conditions">Starting conditions</a></li>
+            <li><a href="#create-a-single-space-post-drives">Create a single space <code>POST /drives</code></a></li>
+          </ul>
+        </li>
+        <li><a href="#reading-spaces">Reading Spaces</a>
+          <ul>
+            <li><a href="#list-all-spaces-get-drives">List all spaces <code>GET /drives</code></a></li>
+            <li><a href="#list-my-spaces-get-medrives">List My Spaces <code>GET /me/drives</code></a></li>
+            <li><a href="#list-my-spaces-with-filters-get-medrivesfilterattribute-comparison-operator-value">List my spaces with filters <code>GET /me/drives/$filter=&lt;attribute&gt; &lt;comparison operator&gt; &lt;value&gt;</code></a>
+              <ul>
+                <li><a href="#example-filters">Example filters</a></li>
+              </ul>
+            </li>
+            <li><a href="#list-my-spaces-with-ordering-get-medrivesorderbykey-order">List my spaces with ordering <code>GET /me/drives/$orderby=&lt;key&gt; &lt;order&gt;</code></a>
+              <ul>
+                <li><a href="#ordering-examples">Ordering examples</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#modifying-spaces">Modifying Spaces</a>
+          <ul>
+            <li><a href="#set-the-space-quota-to-5gb-patch-drivesdrive-id">Set the space quota to 5GB <code>PATCH /drives/{drive-id}</code></a></li>
+            <li><a href="#change-the-space-name-subtitle-and-alias-patch-drivesdrive-id">Change the space name, subtitle and alias <code>PATCH /drives/{drive-id}</code></a></li>
+          </ul>
+        </li>
+        <li><a href="#disabling--deleting-spaces">Disabling / Deleting Spaces</a>
+          <ul>
+            <li><a href="#disable-a-space-delete-drivesdrive-id">Disable a space <code>DELETE /drives/{drive-id}</code></a></li>
+            <li><a href="#restore-a-space-patch-drivesdrive-id">Restore a space <code>PATCH /drives/{drive-id}</code></a></li>
+            <li><a href="#permanently-delete-a-space-delete-drivesdrive-id">Permanently delete a space <code>DELETE /drives/{drive-id}</code></a></li>
           </ul>
         </li>
       </ul></nav>
       <hr />
     </div>
-<div class="gdoc-page__anchorwrap">
-    <h2 id="graph-service">
-        Graph Service
-        <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#graph-service" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Graph Service" aria-label="Anchor to: Graph Service" href="#graph-service">
-            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h2>
-</div>
-<p>The Graph service is a reference implementation of the MS Graph API. There are no libraries doing any work only a set of routes and handlers.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="spaces-api">
         Spaces API
@@ -15480,236 +15496,1012 @@ Copyright 2022 Fonticons, Inc.
         </a>
     </h2>
 </div>
-<p>The Spaces API makes use of the <a
+<p>The Spaces API is implementing a subset of the functionality of the
+<a
   class="gdoc-markdown__link"
-  href="https://docs.microsoft.com/en-us/graph/api/resources/drive?view=graph-rest-1.0"
->MS Graph API Drive resource</a> to represent the concept of a Storage Space. Natively the MS Graph Specification <a
-  class="gdoc-markdown__link"
-  href="https://docs.microsoft.com/en-us/graph/api/resources/drive?view=graph-rest-1.0#methods"
->does not provide a way for creating Drives</a>, as a Drive is a read only resource.</p>
-<p>We circumvented this limitation by adding a <code>POST /drive/{drive-name}</code> to the Graph router. A major drawback of this solution is that this endpoint does not have support from the official MS Graph SDK, however it is reachable by any HTTP clients.</p>
+  href="https://learn.microsoft.com/en-us/graph/api/resources/drive?view=graph-rest-1.0"
+>MS Graph Drives resource</a>.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="methods">
-        Methods
-        <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#methods" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Methods" aria-label="Anchor to: Methods" href="#methods">
+    <h3 id="example-space">
+        Example Space
+        <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#example-space" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Example Space" aria-label="Anchor to: Example Space" href="#example-space">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
 </div>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">POST /drive/{drive-name}
-</code></pre></div><p>Calls to the following endpoint will create a Space with all the default parameters since we do not parse the request body just yet.</p>
-<div class="gdoc-page__anchorwrap">
-    <h2 id="examples">
-        Examples
-        <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#examples" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Examples" aria-label="Anchor to: Examples" href="#examples">
+<p>The JSON representation of a Drive, as handled by the Spaces API, looks like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;driveAlias&#34;</span><span class="p">:</span> <span class="s2">&#34;project/mars&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;driveType&#34;</span><span class="p">:</span> <span class="s2">&#34;project&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;storage-users-1$89ad5ad2-5fdb-4877-b8c9-601a9670b925&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;lastModifiedDateTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2023-01-24T21:19:26.417055+01:00&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Mars&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;owner&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;89ad5ad2-5fdb-4877-b8c9-601a9670b925&#34;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;quota&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;remaining&#34;</span><span class="p">:</span> <span class="mi">999853685</span><span class="p">,</span>
+    <span class="nt">&#34;state&#34;</span><span class="p">:</span> <span class="s2">&#34;normal&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;total&#34;</span><span class="p">:</span> <span class="mi">1000000000</span><span class="p">,</span>
+    <span class="nt">&#34;used&#34;</span><span class="p">:</span> <span class="mi">146315</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;root&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;eTag&#34;</span><span class="p">:</span> <span class="s2">&#34;\&#34;910af0061161c42d8d1224df6c4a2527\&#34;&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;storage-users-1$89ad5ad2-5fdb-4877-b8c9-601a9670b925&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;permissions&#34;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nt">&#34;grantedToIdentities&#34;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="p">{</span>
+            <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">{</span>
+              <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Admin&#34;</span><span class="p">,</span>
+              <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;some-admin-user-id-0000-000000000000&#34;</span>
+            <span class="p">}</span>
+          <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&#34;roles&#34;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="s2">&#34;manager&#34;</span>
+        <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&#34;webDavUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/dav/spaces/storage-users-1$89ad5ad2-5fdb-4877-b8c9-601a9670b925&#34;</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;special&#34;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;eTag&#34;</span><span class="p">:</span> <span class="s2">&#34;\&#34;f97829324f63ce778095334cfeb0097b\&#34;&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;file&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;mimeType&#34;</span><span class="p">:</span> <span class="s2">&#34;image/jpeg&#34;</span>
+      <span class="p">},</span>
+      <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;storage-users-1$89ad5ad2-5fdb-4877-b8c9-601a9670b925!40171bea-3263-47a8-80ef-0ca20c37f45a&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;lastModifiedDateTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2022-02-15T17:11:50.000000496+01:00&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Mars_iStock-MR1805_20161221.jpeg&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">146250</span><span class="p">,</span>
+      <span class="nt">&#34;specialFolder&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;image&#34;</span>
+      <span class="p">},</span>
+      <span class="nt">&#34;webDavUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/dav/spaces/storage-users-1$89ad5ad2-5fdb-4877-b8c9-601a9670b925%2189ad5ad2-5fdb-4877-b8c9-601a9670b925/.space/Mars_iStock-MR1805_20161221.jpeg&#34;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;eTag&#34;</span><span class="p">:</span> <span class="s2">&#34;\&#34;ff38b31d8f109a4fbb98ab34499a3379\&#34;&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;file&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;mimeType&#34;</span><span class="p">:</span> <span class="s2">&#34;text/markdown&#34;</span>
+      <span class="p">},</span>
+      <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;storage-users-1$89ad5ad2-5fdb-4877-b8c9-601a9670b925!e2167612-7578-46e2-8ed7-971481037bc1&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;lastModifiedDateTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2023-01-24T21:10:23.661841+01:00&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;readme.md&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">65</span><span class="p">,</span>
+      <span class="nt">&#34;specialFolder&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;readme&#34;</span>
+      <span class="p">},</span>
+      <span class="nt">&#34;webDavUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/dav/spaces/storage-users-1$89ad5ad2-5fdb-4877-b8c9-601a9670b925%2189ad5ad2-5fdb-4877-b8c9-601a9670b925/.space/readme.md&#34;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&#34;webUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/f/storage-users-1$89ad5ad2-5fdb-4877-b8c9-601a9670b925&#34;</span>
+<span class="p">}</span>
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h2 id="creating-spaces">
+        Creating Spaces
+        <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#creating-spaces" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Creating Spaces" aria-label="Anchor to: Creating Spaces" href="#creating-spaces">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div>
-<p>We can now create a <code>Marketing</code> space and retrieve its WebDAV endpoint. Let&rsquo;s see how to do this.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="starting-conditions">
-        Starting conditions
-        <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#starting-conditions" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Starting conditions" aria-label="Anchor to: Starting conditions" href="#starting-conditions">
+    <h3 id="create-a-single-space-post-drives">
+        Create a single space <code>POST /drives</code>
+        <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#create-a-single-space-post-drives" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Create a single space POST /drives" aria-label="Anchor to: Create a single space POST /drives" href="#create-a-single-space-post-drives">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
 </div>
-<p>This is the status of a DecomposedFS <code>users</code> tree. As we can see it is empty because we have not yet logged in with any users. It is a fresh new installation.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">❯ tree -a /var/tmp/ocis/storage/users
-/var/tmp/ocis/storage/users
-├── blobs
-├── nodes
-│   └── root
-├── spaces
-│   ├── personal
-│   └── share
-├── trash
-└── uploads
-</code></pre></div><p>Let&rsquo;s start with creating a space:</p>
-<p><code>curl -k -X POST 'https://localhost:9200/graph/v1.0/drives/marketing' -u einstein:relativity -v</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">❯ tree -a /var/tmp/ocis/storage/users
-/var/tmp/ocis/storage/users
-├── blobs
-├── nodes
-│   ├── 02dc1ec5-28b5-41c5-a48a-fabd4fa0562e
-│   │   └── .space -&gt; ../e85d185f-cdaa-4618-a312-e33ea435acfe
-│   ├── 52efe3c2-c95a-47a1-8f3d-924aa473c711
-│   ├── e85d185f-cdaa-4618-a312-e33ea435acfe
-│   └── root
-│       ├── 4c510ada-c86b-4815-8820-42cdf82c3d51 -&gt; ../52efe3c2-c95a-47a1-8f3d-924aa473c711
-│       └── c42debb8-926e-4a46-83b0-39dba56e59a4 -&gt; ../02dc1ec5-28b5-41c5-a48a-fabd4fa0562e
-├── spaces
-│   ├── personal
-│   │   └── 52efe3c2-c95a-47a1-8f3d-924aa473c711 -&gt; ../../nodes/52efe3c2-c95a-47a1-8f3d-924aa473c711
-│   ├── project
-│   │   └── 02dc1ec5-28b5-41c5-a48a-fabd4fa0562e -&gt; ../../nodes/02dc1ec5-28b5-41c5-a48a-fabd4fa0562e
-│   └── share
-├── trash
-└── uploads
-</code></pre></div><p>we can see that the <code>project</code> folder was added to the spaces as well as the <code>.space</code> folder to the space node <code>02dc1ec5-28b5-41c5-a48a-fabd4fa0562e</code>. For demonstration purposes, let&rsquo;s list the extended attributes of the new node:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">xattr -l /var/tmp/ocis/storage/users/nodes/root/c42debb8-926e-4a46-83b0-39dba56e59a4
-user.ocis.blobid:
-user.ocis.blobsize: 0
-user.ocis.name: c42debb8-926e-4a46-83b0-39dba56e59a4
-user.ocis.owner.id: 4c510ada-c86b-4815-8820-42cdf82c3d51
-user.ocis.owner.idp: https://localhost:9200
-user.ocis.owner.type: primary
-user.ocis.parentid: root
-user.ocis.quota: 65536
-user.ocis.space.name: marketing
-</code></pre></div><p>As seen here it contains the metadata from the default list of requirements for this ticket.</p>
-<p>Let&rsquo;s list the drive we just created using the graph API:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">curl -k &#39;https://localhost:9200/graph/v1.0/me/drives&#39; -u einstein:relativity -v | jq .value
+<p>Create a new space with properties.</p>
 
-[
-  {
-    &#34;driveType&#34;: &#34;personal&#34;,
-    &#34;id&#34;: &#34;1284d238-aa92-42ce-bdc4-0b0000009157!52efe3c2-c95a-47a1-8f3d-924aa473c711&#34;,
-    &#34;lastModifiedDateTime&#34;: &#34;2021-09-07T14:42:39.025050471+02:00&#34;,
-    &#34;name&#34;: &#34;root&#34;,
-    &#34;owner&#34;: {
-      &#34;user&#34;: {
-        &#34;id&#34;: &#34;4c510ada-c86b-4815-8820-42cdf82c3d51&#34;
-      }
-    },
-    &#34;root&#34;: {
-      &#34;id&#34;: &#34;1284d238-aa92-42ce-bdc4-0b0000009157!52efe3c2-c95a-47a1-8f3d-924aa473c711&#34;,
-      &#34;webDavUrl&#34;: &#34;https://localhost:9200/dav/spaces/1284d238-aa92-42ce-bdc4-0b0000009157!52efe3c2-c95a-47a1-8f3d-924aa473c711&#34;
-    }
-  },
-  {
-    &#34;driveType&#34;: &#34;project&#34;,
-    &#34;id&#34;: &#34;1284d238-aa92-42ce-bdc4-0b0000009157!02dc1ec5-28b5-41c5-a48a-fabd4fa0562e&#34;,
-    &#34;lastModifiedDateTime&#34;: &#34;2021-09-07T14:42:39.030705579+02:00&#34;,
-    &#34;name&#34;: &#34;root&#34;,
-    &#34;owner&#34;: {
-      &#34;user&#34;: {
-        &#34;id&#34;: &#34;4c510ada-c86b-4815-8820-42cdf82c3d51&#34;
-      }
-    },
-    &#34;quota&#34;: {
-      &#34;total&#34;: 65536
-    },
-    &#34;root&#34;: {
-      &#34;id&#34;: &#34;1284d238-aa92-42ce-bdc4-0b0000009157!02dc1ec5-28b5-41c5-a48a-fabd4fa0562e&#34;,
-      &#34;webDavUrl&#34;: &#34;https://localhost:9200/dav/spaces/1284d238-aa92-42ce-bdc4-0b0000009157!02dc1ec5-28b5-41c5-a48a-fabd4fa0562e&#34;
-    }
-  }
-]
-</code></pre></div><p>As we can see the response already contains a space-aware dav endpoint, which we can use to upload files to the space:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">curl -k https://localhost:9200/dav/spaces/1284d238-aa92-42ce-bdc4-0b0000009157\!02dc1ec5-28b5-41c5-a48a-fabd4fa0562e/test.txt -X PUT -d &#34;beep-sboop&#34; -v -u einstein:relativity
-*   Trying ::1...
-* TCP_NODELAY set
-* Connected to localhost (::1) port 9200 (#0)
-* upload completely sent off: 10 out of 10 bytes
-&lt; HTTP/1.1 201 Created
-&lt; Access-Control-Allow-Origin: *
-&lt; Content-Length: 0
-&lt; Content-Security-Policy: default-src &#39;none&#39;;
-&lt; Content-Type: text/plain
-&lt; Date: Tue, 07 Sep 2021 12:45:54 GMT
-&lt; Etag: &#34;e2942565a4eb52e8754c2806f215fe93&#34;
-&lt; Last-Modified: Tue, 07 Sep 2021 12:45:54 +0000
-&lt; Oc-Etag: &#34;e2942565a4eb52e8754c2806f215fe93&#34;
-&lt; Oc-Fileid: MTI4NGQyMzgtYWE5Mi00MmNlLWJkYzQtMGIwMDAwMDA5MTU3OmU4ZDIwNDA5LTE1OWItNGI2Ny1iODZkLTlkM2U3ZjYyYmM0ZQ==
-&lt; Vary: Origin
-&lt; X-Content-Type-Options: nosniff
-&lt; X-Download-Options: noopen
-&lt; X-Frame-Options: SAMEORIGIN
-&lt; X-Permitted-Cross-Domain-Policies: none
-&lt; X-Robots-Tag: none
-&lt; X-Xss-Protection: 1; mode=block
-&lt;
-* Connection #0 to host localhost left intact
-* Closing connection 0
-</code></pre></div><p>This is the state after every transformation:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">tree -a /var/tmp/ocis/storage/users
-/var/tmp/ocis/storage/users
-├── blobs
-│   └── 83842d56-91de-41d5-8800-b2fb7b2d31cf
-├── nodes
-│   ├── 02dc1ec5-28b5-41c5-a48a-fabd4fa0562e
-│   │   ├── .space -&gt; ../e85d185f-cdaa-4618-a312-e33ea435acfe
-│   │   └── test.txt -&gt; ../e8d20409-159b-4b67-b86d-9d3e7f62bc4e
-│   ├── 52efe3c2-c95a-47a1-8f3d-924aa473c711
-│   ├── e85d185f-cdaa-4618-a312-e33ea435acfe
-│   ├── e8d20409-159b-4b67-b86d-9d3e7f62bc4e
-│   └── root
-│       ├── 4c510ada-c86b-4815-8820-42cdf82c3d51 -&gt; ../52efe3c2-c95a-47a1-8f3d-924aa473c711
-│       └── c42debb8-926e-4a46-83b0-39dba56e59a4 -&gt; ../02dc1ec5-28b5-41c5-a48a-fabd4fa0562e
-├── spaces
-│   ├── personal
-│   │   └── 52efe3c2-c95a-47a1-8f3d-924aa473c711 -&gt; ../../nodes/52efe3c2-c95a-47a1-8f3d-924aa473c711
-│   ├── project
-│   │   └── 02dc1ec5-28b5-41c5-a48a-fabd4fa0562e -&gt; ../../nodes/02dc1ec5-28b5-41c5-a48a-fabd4fa0562e
-│   └── share
-├── trash
-└── uploads
-</code></pre></div><p>Observe the <code>test.txt</code> in the <code>02dc1ec5-28b5-41c5-a48a-fabd4fa0562e</code> node.</p>
-<p>To finalize, verify the new created file is webdav-listable:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml">curl -k https://localhost:9200/dav/spaces/1284d238-aa92-42ce-bdc4-0b0000009157\!02dc1ec5-28b5-41c5-a48a-fabd4fa0562e -X PROPFIND -v -u einstein:relativity | xmllint --format -
 
-<span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
-<span class="nt">&lt;d:multistatus</span> <span class="na">xmlns:d=</span><span class="s">&#34;DAV:&#34;</span> <span class="na">xmlns:s=</span><span class="s">&#34;http://sabredav.org/ns&#34;</span> <span class="na">xmlns:oc=</span><span class="s">&#34;http://owncloud.org/ns&#34;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;d:response&gt;</span>
-    <span class="nt">&lt;d:href&gt;</span>/dav/spaces/1284d238-aa92-42ce-bdc4-0b0000009157!02dc1ec5-28b5-41c5-a48a-fabd4fa0562e/<span class="nt">&lt;/d:href&gt;</span>
-    <span class="nt">&lt;d:propstat&gt;</span>
-      <span class="nt">&lt;d:prop&gt;</span>
-        <span class="nt">&lt;oc:id&gt;</span>MTI4NGQyMzgtYWE5Mi00MmNlLWJkYzQtMGIwMDAwMDA5MTU3OjAyZGMxZWM1LTI4YjUtNDFjNS1hNDhhLWZhYmQ0ZmEwNTYyZQ==<span class="nt">&lt;/oc:id&gt;</span>
-        <span class="nt">&lt;oc:fileid&gt;</span>MTI4NGQyMzgtYWE5Mi00MmNlLWJkYzQtMGIwMDAwMDA5MTU3OjAyZGMxZWM1LTI4YjUtNDFjNS1hNDhhLWZhYmQ0ZmEwNTYyZQ==<span class="nt">&lt;/oc:fileid&gt;</span>
-        <span class="nt">&lt;d:getetag&gt;</span>&#34;35a2ce5f56592d79d1b7233eff033347&#34;<span class="nt">&lt;/d:getetag&gt;</span>
-        <span class="nt">&lt;oc:permissions&gt;</span>RDNVCK<span class="nt">&lt;/oc:permissions&gt;</span>
-        <span class="nt">&lt;d:resourcetype&gt;</span>
-          <span class="nt">&lt;d:collection/&gt;</span>
-        <span class="nt">&lt;/d:resourcetype&gt;</span>
-        <span class="nt">&lt;oc:size&gt;</span>0<span class="nt">&lt;/oc:size&gt;</span>
-        <span class="nt">&lt;d:getlastmodified&gt;</span>Tue, 07 Sep 2021 12:45:54 GMT<span class="nt">&lt;/d:getlastmodified&gt;</span>
-        <span class="nt">&lt;oc:favorite&gt;</span>0<span class="nt">&lt;/oc:favorite&gt;</span>
-      <span class="nt">&lt;/d:prop&gt;</span>
-      <span class="nt">&lt;d:status&gt;</span>HTTP/1.1 200 OK<span class="nt">&lt;/d:status&gt;</span>
-    <span class="nt">&lt;/d:propstat&gt;</span>
-  <span class="nt">&lt;/d:response&gt;</span>
-  <span class="nt">&lt;d:response&gt;</span>
-    <span class="nt">&lt;d:href&gt;</span>/dav/spaces/1284d238-aa92-42ce-bdc4-0b0000009157!02dc1ec5-28b5-41c5-a48a-fabd4fa0562e/.space/<span class="nt">&lt;/d:href&gt;</span>
-    <span class="nt">&lt;d:propstat&gt;</span>
-      <span class="nt">&lt;d:prop&gt;</span>
-        <span class="nt">&lt;oc:id&gt;</span>MTI4NGQyMzgtYWE5Mi00MmNlLWJkYzQtMGIwMDAwMDA5MTU3OmU4NWQxODVmLWNkYWEtNDYxOC1hMzEyLWUzM2VhNDM1YWNmZQ==<span class="nt">&lt;/oc:id&gt;</span>
-        <span class="nt">&lt;oc:fileid&gt;</span>MTI4NGQyMzgtYWE5Mi00MmNlLWJkYzQtMGIwMDAwMDA5MTU3OmU4NWQxODVmLWNkYWEtNDYxOC1hMzEyLWUzM2VhNDM1YWNmZQ==<span class="nt">&lt;/oc:fileid&gt;</span>
-        <span class="nt">&lt;d:getetag&gt;</span>&#34;2e9a84bffce8b648ba626185800ee8fa&#34;<span class="nt">&lt;/d:getetag&gt;</span>
-        <span class="nt">&lt;oc:permissions&gt;</span>SRDNVCK<span class="nt">&lt;/oc:permissions&gt;</span>
-        <span class="nt">&lt;d:resourcetype&gt;</span>
-          <span class="nt">&lt;d:collection/&gt;</span>
-        <span class="nt">&lt;/d:resourcetype&gt;</span>
-        <span class="nt">&lt;oc:size&gt;</span>0<span class="nt">&lt;/oc:size&gt;</span>
-        <span class="nt">&lt;d:getlastmodified&gt;</span>Tue, 07 Sep 2021 12:42:39 GMT<span class="nt">&lt;/d:getlastmodified&gt;</span>
-        <span class="nt">&lt;oc:favorite&gt;</span>0<span class="nt">&lt;/oc:favorite&gt;</span>
-      <span class="nt">&lt;/d:prop&gt;</span>
-      <span class="nt">&lt;d:status&gt;</span>HTTP/1.1 200 OK<span class="nt">&lt;/d:status&gt;</span>
-    <span class="nt">&lt;/d:propstat&gt;</span>
-  <span class="nt">&lt;/d:response&gt;</span>
-  <span class="nt">&lt;d:response&gt;</span>
-    <span class="nt">&lt;d:href&gt;</span>/dav/spaces/1284d238-aa92-42ce-bdc4-0b0000009157!02dc1ec5-28b5-41c5-a48a-fabd4fa0562e/test.txt<span class="nt">&lt;/d:href&gt;</span>
-    <span class="nt">&lt;d:propstat&gt;</span>
-      <span class="nt">&lt;d:prop&gt;</span>
-        <span class="nt">&lt;oc:id&gt;</span>MTI4NGQyMzgtYWE5Mi00MmNlLWJkYzQtMGIwMDAwMDA5MTU3OmU4ZDIwNDA5LTE1OWItNGI2Ny1iODZkLTlkM2U3ZjYyYmM0ZQ==<span class="nt">&lt;/oc:id&gt;</span>
-        <span class="nt">&lt;oc:fileid&gt;</span>MTI4NGQyMzgtYWE5Mi00MmNlLWJkYzQtMGIwMDAwMDA5MTU3OmU4ZDIwNDA5LTE1OWItNGI2Ny1iODZkLTlkM2U3ZjYyYmM0ZQ==<span class="nt">&lt;/oc:fileid&gt;</span>
-        <span class="nt">&lt;d:getetag&gt;</span>&#34;e2942565a4eb52e8754c2806f215fe93&#34;<span class="nt">&lt;/d:getetag&gt;</span>
-        <span class="nt">&lt;oc:permissions&gt;</span>RDNVW<span class="nt">&lt;/oc:permissions&gt;</span>
-        <span class="nt">&lt;d:resourcetype/&gt;</span>
-        <span class="nt">&lt;d:getcontentlength&gt;</span>10<span class="nt">&lt;/d:getcontentlength&gt;</span>
-        <span class="nt">&lt;d:getcontenttype&gt;</span>text/plain<span class="nt">&lt;/d:getcontenttype&gt;</span>
-        <span class="nt">&lt;d:getlastmodified&gt;</span>Tue, 07 Sep 2021 12:45:54 GMT<span class="nt">&lt;/d:getlastmodified&gt;</span>
-        <span class="nt">&lt;oc:checksums&gt;</span>
-          <span class="nt">&lt;oc:checksum&gt;</span>SHA1:8f4b4c83c565fc5ec54b78c30c94a6b65e411de5 MD5:6a3a4eca9a6726eef8f7be5b03ea9011 ADLER32:151303ed<span class="nt">&lt;/oc:checksum&gt;</span>
-        <span class="nt">&lt;/oc:checksums&gt;</span>
-        <span class="nt">&lt;oc:favorite&gt;</span>0<span class="nt">&lt;/oc:favorite&gt;</span>
-      <span class="nt">&lt;/d:prop&gt;</span>
-      <span class="nt">&lt;d:status&gt;</span>HTTP/1.1 200 OK<span class="nt">&lt;/d:status&gt;</span>
-    <span class="nt">&lt;/d:propstat&gt;</span>
-  <span class="nt">&lt;/d:response&gt;</span>
-<span class="nt">&lt;/d:multistatus&gt;</span>
+
+
+
+<div class="gdoc-tabs">
+  
+    <input
+      type="radio"
+      class="gdoc-tabs__control hidden"
+      name="tabs-create-space"
+      id="tabs-create-space-0"
+      checked="checked"
+    />
+    <label for="tabs-create-space-0" class="gdoc-tabs__label">
+      Request
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">curl -L -X POST <span class="s1">&#39;https://localhost:9200/graph/v1.0/drives/&#39;</span> <span class="se">\
+</span><span class="se"></span>-H <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\
+</span><span class="se"></span>--data-raw <span class="s1">&#39;{
+</span><span class="s1">    &#34;Name&#34;: &#34;Marketing&#34;,
+</span><span class="s1">    &#34;description&#34;: &#34;Marketing team resources&#34;,
+</span><span class="s1">    &#34;quota&#34;: {
+</span><span class="s1">        &#34;total&#34;: 5368709120
+</span><span class="s1">    }
+</span><span class="s1">}&#39;</span>
 </code></pre></div>
+    </div>
+  
+    <input
+      type="radio"
+      class="gdoc-tabs__control hidden"
+      name="tabs-create-space"
+      id="tabs-create-space-1"
+      
+    />
+    <label for="tabs-create-space-1" class="gdoc-tabs__label">
+      Response - 201 Created
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+<span class="hl">  <span class="nt">&#34;description&#34;</span><span class="p">:</span><span class="s2">&#34;Marketing team resources&#34;</span><span class="p">,</span>
+</span>  <span class="nt">&#34;driveAlias&#34;</span><span class="p">:</span><span class="s2">&#34;project/marketing&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;driveType&#34;</span><span class="p">:</span><span class="s2">&#34;project&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;id&#34;</span><span class="p">:</span><span class="s2">&#34;storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;lastModifiedDateTime&#34;</span><span class="p">:</span><span class="s2">&#34;2023-01-18T17:13:48.385204589+01:00&#34;</span><span class="p">,</span>
+<span class="hl">  <span class="nt">&#34;name&#34;</span><span class="p">:</span><span class="s2">&#34;Marketing&#34;</span><span class="p">,</span>
+</span>  <span class="nt">&#34;owner&#34;</span><span class="p">:{</span>
+    <span class="nt">&#34;user&#34;</span><span class="p">:{</span>
+      <span class="nt">&#34;displayName&#34;</span><span class="p">:</span><span class="s2">&#34;&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;id&#34;</span><span class="p">:</span><span class="s2">&#34;535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;quota&#34;</span><span class="p">:{</span>
+<span class="hl">    <span class="nt">&#34;total&#34;</span><span class="p">:</span><span class="mi">5368709120</span>
+</span>  <span class="p">},</span>
+  <span class="nt">&#34;root&#34;</span><span class="p">:{</span>
+    <span class="nt">&#34;eTag&#34;</span><span class="p">:</span><span class="s2">&#34;\&#34;f91e56554fd9305db81a93778c0fae96\&#34;&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;id&#34;</span><span class="p">:</span><span class="s2">&#34;storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;permissions&#34;</span><span class="p">:[</span>
+      <span class="p">{</span>
+        <span class="nt">&#34;grantedToIdentities&#34;</span><span class="p">:[</span>
+          <span class="p">{</span>
+            <span class="nt">&#34;user&#34;</span><span class="p">:{</span>
+              <span class="nt">&#34;displayName&#34;</span><span class="p">:</span><span class="s2">&#34;Admin&#34;</span><span class="p">,</span>
+              <span class="nt">&#34;id&#34;</span><span class="p">:</span><span class="s2">&#34;some-admin-user-id-0000-000000000000&#34;</span>
+            <span class="p">}</span>
+          <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&#34;roles&#34;</span><span class="p">:[</span>
+          <span class="s2">&#34;manager&#34;</span>
+        <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&#34;webDavUrl&#34;</span><span class="p">:</span><span class="s2">&#34;https://localhost:9200/dav/spaces/storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;webUrl&#34;</span><span class="p">:</span><span class="s2">&#34;https://localhost:9200/f/storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span>
+<span class="p">}</span>
+</code></pre></div>
+    </div>
+  
+</div>
+
+<div class="gdoc-page__anchorwrap">
+    <h2 id="reading-spaces">
+        Reading Spaces
+        <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#reading-spaces" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Reading Spaces" aria-label="Anchor to: Reading Spaces" href="#reading-spaces">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">GET https://ocis.url/graph/<span class="o">{</span>version<span class="o">}</span>/<span class="o">{</span>me/<span class="o">}</span>drives/?<span class="o">{</span>query-parameters<span class="o">}</span>
+</code></pre></div><div class="table-wrap"> <table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{version}</td>
+<td>The version of the LibreGraph API used by the client.</td>
+</tr>
+<tr>
+<td>{/me}</td>
+<td>The <code>me</code> component of the part is optional. If used, you only see spaces where the acting user is a regular member of.</td>
+</tr>
+<tr>
+<td>{query-parameters}</td>
+<td>Optional parameters for the request to customize the response.</td>
+</tr>
+</tbody>
+</table> </div>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="list-all-spaces-get-drives">
+        List all spaces <code>GET /drives</code>
+        <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#list-all-spaces-get-drives" class="gdoc-page__anchor clip flex align-center" title="Anchor to: List all spaces GET /drives" aria-label="Anchor to: List all spaces GET /drives" href="#list-all-spaces-get-drives">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>Returns a list of all available spaces, even ones where the acting user is not a regular member of. You need elevated permissions to do list all spaces. If you don&rsquo;t have the elevated permissions, the result is the same like <code>GET /me/drives</code>.</p>
+
+
+
+
+
+<blockquote class="gdoc-hint info">
+  <div class="gdoc-hint__title flex align-center"><i class="fa info" title="Multiple Administration Personas"></i></div>
+  <div class="gdoc-hint__text"><p>The ownCloud spaces concept draws a strict line between users which can work with the content of a space and others who have the permission to manage the space. A user which is able to manage quota and space metadata does not necessarily need to be able to access the content of a space.</p>
+<p><strong>Space Admin</strong><br>
+There is a global user role &ldquo;Space Admin&rdquo; which grants users some global permissions to manage space quota and some space metadata. This Role enables the user also to disable, restore and delete spaces. He cannot manage space members.</p>
+<p><strong>Space Manager</strong><br>
+The &ldquo;Space Manager&rdquo; is a user which is a regular member of a space because he has been invited. In addition to being part of a space the user can also manage the memberships of the space.</p>
+</div>
+</blockquote>
+
+<div class="gdoc-page__anchorwrap">
+    <h3 id="list-my-spaces-get-medrives">
+        List My Spaces <code>GET /me/drives</code>
+        <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#list-my-spaces-get-medrives" class="gdoc-page__anchor clip flex align-center" title="Anchor to: List My Spaces GET /me/drives" aria-label="Anchor to: List My Spaces GET /me/drives" href="#list-my-spaces-get-medrives">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>Returns a list of all spaces where the user is a regular member of.</p>
+
+
+
+
+
+<div class="gdoc-tabs">
+  
+    <input
+      type="radio"
+      class="gdoc-tabs__control hidden"
+      name="tabs-list-drives"
+      id="tabs-list-drives-0"
+      checked="checked"
+    />
+    <label for="tabs-list-drives-0" class="gdoc-tabs__label">
+      Request
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <code>curl -L -k -X GET 'https://localhost:9200/graph/v1.0/me/drives/'</code>
+    </div>
+  
+    <input
+      type="radio"
+      class="gdoc-tabs__control hidden"
+      name="tabs-list-drives"
+      id="tabs-list-drives-1"
+      
+    />
+    <label for="tabs-list-drives-1" class="gdoc-tabs__label">
+      Response - 200 OK
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&#34;driveAlias&#34;</span><span class="p">:</span> <span class="s2">&#34;personal/admin&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;driveType&#34;</span><span class="p">:</span> <span class="s2">&#34;personal&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;storage-users-1$some-admin-user-id-0000-000000000000&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;lastModifiedDateTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2023-01-17T21:37:17.692033183+01:00&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Admin&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;owner&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;some-admin-user-id-0000-000000000000&#34;</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="nt">&#34;quota&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;remaining&#34;</span><span class="p">:</span> <span class="mi">4497686528</span><span class="p">,</span>
+                <span class="nt">&#34;state&#34;</span><span class="p">:</span> <span class="s2">&#34;normal&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;total&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="nt">&#34;used&#34;</span><span class="p">:</span> <span class="mi">0</span>
+            <span class="p">},</span>
+            <span class="nt">&#34;root&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;eTag&#34;</span><span class="p">:</span> <span class="s2">&#34;\&#34;4b65d2cbce79b2ecc45f876cc6e460d8\&#34;&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;storage-users-1$some-admin-user-id-0000-000000000000&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;webDavUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/dav/spaces/storage-users-1$some-admin-user-id-0000-000000000000&#34;</span>
+            <span class="p">},</span>
+            <span class="nt">&#34;webUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/f/storage-users-1$some-admin-user-id-0000-000000000000&#34;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&#34;driveAlias&#34;</span><span class="p">:</span> <span class="s2">&#34;virtual/shares&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;driveType&#34;</span><span class="p">:</span> <span class="s2">&#34;virtual&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Shares&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;quota&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;remaining&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="nt">&#34;state&#34;</span><span class="p">:</span> <span class="s2">&#34;exceeded&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;total&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="nt">&#34;used&#34;</span><span class="p">:</span> <span class="mi">0</span>
+            <span class="p">},</span>
+            <span class="nt">&#34;root&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;eTag&#34;</span><span class="p">:</span> <span class="s2">&#34;DECAFC00FEE&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;webDavUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/dav/spaces/a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668&#34;</span>
+            <span class="p">},</span>
+            <span class="nt">&#34;webUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/f/a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668&#34;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+    </div>
+  
+</div>
+
+<div class="gdoc-page__anchorwrap">
+    <h3 id="list-my-spaces-with-filters-get-medrivesfilterattribute-comparison-operator-value">
+        List my spaces with filters <code>GET /me/drives/$filter=&lt;attribute&gt; &lt;comparison operator&gt; &lt;value&gt;</code>
+        <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#list-my-spaces-with-filters-get-medrivesfilterattribute-comparison-operator-value" class="gdoc-page__anchor clip flex align-center" title="Anchor to: List my spaces with filters GET /me/drives/$filter=&lt;attribute&gt; &lt;comparison operator&gt; &lt;value&gt;" aria-label="Anchor to: List my spaces with filters GET /me/drives/$filter=&lt;attribute&gt; &lt;comparison operator&gt; &lt;value&gt;" href="#list-my-spaces-with-filters-get-medrivesfilterattribute-comparison-operator-value">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>Returns a list of all project spaces where the user is a regular member of. The filter query parameter supports the <code>eq</code>(equals) comparison operator. Possible filter attributes are:</p>
+<div class="table-wrap"> <table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>driveType</td>
+<td>The space type. Values could be <code>project</code>, <code>personal</code>, <code>virtual</code>, <code>mountpoint</code></td>
+</tr>
+<tr>
+<td>id</td>
+<td>The space id. The value needs to be a space ID</td>
+</tr>
+</tbody>
+</table> </div>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="example-filters">
+        Example filters
+        <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#example-filters" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Example filters" aria-label="Anchor to: Example filters" href="#example-filters">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+
+
+
+
+
+<div class="gdoc-tabs">
+  
+    <input
+      type="radio"
+      class="gdoc-tabs__control hidden"
+      name="tabs-filter-drives"
+      id="tabs-filter-drives-0"
+      checked="checked"
+    />
+    <label for="tabs-filter-drives-0" class="gdoc-tabs__label">
+      Filter by space type project
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <p><code>curl -L -k -X GET 'https://localhost:9200/graph/v1.0/me/drives/$filter=driveType eq project'</code></p>
+<p>This returns a list of spaces of type <code>project</code>.</p>
+
+    </div>
+  
+    <input
+      type="radio"
+      class="gdoc-tabs__control hidden"
+      name="tabs-filter-drives"
+      id="tabs-filter-drives-1"
+      
+    />
+    <label for="tabs-filter-drives-1" class="gdoc-tabs__label">
+      Filter by space type mountpoint
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <p><code>curl -L -k -X GET 'https://localhost:9200/graph/v1.0/me/drives/$filter=driveType eq mountpoint'</code></p>
+<p>This returns a list of spaces of type <code>mountpoint</code>.</p>
+
+    </div>
+  
+    <input
+      type="radio"
+      class="gdoc-tabs__control hidden"
+      name="tabs-filter-drives"
+      id="tabs-filter-drives-2"
+      
+    />
+    <label for="tabs-filter-drives-2" class="gdoc-tabs__label">
+      Filter by space id
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <p><code>curl -L -k -X GET 'https://localhost:9200/graph/v1.0/me/drives/$filter=id eq some-space-id'</code></p>
+<p>This returns one space with the id from the filter if it exists.</p>
+
+    </div>
+  
+</div>
+
+<div class="gdoc-page__anchorwrap">
+    <h3 id="list-my-spaces-with-ordering-get-medrivesorderbykey-order">
+        List my spaces with ordering <code>GET /me/drives/$orderby=&lt;key&gt; &lt;order&gt;</code>
+        <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#list-my-spaces-with-ordering-get-medrivesorderbykey-order" class="gdoc-page__anchor clip flex align-center" title="Anchor to: List my spaces with ordering GET /me/drives/$orderby=&lt;key&gt; &lt;order&gt;" aria-label="Anchor to: List my spaces with ordering GET /me/drives/$orderby=&lt;key&gt; &lt;order&gt;" href="#list-my-spaces-with-ordering-get-medrivesorderbykey-order">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>Returns a list of all spaces ordered by the specified key. Possible order keys are</p>
+<div class="table-wrap"> <table>
+<thead>
+<tr>
+<th>key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>The space name</td>
+</tr>
+<tr>
+<td>lastModifiedDateTime</td>
+<td>The last modified date and time of the space</td>
+</tr>
+</tbody>
+</table> </div>
+<p>Both sort orders are supported, <code>asc</code> (ascending) and <code>desc</code> (descending).</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="ordering-examples">
+        Ordering examples
+        <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#ordering-examples" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Ordering examples" aria-label="Anchor to: Ordering examples" href="#ordering-examples">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+
+
+
+
+
+<div class="gdoc-tabs">
+  
+    <input
+      type="radio"
+      class="gdoc-tabs__control hidden"
+      name="tabs-sort-drives"
+      id="tabs-sort-drives-0"
+      checked="checked"
+    />
+    <label for="tabs-sort-drives-0" class="gdoc-tabs__label">
+      Sort by name
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <p><code>curl -L -k -X GET 'https://localhost:9200/graph/v1.0/me/drives/$orderby=name asc'</code></p>
+<p>This returns a list of spaces ordered by name ascending.</p>
+
+    </div>
+  
+    <input
+      type="radio"
+      class="gdoc-tabs__control hidden"
+      name="tabs-sort-drives"
+      id="tabs-sort-drives-1"
+      
+    />
+    <label for="tabs-sort-drives-1" class="gdoc-tabs__label">
+      Sort by date
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <p><code>curl -L -k -X GET 'https://localhost:9200/graph/v1.0/me/drives/$orderby=lastModifiedDateTime desc'</code></p>
+<p>This returns a list of spaces ordered by the last modified date starting with the latest one.</p>
+
+    </div>
+  
+</div>
+
+<div class="gdoc-page__anchorwrap">
+    <h2 id="modifying-spaces">
+        Modifying Spaces
+        <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#modifying-spaces" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Modifying Spaces" aria-label="Anchor to: Modifying Spaces" href="#modifying-spaces">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>Modify the properties of a space. You need elevated permissions to execute this request.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="set-the-space-quota-to-5gb-patch-drivesdrive-id">
+        Set the space quota to 5GB <code>PATCH /drives/{drive-id}</code>
+        <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#set-the-space-quota-to-5gb-patch-drivesdrive-id" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Set the space quota to 5GB PATCH /drives/{drive-id}" aria-label="Anchor to: Set the space quota to 5GB PATCH /drives/{drive-id}" href="#set-the-space-quota-to-5gb-patch-drivesdrive-id">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>To limit the quota of a space you need to set the <code>quota.total</code> value. The API response will give back all actual quota properties.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;quota&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;remaining&#34;</span><span class="p">:</span> <span class="mi">5368709120</span><span class="p">,</span>
+    <span class="nt">&#34;state&#34;</span><span class="p">:</span> <span class="s2">&#34;normal&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;total&#34;</span><span class="p">:</span> <span class="mi">5368709120</span><span class="p">,</span>
+    <span class="nt">&#34;used&#34;</span><span class="p">:</span> <span class="mi">0</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><div class="table-wrap"> <table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>remaining</td>
+<td>The remaining disk space in <code>bytes</code>. If the quota is not limited, this will show the total available disk space.</td>
+</tr>
+<tr>
+<td>state</td>
+<td>The state of the space in regards to quota usage. This can be used for visual indicators. It can be <code>normal</code>(&lt;75%), <code>nearing</code>(between 75% and 89%), <code>critical</code>(between 90% and 99%) and <code>exceeded</code>(100%).</td>
+</tr>
+<tr>
+<td>total</td>
+<td>The space id. The value needs to be a space ID.</td>
+</tr>
+<tr>
+<td>used</td>
+<td>The used disk space in bytes.</td>
+</tr>
+</tbody>
+</table> </div>
+
+
+
+
+
+<div class="gdoc-tabs">
+  
+    <input
+      type="radio"
+      class="gdoc-tabs__control hidden"
+      name="tabs-set-space-quota"
+      id="tabs-set-space-quota-0"
+      checked="checked"
+    />
+    <label for="tabs-set-space-quota-0" class="gdoc-tabs__label">
+      Request
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">curl -L -k -X PATCH <span class="s1">&#39;https://localhost:9200/graph/v1.0/drives/storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#39;</span> <span class="se">\
+</span><span class="se"></span>-H <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\
+</span><span class="se"></span>--data-raw <span class="s1">&#39;{
+</span><span class="s1">    &#34;quota&#34;: {
+</span><span class="s1">        &#34;total&#34;: 5368709120
+</span><span class="s1">    }
+</span><span class="s1">}&#39;</span>
+</code></pre></div>
+    </div>
+  
+    <input
+      type="radio"
+      class="gdoc-tabs__control hidden"
+      name="tabs-set-space-quota"
+      id="tabs-set-space-quota-1"
+      
+    />
+    <label for="tabs-set-space-quota-1" class="gdoc-tabs__label">
+      Response - 200 OK
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;Marketing team resources&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;driveAlias&#34;</span><span class="p">:</span> <span class="s2">&#34;project/marketing&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;driveType&#34;</span><span class="p">:</span> <span class="s2">&#34;project&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;lastModifiedDateTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2023-01-18T17:13:48.385204589+01:00&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Marketing&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;owner&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;quota&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;remaining&#34;</span><span class="p">:</span> <span class="mi">5368709120</span><span class="p">,</span>
+        <span class="nt">&#34;state&#34;</span><span class="p">:</span> <span class="s2">&#34;normal&#34;</span><span class="p">,</span>
+<span class="hl">        <span class="nt">&#34;total&#34;</span><span class="p">:</span> <span class="mi">5368709120</span><span class="p">,</span>
+</span>        <span class="nt">&#34;used&#34;</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;root&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;eTag&#34;</span><span class="p">:</span> <span class="s2">&#34;\&#34;f91e56554fd9305db81a93778c0fae96\&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;permissions&#34;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&#34;grantedToIdentities&#34;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Admin&#34;</span><span class="p">,</span>
+                            <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;some-admin-user-id-0000-000000000000&#34;</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">],</span>
+                <span class="nt">&#34;roles&#34;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="s2">&#34;manager&#34;</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&#34;webDavUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/dav/spaces/storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;webUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/f/storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span>
+<span class="p">}</span>
+</code></pre></div>
+    </div>
+  
+</div>
+
+<div class="gdoc-page__anchorwrap">
+    <h3 id="change-the-space-name-subtitle-and-alias-patch-drivesdrive-id">
+        Change the space name, subtitle and alias <code>PATCH /drives/{drive-id}</code>
+        <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#change-the-space-name-subtitle-and-alias-patch-drivesdrive-id" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Change the space name, subtitle and alias PATCH /drives/{drive-id}" aria-label="Anchor to: Change the space name, subtitle and alias PATCH /drives/{drive-id}" href="#change-the-space-name-subtitle-and-alias-patch-drivesdrive-id">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>You can change multiple space properties in one request as long as you submit a valid JSON body. Please be aware that some properties need different permissions.</p>
+
+
+
+
+
+<div class="gdoc-tabs">
+  
+    <input
+      type="radio"
+      class="gdoc-tabs__control hidden"
+      name="tabs-change-space-props"
+      id="tabs-change-space-props-0"
+      checked="checked"
+    />
+    <label for="tabs-change-space-props-0" class="gdoc-tabs__label">
+      Request
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">curl -L -k -X PATCH <span class="s1">&#39;https://localhost:9200/graph/v1.0/drives/storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#39;</span> <span class="se">\
+</span><span class="se"></span>-H <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\
+</span><span class="se"></span>--data-raw <span class="s1">&#39;{
+</span><span class="s1">    &#34;name&#34;: &#34;Mars&#34;,
+</span><span class="s1">    &#34;description&#34;: &#34;Mission to mars&#34;,
+</span><span class="s1">    &#34;driveAlias&#34;: &#34;project/mission-to-mars&#34;
+</span><span class="s1">}&#39;</span>
+</code></pre></div>
+    </div>
+  
+    <input
+      type="radio"
+      class="gdoc-tabs__control hidden"
+      name="tabs-change-space-props"
+      id="tabs-change-space-props-1"
+      
+    />
+    <label for="tabs-change-space-props-1" class="gdoc-tabs__label">
+      Response - 200 OK
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+<span class="hl">    <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;Mission to mars&#34;</span><span class="p">,</span>
+</span><span class="hl">    <span class="nt">&#34;driveAlias&#34;</span><span class="p">:</span> <span class="s2">&#34;project/mission-to-mars&#34;</span><span class="p">,</span>
+</span>    <span class="nt">&#34;driveType&#34;</span><span class="p">:</span> <span class="s2">&#34;project&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;lastModifiedDateTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2023-01-19T14:17:36.094283+01:00&#34;</span><span class="p">,</span>
+<span class="hl">    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Mars&#34;</span><span class="p">,</span>
+</span>    <span class="nt">&#34;owner&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;quota&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;remaining&#34;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+        <span class="nt">&#34;state&#34;</span><span class="p">:</span> <span class="s2">&#34;normal&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;total&#34;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+        <span class="nt">&#34;used&#34;</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;root&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;eTag&#34;</span><span class="p">:</span> <span class="s2">&#34;\&#34;f5fee4fdfeedd6f98956500779eee15e\&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;permissions&#34;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&#34;grantedToIdentities&#34;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Admin&#34;</span><span class="p">,</span>
+                            <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;some-admin-user-id-0000-000000000000&#34;</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">],</span>
+                <span class="nt">&#34;roles&#34;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="s2">&#34;manager&#34;</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&#34;webDavUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/dav/spaces/storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;webUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/f/storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span>
+<span class="p">}</span>
+</code></pre></div>
+    </div>
+  
+</div>
+
+<div class="gdoc-page__anchorwrap">
+    <h2 id="disabling--deleting-spaces">
+        Disabling / Deleting Spaces
+        <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#disabling--deleting-spaces" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Disabling / Deleting Spaces" aria-label="Anchor to: Disabling / Deleting Spaces" href="#disabling--deleting-spaces">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="disable-a-space-delete-drivesdrive-id">
+        Disable a space <code>DELETE /drives/{drive-id}</code>
+        <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#disable-a-space-delete-drivesdrive-id" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Disable a space DELETE /drives/{drive-id}" aria-label="Anchor to: Disable a space DELETE /drives/{drive-id}" href="#disable-a-space-delete-drivesdrive-id">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>This operation will make the space content unavailable for all space members. No data will be deleted.</p>
+
+
+
+
+
+<div class="gdoc-tabs">
+  
+    <input
+      type="radio"
+      class="gdoc-tabs__control hidden"
+      name="tabs-disable-space"
+      id="tabs-disable-space-0"
+      checked="checked"
+    />
+    <label for="tabs-disable-space-0" class="gdoc-tabs__label">
+      Request
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">curl -L -k -X DELETE <span class="s1">&#39;https://localhost:9200/graph/v1.0/drives/storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff/&#39;</span>
+</code></pre></div>
+    </div>
+  
+    <input
+      type="radio"
+      class="gdoc-tabs__control hidden"
+      name="tabs-disable-space"
+      id="tabs-disable-space-1"
+      
+    />
+    <label for="tabs-disable-space-1" class="gdoc-tabs__label">
+      Response - 204 No Content
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <p>This response has no body value.</p>
+<p>A disabled space will appear in listings with a <code>root.deleted.state=trashed</code> property. The space description and the space image will not be readable anymore.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;Marketing team resources&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;driveAlias&#34;</span><span class="p">:</span> <span class="s2">&#34;project/marketing&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;driveType&#34;</span><span class="p">:</span> <span class="s2">&#34;project&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;lastModifiedDateTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2023-01-19T14:17:36.094283+01:00&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Marketing&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;owner&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;quota&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;total&#34;</span><span class="p">:</span> <span class="mi">15</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;root&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="hl">        <span class="nt">&#34;deleted&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class="hl">            <span class="nt">&#34;state&#34;</span><span class="p">:</span> <span class="s2">&#34;trashed&#34;</span>
+</span><span class="hl">        <span class="p">},</span>
+</span>        <span class="nt">&#34;eTag&#34;</span><span class="p">:</span> <span class="s2">&#34;\&#34;f5fee4fdfeedd6f98956500779eee15e\&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;permissions&#34;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&#34;grantedToIdentities&#34;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Admin&#34;</span><span class="p">,</span>
+                            <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;some-admin-user-id-0000-000000000000&#34;</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">],</span>
+                <span class="nt">&#34;roles&#34;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="s2">&#34;manager&#34;</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&#34;webDavUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/dav/spaces/storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;webUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/f/storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span>
+<span class="p">}</span>
+</code></pre></div>
+    </div>
+  
+</div>
+
+<div class="gdoc-page__anchorwrap">
+    <h3 id="restore-a-space-patch-drivesdrive-id">
+        Restore a space <code>PATCH /drives/{drive-id}</code>
+        <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#restore-a-space-patch-drivesdrive-id" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Restore a space PATCH /drives/{drive-id}" aria-label="Anchor to: Restore a space PATCH /drives/{drive-id}" href="#restore-a-space-patch-drivesdrive-id">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>This operation will make the space content available again to all members. No content will be changed.</p>
+<p>To restore a space, the Header <code>Restore: T</code> needs to be set.
+
+
+
+
+
+<div class="gdoc-tabs">
+  
+    <input
+      type="radio"
+      class="gdoc-tabs__control hidden"
+      name="tabs-restore-space"
+      id="tabs-restore-space-0"
+      checked="checked"
+    />
+    <label for="tabs-restore-space-0" class="gdoc-tabs__label">
+      Request
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">curl -L -X PATCH <span class="s1">&#39;https://localhost:9200/graph/v1.0/drives/storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff/&#39;</span> <span class="se">\
+</span><span class="se"></span>-H <span class="s1">&#39;Restore: T&#39;</span> <span class="se">\
+</span><span class="se"></span>-H <span class="s1">&#39;Content-Type: text/plain&#39;</span> <span class="se">\
+</span><span class="se"></span>--data-raw <span class="s1">&#39;{}&#39;</span>
+</code></pre></div><blockquote class="gdoc-hint info">
+  <div class="gdoc-hint__title flex align-center"><i class="fa info" title="Body value"></i></div>
+  <div class="gdoc-hint__text">This request needs an empty body (&ndash;data-raw &lsquo;{}') to fulfil the standard libregraph specificiation even when the body is not needed.</div>
+</blockquote>
+
+    </div>
+  
+    <input
+      type="radio"
+      class="gdoc-tabs__control hidden"
+      name="tabs-restore-space"
+      id="tabs-restore-space-1"
+      
+    />
+    <label for="tabs-restore-space-1" class="gdoc-tabs__label">
+      Response - 200 OK
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;Marketing team resources&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;driveAlias&#34;</span><span class="p">:</span> <span class="s2">&#34;project/marketing&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;driveType&#34;</span><span class="p">:</span> <span class="s2">&#34;project&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;lastModifiedDateTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2023-01-19T14:17:36.094283+01:00&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Marketing&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;owner&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;quota&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;remaining&#34;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+        <span class="nt">&#34;state&#34;</span><span class="p">:</span> <span class="s2">&#34;normal&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;total&#34;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+        <span class="nt">&#34;used&#34;</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;root&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;eTag&#34;</span><span class="p">:</span> <span class="s2">&#34;\&#34;f5fee4fdfeedd6f98956500779eee15e\&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;permissions&#34;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&#34;grantedToIdentities&#34;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Admin&#34;</span><span class="p">,</span>
+                            <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;some-admin-user-id-0000-000000000000&#34;</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">],</span>
+                <span class="nt">&#34;roles&#34;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="s2">&#34;manager&#34;</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&#34;webDavUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/dav/spaces/storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;webUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/f/storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span>
+<span class="p">}</span>
+</code></pre></div>
+    </div>
+  
+</div>
+</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="permanently-delete-a-space-delete-drivesdrive-id">
+        Permanently delete a space <code>DELETE /drives/{drive-id}</code>
+        <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#permanently-delete-a-space-delete-drivesdrive-id" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Permanently delete a space DELETE /drives/{drive-id}" aria-label="Anchor to: Permanently delete a space DELETE /drives/{drive-id}" href="#permanently-delete-a-space-delete-drivesdrive-id">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>This operation will delete a space and all its data permanently. This is restricted to spaces which are already disabled.</p>
+<p>To delete a space, the Header <code>Purge: T</code> needs to be set.</p>
+
+
+
+
+
+<div class="gdoc-tabs">
+  
+    <input
+      type="radio"
+      class="gdoc-tabs__control hidden"
+      name="tabs-delete-space"
+      id="tabs-delete-space-0"
+      checked="checked"
+    />
+    <label for="tabs-delete-space-0" class="gdoc-tabs__label">
+      Request
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">curl -L -X DELETE <span class="s1">&#39;https://localhost:9200/graph/v1.0/drives/storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#39;</span> <span class="se">\
+</span><span class="hl"><span class="se"></span>-H <span class="s1">&#39;Purge: T&#39;</span>
+</span></code></pre></div><blockquote class="gdoc-hint warning">
+  <div class="gdoc-hint__title flex align-center"><i class="fa warning" title="Data will be deleted"></i></div>
+  <div class="gdoc-hint__text">This request will delete a space and all its content permanently. This operation cannot be reverted.</div>
+</blockquote>
+
+    </div>
+  
+    <input
+      type="radio"
+      class="gdoc-tabs__control hidden"
+      name="tabs-delete-space"
+      id="tabs-delete-space-1"
+      
+    />
+    <label for="tabs-delete-space-1" class="gdoc-tabs__label">
+      Response - 204 No Content
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      This response has no body value.
+    </div>
+  
+    <input
+      type="radio"
+      class="gdoc-tabs__control hidden"
+      name="tabs-delete-space"
+      id="tabs-delete-space-2"
+      
+    />
+    <label for="tabs-delete-space-2" class="gdoc-tabs__label">
+      Response - 400 Bad Request
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <p>The space to be deleted was not disabled before.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;error&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;invalidRequest&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;innererror&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;date&#34;</span><span class="p">:</span> <span class="s2">&#34;2023-01-24T19:57:19Z&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;request-id&#34;</span><span class="p">:</span> <span class="s2">&#34;f62af40f-bc18-475e-acd7-e9008d6bd326&#34;</span>
+        <span class="p">},</span>
+        <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;error: bad request: can&#39;t purge enabled space&#34;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+    </div>
+  
+</div>
+
+
   </article>
 
 
