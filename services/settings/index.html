@@ -13,8 +13,11 @@
 
 
   <meta name="description" content="Abstract     When using oCIS, the requirement to store settings arises. This extension provides functionality for other extensions to register new settings within oCIS. It is responsible for storing the respective settings values as well.
-For ease of use, this extension provides an ocis-web extension which allows users to change their settings values. Please refer to the ocis-web extension docs for running ocis-web extensions.
- graph TD subgraph ow[ocis-web] ows[ocis-web-settings] owc[ocis-web-core] end ows ---|&#34;" />
+ graph TD ows ---|&#34;listSettingsBundles(),
+saveSettingsValue(value)&#34;| os[ocis-settings] owc ---|&#34;listSettingsValues()&#34;| sdk[oC SDK] sdk --- sdks{ocis-settings
+available?} sdks ---|&#34;yes&#34;| os sdks ---|&#34;no&#34;| defaults[Use set of
+default values] oa[oCIS extensions
+e.g. ocis-accounts] ---|&#34;saveSettingsBundle(bundle)&#34;| os  The diagram shows how the settings service integrates into oCIS:" />
 
     <title>Settings | ownCloud</title>
 
@@ -39,8 +42,11 @@ For ease of use, this extension provides an ocis-web extension which allows user
   />
   <meta property="og:site_name" content="ownCloud" />
   <meta property="og:description" content="Abstract     When using oCIS, the requirement to store settings arises. This extension provides functionality for other extensions to register new settings within oCIS. It is responsible for storing the respective settings values as well.
-For ease of use, this extension provides an ocis-web extension which allows users to change their settings values. Please refer to the ocis-web extension docs for running ocis-web extensions.
- graph TD subgraph ow[ocis-web] ows[ocis-web-settings] owc[ocis-web-core] end ows ---|&#34;" />
+ graph TD ows ---|&#34;listSettingsBundles(),
+saveSettingsValue(value)&#34;| os[ocis-settings] owc ---|&#34;listSettingsValues()&#34;| sdk[oC SDK] sdk --- sdks{ocis-settings
+available?} sdks ---|&#34;yes&#34;| os sdks ---|&#34;no&#34;| defaults[Use set of
+default values] oa[oCIS extensions
+e.g. ocis-accounts] ---|&#34;saveSettingsBundle(bundle)&#34;| os  The diagram shows how the settings service integrates into oCIS:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/settings/" />
 
@@ -58,8 +64,11 @@ For ease of use, this extension provides an ocis-web extension which allows user
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Settings" />
   <meta name="twitter:description" content="Abstract     When using oCIS, the requirement to store settings arises. This extension provides functionality for other extensions to register new settings within oCIS. It is responsible for storing the respective settings values as well.
-For ease of use, this extension provides an ocis-web extension which allows users to change their settings values. Please refer to the ocis-web extension docs for running ocis-web extensions.
- graph TD subgraph ow[ocis-web] ows[ocis-web-settings] owc[ocis-web-core] end ows ---|&#34;" />
+ graph TD ows ---|&#34;listSettingsBundles(),
+saveSettingsValue(value)&#34;| os[ocis-settings] owc ---|&#34;listSettingsValues()&#34;| sdk[oC SDK] sdk --- sdks{ocis-settings
+available?} sdks ---|&#34;yes&#34;| os sdks ---|&#34;no&#34;| defaults[Use set of
+default values] oa[oCIS extensions
+e.g. ocis-accounts] ---|&#34;saveSettingsBundle(bundle)&#34;| os  The diagram shows how the settings service integrates into oCIS:" />
 
 
   <script type="application/ld+json">
@@ -70,8 +79,8 @@ For ease of use, this extension provides an ocis-web extension which allows user
       "name": "Settings",
       "url" : "https://owncloud.dev/services/settings/",
       "headline": "Settings",
-      "description": "Abstract     When using oCIS, the requirement to store settings arises. This extension provides functionality for other extensions to register new settings within oCIS. It is responsible for storing the respective settings values as well.\nFor ease of use, this extension provides an ocis-web extension which allows users to change their settings values. Please refer to the ocis-web extension docs for running ocis-web extensions.\n graph TD subgraph ow[ocis-web] ows[ocis-web-settings] owc[ocis-web-core] end ows ---|\u0022",
-      "wordCount" : "225",
+      "description": "Abstract     When using oCIS, the requirement to store settings arises. This extension provides functionality for other extensions to register new settings within oCIS. It is responsible for storing the respective settings values as well.\n graph TD ows ---|\u0022listSettingsBundles(),\nsaveSettingsValue(value)\u0022| os[ocis-settings] owc ---|\u0022listSettingsValues()\u0022| sdk[oC SDK] sdk --- sdks{ocis-settings\navailable?} sdks ---|\u0022yes\u0022| os sdks ---|\u0022no\u0022| defaults[Use set of\ndefault values] oa[oCIS extensions\ne.g. ocis-accounts] ---|\u0022saveSettingsBundle(bundle)\u0022| os  The diagram shows how the settings service integrates into oCIS:",
+      "wordCount" : "109",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -14039,50 +14048,6 @@ Copyright 2022 Fonticons, Inc.
         
       
     
-      
-
-      
-        
-      
-
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/services/settings/tests/"
-                    class="gdoc-nav__entry"
-                  >
-                    Tests
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-    
   </ul>
 
             
@@ -15453,12 +15418,6 @@ Copyright 2022 Fonticons, Inc.
 <p>When using oCIS, the requirement to store settings arises. This extension provides functionality
 for other extensions to register new settings within oCIS. It is responsible for storing the respective
 settings values as well.</p>
-<p>For ease of use, this extension provides an ocis-web extension which allows users to change their settings values.
-Please refer to the <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/ocis/development/extensions/#external-ownCloud-Web-apps"
->ocis-web extension docs</a>
-for running ocis-web extensions.</p>
 
 
   
@@ -15469,10 +15428,6 @@ for running ocis-web extensions.</p>
 
 <pre class="gdoc-mermaid mermaid text-center">
 graph TD
-    subgraph ow[ocis-web]
-        ows[ocis-web-settings]
-        owc[ocis-web-core]
-    end
     ows ---|"listSettingsBundles(),<br>saveSettingsValue(value)"| os[ocis-settings]
     owc ---|"listSettingsValues()"| sdk[oC SDK]
     sdk --- sdks{ocis-settings<br>available?}
@@ -15485,16 +15440,11 @@ graph TD
 <p><strong>Settings management:</strong></p>
 <ul>
 <li>oCIS extensions can register <em>settings bundles</em> with the ocis-settings service.</li>
-<li>The settings frontend can be plugged into ocis-web, showing forms for changing <em>settings values</em> as a user.
-The forms are generated from the registered <em>settings bundles</em>.</li>
 </ul>
 <p><strong>Settings usage:</strong></p>
 <ul>
 <li>Extensions can query ocis-settings for <em>settings values</em> of a user.</li>
-<li>The ownCloud SDK, used as a data abstraction layer for ocis-web, will query ocis-settings for <em>settings values</em> of a user,
-if it&rsquo;s available. The SDK uses sensible defaults when ocis-settings is not part of the setup.</li>
 </ul>
-<p>For compatibility with ownCloud 10, a migration of ownCloud 10 settings into the storage of ocis-settings will be available.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="table-of-contents">
         Table of Contents
@@ -15534,12 +15484,6 @@ if it&rsquo;s available. The SDK uses sensible defaults when ocis-settings is no
           <li>
               <span>
                 <a href="/services/settings/glossary/" class="gdoc-toc__entry">Glossary
-                </a>
-              </span>
-          </li>
-          <li>
-              <span>
-                <a href="/services/settings/tests/" class="gdoc-toc__entry">Tests
                 </a>
               </span>
           </li>
