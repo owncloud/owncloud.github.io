@@ -65,7 +65,7 @@
       "url" : "https://owncloud.dev/ocis/development/testing/",
       "headline": "Testing",
       "description": "Testing with test suite in docker  Run full test suite Run single feature test oCIS image to be tested (or: skip build and take existing image) Test log output Cleanup   Testing with test suite natively installed  Run ocis Run the test-acceptance-from-core-api tests Run the test-acceptance-api tests use existing tests for BDD   Running tests for parallel deployment  Setup the parallel deployment environment Getting the test helpers Run the acceptance tests        To run tests in the test suite you have two options.",
-      "wordCount" : "1129",
+      "wordCount" : "1258",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -15449,11 +15449,11 @@ Copyright 2022 Fonticons, Inc.
 >oCIS feature test and test suites</a></li>
 <li><a
   class="gdoc-markdown__link"
-  href="https://github.com/owncloud/core/tree/master/tests/acceptance/features"
->ownCloud feature tests and test suites</a></li>
+  href="https://github.com/owncloud/ocis/tree/master/tests/acceptance/features"
+>tests and test suites transferred from ownCloud, they have prefix coreApi</a></li>
 </ul>
 <p>At the moment both can be applied to oCIS since the api of oCIS is designed to be compatible with ownCloud.</p>
-<p>Since we have to offer a migration path to existing users of ownCloud, you can use your existing ownCloud as the storage backend for oCIS. As another storage backend we offer oCIS native storage, also called &ldquo;oCIS&rdquo;. This stores files directly on disk. Which storage backend is used is also reflected in the tests, there are always different tests for oCIS storage and ownCloud storage.</p>
+<p>As a storage backend, we offer oCIS native storage, also called &ldquo;ocis&rdquo;. This stores files directly on disk. Along with that we also provide <code>S3</code> storage driver.</p>
 <p>You can invoke two types of test suite runs:</p>
 <ul>
 <li>run a full test suite, which consists of multiple feature tests</li>
@@ -15467,9 +15467,17 @@ Copyright 2022 Fonticons, Inc.
         </a>
     </h3>
 </div>
-<p>The names of the full test suite make targets have the same naming as in the CI pipeline.</p>
-<p>For example <code>make -C tests/acceptance/docker localApiTests-apiAccountsHashDifficulty-ocis</code> runs the same tests as the <code>localApiTests-apiAccountsHashDifficulty-ocis</code> CI pipeline, which runs the oCIS test suite &ldquo;apiAccountsHashDifficulty&rdquo; against an oCIS with oCIS storage.</p>
-<p>For example <code>make -C tests/acceptance/docker Core-API-Tests-owncloud-storage-3</code>runs the same tests as the <code>Core-API-Tests-owncloud-storage-3</code> CI pipeline, which runs the third (out of ten) ownCloud test suite against an oCIS with owncloud storage.</p>
+<p>The names of the full test suite make targets have the same naming as in the CI pipeline. The available local ocis specific test suites are <code>apiAccountsHashDifficulty</code>, <code>apiArchiver</code>, <code>apiContract</code>, <code>apiGraph</code>, <code>apiSpaces</code>, <code>apiSpacesShares</code>, <code>apiCors</code>, <code>apiAsyncUpload</code>. They can be run with <code>ocis</code> storage and <code>S3</code> storage.</p>
+<blockquote>
+<p>Note: In order to see the tests log attach <code>show-test-logs</code> in the command</p>
+</blockquote>
+<p>For example <code>make -C tests/acceptance/docker localApiTests-apiAccountsHashDifficulty-ocis</code> runs the same tests as the <code>localApiTests-apiAccountsHashDifficulty-ocis</code> CI pipeline, which runs the oCIS test suite &ldquo;apiAccountsHashDifficulty&rdquo; against an oCIS with ocis storage.</p>
+<p>For example <code>make -C tests/acceptance/docker localApiTests-apiAccountsHashDifficulty-s3ng</code> runs the oCIS test suite &ldquo;apiAccountsHashDifficulty&rdquo; against an oCIS with s3 storage.</p>
+<blockquote>
+<p>Note: To run the tests from <code>apiAsyncUpload</code> suite you need to provide extra environment variable <code>POSTPROCESSING_DELAY</code></p>
+</blockquote>
+<p>For example <code>make -C tests/acceptance/docker Core-API-Tests-ocis-storage-3</code> runs the same tests as the <code>Core-API-Tests-ocis-storage-3</code> CI pipeline, which runs the third (out of ten) test suite transferred from ownCloud against an oCIS with ocis storage.</p>
+<p>For example <code>make -C tests/acceptance/docker Core-API-Tests-s3ng-storage-3</code> runs the third (out of ten) test suite transferred from ownCloud against an oCIS with s3 storage.</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="run-single-feature-test">
         Run single feature test
@@ -15479,11 +15487,32 @@ Copyright 2022 Fonticons, Inc.
     </h3>
 </div>
 <p>The single feature tests can also be run against the different storage backends. Therefore, multiple make targets with the schema test-<test source>-feature-<storage backend> exist. To select a single feature you have to add an additional <code>BEHAT_FEATURE=...</code> parameter when invoking the make command:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">make -C tests/acceptance/docker test-ocis-feature-ocis-storage BEHAT_FEATURE=&#39;tests/acceptance/features/apiAccountsHashDifficulty/addUser.feature&#39;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">make -C tests/acceptance/docker test-ocis-feature-ocis-storage BEHAT_FEATURE=&#39;tests/acceptance/features/apiAccountsHashDifficulty/addUser.feature:21&#39;
 </code></pre></div><p>This must be pointing to a valid feature definition.</p>
 <p>To run a single scenario in a feature, then mention the line number of the scenario:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">make -C tests/acceptance/docker test-ocis-feature-ocis-storage BEHAT_FEATURE=&#39;tests/acceptance/features/apiAccountsHashDifficulty/addUser.feature:20&#39;
-</code></pre></div><div class="gdoc-page__anchorwrap">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">make -C tests/acceptance/docker test-ocis-feature-ocis-storage BEHAT_FEATURE=&#39;tests/acceptance/features/apiAccountsHashDifficulty/addUser.feature:21&#39;
+</code></pre></div><p>Similarly, with S3 storage,</p>
+<ul>
+<li>run a whole feature</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">make -C tests/acceptance/docker test-ocis-feature-s3ng-storage BEHAT_FEATURE=&#39;tests/acceptance/features/apiAccountsHashDifficulty/addUser.feature&#39;
+</code></pre></div><ul>
+<li>run a single scenario</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">make -C tests/acceptance/docker test-ocis-feature-s3ng-storage BEHAT_FEATURE=&#39;tests/acceptance/features/apiAccountsHashDifficulty/addUser.feature:21&#39;
+</code></pre></div><p>In the same way for the tests transferred from oc10 can be run as</p>
+<ul>
+<li>run a whole feature</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">make -C tests/acceptance/docker test-core-feature-ocis-storage BEHAT_FEATURE=&#39;tests/acceptance/features/coreApiAuth/webDavAuth.feature&#39;
+</code></pre></div><ul>
+<li>run a single scenario</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">make -C tests/acceptance/docker test-core-feature-ocis-storage BEHAT_FEATURE=&#39;tests/acceptance/features/coreApiAuth/webDavAuth.feature:13&#39;
+</code></pre></div><blockquote>
+<p>Note: the tests transferred from oc10 start with coreApi</p>
+</blockquote>
+<div class="gdoc-page__anchorwrap">
     <h3 id="ocis-image-to-be-tested-or-skip-build-and-take-existing-image">
         oCIS image to be tested (or: skip build and take existing image)
         <a data-clipboard-text="https://owncloud.dev/ocis/development/testing/#ocis-image-to-be-tested-or-skip-build-and-take-existing-image" class="gdoc-page__anchor clip flex align-center" title="Anchor to: oCIS image to be tested (or: skip build and take existing image)" aria-label="Anchor to: oCIS image to be tested (or: skip build and take existing image)" href="#ocis-image-to-be-tested-or-skip-build-and-take-existing-image">
