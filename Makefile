@@ -1,5 +1,5 @@
 # renovate: datasource=github-releases depName=thegeeklab/hugo-geekdoc
-THEME_VERSION ?= v0.37.3
+THEME_VERSION ?= v0.37.4
 
 .PHONY: theme-clean
 theme-clean:
