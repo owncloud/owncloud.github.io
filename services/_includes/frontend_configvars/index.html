@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/frontend_configvars/",
       "headline": "Frontend Configvars",
       "description": "Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDFRONTEND_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPEFRONTEND_TRACING_TYPE string  The type of tracing. Defaults to “”, which is the same as “jaeger”. Allowed tracing types are “jaeger” and \u0022\u0022 as of now.   OCIS_TRACING_ENDPOINTFRONTEND_TRACING_ENDPOINT string  The endpoint of the tracing agent.   OCIS_TRACING_COLLECTORFRONTEND_TRACING_COLLECTOR string  The HTTP endpoint for sending spans directly to a collector, i.",
-      "wordCount" : "885",
+      "wordCount" : "956",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -15773,13 +15773,13 @@ Copyright 2022 Fonticons, Inc.
 <td>FRONTEND_OCS_PREFIX</td>
 <td>string</td>
 <td>ocs</td>
-<td>Path prefix for the OCS service</td>
+<td>URL prefix for the OCS service. Note that the string must not start with &lsquo;/&rsquo;.</td>
 </tr>
 <tr>
 <td>FRONTEND_OCS_SHARE_PREFIX</td>
 <td>string</td>
 <td>/Shares</td>
-<td>Path prefix for shares.</td>
+<td>Path prefix for shares as part of an ocis resource. Note that the path must start with &lsquo;/&rsquo;.</td>
 </tr>
 <tr>
 <td>FRONTEND_OCS_HOME_NAMESPACE</td>
@@ -15803,25 +15803,25 @@ Copyright 2022 Fonticons, Inc.
 <td>FRONTEND_OCS_RESOURCE_INFO_CACHE_TYPE</td>
 <td>string</td>
 <td>memory</td>
-<td>Resource info cache type. Supported values are &lsquo;memory&rsquo; and &lsquo;redis&rsquo;.</td>
+<td>The type of the resource info cache. Supported values are &lsquo;memory&rsquo; and &lsquo;redis&rsquo;.</td>
 </tr>
 <tr>
 <td>FRONTEND_OCS_RESOURCE_INFO_CACHE_REDIS_ADDR</td>
 <td>string</td>
 <td></td>
-<td>Redis service address</td>
+<td>A comma separated list of addresses to access the configured store. This has no effect when the &lsquo;memory&rsquo; store is configured. Note that the behaviour how addresses are used is dependent on the library of the configured store.</td>
 </tr>
 <tr>
 <td>FRONTEND_OCS_RESOURCE_INFO_CACHE_REDIS_USERNAME</td>
 <td>string</td>
 <td></td>
-<td>Redis username</td>
+<td>The username to access the redis cache.</td>
 </tr>
 <tr>
 <td>FRONTEND_OCS_RESOURCE_INFO_CACHE_REDIS_PASSWORD</td>
 <td>string</td>
 <td></td>
-<td>Redis password</td>
+<td>The password to access the redis cache.</td>
 </tr>
 <tr>
 <td>FRONTEND_OCS_ENABLE_DENIALS</td>
