@@ -71,7 +71,7 @@
       "url" : "https://owncloud.dev/clients/web/getting-started/",
       "headline": "Getting Started",
       "description": "Installation  Docker Source code   Configuration    Options   Sentry   Setting up backend and running Running      Installation     Docker     Make sure to have Docker, Docker-Compose, Node.js and pnpm installed.\n This setup currently doesn’t work on Windows out of the box.\n Workaround One of our contributors has opened a PR to a dependency that prevents us from successfully bundling the frontend.",
-      "wordCount" : "847",
+      "wordCount" : "922",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -15615,9 +15615,15 @@ Please refer to the <a
 menu item. The user will not be jailed in that directory. It simply serves as a default location. You can either provide a static location, or you can use
 variables of the user object to come up with a user specific home path. This uses twig template variable style and allows you to pick a value or a
 substring of a value of the authenticated user. Examples are <code>/Shares</code>, <code>/{{.Id}}</code> and <code>/{{substr 0 3 .Id}}/{{.Id}</code>.</li>
+<li><code>options.openAppsInTab</code> Configures whether apps and extensions generally should open in a new tab. Defaults to false.</li>
 <li><code>options.disablePreviews</code> Set this option to <code>true</code> to disable previews in all the different file listing views. The only list view that is not affected
 by this is the trash bin, as that doesn&rsquo;t allow showing previews at all.</li>
 <li><code>options.previewFileMimeTypes</code> Specifies which mimeTypes will be previewed in the ui. For example to only preview jpg and text files set this option to <code>[&quot;image/jpeg&quot;, &quot;text/plain&quot;]</code>.</li>
+<li><code>options.accountEditLink</code> This accepts an object with the following optional fields to have a link on the account page:
+<ul>
+<li><code>options.accountEditLink.href</code> Set a different target URL for the edit link. Make sure to prepend it with <code>http(s)://</code>.</li>
+</ul>
+</li>
 <li><code>options.disableFeedbackLink</code> Set this option to <code>true</code> to disable the feedback link in the topbar. Keeping it enabled (value <code>false</code> or absence of the option)
 allows ownCloud to get feedback from your user base through a dedicated survey website.</li>
 <li><code>options.feedbackLink</code> This accepts an object with the following optional fields to customize the feedback link in the topbar:
@@ -15642,6 +15648,8 @@ hovers the row with his mouse. Defaults to <code>false</code>.</li>
 </ul>
 </li>
 <li><code>options.upload.xhr.timeout</code> Specifies the timeout for XHR uploads in milliseconds.</li>
+<li><code>options.editor.autosaveEnabled</code> Specifies if the autosave for the editor apps is enabled.</li>
+<li><code>options.editor.autosaveInterval</code> Specifies the time interval for the autosave of editor apps in seconds.</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h3 id="sentry">
