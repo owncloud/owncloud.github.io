@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/proxy_configvars/",
       "headline": "Proxy Configvars",
       "description": "Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDPROXY_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPEPROXY_TRACING_TYPE string  The type of tracing. Defaults to “”, which is the same as “jaeger”. Allowed tracing types are “jaeger” and \u0022\u0022 as of now.   OCIS_TRACING_ENDPOINTPROXY_TRACING_ENDPOINT string  The endpoint of the tracing agent.   OCIS_TRACING_COLLECTORPROXY_TRACING_COLLECTOR string  The HTTP endpoint for sending spans directly to a collector, i.",
-      "wordCount" : "849",
+      "wordCount" : "922",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17012,6 +17012,18 @@ Copyright 2022 Fonticons, Inc.
 <td>string</td>
 <td></td>
 <td>The secret to mint and validate JWT tokens.</td>
+</tr>
+<tr>
+<td>PROXY_ROLE_ASSIGNMENT_DRIVER</td>
+<td>string</td>
+<td>default</td>
+<td>The mechanism that should be used to assign roles to user upon login. Supported values: &lsquo;default&rsquo; or &lsquo;oidc&rsquo;. &lsquo;default&rsquo; will assign the role &lsquo;user&rsquo; to users which don&rsquo;t have a role assigned at the time they login. &lsquo;oidc&rsquo; will assign the role based on the value of a claim (configured via PROXY_ROLE_ASSIGNMENT_OIDC_CLAIM) from the users OIDC claims.</td>
+</tr>
+<tr>
+<td>PROXY_ROLE_ASSIGNMENT_OIDC_CLAIM</td>
+<td>string</td>
+<td>roles</td>
+<td>The OIDC claim used to create the users role assignment.</td>
 </tr>
 <tr>
 <td>PROXY_ENABLE_PRESIGNEDURLS</td>
