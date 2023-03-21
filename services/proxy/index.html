@@ -12,8 +12,8 @@
 <meta name="generator" content="Hugo 0.99.1" />
 
 
-  <meta name="description" content="Abstract     The proxy service acts as an API Gateway and routes requests to the correct target service. It also provides standard proxy services.
-Table of Contents        Service Configuration      " />
+  <meta name="description" content="Abstract     The proxy service is an API-Gateway for the ownCloud Infinite Scale microservices. Every HTTP request goes through this service. Authentication, logging and other preprocessing of requests also happens here. Mechanisms like request rate limitting or intrusion prevention are not included in the proxy service and must be setup in front like with an external reverse proxy.
+The proxy service is the only service communicating to the outside and needs therefore usual protections against DDOS, Slow Loris or other attack vectors." />
 
     <title>Proxy | ownCloud</title>
 
@@ -37,8 +37,8 @@ Table of Contents        Service Configuration      " />
     content="Proxy"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Abstract     The proxy service acts as an API Gateway and routes requests to the correct target service. It also provides standard proxy services.
-Table of Contents        Service Configuration      " />
+  <meta property="og:description" content="Abstract     The proxy service is an API-Gateway for the ownCloud Infinite Scale microservices. Every HTTP request goes through this service. Authentication, logging and other preprocessing of requests also happens here. Mechanisms like request rate limitting or intrusion prevention are not included in the proxy service and must be setup in front like with an external reverse proxy.
+The proxy service is the only service communicating to the outside and needs therefore usual protections against DDOS, Slow Loris or other attack vectors." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/proxy/" />
 
@@ -51,8 +51,8 @@ Table of Contents        Service Configuration      " />
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Proxy" />
-  <meta name="twitter:description" content="Abstract     The proxy service acts as an API Gateway and routes requests to the correct target service. It also provides standard proxy services.
-Table of Contents        Service Configuration      " />
+  <meta name="twitter:description" content="Abstract     The proxy service is an API-Gateway for the ownCloud Infinite Scale microservices. Every HTTP request goes through this service. Authentication, logging and other preprocessing of requests also happens here. Mechanisms like request rate limitting or intrusion prevention are not included in the proxy service and must be setup in front like with an external reverse proxy.
+The proxy service is the only service communicating to the outside and needs therefore usual protections against DDOS, Slow Loris or other attack vectors." />
 
 
   <script type="application/ld+json">
@@ -63,8 +63,8 @@ Table of Contents        Service Configuration      " />
       "name": "Proxy",
       "url" : "https://owncloud.dev/services/proxy/",
       "headline": "Proxy",
-      "description": "Abstract     The proxy service acts as an API Gateway and routes requests to the correct target service. It also provides standard proxy services.\nTable of Contents        Service Configuration      ",
-      "wordCount" : "28",
+      "description": "Abstract     The proxy service is an API-Gateway for the ownCloud Infinite Scale microservices. Every HTTP request goes through this service. Authentication, logging and other preprocessing of requests also happens here. Mechanisms like request rate limitting or intrusion prevention are not included in the proxy service and must be setup in front like with an external reverse proxy.\nThe proxy service is the only service communicating to the outside and needs therefore usual protections against DDOS, Slow Loris or other attack vectors.",
+      "wordCount" : "527",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -16827,7 +16827,8 @@ Copyright 2022 Fonticons, Inc.
         </a>
     </h2>
 </div>
-<p>The proxy service acts as an API Gateway and routes requests to the correct target service. It also provides standard proxy services.</p>
+<p>The proxy service is an API-Gateway for the ownCloud Infinite Scale microservices. Every HTTP request goes through this service. Authentication, logging and other preprocessing of requests also happens here. Mechanisms like request rate limitting or intrusion prevention are <strong>not</strong> included in the proxy service and must be setup in front like with an external reverse proxy.</p>
+<p>The proxy service is the only service communicating to the outside and needs therefore usual protections against DDOS, Slow Loris or other attack vectors. All other services are not exposed to the outside, but also need protective measures when it comes to distributed setups like when using container orchestration over various physical servers.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="table-of-contents">
         Table of Contents
@@ -16852,6 +16853,86 @@ Copyright 2022 Fonticons, Inc.
 
 
 
+<div class="gdoc-page__anchorwrap">
+    <h2 id="authentication">
+        Authentication
+        <a data-clipboard-text="https://owncloud.dev/services/proxy/#authentication" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Authentication" aria-label="Anchor to: Authentication" href="#authentication">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>The following request authentication schemes are implemented:</p>
+<ul>
+<li>Basic Auth (Only use in development, <strong>never in production</strong> setups!)</li>
+<li>OpenID Connect</li>
+<li>Signed URL</li>
+<li>Public Share Token</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="automatic-quota-assignments">
+        Automatic Quota Assignments
+        <a data-clipboard-text="https://owncloud.dev/services/proxy/#automatic-quota-assignments" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Automatic Quota Assignments" aria-label="Anchor to: Automatic Quota Assignments" href="#automatic-quota-assignments">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>It is possible to automatically assign a specific quota to new users depending on their role.
+To do this, you need to configure a mapping between roles defined by their ID and the quota in bytes.
+The assignment can only be done via a <code>yaml</code> configuration and not via environment variables.
+See the following <code>proxy.yaml</code> config snippet for a configuration example.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">role_quotas</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">&lt;role ID1&gt;</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;quota1&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">&lt;role ID2&gt;</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;quota2&gt;</span><span class="w">
+</span></span></span></code></pre></div><div class="gdoc-page__anchorwrap">
+    <h2 id="automatic-role-assignments">
+        Automatic Role Assignments
+        <a data-clipboard-text="https://owncloud.dev/services/proxy/#automatic-role-assignments" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Automatic Role Assignments" aria-label="Anchor to: Automatic Role Assignments" href="#automatic-role-assignments">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>When users login, they do automatically get a role assigned. The automatic role assignment can be
+configured in different ways. The <code>PROXY_ROLE_ASSIGNMENT_DRIVER</code> environment variable (or the <code>driver</code>
+setting in the <code>role_assignment</code> section of the configuration file) select which mechanism to use for
+the automatic role assignment.</p>
+<p>When set to <code>default</code>, all users which do not have a role assigned at the time for the first login will
+get the role &lsquo;user&rsquo; assigned. (This is also the default behavior if <code>PROXY_ROLE_ASSIGNMENT_DRIVER</code>
+is unset.</p>
+<p>When <code>PROXY_ROLE_ASSIGNMENT_DRIVER</code> is set to <code>oidc</code> the role assignment for a user will happen
+based on the values of an OpenID Connect Claim of that user. The name of the OpenID Connect Claim to
+be used for the role assignment can be configured via the <code>PROXY_ROLE_ASSIGNMENT_OIDC_CLAIM</code>
+environment variable. It is also possible to define a mapping of claim values to role names defined
+in ownCloud Infinite Scale via a <code>yaml</code> configuration. See the following <code>proxy.yaml</code> snippet for an
+example.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">role_assignment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l">oidc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">oidc_role_mapper</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">role_claim</span><span class="p">:</span><span class="w"> </span><span class="l">ocisRoles</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">role_mapping</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">admin</span><span class="p">:</span><span class="w"> </span><span class="l">myAdminRole</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l">myUserRole</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">spaceadmin</span><span class="p">:</span><span class="w"> </span><span class="l">mySpaceAdminRole</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">guest</span><span class="p">:</span><span class="w"> </span><span class="l">myGuestRole</span><span class="w">
+</span></span></span></code></pre></div><p>This would assign the role <code>admin</code> to users with the value <code>myAdminRole</code> in the claim <code>ocisRoles</code>.
+The role <code>user</code> to users with the values <code>myUserRole</code> in the claims <code>ocisRoles</code> and so on.</p>
+<p>Claim values that are not mapped to a specific ownCloud Infinite Scale role will be ignored.</p>
+<p>Note: An ownCloud Infinite Scale user can only have a single role assigned. If the configured
+<code>role_mapping</code> and a user&rsquo;s claim values result in multiple possible roles for a user, an error
+will be logged and the user will not be able to login.</p>
+<p>The default <code>role_claim</code> (or <code>PROXY_ROLE_ASSIGNMENT_OIDC_CLAIM</code>) is <code>roles</code>. The <code>role_mapping</code> is:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">admin</span><span class="p">:</span><span class="w"> </span><span class="l">ocisAdmin</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l">ocisUser</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spaceadmin</span><span class="p">:</span><span class="w"> </span><span class="l">ocisSpaceAdmin</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">guest</span><span class="p">:</span><span class="w"> </span><span class="l">ocisGuest</span><span class="w">
+</span></span></span></code></pre></div><div class="gdoc-page__anchorwrap">
+    <h2 id="recommendations-for-production-deployments">
+        Recommendations for Production Deployments
+        <a data-clipboard-text="https://owncloud.dev/services/proxy/#recommendations-for-production-deployments" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Recommendations for Production Deployments" aria-label="Anchor to: Recommendations for Production Deployments" href="#recommendations-for-production-deployments">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>In a production deployment, you want to have basic authentication (<code>PROXY_ENABLE_BASIC_AUTH</code>) disabled which is the default state. You also want to setup a firewall to only allow requests to the proxy service or the reverse proxy if you have one. Requests to the other services should be blocked by the firewall.</p>
 
   </article>
 
