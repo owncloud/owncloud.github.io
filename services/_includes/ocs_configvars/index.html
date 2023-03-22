@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/ocs_configvars/",
       "headline": "Ocs Configvars",
       "description": "Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDOCS_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPEOCS_TRACING_TYPE string  The type of tracing. Defaults to “”, which is the same as “jaeger”. Allowed tracing types are “jaeger” and \u0022\u0022 as of now.   OCIS_TRACING_ENDPOINTOCS_TRACING_ENDPOINT string  The endpoint of the tracing agent.   OCIS_TRACING_COLLECTOROCS_TRACING_COLLECTOR string  The HTTP endpoint for sending spans directly to a collector, i.",
-      "wordCount" : "415",
+      "wordCount" : "492",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -16876,22 +16876,40 @@ Copyright 2022 Fonticons, Inc.
 <td>The path to the log file. Activates logging to this file if set.</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_STORE_TYPE<br/>OCS_CACHE_STORE_TYPE</td>
+<td>OCIS_CACHE_STORE<br/>OCS_CACHE_STORE<br/>OCIS_CACHE_STORE_TYPE<br/>OCS_CACHE_STORE_TYPE</td>
 <td>string</td>
 <td></td>
-<td>The type of the cache store. Valid options are &ldquo;noop&rdquo;, &ldquo;ocmem&rdquo;, &ldquo;etcd&rdquo; and &ldquo;memory&rdquo;</td>
+<td>The type of the cache store. Supported values are: &lsquo;memory&rsquo;, &lsquo;ocmem&rsquo;, &rsquo;etcd&rsquo;, &lsquo;redis&rsquo;, &lsquo;redis-sentinel&rsquo;, &rsquo;nats-js&rsquo;, &rsquo;noop&rsquo;. See the text description for details.</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_STORE_ADDRESS<br/>OCS_CACHE_STORE_ADDRESS</td>
+<td>OCIS_CACHE_STORE_NODES<br/>OCS_CACHE_STORE_NODES<br/>OCIS_CACHE_STORE_ADDRESSES<br/>OCS_CACHE_STORE_ADDRESSES</td>
+<td>[]string</td>
+<td>[]</td>
+<td>A comma separated list of nodes to access the configured store. This has no effect when &lsquo;in-memory&rsquo; stores are configured. Note that the behaviour how nodes are used is dependent on the library of the configured store.</td>
+</tr>
+<tr>
+<td>OCS_CACHE_STORE_DATABASE</td>
 <td>string</td>
 <td></td>
-<td>A comma-separated list of addresses to connect to. Only valid if the above setting is set to &ldquo;etcd&rdquo;</td>
+<td>The database name the configured store should use.</td>
+</tr>
+<tr>
+<td>OCS_CACHE_STORE_TABLE</td>
+<td>string</td>
+<td></td>
+<td>The database table the store should use.</td>
+</tr>
+<tr>
+<td>OCIS_CACHE_STORE_TTL<br/>OCS_CACHE_STORE_TTL</td>
+<td>Duration</td>
+<td>0s</td>
+<td>Time to live for events in the store. The duration can be set as number followed by a unit identifier like s, m or h. Defaults to &lsquo;336h&rsquo; (2 weeks).</td>
 </tr>
 <tr>
 <td>OCIS_CACHE_STORE_SIZE<br/>OCS_CACHE_STORE_SIZE</td>
 <td>int</td>
 <td>0</td>
-<td>Maximum number of items per table in the ocmem cache store. Other cache stores will ignore the option and can grow indefinitely.</td>
+<td>The maximum quantity of items in the store. Only applies when store type &lsquo;ocmem&rsquo; is configured. Defaults to 512.</td>
 </tr>
 <tr>
 <td>OCS_DEBUG_ADDR</td>
