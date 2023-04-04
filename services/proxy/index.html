@@ -43,11 +43,11 @@
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-04-04T08:25:19+00:00"
+      content="2023-04-04T08:47:13+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-04-04T08:25:19+00:00"
+      content="2023-04-04T08:47:13+00:00"
     />
 
 
@@ -65,7 +65,7 @@
       "url" : "https://owncloud.dev/services/proxy/",
       "headline": "Proxy Service",
       "description": "Abstract     The proxy service is an API-Gateway for the ownCloud Infinite Scale microservices. Every HTTP request goes through this service. Authentication, logging and other preprocessing of requests also happens here. Mechanisms like request rate limitting or intrusion prevention are not included in the proxy service and must be setup in front like with an external reverse proxy. The proxy service is the only service communicating to the outside and needs therefore usual protections against DDOS, Slow Loris or other attack vectors.",
-      "wordCount" : "1795",
+      "wordCount" : "1966",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -74,9 +74,9 @@
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-04-04T08:25:19.62Z",
-      "datePublished": "2023-04-04T08:25:19.62Z",
-      "dateModified": "2023-04-04T08:25:19.62Z",
+      "dateCreated": "2023-04-04T08:47:13.61Z",
+      "datePublished": "2023-04-04T08:47:13.61Z",
+      "dateModified": "2023-04-04T08:47:13.61Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -13739,7 +13739,7 @@ Copyright 2022 Fonticons, Inc.
                     href="/services/gateway/"
                     class="gdoc-nav__entry"
                   >
-                    Gateway
+                    Gateway Service
                   </a>
                 </span>
               
@@ -14755,7 +14755,7 @@ Copyright 2022 Fonticons, Inc.
                     href="/services/ocs/"
                     class="gdoc-nav__entry"
                   >
-                    Ocs
+                    OCS Service
                   </a>
                 </span>
               
@@ -17093,6 +17093,10 @@ The proxy service is the only service communicating to the outside and needs the
 >Recommendations for Production Deployments</a></li>
 <li><a
   class="gdoc-markdown__link"
+  href="#caching"
+>Caching</a></li>
+<li><a
+  class="gdoc-markdown__link"
   href="#example-yaml-config"
 >Example Yaml Config</a></li>
 </ul>
@@ -17176,6 +17180,33 @@ The default <code>role_claim</code> (or <code>PROXY_ROLE_ASSIGNMENT_OIDC_CLAIM</
     </h2>
 </div>
 <p>In a production deployment, you want to have basic authentication (<code>PROXY_ENABLE_BASIC_AUTH</code>) disabled which is the default state. You also want to setup a firewall to only allow requests to the proxy service or the reverse proxy if you have one. Requests to the other services should be blocked by the firewall.</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="caching">
+        Caching
+        <a data-clipboard-text="https://owncloud.dev/services/proxy/#caching" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Caching" aria-label="Anchor to: Caching" href="#caching">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>The <code>proxy</code> service can use a configured store via <code>PROXY_STORE_TYPE</code>. Possible stores are:</p>
+<ul>
+<li><code>memory</code>: Basic in-memory store and the default.</li>
+<li><code>ocmem</code>: Advanced in-memory store allowing max size.</li>
+<li><code>redis</code>: Stores data in a configured redis cluster.</li>
+<li><code>redis-sentinel</code>: Stores data in a configured redis sentinel cluster.</li>
+<li><code>etcd</code>: Stores data in a configured etcd cluster.</li>
+<li><code>nats-js</code>: Stores data using key-value-store feature of <a
+  class="gdoc-markdown__link"
+  href="https://docs.nats.io/nats-concepts/jetstream/key-value-store"
+>nats jetstream</a></li>
+<li><code>noop</code>: Stores nothing. Useful for testing. Not recommended in productive enviroments.</li>
+</ul>
+<ol>
+<li>Note that in-memory stores are by nature not reboot persistent.</li>
+<li>Though usually not necessary, a database name and a database table can be configured for event stores if the event store supports this. Generally not applicapable for stores of type <code>in-memory</code>. These settings are blank by default which means that the standard settings of the configured store applies.</li>
+<li>The proxy service can be scaled if not using <code>in-memory</code> stores and the stores are configured identically over all instances.</li>
+<li>When using <code>redis-sentinel</code>, the Redis master to use is configured via <code>PROXY_OIDC_USERINFO_CACHE_NODES</code> in the form of <code>&lt;sentinel-host&gt;:&lt;sentinel-port&gt;/&lt;redis-master&gt;</code> like <code>10.10.0.200:26379/mymaster</code>.</li>
+</ol>
 <div class="gdoc-page__anchorwrap">
     <h2 id="example-yaml-config">
         Example Yaml Config
