@@ -45,11 +45,11 @@ Table of Contents      Prerequisites Storing Configuring Retrieving Deleting Tra
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-04-04T08:47:13+00:00"
+      content="2023-04-04T10:15:12+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-04-04T08:47:13+00:00"
+      content="2023-04-04T10:15:12+00:00"
     />
 
 
@@ -77,9 +77,9 @@ Table of Contents      Prerequisites Storing Configuring Retrieving Deleting Tra
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-04-04T08:47:13.61Z",
-      "datePublished": "2023-04-04T08:47:13.61Z",
-      "dateModified": "2023-04-04T08:47:13.61Z",
+      "dateCreated": "2023-04-04T10:15:12.26Z",
+      "datePublished": "2023-04-04T10:15:12.26Z",
+      "dateModified": "2023-04-04T10:15:12.26Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17147,7 +17147,7 @@ Copyright 2022 Fonticons, Inc.
 <li>Note that in-memory stores are by nature not reboot persistent.</li>
 <li>Though usually not necessary, a database name and a database table can be configured for event stores if the event store supports this. Generally not applicapable for stores of type <code>in-memory</code>. These settings are blank by default which means that the standard settings of the configured store applies.</li>
 <li>The userlog service can be scaled if not using <code>in-memory</code> stores and the stores are configured identically over all instances.</li>
-<li>When using <code>redis-sentinel</code>, the Redis master to use is configured via <code>USERLOG_STORE_ADDRESSES</code> in the form of <code>&lt;sentinel-host&gt;:&lt;sentinel-port&gt;/&lt;redis-master&gt;</code> like <code>10.10.0.200:26379/mymaster</code>.</li>
+<li>When using <code>redis-sentinel</code>, the Redis master to use is configured via <code>USERLOG_STORE_NODES</code> in the form of <code>&lt;sentinel-host&gt;:&lt;sentinel-port&gt;/&lt;redis-master&gt;</code> like <code>10.10.0.200:26379/mymaster</code>.</li>
 </ol>
 <div class="gdoc-page__anchorwrap">
     <h2 id="configuring">
@@ -17534,7 +17534,7 @@ For example, for the language <code>de_DE</code>, one needs to place the corresp
 <td>The type of the userlog store. Supported values are: &lsquo;memory&rsquo;, &lsquo;ocmem&rsquo;, &rsquo;etcd&rsquo;, &lsquo;redis&rsquo;, &lsquo;redis-sentinel&rsquo;, &rsquo;nats-js&rsquo;, &rsquo;noop&rsquo;. See the text description for details.</td>
 </tr>
 <tr>
-<td>OCIS_PERSISTENT_STORE_NODES<br/>USERLOG_STORE_ADDRESSES</td>
+<td>OCIS_PERSISTENT_STORE_NODES<br/>USERLOG_STORE_NODES<br/>USERLOG_STORE_ADDRESSES</td>
 <td>[]string</td>
 <td>[]</td>
 <td>A comma separated list of nodes to access the configured store. This has no effect when &lsquo;in-memory&rsquo; stores are configured. Note that the behaviour how nodes are used is dependent on the library of the configured store.</td>
