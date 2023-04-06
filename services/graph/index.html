@@ -45,11 +45,11 @@ Table of Contents      Manual Filters Sequence Diagram Caching Example Yaml Conf
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-04-06T01:03:14+00:00"
+      content="2023-04-06T09:00:12+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-04-06T01:03:14+00:00"
+      content="2023-04-06T09:00:12+00:00"
     />
 
 
@@ -77,9 +77,9 @@ Table of Contents      Manual Filters Sequence Diagram Caching Example Yaml Conf
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-04-06T01:03:14.21Z",
-      "datePublished": "2023-04-06T01:03:14.21Z",
-      "dateModified": "2023-04-06T01:03:14.21Z",
+      "dateCreated": "2023-04-06T09:00:12.25Z",
+      "datePublished": "2023-04-06T09:00:12.25Z",
+      "dateModified": "2023-04-06T09:00:12.25Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17639,7 +17639,7 @@ Copyright 2022 Fonticons, Inc.
 <td>Whether to assign newly created users the default role &lsquo;User&rsquo;. Set this to &lsquo;false&rsquo; if you want to assign roles manually, or if the role assignment should happen at first login. Set this to &rsquo;true&rsquo; (the default) to assign the role &lsquo;User&rsquo; when creating a new user.</td>
 </tr>
 <tr>
-<td>REVA_GATEWAY</td>
+<td>OCIS_REVA_GATEWAY<br/>REVA_GATEWAY</td>
 <td>string</td>
 <td>127.0.0.1:9142</td>
 <td>The CS3 gateway endpoint.</td>
@@ -17717,25 +17717,25 @@ Copyright 2022 Fonticons, Inc.
 <td>The user identity backend to use. Supported backend types are &rsquo;ldap&rsquo; and &lsquo;cs3&rsquo;.</td>
 </tr>
 <tr>
-<td>LDAP_URI<br/>GRAPH_LDAP_URI</td>
+<td>OCIS_LDAP_URI<br/>LDAP_URI<br/>GRAPH_LDAP_URI</td>
 <td>string</td>
 <td>ldaps://localhost:9235</td>
 <td>URI of the LDAP Server to connect to. Supported URI schemes are &rsquo;ldaps://&rsquo; and &rsquo;ldap://&rsquo;</td>
 </tr>
 <tr>
-<td>LDAP_CACERT<br/>GRAPH_LDAP_CACERT</td>
+<td>OCIS_LDAP_CACERT<br/>LDAP_CACERT<br/>GRAPH_LDAP_CACERT</td>
 <td>string</td>
 <td>~/.ocis/idm/ldap.crt</td>
 <td>Path/File name for the root CA certificate (in PEM format) used to validate TLS server certificates of the LDAP service. If not defined, the root directory derives from $OCIS_BASE_DATA_PATH:/idm.</td>
 </tr>
 <tr>
-<td>LDAP_INSECURE<br/>GRAPH_LDAP_INSECURE</td>
+<td>OCIS_LDAP_INSECURE<br/>LDAP_INSECURE<br/>GRAPH_LDAP_INSECURE</td>
 <td>bool</td>
 <td>false</td>
 <td>Disable TLS certificate validation for the LDAP connections. Do not set this in production environments.</td>
 </tr>
 <tr>
-<td>LDAP_BIND_DN<br/>GRAPH_LDAP_BIND_DN</td>
+<td>OCIS_LDAP_BIND_DN<br/>LDAP_BIND_DN<br/>GRAPH_LDAP_BIND_DN</td>
 <td>string</td>
 <td>uid=libregraph,ou=sysusers,o=libregraph-idm</td>
 <td>LDAP DN to use for simple bind authentication with the target LDAP server.</td>
@@ -17771,31 +17771,31 @@ Copyright 2022 Fonticons, Inc.
 <td>Signals that the server has the refint plugin enabled, which makes some actions not needed.</td>
 </tr>
 <tr>
-<td>LDAP_USER_BASE_DN<br/>GRAPH_LDAP_USER_BASE_DN</td>
+<td>OCIS_LDAP_USER_BASE_DN<br/>LDAP_USER_BASE_DN<br/>GRAPH_LDAP_USER_BASE_DN</td>
 <td>string</td>
 <td>ou=users,o=libregraph-idm</td>
 <td>Search base DN for looking up LDAP users.</td>
 </tr>
 <tr>
-<td>LDAP_USER_SCOPE<br/>GRAPH_LDAP_USER_SCOPE</td>
+<td>OCIS_LDAP_USER_SCOPE<br/>LDAP_USER_SCOPE<br/>GRAPH_LDAP_USER_SCOPE</td>
 <td>string</td>
 <td>sub</td>
 <td>LDAP search scope to use when looking up users. Supported scopes are &lsquo;base&rsquo;, &lsquo;one&rsquo; and &lsquo;sub&rsquo;.</td>
 </tr>
 <tr>
-<td>LDAP_USER_FILTER<br/>GRAPH_LDAP_USER_FILTER</td>
+<td>OCIS_LDAP_USER_FILTER<br/>LDAP_USER_FILTER<br/>GRAPH_LDAP_USER_FILTER</td>
 <td>string</td>
 <td></td>
 <td>LDAP filter to add to the default filters for user search like &lsquo;(objectclass=ownCloud)&rsquo;.</td>
 </tr>
 <tr>
-<td>LDAP_USER_OBJECTCLASS<br/>GRAPH_LDAP_USER_OBJECTCLASS</td>
+<td>OCIS_LDAP_USER_OBJECTCLASS<br/>LDAP_USER_OBJECTCLASS<br/>GRAPH_LDAP_USER_OBJECTCLASS</td>
 <td>string</td>
 <td>inetOrgPerson</td>
 <td>The object class to use for users in the default user search filter (&lsquo;inetOrgPerson&rsquo;).</td>
 </tr>
 <tr>
-<td>LDAP_USER_SCHEMA_MAIL<br/>GRAPH_LDAP_USER_EMAIL_ATTRIBUTE</td>
+<td>OCIS_LDAP_USER_SCHEMA_MAIL<br/>LDAP_USER_SCHEMA_MAIL<br/>GRAPH_LDAP_USER_EMAIL_ATTRIBUTE</td>
 <td>string</td>
 <td>mail</td>
 <td>LDAP Attribute to use for the email address of users.</td>
@@ -17807,43 +17807,43 @@ Copyright 2022 Fonticons, Inc.
 <td>LDAP Attribute to use for the displayname of users.</td>
 </tr>
 <tr>
-<td>LDAP_USER_SCHEMA_USERNAME<br/>GRAPH_LDAP_USER_NAME_ATTRIBUTE</td>
+<td>OCIS_LDAP_USER_SCHEMA_USERNAME<br/>LDAP_USER_SCHEMA_USERNAME<br/>GRAPH_LDAP_USER_NAME_ATTRIBUTE</td>
 <td>string</td>
 <td>uid</td>
 <td>LDAP Attribute to use for username of users.</td>
 </tr>
 <tr>
-<td>LDAP_USER_SCHEMA_ID<br/>GRAPH_LDAP_USER_UID_ATTRIBUTE</td>
+<td>OCIS_LDAP_USER_SCHEMA_ID<br/>LDAP_USER_SCHEMA_ID<br/>GRAPH_LDAP_USER_UID_ATTRIBUTE</td>
 <td>string</td>
 <td>owncloudUUID</td>
 <td>LDAP Attribute to use as the unique ID for users. This should be a stable globally unique ID like a UUID.</td>
 </tr>
 <tr>
-<td>LDAP_USER_SCHEMA_USER_TYPE<br/>GRAPH_LDAP_USER_TYPE_ATTRIBUTE</td>
+<td>OCIS_LDAP_USER_SCHEMA_USER_TYPE<br/>LDAP_USER_SCHEMA_USER_TYPE<br/>GRAPH_LDAP_USER_TYPE_ATTRIBUTE</td>
 <td>string</td>
 <td>ownCloudUserType</td>
 <td>LDAP Attribute to distinguish between &lsquo;Member&rsquo; and &lsquo;Guest&rsquo; users. Default is &lsquo;ownCloudUserType&rsquo;.</td>
 </tr>
 <tr>
-<td>LDAP_USER_ENABLED_ATTRIBUTE<br/>GRAPH_USER_ENABLED_ATTRIBUTE</td>
+<td>OCIS_LDAP_USER_ENABLED_ATTRIBUTE<br/>LDAP_USER_ENABLED_ATTRIBUTE<br/>GRAPH_USER_ENABLED_ATTRIBUTE</td>
 <td>string</td>
 <td>ownCloudUserEnabled</td>
 <td>LDAP Attribute to use as a flag telling if the user is enabled or disabled.</td>
 </tr>
 <tr>
-<td>LDAP_DISABLE_USER_MECHANISM<br/>GRAPH_DISABLE_USER_MECHANISM</td>
+<td>OCIS_LDAP_DISABLE_USER_MECHANISM<br/>LDAP_DISABLE_USER_MECHANISM<br/>GRAPH_DISABLE_USER_MECHANISM</td>
 <td>string</td>
 <td>attribute</td>
 <td>An option to control the behavior for disabling users. Supported options are &rsquo;none&rsquo;, &lsquo;attribute&rsquo; and &lsquo;group&rsquo;. If set to &lsquo;group&rsquo;, disabling a user via API will add the user to the configured group for disabled users, if set to &lsquo;attribute&rsquo; this will be done in the ldap user entry, if set to &rsquo;none&rsquo; the disable request is not processed. Default is &lsquo;attribute&rsquo;.</td>
 </tr>
 <tr>
-<td>LDAP_DISABLED_USERS_GROUP_DN<br/>GRAPH_DISABLED_USERS_GROUP_DN</td>
+<td>OCIS_LDAP_DISABLED_USERS_GROUP_DN<br/>LDAP_DISABLED_USERS_GROUP_DN<br/>GRAPH_DISABLED_USERS_GROUP_DN</td>
 <td>string</td>
 <td>cn=DisabledUsersGroup,ou=groups,o=libregraph-idm</td>
 <td>The distinguished name of the group to which added users will be classified as disabled when &lsquo;disable_user_mechanism&rsquo; is set to &lsquo;group&rsquo;.</td>
 </tr>
 <tr>
-<td>LDAP_GROUP_BASE_DN<br/>GRAPH_LDAP_GROUP_BASE_DN</td>
+<td>OCIS_LDAP_GROUP_BASE_DN<br/>LDAP_GROUP_BASE_DN<br/>GRAPH_LDAP_GROUP_BASE_DN</td>
 <td>string</td>
 <td>ou=groups,o=libregraph-idm</td>
 <td>Search base DN for looking up LDAP groups.</td>
@@ -17855,79 +17855,79 @@ Copyright 2022 Fonticons, Inc.
 <td>Parent DN under which new groups are created. This DN needs to be subordinate to the &lsquo;GRAPH_LDAP_GROUP_BASE_DN&rsquo;. This setting is only relevant when &lsquo;GRAPH_LDAP_SERVER_WRITE_ENABLED&rsquo; is &rsquo;true&rsquo;. It defaults to the value of &lsquo;GRAPH_LDAP_GROUP_BASE_DN&rsquo;. All groups outside of this subtree are treated as readonly groups and cannot be updated.</td>
 </tr>
 <tr>
-<td>LDAP_GROUP_SCOPE<br/>GRAPH_LDAP_GROUP_SEARCH_SCOPE</td>
+<td>OCIS_LDAP_GROUP_SCOPE<br/>LDAP_GROUP_SCOPE<br/>GRAPH_LDAP_GROUP_SEARCH_SCOPE</td>
 <td>string</td>
 <td>sub</td>
 <td>LDAP search scope to use when looking up groups. Supported scopes are &lsquo;base&rsquo;, &lsquo;one&rsquo; and &lsquo;sub&rsquo;.</td>
 </tr>
 <tr>
-<td>LDAP_GROUP_FILTER<br/>GRAPH_LDAP_GROUP_FILTER</td>
+<td>OCIS_LDAP_GROUP_FILTER<br/>LDAP_GROUP_FILTER<br/>GRAPH_LDAP_GROUP_FILTER</td>
 <td>string</td>
 <td></td>
 <td>LDAP filter to add to the default filters for group searches.</td>
 </tr>
 <tr>
-<td>LDAP_GROUP_OBJECTCLASS<br/>GRAPH_LDAP_GROUP_OBJECTCLASS</td>
+<td>OCIS_LDAP_GROUP_OBJECTCLASS<br/>LDAP_GROUP_OBJECTCLASS<br/>GRAPH_LDAP_GROUP_OBJECTCLASS</td>
 <td>string</td>
 <td>groupOfNames</td>
 <td>The object class to use for groups in the default group search filter (&lsquo;groupOfNames&rsquo;).</td>
 </tr>
 <tr>
-<td>LDAP_GROUP_SCHEMA_GROUPNAME<br/>GRAPH_LDAP_GROUP_NAME_ATTRIBUTE</td>
+<td>OCIS_LDAP_GROUP_SCHEMA_GROUPNAME<br/>LDAP_GROUP_SCHEMA_GROUPNAME<br/>GRAPH_LDAP_GROUP_NAME_ATTRIBUTE</td>
 <td>string</td>
 <td>cn</td>
 <td>LDAP Attribute to use for the name of groups.</td>
 </tr>
 <tr>
-<td>LDAP_GROUP_SCHEMA_ID<br/>GRAPH_LDAP_GROUP_ID_ATTRIBUTE</td>
+<td>OCIS_LDAP_GROUP_SCHEMA_ID<br/>LDAP_GROUP_SCHEMA_ID<br/>GRAPH_LDAP_GROUP_ID_ATTRIBUTE</td>
 <td>string</td>
 <td>owncloudUUID</td>
 <td>LDAP Attribute to use as the unique id for groups. This should be a stable globally unique ID like a UUID.</td>
 </tr>
 <tr>
-<td>LDAP_EDUCATION_RESOURCES_ENABLED<br/>GRAPH_LDAP_EDUCATION_RESOURCES_ENABLED</td>
+<td>GRAPH_LDAP_EDUCATION_RESOURCES_ENABLED</td>
 <td>bool</td>
 <td>false</td>
-<td>Enable LDAP support for managing education related resources</td>
+<td>Enable LDAP support for managing education related resources.</td>
 </tr>
 <tr>
-<td>LDAP_SCHOOL_BASE_DN<br/>GRAPH_LDAP_SCHOOL_BASE_DN</td>
+<td>GRAPH_LDAP_SCHOOL_BASE_DN</td>
 <td>string</td>
 <td></td>
 <td>Search base DN for looking up LDAP schools.</td>
 </tr>
 <tr>
-<td>LDAP_SCHOOL_SCOPE<br/>GRAPH_LDAP_SCHOOL_SEARCH_SCOPE</td>
+<td>GRAPH_LDAP_SCHOOL_SEARCH_SCOPE</td>
 <td>string</td>
 <td></td>
 <td>LDAP search scope to use when looking up schools. Supported scopes are &lsquo;base&rsquo;, &lsquo;one&rsquo; and &lsquo;sub&rsquo;.</td>
 </tr>
 <tr>
-<td>LDAP_SCHOOL_FILTER<br/>GRAPH_LDAP_SCHOOL_FILTER</td>
+<td>GRAPH_LDAP_SCHOOL_FILTER</td>
 <td>string</td>
 <td></td>
 <td>LDAP filter to add to the default filters for school searches.</td>
 </tr>
 <tr>
-<td>LDAP_SCHOOL_OBJECTCLASS<br/>GRAPH_LDAP_SCHOOL_OBJECTCLASS</td>
+<td>GRAPH_LDAP_SCHOOL_OBJECTCLASS</td>
 <td>string</td>
 <td></td>
 <td>The object class to use for schools in the default school search filter.</td>
 </tr>
 <tr>
-<td>LDAP_SCHOOL_SCHEMA_SCHOOL_NAME<br/>GRAPH_LDAP_SCHOOL_NAME_ATTRIBUTE</td>
+<td>GRAPH_LDAP_SCHOOL_NAME_ATTRIBUTE</td>
 <td>string</td>
 <td></td>
 <td>LDAP Attribute to use for the name of a school.</td>
 </tr>
 <tr>
-<td>LDAP_SCHOOL_SCHEMA_SCHOOL_NUMBER<br/>GRAPH_LDAP_SCHOOL_NUMBER_ATTRIBUTE</td>
+<td>GRAPH_LDAP_SCHOOL_NUMBER_ATTRIBUTE</td>
 <td>string</td>
 <td></td>
 <td>LDAP Attribute to use for the number of a school.</td>
 </tr>
 <tr>
-<td>LDAP_SCHOOL_SCHEMA_ID<br/>GRAPH_LDAP_SCHOOL_ID_ATTRIBUTE</td>
+<td>GRAPH_LDAP_SCHOOL_ID_ATTRIBUTE</td>
 <td>string</td>
 <td></td>
 <td>LDAP Attribute to use as the unique id for schools. This should be a stable globally unique ID like a UUID.</td>
