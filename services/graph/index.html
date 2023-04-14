@@ -13,7 +13,7 @@
 
 
   <meta name="description" content="Abstract     The graph service provides the Graph API which is a RESTful web API used to access Infinite Scale resources. It is inspired by the Microsoft Graph API and can be used by clients or other services or extensions.
-Table of Contents      Manual Filters Sequence Diagram Caching Example Yaml Config  Manual Filters     Using the API, you can manually filter like for users." />
+Table of Contents      Manual Filters Sequence Diagram Caching Keycloak Configuration For The Personal Data Export  Keycloak Client Configuration   Example Yaml Config  Manual Filters     Using the API, you can manually filter like for users." />
 
     <title>Graph | ownCloud</title>
 
@@ -38,25 +38,25 @@ Table of Contents      Manual Filters Sequence Diagram Caching Example Yaml Conf
   />
   <meta property="og:site_name" content="ownCloud" />
   <meta property="og:description" content="Abstract     The graph service provides the Graph API which is a RESTful web API used to access Infinite Scale resources. It is inspired by the Microsoft Graph API and can be used by clients or other services or extensions.
-Table of Contents      Manual Filters Sequence Diagram Caching Example Yaml Config  Manual Filters     Using the API, you can manually filter like for users." />
+Table of Contents      Manual Filters Sequence Diagram Caching Keycloak Configuration For The Personal Data Export  Keycloak Client Configuration   Example Yaml Config  Manual Filters     Using the API, you can manually filter like for users." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/graph/" />
 
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-04-14T12:27:32+00:00"
+      content="2023-04-14T14:11:06+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-04-14T12:27:32+00:00"
+      content="2023-04-14T14:11:06+00:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Graph" />
   <meta name="twitter:description" content="Abstract     The graph service provides the Graph API which is a RESTful web API used to access Infinite Scale resources. It is inspired by the Microsoft Graph API and can be used by clients or other services or extensions.
-Table of Contents      Manual Filters Sequence Diagram Caching Example Yaml Config  Manual Filters     Using the API, you can manually filter like for users." />
+Table of Contents      Manual Filters Sequence Diagram Caching Keycloak Configuration For The Personal Data Export  Keycloak Client Configuration   Example Yaml Config  Manual Filters     Using the API, you can manually filter like for users." />
 
 
   <script type="application/ld+json">
@@ -67,8 +67,8 @@ Table of Contents      Manual Filters Sequence Diagram Caching Example Yaml Conf
       "name": "Graph",
       "url" : "https://owncloud.dev/services/graph/",
       "headline": "Graph",
-      "description": "Abstract     The graph service provides the Graph API which is a RESTful web API used to access Infinite Scale resources. It is inspired by the Microsoft Graph API and can be used by clients or other services or extensions.\nTable of Contents      Manual Filters Sequence Diagram Caching Example Yaml Config  Manual Filters     Using the API, you can manually filter like for users.",
-      "wordCount" : "2033",
+      "description": "Abstract     The graph service provides the Graph API which is a RESTful web API used to access Infinite Scale resources. It is inspired by the Microsoft Graph API and can be used by clients or other services or extensions.\nTable of Contents      Manual Filters Sequence Diagram Caching Keycloak Configuration For The Personal Data Export  Keycloak Client Configuration   Example Yaml Config  Manual Filters     Using the API, you can manually filter like for users.",
+      "wordCount" : "2311",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ Table of Contents      Manual Filters Sequence Diagram Caching Example Yaml Conf
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-04-14T12:27:32.63Z",
-      "datePublished": "2023-04-14T12:27:32.63Z",
-      "dateModified": "2023-04-14T12:27:32.63Z",
+      "dateCreated": "2023-04-14T14:11:06.16Z",
+      "datePublished": "2023-04-14T14:11:06.16Z",
+      "dateModified": "2023-04-14T14:11:06.16Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17202,6 +17202,17 @@ Copyright 2022 Fonticons, Inc.
 >Caching</a></li>
 <li><a
   class="gdoc-markdown__link"
+  href="#keycloak-configuration-for-the-personal-data-export"
+>Keycloak Configuration For The Personal Data Export</a>
+<ul>
+<li><a
+  class="gdoc-markdown__link"
+  href="#keycloak-client-configuration"
+>Keycloak Client Configuration</a></li>
+</ul>
+</li>
+<li><a
+  class="gdoc-markdown__link"
   href="#example-yaml-config"
 >Example Yaml Config</a></li>
 </ul>
@@ -17259,6 +17270,41 @@ Copyright 2022 Fonticons, Inc.
 <li>The graph service can be scaled if not using <code>in-memory</code> stores and the stores are configured identically over all instances.</li>
 <li>When using <code>redis-sentinel</code>, the Redis master to use is configured via <code>GRAPH_CACHE_STORE_NODES</code> in the form of <code>&lt;sentinel-host&gt;:&lt;sentinel-port&gt;/&lt;redis-master&gt;</code> like <code>10.10.0.200:26379/mymaster</code>.</li>
 </ol>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="keycloak-configuration-for-the-personal-data-export">
+        Keycloak Configuration For The Personal Data Export
+        <a data-clipboard-text="https://owncloud.dev/services/graph/#keycloak-configuration-for-the-personal-data-export" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Keycloak Configuration For The Personal Data Export" aria-label="Anchor to: Keycloak Configuration For The Personal Data Export" href="#keycloak-configuration-for-the-personal-data-export">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>If Keycloak is used for authentication, GDPR regulations require to add all personal identifiable information that Keycloak has about the user to the personal data export. To do this, the following environment variables must be set:</p>
+<ul>
+<li><code>OCIS_KEYCLOAK_BASE_PATH</code> - The URL to the keycloak instance.</li>
+<li><code>OCIS_KEYCLOAK_CLIENT_ID</code> - The client ID of the client that is used to authenticate with keycloak, this client has to be able to list users and get the credential data.</li>
+<li><code>OCIS_KEYCLOAK_CLIENT_SECRET</code> - The client secret of the client that is used to authenticate with keycloak.</li>
+<li><code>OCIS_KEYCLOAK_CLIENT_REALM</code> - The realm the client is defined in.</li>
+<li><code>OCIS_KEYCLOAK_USER_REALM</code> - The realm the oCIS users are defined in.</li>
+<li><code>OCIS_KEYCLOAK_INSECURE_SKIP_VERIFY</code> - If set to true, the TLS certificate of the keycloak instance is not verified.</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="keycloak-client-configuration">
+        Keycloak Client Configuration
+        <a data-clipboard-text="https://owncloud.dev/services/graph/#keycloak-client-configuration" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Keycloak Client Configuration" aria-label="Anchor to: Keycloak Client Configuration" href="#keycloak-client-configuration">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>The client that is used to authenticate with keycloak has to be able to list users and get the credential data. To do this, the following  roles have to be assigned to the client and they have to be about the realm that contains the oCIS users:</p>
+<ul>
+<li><code>view-users</code></li>
+<li><code>view-identity-providers</code></li>
+<li><code>view-realm</code></li>
+<li><code>view-clients</code></li>
+<li><code>view-events</code></li>
+<li><code>view-authorization</code>
+Note that these roles are only available to assign if the client is in the <code>master</code> realm.</li>
+</ul>
 <div class="gdoc-page__anchorwrap">
     <h2 id="example-yaml-config">
         Example Yaml Config
@@ -17397,6 +17443,13 @@ Copyright 2022 Fonticons, Inc.
 </span><span class="lnt">119
 </span><span class="lnt">120
 </span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># Autogenerated</span><span class="w">
@@ -17520,6 +17573,13 @@ Copyright 2022 Fonticons, Inc.
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tls_root_ca_certificate</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">enable_tls</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">machine_auth_api_key</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">keycloak</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">base_path</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">client_id</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">client_secret</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">client_realm</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">user_realm</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">insecure_skip_verify</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div></div>
@@ -18076,6 +18136,42 @@ Copyright 2022 Fonticons, Inc.
 <td>string</td>
 <td></td>
 <td>Machine auth API key used to validate internal requests necessary to access resources from other services.</td>
+</tr>
+<tr>
+<td>OCIS_KEYCLOAK_BASE_PATH<br/>GRAPH_KEYCLOAK_BASE_PATH</td>
+<td>string</td>
+<td></td>
+<td>The URL to access keycloak.</td>
+</tr>
+<tr>
+<td>OCIS_KEYCLOAK_CLIENT_ID<br/>GRAPH_KEYCLOAK_CLIENT_ID</td>
+<td>string</td>
+<td></td>
+<td>The client id to authenticate with keycloak.</td>
+</tr>
+<tr>
+<td>OCIS_KEYCLOAK_CLIENT_SECRET<br/>GRAPH_KEYCLOAK_CLIENT_SECRET</td>
+<td>string</td>
+<td></td>
+<td>The client secret to use in authentication.</td>
+</tr>
+<tr>
+<td>OCIS_KEYCLOAK_CLIENT_REALM<br/>GRAPH_KEYCLOAK_CLIENT_REALM</td>
+<td>string</td>
+<td></td>
+<td>The realm the client is defined in.</td>
+</tr>
+<tr>
+<td>OCIS_KEYCLOAK_USER_REALM<br/>GRAPH_KEYCLOAK_USER_REALM</td>
+<td>string</td>
+<td></td>
+<td>The realm users are defined.</td>
+</tr>
+<tr>
+<td>OCIS_KEYCLOAK_INSECURE_SKIP_VERIFY<br/>GRAPH_KEYCLOAK_INSECURE_SKIP_VERIFY</td>
+<td>bool</td>
+<td>false</td>
+<td>Disable TLS certificate validation for Keycloak connections. Do not set this in production environments.</td>
 </tr>
 </tbody>
 </table> </div>
