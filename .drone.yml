@@ -11,38 +11,38 @@ concurrency:
 
 steps:
 - name: assets
-  image: owncloudci/alpine:latest
+  image: docker.io/owncloudci/alpine
   commands:
   - make theme
 
 - name: sync
-  image: thegeeklab/git-batch:latest
+  image: quay.io/thegeeklab/git-batch
   commands:
   - git-batch -vv
 
 - name: build
-  image: owncloudci/hugo:0.99.1
+  image: docker.io/owncloudci/hugo:0.99.1
   commands:
   - hugo
 
 - name: publish
-  image: plugins/gh-pages:latest
+  image: docker.io/plugins/gh-pages
   settings:
     pages_directory: public/
     copy_contents: true
     password:
       from_secret: github_token
-    target_branch: master
+    target_branch: gh-pages
     username:
       from_secret: github_username
     delete: true
   when:
     ref:
-    - refs/heads/source
+    - refs/heads/main
 
 trigger:
   ref:
-  - refs/heads/source
+  - refs/heads/main
   - refs/pull/**
 
 ...
