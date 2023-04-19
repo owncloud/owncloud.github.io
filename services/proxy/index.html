@@ -43,11 +43,11 @@
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-04-19T03:28:28+00:00"
+      content="2023-04-19T06:57:27+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-04-19T03:28:28+00:00"
+      content="2023-04-19T06:57:27+00:00"
     />
 
 
@@ -65,7 +65,7 @@
       "url" : "https://owncloud.dev/services/proxy/",
       "headline": "Proxy",
       "description": "Abstract     The proxy service is an API-Gateway for the ownCloud Infinite Scale microservices. Every HTTP request goes through this service. Authentication, logging and other preprocessing of requests also happens here. Mechanisms like request rate limitting or intrusion prevention are not included in the proxy service and must be setup in front like with an external reverse proxy. The proxy service is the only service communicating to the outside and needs therefore usual protections against DDOS, Slow Loris or other attack vectors.",
-      "wordCount" : "1966",
+      "wordCount" : "2065",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -74,9 +74,9 @@
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-04-19T03:28:28.66Z",
-      "datePublished": "2023-04-19T03:28:28.66Z",
-      "dateModified": "2023-04-19T03:28:28.66Z",
+      "dateCreated": "2023-04-19T06:57:27.59Z",
+      "datePublished": "2023-04-19T06:57:27.59Z",
+      "dateModified": "2023-04-19T06:57:27.59Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17264,21 +17264,35 @@ example.</p>
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">oidc_role_mapper</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">role_claim</span><span class="p">:</span><span class="w"> </span><span class="l">ocisRoles</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">role_mapping</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">admin</span><span class="p">:</span><span class="w"> </span><span class="l">myAdminRole</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l">myUserRole</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">spaceadmin</span><span class="p">:</span><span class="w"> </span><span class="l">mySpaceAdminRole</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">guest</span><span class="p">:</span><span class="w"> </span><span class="l">myGuestRole</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="nt">role_name</span><span class="p">:</span><span class="w"> </span><span class="l">admin</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">claim_value</span><span class="p">:</span><span class="w"> </span><span class="l">myAdminRole</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="nt">role_name</span><span class="p">:</span><span class="w"> </span><span class="l">spaceadmin</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">claim_value</span><span class="p">:</span><span class="w"> </span><span class="l">mySpaceAdminRole</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="nt">role_name</span><span class="p">:</span><span class="w"> </span><span class="l">user</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">claim_value</span><span class="p">:</span><span class="w"> </span><span class="l">myUserRole</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="nt">role_name</span><span class="p">:</span><span class="w"> </span><span class="nt">guest</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">claim_value</span><span class="p">:</span><span class="w"> </span><span class="l">myGuestRole</span><span class="w">
 </span></span></span></code></pre></div><p>This would assign the role <code>admin</code> to users with the value <code>myAdminRole</code> in the claim <code>ocisRoles</code>.
 The role <code>user</code> to users with the values <code>myUserRole</code> in the claims <code>ocisRoles</code> and so on.
 Claim values that are not mapped to a specific ownCloud Infinite Scale role will be ignored.
 Note: An ownCloud Infinite Scale user can only have a single role assigned. If the configured
-<code>role_mapping</code> and a user&rsquo;s claim values result in multiple possible roles for a user, an error
-will be logged and the user will not be able to login.
-The default <code>role_claim</code> (or <code>PROXY_ROLE_ASSIGNMENT_OIDC_CLAIM</code>) is <code>roles</code>. The <code>role_mapping</code> is:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">admin</span><span class="p">:</span><span class="w"> </span><span class="l">ocisAdmin</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l">ocisUser</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spaceadmin</span><span class="p">:</span><span class="w"> </span><span class="l">ocisSpaceAdmin</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">guest</span><span class="p">:</span><span class="w"> </span><span class="l">ocisGuest</span><span class="w">
+<code>role_mapping</code> and a user&rsquo;s claim values result in multiple possible roles for a user, the order in
+which the role mappings are defined in the configuration is important. The first role in the
+<code>role_mappings</code> where the <code>claim_value</code> matches a value from the user&rsquo;s roles claim will be assigned
+to the user. So if e.g. a user&rsquo;s <code>ocisRoles</code> claim has the values <code>myUserRole</code> and
+<code>mySpaceAdminRole</code> that user will get the ocis role <code>spaceadmin</code> assigned (because <code>spaceadmin</code>
+appears before <code>user</code> in the above sample configuration).
+If a user&rsquo;s claim values don&rsquo;t match any of the configured role mappings an error will be logged and
+the user will not be able to login.
+The default <code>role_claim</code> (or <code>PROXY_ROLE_ASSIGNMENT_OIDC_CLAIM</code>) is <code>roles</code>. The default <code>role_mapping</code> is:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl">- <span class="nt">role_name</span><span class="p">:</span><span class="w"> </span><span class="l">admin</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">claim_value</span><span class="p">:</span><span class="w"> </span><span class="l">ocisAdmin</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">role_name</span><span class="p">:</span><span class="w"> </span><span class="l">spaceadmin</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">claim_value</span><span class="p">:</span><span class="w"> </span><span class="l">ocisSpaceAdmin</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">role_name</span><span class="p">:</span><span class="w"> </span><span class="l">user</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">claim_value</span><span class="p">:</span><span class="w"> </span><span class="l">ocisUser</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">role_name</span><span class="p">:</span><span class="w"> </span><span class="nt">guest</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">claim_value</span><span class="p">:</span><span class="w"> </span><span class="l">ocisGuest</span><span class="w">
 </span></span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="recommendations-for-production-deployments">
         Recommendations for Production Deployments
@@ -17493,6 +17507,10 @@ The default <code>role_claim</code> (or <code>PROXY_ROLE_ASSIGNMENT_OIDC_CLAIM</
 </span><span class="lnt">159
 </span><span class="lnt">160
 </span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># Autogenerated</span><span class="w">
@@ -17631,10 +17649,14 @@ The default <code>role_claim</code> (or <code>PROXY_ROLE_ASSIGNMENT_OIDC_CLAIM</
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">oidc_role_mapper</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">role_claim</span><span class="p">:</span><span class="w"> </span><span class="l">roles</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">role_mapping</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">admin</span><span class="p">:</span><span class="w"> </span><span class="l">ocisAdmin</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">guest</span><span class="p">:</span><span class="w"> </span><span class="l">ocisGuest</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">spaceadmin</span><span class="p">:</span><span class="w"> </span><span class="l">ocisSpaceAdmin</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l">ocisUser</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">role_name</span><span class="p">:</span><span class="w"> </span><span class="l">admin</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">claim_value</span><span class="p">:</span><span class="w"> </span><span class="l">ocisAdmin</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">role_name</span><span class="p">:</span><span class="w"> </span><span class="l">spaceadmin</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">claim_value</span><span class="p">:</span><span class="w"> </span><span class="l">ocisSpaceAdmin</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">role_name</span><span class="p">:</span><span class="w"> </span><span class="l">user</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">claim_value</span><span class="p">:</span><span class="w"> </span><span class="l">ocisUser</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">role_name</span><span class="p">:</span><span class="w"> </span><span class="l">guest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">claim_value</span><span class="p">:</span><span class="w"> </span><span class="l">ocisGuest</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">policy_selector</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">static</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">policy</span><span class="p">:</span><span class="w"> </span><span class="l">ocis</span><span class="w">
