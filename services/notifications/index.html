@@ -12,7 +12,7 @@
 <meta name="generator" content="Hugo 0.99.1" />
 
 
-  <meta name="description" content="Abstract     The notification service is responsible for sending emails to users informing them about events that happened. To do this it hooks into the event system and listens for certain events that the users need to be informed about.
+  <meta name="description" content="Abstract     The notification service is responsible for sending emails to users informing them about events that happened. To do this, it hooks into the event system and listens for certain events that the users need to be informed about.
 Table of Contents      Email Notification Templates Translations  Translation Rules   Example Yaml Config  Email Notification Templates     The notifications service has embedded email body templates." />
 
     <title>Notification | ownCloud</title>
@@ -37,7 +37,7 @@ Table of Contents      Email Notification Templates Translations  Translation Ru
     content="Notification"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Abstract     The notification service is responsible for sending emails to users informing them about events that happened. To do this it hooks into the event system and listens for certain events that the users need to be informed about.
+  <meta property="og:description" content="Abstract     The notification service is responsible for sending emails to users informing them about events that happened. To do this, it hooks into the event system and listens for certain events that the users need to be informed about.
 Table of Contents      Email Notification Templates Translations  Translation Rules   Example Yaml Config  Email Notification Templates     The notifications service has embedded email body templates." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/notifications/" />
@@ -45,17 +45,17 @@ Table of Contents      Email Notification Templates Translations  Translation Ru
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-04-19T20:01:05+00:00"
+      content="2023-04-19T21:42:55+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-04-19T20:01:05+00:00"
+      content="2023-04-19T21:42:55+00:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Notification" />
-  <meta name="twitter:description" content="Abstract     The notification service is responsible for sending emails to users informing them about events that happened. To do this it hooks into the event system and listens for certain events that the users need to be informed about.
+  <meta name="twitter:description" content="Abstract     The notification service is responsible for sending emails to users informing them about events that happened. To do this, it hooks into the event system and listens for certain events that the users need to be informed about.
 Table of Contents      Email Notification Templates Translations  Translation Rules   Example Yaml Config  Email Notification Templates     The notifications service has embedded email body templates." />
 
 
@@ -67,8 +67,8 @@ Table of Contents      Email Notification Templates Translations  Translation Ru
       "name": "Notification",
       "url" : "https://owncloud.dev/services/notifications/",
       "headline": "Notification",
-      "description": "Abstract     The notification service is responsible for sending emails to users informing them about events that happened. To do this it hooks into the event system and listens for certain events that the users need to be informed about.\nTable of Contents      Email Notification Templates Translations  Translation Rules   Example Yaml Config  Email Notification Templates     The notifications service has embedded email body templates.",
-      "wordCount" : "925",
+      "description": "Abstract     The notification service is responsible for sending emails to users informing them about events that happened. To do this, it hooks into the event system and listens for certain events that the users need to be informed about.\nTable of Contents      Email Notification Templates Translations  Translation Rules   Example Yaml Config  Email Notification Templates     The notifications service has embedded email body templates.",
+      "wordCount" : "1019",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ Table of Contents      Email Notification Templates Translations  Translation Ru
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-04-19T20:01:05.57Z",
-      "datePublished": "2023-04-19T20:01:05.57Z",
-      "dateModified": "2023-04-19T20:01:05.57Z",
+      "dateCreated": "2023-04-19T21:42:55.70Z",
+      "datePublished": "2023-04-19T21:42:55.70Z",
+      "dateModified": "2023-04-19T21:42:55.70Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17175,7 +17175,7 @@ Copyright 2022 Fonticons, Inc.
         </a>
     </h2>
 </div>
-<p>The notification service is responsible for sending emails to users informing them about events that happened. To do this it hooks into the event system and listens for certain events that the users need to be informed about.</p>
+<p>The notification service is responsible for sending emails to users informing them about events that happened. To do this, it hooks into the event system and listens for certain events that the users need to be informed about.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="table-of-contents">
         Table of Contents
@@ -17213,45 +17213,40 @@ Copyright 2022 Fonticons, Inc.
         </a>
     </h2>
 </div>
-<p>The <code>notifications</code> service has embedded email body templates.
-The email templates contain placeholders <code>{{ .Greeting }}</code>, <code>{{ .MessageBody }}</code>, <code>{{ .CallToAction }}</code> that are
-replaced with translations, see the <a
+<p>The <code>notifications</code> service has embedded email body templates. Email templates can use the placeholders <code>{{ .Greeting }}</code>, <code>{{ .MessageBody }}</code> and <code>{{ .CallToAction }}</code> which are replaced with translations when sent, see the <a
   class="gdoc-markdown__link"
   href="#translations"
->Translations</a> section.
-These embedded templates are available for all deployment scenarios. In addition, the service supports custom
-templates.
-The custom email template takes precedence over the embedded one. If a custom email template exists, the embedded ones
-are not used. To configure custom email templates,
-the <code>NOTIFICATIONS_EMAIL_TEMPLATE_PATH</code> environment variable needs to point to a base folder that will contain the email
-templates. The source template files provided by ocis are located
-in <a
+>Translations</a> section for more details. Depending on the email purpose, placeholders will contain different strings. An individual translatable string is available for each purpose, finally resolved by the placeholder. Though the email subject is also part of translations, it has no placeholder as it is a mandatory email component. The embedded templates are available for all deployment scenarios.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">template 
+</span></span><span class="line"><span class="cl">  placeholders
+</span></span><span class="line"><span class="cl">    translated strings &lt;-- source strings &lt;-- purpose
+</span></span><span class="line"><span class="cl">final output
+</span></span></code></pre></div><p>In addition, the notifications service supports custom templates. Custom email templates take precedence over the embedded ones. If a custom email template exists, the embedded templates are not used. To configure custom email templates, the <code>NOTIFICATIONS_EMAIL_TEMPLATE_PATH</code> environment variable needs to point to a base folder that will contain the email templates. This path must be available from all instances of the notifications service, a shared storage is recommended. The source templates provided by ocis you can derive from are located in following base folder <a
   class="gdoc-markdown__link"
   href="https://github.com/owncloud/ocis/tree/master/services/notifications/pkg/email/templates"
->https://github.com/owncloud/ocis/tree/master/services/notifications/pkg/email/templates</a> in the <code>shares</code>
-and <code>spaces</code> subfolders:
-<a
+>https://github.com/owncloud/ocis/tree/master/services/notifications/pkg/email/templates</a> with subfolders <code>shares</code> and <code>spaces</code>.</p>
+<ul>
+<li><a
   class="gdoc-markdown__link"
   href="https://github.com/owncloud/ocis/blob/master/services/notifications/pkg/email/templates/shares/shareCreated.email.body.tmpl"
->shares/shareCreated.email.body.tmpl</a>
-<a
+>shares/shareCreated.email.body.tmpl</a></li>
+<li><a
   class="gdoc-markdown__link"
   href="https://github.com/owncloud/ocis/blob/master/services/notifications/pkg/email/templates/shares/shareExpired.email.body.tmpl"
->shares/shareExpired.email.body.tmpl</a>
-<a
+>shares/shareExpired.email.body.tmpl</a></li>
+<li><a
   class="gdoc-markdown__link"
   href="https://github.com/owncloud/ocis/blob/master/services/notifications/pkg/email/templates/spaces/membershipExpired.email.body.tmpl"
->spaces/membershipExpired.email.body.tmpl</a>
-<a
+>spaces/membershipExpired.email.body.tmpl</a></li>
+<li><a
   class="gdoc-markdown__link"
   href="https://github.com/owncloud/ocis/blob/master/services/notifications/pkg/email/templates/spaces/sharedSpace.email.body.tmpl"
->spaces/sharedSpace.email.body.tmpl</a>
-<a
+>spaces/sharedSpace.email.body.tmpl</a></li>
+<li><a
   class="gdoc-markdown__link"
   href="https://github.com/owncloud/ocis/blob/master/services/notifications/pkg/email/templates/spaces/unsharedSpace.email.body.tmpl"
->spaces/unsharedSpace.email.body.tmpl</a>
-Custom Email templates referenced via <code>NOTIFICATIONS_EMAIL_TEMPLATE_PATH</code> must be located in subfolders <code>shares</code>
-and <code>spaces</code> and have the same names as the embedded templates. This naming must match the embedded ones.</p>
+>spaces/unsharedSpace.email.body.tmpl</a></li>
+</ul>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">templates
 </span></span><span class="line"><span class="cl">│
 </span></span><span class="line"><span class="cl">└───shares
@@ -17262,7 +17257,8 @@ and <code>spaces</code> and have the same names as the embedded templates. This 
 </span></span><span class="line"><span class="cl">    │   membershipExpired.email.body.tmpl
 </span></span><span class="line"><span class="cl">    │   sharedSpace.email.body.tmpl
 </span></span><span class="line"><span class="cl">    │   unsharedSpace.email.body.tmpl
-</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
+</span></span></code></pre></div><p>Custom email templates referenced via <code>NOTIFICATIONS_EMAIL_TEMPLATE_PATH</code> must also be located in subfolders <code>shares</code> and <code>spaces</code> and must have the same names as the embedded templates. It is important that the names of these files and  folders match the embedded ones.</p>
+<div class="gdoc-page__anchorwrap">
     <h2 id="translations">
         Translations
         <a data-clipboard-text="https://owncloud.dev/services/notifications/#translations" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Translations" aria-label="Anchor to: Translations" href="#translations">
@@ -17270,27 +17266,18 @@ and <code>spaces</code> and have the same names as the embedded templates. This 
         </a>
     </h2>
 </div>
-<p>The <code>notifications</code> service has embedded translations sourced via transifex to provide a basic set of translated languages.
-These embedded translations are available for all deployment scenarios. In addition, the service supports custom
-translations, though it is currently not possible to just add custom translations to embedded ones. If custom
-translations are configured, the embedded ones are not used. To configure custom translations,
-the <code>NOTIFICATIONS_TRANSLATION_PATH</code> environment variable needs to point to a base folder that will contain the translation
-files. This path must be available from all instances of the notifications service, a shared storage is recommended.
-Translation files must be of type  <a
+<p>The <code>notifications</code> service has embedded translations sourced via transifex to provide a basic set of translated languages. These embedded translations are available for all deployment scenarios.
+In addition, the service supports custom translations, though it is currently not possible to just add custom translations to embedded ones. If custom translations are configured, the embedded ones are not used. To configure custom translations,
+the <code>NOTIFICATIONS_TRANSLATION_PATH</code> environment variable needs to point to a base folder that will contain the translation files. This path must be available from all instances of the notifications service, a shared storage is recommended. Translation files must be of type  <a
   class="gdoc-markdown__link"
   href="https://www.gnu.org/software/gettext/manual/html_node/PO-Files.html#PO-Files"
->.po</a>
-or <a
+>.po</a> or <a
   class="gdoc-markdown__link"
   href="https://www.gnu.org/software/gettext/manual/html_node/Binaries.html"
->.mo</a>. For each language, the filename needs to
-be <code>translations.po</code> (or <code>translations.mo</code>) and stored in a folder structure defining the language code. In general the path/name
-pattern for a translation file needs to be:</p>
+>.mo</a>. For each language, the filename needs to be <code>translations.po</code> (or <code>translations.mo</code>) and stored in a folder structure defining the language code. In general the path/name pattern for a translation file needs to be:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">{NOTIFICATIONS_TRANSLATION_PATH}/{language-code}/LC_MESSAGES/translations.po
-</span></span></code></pre></div><p>The language code pattern is composed of <code>language[_territory]</code> where  <code>language</code> is the base language and <code>_territory</code>
-is optional and defines a country.
-For example, for the language <code>de_DE</code>, one needs to place the corresponding translation files
-to <code>{NOTIFICATIONS_TRANSLATION_PATH}/de_DE/LC_MESSAGES/translations.po</code>.</p>
+</span></span></code></pre></div><p>The language code pattern is composed of <code>language[_territory]</code> where  <code>language</code> is the base language and <code>_territory</code> is optional and defines a country.
+For example, for the language <code>de_DE</code>, one needs to place the corresponding translation files to <code>{NOTIFICATIONS_TRANSLATION_PATH}/de_DE/LC_MESSAGES/translations.po</code>.</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="translation-rules">
         Translation Rules
