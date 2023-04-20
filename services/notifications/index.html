@@ -45,11 +45,11 @@ Table of Contents      Email Notification Templates Translations  Translation Ru
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-04-20T13:06:06+00:00"
+      content="2023-04-20T14:11:17+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-04-20T13:06:06+00:00"
+      content="2023-04-20T14:11:17+00:00"
     />
 
 
@@ -68,7 +68,7 @@ Table of Contents      Email Notification Templates Translations  Translation Ru
       "url" : "https://owncloud.dev/services/notifications/",
       "headline": "Notification",
       "description": "Abstract     The notification service is responsible for sending emails to users informing them about events that happened. To do this, it hooks into the event system and listens for certain events that the users need to be informed about.\nTable of Contents      Email Notification Templates Translations  Translation Rules   Example Yaml Config  Email Notification Templates     The notifications service has embedded email body templates.",
-      "wordCount" : "1019",
+      "wordCount" : "1083",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ Table of Contents      Email Notification Templates Translations  Translation Ru
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-04-20T13:06:06.88Z",
-      "datePublished": "2023-04-20T13:06:06.88Z",
-      "dateModified": "2023-04-20T13:06:06.88Z",
+      "dateCreated": "2023-04-20T14:11:17.46Z",
+      "datePublished": "2023-04-20T14:11:17.46Z",
+      "dateModified": "2023-04-20T14:11:17.46Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17277,7 +17277,9 @@ the <code>NOTIFICATIONS_TRANSLATION_PATH</code> environment variable needs to po
 >.mo</a>. For each language, the filename needs to be <code>translations.po</code> (or <code>translations.mo</code>) and stored in a folder structure defining the language code. In general the path/name pattern for a translation file needs to be:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">{NOTIFICATIONS_TRANSLATION_PATH}/{language-code}/LC_MESSAGES/translations.po
 </span></span></code></pre></div><p>The language code pattern is composed of <code>language[_territory]</code> where  <code>language</code> is the base language and <code>_territory</code> is optional and defines a country.
-For example, for the language <code>de_DE</code>, one needs to place the corresponding translation files to <code>{NOTIFICATIONS_TRANSLATION_PATH}/de_DE/LC_MESSAGES/translations.po</code>.</p>
+For example, for the language <code>de</code>, one needs to place the corresponding translation files to <code>{NOTIFICATIONS_TRANSLATION_PATH}/de/LC_MESSAGES/translations.po</code>.</p>
+<!-- also see the userlog readme -->
+<p>Important: For the time being, the embedded ownCloud Web frontend only supports the main language code but does not handle any territory. When strings are available in the language code <code>language_territory</code>, the web frontend does not see it as it only requests <code>language</code>. In consequence, any translations made must exist in the requested <code>language</code> to avoid a fallback to the default.</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="translation-rules">
         Translation Rules
@@ -17287,8 +17289,7 @@ For example, for the language <code>de_DE</code>, one needs to place the corresp
     </h3>
 </div>
 <ul>
-<li>If a requested language code is not available, the service tries to fall back to the base language if available.
-For example, if <code>de_DE</code> is not available, the service tries to fall back to translations in the <code>de</code> folder.</li>
+<li>If a requested language code is not available, the service tries to fall back to the base language if available. For example, if the requested language-code <code>de_DE</code> is not available, the service tries to fall back to translations in the <code>de</code> folder.</li>
 <li>If the base language <code>de</code> is also not available, the service falls back to the system&rsquo;s default English (<code>en</code>),
 which is the source of the texts provided by the code.</li>
 </ul>
