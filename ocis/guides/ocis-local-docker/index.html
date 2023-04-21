@@ -17455,10 +17455,10 @@ This command is handy to run specific commands inside your service. Try <code>do
         </a>
     </h3>
 </div>
-<p>The key to a successful container setup is the persistance of the application data to make the data survive a re-boot. Docker normally uses <a
+<p>The key to a successful container setup is the persistence of the application data to make the data survive a re-boot. Docker normally uses <a
   class="gdoc-markdown__link"
   href="https://docs.docker.com/storage/volumes/"
->volumes</a> for this purpose. A volume can either be a &ldquo;named volume&rdquo; which are completely managed by docker and have many advantages (see the linked docker documentation), or &ldquo;bind mounts&rdquo; which are uing the directory structure and OS of the host system. In our example we already use a bind mount for the config file. We will now add a named volume for the oCIS data directory.</p>
+>volumes</a> for this purpose. A volume can either be a &ldquo;named volume&rdquo; which are completely managed by docker and have many advantages (see the linked docker documentation), or &ldquo;bind mounts&rdquo; which are using the directory structure and OS of the host system. In our example we already use a bind mount for the config file. We will now add a named volume for the oCIS data directory.</p>
 <p>This is the way we should configure the ocis service:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c"># mount the ocis config file inside the container</span><span class="w">
@@ -17487,7 +17487,7 @@ This command is handy to run specific commands inside your service. Try <code>do
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># you can switch to the &#34;local&#34; log driver which does rotation by default</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">logging</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l">local</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># otherwise you could specify log rotation exlicitely</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># otherwise you could specify log rotation explicitly</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#  driver: &#34;json-file&#34; # this is the default driver</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#  options:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#    max-size: &#34;200k&#34; # limit the size of the log file</span><span class="w">
@@ -17522,11 +17522,11 @@ This command is handy to run specific commands inside your service. Try <code>do
 <p>If you have completed this guide, your docker-compose.yml should look like the following example:</p>
 
 <div class="gdoc-expand">
-  <label class="gdoc-expand__head flex justify-between" for="b5bfdfc6-4">
+  <label class="gdoc-expand__head flex justify-between" for="2fea49d2-4">
     <span>Solution</span>
     <span>...</span>
   </label>
-  <input id="b5bfdfc6-4" type="checkbox" class="gdoc-expand__control hidden" />
+  <input id="2fea49d2-4" type="checkbox" class="gdoc-expand__control hidden" />
   <div class="gdoc-markdown--nested gdoc-expand__content">
     <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.7"</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
@@ -17570,7 +17570,7 @@ This command is handy to run specific commands inside your service. Try <code>do
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># you can switch to the "local" log driver which does rotation by default</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">logging</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l">local</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># otherwise you could specify log rotation exlicitely</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># otherwise you could specify log rotation explicitly</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#  driver: "json-file" # this is the default driver</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#  options:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#    max-size: "200k" # limit the size of the log file</span><span class="w">

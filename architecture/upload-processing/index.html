@@ -12,7 +12,7 @@
 <meta name="generator" content="Hugo 0.99.1" />
 
 
-  <meta name="description" content="Uploads are handled by a dedicated service that uses TUS.io for rusumable uploads. When all bytes have been transferred the upload is finalized by making the file available in file listings and for download.
+  <meta name="description" content="Uploads are handled by a dedicated service that uses TUS.io for resumable uploads. When all bytes have been transferred the upload is finalized by making the file available in file listings and for download.
 The finalization may be asynchronous when mandatory workflow steps are involved.
 Legacy PUT upload      %%{init: {&#34;sequence&#34;: { &#34;showSequenceNumbers&#34;:true, &#34;messageFontFamily&#34;:&#34;courier&#34;, &#34;messageFontWeight&#34;:&#34;normal&#34;, &#34;messageFontSize&#34;:&#34;11&#34;}}}%% %% font weight is a css bug: https://github.com/mermaid-js/mermaid/issues/1976 %% edit this diagram by pasting it into eg." />
 
@@ -38,7 +38,7 @@ Legacy PUT upload      %%{init: {&#34;sequence&#34;: { &#34;showSequenceNumbers&
     content="Upload processing"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Uploads are handled by a dedicated service that uses TUS.io for rusumable uploads. When all bytes have been transferred the upload is finalized by making the file available in file listings and for download.
+  <meta property="og:description" content="Uploads are handled by a dedicated service that uses TUS.io for resumable uploads. When all bytes have been transferred the upload is finalized by making the file available in file listings and for download.
 The finalization may be asynchronous when mandatory workflow steps are involved.
 Legacy PUT upload      %%{init: {&#34;sequence&#34;: { &#34;showSequenceNumbers&#34;:true, &#34;messageFontFamily&#34;:&#34;courier&#34;, &#34;messageFontWeight&#34;:&#34;normal&#34;, &#34;messageFontSize&#34;:&#34;11&#34;}}}%% %% font weight is a css bug: https://github.com/mermaid-js/mermaid/issues/1976 %% edit this diagram by pasting it into eg." />
 <meta property="og:type" content="article" />
@@ -57,7 +57,7 @@ Legacy PUT upload      %%{init: {&#34;sequence&#34;: { &#34;showSequenceNumbers&
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Upload processing" />
-  <meta name="twitter:description" content="Uploads are handled by a dedicated service that uses TUS.io for rusumable uploads. When all bytes have been transferred the upload is finalized by making the file available in file listings and for download.
+  <meta name="twitter:description" content="Uploads are handled by a dedicated service that uses TUS.io for resumable uploads. When all bytes have been transferred the upload is finalized by making the file available in file listings and for download.
 The finalization may be asynchronous when mandatory workflow steps are involved.
 Legacy PUT upload      %%{init: {&#34;sequence&#34;: { &#34;showSequenceNumbers&#34;:true, &#34;messageFontFamily&#34;:&#34;courier&#34;, &#34;messageFontWeight&#34;:&#34;normal&#34;, &#34;messageFontSize&#34;:&#34;11&#34;}}}%% %% font weight is a css bug: https://github.com/mermaid-js/mermaid/issues/1976 %% edit this diagram by pasting it into eg." />
 
@@ -70,7 +70,7 @@ Legacy PUT upload      %%{init: {&#34;sequence&#34;: { &#34;showSequenceNumbers&
       "name": "Upload processing",
       "url" : "https://owncloud.dev/architecture/upload-processing/",
       "headline": "Upload processing",
-      "description": "Uploads are handled by a dedicated service that uses TUS.io for rusumable uploads. When all bytes have been transferred the upload is finalized by making the file available in file listings and for download.\nThe finalization may be asynchronous when mandatory workflow steps are involved.\nLegacy PUT upload      %%{init: {\u0022sequence\u0022: { \u0022showSequenceNumbers\u0022:true, \u0022messageFontFamily\u0022:\u0022courier\u0022, \u0022messageFontWeight\u0022:\u0022normal\u0022, \u0022messageFontSize\u0022:\u002211\u0022}}}%% %% font weight is a css bug: https:\/\/github.com\/mermaid-js\/mermaid\/issues\/1976 %% edit this diagram by pasting it into eg.",
+      "description": "Uploads are handled by a dedicated service that uses TUS.io for resumable uploads. When all bytes have been transferred the upload is finalized by making the file available in file listings and for download.\nThe finalization may be asynchronous when mandatory workflow steps are involved.\nLegacy PUT upload      %%{init: {\u0022sequence\u0022: { \u0022showSequenceNumbers\u0022:true, \u0022messageFontFamily\u0022:\u0022courier\u0022, \u0022messageFontWeight\u0022:\u0022normal\u0022, \u0022messageFontSize\u0022:\u002211\u0022}}}%% %% font weight is a css bug: https:\/\/github.com\/mermaid-js\/mermaid\/issues\/1976 %% edit this diagram by pasting it into eg.",
       "wordCount" : "574",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
@@ -17170,7 +17170,7 @@ Copyright 2022 Fonticons, Inc.
     class="gdoc-markdown gdoc-markdown__align--left"
   >
     <h1>Upload processing</h1>
-    <p>Uploads are handled by a dedicated service that uses TUS.io for rusumable uploads. When all bytes have been transferred the upload is finalized by making the file available in file listings and for download.</p>
+    <p>Uploads are handled by a dedicated service that uses TUS.io for resumable uploads. When all bytes have been transferred the upload is finalized by making the file available in file listings and for download.</p>
 <p>The finalization may be asynchronous when mandatory workflow steps are involved.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="legacy-put-upload">
@@ -17204,7 +17204,7 @@ sequenceDiagram
     storageprovider-->>-ocdav: OK, Protocol simple, UploadEndpoint: /data, Token: {jwt}
     Note right of ocdav: The {jwt} contains the internal actual target, eg.:<br>http://localhost:9158/data/simple/91cc9882-db71-4b37-b694-a522850fcee1
     ocdav->>+dataprovider: PUT /data<br>X-Reva-Transfer: {jwt}
-    dataprovider-->>-ocdav: 201 Created 
+    dataprovider-->>-ocdav: 201 Created
     ocdav-->>-Client: 201 Created
 
 </pre>
@@ -17289,7 +17289,7 @@ sequenceDiagram
     dataprovider-)nats: emit all-bytes-received event
     nats-)processing: all-bytes-received({uploadid}) event
     Note over dataprovider: TODO: A lot of time may pass here, we could use<br> the `Prefer: respond-async` header to return early<br>with a 202 Accepted status and a Location header<br>to a websocket endpoint
-    alt success 
+    alt success
     processing-)nats: emit processing-finished({uploadid}) event
         nats-)dataprovider: processing-finished({uploadid}) event
         dataprovider-->>-datagateway: 204 No Content<br>TUS-Resumable: 1.0.0<br>Upload-Offset: 363976
