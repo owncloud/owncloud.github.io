@@ -43,11 +43,11 @@
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-04-23T01:11:26+00:00"
+      content="2023-04-23T09:21:47+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-04-23T01:11:26+00:00"
+      content="2023-04-23T09:21:47+00:00"
     />
 
 
@@ -65,7 +65,7 @@
       "url" : "https://owncloud.dev/services/policies/",
       "headline": "Policies",
       "description": "Abstract     The policies service provides a new gRPC API which can be used to check whether a requested operation is allowed or not. To do so, Open Policy Agent (OPA) is used to define the set of rules of what is permitted and what is not. Policies are written in the rego query language. The location of the rego files can be configured via yaml, a configuration via environment variables is not possible.",
-      "wordCount" : "1459",
+      "wordCount" : "1460",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -74,9 +74,9 @@
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-04-23T01:11:26.92Z",
-      "datePublished": "2023-04-23T01:11:26.92Z",
-      "dateModified": "2023-04-23T01:11:26.92Z",
+      "dateCreated": "2023-04-23T09:21:47.68Z",
+      "datePublished": "2023-04-23T09:21:47.68Z",
+      "dateModified": "2023-04-23T09:21:47.68Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17327,7 +17327,7 @@ NOTE: It is important that <em>all</em> necessary files are added to the list of
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">your_path_to_policies/proxy.rego</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">your_path_to_policies/postprocessing.rego</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">your_path_to_policies/util.rego</span><span class="w">
-</span></span></span></code></pre></div><p>Once the references to policy files are configured correctly, the _QUERY configuration needs to be defined for the proxy middleware and for the events service.</p>
+</span></span></span></code></pre></div><p>Once the references to policy files are configured correctly, the <code>_QUERY</code>  configuration needs to be defined for the proxy middleware and for the events service.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="setting-the-query-configuration">
         Setting the Query Configuration
@@ -17359,7 +17359,7 @@ NOTE: It is important that <em>all</em> necessary files are added to the list of
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">proxy</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">policies_middleware</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="l">data.proxy.granted</span><span class="w">
-</span></span></span></code></pre></div><p>The same can be achieved by setting the following evironment variable:</p>
+</span></span></span></code></pre></div><p>The same can be achieved by setting the following environment variable:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="l">PROXY_POLICIES_QUERY=data.proxy.granted</span><span class="w">
 </span></span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h3 id="postprocessing">
@@ -17372,7 +17372,7 @@ NOTE: It is important that <em>all</em> necessary files are added to the list of
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">policies</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">postprocessing</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="l">data.postprocessing.granted</span><span class="w">
-</span></span></span></code></pre></div><p>The same can be achieved by setting the following evironment variable:</p>
+</span></span></span></code></pre></div><p>The same can be achieved by setting the following environment variable:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="l">POLICIES_POSTPROCESSING_QUERY=data.postprocessing.granted</span><span class="w">
 </span></span></span></code></pre></div><p>As soon as that query is configured, the postprocessing service must be informed to use the policies step by setting the environment variable:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="l">POSTPROCESSING_STEPS=policies</span><span class="w">
@@ -17391,7 +17391,7 @@ NOTE: It is important that <em>all</em> necessary files are added to the list of
 >engine.go</a> and the <a
   class="gdoc-markdown__link"
   href="https://github.com/owncloud/ocis/blob/master/protogen/gen/ocis/services/policies/v0/policies.swagger.json"
->policies.swagger.json</a> file. Note that which keys are avaialble depends from which module it is used.</p>
+>policies.swagger.json</a> file. Note that which keys are available depends on from which module it is used.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="example-policies">
         Example Policies
