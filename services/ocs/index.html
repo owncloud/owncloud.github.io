@@ -14,7 +14,7 @@
 
   <meta name="description" content="Abstract     The ocs service is an &hellip;
 Table of Contents      Caching Example Yaml Config  Caching     The ocs service can use a configured store via OCS_STORE_TYPE. Possible stores are:
- memory: Basic in-memory store and the default. ocmem: Advanced in-memory store allowing max size. redis: Stores data in a configured redis cluster. redis-sentinel: Stores data in a configured redis sentinel cluster." />
+ memory: Basic in-memory store and the default. ocmem: Advanced in-memory store allowing max size. redis: Stores data in a configured Redis cluster. redis-sentinel: Stores data in a configured Redis Sentinel cluster." />
 
     <title>OCS | ownCloud</title>
 
@@ -40,18 +40,18 @@ Table of Contents      Caching Example Yaml Config  Caching     The ocs service 
   <meta property="og:site_name" content="ownCloud" />
   <meta property="og:description" content="Abstract     The ocs service is an …
 Table of Contents      Caching Example Yaml Config  Caching     The ocs service can use a configured store via OCS_STORE_TYPE. Possible stores are:
- memory: Basic in-memory store and the default. ocmem: Advanced in-memory store allowing max size. redis: Stores data in a configured redis cluster. redis-sentinel: Stores data in a configured redis sentinel cluster." />
+ memory: Basic in-memory store and the default. ocmem: Advanced in-memory store allowing max size. redis: Stores data in a configured Redis cluster. redis-sentinel: Stores data in a configured Redis Sentinel cluster." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/ocs/" />
 
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-04-24T12:23:08+00:00"
+      content="2023-04-24T13:14:38+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-04-24T12:23:08+00:00"
+      content="2023-04-24T13:14:38+00:00"
     />
 
 
@@ -59,7 +59,7 @@ Table of Contents      Caching Example Yaml Config  Caching     The ocs service 
 <meta name="twitter:title" content="OCS" />
   <meta name="twitter:description" content="Abstract     The ocs service is an …
 Table of Contents      Caching Example Yaml Config  Caching     The ocs service can use a configured store via OCS_STORE_TYPE. Possible stores are:
- memory: Basic in-memory store and the default. ocmem: Advanced in-memory store allowing max size. redis: Stores data in a configured redis cluster. redis-sentinel: Stores data in a configured redis sentinel cluster." />
+ memory: Basic in-memory store and the default. ocmem: Advanced in-memory store allowing max size. redis: Stores data in a configured Redis cluster. redis-sentinel: Stores data in a configured Redis Sentinel cluster." />
 
 
   <script type="application/ld+json">
@@ -70,8 +70,8 @@ Table of Contents      Caching Example Yaml Config  Caching     The ocs service 
       "name": "OCS",
       "url" : "https://owncloud.dev/services/ocs/",
       "headline": "OCS",
-      "description": "Abstract     The ocs service is an …\nTable of Contents      Caching Example Yaml Config  Caching     The ocs service can use a configured store via OCS_STORE_TYPE. Possible stores are:\n memory: Basic in-memory store and the default. ocmem: Advanced in-memory store allowing max size. redis: Stores data in a configured redis cluster. redis-sentinel: Stores data in a configured redis sentinel cluster.",
-      "wordCount" : "747",
+      "description": "Abstract     The ocs service is an …\nTable of Contents      Caching Example Yaml Config  Caching     The ocs service can use a configured store via OCS_STORE_TYPE. Possible stores are:\n memory: Basic in-memory store and the default. ocmem: Advanced in-memory store allowing max size. redis: Stores data in a configured Redis cluster. redis-sentinel: Stores data in a configured Redis Sentinel cluster.",
+      "wordCount" : "748",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -80,9 +80,9 @@ Table of Contents      Caching Example Yaml Config  Caching     The ocs service 
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-04-24T12:23:08.44Z",
-      "datePublished": "2023-04-24T12:23:08.44Z",
-      "dateModified": "2023-04-24T12:23:08.44Z",
+      "dateCreated": "2023-04-24T13:14:38.60Z",
+      "datePublished": "2023-04-24T13:14:38.60Z",
+      "dateModified": "2023-04-24T13:14:38.60Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17210,8 +17210,8 @@ Copyright 2022 Fonticons, Inc.
 <ul>
 <li><code>memory</code>: Basic in-memory store and the default.</li>
 <li><code>ocmem</code>: Advanced in-memory store allowing max size.</li>
-<li><code>redis</code>: Stores data in a configured redis cluster.</li>
-<li><code>redis-sentinel</code>: Stores data in a configured redis sentinel cluster.</li>
+<li><code>redis</code>: Stores data in a configured Redis cluster.</li>
+<li><code>redis-sentinel</code>: Stores data in a configured Redis Sentinel cluster.</li>
 <li><code>etcd</code>: Stores data in a configured etcd cluster.</li>
 <li><code>nats-js</code>: Stores data using key-value-store feature of <a
   class="gdoc-markdown__link"
@@ -17220,8 +17220,8 @@ Copyright 2022 Fonticons, Inc.
 <li><code>noop</code>: Stores nothing. Useful for testing. Not recommended in production environments.</li>
 </ul>
 <ol>
-<li>Note that in-memory stores are by nature not reboot persistent.</li>
-<li>Though usually not necessary, a database name and a database table can be configured for event stores if the event store supports this. Generally not applicable for stores of type <code>in-memory</code>. These settings are blank by default which means that the standard settings of the configured store applies.</li>
+<li>Note that in-memory stores are by nature not reboot-persistent.</li>
+<li>Though usually not necessary, a database name and a database table can be configured for event stores if the event store supports this. Generally not applicable for stores of type <code>in-memory</code>. These settings are blank by default which means that the standard settings of the configured store apply.</li>
 <li>The ocs service can be scaled if not using <code>in-memory</code> stores and the stores are configured identically over all instances.</li>
 <li>When using <code>redis-sentinel</code>, the Redis master to use is configured via <code>OCS_CACHE_STORE_NODES</code> in the form of <code>&lt;sentinel-host&gt;:&lt;sentinel-port&gt;/&lt;redis-master&gt;</code> like <code>10.10.0.200:26379/mymaster</code>.</li>
 </ol>
@@ -17426,16 +17426,16 @@ Copyright 2022 Fonticons, Inc.
 <td>The path to the log file. Activates logging to this file if set.</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_STORE<br/>OCS_CACHE_STORE<br/>OCIS_CACHE_STORE_TYPE<br/>OCS_CACHE_STORE_TYPE</td>
+<td>OCIS_CACHE_STORE<br/>OCS_CACHE_STORE</td>
 <td>string</td>
 <td></td>
 <td>The type of the cache store. Supported values are: &lsquo;memory&rsquo;, &lsquo;ocmem&rsquo;, &rsquo;etcd&rsquo;, &lsquo;redis&rsquo;, &lsquo;redis-sentinel&rsquo;, &rsquo;nats-js&rsquo;, &rsquo;noop&rsquo;. See the text description for details.</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_STORE_NODES<br/>OCS_CACHE_STORE_NODES<br/>OCIS_CACHE_STORE_ADDRESSES<br/>OCS_CACHE_STORE_ADDRESSES</td>
+<td>OCIS_CACHE_STORE_NODES<br/>OCS_CACHE_STORE_NODES</td>
 <td>[]string</td>
 <td>[]</td>
-<td>A comma separated list of nodes to access the configured store. This has no effect when &lsquo;in-memory&rsquo; stores are configured. Note that the behaviour how nodes are used is dependent on the library of the configured store.</td>
+<td>A comma separated list of nodes to access the configured store. This has no effect when &lsquo;memory&rsquo; or &lsquo;ocmem&rsquo; stores are configured. Note that the behaviour how nodes are used is dependent on the library of the configured store.</td>
 </tr>
 <tr>
 <td>OCS_CACHE_STORE_DATABASE</td>
@@ -17450,13 +17450,13 @@ Copyright 2022 Fonticons, Inc.
 <td>The database table the store should use.</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_STORE_TTL<br/>OCS_CACHE_STORE_TTL</td>
+<td>OCIS_CACHE_TTL<br/>OCS_CACHE_TTL</td>
 <td>Duration</td>
 <td>0s</td>
 <td>Time to live for events in the store. The duration can be set as number followed by a unit identifier like s, m or h. Defaults to &lsquo;336h&rsquo; (2 weeks).</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_STORE_SIZE<br/>OCS_CACHE_STORE_SIZE</td>
+<td>OCIS_CACHE_SIZE<br/>OCS_CACHE_SIZE</td>
 <td>int</td>
 <td>0</td>
 <td>The maximum quantity of items in the store. Only applies when store type &lsquo;ocmem&rsquo; is configured. Defaults to 512.</td>

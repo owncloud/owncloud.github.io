@@ -43,11 +43,11 @@
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-04-24T12:23:08+00:00"
+      content="2023-04-24T13:14:38+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-04-24T12:23:08+00:00"
+      content="2023-04-24T13:14:38+00:00"
     />
 
 
@@ -74,9 +74,9 @@
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-04-24T12:23:08.44Z",
-      "datePublished": "2023-04-24T12:23:08.44Z",
-      "dateModified": "2023-04-24T12:23:08.44Z",
+      "dateCreated": "2023-04-24T13:14:38.61Z",
+      "datePublished": "2023-04-24T13:14:38.61Z",
+      "dateModified": "2023-04-24T13:14:38.61Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17315,8 +17315,8 @@ The default <code>role_claim</code> (or <code>PROXY_ROLE_ASSIGNMENT_OIDC_CLAIM</
 <ul>
 <li><code>memory</code>: Basic in-memory store and the default.</li>
 <li><code>ocmem</code>: Advanced in-memory store allowing max size.</li>
-<li><code>redis</code>: Stores data in a configured redis cluster.</li>
-<li><code>redis-sentinel</code>: Stores data in a configured redis sentinel cluster.</li>
+<li><code>redis</code>: Stores data in a configured Redis cluster.</li>
+<li><code>redis-sentinel</code>: Stores data in a configured Redis Sentinel cluster.</li>
 <li><code>etcd</code>: Stores data in a configured etcd cluster.</li>
 <li><code>nats-js</code>: Stores data using key-value-store feature of <a
   class="gdoc-markdown__link"
@@ -17325,8 +17325,8 @@ The default <code>role_claim</code> (or <code>PROXY_ROLE_ASSIGNMENT_OIDC_CLAIM</
 <li><code>noop</code>: Stores nothing. Useful for testing. Not recommended in production environments.</li>
 </ul>
 <ol>
-<li>Note that in-memory stores are by nature not reboot persistent.</li>
-<li>Though usually not necessary, a database name and a database table can be configured for event stores if the event store supports this. Generally not applicable for stores of type <code>in-memory</code>. These settings are blank by default which means that the standard settings of the configured store applies.</li>
+<li>Note that in-memory stores are by nature not reboot-persistent.</li>
+<li>Though usually not necessary, a database name and a database table can be configured for event stores if the event store supports this. Generally not applicable for stores of type <code>in-memory</code>. These settings are blank by default which means that the standard settings of the configured store apply.</li>
 <li>The proxy service can be scaled if not using <code>in-memory</code> stores and the stores are configured identically over all instances.</li>
 <li>When using <code>redis-sentinel</code>, the Redis master to use is configured via <code>PROXY_OIDC_USERINFO_CACHE_NODES</code> in the form of <code>&lt;sentinel-host&gt;:&lt;sentinel-port&gt;/&lt;redis-master&gt;</code> like <code>10.10.0.200:26379/mymaster</code>.</li>
 </ol>
@@ -17851,19 +17851,19 @@ The default <code>role_claim</code> (or <code>PROXY_ROLE_ASSIGNMENT_OIDC_CLAIM</
 <td>Sets how OIDC access tokens should be verified. Possible values are &rsquo;none&rsquo; and &lsquo;jwt&rsquo;. When using &rsquo;none&rsquo;, no special validation apart from using it for accessing the IPD&rsquo;s userinfo endpoint will be done. When using &lsquo;jwt&rsquo;, it tries to parse the access token as a jwt token and verifies the signature using the keys published on the IDP&rsquo;s &lsquo;jwks_uri&rsquo;.</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_STORE<br/>PROXY_OIDC_USERINFO_CACHE_STORE<br/>OCIS_CACHE_STORE_TYPE<br/>PROXY_OIDC_USERINFO_CACHE_TYPE</td>
+<td>OCIS_CACHE_STORE<br/>PROXY_OIDC_USERINFO_CACHE_STORE</td>
 <td>string</td>
 <td>memory</td>
-<td>The type of the userinfo cache store. Supported values are: &lsquo;memory&rsquo;, &lsquo;ocmem&rsquo;, &rsquo;etcd&rsquo;, &lsquo;redis&rsquo;, &lsquo;redis-sentinel&rsquo;, &rsquo;nats-js&rsquo;, &rsquo;noop&rsquo;. See the text description for details.</td>
+<td>The type of the cache store. Supported values are: &lsquo;memory&rsquo;, &lsquo;ocmem&rsquo;, &rsquo;etcd&rsquo;, &lsquo;redis&rsquo;, &lsquo;redis-sentinel&rsquo;, &rsquo;nats-js&rsquo;, &rsquo;noop&rsquo;. See the text description for details.</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_STORE_NODES<br/>PROXY_OIDC_USERINFO_CACHE_NODES<br/>OCIS_CACHE_STORE_ADDRESSES<br/>PROXY_OIDC_USERINFO_CACHE_ADDRESSES</td>
+<td>OCIS_CACHE_STORE_NODES<br/>PROXY_OIDC_USERINFO_CACHE_NODES</td>
 <td>[]string</td>
 <td>[]</td>
-<td>A comma separated list of nodes to access the configured store. This has no effect when &lsquo;in-memory&rsquo; stores are configured. Note that the behaviour how nodes are used is dependent on the library of the configured store.</td>
+<td>A comma separated list of nodes to access the configured store. This has no effect when &lsquo;memory&rsquo; or &lsquo;ocmem&rsquo; stores are configured. Note that the behaviour how nodes are used is dependent on the library of the configured store.</td>
 </tr>
 <tr>
-<td>PROXY_OIDC_USERINFO_CACHE_DATABASE</td>
+<td>OCIS_CACHE_DATABASE</td>
 <td>string</td>
 <td>proxy</td>
 <td>The database name the configured store should use.</td>
@@ -17875,13 +17875,13 @@ The default <code>role_claim</code> (or <code>PROXY_ROLE_ASSIGNMENT_OIDC_CLAIM</
 <td>The database table the store should use.</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_STORE_TTL<br/>PROXY_OIDC_USERINFO_CACHE_TTL</td>
+<td>OCIS_CACHE_TTL<br/>PROXY_OIDC_USERINFO_CACHE_TTL</td>
 <td>Duration</td>
 <td>10s</td>
 <td>Default time to live for user info in the user info cache. Only applied when access tokens has no expiration. The duration can be set as number followed by a unit identifier like s, m or h. Defaults to &rsquo;10s&rsquo; (10 seconds).</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_STORE_SIZE<br/>PROXY_OIDC_USERINFO_CACHE_SIZE</td>
+<td>OCIS_CACHE_SIZE<br/>PROXY_OIDC_USERINFO_CACHE_SIZE</td>
 <td>int</td>
 <td>0</td>
 <td>The maximum quantity of items in the user info cache. Only applies when store type &lsquo;ocmem&rsquo; is configured. Defaults to 512.</td>

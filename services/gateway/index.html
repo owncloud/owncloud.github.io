@@ -14,7 +14,7 @@
 
   <meta name="description" content="Abstract     The gateway service is an &hellip;
 Table of Contents      Caching Example Yaml Config  Caching     The gateway service can use a configured store via GATEWAY_CACHE_STORE. Possible stores are:
- memory: Basic in-memory store and the default. redis: Stores data in a configured redis cluster. etcd: Stores data in a configured etcd cluster.   Note that in-memory stores are by nature not reboot persistent." />
+ memory: Basic in-memory store and the default. ocmem: Advanced in-memory store allowing max size. redis: Stores data in a configured Redis cluster. redis-sentinel: Stores data in a configured Redis Sentinel cluster." />
 
     <title>Gateway | ownCloud</title>
 
@@ -40,18 +40,18 @@ Table of Contents      Caching Example Yaml Config  Caching     The gateway serv
   <meta property="og:site_name" content="ownCloud" />
   <meta property="og:description" content="Abstract     The gateway service is an …
 Table of Contents      Caching Example Yaml Config  Caching     The gateway service can use a configured store via GATEWAY_CACHE_STORE. Possible stores are:
- memory: Basic in-memory store and the default. redis: Stores data in a configured redis cluster. etcd: Stores data in a configured etcd cluster.   Note that in-memory stores are by nature not reboot persistent." />
+ memory: Basic in-memory store and the default. ocmem: Advanced in-memory store allowing max size. redis: Stores data in a configured Redis cluster. redis-sentinel: Stores data in a configured Redis Sentinel cluster." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/gateway/" />
 
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-04-24T12:23:08+00:00"
+      content="2023-04-24T13:14:38+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-04-24T12:23:08+00:00"
+      content="2023-04-24T13:14:38+00:00"
     />
 
 
@@ -59,7 +59,7 @@ Table of Contents      Caching Example Yaml Config  Caching     The gateway serv
 <meta name="twitter:title" content="Gateway" />
   <meta name="twitter:description" content="Abstract     The gateway service is an …
 Table of Contents      Caching Example Yaml Config  Caching     The gateway service can use a configured store via GATEWAY_CACHE_STORE. Possible stores are:
- memory: Basic in-memory store and the default. redis: Stores data in a configured redis cluster. etcd: Stores data in a configured etcd cluster.   Note that in-memory stores are by nature not reboot persistent." />
+ memory: Basic in-memory store and the default. ocmem: Advanced in-memory store allowing max size. redis: Stores data in a configured Redis cluster. redis-sentinel: Stores data in a configured Redis Sentinel cluster." />
 
 
   <script type="application/ld+json">
@@ -70,8 +70,8 @@ Table of Contents      Caching Example Yaml Config  Caching     The gateway serv
       "name": "Gateway",
       "url" : "https://owncloud.dev/services/gateway/",
       "headline": "Gateway",
-      "description": "Abstract     The gateway service is an …\nTable of Contents      Caching Example Yaml Config  Caching     The gateway service can use a configured store via GATEWAY_CACHE_STORE. Possible stores are:\n memory: Basic in-memory store and the default. redis: Stores data in a configured redis cluster. etcd: Stores data in a configured etcd cluster.   Note that in-memory stores are by nature not reboot persistent.",
-      "wordCount" : "753",
+      "description": "Abstract     The gateway service is an …\nTable of Contents      Caching Example Yaml Config  Caching     The gateway service can use a configured store via GATEWAY_CACHE_STORE. Possible stores are:\n memory: Basic in-memory store and the default. ocmem: Advanced in-memory store allowing max size. redis: Stores data in a configured Redis cluster. redis-sentinel: Stores data in a configured Redis Sentinel cluster.",
+      "wordCount" : "1012",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -80,9 +80,9 @@ Table of Contents      Caching Example Yaml Config  Caching     The gateway serv
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-04-24T12:23:08.44Z",
-      "datePublished": "2023-04-24T12:23:08.44Z",
-      "dateModified": "2023-04-24T12:23:08.44Z",
+      "dateCreated": "2023-04-24T13:14:38.60Z",
+      "datePublished": "2023-04-24T13:14:38.60Z",
+      "dateModified": "2023-04-24T13:14:38.60Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17209,13 +17209,21 @@ Copyright 2022 Fonticons, Inc.
 <p>The <code>gateway</code> service can use a configured store via <code>GATEWAY_CACHE_STORE</code>. Possible stores are:</p>
 <ul>
 <li><code>memory</code>: Basic in-memory store and the default.</li>
-<li><code>redis</code>: Stores data in a configured redis cluster.</li>
+<li><code>ocmem</code>: Advanced in-memory store allowing max size.</li>
+<li><code>redis</code>: Stores data in a configured Redis cluster.</li>
+<li><code>redis-sentinel</code>: Stores data in a configured Redis Sentinel cluster.</li>
 <li><code>etcd</code>: Stores data in a configured etcd cluster.</li>
+<li><code>nats-js</code>: Stores data using key-value-store feature of <a
+  class="gdoc-markdown__link"
+  href="https://docs.nats.io/nats-concepts/jetstream/key-value-store"
+>nats jetstream</a></li>
+<li><code>noop</code>: Stores nothing. Useful for testing. Not recommended in production environments.</li>
 </ul>
 <ol>
-<li>Note that in-memory stores are by nature not reboot persistent.</li>
-<li>Though usually not necessary, a database name and a database table can be configured for event stores if the event store supports this. Generally not applicable for stores of type <code>in-memory</code>. These settings are blank by default which means that the standard settings of the configured store applies.</li>
+<li>Note that in-memory stores are by nature not reboot-persistent.</li>
+<li>Though usually not necessary, a database name and a database table can be configured for event stores if the event store supports this. Generally not applicable for stores of type <code>in-memory</code>. These settings are blank by default which means that the standard settings of the configured store apply.</li>
 <li>The gateway service can be scaled if not using <code>in-memory</code> stores and the stores are configured identically over all instances.</li>
+<li>When using <code>redis-sentinel</code>, the Redis master to use is configured via <code>GATEWAY_CACHE_STORE_NODES</code> in the form of <code>&lt;sentinel-host&gt;:&lt;sentinel-port&gt;/&lt;redis-master&gt;</code> like <code>10.10.0.200:26379/mymaster</code>.</li>
 </ol>
 <div class="gdoc-page__anchorwrap">
     <h2 id="example-yaml-config">
@@ -17293,6 +17301,9 @@ Copyright 2022 Fonticons, Inc.
 </span><span class="lnt">57
 </span><span class="lnt">58
 </span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># Autogenerated</span><span class="w">
@@ -17334,9 +17345,12 @@ Copyright 2022 Fonticons, Inc.
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">store</span><span class="p">:</span><span class="w"> </span><span class="l">memory</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">nodes</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">database</span><span class="p">:</span><span class="w"> </span><span class="l">users</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">stat_cache_ttl</span><span class="p">:</span><span class="w"> </span><span class="m">300</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">provider_cache_ttl</span><span class="p">:</span><span class="w"> </span><span class="m">300</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">create_home_cache_ttl</span><span class="p">:</span><span class="w"> </span><span class="m">300</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">stat_cache_ttl</span><span class="p">:</span><span class="w"> </span><span class="l">300ns</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">stat_cache_size</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">provider_cache_ttl</span><span class="p">:</span><span class="w"> </span><span class="l">300ns</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">provider_cache_size</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">create_home_cache_ttl</span><span class="p">:</span><span class="w"> </span><span class="l">300ns</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">create_home_cache_size</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">frontend_public_url</span><span class="p">:</span><span class="w"> </span><span class="l">https://localhost:9200</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">users_endpoint</span><span class="p">:</span><span class="w"> </span><span class="l">localhost:9144</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">groups_endpoint</span><span class="p">:</span><span class="w"> </span><span class="l">localhost:9160</span><span class="w">
@@ -17528,40 +17542,58 @@ Copyright 2022 Fonticons, Inc.
 <td>Expiry for the gateway tokens.</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_STORE<br/>GATEWAY_CACHE_STORE<br/>OCIS_CACHE_STORE_TYPE<br/>GATEWAY_CACHE_STORE_TYPE</td>
+<td>OCIS_CACHE_STORE<br/>GATEWAY_CACHE_STORE</td>
 <td>string</td>
 <td>memory</td>
-<td>Store implementation for the cache. Supported values are &lsquo;memory&rsquo; (default), &lsquo;redis&rsquo;, and &rsquo;etcd&rsquo;.</td>
+<td>The type of the cache store. Supported values are: &lsquo;memory&rsquo;, &lsquo;ocmem&rsquo;, &rsquo;etcd&rsquo;, &lsquo;redis&rsquo;, &lsquo;redis-sentinel&rsquo;, &rsquo;nats-js&rsquo;, &rsquo;noop&rsquo;. See the text description for details.</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_STORE_NODES<br/>GATEWAY_CACHE_STORE_NODES<br/>OCIS_CACHE_STORE_ADDRESS<br/>GATEWAY_CACHE_STORE_ADDRESS<br/>GATEWAY_CACHE_NODES</td>
+<td>OCIS_CACHE_STORE_NODES<br/>GATEWAY_CACHE_STORE_NODES</td>
 <td>[]string</td>
 <td>[]</td>
-<td>Nodes to use for the cache store.</td>
+<td>A comma separated list of nodes to access the configured store. This has no effect when &lsquo;memory&rsquo; or &lsquo;ocmem&rsquo; stores are configured. Note that the behaviour how nodes are used is dependent on the library of the configured store.</td>
 </tr>
 <tr>
-<td>GATEWAY_CACHE_DATABASE</td>
+<td>OCIS_CACHE_DATABASE</td>
 <td>string</td>
 <td>users</td>
-<td>Database name of the cache.</td>
+<td>The database name the configured store should use.</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_STORE_TTL<br/>GATEWAY_STAT_CACHE_TTL</td>
-<td>int</td>
-<td>300</td>
-<td>Max TTL in seconds for the gateway&rsquo;s stat cache.</td>
+<td>OCIS_CACHE_TTL<br/>GATEWAY_STAT_CACHE_TTL</td>
+<td>Duration</td>
+<td>300ns</td>
+<td>Default time to live for user info in the cache. Only applied when access tokens has no expiration. The duration can be set as number followed by a unit identifier like s, m or h. Defaults to &rsquo;10s&rsquo; (10 seconds).</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_STORE_TTL<br/>GATEWAY_PROVIDER_CACHE_TTL</td>
+<td>OCIS_CACHE_SIZE<br/>GATEWAY_STAT_CACHE_SIZE</td>
 <td>int</td>
-<td>300</td>
-<td>Max TTL in seconds for the gateway&rsquo;s provider cache.</td>
+<td>0</td>
+<td>The maximum quantity of items in the cache. Only applies when store type &lsquo;ocmem&rsquo; is configured. Defaults to 512.</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_STORE_TTL<br/>GATEWAY_CREATE_HOME_CACHE_TTL</td>
+<td>OCIS_CACHE_TTL<br/>GATEWAY_PROVIDER_CACHE_TTL</td>
+<td>Duration</td>
+<td>300ns</td>
+<td>Default time to live for user info in the cache. Only applied when access tokens has no expiration. The duration can be set as number followed by a unit identifier like s, m or h. Defaults to &rsquo;10s&rsquo; (10 seconds).</td>
+</tr>
+<tr>
+<td>OCIS_CACHE_SIZE<br/>GATEWAY_PROVIDER_CACHE_SIZE</td>
 <td>int</td>
-<td>300</td>
-<td>Max TTL in seconds for the gateway&rsquo;s create home cache.</td>
+<td>0</td>
+<td>The maximum quantity of items in the cache. Only applies when store type &lsquo;ocmem&rsquo; is configured. Defaults to 512.</td>
+</tr>
+<tr>
+<td>OCIS_CACHE_TTL<br/>GATEWAY_CREATE_HOME_CACHE_TTL</td>
+<td>Duration</td>
+<td>300ns</td>
+<td>Default time to live for user info in the cache. Only applied when access tokens has no expiration. The duration can be set as number followed by a unit identifier like s, m or h. Defaults to &rsquo;10s&rsquo; (10 seconds).</td>
+</tr>
+<tr>
+<td>OCIS_CACHE_SIZE<br/>GATEWAY_CREATE_HOME_CACHE_SIZE</td>
+<td>int</td>
+<td>0</td>
+<td>The maximum quantity of items in the cache. Only applies when store type &lsquo;ocmem&rsquo; is configured. Defaults to 512.</td>
 </tr>
 <tr>
 <td>OCIS_URL<br/>GATEWAY_FRONTEND_PUBLIC_URL</td>
