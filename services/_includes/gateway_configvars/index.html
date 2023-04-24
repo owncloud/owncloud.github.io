@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/gateway_configvars/",
       "headline": "Gateway Configvars",
       "description": "Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDGATEWAY_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPEGATEWAY_TRACING_TYPE string  The type of tracing. Defaults to “”, which is the same as “jaeger”. Allowed tracing types are “jaeger” and \u0022\u0022 as of now.   OCIS_TRACING_ENDPOINTGATEWAY_TRACING_ENDPOINT string  The endpoint of the tracing agent.   OCIS_TRACING_COLLECTORGATEWAY_TRACING_COLLECTOR string  The HTTP endpoint for sending spans directly to a collector, i.",
-      "wordCount" : "760",
+      "wordCount" : "558",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17316,58 +17316,40 @@ Copyright 2022 Fonticons, Inc.
 <td>Expiry for the gateway tokens.</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_STORE<br/>GATEWAY_CACHE_STORE</td>
+<td>OCIS_CACHE_STORE<br/>GATEWAY_CACHE_STORE<br/>OCIS_CACHE_STORE_TYPE<br/>GATEWAY_CACHE_STORE_TYPE</td>
 <td>string</td>
 <td>memory</td>
-<td>The type of the cache store. Supported values are: &lsquo;memory&rsquo;, &lsquo;ocmem&rsquo;, &rsquo;etcd&rsquo;, &lsquo;redis&rsquo;, &lsquo;redis-sentinel&rsquo;, &rsquo;nats-js&rsquo;, &rsquo;noop&rsquo;. See the text description for details.</td>
+<td>Store implementation for the cache. Supported values are &lsquo;memory&rsquo; (default), &lsquo;redis&rsquo;, and &rsquo;etcd&rsquo;.</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_STORE_NODES<br/>GATEWAY_CACHE_STORE_NODES</td>
+<td>OCIS_CACHE_STORE_NODES<br/>GATEWAY_CACHE_STORE_NODES<br/>OCIS_CACHE_STORE_ADDRESS<br/>GATEWAY_CACHE_STORE_ADDRESS<br/>GATEWAY_CACHE_NODES</td>
 <td>[]string</td>
 <td>[]</td>
-<td>A comma separated list of nodes to access the configured store. This has no effect when &lsquo;memory&rsquo; or &lsquo;ocmem&rsquo; stores are configured. Note that the behaviour how nodes are used is dependent on the library of the configured store.</td>
+<td>Nodes to use for the cache store.</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_DATABASE</td>
+<td>GATEWAY_CACHE_DATABASE</td>
 <td>string</td>
 <td>users</td>
-<td>The database name the configured store should use.</td>
+<td>Database name of the cache.</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_TTL<br/>GATEWAY_STAT_CACHE_TTL</td>
-<td>Duration</td>
-<td>300ns</td>
-<td>Default time to live for user info in the cache. Only applied when access tokens has no expiration. The duration can be set as number followed by a unit identifier like s, m or h. Defaults to &rsquo;10s&rsquo; (10 seconds).</td>
-</tr>
-<tr>
-<td>OCIS_CACHE_SIZE<br/>GATEWAY_STAT_CACHE_SIZE</td>
+<td>OCIS_CACHE_STORE_TTL<br/>GATEWAY_STAT_CACHE_TTL</td>
 <td>int</td>
-<td>0</td>
-<td>The maximum quantity of items in the cache. Only applies when store type &lsquo;ocmem&rsquo; is configured. Defaults to 512.</td>
+<td>300</td>
+<td>Max TTL in seconds for the gateway&rsquo;s stat cache.</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_TTL<br/>GATEWAY_PROVIDER_CACHE_TTL</td>
-<td>Duration</td>
-<td>300ns</td>
-<td>Default time to live for user info in the cache. Only applied when access tokens has no expiration. The duration can be set as number followed by a unit identifier like s, m or h. Defaults to &rsquo;10s&rsquo; (10 seconds).</td>
-</tr>
-<tr>
-<td>OCIS_CACHE_SIZE<br/>GATEWAY_PROVIDER_CACHE_SIZE</td>
+<td>OCIS_CACHE_STORE_TTL<br/>GATEWAY_PROVIDER_CACHE_TTL</td>
 <td>int</td>
-<td>0</td>
-<td>The maximum quantity of items in the cache. Only applies when store type &lsquo;ocmem&rsquo; is configured. Defaults to 512.</td>
+<td>300</td>
+<td>Max TTL in seconds for the gateway&rsquo;s provider cache.</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_TTL<br/>GATEWAY_CREATE_HOME_CACHE_TTL</td>
-<td>Duration</td>
-<td>300ns</td>
-<td>Default time to live for user info in the cache. Only applied when access tokens has no expiration. The duration can be set as number followed by a unit identifier like s, m or h. Defaults to &rsquo;10s&rsquo; (10 seconds).</td>
-</tr>
-<tr>
-<td>OCIS_CACHE_SIZE<br/>GATEWAY_CREATE_HOME_CACHE_SIZE</td>
+<td>OCIS_CACHE_STORE_TTL<br/>GATEWAY_CREATE_HOME_CACHE_TTL</td>
 <td>int</td>
-<td>0</td>
-<td>The maximum quantity of items in the cache. Only applies when store type &lsquo;ocmem&rsquo; is configured. Defaults to 512.</td>
+<td>300</td>
+<td>Max TTL in seconds for the gateway&rsquo;s create home cache.</td>
 </tr>
 <tr>
 <td>OCIS_URL<br/>GATEWAY_FRONTEND_PUBLIC_URL</td>

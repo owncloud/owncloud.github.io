@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/frontend_configvars/",
       "headline": "Frontend Configvars",
       "description": "Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDFRONTEND_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPEFRONTEND_TRACING_TYPE string  The type of tracing. Defaults to “”, which is the same as “jaeger”. Allowed tracing types are “jaeger” and \u0022\u0022 as of now.   OCIS_TRACING_ENDPOINTFRONTEND_TRACING_ENDPOINT string  The endpoint of the tracing agent.   OCIS_TRACING_COLLECTORFRONTEND_TRACING_COLLECTOR string  The HTTP endpoint for sending spans directly to a collector, i.",
-      "wordCount" : "1025",
+      "wordCount" : "1004",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17466,40 +17466,34 @@ Copyright 2022 Fonticons, Inc.
 <td>Additional information attribute for the user like {{.Mail}}.</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_STORE<br/>FRONTEND_OCS_RESOURCE_INFO_CACHE_STORE</td>
+<td>FRONTEND_OCS_RESOURCE_INFO_CACHE_TTL</td>
+<td>int</td>
+<td>0</td>
+<td>Max TTL in seconds for the resource info cache. 0 disables the cache.</td>
+</tr>
+<tr>
+<td>FRONTEND_OCS_RESOURCE_INFO_CACHE_TYPE</td>
 <td>string</td>
 <td>memory</td>
-<td>The type of the cache store. Supported values are: &lsquo;memory&rsquo;, &lsquo;ocmem&rsquo;, &rsquo;etcd&rsquo;, &lsquo;redis&rsquo;, &lsquo;redis-sentinel&rsquo;, &rsquo;nats-js&rsquo;, &rsquo;noop&rsquo;. See the text description for details.</td>
+<td>The type of the resource info cache. Supported values are &lsquo;memory&rsquo; and &lsquo;redis&rsquo;.</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_STORE_NODES<br/>FRONTEND_OCS_RESOURCE_INFO_CACHE_STORE_NODES</td>
-<td>[]string</td>
-<td>[]</td>
-<td>A comma separated list of nodes to access the configured store. This has no effect when &lsquo;memory&rsquo; or &lsquo;ocmem&rsquo; stores are configured. Note that the behaviour how nodes are used is dependent on the library of the configured store.</td>
-</tr>
-<tr>
-<td>OCIS_CACHE_DATABASE</td>
-<td>string</td>
-<td>frontend</td>
-<td>The database name the configured store should use.</td>
-</tr>
-<tr>
-<td>FRONTEND_OCS_RESOURCE_INFO_CACHE_TABLE</td>
+<td>FRONTEND_OCS_RESOURCE_INFO_CACHE_REDIS_ADDR</td>
 <td>string</td>
 <td></td>
-<td>The database table the store should use.</td>
+<td>A comma separated list of addresses to access the configured store. This has no effect when the &lsquo;memory&rsquo; store is configured. Note that the behaviour how addresses are used is dependent on the library of the configured store.</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_TTL<br/>FRONTEND_OCS_RESOURCE_INFO_CACHE_TTL</td>
-<td>int</td>
-<td>0</td>
-<td>Max TTL in seconds for the resource info cache.</td>
+<td>FRONTEND_OCS_RESOURCE_INFO_CACHE_REDIS_USERNAME</td>
+<td>string</td>
+<td></td>
+<td>The username to access the redis cache.</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_SIZE<br/>FRONTEND_OCS_RESOURCE_INFO_CACHE_SIZE</td>
-<td>int</td>
-<td>0</td>
-<td>Max number of entries to hold in the cache.</td>
+<td>FRONTEND_OCS_RESOURCE_INFO_CACHE_REDIS_PASSWORD</td>
+<td>string</td>
+<td></td>
+<td>The password to access the redis cache.</td>
 </tr>
 <tr>
 <td>FRONTEND_OCS_ENABLE_DENIALS</td>

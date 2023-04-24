@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/eventhistory_configvars/",
       "headline": "Eventhistory Configvars",
       "description": "Environment Variables        Name Type Default Value Description     OCIS_LOG_LEVELEVENTHISTORY_LOG_LEVEL string  The log level. Valid values are: “panic”, “fatal”, “error”, “warn”, “info”, “debug”, “trace”.   OCIS_LOG_PRETTYEVENTHISTORY_LOG_PRETTY bool false Activates pretty log output.   OCIS_LOG_COLOREVENTHISTORY_LOG_COLOR bool false Activates colorized log output.   OCIS_LOG_FILEEVENTHISTORY_LOG_FILE string  The path to the log file. Activates logging to this file if set.   EVENTHISTORY_DEBUG_ADDR string  Bind address of the debug server, where metrics, health, config and debug endpoints will be exposed.",
-      "wordCount" : "374",
+      "wordCount" : "373",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17256,16 +17256,16 @@ Copyright 2022 Fonticons, Inc.
 <td>Enable TLS for the connection to the events broker. The events broker is the ocis service which receives and delivers events between the services..</td>
 </tr>
 <tr>
-<td>OCIS_PERSISTENT_STORE<br/>EVENTHISTORY_STORE</td>
+<td>OCIS_PERSISTENT_STORE<br/>EVENTHISTORY_STORE<br/>OCIS_PERSISTENT_STORE_TYPE<br/>EVENTHISTORY_STORE_TYPE</td>
 <td>string</td>
 <td>memory</td>
-<td>The type of the store. Supported values are: &lsquo;memory&rsquo;, &lsquo;ocmem&rsquo;, &rsquo;etcd&rsquo;, &lsquo;redis&rsquo;, &lsquo;redis-sentinel&rsquo;, &rsquo;nats-js&rsquo;, &rsquo;noop&rsquo;. See the text description for details.</td>
+<td>The type of the eventhistory store. Supported values are: &lsquo;memory&rsquo;, &lsquo;ocmem&rsquo;, &rsquo;etcd&rsquo;, &lsquo;redis&rsquo;, &lsquo;redis-sentinel&rsquo;, &rsquo;nats-js&rsquo;, &rsquo;noop&rsquo;. See the text description for details.</td>
 </tr>
 <tr>
-<td>OCIS_PERSISTENT_STORE_NODES<br/>EVENTHISTORY_STORE_NODES</td>
+<td>OCIS_PERSISTENT_STORE_NODES<br/>EVENTHISTORY_STORE_NODES<br/>EVENTHISTORY_STORE_ADDRESSES</td>
 <td>[]string</td>
 <td>[]</td>
-<td>A comma separated list of nodes to access the configured store. This has no effect when &lsquo;memory&rsquo; or &lsquo;ocmem&rsquo; stores are configured. Note that the behaviour how nodes are used is dependent on the library of the configured store.</td>
+<td>A comma separated list of nodes to access the configured store. This has no effect when &lsquo;in-memory&rsquo; stores are configured. Note that the behaviour how nodes are used is dependent on the library of the configured store.</td>
 </tr>
 <tr>
 <td>EVENTHISTORY_STORE_DATABASE</td>
@@ -17280,13 +17280,13 @@ Copyright 2022 Fonticons, Inc.
 <td>The database table the store should use.</td>
 </tr>
 <tr>
-<td>OCIS_PERSISTENT_STORE_TTL<br/>EVENTHISTORY_STORE_TTL</td>
+<td>EVENTHISTORY_RECORD_EXPIRY</td>
 <td>Duration</td>
 <td>336h0m0s</td>
 <td>Time to live for events in the store. The duration can be set as number followed by a unit identifier like s, m or h. Defaults to &lsquo;336h&rsquo; (2 weeks).</td>
 </tr>
 <tr>
-<td>OCIS_PERSISTENT_STORE_SIZE<br/>EVENTHISTORY_STORE_SIZE</td>
+<td>EVENTHISTORY_STORE_SIZE</td>
 <td>int</td>
 <td>0</td>
 <td>The maximum quantity of items in the store. Only applies when store type &lsquo;ocmem&rsquo; is configured. Defaults to 512.</td>
