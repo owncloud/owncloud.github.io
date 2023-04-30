@@ -45,11 +45,11 @@
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-04-29T00:47:57+00:00"
+      content="2023-04-30T09:37:28+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-04-29T00:47:57+00:00"
+      content="2023-04-30T09:37:28+00:00"
     />
 
 
@@ -77,9 +77,9 @@
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-04-29T00:47:57.20Z",
-      "datePublished": "2023-04-29T00:47:57.20Z",
-      "dateModified": "2023-04-29T00:47:57.20Z",
+      "dateCreated": "2023-04-30T09:37:28.23Z",
+      "datePublished": "2023-04-30T09:37:28.23Z",
+      "dateModified": "2023-04-30T09:37:28.23Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17310,13 +17310,13 @@ Copyright 2022 Fonticons, Inc.
 <li>When looking for content extraction, <a
   class="gdoc-markdown__link"
   href="https://tika.apache.org"
->Apache Tika - a content analysis toolkit</a> can be used but needs to be installed separately.
-Extractions are stored as index via the search service. Consider that indexing requires adequate storage capacity - and the space requirement will grow. To avoid filling up the filesystem with the index and rendering Infinite Scale unusable, the index should reside on its own filesystem.
-You can change the path to where search maintains its data in case the filesystem gets close to full and you need to relocate the data. Stop the service, move the data, reconfigure the path in the environment variable and restart the service.
-When using content extraction, more resources and time are needed, because the content of the file needs to be analyzed. This is especially true for big and multiple concurrent files.
-The search service runs out of the box with the shipped default <code>basic</code> configuration. No further configuration is needed, except when using content extraction.
-Note that as of now, the search service can not be scaled. Consider using a dedicated hardware for this service in case more resources are needed.</li>
+>Apache Tika - a content analysis toolkit</a> can be used but needs to be installed separately.</li>
 </ul>
+<p>Extractions are stored as index via the search service. Consider that indexing requires adequate storage capacity - and the space requirement will grow. To avoid filling up the filesystem with the index and rendering Infinite Scale unusable, the index should reside on its own filesystem.</p>
+<p>You can change the path to where search maintains its data in case the filesystem gets close to full and you need to relocate the data. Stop the service, move the data, reconfigure the path in the environment variable and restart the service.</p>
+<p>When using content extraction, more resources and time are needed, because the content of the file needs to be analyzed. This is especially true for big and multiple concurrent files.</p>
+<p>The search service runs out of the box with the shipped default <code>basic</code> configuration. No further configuration is needed, except when using content extraction.</p>
+<p>Note that as of now, the search service can not be scaled. Consider using a dedicated hardware for this service in case more resources are needed.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="search-engines">
         Search engines
@@ -17384,13 +17384,15 @@ However, <a
 >Getting Started with Apache Tika</a> guide on how to install and run Tika or use a ready to run <a
   class="gdoc-markdown__link"
   href="https://hub.docker.com/r/apache/tika"
->Tika container</a>.
-As soon as Tika is installed and accessible, the search service must be configured for the use with Tika. The following settings must be set:</p>
+>Tika container</a>.</p>
+<p>As soon as Tika is installed and accessible, the search service must be configured for the use with Tika. The following settings must be set:</p>
 <ul>
 <li><code>SEARCH_EXTRACTOR_TYPE=tika</code></li>
-<li><code>SEARCH_EXTRACTOR_TIKA_TIKA_URL=http://YOUR-TIKA.URL</code>
-When the search service can reach Tika, it begins to read out the content on demand. Note that files must be downloaded during the process, which can lead to delays with larger documents.
-When using the Tika container and docker-compose, consider the following:</li>
+<li><code>SEARCH_EXTRACTOR_TIKA_TIKA_URL=http://YOUR-TIKA.URL</code></li>
+</ul>
+<p>When the search service can reach Tika, it begins to read out the content on demand. Note that files must be downloaded during the process, which can lead to delays with larger documents.</p>
+<p>When using the Tika container and docker-compose, consider the following:</p>
+<ul>
 <li>See the <a
   class="gdoc-markdown__link"
   href="https://github.com/owncloud/ocis/tree/master/deployments/examples/ocis_wopi"
@@ -17569,8 +17571,8 @@ When using the Tika container and docker-compose, consider the following:</li>
         </a>
     </h2>
 </div>
-<p>The indexing process tries to be self-healing in some situations.
-In the following example, let&rsquo;s assume a file tree <code>foo/bar/baz</code> exists.<br>
+<p>The indexing process tries to be self-healing in some situations.</p>
+<p>In the following example, let&rsquo;s assume a file tree <code>foo/bar/baz</code> exists.<br>
 If the folder <code>bar</code> gets renamed to <code>new-bar</code>, the path to <code>baz</code> is no longer <code>foo/bar/baz</code> but <code>foo/new-bar/baz</code>.<br>
 The search service checks the change and either just updates the path in the index or creates a new index for all items affected if none was present.</p>
 <div class="gdoc-page__anchorwrap">

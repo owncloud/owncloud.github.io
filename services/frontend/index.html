@@ -47,11 +47,11 @@ appprovider     The appprovider endpoint, by default /app, forwards HTTP request
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-04-29T00:47:57+00:00"
+      content="2023-04-30T09:37:28+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-04-29T00:47:57+00:00"
+      content="2023-04-30T09:37:28+00:00"
     />
 
 
@@ -80,9 +80,9 @@ appprovider     The appprovider endpoint, by default /app, forwards HTTP request
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-04-29T00:47:57.20Z",
-      "datePublished": "2023-04-29T00:47:57.20Z",
-      "dateModified": "2023-04-29T00:47:57.20Z",
+      "dateCreated": "2023-04-30T09:37:28.23Z",
+      "datePublished": "2023-04-30T09:37:28.23Z",
+      "dateModified": "2023-04-30T09:37:28.23Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17292,9 +17292,9 @@ Copyright 2022 Fonticons, Inc.
         </a>
     </h3>
 </div>
-<p>Aggregating share information is one of the most time consuming operations in OCIS. The service fetches a list of either received or created shares and has to stat every resource individually. While stats are fast, the default behavior scales linearly with the number of shares.
-To save network trips the sharing implementation can cache the stat requests with an in memory cache or in Redis. It will shorten the response time by the network round-trip overhead at the cost of the API only eventually being updated.
-Setting <code>FRONTEND_OCS_RESOURCE_INFO_CACHE_TTL=60</code> would cache the stat info for 60 seconds. Increasing this value makes sense for large deployments with thousands of active users that keep the cache up to date. Low frequency usage scenarios should not expect a noticeable improvement.</p>
+<p>Aggregating share information is one of the most time consuming operations in OCIS. The service fetches a list of either received or created shares and has to stat every resource individually. While stats are fast, the default behavior scales linearly with the number of shares.</p>
+<p>To save network trips the sharing implementation can cache the stat requests with an in memory cache or in Redis. It will shorten the response time by the network round-trip overhead at the cost of the API only eventually being updated.</p>
+<p>Setting <code>FRONTEND_OCS_RESOURCE_INFO_CACHE_TTL=60</code> would cache the stat info for 60 seconds. Increasing this value makes sense for large deployments with thousands of active users that keep the cache up to date. Low frequency usage scenarios should not expect a noticeable improvement.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="scalability">
         Scalability
@@ -17312,8 +17312,8 @@ Setting <code>FRONTEND_OCS_RESOURCE_INFO_CACHE_TTL=60</code> would cache the sta
         </a>
     </h2>
 </div>
-<p>A lot of user management is made via the standardized libregraph API. Depending on how the system is configured, there might be some user attributes that an ocis instance admin can&rsquo;t change because of properties coming from an external LDAP server, or similar. This can be the case when the ocis admin is not the LDAP admin. To ease life for admins, there are hints as capabilites telling the frontend which attributes are read-only to enable a different optical representation like being grayed out. To configure these hints, use the environment variable <code>FRONTEND_READONLY_USER_ATTRIBUTES</code>, which takes a comma separated list of attributes, see the envvar for supported values.
-You can find more details regarding available attributes at the <a
+<p>A lot of user management is made via the standardized libregraph API. Depending on how the system is configured, there might be some user attributes that an ocis instance admin can&rsquo;t change because of properties coming from an external LDAP server, or similar. This can be the case when the ocis admin is not the LDAP admin. To ease life for admins, there are hints as capabilites telling the frontend which attributes are read-only to enable a different optical representation like being grayed out. To configure these hints, use the environment variable <code>FRONTEND_READONLY_USER_ATTRIBUTES</code>, which takes a comma separated list of attributes, see the envvar for supported values.</p>
+<p>You can find more details regarding available attributes at the <a
   class="gdoc-markdown__link"
   href="https://github.com/owncloud/libre-graph-api/blob/main/api/openapi-spec/v1.0.yaml"
 >libre-graph-api openapi-spec</a> and on <a

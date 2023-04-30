@@ -45,11 +45,11 @@ Table of Contents      General Prerequisites Postprocessing Functionality Additi
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-04-29T00:47:57+00:00"
+      content="2023-04-30T09:37:28+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-04-29T00:47:57+00:00"
+      content="2023-04-30T09:37:28+00:00"
     />
 
 
@@ -77,9 +77,9 @@ Table of Contents      General Prerequisites Postprocessing Functionality Additi
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-04-29T00:47:57.20Z",
-      "datePublished": "2023-04-29T00:47:57.20Z",
-      "dateModified": "2023-04-29T00:47:57.20Z",
+      "dateCreated": "2023-04-30T09:37:28.23Z",
+      "datePublished": "2023-04-30T09:37:28.23Z",
+      "dateModified": "2023-04-30T09:37:28.23Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17250,9 +17250,9 @@ Copyright 2022 Fonticons, Inc.
         </a>
     </h2>
 </div>
-<p>The storageprovider service (<code>storage-users</code>) can be configured to initiate asynchronous postprocessing by setting the <code>STORAGE_USERS_OCIS_ASYNC_UPLOADS</code> environment variable to <code>true</code>. If this is the case, postprocessing will get initiated <em>after</em> uploading a file and all bytes have been received.
-The <code>postprocessing</code> service will then coordinate configured postprocessing steps like scanning the file for viruses. During postprocessing, the file will be in a <code>processing state</code> where only a limited set of actions are available. Note that this processing state excludes file accessibility by users.
-When all postprocessing steps have completed successfully, the file will be made accessible for users.</p>
+<p>The storageprovider service (<code>storage-users</code>) can be configured to initiate asynchronous postprocessing by setting the <code>STORAGE_USERS_OCIS_ASYNC_UPLOADS</code> environment variable to <code>true</code>. If this is the case, postprocessing will get initiated <em>after</em> uploading a file and all bytes have been received.</p>
+<p>The <code>postprocessing</code> service will then coordinate configured postprocessing steps like scanning the file for viruses. During postprocessing, the file will be in a <code>processing state</code> where only a limited set of actions are available. Note that this processing state excludes file accessibility by users.</p>
+<p>When all postprocessing steps have completed successfully, the file will be made accessible for users.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="additional-prerequisites-for-the-postprocessing-service">
         Additional Prerequisites for the Postprocessing Service
@@ -17315,9 +17315,9 @@ When all postprocessing steps have completed successfully, the file will be made
         </a>
     </h4>
 </div>
-<p>When setting a custom postprocessing step (eg. <code>&quot;customstep&quot;</code>) the postprocessing service will eventually sent an event during postprocessing. The event will be of type <code>StartPostprocessingStep</code> with its field <code>StepToStart</code> set to <code>&quot;customstep&quot;</code>. When the custom service receives this event it can safely execute its actions, postprocessing service will wait until it has finished its work. The event contains further information (filename, executing user, size, &hellip;) and also required tokens and urls to download the file in case byte inspection is necessary.
-Once the custom service has finished its work, it should sent an event of type <code>PostprocessingFinished</code> via the configured events system. This event needs to contain a <code>FinishedStep</code> field set to <code>&quot;customstep&quot;</code>. It also must contain the outcome of the step, which can be one of &ldquo;delete&rdquo; (abort postprocessing, delete the file), &ldquo;abort&rdquo; (abort postprocessing, keep the file) and &ldquo;continue&rdquo; (continue postprocessing, this is the success case).
-See the <a
+<p>When setting a custom postprocessing step (eg. <code>&quot;customstep&quot;</code>) the postprocessing service will eventually sent an event during postprocessing. The event will be of type <code>StartPostprocessingStep</code> with its field <code>StepToStart</code> set to <code>&quot;customstep&quot;</code>. When the custom service receives this event it can safely execute its actions, postprocessing service will wait until it has finished its work. The event contains further information (filename, executing user, size, &hellip;) and also required tokens and urls to download the file in case byte inspection is necessary.</p>
+<p>Once the custom service has finished its work, it should sent an event of type <code>PostprocessingFinished</code> via the configured events system. This event needs to contain a <code>FinishedStep</code> field set to <code>&quot;customstep&quot;</code>. It also must contain the outcome of the step, which can be one of &ldquo;delete&rdquo; (abort postprocessing, delete the file), &ldquo;abort&rdquo; (abort postprocessing, keep the file) and &ldquo;continue&rdquo; (continue postprocessing, this is the success case).</p>
+<p>See the <a
   class="gdoc-markdown__link"
   href="https://github.com/cs3org/reva/blob/edge/pkg/events/postprocessing.go"
 >cs3 org</a> for up-to-date information of reserved step names and event definitions.</p>

@@ -45,11 +45,11 @@ Table of Contents      CLI Commands  Manage Unfinished Uploads  Command Examples
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-04-29T00:47:57+00:00"
+      content="2023-04-30T09:37:28+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-04-29T00:47:57+00:00"
+      content="2023-04-30T09:37:28+00:00"
     />
 
 
@@ -77,9 +77,9 @@ Table of Contents      CLI Commands  Manage Unfinished Uploads  Command Examples
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-04-29T00:47:57.20Z",
-      "datePublished": "2023-04-29T00:47:57.20Z",
-      "dateModified": "2023-04-29T00:47:57.20Z",
+      "dateCreated": "2023-04-30T09:37:28.23Z",
+      "datePublished": "2023-04-30T09:37:28.23Z",
+      "dateModified": "2023-04-30T09:37:28.23Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17239,15 +17239,25 @@ Copyright 2022 Fonticons, Inc.
   href="https://tus.io"
 >TUS</a> which is an open protocol for resumable uploads. Each upload consists of a <em>blob</em> and a <em>blob.info</em> file. Note that the term <em>blob</em> is just a placeholder.</p>
 <ul>
-<li><strong>If an upload succeeds</strong>, the <em>blob</em> file will be moved to the target and the <em>blob.info</em> file will be deleted.</li>
-<li><strong>In case of incomplete uploads</strong>, the <em>blob</em> and <em>blob.info</em> files will continue to receive data until either the upload succeeds in time or the upload expires based on the <code>STORAGE_USERS_UPLOAD_EXPIRATION</code> variable, see the table below for details.</li>
-<li><strong>In case of expired uploads</strong>, the <em>blob</em> and <em>blob.info</em> files will <em>not</em> be removed automatically. Thus a lot of data can pile up over time wasting storage space.</li>
-<li><strong>In the rare case of a failure</strong>, after the upload succeeded but the file was not moved to its target location, which can happen when postprocessing fails, the situation is the same as with expired uploads.
-Example cases for expired uploads</li>
-<li>When a user uploads a big file but the file exceeds the user-quota, the upload can&rsquo;t be moved to the target after it has finished. The file stays at the upload location until it is manually cleared.</li>
-<li>If the bandwidth is limited and the file to transfer can&rsquo;t be transferred completely before the upload expiration time is reached, the file expires and can&rsquo;t be processed.
-There are two commands available to manage unfinished uploads</li>
+<li>
+<p><strong>If an upload succeeds</strong>, the <em>blob</em> file will be moved to the target and the <em>blob.info</em> file will be deleted.</p>
+</li>
+<li>
+<p><strong>In case of incomplete uploads</strong>, the <em>blob</em> and <em>blob.info</em> files will continue to receive data until either the upload succeeds in time or the upload expires based on the <code>STORAGE_USERS_UPLOAD_EXPIRATION</code> variable, see the table below for details.</p>
+</li>
+<li>
+<p><strong>In case of expired uploads</strong>, the <em>blob</em> and <em>blob.info</em> files will <em>not</em> be removed automatically. Thus a lot of data can pile up over time wasting storage space.</p>
+</li>
+<li>
+<p><strong>In the rare case of a failure</strong>, after the upload succeeded but the file was not moved to its target location, which can happen when postprocessing fails, the situation is the same as with expired uploads.</p>
+</li>
 </ul>
+<p>Example cases for expired uploads</p>
+<ul>
+<li>When a user uploads a big file but the file exceeds the user-quota, the upload can&rsquo;t be moved to the target after it has finished. The file stays at the upload location until it is manually cleared.</li>
+<li>If the bandwidth is limited and the file to transfer can&rsquo;t be transferred completely before the upload expiration time is reached, the file expires and can&rsquo;t be processed.</li>
+</ul>
+<p>There are two commands available to manage unfinished uploads</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users uploads &lt;command&gt;
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">COMMANDS:
 </span></span><span class="line"><span class="cl">   list     Print a list of all incomplete uploads
@@ -17283,9 +17293,15 @@ There are two commands available to manage unfinished uploads</li>
 </span></span><span class="line"><span class="cl">   purge-expired     Purge all expired items from the trashbin
 </span></span></code></pre></div><p>The configuration for the <code>purge-expired</code> command is done by using the following environment variables.</p>
 <ul>
-<li><code>STORAGE_USERS_PURGE_TRASH_BIN_USER_ID</code> is used to obtain space trash-bin information and takes the system admin user as the default which is the <code>OCIS_ADMIN_USER_ID</code> but can be set individually. It should be noted, that the <code>OCIS_ADMIN_USER_ID</code> is only assigned automatically when using the single binary deployment and must be manually assigned in all other deployments. The command only considers spaces to which the assigned user has access and delete permission.</li>
-<li><code>STORAGE_USERS_PURGE_TRASH_BIN_PERSONAL_DELETE_BEFORE</code> has a default value of <code>30 days</code>, which means the command will delete all files older than <code>30 days</code>. The value is human-readable, valid values are <code>24h</code>, <code>60m</code>, <code>60s</code> etc. <code>0</code> is equivalent to disable and prevents the deletion of <code>personal space</code> trash-bin files.</li>
-<li><code>STORAGE_USERS_PURGE_TRASH_BIN_PROJECT_DELETE_BEFORE</code> has a default value of <code>30 days</code>, which means the command will delete all files older than <code>30 days</code>. The value is human-readable, valid values are <code>24h</code>, <code>60m</code>, <code>60s</code> etc. <code>0</code> is equivalent to disable and prevents the deletion of <code>project space</code> trash-bin files.</li>
+<li>
+<p><code>STORAGE_USERS_PURGE_TRASH_BIN_USER_ID</code> is used to obtain space trash-bin information and takes the system admin user as the default which is the <code>OCIS_ADMIN_USER_ID</code> but can be set individually. It should be noted, that the <code>OCIS_ADMIN_USER_ID</code> is only assigned automatically when using the single binary deployment and must be manually assigned in all other deployments. The command only considers spaces to which the assigned user has access and delete permission.</p>
+</li>
+<li>
+<p><code>STORAGE_USERS_PURGE_TRASH_BIN_PERSONAL_DELETE_BEFORE</code> has a default value of <code>30 days</code>, which means the command will delete all files older than <code>30 days</code>. The value is human-readable, valid values are <code>24h</code>, <code>60m</code>, <code>60s</code> etc. <code>0</code> is equivalent to disable and prevents the deletion of <code>personal space</code> trash-bin files.</p>
+</li>
+<li>
+<p><code>STORAGE_USERS_PURGE_TRASH_BIN_PROJECT_DELETE_BEFORE</code> has a default value of <code>30 days</code>, which means the command will delete all files older than <code>30 days</code>. The value is human-readable, valid values are <code>24h</code>, <code>60m</code>, <code>60s</code> etc. <code>0</code> is equivalent to disable and prevents the deletion of <code>project space</code> trash-bin files.</p>
+</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h2 id="caching">

@@ -12,7 +12,8 @@
 <meta name="generator" content="Hugo 0.99.1" />
 
 
-  <meta name="description" content="Abstract     The policies service provides a new gRPC API which can be used to check whether a requested operation is allowed or not. To do so, Open Policy Agent (OPA) is used to define the set of rules of what is permitted and what is not. Policies are written in the rego query language. The location of the rego files can be configured via yaml, a configuration via environment variables is not possible." />
+  <meta name="description" content="Abstract     The policies service provides a new gRPC API which can be used to check whether a requested operation is allowed or not. To do so, Open Policy Agent (OPA) is used to define the set of rules of what is permitted and what is not.
+Policies are written in the rego query language. The location of the rego files can be configured via yaml, a configuration via environment variables is not possible." />
 
     <title>Policies | ownCloud</title>
 
@@ -36,24 +37,26 @@
     content="Policies"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Abstract     The policies service provides a new gRPC API which can be used to check whether a requested operation is allowed or not. To do so, Open Policy Agent (OPA) is used to define the set of rules of what is permitted and what is not. Policies are written in the rego query language. The location of the rego files can be configured via yaml, a configuration via environment variables is not possible." />
+  <meta property="og:description" content="Abstract     The policies service provides a new gRPC API which can be used to check whether a requested operation is allowed or not. To do so, Open Policy Agent (OPA) is used to define the set of rules of what is permitted and what is not.
+Policies are written in the rego query language. The location of the rego files can be configured via yaml, a configuration via environment variables is not possible." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/policies/" />
 
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-04-29T00:47:57+00:00"
+      content="2023-04-30T09:37:28+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-04-29T00:47:57+00:00"
+      content="2023-04-30T09:37:28+00:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Policies" />
-  <meta name="twitter:description" content="Abstract     The policies service provides a new gRPC API which can be used to check whether a requested operation is allowed or not. To do so, Open Policy Agent (OPA) is used to define the set of rules of what is permitted and what is not. Policies are written in the rego query language. The location of the rego files can be configured via yaml, a configuration via environment variables is not possible." />
+  <meta name="twitter:description" content="Abstract     The policies service provides a new gRPC API which can be used to check whether a requested operation is allowed or not. To do so, Open Policy Agent (OPA) is used to define the set of rules of what is permitted and what is not.
+Policies are written in the rego query language. The location of the rego files can be configured via yaml, a configuration via environment variables is not possible." />
 
 
   <script type="application/ld+json">
@@ -64,7 +67,7 @@
       "name": "Policies",
       "url" : "https://owncloud.dev/services/policies/",
       "headline": "Policies",
-      "description": "Abstract     The policies service provides a new gRPC API which can be used to check whether a requested operation is allowed or not. To do so, Open Policy Agent (OPA) is used to define the set of rules of what is permitted and what is not. Policies are written in the rego query language. The location of the rego files can be configured via yaml, a configuration via environment variables is not possible.",
+      "description": "Abstract     The policies service provides a new gRPC API which can be used to check whether a requested operation is allowed or not. To do so, Open Policy Agent (OPA) is used to define the set of rules of what is permitted and what is not.\nPolicies are written in the rego query language. The location of the rego files can be configured via yaml, a configuration via environment variables is not possible.",
       "wordCount" : "1460",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
@@ -74,9 +77,9 @@
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-04-29T00:47:57.20Z",
-      "datePublished": "2023-04-29T00:47:57.20Z",
-      "dateModified": "2023-04-29T00:47:57.20Z",
+      "dateCreated": "2023-04-30T09:37:28.23Z",
+      "datePublished": "2023-04-30T09:37:28.23Z",
+      "dateModified": "2023-04-30T09:37:28.23Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17173,8 +17176,8 @@ Copyright 2022 Fonticons, Inc.
         </a>
     </h2>
 </div>
-<p>The policies service provides a new gRPC API which can be used to check whether a requested operation is allowed or not. To do so, Open Policy Agent (OPA) is used to define the set of rules of what is permitted and what is not.
-Policies are written in the <a
+<p>The policies service provides a new gRPC API which can be used to check whether a requested operation is allowed or not. To do so, Open Policy Agent (OPA) is used to define the set of rules of what is permitted and what is not.</p>
+<p>Policies are written in the <a
   class="gdoc-markdown__link"
   href="https://www.openpolicyagent.org/docs/latest/policy-language/"
 >rego query language</a>. The location of the rego files can be configured via yaml, a configuration via environment variables is not possible.</p>
@@ -17254,25 +17257,27 @@ Policies are written in the <a
 <ul>
 <li>Proxy authorization (middleware)</li>
 <li>Event authorization (async post-processing)</li>
-<li>gRPC API (can be used by other services)
-To configure the policies service, three environment variables need to be defined:</li>
+<li>gRPC API (can be used by other services)</li>
+</ul>
+<p>To configure the policies service, three environment variables need to be defined:</p>
+<ul>
 <li><code>POLICIES_ENGINE_TIMEOUT</code></li>
 <li><code>POLICIES_POSTPROCESSING_QUERY</code></li>
-<li><code>PROXY_POLICIES_QUERY</code>
-Note that each query setting defines the <a
+<li><code>PROXY_POLICIES_QUERY</code></li>
+</ul>
+<p>Note that each query setting defines the <a
   class="gdoc-markdown__link"
   href="https://www.openpolicyagent.org/docs/latest/#complete-rules"
->Complete Rules</a> variable defined in the rego rule set the corresponding step uses for the evaluation. If the variable is mistyped or not found, the evaluation defaults to deny. Individual query definitions can be defined for each module.
-To activate a the policies service for a module, it must be started with a yaml configuration that points to one or more rego files. Note that if the service is scaled horizontally, each instance should have access to the same rego files to avoid unpredictable results. If a file path has been configured but the file it is not present or accessible, the evaluation defaults to deny.
-When using async post-processing which is done via the postprocessing service, the value <code>policies</code> must be added to the <code>POSTPROCESSING_STEPS</code> configuration in postprocessing service in the order where the evaluation should take place.
-variable defined in the Rego rule set the corresponding step uses for the evaluation. If the variable is mistyped or not found, the evaluation defaults to deny. Individual query definitions can be defined for each module.
-To activate the policies service for a module, it must be started with a yaml configuration that points to at least one Rego file that contains the complete rule variable to be queried. Note that if the service is scaled horizontally, each instance should have access to the same Rego files to avoid unpredictable results. If a file path has been configured but the file it is not present or accessible, the evaluation defaults to deny.
-When using async post-processing via the postprocessing service, the value <code>policies</code> must be added to the <code>POSTPROCESSING_STEPS</code> configuration in the order in which the evaluation should take place. Example: First check if a file contains questionable content via policies. If it looks okay, continue to check for viruses.
-For configuration examples, the <a
+>Complete Rules</a> variable defined in the rego rule set the corresponding step uses for the evaluation. If the variable is mistyped or not found, the evaluation defaults to deny. Individual query definitions can be defined for each module.</p>
+<p>To activate a the policies service for a module, it must be started with a yaml configuration that points to one or more rego files. Note that if the service is scaled horizontally, each instance should have access to the same rego files to avoid unpredictable results. If a file path has been configured but the file it is not present or accessible, the evaluation defaults to deny.</p>
+<p>When using async post-processing which is done via the postprocessing service, the value <code>policies</code> must be added to the <code>POSTPROCESSING_STEPS</code> configuration in postprocessing service in the order where the evaluation should take place.</p>
+<p>variable defined in the Rego rule set the corresponding step uses for the evaluation. If the variable is mistyped or not found, the evaluation defaults to deny. Individual query definitions can be defined for each module.</p>
+<p>To activate the policies service for a module, it must be started with a yaml configuration that points to at least one Rego file that contains the complete rule variable to be queried. Note that if the service is scaled horizontally, each instance should have access to the same Rego files to avoid unpredictable results. If a file path has been configured but the file it is not present or accessible, the evaluation defaults to deny.</p>
+<p>When using async post-processing via the postprocessing service, the value <code>policies</code> must be added to the <code>POSTPROCESSING_STEPS</code> configuration in the order in which the evaluation should take place. Example: First check if a file contains questionable content via policies. If it looks okay, continue to check for viruses.</p>
+<p>For configuration examples, the <a
   class="gdoc-markdown__link"
   href="#example-policies"
->Example Policies</a> from below are used.</li>
-</ul>
+>Example Policies</a> from below are used.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="modules">
         Modules
@@ -17319,9 +17324,9 @@ For configuration examples, the <a
         </a>
     </h2>
 </div>
-<p>Each module can have as many policy files as needed for evaluation. Files can also include other files if necessary. To use policies, they have to be saved to a location that is accessible to the policies service. As a good starting point, take the config directory and use a subdirectory collecting all the <code>.rego</code> files, though any other directory can be defined. The config directory is already accessible by all services and usually is included in a xref:maintenance/b-r/backup.adoc[backup] plan.
-If this is done, it&rsquo;s required to configure the policies service to use these files:
-NOTE: It is important that <em>all</em> necessary files are added to the list of files the policies service uses.</p>
+<p>Each module can have as many policy files as needed for evaluation. Files can also include other files if necessary. To use policies, they have to be saved to a location that is accessible to the policies service. As a good starting point, take the config directory and use a subdirectory collecting all the <code>.rego</code> files, though any other directory can be defined. The config directory is already accessible by all services and usually is included in a xref:maintenance/b-r/backup.adoc[backup] plan.</p>
+<p>If this is done, it&rsquo;s required to configure the policies service to use these files:</p>
+<p>NOTE: It is important that <em>all</em> necessary files are added to the list of files the policies service uses.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">policies</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">engine</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">policies</span><span class="p">:</span><span class="w">
@@ -17337,8 +17342,8 @@ NOTE: It is important that <em>all</em> necessary files are added to the list of
         </a>
     </h2>
 </div>
-<p>To define a value for the query evaluation, the following scheme is necessary:
-<code>data.&lt;package-name&gt;.&lt;complete-rule-variable-name&gt;</code></p>
+<p>To define a value for the query evaluation, the following scheme is necessary:</p>
+<p><code>data.&lt;package-name&gt;.&lt;complete-rule-variable-name&gt;</code></p>
 <ul>
 <li>The keyword <code>data</code> is mandatory and must be present.</li>
 <li>The <code>package-name</code> is defined in one .rego file like <code>package postprocessing</code>. It is not related to the filename. For more details, see the <a
