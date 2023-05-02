@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/web_configvars/",
       "headline": "Web Configvars",
       "description": "Environment Variables        Name Type Default Value Description     OCIS_TRACING_ENABLEDWEB_TRACING_ENABLED bool false Activates tracing.   OCIS_TRACING_TYPEWEB_TRACING_TYPE string  The type of tracing. Defaults to “”, which is the same as “jaeger”. Allowed tracing types are “jaeger” and \u0022\u0022 as of now.   OCIS_TRACING_ENDPOINTWEB_TRACING_ENDPOINT string  The endpoint of the tracing agent.   OCIS_TRACING_COLLECTORWEB_TRACING_COLLECTOR string  The HTTP endpoint for sending spans directly to a collector, i.",
-      "wordCount" : "487",
+      "wordCount" : "932",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17344,6 +17344,81 @@ Copyright 2022 Fonticons, Inc.
 <td>string</td>
 <td>openid profile email</td>
 <td>OIDC scopes to request during authentication to authorize access to user details. Defaults to &lsquo;openid profile email&rsquo;. Values are separated by blank. More example values but not limited to are &lsquo;address&rsquo; or &lsquo;phone&rsquo; etc.</td>
+</tr>
+<tr>
+<td>WEB_OPTION_HOME_FOLDER</td>
+<td>string</td>
+<td></td>
+<td>Specifies a folder that is used when the user navigates &lsquo;home&rsquo;. Navigating home gets triggered by clicking on the &lsquo;All files&rsquo; menu item. The user will not be jailed in that directory, it simply serves as a default location. A static location can be provided, or variables of the user object to come up with a user specific home path can be used. This uses the twig template variable style and allows to pick a value or a substring of a value of the authenticated user. Examples are &lsquo;/Shares&rsquo;, &lsquo;/{{.Id}}&rsquo; and &lsquo;/{{substr 0 3 .Id}}/{{.Id}&rsquo;.</td>
+</tr>
+<tr>
+<td>WEB_OPTION_OPEN_APPS_IN_TAB</td>
+<td>bool</td>
+<td>false</td>
+<td>Configures whether apps and extensions should generally open in a new tab. Defaults to false.</td>
+</tr>
+<tr>
+<td>WEB_OPTION_DISABLE_PREVIEWS</td>
+<td>bool</td>
+<td>false</td>
+<td>Set this option to &rsquo;true&rsquo; to disable previews in all the different file listing views. The only list view that is not affected by this setting is the trash bin, as it does not allow previewing at all.</td>
+</tr>
+<tr>
+<td>WEB_OPTION_PREVIEW_FILE_MIMETYPES</td>
+<td>[]string</td>
+<td>[image/gif image/png image/jpeg text/plain image/tiff image/bmp image/x-ms-bmp]</td>
+<td>Specifies which mimeTypes will be previewed in the UI. For example to only preview jpg and text files, set this option to [&lsquo;image/jpeg&rsquo;, &rsquo;text/plain&rsquo;].</td>
+</tr>
+<tr>
+<td>WEB_OPTION_DISABLE_FEEDBACK_LINK</td>
+<td>bool</td>
+<td>false</td>
+<td>Set this option to &rsquo;true&rsquo; to disable the feedback link in the topbar. Keeping it enabled by setting the value to &lsquo;false&rsquo; or with the absence of the option, allows ownCloud to get feedback from your user base through a dedicated survey website.</td>
+</tr>
+<tr>
+<td>WEB_OPTION_SHARING_RECIPIENTS_PER_PAGE</td>
+<td>int</td>
+<td>200</td>
+<td>Sets the amount of users shown as recipients in the dropdown menu when sharing resources. Default amount is 200.</td>
+</tr>
+<tr>
+<td>WEB_OPTION_SIDEBAR_SHARES_SHOW_ALL_ON_LOAD</td>
+<td>bool</td>
+<td>false</td>
+<td>Sets the list of the (link) shares list in the sidebar to be initially expanded. Default is a collapsed state, only showing the first three shares.</td>
+</tr>
+<tr>
+<td>WEB_OPTION_RUNNING_ON_EOS</td>
+<td>bool</td>
+<td>false</td>
+<td>Set this option to &rsquo;true&rsquo; if running on an EOS storage backend (<a
+  class="gdoc-markdown__link"
+  href="https://eos-web.web.cern.ch/eos-web/"
+>https://eos-web.web.cern.ch/eos-web/</a>) to enable its specific features. Defaults to &lsquo;false&rsquo;.</td>
+</tr>
+<tr>
+<td>WEB_OPTION_HOVERABLE_QUICK_ACTIONS</td>
+<td>bool</td>
+<td>false</td>
+<td>Set this option to &rsquo;true&rsquo; to hide quick actions (buttons appearing on file rows) and only show them when the user hovers over the row with his mouse. Defaults to &lsquo;false&rsquo;.</td>
+</tr>
+<tr>
+<td>WEB_OPTION_ROUTING_ID_BASED</td>
+<td>bool</td>
+<td>true</td>
+<td>Enable or disable fileIds being added to the URL. Defaults to &rsquo;true&rsquo;, because otherwise spaces with name clashes cannot be resolved correctly. Note: Only disable this if you can guarantee on the server side, that spaces of the same namespace cannot have name clashes.</td>
+</tr>
+<tr>
+<td>WEB_OPTION_CONTEXTHELPERS_READ_MORE</td>
+<td>bool</td>
+<td>true</td>
+<td>Specifies whether the &lsquo;Read more&rsquo; link should be displayed or not.</td>
+</tr>
+<tr>
+<td>WEB_OPTION_LOGOUT_URL</td>
+<td>string</td>
+<td></td>
+<td>Adds a link to the user&rsquo;s profile page to point him to an external page, where he can manage his session and devices. This is helpful when an external IdP is used. This option is disabled by default.</td>
 </tr>
 <tr>
 <td>OCIS_JWT_SECRET<br/>WEB_JWT_SECRET</td>
