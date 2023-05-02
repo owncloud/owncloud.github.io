@@ -45,11 +45,11 @@ The proxy service is the only service communicating to the outside and needs the
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-05-02T17:18:14+00:00"
+      content="2023-05-02T19:52:29+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-05-02T17:18:14+00:00"
+      content="2023-05-02T19:52:29+00:00"
     />
 
 
@@ -68,7 +68,7 @@ The proxy service is the only service communicating to the outside and needs the
       "url" : "https://owncloud.dev/services/proxy/",
       "headline": "Proxy",
       "description": "Abstract     The proxy service is an API-Gateway for the ownCloud Infinite Scale microservices. Every HTTP request goes through this service. Authentication, logging and other preprocessing of requests also happens here. Mechanisms like request rate limiting or intrusion prevention are not included in the proxy service and must be setup in front like with an external reverse proxy.\nThe proxy service is the only service communicating to the outside and needs therefore usual protections against DDOS, Slow Loris or other attack vectors.",
-      "wordCount" : "2065",
+      "wordCount" : "2223",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ The proxy service is the only service communicating to the outside and needs the
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-05-02T17:18:14.23Z",
-      "datePublished": "2023-05-02T17:18:14.23Z",
-      "dateModified": "2023-05-02T17:18:14.23Z",
+      "dateCreated": "2023-05-02T19:52:29.45Z",
+      "datePublished": "2023-05-02T19:52:29.45Z",
+      "dateModified": "2023-05-02T19:52:29.45Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17209,6 +17209,10 @@ Copyright 2022 Fonticons, Inc.
 >Caching</a></li>
 <li><a
   class="gdoc-markdown__link"
+  href="#special-settings"
+>Special Settings</a></li>
+<li><a
+  class="gdoc-markdown__link"
   href="#example-yaml-config"
 >Example Yaml Config</a></li>
 </ul>
@@ -17333,6 +17337,20 @@ the user will not be able to login.</p>
 <li>The proxy service can be scaled if not using <code>in-memory</code> stores and the stores are configured identically over all instances.</li>
 <li>When using <code>redis-sentinel</code>, the Redis master to use is configured via <code>PROXY_OIDC_USERINFO_CACHE_NODES</code> in the form of <code>&lt;sentinel-host&gt;:&lt;sentinel-port&gt;/&lt;redis-master&gt;</code> like <code>10.10.0.200:26379/mymaster</code>.</li>
 </ol>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="special-settings">
+        Special Settings
+        <a data-clipboard-text="https://owncloud.dev/services/proxy/#special-settings" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Special Settings" aria-label="Anchor to: Special Settings" href="#special-settings">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>When using the ocis IDP service instead of an external IDP:</p>
+<ul>
+<li>Use the environment variable <code>OCIS_URL</code> to define how ocis can be accessed, mandatory use <code>https</code> as protocol for the URL.</li>
+<li>If no reverse proxy is set up, the <code>PROXY_TLS</code> environment variable <strong>must</strong> be set to <code>true</code> because the embedded <code>libreConnect</code> shipped with the IDP service has a hard check if the connection is on TLS and uses the HTTPS protocol. If this mismatches, an error will be logged and no connection from the client can be established.</li>
+<li><code>PROXY_TLS</code> <strong>can</strong> be set to <code>false</code> if a reverse proxy is used and the https connection is terminated at the reverse proxy. When setting to <code>false</code>, the communication between the reverse proxy and ocis is not secured. If set to <code>true</code>, you must provide certificates.</li>
+</ul>
 <div class="gdoc-page__anchorwrap">
     <h2 id="example-yaml-config">
         Example Yaml Config
@@ -17811,7 +17829,7 @@ the user will not be able to login.</p>
 <td>PROXY_TLS</td>
 <td>bool</td>
 <td>true</td>
-<td>Enable/Disable HTTPS for the external HTTP services.</td>
+<td>Enable/Disable HTTPS for external HTTP services. Must be set to &rsquo;true&rsquo; if the built-in IDP service an no reverse proxy is used. See the text description for details.</td>
 </tr>
 <tr>
 <td>OCIS_REVA_GATEWAY<br/>REVA_GATEWAY</td>
