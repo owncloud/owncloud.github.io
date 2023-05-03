@@ -6,7 +6,7 @@
     <description>Recent content on ownCloud</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 03 May 2023 09:27:54 +0000</lastBuildDate><atom:link href="https://owncloud.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 03 May 2023 10:16:40 +0000</lastBuildDate><atom:link href="https://owncloud.dev/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>1. Introduce an accounts service</title>
       <link>https://owncloud.dev/ocis/adr/0001-introduce-accounts-service/</link>
@@ -528,6 +528,17 @@ Reva Gateway changes     A dedicated shares storage provider     Currently, when
       <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @C0rby Date: 2022-03-18  Context and Problem Statement     The ability to find files based on certain search terms is a key requirement for a system that provides the ability to store unstructured data on a large scale.
 More sophisticated search capabilities are expected and can be implemented, especially based on metadata.
 To trigger the indexing of a file, the search service listens to create, update and delete events on the internal event bus of oCIS.</description>
+    </item>
+    
+    <item>
+      <title>LDAP - Active Directory</title>
+      <link>https://owncloud.dev/ocis/identity-provider/ldap-active-directory/</link>
+      <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/ocis/identity-provider/ldap-active-directory/</guid>
+      <description>Overview     oCIS can be configured using Active Directory as identity provider.
+Configuration Example     This configuration is an example for using Samba4 AD as well as a Windows Server 2022 as the LDAP backend for oCIS. It is intended as guideline and first starting point.
+OCIS_LDAP_URI=ldaps://xxxxxxxxx OCIS_LDAP_INSECURE=&amp;#34;true&amp;#34; OCIS_LDAP_BIND_DN=&amp;#34;cn=administrator,cn=users,xxxxxxxxxx&amp;#34; OCIS_LDAP_BIND_PASSWORD=xxxxxxx OCIS_LDAP_GROUP_BASE_DN=&amp;#34;dc=owncloud,dc=test&amp;#34; OCIS_LDAP_GROUP_OBJECTCLASS=&amp;#34;group&amp;#34; OCIS_LDAP_GROUP_SCHEMA_ID=&amp;#34;objectGUID&amp;#34; OCIS_LDAP_GROUP_SCHEMA_ID_IS_OCTETSTRING=&amp;#34;true&amp;#34; OCIS_LDAP_GROUP_SCHEMA_GROUPNAME=&amp;#34;cn&amp;#34; OCIS_LDAP_USER_BASE_DN=&amp;#34;dc=owncloud,dc=test&amp;#34; OCIS_LDAP_USER_OBJECTCLASS=&amp;#34;user&amp;#34; OCIS_LDAP_USER_SCHEMA_ID=&amp;#34;objectGUID&amp;#34; OCIS_LDAP_USER_SCHEMA_ID_IS_OCTETSTRING=&amp;#34;true&amp;#34; OCIS_LDAP_USER_SCHEMA_USERNAME=&amp;#34;sAMAccountName&amp;#34; OCIS_LDAP_USER_ENABLED_ATTRIBUTE=&amp;#34;&amp;#34; OCIS_LDAP_LOGIN_ATTRIBUTES=&amp;#34;sAMAccountName&amp;#34; IDP_LDAP_LOGIN_ATTRIBUTE=&amp;#34;sAMAccountName&amp;#34; IDP_LDAP_UUID_ATTRIBUTE=&amp;#34;objectGUID&amp;#34; IDP_LDAP_UUID_ATTRIBUTE_TYPE=binary GRAPH_LDAP_SERVER_WRITE_ENABLED=&amp;#34;false&amp;#34; OCIS_EXCLUDE_RUN_SERVICES=idm OCIS_ADMIN_USER_ID=&amp;#34;&amp;lt;objectGUID-value-of-the-default-admin-user&amp;gt;&amp;#34; </description>
     </item>
     
     <item>
