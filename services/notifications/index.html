@@ -13,7 +13,7 @@
 
 
   <meta name="description" content="Abstract     The notification service is responsible for sending emails to users informing them about events that happened. To do this, it hooks into the event system and listens for certain events that the users need to be informed about.
-Table of Contents      Email Notification Templates Translations  Translation Rules   Example Yaml Config  Email Notification Templates     The notifications service has embedded email body templates." />
+Table of Contents      Email Notification Templates  Templates subfolder hierarchy   Translations  Translation Rules   Example Yaml Config  Email Notification Templates     The notifications service has embedded email text and html body templates." />
 
     <title>Notification | ownCloud</title>
 
@@ -38,25 +38,25 @@ Table of Contents      Email Notification Templates Translations  Translation Ru
   />
   <meta property="og:site_name" content="ownCloud" />
   <meta property="og:description" content="Abstract     The notification service is responsible for sending emails to users informing them about events that happened. To do this, it hooks into the event system and listens for certain events that the users need to be informed about.
-Table of Contents      Email Notification Templates Translations  Translation Rules   Example Yaml Config  Email Notification Templates     The notifications service has embedded email body templates." />
+Table of Contents      Email Notification Templates  Templates subfolder hierarchy   Translations  Translation Rules   Example Yaml Config  Email Notification Templates     The notifications service has embedded email text and html body templates." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/notifications/" />
 
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-05-03T07:32:45+00:00"
+      content="2023-05-03T08:51:28+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-05-03T07:32:45+00:00"
+      content="2023-05-03T08:51:28+00:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Notification" />
   <meta name="twitter:description" content="Abstract     The notification service is responsible for sending emails to users informing them about events that happened. To do this, it hooks into the event system and listens for certain events that the users need to be informed about.
-Table of Contents      Email Notification Templates Translations  Translation Rules   Example Yaml Config  Email Notification Templates     The notifications service has embedded email body templates." />
+Table of Contents      Email Notification Templates  Templates subfolder hierarchy   Translations  Translation Rules   Example Yaml Config  Email Notification Templates     The notifications service has embedded email text and html body templates." />
 
 
   <script type="application/ld+json">
@@ -67,8 +67,8 @@ Table of Contents      Email Notification Templates Translations  Translation Ru
       "name": "Notification",
       "url" : "https://owncloud.dev/services/notifications/",
       "headline": "Notification",
-      "description": "Abstract     The notification service is responsible for sending emails to users informing them about events that happened. To do this, it hooks into the event system and listens for certain events that the users need to be informed about.\nTable of Contents      Email Notification Templates Translations  Translation Rules   Example Yaml Config  Email Notification Templates     The notifications service has embedded email body templates.",
-      "wordCount" : "1148",
+      "description": "Abstract     The notification service is responsible for sending emails to users informing them about events that happened. To do this, it hooks into the event system and listens for certain events that the users need to be informed about.\nTable of Contents      Email Notification Templates  Templates subfolder hierarchy   Translations  Translation Rules   Example Yaml Config  Email Notification Templates     The notifications service has embedded email text and html body templates.",
+      "wordCount" : "1243",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ Table of Contents      Email Notification Templates Translations  Translation Ru
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-05-03T07:32:45.90Z",
-      "datePublished": "2023-05-03T07:32:45.90Z",
-      "dateModified": "2023-05-03T07:32:45.90Z",
+      "dateCreated": "2023-05-03T08:51:28.09Z",
+      "datePublished": "2023-05-03T08:51:28.09Z",
+      "dateModified": "2023-05-03T08:51:28.09Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17189,7 +17189,14 @@ Copyright 2022 Fonticons, Inc.
 <li><a
   class="gdoc-markdown__link"
   href="#email-notification-templates"
->Email Notification Templates</a></li>
+>Email Notification Templates</a>
+<ul>
+<li><a
+  class="gdoc-markdown__link"
+  href="#templates-subfolder-hierarchy"
+>Templates subfolder hierarchy</a></li>
+</ul>
+</li>
 <li><a
   class="gdoc-markdown__link"
   href="#translations"
@@ -17214,51 +17221,56 @@ Copyright 2022 Fonticons, Inc.
         </a>
     </h2>
 </div>
-<p>The <code>notifications</code> service has embedded email body templates. Email templates can use the placeholders <code>{{ .Greeting }}</code>, <code>{{ .MessageBody }}</code> and <code>{{ .CallToAction }}</code> which are replaced with translations when sent, see the <a
+<p>The <code>notifications</code> service has embedded email text and html body templates. Email templates can use the placeholders <code>{{ .Greeting }}</code>, <code>{{ .MessageBody }}</code> and <code>{{ .CallToAction }}</code> which are replaced with translations when sent, see the <a
   class="gdoc-markdown__link"
   href="#translations"
 >Translations</a> section for more details. Depending on the email purpose, placeholders will contain different strings. An individual translatable string is available for each purpose, finally resolved by the placeholder. Though the email subject is also part of translations, it has no placeholder as it is a mandatory email component. The embedded templates are available for all deployment scenarios.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">template 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">template
 </span></span><span class="line"><span class="cl">  placeholders
 </span></span><span class="line"><span class="cl">    translated strings &lt;-- source strings &lt;-- purpose
 </span></span><span class="line"><span class="cl">final output
-</span></span></code></pre></div><p>In addition, the notifications service supports custom templates. Custom email templates take precedence over the embedded ones. If a custom email template exists, the embedded templates are not used. To configure custom email templates, the <code>NOTIFICATIONS_EMAIL_TEMPLATE_PATH</code> environment variable needs to point to a base folder that will contain the email templates. This path must be available from all instances of the notifications service, a shared storage is recommended. The source templates provided by ocis you can derive from are located in following base folder <a
+</span></span></code></pre></div><p>In addition, the notifications service supports custom templates. Custom email templates take precedence over the embedded ones. If a custom email template exists, the embedded templates are not used. To configure custom email templates, the <code>NOTIFICATIONS_EMAIL_TEMPLATE_PATH</code> environment variable needs to point to a base folder that will contain the email templates and follow the <a
+  class="gdoc-markdown__link"
+  href="#templates-subfolder-hierarchy"
+>templates subfolder hierarchy</a>.This path must be available from all instances of the notifications service, a shared storage is recommended.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">{NOTIFICATIONS_EMAIL_TEMPLATE_PATH}/templates/text/email.text.tmpl
+</span></span><span class="line"><span class="cl">{NOTIFICATIONS_EMAIL_TEMPLATE_PATH}/templates/html/email.html.tmpl
+</span></span><span class="line"><span class="cl">{NOTIFICATIONS_EMAIL_TEMPLATE_PATH}/templates/html/img/
+</span></span></code></pre></div><p>The source templates provided by ocis you can derive from are located in the following base folder <a
   class="gdoc-markdown__link"
   href="https://github.com/owncloud/ocis/tree/master/services/notifications/pkg/email/templates"
->https://github.com/owncloud/ocis/tree/master/services/notifications/pkg/email/templates</a> with subfolders <code>shares</code> and <code>spaces</code>.</p>
+>https://github.com/owncloud/ocis/tree/master/services/notifications/pkg/email/templates</a> with subfolders <code>templates/text</code> and <code>templates/html</code>.</p>
 <ul>
 <li><a
   class="gdoc-markdown__link"
-  href="https://github.com/owncloud/ocis/blob/master/services/notifications/pkg/email/templates/shares/shareCreated.email.body.tmpl"
->shares/shareCreated.email.body.tmpl</a></li>
+  href="https://github.com/owncloud/ocis/blob/master/services/notifications/pkg/email/templates/text/email.text.tmpl"
+>text/email.text.tmpl</a></li>
 <li><a
   class="gdoc-markdown__link"
-  href="https://github.com/owncloud/ocis/blob/master/services/notifications/pkg/email/templates/shares/shareExpired.email.body.tmpl"
->shares/shareExpired.email.body.tmpl</a></li>
-<li><a
-  class="gdoc-markdown__link"
-  href="https://github.com/owncloud/ocis/blob/master/services/notifications/pkg/email/templates/spaces/membershipExpired.email.body.tmpl"
->spaces/membershipExpired.email.body.tmpl</a></li>
-<li><a
-  class="gdoc-markdown__link"
-  href="https://github.com/owncloud/ocis/blob/master/services/notifications/pkg/email/templates/spaces/sharedSpace.email.body.tmpl"
->spaces/sharedSpace.email.body.tmpl</a></li>
-<li><a
-  class="gdoc-markdown__link"
-  href="https://github.com/owncloud/ocis/blob/master/services/notifications/pkg/email/templates/spaces/unsharedSpace.email.body.tmpl"
->spaces/unsharedSpace.email.body.tmpl</a></li>
+  href="https://github.com/owncloud/ocis/blob/master/services/notifications/pkg/email/templates/html/email.html.tmpl"
+>html/email.html.tmpl</a></li>
 </ul>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="templates-subfolder-hierarchy">
+        Templates subfolder hierarchy
+        <a data-clipboard-text="https://owncloud.dev/services/notifications/#templates-subfolder-hierarchy" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Templates subfolder hierarchy" aria-label="Anchor to: Templates subfolder hierarchy" href="#templates-subfolder-hierarchy">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">templates
 </span></span><span class="line"><span class="cl">│
-</span></span><span class="line"><span class="cl">└───shares
-</span></span><span class="line"><span class="cl">│   │   shareCreated.email.body.tmpl
-</span></span><span class="line"><span class="cl">│   │   shareExpired.email.body.tmpl
+</span></span><span class="line"><span class="cl">└───html
+</span></span><span class="line"><span class="cl">│   │   email.html.tmpl
+</span></span><span class="line"><span class="cl">│   │
+</span></span><span class="line"><span class="cl">│   └───img
+</span></span><span class="line"><span class="cl">│       │   logo-mail.gif
 </span></span><span class="line"><span class="cl">│
-</span></span><span class="line"><span class="cl">└───spaces
-</span></span><span class="line"><span class="cl">    │   membershipExpired.email.body.tmpl
-</span></span><span class="line"><span class="cl">    │   sharedSpace.email.body.tmpl
-</span></span><span class="line"><span class="cl">    │   unsharedSpace.email.body.tmpl
-</span></span></code></pre></div><p>Custom email templates referenced via <code>NOTIFICATIONS_EMAIL_TEMPLATE_PATH</code> must also be located in subfolders <code>shares</code> and <code>spaces</code> and must have the same names as the embedded templates. It is important that the names of these files and  folders match the embedded ones.</p>
+</span></span><span class="line"><span class="cl">└───text
+</span></span><span class="line"><span class="cl">    │   email.text.tmpl
+</span></span></code></pre></div><p>Custom email templates referenced via <code>NOTIFICATIONS_EMAIL_TEMPLATE_PATH</code> must also be located in subfolder <code>templates/text</code> and <code>templates/html</code> and must have the same names as the embedded templates. It is important that the names of these files and folders match the embedded ones.
+The <code>templates/html</code> subfolder contains a default HTML template provided by ocis. When using a custom HTML template, hosted images can either be linked with standard HTML code like <code>&lt;img src=&quot;https://raw.githubusercontent.com/owncloud/core/master/core/img/logo-mail.gif&quot; alt=&quot;logo-mail&quot;/&gt;</code> or embedded as a CID source <code>&lt;img src=&quot;cid:logo-mail.gif&quot; alt=&quot;logo-mail&quot;/&gt;</code>. In the latter case, image files must be located in the <code>templates/html/img</code> subfolder. Supported embedded image types are png, jpeg, and gif.
+Consider that embedding images via a CID resource may not be fully supported in all email web clients.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="translations">
         Translations
