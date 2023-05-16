@@ -12,7 +12,7 @@
 <meta name="generator" content="Hugo 0.99.1" />
 
 
-  <meta name="description" content="Testing with test suite in docker  Run full test suite Run single feature test oCIS image to be tested (or: skip build and take existing image) Test log output Cleanup   Testing with test suite natively installed  Run ocis Run the test-acceptance-from-core-api tests Run the test-acceptance-api tests use existing tests for BDD   Running tests for parallel deployment  Setup the parallel deployment environment Getting the test helpers Run the acceptance tests   Running test suite with email service (inbucket)  Setup inbucket Run oCIS with following environment variables Run the acceptance test        To run tests in the test suite you have two options." />
+  <meta name="description" content="Testing with test suite in docker  Run full test suite Run single feature test oCIS image to be tested (or: skip build and take existing image) Test log output Cleanup   Testing with test suite natively installed  Run ocis Run the test-acceptance-from-core-api tests Run the test-acceptance-api tests use existing tests for BDD   Running ENV config tests (@env-config)  Run oCIS with ociswrapper Run the tests Writing new ENV config tests   Running tests for parallel deployment  Setup the parallel deployment environment Getting the test helpers Run the acceptance tests   Running test suite with email service (inbucket)  Setup inbucket Run oCIS with following environment variables Run the acceptance test        To run tests in the test suite you have two options." />
 
     <title>Testing | ownCloud</title>
 
@@ -36,7 +36,7 @@
     content="Testing"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Testing with test suite in docker  Run full test suite Run single feature test oCIS image to be tested (or: skip build and take existing image) Test log output Cleanup   Testing with test suite natively installed  Run ocis Run the test-acceptance-from-core-api tests Run the test-acceptance-api tests use existing tests for BDD   Running tests for parallel deployment  Setup the parallel deployment environment Getting the test helpers Run the acceptance tests   Running test suite with email service (inbucket)  Setup inbucket Run oCIS with following environment variables Run the acceptance test        To run tests in the test suite you have two options." />
+  <meta property="og:description" content="Testing with test suite in docker  Run full test suite Run single feature test oCIS image to be tested (or: skip build and take existing image) Test log output Cleanup   Testing with test suite natively installed  Run ocis Run the test-acceptance-from-core-api tests Run the test-acceptance-api tests use existing tests for BDD   Running ENV config tests (@env-config)  Run oCIS with ociswrapper Run the tests Writing new ENV config tests   Running tests for parallel deployment  Setup the parallel deployment environment Getting the test helpers Run the acceptance tests   Running test suite with email service (inbucket)  Setup inbucket Run oCIS with following environment variables Run the acceptance test        To run tests in the test suite you have two options." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/ocis/development/testing/" />
 
@@ -53,7 +53,7 @@
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Testing" />
-  <meta name="twitter:description" content="Testing with test suite in docker  Run full test suite Run single feature test oCIS image to be tested (or: skip build and take existing image) Test log output Cleanup   Testing with test suite natively installed  Run ocis Run the test-acceptance-from-core-api tests Run the test-acceptance-api tests use existing tests for BDD   Running tests for parallel deployment  Setup the parallel deployment environment Getting the test helpers Run the acceptance tests   Running test suite with email service (inbucket)  Setup inbucket Run oCIS with following environment variables Run the acceptance test        To run tests in the test suite you have two options." />
+  <meta name="twitter:description" content="Testing with test suite in docker  Run full test suite Run single feature test oCIS image to be tested (or: skip build and take existing image) Test log output Cleanup   Testing with test suite natively installed  Run ocis Run the test-acceptance-from-core-api tests Run the test-acceptance-api tests use existing tests for BDD   Running ENV config tests (@env-config)  Run oCIS with ociswrapper Run the tests Writing new ENV config tests   Running tests for parallel deployment  Setup the parallel deployment environment Getting the test helpers Run the acceptance tests   Running test suite with email service (inbucket)  Setup inbucket Run oCIS with following environment variables Run the acceptance test        To run tests in the test suite you have two options." />
 
 
   <script type="application/ld+json">
@@ -64,8 +64,8 @@
       "name": "Testing",
       "url" : "https://owncloud.dev/ocis/development/testing/",
       "headline": "Testing",
-      "description": "Testing with test suite in docker  Run full test suite Run single feature test oCIS image to be tested (or: skip build and take existing image) Test log output Cleanup   Testing with test suite natively installed  Run ocis Run the test-acceptance-from-core-api tests Run the test-acceptance-api tests use existing tests for BDD   Running tests for parallel deployment  Setup the parallel deployment environment Getting the test helpers Run the acceptance tests   Running test suite with email service (inbucket)  Setup inbucket Run oCIS with following environment variables Run the acceptance test        To run tests in the test suite you have two options.",
-      "wordCount" : "1358",
+      "description": "Testing with test suite in docker  Run full test suite Run single feature test oCIS image to be tested (or: skip build and take existing image) Test log output Cleanup   Testing with test suite natively installed  Run ocis Run the test-acceptance-from-core-api tests Run the test-acceptance-api tests use existing tests for BDD   Running ENV config tests (@env-config)  Run oCIS with ociswrapper Run the tests Writing new ENV config tests   Running tests for parallel deployment  Setup the parallel deployment environment Getting the test helpers Run the acceptance tests   Running test suite with email service (inbucket)  Setup inbucket Run oCIS with following environment variables Run the acceptance test        To run tests in the test suite you have two options.",
+      "wordCount" : "1564",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17291,6 +17291,13 @@ Copyright 2022 Fonticons, Inc.
             <li><a href="#use-existing-tests-for-bdd">use existing tests for BDD</a></li>
           </ul>
         </li>
+        <li><a href="#running-env-config-tests-env-config">Running ENV config tests (@env-config)</a>
+          <ul>
+            <li><a href="#run-ocis-with-ociswrapper">Run oCIS with ociswrapper</a></li>
+            <li><a href="#run-the-tests">Run the tests</a></li>
+            <li><a href="#writing-new-env-config-tests">Writing new ENV config tests</a></li>
+          </ul>
+        </li>
         <li><a href="#running-tests-for-parallel-deployment">Running tests for parallel deployment</a>
           <ul>
             <li><a href="#setup-the-parallel-deployment-environment">Setup the parallel deployment environment</a></li>
@@ -17352,9 +17359,24 @@ Copyright 2022 Fonticons, Inc.
 </blockquote>
 <p>For example <code>make -C tests/acceptance/docker localApiTests-apiAccountsHashDifficulty-ocis</code> runs the same tests as the <code>localApiTests-apiAccountsHashDifficulty-ocis</code> CI pipeline, which runs the oCIS test suite &ldquo;apiAccountsHashDifficulty&rdquo; against an oCIS with ocis storage.</p>
 <p>For example <code>make -C tests/acceptance/docker localApiTests-apiAccountsHashDifficulty-s3ng</code> runs the oCIS test suite &ldquo;apiAccountsHashDifficulty&rdquo; against an oCIS with s3 storage.</p>
-<blockquote>
-<p>Note: To run the tests from <code>apiAsyncUpload</code> suite you need to provide extra environment variable <code>POSTPROCESSING_DELAY</code></p>
+
+
+
+
+
+<blockquote class="gdoc-hint note">
+  <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
+  <div class="gdoc-hint__text"><p>While running the tests, oCIS server is started with <a
+  class="gdoc-markdown__link"
+  href="https://github.com/owncloud/ocis/blob/master/tests/ociswrapper/README.md"
+>ociswrapper</a> (i.e. <code>WITH_WRAPPER=true</code>) by default. In order to run the tests without ociswrapper, provide <code>WITH_WRAPPER=false</code> when running the tests. For example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">WITH_WRAPPER</span><span class="o">=</span><span class="nb">false</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">BEHAT_FEATURE</span><span class="o">=</span><span class="s1">&#39;tests/acceptance/features/apiAccountsHashDifficulty/addUser.feature:21&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>make -C tests/acceptance/docker test-ocis-feature-ocis-storage
+</span></span></code></pre></div><p>But some test suites that are tagged with <code>@env-config</code> require the oCIS server to be run with ociswrapper. So, running those tests require <code>WITH_WRAPPER=true</code> (default setting).</p>
+</div>
 </blockquote>
+
 <p>For example <code>make -C tests/acceptance/docker Core-API-Tests-ocis-storage-3</code> runs the same tests as the <code>Core-API-Tests-ocis-storage-3</code> CI pipeline, which runs the third (out of ten) test suite transferred from ownCloud against an oCIS with ocis storage.</p>
 <p>For example <code>make -C tests/acceptance/docker Core-API-Tests-s3ng-storage-3</code> runs the third (out of ten) test suite transferred from ownCloud against an oCIS with s3 storage.</p>
 <div class="gdoc-page__anchorwrap">
@@ -17547,6 +17569,67 @@ expected failures. If there are any differences then the CI pipeline fails.</p>
 <li>
 <p>make a PR that has the fixed code, and the relevant lines removed from the expected failures file.</p>
 </li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="running-env-config-tests-env-config">
+        Running ENV config tests (@env-config)
+        <a data-clipboard-text="https://owncloud.dev/ocis/development/testing/#running-env-config-tests-env-config" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Running ENV config tests (@env-config)" aria-label="Anchor to: Running ENV config tests (@env-config)" href="#running-env-config-tests-env-config">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>Test suites tagged with <code>@env-config</code> are used to test the environment variables that are used to configure oCIS. These tests are special tests that require the oCIS server to be run using <a
+  class="gdoc-markdown__link"
+  href="https://github.com/owncloud/ocis/blob/master/tests/ociswrapper/README.md"
+>ociswrapper</a>.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="run-ocis-with-ociswrapper">
+        Run oCIS with ociswrapper
+        <a data-clipboard-text="https://owncloud.dev/ocis/development/testing/#run-ocis-with-ociswrapper" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Run oCIS with ociswrapper" aria-label="Anchor to: Run oCIS with ociswrapper" href="#run-ocis-with-ociswrapper">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># working dir: ocis repo root dir</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># init oCIS</span>
+</span></span><span class="line"><span class="cl"><span class="nv">IDM_ADMIN_PASSWORD</span><span class="o">=</span>admin <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>ocis/bin/ocis init --insecure <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># build the wrapper</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> tests/ociswrapper
+</span></span><span class="line"><span class="cl">make build
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># run oCIS</span>
+</span></span><span class="line"><span class="cl"><span class="nv">PROXY_ENABLE_BASIC_AUTH</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>./bin/ociswrapper serve --bin<span class="o">=</span>../../ocis/bin/ocis
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
+    <h3 id="run-the-tests">
+        Run the tests
+        <a data-clipboard-text="https://owncloud.dev/ocis/development/testing/#run-the-tests" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Run the tests" aria-label="Anchor to: Run the tests" href="#run-the-tests">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">OCIS_WRAPPER_URL</span><span class="o">=</span>http://localhost:5000 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">TEST_WITH_GRAPH_API</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">TEST_OCIS</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">TEST_SERVER_URL</span><span class="o">=</span><span class="s2">&#34;https://localhost:9200&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">BEHAT_FEATURE</span><span class="o">=</span>tests/acceptance/features/apiAsyncUpload/delayPostprocessing.feature <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>make test-acceptance-api
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
+    <h3 id="writing-new-env-config-tests">
+        Writing new ENV config tests
+        <a data-clipboard-text="https://owncloud.dev/ocis/development/testing/#writing-new-env-config-tests" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Writing new ENV config tests" aria-label="Anchor to: Writing new ENV config tests" href="#writing-new-env-config-tests">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>While writing tests for a new oCIS ENV configuration, please make sure to follow these guidelines:</p>
+<ol>
+<li>Tag the test suite (or test scenarios) with <code>@env-config</code></li>
+<li>Use <code>OcisConfigHelper.php</code> for helper functions - provides functions to reconfigure the running oCIS instance.</li>
+<li>Recommended: add the new step implementations in <code>OcisConfigContext.php</code></li>
 </ol>
 <div class="gdoc-page__anchorwrap">
     <h2 id="running-tests-for-parallel-deployment">
