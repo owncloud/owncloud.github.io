@@ -65,7 +65,7 @@
       "url" : "https://owncloud.dev/ocis/development/testing/",
       "headline": "Testing",
       "description": "Testing With Test Suite in Docker  Run Full Test Suite  Local oCIS Tests (prefix api) Tests Transferred From ownCloud Core (prefix coreApi)   Run Single Feature Test oCIS Image to Be Tested (Skip Local Image Build) Test Log Output Cleanup   Testing With Test Suite Natively Installed  Run oCIS  Run Local oCIS Tests (prefix api) Run Tests Transferred From ownCloud Core (prefix coreApi)   Use Existing Tests for BDD   Running ENV Config Tests (@env-Config)  Run oCIS With ociswrapper Run the Tests Writing New ENV Config Tests   Running Test Suite With Email Service (@Email)  Setup Inbucket Run oCIS Run the Acceptance Test   Running Tests for Parallel Deployment  Setup the Parallel Deployment Environment Getting the Test Helpers Run the Acceptance Tests        To run tests in the test suite you have two options.",
-      "wordCount" : "1729",
+      "wordCount" : "1759",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17351,6 +17351,20 @@ Copyright 2022 Fonticons, Inc.
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>make -C tests/acceptance/docker test-ocis-feature-ocis-storage
 </span></span></code></pre></div><p>But some test suites that are tagged with <code>@env-config</code> require the oCIS server to be run with ociswrapper. So, running those tests require <code>WITH_WRAPPER=true</code> (default setting).</p>
 </div>
+</blockquote>
+
+
+
+
+
+
+<blockquote class="gdoc-hint note">
+  <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
+  <div class="gdoc-hint__text"><p>To run the tests that require an email server (tests tagged with <code>@email</code>), you need to provide <code>START_EMAIL=true</code> while running the tests.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">START_EMAIL</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">BEHAT_FEATURE</span><span class="o">=</span><span class="s1">&#39;tests/acceptance/features/apiEmailNotification/emailNotification.feature&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>make -C tests/acceptance/docker test-ocis-feature-ocis-storage
+</span></span></code></pre></div></div>
 </blockquote>
 
 <div class="gdoc-page__anchorwrap">
