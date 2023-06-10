@@ -65,7 +65,7 @@
       "url" : "https://owncloud.dev/ocis/development/testing/",
       "headline": "Testing",
       "description": "Testing With Test Suite in Docker  Run Full Test Suite  Local oCIS Tests (prefix api) Tests Transferred From ownCloud Core (prefix coreApi)   Run Single Feature Test oCIS Image to Be Tested (Skip Local Image Build) Test Log Output Cleanup   Testing With Test Suite Natively Installed  Run oCIS  Run Local oCIS Tests (prefix api) Run Tests Transferred From ownCloud Core (prefix coreApi)   Use Existing Tests for BDD   Running ENV Config Tests (@env-Config)  Run oCIS With ociswrapper Run the Tests Writing New ENV Config Tests   Running Test Suite With Email Service (@email)  Setup Inbucket Run oCIS Run the Acceptance Test   Running Tests for Parallel Deployment  Setup the Parallel Deployment Environment Getting the Test Helpers Run the Acceptance Tests   Running Test Suite With Antivirus Service (@antivirus)  Setup clamAV  1.",
-      "wordCount" : "2290",
+      "wordCount" : "2330",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17680,7 +17680,24 @@ Copyright 2022 Fonticons, Inc.
   <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
   <div class="gdoc-hint__text"><p>To run the tests that require an email server (tests tagged with <code>@email</code>), you need to provide <code>START_EMAIL=true</code> while running the tests.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">START_EMAIL</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">BEHAT_FEATURE</span><span class="o">=</span><span class="s1">&#39;tests/acceptance/features/apiEmailNotification/emailNotification.feature&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">BEHAT_FEATURE</span><span class="o">=</span><span class="s1">&#39;tests/acceptance/features/apiNotification/emailNotification.feature&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>make -C tests/acceptance/docker test-ocis-feature-ocis-storage
+</span></span></code></pre></div></div>
+</blockquote>
+
+
+
+
+
+
+<blockquote class="gdoc-hint note">
+  <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
+  <div class="gdoc-hint__text"><p>To run the tests that require an antivirus service (tests tagged with <code>@antivirus</code>), you need to provide the following environment variables while running the tests.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">START_ANTIVIRUS</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">OCIS_ASYNC_UPLOADS</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">OCIS_ADD_RUN_SERVICES</span><span class="o">=</span>antivirus <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">POSTPROCESSING_STEPS</span><span class="o">=</span>virusscan <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">BEHAT_FEATURE</span><span class="o">=</span><span class="s1">&#39;tests/acceptance/features/apiAntivirus/antivirus.feature&#39;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>make -C tests/acceptance/docker test-ocis-feature-ocis-storage
 </span></span></code></pre></div></div>
 </blockquote>
@@ -18168,7 +18185,7 @@ expected failures. If there are any differences then the CI pipeline fails.</p>
         </a>
     </h5>
 </div>
-<p>For <code>clamAV</code> only local sockets can currently be configured we need to create a volume in order to share the socket with <code>oCIS server</code>. Run the following command to do so:</p>
+<p>For <code>clamAV</code> only local sockets can currently be configured, we need to create a volume in order to share the socket with <code>oCIS server</code>. Run the following command to do so:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> docker volume create -d <span class="nb">local</span> -o <span class="nv">device</span><span class="o">=</span>/your/local/filesystem/path/ -o <span class="nv">o</span><span class="o">=</span><span class="nb">bind</span> -o <span class="nv">type</span><span class="o">=</span>none clamav_vol
 </span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h5 id="b-run-the-container">
@@ -18198,7 +18215,7 @@ expected failures. If there are any differences then the CI pipeline fails.</p>
         </a>
     </h5>
 </div>
-<p>Change the ownership of the path of your local filesystem that the volume <code>clamav_vol</code> is mounted on. After running <code>clamav</code> through docker the ownership of the bound path gets changed. As we need to provide this path to ocis server the ownership should be changed back to $USER or whatever ownership that your server requires.</p>
+<p>Change the ownership of the path of your local filesystem that the volume <code>clamav_vol</code> is mounted on. After running <code>clamav</code> through docker the ownership of the bound path gets changed. As we need to provide this path to ocis server, the ownership should be changed back to $USER or whatever ownership that your server requires.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> sudo chown -R <span class="nv">$USER</span>:<span class="nv">$USER</span> /your/local/filesystem/path/
 </span></span></code></pre></div>
 
@@ -18217,7 +18234,7 @@ expected failures. If there are any differences then the CI pipeline fails.</p>
 
 <blockquote class="gdoc-hint note">
   <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
-  <div class="gdoc-hint__text">If you want to use the same volume after the container is down. Before running the container once again you need to either remove all the data inside <code>/your/local/filesystem/path/</code> or give the ownership back. For instance, it ubuntu it might be <code>sudo chown -R systemd-network:systemd-journal /your/local/filesystem/path/</code>  and repeat step 2 and 3`</div>
+  <div class="gdoc-hint__text">If you want to use the same volume after the container is down then before running the container once again, you either need to remove all the data inside <code>/your/local/filesystem/path/</code> or give the ownership back. For instance, on Ubuntu it might be <code>sudo chown -R systemd-network:systemd-journal /your/local/filesystem/path/</code>  and repeat <code>step 2 and 3</code></div>
 </blockquote>
 
 <div class="gdoc-page__anchorwrap">
