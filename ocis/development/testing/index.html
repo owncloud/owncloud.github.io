@@ -65,7 +65,7 @@
       "url" : "https://owncloud.dev/ocis/development/testing/",
       "headline": "Testing",
       "description": "Testing With Test Suite in Docker  Run Full Test Suite  Local oCIS Tests (prefix api) Tests Transferred From ownCloud Core (prefix coreApi)   Run Single Feature Test oCIS Image to Be Tested (Skip Local Image Build) Test Log Output Cleanup   Testing With Test Suite Natively Installed  Run oCIS  Run Local oCIS Tests (prefix api) Run Tests Transferred From ownCloud Core (prefix coreApi)   Use Existing Tests for BDD   Running ENV Config Tests (@env-Config)  Run oCIS With ociswrapper Run the Tests Writing New ENV Config Tests   Running Test Suite With Email Service (@email)  Setup Inbucket Run oCIS Run the Acceptance Test   Running Tests for Parallel Deployment  Setup the Parallel Deployment Environment Getting the Test Helpers Run the Acceptance Tests   Running Test Suite With Antivirus Service (@antivirus)  Setup clamAV  1.",
-      "wordCount" : "2330",
+      "wordCount" : "2110",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17577,12 +17577,16 @@ Copyright 2022 Fonticons, Inc.
           <ul>
             <li><a href="#setup-clamav">Setup clamAV</a>
               <ul>
-                <li><a href="#1-setup-locally">1. Setup Locally</a></li>
+                <li><a href="#1-setup-locally">1. Setup Locally</a>
+                  <ul>
+                    <li><a href="#linux-os-user">Linux OS user</a></li>
+                    <li><a href="#mac-os-user">Mac OS user</a></li>
+                  </ul>
+                </li>
                 <li><a href="#2-setup-clamav-with-docker">2. Setup clamAV With Docker</a>
                   <ul>
-                    <li><a href="#a-create-a-volume">a. Create a Volume</a></li>
-                    <li><a href="#b-run-the-container">b. Run the Container</a></li>
-                    <li><a href="#b-change-ownership">b. Change Ownership</a></li>
+                    <li><a href="#linux-os-user-1">Linux OS user</a></li>
+                    <li><a href="#mac-os-user-1">Mac OS user</a></li>
                   </ul>
                 </li>
               </ul>
@@ -18152,6 +18156,14 @@ expected failures. If there are any differences then the CI pipeline fails.</p>
         </a>
     </h4>
 </div>
+<div class="gdoc-page__anchorwrap">
+    <h5 id="linux-os-user">
+        Linux OS user
+        <a data-clipboard-text="https://owncloud.dev/ocis/development/testing/#linux-os-user" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Linux OS user" aria-label="Anchor to: Linux OS user" href="#linux-os-user">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h5>
+</div>
 <p>Run the following command to set up calmAV and clamAV daemon</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install clamav clamav-daemon -y
 </span></span></code></pre></div><p>Make sure that the  clamAV daemon is up and running</p>
@@ -18170,6 +18182,20 @@ expected failures. If there are any differences then the CI pipeline fails.</p>
 </blockquote>
 
 <div class="gdoc-page__anchorwrap">
+    <h5 id="mac-os-user">
+        Mac OS user
+        <a data-clipboard-text="https://owncloud.dev/ocis/development/testing/#mac-os-user" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Mac OS user" aria-label="Anchor to: Mac OS user" href="#mac-os-user">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h5>
+</div>
+<p>Install ClamAV using <a
+  class="gdoc-markdown__link"
+  href="https://gist.github.com/mendozao/3ea393b91f23a813650baab9964425b9"
+>here</a>
+Start ClamAV daemon</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/your/location/to/brew/Cellar/clamav/1.1.0/sbin/clamd
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h4 id="2-setup-clamav-with-docker">
         2. Setup clamAV With Docker
         <a data-clipboard-text="https://owncloud.dev/ocis/development/testing/#2-setup-clamav-with-docker" class="gdoc-page__anchor clip flex align-center" title="Anchor to: 2. Setup clamAV With Docker" aria-label="Anchor to: 2. Setup clamAV With Docker" href="#2-setup-clamav-with-docker">
@@ -18178,66 +18204,25 @@ expected failures. If there are any differences then the CI pipeline fails.</p>
     </h4>
 </div>
 <div class="gdoc-page__anchorwrap">
-    <h5 id="a-create-a-volume">
-        a. Create a Volume
-        <a data-clipboard-text="https://owncloud.dev/ocis/development/testing/#a-create-a-volume" class="gdoc-page__anchor clip flex align-center" title="Anchor to: a. Create a Volume" aria-label="Anchor to: a. Create a Volume" href="#a-create-a-volume">
+    <h5 id="linux-os-user-1">
+        Linux OS user
+        <a data-clipboard-text="https://owncloud.dev/ocis/development/testing/#linux-os-user-1" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Linux OS user" aria-label="Anchor to: Linux OS user" href="#linux-os-user-1">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h5>
 </div>
-<p>For <code>clamAV</code> only local sockets can currently be configured, we need to create a volume in order to share the socket with <code>oCIS server</code>. Run the following command to do so:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> docker volume create -d <span class="nb">local</span> -o <span class="nv">device</span><span class="o">=</span>/your/local/filesystem/path/ -o <span class="nv">o</span><span class="o">=</span><span class="nb">bind</span> -o <span class="nv">type</span><span class="o">=</span>none clamav_vol
+<p>Run <code>clamAV</code> through docker</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run -d -p 3310:3310 owncloudci/clamavd
 </span></span></code></pre></div><div class="gdoc-page__anchorwrap">
-    <h5 id="b-run-the-container">
-        b. Run the Container
-        <a data-clipboard-text="https://owncloud.dev/ocis/development/testing/#b-run-the-container" class="gdoc-page__anchor clip flex align-center" title="Anchor to: b. Run the Container" aria-label="Anchor to: b. Run the Container" href="#b-run-the-container">
+    <h5 id="mac-os-user-1">
+        Mac OS user
+        <a data-clipboard-text="https://owncloud.dev/ocis/development/testing/#mac-os-user-1" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Mac OS user" aria-label="Anchor to: Mac OS user" href="#mac-os-user-1">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h5>
 </div>
-<p>Run <code>clamAV</code> through docker and bind the path to the socket of clamAV from the image to the pre-created volume</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run -v clamav_vol:/var/run/clamav/ owncloudci/clamavd
-</span></span></code></pre></div>
-
-
-
-
-<blockquote class="gdoc-hint note">
-  <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
-  <div class="gdoc-hint__text">The path to the socket i.e. <code>/var/run/clamav/</code> may differ as per the image you are using. Make sure that you&rsquo;re providing the correct path to the socket if you&rsquo;re using image other than <code>owncloudci/clamavd</code>.</div>
-</blockquote>
-
-<div class="gdoc-page__anchorwrap">
-    <h5 id="b-change-ownership">
-        b. Change Ownership
-        <a data-clipboard-text="https://owncloud.dev/ocis/development/testing/#b-change-ownership" class="gdoc-page__anchor clip flex align-center" title="Anchor to: b. Change Ownership" aria-label="Anchor to: b. Change Ownership" href="#b-change-ownership">
-            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h5>
-</div>
-<p>Change the ownership of the path of your local filesystem that the volume <code>clamav_vol</code> is mounted on. After running <code>clamav</code> through docker the ownership of the bound path gets changed. As we need to provide this path to ocis server, the ownership should be changed back to $USER or whatever ownership that your server requires.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> sudo chown -R <span class="nv">$USER</span>:<span class="nv">$USER</span> /your/local/filesystem/path/
-</span></span></code></pre></div>
-
-
-
-
-<blockquote class="gdoc-hint note">
-  <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
-  <div class="gdoc-hint__text">Make sure that <code>clamAV</code> is fully up before running this command. The command is ubuntu specific and may differ according to your system.</div>
-</blockquote>
-
-
-
-
-
-
-<blockquote class="gdoc-hint note">
-  <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
-  <div class="gdoc-hint__text">If you want to use the same volume after the container is down then before running the container once again, you either need to remove all the data inside <code>/your/local/filesystem/path/</code> or give the ownership back. For instance, on Ubuntu it might be <code>sudo chown -R systemd-network:systemd-journal /your/local/filesystem/path/</code>  and repeat <code>step 2 and 3</code></div>
-</blockquote>
-
-<div class="gdoc-page__anchorwrap">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run -d -p 3310:3310 -v /your/local/filesystem/path/to/clamav/:/var/lib/clamav mkodockx/docker-clamav:alpine
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h3 id="run-ocis-2">
         Run oCIS
         <a data-clipboard-text="https://owncloud.dev/ocis/development/testing/#run-ocis-2" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Run oCIS" aria-label="Anchor to: Run oCIS" href="#run-ocis-2">
@@ -18252,7 +18237,7 @@ expected failures. If there are any differences then the CI pipeline fails.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># run oCIS</span>
 </span></span><span class="line"><span class="cl"><span class="nv">PROXY_ENABLE_BASIC_AUTH</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">ANTIVIRUS_SCANNER_TYPE</span><span class="o">=</span><span class="s2">&#34;clamav&#34;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">ANTIVIRUS_CLAMAV_SOCKET</span><span class="o">=</span><span class="s2">&#34;/var/run/clamav/clamd.ctl&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">ANTIVIRUS_CLAMAV_SOCKET</span><span class="o">=</span><span class="s2">&#34;tcp://host.docker.internal:3310&#34;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">POSTPROCESSING_STEPS</span><span class="o">=</span><span class="s2">&#34;virusscan&#34;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">OCIS_ASYNC_UPLOADS</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">OCIS_ADD_RUN_SERVICES</span><span class="o">=</span><span class="s2">&#34;antivirus&#34;</span>
@@ -18264,7 +18249,11 @@ expected failures. If there are any differences then the CI pipeline fails.</p>
 
 <blockquote class="gdoc-hint note">
   <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
-  <div class="gdoc-hint__text">The value for <code>ANTIVIRUS_CLAMAV_SOCKET</code> is an example which needs adaption according your OS. If you are running <code>clamAv</code> with docker as per this documentation check the path that you mounted the volume i.e. <code>/your/local/filesystem/path/</code> to make sure the socket exists and give the full path to socket i.e. <code>/your/local/filesystem/path/clamd.sock</code> to <code>ANTIVIRUS_CLAMAV_SOCKET</code>.</div>
+  <div class="gdoc-hint__text"><p>The value for <code>ANTIVIRUS_CLAMAV_SOCKET</code> is an example which needs adaption according your OS.</p>
+<p>For antivirus running localy on Linux OS, use <code>ANTIVIRUS_CLAMAV_SOCKET= &quot;/var/run/clamav/clamd.ctl&quot;</code>.
+For antivirus running localy on Mac OS, use <code>ANTIVIRUS_CLAMAV_SOCKET= &quot;/tmp/clamd.socket&quot;</code>.
+For antivirus running with docker, use <code>ANTIVIRUS_CLAMAV_SOCKET= &quot;tcp://host.docker.internal:3310&quot;</code></p>
+</div>
 </blockquote>
 
 <div class="gdoc-page__anchorwrap">
