@@ -12,7 +12,7 @@
 <meta name="generator" content="Hugo 0.99.1" />
 
 
-  <meta name="description" content="Installation  Docker Source code   Configuration    Options   Sentry   Setting up backend and running Running      Installation     Docker     Make sure to have Docker, Docker-Compose, Node.js and pnpm installed.
+  <meta name="description" content="Installation  Docker Source code   Configuration    Options Scripts and Styles   Sentry   Setting up backend and running Running      Installation     Docker     Make sure to have Docker, Docker-Compose, Node.js and pnpm installed.
  This setup currently doesn&rsquo;t work on Windows out of the box.
  Workaround One of our contributors has opened a PR to a dependency that prevents us from successfully bundling the frontend." />
 
@@ -38,7 +38,7 @@
     content="Getting Started"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Installation  Docker Source code   Configuration    Options   Sentry   Setting up backend and running Running      Installation     Docker     Make sure to have Docker, Docker-Compose, Node.js and pnpm installed.
+  <meta property="og:description" content="Installation  Docker Source code   Configuration    Options Scripts and Styles   Sentry   Setting up backend and running Running      Installation     Docker     Make sure to have Docker, Docker-Compose, Node.js and pnpm installed.
  This setup currently doesn’t work on Windows out of the box.
  Workaround One of our contributors has opened a PR to a dependency that prevents us from successfully bundling the frontend." />
 <meta property="og:type" content="article" />
@@ -57,7 +57,7 @@
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Getting Started" />
-  <meta name="twitter:description" content="Installation  Docker Source code   Configuration    Options   Sentry   Setting up backend and running Running      Installation     Docker     Make sure to have Docker, Docker-Compose, Node.js and pnpm installed.
+  <meta name="twitter:description" content="Installation  Docker Source code   Configuration    Options Scripts and Styles   Sentry   Setting up backend and running Running      Installation     Docker     Make sure to have Docker, Docker-Compose, Node.js and pnpm installed.
  This setup currently doesn’t work on Windows out of the box.
  Workaround One of our contributors has opened a PR to a dependency that prevents us from successfully bundling the frontend." />
 
@@ -70,8 +70,8 @@
       "name": "Getting Started",
       "url" : "https://owncloud.dev/clients/web/getting-started/",
       "headline": "Getting Started",
-      "description": "Installation  Docker Source code   Configuration    Options   Sentry   Setting up backend and running Running      Installation     Docker     Make sure to have Docker, Docker-Compose, Node.js and pnpm installed.\n This setup currently doesn’t work on Windows out of the box.\n Workaround One of our contributors has opened a PR to a dependency that prevents us from successfully bundling the frontend.",
-      "wordCount" : "969",
+      "description": "Installation  Docker Source code   Configuration    Options Scripts and Styles   Sentry   Setting up backend and running Running      Installation     Docker     Make sure to have Docker, Docker-Compose, Node.js and pnpm installed.\n This setup currently doesn’t work on Windows out of the box.\n Workaround One of our contributors has opened a PR to a dependency that prevents us from successfully bundling the frontend.",
+      "wordCount" : "1109",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17544,6 +17544,7 @@ Copyright 2022 Fonticons, Inc.
             <li>
               <ul>
                 <li><a href="#options">Options</a></li>
+                <li><a href="#scripts-and-styles">Scripts and Styles</a></li>
               </ul>
             </li>
             <li><a href="#sentry">Sentry</a></li>
@@ -17666,7 +17667,10 @@ allows ownCloud to get feedback from your user base through a dedicated survey w
 <li><code>options.runningOnEos</code> Set this option to <code>true</code> if running on an <a
   class="gdoc-markdown__link"
   href="https://eos-web.web.cern.ch/eos-web/"
->EOS storage backend</a> to enable its specific features. Defaults to <code>false</code>.</li>
+>EOS storage backend</a> to enable its specific features. Defaults to <code>false</code>, and we recommend reaching out to <a
+  class="gdoc-markdown__link"
+  href="https://talk.owncloud.com/channel/web"
+>the ownCloud web team</a> if you&rsquo;re not CERN and thinking about enabling this feature flag.</li>
 <li><code>options.cernFeatures</code> Enabling this will activate CERN-specific features. Defaults to <code>false</code>.</li>
 <li><code>options.hoverableQuickActions</code> Set this option to <code>true</code> to hide the quick actions (buttons appearing on file rows), and only show them when the user
 hovers the row with his mouse. Defaults to <code>false</code>.</li>
@@ -17680,6 +17684,19 @@ hovers the row with his mouse. Defaults to <code>false</code>.</li>
 <li><code>options.editor.autosaveInterval</code> Specifies the time interval for the autosave of editor apps in seconds.</li>
 <li><code>options.contextHelpersReadMore</code> Specifies whether the &ldquo;Read more&rdquo; link should be displayed or not.</li>
 <li><code>options.openLinksWithDefaultApp</code> Specifies whether single file link shares should be opened with default app or not.</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="scripts-and-styles">
+        Scripts and Styles
+        <a data-clipboard-text="https://owncloud.dev/clients/web/getting-started/#scripts-and-styles" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Scripts and Styles" aria-label="Anchor to: Scripts and Styles" href="#scripts-and-styles">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+<p>Web supports adding additional CSS and JavaScript files to further customize the user experience and adapt it to your specific needs. Please consider opening a feature request if you feel like your customization could be a benefit to the upstream project, and keep an eye open for future major releases of <code>web</code> since this API may change.</p>
+<ul>
+<li><code>styles</code> expects an array of objects that specify a <code>href</code> attribute, pointing to the path/URL of your stylesheet, like <code>[{ &quot;href&quot;: &quot;css/custom.css&quot; }]</code>.</li>
+<li><code>scripts</code> expects an array of objects that specify a <code>src</code> attribute, pointing to the path/URL of your script, and an optional <code>async</code> attribute (defaults to false), like <code>[{ &quot;src&quot;: &quot;js/custom.js&quot;, &quot;async&quot;: true }]</code>.</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h3 id="sentry">
