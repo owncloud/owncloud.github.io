@@ -116,12 +116,12 @@ Context and Problem Statement Reva relies heavily on config files. A known impli
 
 <link
   rel="preload"
-  href="/main-f44405f3.min.css"
+  href="/main-ba0e2765.min.css"
   as="style"
 />
 <link
   rel="stylesheet"
-  href="/main-f44405f3.min.css"
+  href="/main-ba0e2765.min.css"
   media="all"
 />
 
@@ -17538,7 +17538,8 @@ Copyright 2022 Fonticons, Inc.
   href="https://github.com/cs3org/reva/pull/1509"
 >Introduce Named Services.</a></p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="context-and-problem-statement">
+    <h2 id="context-and-problem-statement"
+    >
         Context and Problem Statement
         <a data-clipboard-text="https://owncloud.dev/ocis/adr/0006-service-discovery/#context-and-problem-statement" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Context and Problem Statement" aria-label="Anchor to: Context and Problem Statement" href="#context-and-problem-statement">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17547,7 +17548,8 @@ Copyright 2022 Fonticons, Inc.
 </div>
 <p>Reva relies heavily on config files. A known implication of this approach are having to know a-priori where a service is running (host + port). We want to move away from hardcoded values and rely instead on named services for service discovery. Furthermore, we would like both platforms (Reva + oCIS) to have the same source of truth at any given time, not having one to notify the other whenever a service status changes.</p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="decision-drivers">
+    <h2 id="decision-drivers"
+    >
         Decision Drivers
         <a data-clipboard-text="https://owncloud.dev/ocis/adr/0006-service-discovery/#decision-drivers" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Decision Drivers" aria-label="Anchor to: Decision Drivers" href="#decision-drivers">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17560,7 +17562,8 @@ Copyright 2022 Fonticons, Inc.
 <li>Always up-to-date knowledge of the running services on a given deployment (a service registry doesn&rsquo;t have to necessarily be running on the same machine / network)</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="considered-options">
+    <h2 id="considered-options"
+    >
         Considered Options
         <a data-clipboard-text="https://owncloud.dev/ocis/adr/0006-service-discovery/#considered-options" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Considered Options" aria-label="Anchor to: Considered Options" href="#considered-options">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17572,7 +17575,8 @@ Copyright 2022 Fonticons, Inc.
 <li>Dynamic service registration</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="decision-outcome">
+    <h2 id="decision-outcome"
+    >
         Decision Outcome
         <a data-clipboard-text="https://owncloud.dev/ocis/adr/0006-service-discovery/#decision-outcome" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Decision Outcome" aria-label="Anchor to: Decision Outcome" href="#decision-outcome">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17587,7 +17591,8 @@ Copyright 2022 Fonticons, Inc.
   href="https://github.com/refs/reva/blob/58d013a7509d1941834e1bc814e9a9fa8bff00b1/cmd/revad/runtime/option.go#L53-L58"
 >allow for injecting a registry</a>.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="positive-consequences">
+    <h3 id="positive-consequences"
+    >
         Positive Consequences
         <a data-clipboard-text="https://owncloud.dev/ocis/adr/0006-service-discovery/#positive-consequences" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Positive Consequences" aria-label="Anchor to: Positive Consequences" href="#positive-consequences">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17603,7 +17608,8 @@ Copyright 2022 Fonticons, Inc.
 <li>Conceptually speaking, a better framework to tie all the services together. Referring to services by names is less overall confusing than having to add a service name + where it is running. A registry is agnostic to &ldquo;where is it running&rdquo; because it, by definition, keeps track of this specific question, so when speaking about design or functionality, it will ease communication.</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="pros-and-cons-of-the-options">
+    <h2 id="pros-and-cons-of-the-options"
+    >
         Pros and Cons of the Options
         <a data-clipboard-text="https://owncloud.dev/ocis/adr/0006-service-discovery/#pros-and-cons-of-the-options" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Pros and Cons of the Options" aria-label="Anchor to: Pros and Cons of the Options" href="#pros-and-cons-of-the-options">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17611,7 +17617,8 @@ Copyright 2022 Fonticons, Inc.
     </h2>
 </div>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="hardcoded-tuples-of-hostname--port">
+    <h3 id="hardcoded-tuples-of-hostname--port"
+    >
         Hardcoded tuples of hostname + port
         <a data-clipboard-text="https://owncloud.dev/ocis/adr/0006-service-discovery/#hardcoded-tuples-of-hostname--port" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Hardcoded tuples of hostname &#43; port" aria-label="Anchor to: Hardcoded tuples of hostname &#43; port" href="#hardcoded-tuples-of-hostname--port">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17624,7 +17631,8 @@ Copyright 2022 Fonticons, Inc.
 <li>Bad, because it requires thorough planning of ports.</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="dynamic-service-registration">
+    <h3 id="dynamic-service-registration"
+    >
         Dynamic service registration
         <a data-clipboard-text="https://owncloud.dev/ocis/adr/0006-service-discovery/#dynamic-service-registration" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Dynamic service registration" aria-label="Anchor to: Dynamic service registration" href="#dynamic-service-registration">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17714,7 +17722,7 @@ Copyright 2022 Fonticons, Inc.
     </div>
 
     
-  <script defer src="/js/search-fd04590d.bundle.min.js"></script>
+  <script defer src="/js/search-83320133.bundle.min.js"></script>
 
   </body>
 </html>

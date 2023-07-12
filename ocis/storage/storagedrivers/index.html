@@ -119,12 +119,12 @@ eos file ids posix inodes or paths deconstructed filesystem nodes Storage provid
 
 <link
   rel="preload"
-  href="/main-f44405f3.min.css"
+  href="/main-ba0e2765.min.css"
   as="style"
 />
 <link
   rel="stylesheet"
-  href="/main-f44405f3.min.css"
+  href="/main-ba0e2765.min.css"
   media="all"
 />
 
@@ -17545,7 +17545,8 @@ Copyright 2022 Fonticons, Inc.
 <li>deconstructed filesystem nodes</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="storage-providers">
+    <h2 id="storage-providers"
+    >
         Storage providers
         <a data-clipboard-text="https://owncloud.dev/ocis/storage/storagedrivers/#storage-providers" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Storage providers" aria-label="Anchor to: Storage providers" href="#storage-providers">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17567,7 +17568,8 @@ Copyright 2022 Fonticons, Inc.
 </blockquote>
 
 <div class="gdoc-page__anchorwrap">
-    <h2 id="storage-aspects">
+    <h2 id="storage-aspects"
+    >
         Storage aspects
         <a data-clipboard-text="https://owncloud.dev/ocis/storage/storagedrivers/#storage-aspects" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Storage aspects" aria-label="Anchor to: Storage aspects" href="#storage-aspects">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17577,7 +17579,8 @@ Copyright 2022 Fonticons, Inc.
 <p>A lot of different storage technologies exist, ranging from general purpose file systems with POSIX semantics to software defined storage with multiple APIs. Choosing any of them is making a tradeoff decision. Or, if a storage technology is already in place it automatically predetermines the capabilities that can be made available. <em>Not all storage systems are created equal.</em></p>
 <p>Unfortunately, no POSIX filesystem natively supports all storage aspects that ownCloud 10 requires:</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="a-hierarchical-file-tree">
+    <h3 id="a-hierarchical-file-tree"
+    >
         A hierarchical file tree
         <a data-clipboard-text="https://owncloud.dev/ocis/storage/storagedrivers/#a-hierarchical-file-tree" class="gdoc-page__anchor clip flex align-center" title="Anchor to: A hierarchical file tree" aria-label="Anchor to: A hierarchical file tree" href="#a-hierarchical-file-tree">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17600,7 +17603,8 @@ There is a difference between <em>folder</em> and <em>directory</em>: a <em>dire
 </blockquote>
 
 <div class="gdoc-page__anchorwrap">
-    <h4 id="id-based-lookup">
+    <h4 id="id-based-lookup"
+    >
         Id based lookup
         <a data-clipboard-text="https://owncloud.dev/ocis/storage/storagedrivers/#id-based-lookup" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Id based lookup" aria-label="Anchor to: Id based lookup" href="#id-based-lookup">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17609,7 +17613,8 @@ There is a difference between <em>folder</em> and <em>directory</em>: a <em>dire
 </div>
 <p>While traditionally nodes in the tree are reached by traversing the path the tree persistence should be prepared to look up a node by an id. Think of an inode in a POSIX filesystem. If this operation needs to be cached for performance reasons keep in mind that cache invalidation is hard and crawling all files to update the inode to path mapping takes O(n), not O(1).</p>
 <div class="gdoc-page__anchorwrap">
-    <h4 id="etag-propagation">
+    <h4 id="etag-propagation"
+    >
         ETag propagation
         <a data-clipboard-text="https://owncloud.dev/ocis/storage/storagedrivers/#etag-propagation" class="gdoc-page__anchor clip flex align-center" title="Anchor to: ETag propagation" aria-label="Anchor to: ETag propagation" href="#etag-propagation">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17618,7 +17623,8 @@ There is a difference between <em>folder</em> and <em>directory</em>: a <em>dire
 </div>
 <p>For the state based sync a client can discover changes by recursively descending the tree and comparing the ETag for every node. If the storage technology supports propagating ETag changes up the tree, only the root node of a tree needs to be checked to determine if a discovery needs to be started and which nodes need to be traversed. This allows using the storage technology itself to persist all metadata that is necessary for sync, without additional services or caches.</p>
 <div class="gdoc-page__anchorwrap">
-    <h4 id="subtree-size-accounting">
+    <h4 id="subtree-size-accounting"
+    >
         Subtree size accounting
         <a data-clipboard-text="https://owncloud.dev/ocis/storage/storagedrivers/#subtree-size-accounting" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Subtree size accounting" aria-label="Anchor to: Subtree size accounting" href="#subtree-size-accounting">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17638,7 +17644,8 @@ When propagating the ETag (mtime) and size changes up the tree the question is w
 </blockquote>
 
 <div class="gdoc-page__anchorwrap">
-    <h4 id="rename">
+    <h4 id="rename"
+    >
         Rename
         <a data-clipboard-text="https://owncloud.dev/ocis/storage/storagedrivers/#rename" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Rename" aria-label="Anchor to: Rename" href="#rename">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17664,7 +17671,8 @@ Technically, <a
 </blockquote>
 
 <div class="gdoc-page__anchorwrap">
-    <h4 id="arbitrary-metadata-persistence">
+    <h4 id="arbitrary-metadata-persistence"
+    >
         Arbitrary metadata persistence
         <a data-clipboard-text="https://owncloud.dev/ocis/storage/storagedrivers/#arbitrary-metadata-persistence" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Arbitrary metadata persistence" aria-label="Anchor to: Arbitrary metadata persistence" href="#arbitrary-metadata-persistence">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17676,7 +17684,8 @@ Technically, <a
   href="https://en.wikipedia.org/wiki/Dublin_Core"
 >dublin core</a>. In POSIX filesystems this maps to extended attributes.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="grant-persistence">
+    <h3 id="grant-persistence"
+    >
         Grant persistence
         <a data-clipboard-text="https://owncloud.dev/ocis/storage/storagedrivers/#grant-persistence" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Grant persistence" aria-label="Anchor to: Grant persistence" href="#grant-persistence">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17685,7 +17694,8 @@ Technically, <a
 </div>
 <p>The CS3 API uses grants to describe access permissions. Storage systems have a wide range of permissions granularity and not all grants may be supported by every storage driver. POSIX ACLs for example have no expiry. If the storage system does not support certain grant properties, e.g. expiry, then the storage driver may choose to implement them in a different way. Expiries could be persisted in a different way and checked periodically to remove the grants. Again: every decision is a tradeoff.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="trash-persistence">
+    <h3 id="trash-persistence"
+    >
         Trash persistence
         <a data-clipboard-text="https://owncloud.dev/ocis/storage/storagedrivers/#trash-persistence" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Trash persistence" aria-label="Anchor to: Trash persistence" href="#trash-persistence">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17694,7 +17704,8 @@ Technically, <a
 </div>
 <p>After deleting a node the storage allows listing the deleted nodes and has an undo mechanism for them.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="versions-persistence">
+    <h3 id="versions-persistence"
+    >
         Versions persistence
         <a data-clipboard-text="https://owncloud.dev/ocis/storage/storagedrivers/#versions-persistence" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Versions persistence" aria-label="Anchor to: Versions persistence" href="#versions-persistence">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17714,7 +17725,8 @@ Modern POSIX filesystems support snapshotting of volumes. This is different from
 </blockquote>
 
 <div class="gdoc-page__anchorwrap">
-    <h3 id="activity-history">
+    <h3 id="activity-history"
+    >
         Activity History
         <a data-clipboard-text="https://owncloud.dev/ocis/storage/storagedrivers/#activity-history" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Activity History" aria-label="Anchor to: Activity History" href="#activity-history">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17723,7 +17735,8 @@ Modern POSIX filesystems support snapshotting of volumes. This is different from
 </div>
 <p>The storage keeps an activity history, tracking the different actions that have been performed. This does not only include file changes but also metadata changes like renames and permission changes.</p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="storage-drivers">
+    <h2 id="storage-drivers"
+    >
         Storage drivers
         <a data-clipboard-text="https://owncloud.dev/ocis/storage/storagedrivers/#storage-drivers" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Storage drivers" aria-label="Anchor to: Storage drivers" href="#storage-drivers">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17732,7 +17745,8 @@ Modern POSIX filesystems support snapshotting of volumes. This is different from
 </div>
 <p>Reva currently has several storage driver implementations that can be used for <em>storage providers</em> as well as <em>data providers</em>.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="ocis-and-s3ng-storage-driver">
+    <h3 id="ocis-and-s3ng-storage-driver"
+    >
         OCIS and S3NG Storage Driver
         <a data-clipboard-text="https://owncloud.dev/ocis/storage/storagedrivers/#ocis-and-s3ng-storage-driver" class="gdoc-page__anchor clip flex align-center" title="Anchor to: OCIS and S3NG Storage Driver" aria-label="Anchor to: OCIS and S3NG Storage Driver" href="#ocis-and-s3ng-storage-driver">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17752,7 +17766,8 @@ Modern POSIX filesystems support snapshotting of volumes. This is different from
 
 <p>The S3NG storage driver uses the same metadata layout on a POSIX storage as the oCIS driver, but it uses S3 as the blob storage.</p>
 <div class="gdoc-page__anchorwrap">
-    <h4 id="tradeoffs">
+    <h4 id="tradeoffs"
+    >
         Tradeoffs
         <a data-clipboard-text="https://owncloud.dev/ocis/storage/storagedrivers/#tradeoffs" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Tradeoffs" aria-label="Anchor to: Tradeoffs" href="#tradeoffs">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17765,7 +17780,8 @@ Modern POSIX filesystems support snapshotting of volumes. This is different from
 <p>➖ Not intended to be accessed by end users on the server side as it does not reflect a normal filesystem on disk</p>
 <p>➖ Metadata limited by Kernel VFS limits (see below)</p>
 <div class="gdoc-page__anchorwrap">
-    <h4 id="related-kernel-limits">
+    <h4 id="related-kernel-limits"
+    >
         Related Kernel limits
         <a data-clipboard-text="https://owncloud.dev/ocis/storage/storagedrivers/#related-kernel-limits" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Related Kernel limits" aria-label="Anchor to: Related Kernel limits" href="#related-kernel-limits">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17791,7 +17807,8 @@ Modern POSIX filesystems support snapshotting of volumes. This is different from
 <p>As noted in xattr(7), the VFS imposes a limit of 64 kB on the size of the extended attribute name list returned by listxattr(7).  If the total size of attribute names attached to a file exceeds this limit, it is no longer possible to retrieve the list of attribute names.</p>
 </blockquote>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="local-storage-driver">
+    <h3 id="local-storage-driver"
+    >
         Local Storage Driver
         <a data-clipboard-text="https://owncloud.dev/ocis/storage/storagedrivers/#local-storage-driver" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Local Storage Driver" aria-label="Anchor to: Local Storage Driver" href="#local-storage-driver">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17857,7 +17874,8 @@ Modern POSIX filesystems support snapshotting of volumes. This is different from
 </ul>
 <p>To provide the other storage aspects we plan to implement a FUSE overlay filesystem which will add the different aspects on top of local filesystems like ext4, btrfs or xfs. It should work on NFSv4 as well, although NFSv4 supports RichACLs and we will explore how to leverage them to implement sharing at a future date. The idea is to use the storages native capabilities to deliver the best user experience. But again: that means making the right tradeoffs.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="eos-storage-driver">
+    <h3 id="eos-storage-driver"
+    >
         EOS Storage Driver
         <a data-clipboard-text="https://owncloud.dev/ocis/storage/storagedrivers/#eos-storage-driver" class="gdoc-page__anchor clip flex align-center" title="Anchor to: EOS Storage Driver" aria-label="Anchor to: EOS Storage Driver" href="#eos-storage-driver">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17881,7 +17899,8 @@ Modern POSIX filesystems support snapshotting of volumes. This is different from
 </blockquote>
 
 <div class="gdoc-page__anchorwrap">
-    <h3 id="s3-storage-driver">
+    <h3 id="s3-storage-driver"
+    >
         S3 Storage Driver
         <a data-clipboard-text="https://owncloud.dev/ocis/storage/storagedrivers/#s3-storage-driver" class="gdoc-page__anchor clip flex align-center" title="Anchor to: S3 Storage Driver" aria-label="Anchor to: S3 Storage Driver" href="#s3-storage-driver">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17890,7 +17909,8 @@ Modern POSIX filesystems support snapshotting of volumes. This is different from
 </div>
 <p>A naive driver that treats the keys in an S3 capable storage as <code>/</code> delimited path names. While it does not support MOVE or ETag propagation it can be used to read and write files. Better integration with native capabilities like versioning is possible but depends on the Use Case. Several storage solutions that provide an S3 interface also support some form of notifications that can be used to implement ETag propagation.</p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="data-providers">
+    <h2 id="data-providers"
+    >
         Data Providers
         <a data-clipboard-text="https://owncloud.dev/ocis/storage/storagedrivers/#data-providers" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Data Providers" aria-label="Anchor to: Data Providers" href="#data-providers">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17913,7 +17933,8 @@ Modern POSIX filesystems support snapshotting of volumes. This is different from
 <p>The <em>data provider</em> uses the same <em>storage driver</em> as the <em>storage provider</em> but can be scaled independently.</p>
 <p>The dataprovider allows uploading the file to a quarantine area where further data analysis may happen before making the file accessible again. One use case for this is antivirus scanning for files coming from untrusted sources.</p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="future-work">
+    <h2 id="future-work"
+    >
         Future work
         <a data-clipboard-text="https://owncloud.dev/ocis/storage/storagedrivers/#future-work" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Future work" aria-label="Anchor to: Future work" href="#future-work">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17921,7 +17942,8 @@ Modern POSIX filesystems support snapshotting of volumes. This is different from
     </h2>
 </div>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="fuse-overlay-filesystem">
+    <h3 id="fuse-overlay-filesystem"
+    >
         FUSE overlay filesystem
         <a data-clipboard-text="https://owncloud.dev/ocis/storage/storagedrivers/#fuse-overlay-filesystem" class="gdoc-page__anchor clip flex align-center" title="Anchor to: FUSE overlay filesystem" aria-label="Anchor to: FUSE overlay filesystem" href="#fuse-overlay-filesystem">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17931,7 +17953,8 @@ Modern POSIX filesystems support snapshotting of volumes. This is different from
 <p>We are planning to further separate the concerns and use a local storage provider with a FUSE filesystem overlaying the actual POSIX storage that can be used to capture deletes and writes that might happen outside of ocis/reva.</p>
 <p>It would allow us to extend the local storage driver with missing storage aspects while keeping a tree like filesystem that end users are used to see when sshing into the machine.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="upload-to-quarantine-area">
+    <h3 id="upload-to-quarantine-area"
+    >
         Upload to Quarantine area
         <a data-clipboard-text="https://owncloud.dev/ocis/storage/storagedrivers/#upload-to-quarantine-area" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Upload to Quarantine area" aria-label="Anchor to: Upload to Quarantine area" href="#upload-to-quarantine-area">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -18012,7 +18035,7 @@ Modern POSIX filesystems support snapshotting of volumes. This is different from
     </div>
 
     
-  <script defer src="/js/search-fd04590d.bundle.min.js"></script>
+  <script defer src="/js/search-83320133.bundle.min.js"></script>
 
   </body>
 </html>

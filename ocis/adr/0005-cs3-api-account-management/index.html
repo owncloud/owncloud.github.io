@@ -119,12 +119,12 @@ Decision Drivers Reduce number of network calls." />
 
 <link
   rel="preload"
-  href="/main-f44405f3.min.css"
+  href="/main-ba0e2765.min.css"
   as="style"
 />
 <link
   rel="stylesheet"
-  href="/main-f44405f3.min.css"
+  href="/main-ba0e2765.min.css"
   media="all"
 />
 
@@ -17541,7 +17541,8 @@ Copyright 2022 Fonticons, Inc.
   href="https://github.com/cs3org/cs3apis/pull/119"
 >Write only management API for User and Group resources</a></p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="context-and-problem-statement">
+    <h2 id="context-and-problem-statement"
+    >
         Context and Problem Statement
         <a data-clipboard-text="https://owncloud.dev/ocis/adr/0005-cs3-api-account-management/#context-and-problem-statement" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Context and Problem Statement" aria-label="Anchor to: Context and Problem Statement" href="#context-and-problem-statement">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17550,7 +17551,8 @@ Copyright 2022 Fonticons, Inc.
 </div>
 <p>What would be a more effective way of using network resources and handle account management within the oCIS-Reva ecosystem? Separating account management at the service level is pragmatic and allows for fast iterations, but also steadily accumulates inconsistencies and bloats technical debt.</p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="decision-drivers">
+    <h2 id="decision-drivers"
+    >
         Decision Drivers
         <a data-clipboard-text="https://owncloud.dev/ocis/adr/0005-cs3-api-account-management/#decision-drivers" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Decision Drivers" aria-label="Anchor to: Decision Drivers" href="#decision-drivers">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17563,7 +17565,8 @@ Copyright 2022 Fonticons, Inc.
 <li>Formalize account management at the API level.</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="considered-options">
+    <h2 id="considered-options"
+    >
         Considered Options
         <a data-clipboard-text="https://owncloud.dev/ocis/adr/0005-cs3-api-account-management/#considered-options" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Considered Options" aria-label="Anchor to: Considered Options" href="#considered-options">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17575,7 +17578,8 @@ Copyright 2022 Fonticons, Inc.
 <li>Add account management to the CS3 API.</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="decision-outcome">
+    <h2 id="decision-outcome"
+    >
         Decision Outcome
         <a data-clipboard-text="https://owncloud.dev/ocis/adr/0005-cs3-api-account-management/#decision-outcome" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Decision Outcome" aria-label="Anchor to: Decision Outcome" href="#decision-outcome">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17584,7 +17588,8 @@ Copyright 2022 Fonticons, Inc.
 </div>
 <p>Chosen option: &ldquo;Add account management to the CS3 API&rdquo;. Making the API declare an API for account management will not only allow a deployment to fail fast (as in: the management node is not running) but would also centralize all management operations that should happen to be constrained within the Reva context. Constrained operations <em>SHOULD</em> be by definition more secure, or at least as secure as the rest of the system.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="positive-consequences">
+    <h3 id="positive-consequences"
+    >
         Positive Consequences
         <a data-clipboard-text="https://owncloud.dev/ocis/adr/0005-cs3-api-account-management/#positive-consequences" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Positive Consequences" aria-label="Anchor to: Positive Consequences" href="#positive-consequences">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17667,7 +17672,8 @@ Copyright 2022 Fonticons, Inc.
 </span></span><span class="line"><span class="cl">└─────────────────────────────────────────────┘
 </span></span></code></pre></div><p>And instead rely on the already existing Reva users provider.</p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="pros-and-cons-of-the-options">
+    <h2 id="pros-and-cons-of-the-options"
+    >
         Pros and Cons of the Options
         <a data-clipboard-text="https://owncloud.dev/ocis/adr/0005-cs3-api-account-management/#pros-and-cons-of-the-options" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Pros and Cons of the Options" aria-label="Anchor to: Pros and Cons of the Options" href="#pros-and-cons-of-the-options">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17675,7 +17681,8 @@ Copyright 2022 Fonticons, Inc.
     </h2>
 </div>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="account-management-delegated-to-vendors">
+    <h3 id="account-management-delegated-to-vendors"
+    >
         Account management delegated to vendors
         <a data-clipboard-text="https://owncloud.dev/ocis/adr/0005-cs3-api-account-management/#account-management-delegated-to-vendors" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Account management delegated to vendors" aria-label="Anchor to: Account management delegated to vendors" href="#account-management-delegated-to-vendors">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17720,7 +17727,8 @@ Copyright 2022 Fonticons, Inc.
 </span></span><span class="line"><span class="cl">└──────────────────────────────────────────────────┘
 </span></span></code></pre></div><p>As explained before, during this flow no Reva middlewares are run. Creating an account will only use the embedded accounts js file alongside a minted jwt token (by the oCIS proxy) to communicate with the accounts service.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="add-account-management-to-the-cs3-api">
+    <h3 id="add-account-management-to-the-cs3-api"
+    >
         Add account management to the CS3 API
         <a data-clipboard-text="https://owncloud.dev/ocis/adr/0005-cs3-api-account-management/#add-account-management-to-the-cs3-api" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Add account management to the CS3 API" aria-label="Anchor to: Add account management to the CS3 API" href="#add-account-management-to-the-cs3-api">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17859,7 +17867,7 @@ Copyright 2022 Fonticons, Inc.
     </div>
 
     
-  <script defer src="/js/search-fd04590d.bundle.min.js"></script>
+  <script defer src="/js/search-83320133.bundle.min.js"></script>
 
   </body>
 </html>

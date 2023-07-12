@@ -116,12 +116,12 @@ Decision Drivers Is the current situation acceptable for the GA Is locking neede
 
 <link
   rel="preload"
-  href="/main-f44405f3.min.css"
+  href="/main-ba0e2765.min.css"
   as="style"
 />
 <link
   rel="stylesheet"
-  href="/main-f44405f3.min.css"
+  href="/main-ba0e2765.min.css"
   media="all"
 />
 
@@ -17534,7 +17534,8 @@ Copyright 2022 Fonticons, Inc.
 <li>Date: 2021-11-03</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="context-and-problem-statement">
+    <h2 id="context-and-problem-statement"
+    >
         Context and Problem Statement
         <a data-clipboard-text="https://owncloud.dev/ocis/adr/0013-locking/#context-and-problem-statement" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Context and Problem Statement" aria-label="Anchor to: Context and Problem Statement" href="#context-and-problem-statement">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17543,7 +17544,8 @@ Copyright 2022 Fonticons, Inc.
 </div>
 <p>At the time of this writing no locking mechanisms exists in oCIS / REVA for both directories and files. The CS3org WOPI server implements a file based locking in order to lock files. This ADR discusses if this approach is ok for the general availability of oCIS or if changes are needed.</p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="decision-drivers">
+    <h2 id="decision-drivers"
+    >
         Decision Drivers
         <a data-clipboard-text="https://owncloud.dev/ocis/adr/0013-locking/#decision-drivers" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Decision Drivers" aria-label="Anchor to: Decision Drivers" href="#decision-drivers">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17555,7 +17557,8 @@ Copyright 2022 Fonticons, Inc.
 <li>Is locking needed or can we have oCIS / REVA without locking</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="considered-options">
+    <h2 id="considered-options"
+    >
         Considered Options
         <a data-clipboard-text="https://owncloud.dev/ocis/adr/0013-locking/#considered-options" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Considered Options" aria-label="Anchor to: Considered Options" href="#considered-options">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17568,7 +17571,8 @@ Copyright 2022 Fonticons, Inc.
 <li>CS3 API locking</li>
 </ol>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="decision-outcome">
+    <h2 id="decision-outcome"
+    >
         Decision Outcome
         <a data-clipboard-text="https://owncloud.dev/ocis/adr/0013-locking/#decision-outcome" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Decision Outcome" aria-label="Anchor to: Decision Outcome" href="#decision-outcome">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17578,7 +17582,8 @@ Copyright 2022 Fonticons, Inc.
 <p>For the GA we chose option 2. Therefore we need to remove or disable the file based locking functionality of the CS3org WOPI server. The decision was taken because the current file based locking does not work on file-only shares. The current locking also does not guarantee exclusive access to a file since other parts of oCIS like the WebDAV API or other REVA services don&rsquo;t respect the locks.</p>
 <p>After the GA we need to implement option 3.</p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="pros-and-cons-of-the-options">
+    <h2 id="pros-and-cons-of-the-options"
+    >
         Pros and Cons of the Options
         <a data-clipboard-text="https://owncloud.dev/ocis/adr/0013-locking/#pros-and-cons-of-the-options" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Pros and Cons of the Options" aria-label="Anchor to: Pros and Cons of the Options" href="#pros-and-cons-of-the-options">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17586,7 +17591,8 @@ Copyright 2022 Fonticons, Inc.
     </h2>
 </div>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="file-based-locking">
+    <h3 id="file-based-locking"
+    >
         File based locking
         <a data-clipboard-text="https://owncloud.dev/ocis/adr/0013-locking/#file-based-locking" class="gdoc-page__anchor clip flex align-center" title="Anchor to: File based locking" aria-label="Anchor to: File based locking" href="#file-based-locking">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17615,7 +17621,8 @@ Copyright 2022 Fonticons, Inc.
 <li>creating lock files in a folder shared with 2000000 users creates a lot of noise and pressure on the server (etag propagation, therefore oC Desktop sync client has an ignore rule for <code>.~lock.*</code> files)</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="no-locking">
+    <h3 id="no-locking"
+    >
         No locking
         <a data-clipboard-text="https://owncloud.dev/ocis/adr/0013-locking/#no-locking" class="gdoc-page__anchor clip flex align-center" title="Anchor to: No locking" aria-label="Anchor to: No locking" href="#no-locking">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17634,7 +17641,8 @@ Copyright 2022 Fonticons, Inc.
 <li>no locking breaks the WOPI specs, as the CS3 WOPI server won&rsquo;t be capable to honor the WOPI Lock related operations</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="cs3-api-locking">
+    <h3 id="cs3-api-locking"
+    >
         CS3 API locking
         <a data-clipboard-text="https://owncloud.dev/ocis/adr/0013-locking/#cs3-api-locking" class="gdoc-page__anchor clip flex align-center" title="Anchor to: CS3 API locking" aria-label="Anchor to: CS3 API locking" href="#cs3-api-locking">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17738,7 +17746,7 @@ Copyright 2022 Fonticons, Inc.
     </div>
 
     
-  <script defer src="/js/search-fd04590d.bundle.min.js"></script>
+  <script defer src="/js/search-83320133.bundle.min.js"></script>
 
   </body>
 </html>

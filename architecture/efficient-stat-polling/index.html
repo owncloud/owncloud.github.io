@@ -116,12 +116,12 @@ ETag propagation What does ETag propagation mean? Whenever a file changes its co
 
 <link
   rel="preload"
-  href="/main-f44405f3.min.css"
+  href="/main-ba0e2765.min.css"
   as="style"
 />
 <link
   rel="stylesheet"
-  href="/main-f44405f3.min.css"
+  href="/main-ba0e2765.min.css"
   media="all"
 />
 
@@ -17522,7 +17522,8 @@ Copyright 2022 Fonticons, Inc.
     <h1>Efficient Stat Polling</h1>
     <p>The fallback sync mechanism uses the ETag to determine which part of a sync tree needs to be checked by recursively descending into folders whose ETag has changed. The ETag can be calculated using a <code>stat()</code> call in the filesystem and we are going to explore how many <code>stat()</code> calls are necessary and how the number might be reduced.</p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="etag-propagation">
+    <h2 id="etag-propagation"
+    >
         ETag propagation
         <a data-clipboard-text="https://owncloud.dev/architecture/efficient-stat-polling/#etag-propagation" class="gdoc-page__anchor clip flex align-center" title="Anchor to: ETag propagation" aria-label="Anchor to: ETag propagation" href="#etag-propagation">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17533,7 +17534,7 @@ Copyright 2022 Fonticons, Inc.
 
 
   
-  <script defer src="/js/mermaid-ff3ff5f3.bundle.min.js"></script>
+  <script defer src="/js/mermaid-793cb063.bundle.min.js"></script>
   
 
 
@@ -17560,7 +17561,8 @@ graph TD
 
 <p>The old <code>etag:O</code> is replaced by propagating the new <code>etag:N</code> up to the root, where the client will pick it up and explore the tree by comparing the old ETags known to him with the state of the current ETags on the server. This form of sync is called <em>state based sync</em>.</p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="single-user-sync">
+    <h2 id="single-user-sync"
+    >
         Single user sync
         <a data-clipboard-text="https://owncloud.dev/architecture/efficient-stat-polling/#single-user-sync" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Single user sync" aria-label="Anchor to: Single user sync" href="#single-user-sync">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17590,7 +17592,8 @@ graph TD
 </pre>
 
 <div class="gdoc-page__anchorwrap">
-    <h2 id="multiple-users">
+    <h2 id="multiple-users"
+    >
         Multiple users
         <a data-clipboard-text="https://owncloud.dev/architecture/efficient-stat-polling/#multiple-users" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Multiple users" aria-label="Anchor to: Multiple users" href="#multiple-users">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17630,7 +17633,8 @@ graph TD
 </pre>
 
 <div class="gdoc-page__anchorwrap">
-    <h2 id="sharing">
+    <h2 id="sharing"
+    >
         Sharing
         <a data-clipboard-text="https://owncloud.dev/architecture/efficient-stat-polling/#sharing" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Sharing" aria-label="Anchor to: Sharing" href="#sharing">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17680,7 +17684,8 @@ graph TD
 <p>It would require client changes that depend on the server side actually having an endpoint that can efficiently list all entry points into storages a user has access to including their current etag.</p>
 <p>But having to list n storages might become a bottleneck anyway, so we are going to have the gateway calculate a virtual root ETag for all entry points a user has access to and cache that.</p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="server-side-stat-polling">
+    <h2 id="server-side-stat-polling"
+    >
         Server Side Stat Polling
         <a data-clipboard-text="https://owncloud.dev/architecture/efficient-stat-polling/#server-side-stat-polling" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Server Side Stat Polling" aria-label="Anchor to: Server Side Stat Polling" href="#server-side-stat-polling">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17735,7 +17740,8 @@ graph TD
 
 <p>Since the active clients will poll the etag for all active users the gateway will have their ETag cached. This is where sharing comes into play: The gateway also needs to stat the ETag of all other entry points &hellip; or mount points. That may increase the number of stat like requests to storage providers by an order of magnitude.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="ram-considerations">
+    <h3 id="ram-considerations"
+    >
         Ram considerations
         <a data-clipboard-text="https://owncloud.dev/architecture/efficient-stat-polling/#ram-considerations" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Ram considerations" aria-label="Anchor to: Ram considerations" href="#ram-considerations">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17744,7 +17750,8 @@ graph TD
 </div>
 <p>For a single machine using a local posix storage the linux kernel already caches the inodes that contain the metadata that is necessary to calculate the ETag (even extended attributes are supported). With 4k inodes 256 nodes take 1Mb of RAM, 1k inodes take 4Mb and 1M inodes take 4Gb to completely cache the file metadata. For distributed filesystems a dedicated cache might make sense to prevent hammering it with stat like requests to calculate ETags.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="bandwidth-considerations">
+    <h3 id="bandwidth-considerations"
+    >
         Bandwidth considerations
         <a data-clipboard-text="https://owncloud.dev/architecture/efficient-stat-polling/#bandwidth-considerations" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Bandwidth considerations" aria-label="Anchor to: Bandwidth considerations" href="#bandwidth-considerations">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17759,7 +17766,8 @@ graph TD
 </ul>
 <p>This can be scaled by adding more gateways and sharding users because these components are stateless.</p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="share-mount-point-polling-cache">
+    <h2 id="share-mount-point-polling-cache"
+    >
         Share mount point polling cache
         <a data-clipboard-text="https://owncloud.dev/architecture/efficient-stat-polling/#share-mount-point-polling-cache" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Share mount point polling cache" aria-label="Anchor to: Share mount point polling cache" href="#share-mount-point-polling-cache">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17769,7 +17777,8 @@ graph TD
 <p>What can we do to reduce the number of stat calls to storage providers. Well, the gateway queries the share manager for all mounted shares of a user (or all entry points, not only the users own root/home). The share references contain the storage provider that contains the share. If every user has its own storage provider id the gateway could check in its own cache if the storage root etag has changed. It will be up-to-date because another client likely already polled for its etag.
 This would reduce the number of necessary stat requests to active storages.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="active-share-node-cache-invalidation">
+    <h3 id="active-share-node-cache-invalidation"
+    >
         Active share node cache invalidation
         <a data-clipboard-text="https://owncloud.dev/architecture/efficient-stat-polling/#active-share-node-cache-invalidation" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Active share node cache invalidation" aria-label="Anchor to: Active share node cache invalidation" href="#active-share-node-cache-invalidation">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17778,7 +17787,8 @@ This would reduce the number of necessary stat requests to active storages.</p>
 </div>
 <p>We can extend the lifetime of share ETag cache entries and only invalidate them when the root of the storage that contains them changes its ETag. That would reduce the number of stat requests to the number of active users.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="push-notifications">
+    <h3 id="push-notifications"
+    >
         Push notifications
         <a data-clipboard-text="https://owncloud.dev/architecture/efficient-stat-polling/#push-notifications" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Push notifications" aria-label="Anchor to: Push notifications" href="#push-notifications">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
@@ -17859,7 +17869,7 @@ This would reduce the number of necessary stat requests to active storages.</p>
     </div>
 
     
-  <script defer src="/js/search-fd04590d.bundle.min.js"></script>
+  <script defer src="/js/search-83320133.bundle.min.js"></script>
 
   </body>
 </html>
