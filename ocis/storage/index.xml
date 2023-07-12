@@ -13,8 +13,9 @@
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.dev/ocis/storage/spacesprovider/</guid>
-      <description>The current implementation in oCIS might not yet fully reflect this concept. Feel free to add links to ADRs, PRs and Issues in short warning boxes like this.  Spaces Provider     A storage provider manages resources identified by a reference by accessing a storage system with a storage driver.
- Frontend     The oCIS frontend service starts all services that handle incoming HTTP requests:</description>
+      <description>The current implementation in oCIS might not yet fully reflect this concept. Feel free to add links to ADRs, PRs and Issues in short warning boxes like this. Spaces Provider A storage provider manages resources identified by a reference by accessing a storage system with a storage driver.
+Frontend The oCIS frontend service starts all services that handle incoming HTTP requests:
+ocdav for ownCloud flavoured WebDAV ocs for sharing, user provisioning, capabilities and other OCS API endpoints datagateway for up and downloads TODO: ocm WebDAV The ocdav service not only handles all WebDAV requests under (remote.</description>
     </item>
     
     <item>
@@ -23,7 +24,7 @@
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.dev/ocis/storage/spacesregistry/</guid>
-      <description>The current implementation in oCIS might not yet fully reflect this concept. Feel free to add links to ADRs, PRs and Issues in short warning boxes like this.  Storage Space Registries     A storage spaces registry manages the namespace for a user: it is used by clients to look up storage spaces a user has access to, the /dav/spaces endpoint to access it via WabDAV, and where the client should mount it in the users personal namespace.</description>
+      <description>The current implementation in oCIS might not yet fully reflect this concept. Feel free to add links to ADRs, PRs and Issues in short warning boxes like this. Storage Space Registries A storage spaces registry manages the namespace for a user: it is used by clients to look up storage spaces a user has access to, the /dav/spaces endpoint to access it via WabDAV, and where the client should mount it in the users personal namespace.</description>
     </item>
     
     <item>
@@ -34,7 +35,7 @@
       <guid>https://owncloud.dev/ocis/storage/storagedrivers/</guid>
       <description>A storage driver implements access to a storage system:
 It maps the path and id based CS3 references to an appropriate storage system specific reference, e.g.:
- eos file ids posix inodes or paths deconstructed filesystem nodes  Storage providers     To manage the file tree oCIS uses storage providers that are accessing the underlying storage using a storage driver. The driver can be used to change the implementation of a storage aspect to better reflect the actual underlying storage capabilities.</description>
+eos file ids posix inodes or paths deconstructed filesystem nodes Storage providers To manage the file tree oCIS uses storage providers that are accessing the underlying storage using a storage driver. The driver can be used to change the implementation of a storage aspect to better reflect the actual underlying storage capabilities.</description>
     </item>
     
     <item>
@@ -44,7 +45,7 @@ It maps the path and id based CS3 references to an appropriate storage system sp
       
       <guid>https://owncloud.dev/ocis/storage/namespaces/</guid>
       <description>A namespace is a set of paths with a common prefix. Depending on the endpoint you are talking to you will encounter a different kind of namespace: In ownCloud 10 all paths are considered relative to the users home. The CS3 API uses a global namespace and the storage providers use a local namespace with paths relative to the storage providers root.
- The different paths in the namespaces need to be translated while passing references from service to service.</description>
+The different paths in the namespaces need to be translated while passing references from service to service.</description>
     </item>
     
     <item>
@@ -54,7 +55,7 @@ It maps the path and id based CS3 references to an appropriate storage system sp
       
       <guid>https://owncloud.dev/ocis/storage/users/</guid>
       <description>TODO add this to the storage overview? or is this a different part? That should be started as a separate service ? And documented elsewhere, e.g. in the accounts?
-User and Group provisioning     In oc10 users are identified by a username, which cannot change, because it is used as a foreign key in several tables. For oCIS we are internally identifying users by a UUID, while using the username in the WebDAV and OCS APIs for backwards compatability.</description>
+User and Group provisioning In oc10 users are identified by a username, which cannot change, because it is used as a foreign key in several tables. For oCIS we are internally identifying users by a UUID, while using the username in the WebDAV and OCS APIs for backwards compatability.</description>
     </item>
     
     <item>
@@ -64,7 +65,7 @@ User and Group provisioning     In oc10 users are identified by a username, whic
       
       <guid>https://owncloud.dev/ocis/storage/terminology/</guid>
       <description>Communication is hard. And clear communication is even harder. You may encounter the following terms throughout the documentation, in the code or when talking to other developers. Just keep in mind that whenever you hear or read storage, that term needs to be clarified, because on its own it is too vague. PR welcome.
-Logical concepts     Resources     A resource is the basic building block that oCIS manages.</description>
+Logical concepts Resources A resource is the basic building block that oCIS manages. It can be of different types:</description>
     </item>
     
     <item>
@@ -74,7 +75,7 @@ Logical concepts     Resources     A resource is the basic building block that o
       
       <guid>https://owncloud.dev/ocis/storage/proposedchanges/</guid>
       <description>Some architectural changes still need to be clarified or changed. Maybe an ADR is in order for all of the below.
-Reva Gateway changes     A dedicated shares storage provider     Currently, when a user accepts a share, a cs3 reference is created in the users /home/shares folder. This reference represents the mount point of a share and can be renamed, similar to the share jail in ownCloud 10.</description>
+Reva Gateway changes A dedicated shares storage provider Currently, when a user accepts a share, a cs3 reference is created in the users /home/shares folder. This reference represents the mount point of a share and can be renamed, similar to the share jail in ownCloud 10. This spreads the metadata of a share in two places:</description>
     </item>
     
     <item>
@@ -83,7 +84,8 @@ Reva Gateway changes     A dedicated shares storage provider     Currently, when
       <pubDate>Mon, 27 Apr 2020 18:46:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/storage/spaces/</guid>
-      <description>Editing a Storage Space  Updating a space property Updating a space description Quotas  Quota Enforcement  Considerations       Storage Spaces Shares Notes      Editing a Storage Space     The OData specification allows for a mirage of ways of addressing an entity. We will support addressing a Drive entity by its unique identifier, which is the one the graph-api returns when listing spaces, and its format is:</description>
+      <description>Editing a Storage Space Updating a space property Updating a space description Quotas Quota Enforcement Considerations Storage Spaces Shares Notes Editing a Storage Space The OData specification allows for a mirage of ways of addressing an entity. We will support addressing a Drive entity by its unique identifier, which is the one the graph-api returns when listing spaces, and its format is:
+{ &amp;#34;id&amp;#34;: &amp;#34;1284d238-aa92-42ce-bdc4-0b0000009157!b6e2c9cc-9dbe-42f0-b522-4f2d3e175e9c&amp;#34; } This is an extract of an element of the list spaces response.</description>
     </item>
     
   </channel>

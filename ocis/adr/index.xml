@@ -13,8 +13,8 @@
       <pubDate>Mon, 15 Jun 2020 20:21:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0001-introduce-accounts-service/</guid>
-      <description>Status: superseded by ADR-0003 Deciders: @butonic, @felixboehm, @micbar, @pmaier1 Date: 2020-06-15  Technical Story: persist accounts
-Context and Problem Statement     To attach metadata like shares to users ownCloud relies on persistent, non-reassignable, unique identifiers for users (and files). Email und username can change when a user changes his name. But even the OIDC sub+iss combination may change when the IdP changes. While there is an account porting protocol that describes how a relying party (RP) such as ownCloud should behave, it still requires the RP to maintain its own user identifiers.</description>
+      <description>Status: superseded by ADR-0003 Deciders: @butonic, @felixboehm, @micbar, @pmaier1 Date: 2020-06-15 Technical Story: persist accounts
+Context and Problem Statement To attach metadata like shares to users ownCloud relies on persistent, non-reassignable, unique identifiers for users (and files). Email und username can change when a user changes his name. But even the OIDC sub+iss combination may change when the IdP changes. While there is an account porting protocol that describes how a relying party (RP) such as ownCloud should behave, it still requires the RP to maintain its own user identifiers.</description>
     </item>
     
     <item>
@@ -23,8 +23,8 @@ Context and Problem Statement     To attach metadata like shares to users ownClo
       <pubDate>Fri, 21 Aug 2020 20:21:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0002-persist-accounts-using-cs3-storage/</guid>
-      <description>Status: accepted Deciders: @butonic, @felixboehm Date: 2020-08-21  Technical Story: File system based indexing
-Context and Problem Statement     To set up High Availability (HA) or a geo-replicated setup we need to persist accounts in a distributed way. To efficiently query the accounts by email or username, and not only by id, they need to be indexed. Unfortunately, the bleve index we currently store locally on disk cannot be shared by multiple instances, preventing a scale out deployment.</description>
+      <description>Status: accepted Deciders: @butonic, @felixboehm Date: 2020-08-21 Technical Story: File system based indexing
+Context and Problem Statement To set up High Availability (HA) or a geo-replicated setup we need to persist accounts in a distributed way. To efficiently query the accounts by email or username, and not only by id, they need to be indexed. Unfortunately, the bleve index we currently store locally on disk cannot be shared by multiple instances, preventing a scale out deployment.</description>
     </item>
     
     <item>
@@ -33,8 +33,8 @@ Context and Problem Statement     To set up High Availability (HA) or a geo-repl
       <pubDate>Wed, 09 Dec 2020 20:21:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0003-external-user-management/</guid>
-      <description>Status: superseded by 17. Allow read only external User Management Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1 Date: 2022-02-08  Technical Story: Skip account-service by talking to CS3 user-api
-Context and Problem Statement     To attach metadata like shares to users ownCloud relies on persistent, non-reassignable, unique identifiers for users (and files). Email and username can change when a user changes his name. But even the OIDC sub+iss combination may change when the IdP changes.</description>
+      <description>Status: superseded by 17. Allow read only external User Management Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1 Date: 2022-02-08 Technical Story: Skip account-service by talking to CS3 user-api
+Context and Problem Statement To attach metadata like shares to users ownCloud relies on persistent, non-reassignable, unique identifiers for users (and files). Email and username can change when a user changes his name. But even the OIDC sub+iss combination may change when the IdP changes.</description>
     </item>
     
     <item>
@@ -43,9 +43,9 @@ Context and Problem Statement     To attach metadata like shares to users ownClo
       <pubDate>Wed, 09 Dec 2020 20:21:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0004-support-hot-migration/</guid>
-      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1 Date: 2021-03-16  Technical Story: [description | ticket/issue URL]
-Context and Problem Statement     Migration is one of the most important topics of the oCIS story. We need to provide a concept how to migrate from oC10 to oCIS.
-Decision Drivers      Do not lose file blob or metadata.  To prevent a sync surge from clients the etag for files should be migrated.</description>
+      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1 Date: 2021-03-16 Technical Story: [description | ticket/issue URL]
+Context and Problem Statement Migration is one of the most important topics of the oCIS story. We need to provide a concept how to migrate from oC10 to oCIS.
+Decision Drivers Do not lose file blob or metadata. To prevent a sync surge from clients the etag for files should be migrated. To prevent internal links from breaking or pointing to wrong files the file id of existing files needs to be migrated.</description>
     </item>
     
     <item>
@@ -54,8 +54,9 @@ Decision Drivers      Do not lose file blob or metadata.  To prevent a sync surg
       <pubDate>Mon, 12 Apr 2021 15:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0005-cs3-api-account-management/</guid>
-      <description>Status: proposed Deciders: @refs, @butonic, @micbar, @dragotin, @pmaier1 Date: 2021-04-12  Technical Story: Write only management API for User and Group resources
-Context and Problem Statement     What would be a more effective way of using network resources and handle account management within the oCIS-Reva ecosystem? Separating account management at the service level is pragmatic and allows for fast iterations, but also steadily accumulates inconsistencies and bloats technical debt.</description>
+      <description>Status: proposed Deciders: @refs, @butonic, @micbar, @dragotin, @pmaier1 Date: 2021-04-12 Technical Story: Write only management API for User and Group resources
+Context and Problem Statement What would be a more effective way of using network resources and handle account management within the oCIS-Reva ecosystem? Separating account management at the service level is pragmatic and allows for fast iterations, but also steadily accumulates inconsistencies and bloats technical debt.
+Decision Drivers Reduce number of network calls.</description>
     </item>
     
     <item>
@@ -64,8 +65,8 @@ Context and Problem Statement     What would be a more effective way of using ne
       <pubDate>Mon, 19 Apr 2021 13:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0006-service-discovery/</guid>
-      <description>Status: accepted Deciders: @refs, @butonic, @micbar, @dragotin, @pmaier1 Date: 2021-04-19  Technical Story: Introduce Named Services.
-Context and Problem Statement     Reva relies heavily on config files. A known implication of this approach are having to know a-priori where a service is running (host + port). We want to move away from hardcoded values and rely instead on named services for service discovery. Furthermore, we would like both platforms (Reva + oCIS) to have the same source of truth at any given time, not having one to notify the other whenever a service status changes.</description>
+      <description>Status: accepted Deciders: @refs, @butonic, @micbar, @dragotin, @pmaier1 Date: 2021-04-19 Technical Story: Introduce Named Services.
+Context and Problem Statement Reva relies heavily on config files. A known implication of this approach are having to know a-priori where a service is running (host + port). We want to move away from hardcoded values and rely instead on named services for service discovery. Furthermore, we would like both platforms (Reva + oCIS) to have the same source of truth at any given time, not having one to notify the other whenever a service status changes.</description>
     </item>
     
     <item>
@@ -74,9 +75,9 @@ Context and Problem Statement     Reva relies heavily on config files. A known i
       <pubDate>Mon, 03 May 2021 09:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0007-api-for-spaces/</guid>
-      <description>Status: accepted Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1 Date: 2021-03-19  Technical Story: API to enable the concept of Spaces
-Context and Problem Statement     As one of the building blocks for Spaces in oCIS we plan to add an API that returns information about available spaces. This ADR discusses the API design oriented on the Microsoft Graph API.
- Note: The term &amp;ldquo;spaces&amp;rdquo; is used here in the context of &amp;ldquo;a space where files can be saved&amp;rdquo;, similar to a directory.</description>
+      <description>Status: accepted Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1 Date: 2021-03-19 Technical Story: API to enable the concept of Spaces
+Context and Problem Statement As one of the building blocks for Spaces in oCIS we plan to add an API that returns information about available spaces. This ADR discusses the API design oriented on the Microsoft Graph API.
+Note: The term &amp;ldquo;spaces&amp;rdquo; is used here in the context of &amp;ldquo;a space where files can be saved&amp;rdquo;, similar to a directory.</description>
     </item>
     
     <item>
@@ -85,9 +86,9 @@ Context and Problem Statement     As one of the building blocks for Spaces in oC
       <pubDate>Mon, 03 May 2021 15:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0008-configuration/</guid>
-      <description>Status: proposed Deciders: @refs, @butonic, @micbar, @dragotin, @pmaier1 Date: 2021-05-03  Context and Problem Statement     As per urfave/cli&amp;rsquo;s doc:
- The precedence for flag value sources is as follows (highest to lowest):
-Command line flag value from user Environment variable (if specified) Configuration file (if specified) Default defined on the flag   An issue arises in point 2, in the sense that configuration file refers to a single file containing the value for the env variable.</description>
+      <description>Status: proposed Deciders: @refs, @butonic, @micbar, @dragotin, @pmaier1 Date: 2021-05-03 Context and Problem Statement As per urfave/cli&amp;rsquo;s doc:
+The precedence for flag value sources is as follows (highest to lowest):
+Command line flag value from user Environment variable (if specified) Configuration file (if specified) Default defined on the flag An issue arises in point 2, in the sense that configuration file refers to a single file containing the value for the env variable.</description>
     </item>
     
     <item>
@@ -96,8 +97,8 @@ Command line flag value from user Environment variable (if specified) Configurat
       <pubDate>Thu, 10 Jun 2021 15:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0009-extension-template/</guid>
-      <description>Status: proposed Deciders: @c0rby  Date: 2021-06-10  Technical Story: [description | ticket/issue URL] Context and Problem Statement     We want to accelerate and simplify extension development by removing the necessity to type or copy the boilerplate code. Can we provide a template or a similar mechanism to aid when developing new extensions?
-Decision Drivers      The solution should be easily maintainable.  It should always be up-to-date.</description>
+      <description>Status: proposed Deciders: @c0rby Date: 2021-06-10 Technical Story: [description | ticket/issue URL] Context and Problem Statement We want to accelerate and simplify extension development by removing the necessity to type or copy the boilerplate code. Can we provide a template or a similar mechanism to aid when developing new extensions?
+Decision Drivers The solution should be easily maintainable. It should always be up-to-date. The solution should be easy to use.</description>
     </item>
     
     <item>
@@ -106,8 +107,8 @@ Decision Drivers      The solution should be easily maintainable.  It should alw
       <pubDate>Wed, 30 Jun 2021 14:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0010-policy-enforcement/</guid>
-      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1, @fschade Date: 2021-06-30  Context and Problem Statement     There should be a way to impose certain limitations in areas of the code that require licensing. This document researches an approach to achieve this goal, while limiting the scope to the enforcement side of it. The architecture for a policy system must be composed of 2 parts:
- License creation and validation Enforcement  It is desirable to keep both systems isolated, since the implementation of the latter has to be done within the constraints of the codebase.</description>
+      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @hodyroff, @pmaier1, @fschade Date: 2021-06-30 Context and Problem Statement There should be a way to impose certain limitations in areas of the code that require licensing. This document researches an approach to achieve this goal, while limiting the scope to the enforcement side of it. The architecture for a policy system must be composed of 2 parts:
+License creation and validation Enforcement It is desirable to keep both systems isolated, since the implementation of the latter has to be done within the constraints of the codebase.</description>
     </item>
     
     <item>
@@ -116,7 +117,7 @@ Decision Drivers      The solution should be easily maintainable.  It should alw
       <pubDate>Wed, 07 Jul 2021 14:55:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0011-global-url-format/</guid>
-      <description>Status: accepted Deciders: @refs, @butonic, @micbar, @dragotin, @hodyroff, @pmaier1, @fschade, @tbsbdr, @kulmann Date: 2021-07-07  Context and Problem Statement     When speaking about URLs we have to make a difference between browser URLs and API URLs. Only browser URLs are visible to end users and will be bookmarked. The currently existing and bookmarked ownCloud 10 URLs look something like this:
+      <description>Status: accepted Deciders: @refs, @butonic, @micbar, @dragotin, @hodyroff, @pmaier1, @fschade, @tbsbdr, @kulmann Date: 2021-07-07 Context and Problem Statement When speaking about URLs we have to make a difference between browser URLs and API URLs. Only browser URLs are visible to end users and will be bookmarked. The currently existing and bookmarked ownCloud 10 URLs look something like this:
 GET https://demo.owncloud.com/apps/files/?dir=/path/to/resource&amp;amp;fileid=5472225 303 Location: https://demo.owncloud.com/apps/files/?dir=/path/to/resource When the URL contains a fileid parameter the server will look up the corresponding dir, overwriting whatever was set before the redirect.</description>
     </item>
     
@@ -126,8 +127,8 @@ GET https://demo.owncloud.com/apps/files/?dir=/path/to/resource&amp;amp;fileid=5
       <pubDate>Tue, 17 Aug 2021 12:56:53 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0012-tracing/</guid>
-      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @mstingl, @pmaier1, @fschade Date: 2021-08-17  Context and Problem Statement     At the time of this writing we are in a situation where our logs have too much verbosity, rendering impossible or rather difficult to debug an instance. For this reason we are giving some care to our traces by updating dependencies from OpenCensus to OpenTelemetry.
-Decision Drivers      We don&amp;rsquo;t want to rely only on logs to debug an instance.</description>
+      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @mstingl, @pmaier1, @fschade Date: 2021-08-17 Context and Problem Statement At the time of this writing we are in a situation where our logs have too much verbosity, rendering impossible or rather difficult to debug an instance. For this reason we are giving some care to our traces by updating dependencies from OpenCensus to OpenTelemetry.
+Decision Drivers We don&amp;rsquo;t want to rely only on logs to debug an instance.</description>
     </item>
     
     <item>
@@ -136,7 +137,8 @@ Decision Drivers      We don&amp;rsquo;t want to rely only on logs to debug an i
       <pubDate>Tue, 17 Aug 2021 12:56:53 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0013-locking/</guid>
-      <description>Status: accepted Deciders: @hodyroff, @pmaier1, @jojowein, @dragotin, @micbar, @tbsbdr, @wkloucek Date: 2021-11-03  Context and Problem Statement     At the time of this writing no locking mechanisms exists in oCIS / REVA for both directories and files. The CS3org WOPI server implements a file based locking in order to lock files. This ADR discusses if this approach is ok for the general availability of oCIS or if changes are needed.</description>
+      <description>Status: accepted Deciders: @hodyroff, @pmaier1, @jojowein, @dragotin, @micbar, @tbsbdr, @wkloucek Date: 2021-11-03 Context and Problem Statement At the time of this writing no locking mechanisms exists in oCIS / REVA for both directories and files. The CS3org WOPI server implements a file based locking in order to lock files. This ADR discusses if this approach is ok for the general availability of oCIS or if changes are needed.
+Decision Drivers Is the current situation acceptable for the GA Is locking needed or can we have oCIS / REVA without locking Considered Options File based locking No locking CS3 API locking Decision Outcome For the GA we chose option 2.</description>
     </item>
     
     <item>
@@ -145,7 +147,7 @@ Decision Drivers      We don&amp;rsquo;t want to rely only on logs to debug an i
       <pubDate>Fri, 21 Jan 2022 12:56:53 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0014-microservices-runtime/</guid>
-      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @mstingl, @pmaier1, @fschade Date: 2022-01-21  Context and Problem Statement     In an environment where shipping a single binary makes it easier for the end user to use oCIS, embedding a whole family of microservices within a package and running it leveraging the use of the Go language has plenty of value. In such environment, a runtime is necessary to orchestrate the services that run within it.</description>
+      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @mstingl, @pmaier1, @fschade Date: 2022-01-21 Context and Problem Statement In an environment where shipping a single binary makes it easier for the end user to use oCIS, embedding a whole family of microservices within a package and running it leveraging the use of the Go language has plenty of value. In such environment, a runtime is necessary to orchestrate the services that run within it.</description>
     </item>
     
     <item>
@@ -154,7 +156,7 @@ Decision Drivers      We don&amp;rsquo;t want to rely only on logs to debug an i
       <pubDate>Tue, 01 Feb 2022 12:56:53 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0015-events/</guid>
-      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @c0rby, @wkloucek Date: 2022-01-21  Context and Problem Statement     Overview     To be able to implement simple, flexible and independent inter service communication there is the idea to implement an event system in oCIS. A service can send out events which are received by one or more other services. The receiving service can cause different kinds of actions based on the event by utilizing the information that the event carries.</description>
+      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @c0rby, @wkloucek Date: 2022-01-21 Context and Problem Statement Overview To be able to implement simple, flexible and independent inter service communication there is the idea to implement an event system in oCIS. A service can send out events which are received by one or more other services. The receiving service can cause different kinds of actions based on the event by utilizing the information that the event carries.</description>
     </item>
     
     <item>
@@ -163,7 +165,7 @@ Decision Drivers      We don&amp;rsquo;t want to rely only on logs to debug an i
       <pubDate>Wed, 02 Mar 2022 00:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0016-files-metadata/</guid>
-      <description>Status: proposed Deciders: @butonic, @dragotin, @micbar, @C0rby Date: 2022-02-04  Context and Problem Statement     In addition to the file content we need to store metadata which is attached to a file. Metadata describes additional properties of a file. These properties need to be stored as close as possible to the file content to avoid inconsistencies. Metadata are key to workflows and search. We consider them as an additional value which enhances the file content.</description>
+      <description>Status: proposed Deciders: @butonic, @dragotin, @micbar, @C0rby Date: 2022-02-04 Context and Problem Statement In addition to the file content we need to store metadata which is attached to a file. Metadata describes additional properties of a file. These properties need to be stored as close as possible to the file content to avoid inconsistencies. Metadata are key to workflows and search. We consider them as an additional value which enhances the file content.</description>
     </item>
     
     <item>
@@ -172,7 +174,7 @@ Decision Drivers      We don&amp;rsquo;t want to rely only on logs to debug an i
       <pubDate>Tue, 08 Feb 2022 10:53:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0017-allow-read-only-external-user-management/</guid>
-      <description>Status: proposed Deciders: @butonic, @micbar, @rhafer Date: 2022-02-08  Context and Problem Statement     oCIS needs to be integrated with various external Authentication and Identity Management Systems. Usually oCIS will have no administrative access to such a system and we will not be allowed to reconfigure it to suit our needs (e.g. we will not be able to enhance the schema of an already existing LDAP Directory).</description>
+      <description>Status: proposed Deciders: @butonic, @micbar, @rhafer Date: 2022-02-08 Context and Problem Statement oCIS needs to be integrated with various external Authentication and Identity Management Systems. Usually oCIS will have no administrative access to such a system and we will not be allowed to reconfigure it to suit our needs (e.g. we will not be able to enhance the schema of an already existing LDAP Directory). In most of the cases our access will be read-only.</description>
     </item>
     
     <item>
@@ -181,8 +183,8 @@ Decision Drivers      We don&amp;rsquo;t want to rely only on logs to debug an i
       <pubDate>Fri, 18 Mar 2022 09:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0018-file-search-api/</guid>
-      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @C0rby Date: 2022-03-18  Context and Problem Statement     The ability to find files based on certain search terms is a key requirement for a system that provides the ability to store unstructured data on a large scale.
-Decision Drivers      Have a simple yet powerful, scalable and performant way of finding files in oCIS Be able to construct intelligent searches based on metadata Allow the user to filter the search queries based on metadata  Considered Options      Libre Graph API WebDAV API  Decision Outcome     Chosen option: WebDAV API because the current WebUI is compatible with that API.</description>
+      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @C0rby Date: 2022-03-18 Context and Problem Statement The ability to find files based on certain search terms is a key requirement for a system that provides the ability to store unstructured data on a large scale.
+Decision Drivers Have a simple yet powerful, scalable and performant way of finding files in oCIS Be able to construct intelligent searches based on metadata Allow the user to filter the search queries based on metadata Considered Options Libre Graph API WebDAV API Decision Outcome Chosen option: WebDAV API because the current WebUI is compatible with that API.</description>
     </item>
     
     <item>
@@ -191,7 +193,7 @@ Decision Drivers      Have a simple yet powerful, scalable and performant way of
       <pubDate>Fri, 18 Mar 2022 09:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0019-file-search-index/</guid>
-      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @C0rby Date: 2022-03-18  Context and Problem Statement     The ability to find files based on certain search terms is a key requirement for a system that provides the ability to store unstructured data on a large scale.
+      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @C0rby Date: 2022-03-18 Context and Problem Statement The ability to find files based on certain search terms is a key requirement for a system that provides the ability to store unstructured data on a large scale.
 More sophisticated search capabilities are expected and can be implemented, especially based on metadata.
 To trigger the indexing of a file, the search service listens to create, update and delete events on the internal event bus of oCIS.</description>
     </item>
@@ -202,8 +204,8 @@ To trigger the indexing of a file, the search service listens to create, update 
       <pubDate>Thu, 23 Jun 2022 09:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0020-file-search-query-language/</guid>
-      <description>Status: accepted Deciders: @butonic, @micbar, @dragotin, @C0rby, @kulmann, @felix-schwarz, @JammingBen Date: 2023-06-23  Context and Problem Statement     From the users perspective, the interface to search is just a single form field where the user enters one or more search terms. The minimum expectation is that the search returns file names and links to files that:
- have a file name that contains at least one of the search terms contain at least one of the search terms in the file contents have metadata that is equal or contains one of the search terms  Decision Drivers      The standard user should not be bothered by a query syntax The power user should also be able to narrow his search with an efficient and flexible syntax We need to consider different backend technologies which we need to access through an abstraction layer Using different indexing systems should lead to a slightly different feature set without changing the syntax completely  Considered Options      KQL - Keyword Query Language Simple Query Lucene Query Language Solr Query Language Elasticsearch Query Language  Decision Outcome     Chosen option: KQL - Keyword Query Language, because it enables advanced search across all platforms.</description>
+      <description>Status: accepted Deciders: @butonic, @micbar, @dragotin, @C0rby, @kulmann, @felix-schwarz, @JammingBen Date: 2023-06-23 Context and Problem Statement From the users perspective, the interface to search is just a single form field where the user enters one or more search terms. The minimum expectation is that the search returns file names and links to files that:
+have a file name that contains at least one of the search terms contain at least one of the search terms in the file contents have metadata that is equal or contains one of the search terms Decision Drivers The standard user should not be bothered by a query syntax The power user should also be able to narrow his search with an efficient and flexible syntax We need to consider different backend technologies which we need to access through an abstraction layer Using different indexing systems should lead to a slightly different feature set without changing the syntax completely Considered Options KQL - Keyword Query Language Simple Query Lucene Query Language Solr Query Language Elasticsearch Query Language Decision Outcome Chosen option: KQL - Keyword Query Language, because it enables advanced search across all platforms.</description>
     </item>
     
     <item>
@@ -212,8 +214,8 @@ To trigger the indexing of a file, the search service listens to create, update 
       <pubDate>Wed, 18 Jan 2023 16:07:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0021-service-accounts/</guid>
-      <description>Status: proposed Deciders: @butonic, @C0rby Date: 2023-01-18  Context and Problem Statement     There are three levels of security checks in a microservice web application that uses OpenID Connect:
- scope claims limit the possible operations to what the user (or admin on behalf of the organization) consented to service authorization limit the possible operations to what specific services are allowed to do, on behalf of users or even without them permission checks limit the possible operations to the relationships between subject, permission and resource allow  This ADR deals with a prerequisite for service authorization: service accounts.</description>
+      <description>Status: proposed Deciders: @butonic, @C0rby Date: 2023-01-18 Context and Problem Statement There are three levels of security checks in a microservice web application that uses OpenID Connect:
+scope claims limit the possible operations to what the user (or admin on behalf of the organization) consented to service authorization limit the possible operations to what specific services are allowed to do, on behalf of users or even without them permission checks limit the possible operations to the relationships between subject, permission and resource allow This ADR deals with a prerequisite for service authorization: service accounts.</description>
     </item>
     
   </channel>
