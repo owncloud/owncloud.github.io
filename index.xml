@@ -6,7 +6,7 @@
     <description>Recent content on ownCloud</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 Jul 2023 12:52:44 +0000</lastBuildDate><atom:link href="https://owncloud.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 Jul 2023 15:54:40 +0000</lastBuildDate><atom:link href="https://owncloud.dev/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>1. Introduce an accounts service</title>
       <link>https://owncloud.dev/ocis/adr/0001-introduce-accounts-service/</link>
@@ -357,7 +357,7 @@ Workaround One of our contributors has opened a PR to a dependency that prevents
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.dev/clients/web/getting-started/</guid>
-      <description>Installation Docker Source code Configuration Options Scripts and Styles Sentry Setting up backend and running Running Installation Docker Make sure to have Docker, Docker-Compose, Node.js and pnpm installed.
+      <description>Installation Docker Source Code Configuration Options Scripts and Styles Sentry Setting up backend and running Running Installation Docker Make sure to have Docker, Docker-Compose, Node.js and pnpm installed.
 This setup currently doesn&amp;rsquo;t work on Windows out of the box.
 Workaround One of our contributors has opened a PR to a dependency that prevents us from successfully bundling the frontend. Feel free to check out [his changes](https://github.com/egoist/rollup-plugin-postcss/pull/384) and build them locally if you absolutely want to work on Windows.</description>
     </item>
@@ -600,6 +600,16 @@ New Service Checklist Use this checklist with copy/paste in your PR - right from
       <guid>https://owncloud.dev/ocis/adr/0020-file-search-query-language/</guid>
       <description>Status: accepted Deciders: @butonic, @micbar, @dragotin, @C0rby, @kulmann, @felix-schwarz, @JammingBen Date: 2023-06-23 Context and Problem Statement From the users perspective, the interface to search is just a single form field where the user enters one or more search terms. The minimum expectation is that the search returns file names and links to files that:
 have a file name that contains at least one of the search terms contain at least one of the search terms in the file contents have metadata that is equal or contains one of the search terms Decision Drivers The standard user should not be bothered by a query syntax The power user should also be able to narrow his search with an efficient and flexible syntax We need to consider different backend technologies which we need to access through an abstraction layer Using different indexing systems should lead to a slightly different feature set without changing the syntax completely Considered Options KQL - Keyword Query Language Simple Query Lucene Query Language Solr Query Language Elasticsearch Query Language Decision Outcome Chosen option: KQL - Keyword Query Language, because it enables advanced search across all platforms.</description>
+    </item>
+    
+    <item>
+      <title>Conventions</title>
+      <link>https://owncloud.dev/clients/web/development/conventions/</link>
+      <pubDate>Fri, 28 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/clients/web/development/conventions/</guid>
+      <description>Contributing to ownCloud Web Linting and Tests Changelog Items Code Conventions Early Returns Translations TypeScript Vue 3 and Composition API Dependencies This is a collection of tips and conventions to follow when working on the ownCloud web frontend. Since it is a living document, please open a PR if you find something missing.
+Contributing to ownCloud Web Everyone is invited to contribute. Simply fork the codebase, check the issues for a suitable one and open a pull request!</description>
     </item>
     
     <item>
@@ -1162,6 +1172,16 @@ Space discovery %%{init: {&#34;sequence&#34;: { &#34;showSequenceNumbers&#34;:tr
     </item>
     
     <item>
+      <title>Repo structure and (published) packages</title>
+      <link>https://owncloud.dev/clients/web/development/repo-structure/</link>
+      <pubDate>Fri, 28 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/clients/web/development/repo-structure/</guid>
+      <description>Repository Structure dev Folder and docker-compose.yml File docs Folder packages Folder tests Folder package.json File vite.config.ts (Published) Packages Code Style and Build Config ownCloud Design System web-client web-pkg web-runtime Standalone Core Apps Viewer and Editor Apps Repository Structure From a developer&amp;rsquo;s perspective, the most important parts of the ownCloud Web repo are the following files and folders:
+dev Folder and docker-compose.yml File The /dev folder contains all the configuration files that are needed in the docker-compose.</description>
+    </item>
+    
+    <item>
       <title>cephfs</title>
       <link>https://owncloud.dev/ocis/storage-backends/cephfs/</link>
       <pubDate>Mon, 13 Sep 2021 15:36:00 +0100</pubDate>
@@ -1253,6 +1273,16 @@ Get the sources git clone https://github.com/owncloud/ocis.git cd ocis Build the
       <guid>https://owncloud.dev/ocis/storage/spaces/</guid>
       <description>Editing a Storage Space Updating a space property Updating a space description Quotas Quota Enforcement Considerations Storage Spaces Shares Notes Editing a Storage Space The OData specification allows for a mirage of ways of addressing an entity. We will support addressing a Drive entity by its unique identifier, which is the one the graph-api returns when listing spaces, and its format is:
 { &amp;#34;id&amp;#34;: &amp;#34;1284d238-aa92-42ce-bdc4-0b0000009157!b6e2c9cc-9dbe-42f0-b522-4f2d3e175e9c&amp;#34; } This is an extract of an element of the list spaces response.</description>
+    </item>
+    
+    <item>
+      <title>Tooling</title>
+      <link>https://owncloud.dev/clients/web/development/tooling/</link>
+      <pubDate>Fri, 28 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/clients/web/development/tooling/</guid>
+      <description>Packaging Development Setup Prerequisites Installing Dependencies Starting the Server Building and Accessing Web Using Instant Hot-Reload via Vite Packaging Web is using pnpm as package manager and vite as build tool. The latter is built on top of rollup and brings some additional features such as instant hot-reloading.
+Development Setup Prerequisites docker docker-compose (if not already included in your docker installation) pnpm node If you’re not using Docker Desktop, you might have to modify your /etc/hosts and add 127.</description>
     </item>
     
     <item>
@@ -1551,7 +1581,8 @@ Start Jaeger by using the all-in-one docker image: docker run -d --name jaeger \
       <pubDate>Tue, 27 Jul 2021 00:00:00 +0000</pubDate>
       
       <guid>https://owncloud.dev/clients/web/testing/testing/</guid>
-      <description>Introduction Unit Tests Unit test file structure E2E Tests (Playwright) Prerequisites Prepare &amp;amp; start web Start Docker Run E2E tests Options Acceptance Tests (Nightwatch) Prerequisites Prepare &amp;amp; start web Start Docker Run acceptance tests Watch the test run Analyze the test report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.</description>
+      <description>Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare &amp;amp; Start Web Run E2E Tests Options Acceptance Tests (Nightwatch) Preparation Prepare &amp;amp; Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.
+All the steps below require you to have the web repo cloned locally and dependencies installed.</description>
     </item>
     
     <item>
