@@ -13,7 +13,7 @@
 
 
   <meta name="description" content="Abstract     The userlog service is a mediator between the eventhistory service and clients who want to be informed about user related events. It provides an API to retrieve those.
-Table of Contents      Prerequisites Storing Configuring Retrieving Subscribing Deleting Translations  Translation Rules   Example Yaml Config  Prerequisites     Running the userlog service without running the eventhistory service is not possible." />
+Table of Contents      Prerequisites Storing Configuring Retrieving Subscribing Posting  Deprovisioning   Deleting Translations  Translation Rules   Example Yaml Config  Prerequisites     Running the userlog service without running the eventhistory service is not possible." />
 
     <title>Userlog | ownCloud</title>
 
@@ -38,25 +38,25 @@ Table of Contents      Prerequisites Storing Configuring Retrieving Subscribing 
   />
   <meta property="og:site_name" content="ownCloud" />
   <meta property="og:description" content="Abstract     The userlog service is a mediator between the eventhistory service and clients who want to be informed about user related events. It provides an API to retrieve those.
-Table of Contents      Prerequisites Storing Configuring Retrieving Subscribing Deleting Translations  Translation Rules   Example Yaml Config  Prerequisites     Running the userlog service without running the eventhistory service is not possible." />
+Table of Contents      Prerequisites Storing Configuring Retrieving Subscribing Posting  Deprovisioning   Deleting Translations  Translation Rules   Example Yaml Config  Prerequisites     Running the userlog service without running the eventhistory service is not possible." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/userlog/" />
 
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-07-04T10:09:59+00:00"
+      content="2023-07-12T11:45:02+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-07-04T10:09:59+00:00"
+      content="2023-07-12T11:45:02+00:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Userlog" />
   <meta name="twitter:description" content="Abstract     The userlog service is a mediator between the eventhistory service and clients who want to be informed about user related events. It provides an API to retrieve those.
-Table of Contents      Prerequisites Storing Configuring Retrieving Subscribing Deleting Translations  Translation Rules   Example Yaml Config  Prerequisites     Running the userlog service without running the eventhistory service is not possible." />
+Table of Contents      Prerequisites Storing Configuring Retrieving Subscribing Posting  Deprovisioning   Deleting Translations  Translation Rules   Example Yaml Config  Prerequisites     Running the userlog service without running the eventhistory service is not possible." />
 
 
   <script type="application/ld+json">
@@ -67,8 +67,8 @@ Table of Contents      Prerequisites Storing Configuring Retrieving Subscribing 
       "name": "Userlog",
       "url" : "https://owncloud.dev/services/userlog/",
       "headline": "Userlog",
-      "description": "Abstract     The userlog service is a mediator between the eventhistory service and clients who want to be informed about user related events. It provides an API to retrieve those.\nTable of Contents      Prerequisites Storing Configuring Retrieving Subscribing Deleting Translations  Translation Rules   Example Yaml Config  Prerequisites     Running the userlog service without running the eventhistory service is not possible.",
-      "wordCount" : "1458",
+      "description": "Abstract     The userlog service is a mediator between the eventhistory service and clients who want to be informed about user related events. It provides an API to retrieve those.\nTable of Contents      Prerequisites Storing Configuring Retrieving Subscribing Posting  Deprovisioning   Deleting Translations  Translation Rules   Example Yaml Config  Prerequisites     Running the userlog service without running the eventhistory service is not possible.",
+      "wordCount" : "1719",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ Table of Contents      Prerequisites Storing Configuring Retrieving Subscribing 
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-07-04T10:09:59.64Z",
-      "datePublished": "2023-07-04T10:09:59.64Z",
-      "dateModified": "2023-07-04T10:09:59.64Z",
+      "dateCreated": "2023-07-12T11:45:02.45Z",
+      "datePublished": "2023-07-12T11:45:02.45Z",
+      "dateModified": "2023-07-12T11:45:02.45Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17561,6 +17561,17 @@ Copyright 2022 Fonticons, Inc.
 >Subscribing</a></li>
 <li><a
   class="gdoc-markdown__link"
+  href="#posting"
+>Posting</a>
+<ul>
+<li><a
+  class="gdoc-markdown__link"
+  href="#deprovisioning"
+>Deprovisioning</a></li>
+</ul>
+</li>
+<li><a
+  class="gdoc-markdown__link"
   href="#deleting"
 >Deleting</a></li>
 <li><a
@@ -17649,6 +17660,30 @@ Copyright 2022 Fonticons, Inc.
   href="https://medium.com/yemeksepeti-teknoloji/what-is-server-sent-events-sse-and-how-to-implement-it-904938bffd73"
 >What is Server-Sent Events</a> for a simple introduction and examples of server sent events. The <code>sse</code> endpoint will respect language changes of the user without needing to reconnect. Note that SSE has a limitation of six open connections per browser which can be reached if one has opened various tabs of the Web UI pointing to the same Infinite Scale instance.</p>
 <div class="gdoc-page__anchorwrap">
+    <h2 id="posting">
+        Posting
+        <a data-clipboard-text="https://owncloud.dev/services/userlog/#posting" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Posting" aria-label="Anchor to: Posting" href="#posting">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>The userlog service is able to store global messages that will be displayed in the Web UI to all users. These messages can only be activated and deleted by users with the <code>admin</code> role but not by ordinary users. If a user deletes the message in the Web UI, it reappears on reload. Global messages use the endpoint <code>/ocs/v2.php/apps/notifications/api/v1/notifications/global</code> and are activated by sending a <code>POST</code> request. Note that sending another <code>POST</code> request of the same type overwrites the previous one. For the time being, only the type <code>deprovision</code> is supported.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="deprovisioning">
+        Deprovisioning
+        <a data-clipboard-text="https://owncloud.dev/services/userlog/#deprovisioning" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Deprovisioning" aria-label="Anchor to: Deprovisioning" href="#deprovisioning">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>Deprovision messages announce a deprovision text including a deprovision date of the instance to all users. With this message, users get informed that the instance will be shut down and deprovisioned and no further access to their data is possible past the given date. This implies that users must download their data before the given date. The text shown to users refers to this information. Note that the task to deprovision the instance does not depend on the message. The text of the message can be translated according to the translation settings, see section <a
+  class="gdoc-markdown__link"
+  href="#translations"
+>Translations</a>. The endpoint only expects a <code>deprovision_date</code> parameter in the <code>POST</code> request body as the final text is assembled automatically. The string hast to be in <code>RFC3339</code> format, however, this format can be changed by using <code>deprovision_date_format</code>. See the <a
+  class="gdoc-markdown__link"
+  href="https://pkg.go.dev/time#pkg-constants"
+>go time formating</a> for more details.</p>
+<div class="gdoc-page__anchorwrap">
     <h2 id="deleting">
         Deleting
         <a data-clipboard-text="https://owncloud.dev/services/userlog/#deleting" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Deleting" aria-label="Anchor to: Deleting" href="#deleting">
@@ -17657,6 +17692,10 @@ Copyright 2022 Fonticons, Inc.
     </h2>
 </div>
 <p>To delete events for an user, use a <code>DELETE</code> request to <code>ocs/v2.php/apps/notifications/api/v1/notifications</code> containing the IDs to delete.</p>
+<p>Only users with the <code>admin</code> role can send a <code>DELETE</code> request to the <code>ocs/v2.php/apps/notifications/api/v1/notifications/global</code> endpoint to remove a global message, see the <a
+  class="gdoc-markdown__link"
+  href="#posting"
+>Posting</a> section for more details.)</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="translations">
         Translations
@@ -17866,7 +17905,7 @@ which is the source of the texts provided by the code.</li>
 <td>OCIS_TRACING_TYPE<br/>USERLOG_TRACING_TYPE</td>
 <td>string</td>
 <td></td>
-<td>The type of tracing. Defaults to &ldquo;&rdquo;, which is the same as &ldquo;jaeger&rdquo;. Allowed tracing types are &ldquo;jaeger&rdquo; and &quot;&quot; as of now.</td>
+<td>The type of tracing. Defaults to &lsquo;&rsquo;, which is the same as &lsquo;jaeger&rsquo;. Allowed tracing types are &lsquo;jaeger&rsquo; and &rsquo;&rsquo; as of now.</td>
 </tr>
 <tr>
 <td>OCIS_TRACING_ENDPOINT<br/>USERLOG_TRACING_ENDPOINT</td>
@@ -17884,7 +17923,7 @@ which is the source of the texts provided by the code.</li>
 <td>OCIS_LOG_LEVEL<br/>USERLOG_LOG_LEVEL</td>
 <td>string</td>
 <td></td>
-<td>The log level. Valid values are: &ldquo;panic&rdquo;, &ldquo;fatal&rdquo;, &ldquo;error&rdquo;, &ldquo;warn&rdquo;, &ldquo;info&rdquo;, &ldquo;debug&rdquo;, &ldquo;trace&rdquo;.</td>
+<td>The log level. Valid values are: &lsquo;panic&rsquo;, &lsquo;fatal&rsquo;, &rsquo;error&rsquo;, &lsquo;warn&rsquo;, &lsquo;info&rsquo;, &lsquo;debug&rsquo;, &rsquo;trace&rsquo;.</td>
 </tr>
 <tr>
 <td>OCIS_LOG_PRETTY<br/>USERLOG_LOG_PRETTY</td>
