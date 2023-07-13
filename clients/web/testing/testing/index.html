@@ -12,8 +12,7 @@
 <meta name="generator" content="Hugo 0.115.2">
 
 
-  <meta name="description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare &amp; Start Web Run E2E Tests Options Acceptance Tests (Nightwatch) Preparation Prepare &amp; Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.
-All the steps below require you to have the web repo cloned locally and dependencies installed." />
+  <meta name="description" content="Introduction Unit Tests Unit test file structure E2E Tests (Playwright) Prerequisites Prepare &amp; start web Start Docker Run E2E tests Options Acceptance Tests (Nightwatch) Prerequisites Prepare &amp; start web Start Docker Run acceptance tests Watch the test run Analyze the test report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository." />
 
     <title>Running tests | ownCloud</title>
 
@@ -37,8 +36,7 @@ All the steps below require you to have the web repo cloned locally and dependen
     content="Running tests"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare &amp; Start Web Run E2E Tests Options Acceptance Tests (Nightwatch) Preparation Prepare &amp; Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.
-All the steps below require you to have the web repo cloned locally and dependencies installed." />
+  <meta property="og:description" content="Introduction Unit Tests Unit test file structure E2E Tests (Playwright) Prerequisites Prepare &amp; start web Start Docker Run E2E tests Options Acceptance Tests (Nightwatch) Prerequisites Prepare &amp; start web Start Docker Run acceptance tests Watch the test run Analyze the test report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/clients/web/testing/testing/" />
 
@@ -55,8 +53,7 @@ All the steps below require you to have the web repo cloned locally and dependen
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Running tests" />
-  <meta name="twitter:description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare &amp; Start Web Run E2E Tests Options Acceptance Tests (Nightwatch) Preparation Prepare &amp; Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.
-All the steps below require you to have the web repo cloned locally and dependencies installed." />
+  <meta name="twitter:description" content="Introduction Unit Tests Unit test file structure E2E Tests (Playwright) Prerequisites Prepare &amp; start web Start Docker Run E2E tests Options Acceptance Tests (Nightwatch) Prerequisites Prepare &amp; start web Start Docker Run acceptance tests Watch the test run Analyze the test report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository." />
 
 
   <script type="application/ld+json">
@@ -67,8 +64,8 @@ All the steps below require you to have the web repo cloned locally and dependen
       "name": "Running tests",
       "url" : "https://owncloud.dev/clients/web/testing/testing/",
       "headline": "Running tests",
-      "description": "Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare \u0026 Start Web Run E2E Tests Options Acceptance Tests (Nightwatch) Preparation Prepare \u0026 Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.\nAll the steps below require you to have the web repo cloned locally and dependencies installed.",
-      "wordCount" : "919",
+      "description": "Introduction Unit Tests Unit test file structure E2E Tests (Playwright) Prerequisites Prepare \u0026 start web Start Docker Run E2E tests Options Acceptance Tests (Nightwatch) Prerequisites Prepare \u0026 start web Start Docker Run acceptance tests Watch the test run Analyze the test report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.",
+      "wordCount" : "1046",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17730,27 +17727,28 @@ Copyright 2022 Fonticons, Inc.
           <ul>
             <li><a href="#unit-tests">Unit Tests</a>
               <ul>
-                <li><a href="#unit-test-file-structure">Unit Test File Structure</a></li>
+                <li><a href="#unit-test-file-structure">Unit test file structure</a></li>
               </ul>
             </li>
             <li><a href="#e2e-tests-playwright">E2E Tests (Playwright)</a>
               <ul>
-                <li><a href="#preparation">Preparation</a></li>
-                <li><a href="#prepare--start-web">Prepare &amp; Start Web</a></li>
-                <li><a href="#run-e2e-tests">Run E2E Tests</a></li>
+                <li><a href="#prerequisites">Prerequisites</a></li>
+                <li><a href="#prepare--start-web">Prepare &amp; start web</a></li>
+                <li><a href="#start-docker">Start Docker</a></li>
+                <li><a href="#run-e2e-tests">Run E2E tests</a></li>
                 <li><a href="#options">Options</a></li>
               </ul>
             </li>
             <li><a href="#acceptance-tests-nightwatch">Acceptance Tests (Nightwatch)</a>
               <ul>
-                <li><a href="#preparation-1">Preparation</a></li>
-                <li><a href="#prepare--start-web-1">Prepare &amp; Start Web</a></li>
-                <li><a href="#start-docker">Start Docker</a></li>
+                <li><a href="#prerequisites-1">Prerequisites</a></li>
+                <li><a href="#prepare--start-web-1">Prepare &amp; start web</a></li>
+                <li><a href="#start-docker-1">Start Docker</a></li>
                 <li><a href="#run-acceptance-tests">Run acceptance tests</a></li>
-                <li><a href="#watch-the-test-run">Watch the Test Run</a></li>
+                <li><a href="#watch-the-test-run">Watch the test run</a></li>
               </ul>
             </li>
-            <li><a href="#analyze-the-test-report">Analyze the Test Report</a></li>
+            <li><a href="#analyze-the-test-report">Analyze the test report</a></li>
           </ul>
         </li>
       </ul></nav>
@@ -17786,8 +17784,8 @@ This can be achieved by running</p>
 <div class="gdoc-page__anchorwrap">
     <h4 id="unit-test-file-structure"
     >
-        Unit Test File Structure
-        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#unit-test-file-structure" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Unit Test File Structure" aria-label="Anchor to: Unit Test File Structure" href="#unit-test-file-structure">
+        Unit test file structure
+        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#unit-test-file-structure" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Unit test file structure" aria-label="Anchor to: Unit test file structure" href="#unit-test-file-structure">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h4>
@@ -17816,23 +17814,27 @@ with only <code>describe</code> blocks and nested <code>it.todo(&quot;put your t
 >Playwright Framework</a>,
 which makes it easy to write tests, debug them and have them run cross-browser with minimal overhead.</p>
 <div class="gdoc-page__anchorwrap">
-    <h4 id="preparation"
+    <h4 id="prerequisites"
     >
-        Preparation
-        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#preparation" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Preparation" aria-label="Anchor to: Preparation" href="#preparation">
+        Prerequisites
+        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#prerequisites" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Prerequisites" aria-label="Anchor to: Prerequisites" href="#prerequisites">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h4>
 </div>
-<p>Please make sure you have installed all dependencies and started the server(s) as described in <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/clients/web/development/tooling/#development-setup"
->tooling</a>.</p>
+<p>To run e2e tests with Docker, please make sure you have the following tools installed:</p>
+<ul>
+<li>docker</li>
+<li>docker-compose (if not already included in your docker installation)</li>
+<li>pnpm</li>
+<li>node</li>
+</ul>
+<p>Please also make sure to point <code>host.docker.internal</code> to <code>127.0.0.1</code> by adding it to your <code>/etc/hosts</code> file.</p>
 <div class="gdoc-page__anchorwrap">
     <h4 id="prepare--start-web"
     >
-        Prepare &amp; Start Web
-        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#prepare--start-web" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Prepare &amp; Start Web" aria-label="Anchor to: Prepare &amp; Start Web" href="#prepare--start-web">
+        Prepare &amp; start web
+        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#prepare--start-web" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Prepare &amp; start web" aria-label="Anchor to: Prepare &amp; start web" href="#prepare--start-web">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h4>
@@ -17841,10 +17843,31 @@ which makes it easy to write tests, debug them and have them run cross-browser w
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ pnpm build:w
 </span></span></code></pre></div><p>Our compose setup automatically mounts it into an oC10 and oCIS backend, respectively. Web also gets recompiled on changes.</p>
 <div class="gdoc-page__anchorwrap">
+    <h4 id="start-docker"
+    >
+        Start Docker
+        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#start-docker" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Start Docker" aria-label="Anchor to: Start Docker" href="#start-docker">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+<p>Using compose, you can start the required Docker containers by running</p>
+<p>For running the test with oc10 run</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ docker compose up oc10
+</span></span></code></pre></div><p>For running the test with ocis run</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ docker compose up ocis
+</span></span></code></pre></div><p>and make sure there are no conflicting ports and everything runs smoothly. You can check if everything has worked by opening <a
+  class="gdoc-markdown__link"
+  href="https://host.docker.internal:9200"
+>https://host.docker.internal:9200</a> (oCIS) and <a
+  class="gdoc-markdown__link"
+  href="http://host.docker.internal:8080"
+>http://host.docker.internal:8080</a> (OC10) and logging in using the demo user (admin/admin).</p>
+<div class="gdoc-page__anchorwrap">
     <h4 id="run-e2e-tests"
     >
-        Run E2E Tests
-        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#run-e2e-tests" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Run E2E Tests" aria-label="Anchor to: Run E2E Tests" href="#run-e2e-tests">
+        Run E2E tests
+        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#run-e2e-tests" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Run E2E tests" aria-label="Anchor to: Run E2E tests" href="#run-e2e-tests">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h4>
@@ -17908,23 +17931,27 @@ to the nightwatch based e2e tests anymore.</p>
 
 <p>At ownCloud, we have decided to adopt Docker as the main environment for developing our application. This also applies for running our acceptance tests.</p>
 <div class="gdoc-page__anchorwrap">
-    <h4 id="preparation-1"
+    <h4 id="prerequisites-1"
     >
-        Preparation
-        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#preparation-1" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Preparation" aria-label="Anchor to: Preparation" href="#preparation-1">
+        Prerequisites
+        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#prerequisites-1" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Prerequisites" aria-label="Anchor to: Prerequisites" href="#prerequisites-1">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h4>
 </div>
-<p>Please make sure you have installed all dependencies and started the server(s) as described in <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/clients/web/development/tooling/#development-setup"
->tooling</a>.</p>
+<p>To run acceptance tests with Docker, please make sure you have the following tools installed:</p>
+<ul>
+<li>docker</li>
+<li>docker-compose (if not already included in your docker installation)</li>
+<li>pnpm</li>
+<li>node</li>
+</ul>
+<p>Please also make sure to point <code>http://host.docker.internal/</code> to <code>127.0.0.1</code> by adding it to your hosts.</p>
 <div class="gdoc-page__anchorwrap">
     <h4 id="prepare--start-web-1"
     >
-        Prepare &amp; Start Web
-        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#prepare--start-web-1" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Prepare &amp; Start Web" aria-label="Anchor to: Prepare &amp; Start Web" href="#prepare--start-web-1">
+        Prepare &amp; start web
+        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#prepare--start-web-1" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Prepare &amp; start web" aria-label="Anchor to: Prepare &amp; start web" href="#prepare--start-web-1">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h4>
@@ -17932,15 +17959,15 @@ to the nightwatch based e2e tests anymore.</p>
 <p>Bundle the web frontend, which then gets mounted into the respective backends. It also gets recompiled on changes.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ pnpm build:w
 </span></span></code></pre></div><div class="gdoc-page__anchorwrap">
-    <h4 id="start-docker"
+    <h4 id="start-docker-1"
     >
         Start Docker
-        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#start-docker" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Start Docker" aria-label="Anchor to: Start Docker" href="#start-docker">
+        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#start-docker-1" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Start Docker" aria-label="Anchor to: Start Docker" href="#start-docker-1">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h4>
 </div>
-<p>The acceptance tests need additional docker containers to be running.</p>
+<p>Using compose, you can start the required Docker containers by running</p>
 <p>For running the test with oc10 run</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ docker compose up oc10 vnc selenium middleware-oc10
 </span></span></code></pre></div><p>For running the test with ocis run</p>
@@ -17980,8 +18007,8 @@ to the nightwatch based e2e tests anymore.</p>
 <div class="gdoc-page__anchorwrap">
     <h4 id="watch-the-test-run"
     >
-        Watch the Test Run
-        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#watch-the-test-run" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Watch the Test Run" aria-label="Anchor to: Watch the Test Run" href="#watch-the-test-run">
+        Watch the test run
+        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#watch-the-test-run" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Watch the test run" aria-label="Anchor to: Watch the test run" href="#watch-the-test-run">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h4>
@@ -17993,8 +18020,8 @@ to the nightwatch based e2e tests anymore.</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="analyze-the-test-report"
     >
-        Analyze the Test Report
-        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#analyze-the-test-report" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Analyze the Test Report" aria-label="Anchor to: Analyze the Test Report" href="#analyze-the-test-report">
+        Analyze the test report
+        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#analyze-the-test-report" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Analyze the test report" aria-label="Anchor to: Analyze the test report" href="#analyze-the-test-report">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
