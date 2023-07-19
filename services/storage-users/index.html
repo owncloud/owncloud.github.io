@@ -13,7 +13,7 @@
 
 
   <meta name="description" content="Abstract Purpose and description to be added
-Table of Contents Deprecated Metadata Backend CLI Commands Manage Unfinished Uploads Command Examples Purge Expired Space Trash-Bins Items Caching Example Yaml Config Deprecated Metadata Backend Starting with ocis version 3.0.0, the default backend for metadata switched to messagepack. If the setting STORAGE_USERS_OCIS_METADATA_BACKEND has not been defined manually, the backend will be migrated to messagepack automatically. Though still possible to manually configure xattrs, this setting should not be used anymore as it will be removed in a later version." />
+Table of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Manage Unfinished Uploads Command Examples Purge Expired Space Trash-Bins Items Caching Example Yaml Config Deprecated Metadata Backend Starting with ocis version 3.0.0, the default backend for metadata switched to messagepack. If the setting STORAGE_USERS_OCIS_METADATA_BACKEND has not been defined manually, the backend will be migrated to messagepack automatically. Though still possible to manually configure xattrs, this setting should not be used anymore as it will be removed in a later version." />
 
     <title>Storage-Users | ownCloud</title>
 
@@ -38,25 +38,25 @@ Table of Contents Deprecated Metadata Backend CLI Commands Manage Unfinished Upl
   />
   <meta property="og:site_name" content="ownCloud" />
   <meta property="og:description" content="Abstract Purpose and description to be added
-Table of Contents Deprecated Metadata Backend CLI Commands Manage Unfinished Uploads Command Examples Purge Expired Space Trash-Bins Items Caching Example Yaml Config Deprecated Metadata Backend Starting with ocis version 3.0.0, the default backend for metadata switched to messagepack. If the setting STORAGE_USERS_OCIS_METADATA_BACKEND has not been defined manually, the backend will be migrated to messagepack automatically. Though still possible to manually configure xattrs, this setting should not be used anymore as it will be removed in a later version." />
+Table of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Manage Unfinished Uploads Command Examples Purge Expired Space Trash-Bins Items Caching Example Yaml Config Deprecated Metadata Backend Starting with ocis version 3.0.0, the default backend for metadata switched to messagepack. If the setting STORAGE_USERS_OCIS_METADATA_BACKEND has not been defined manually, the backend will be migrated to messagepack automatically. Though still possible to manually configure xattrs, this setting should not be used anymore as it will be removed in a later version." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/storage-users/" />
 
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-07-19T03:49:50+00:00"
+      content="2023-07-19T14:20:15+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-07-19T03:49:50+00:00"
+      content="2023-07-19T14:20:15+00:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Storage-Users" />
   <meta name="twitter:description" content="Abstract Purpose and description to be added
-Table of Contents Deprecated Metadata Backend CLI Commands Manage Unfinished Uploads Command Examples Purge Expired Space Trash-Bins Items Caching Example Yaml Config Deprecated Metadata Backend Starting with ocis version 3.0.0, the default backend for metadata switched to messagepack. If the setting STORAGE_USERS_OCIS_METADATA_BACKEND has not been defined manually, the backend will be migrated to messagepack automatically. Though still possible to manually configure xattrs, this setting should not be used anymore as it will be removed in a later version." />
+Table of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Manage Unfinished Uploads Command Examples Purge Expired Space Trash-Bins Items Caching Example Yaml Config Deprecated Metadata Backend Starting with ocis version 3.0.0, the default backend for metadata switched to messagepack. If the setting STORAGE_USERS_OCIS_METADATA_BACKEND has not been defined manually, the backend will be migrated to messagepack automatically. Though still possible to manually configure xattrs, this setting should not be used anymore as it will be removed in a later version." />
 
 
   <script type="application/ld+json">
@@ -67,8 +67,8 @@ Table of Contents Deprecated Metadata Backend CLI Commands Manage Unfinished Upl
       "name": "Storage-Users",
       "url" : "https://owncloud.dev/services/storage-users/",
       "headline": "Storage-Users",
-      "description": "Abstract Purpose and description to be added\nTable of Contents Deprecated Metadata Backend CLI Commands Manage Unfinished Uploads Command Examples Purge Expired Space Trash-Bins Items Caching Example Yaml Config Deprecated Metadata Backend Starting with ocis version 3.0.0, the default backend for metadata switched to messagepack. If the setting STORAGE_USERS_OCIS_METADATA_BACKEND has not been defined manually, the backend will be migrated to messagepack automatically. Though still possible to manually configure xattrs, this setting should not be used anymore as it will be removed in a later version.",
-      "wordCount" : "3082",
+      "description": "Abstract Purpose and description to be added\nTable of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Manage Unfinished Uploads Command Examples Purge Expired Space Trash-Bins Items Caching Example Yaml Config Deprecated Metadata Backend Starting with ocis version 3.0.0, the default backend for metadata switched to messagepack. If the setting STORAGE_USERS_OCIS_METADATA_BACKEND has not been defined manually, the backend will be migrated to messagepack automatically. Though still possible to manually configure xattrs, this setting should not be used anymore as it will be removed in a later version.",
+      "wordCount" : "3425",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ Table of Contents Deprecated Metadata Backend CLI Commands Manage Unfinished Upl
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-07-19T03:49:50.95Z",
-      "datePublished": "2023-07-19T03:49:50.95Z",
-      "dateModified": "2023-07-19T03:49:50.95Z",
+      "dateCreated": "2023-07-19T14:20:15.32Z",
+      "datePublished": "2023-07-19T14:20:15.32Z",
+      "dateModified": "2023-07-19T14:20:15.32Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17735,6 +17735,10 @@ Copyright 2022 Fonticons, Inc.
 >Deprecated Metadata Backend</a></li>
 <li><a
   class="gdoc-markdown__link"
+  href="#graceful-shutdown"
+>Graceful Shutdown</a></li>
+<li><a
+  class="gdoc-markdown__link"
   href="#cli-commands"
 >CLI Commands</a>
 <ul>
@@ -17774,6 +17778,29 @@ Copyright 2022 Fonticons, Inc.
     </h2>
 </div>
 <p>Starting with ocis version 3.0.0, the default backend for metadata switched to messagepack. If the setting <code>STORAGE_USERS_OCIS_METADATA_BACKEND</code> has not been defined manually, the backend will be migrated to <code>messagepack</code> automatically. Though still possible to manually configure <code>xattrs</code>, this setting should not be used anymore as it will be removed in a later version.</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="graceful-shutdown"
+    >
+        Graceful Shutdown
+        <a data-clipboard-text="https://owncloud.dev/services/storage-users/#graceful-shutdown" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Graceful Shutdown" aria-label="Anchor to: Graceful Shutdown" href="#graceful-shutdown">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>Starting with Infinite Scale version 3.1, you can define a graceful shutdown period for the <code>storage-users</code> service.</p>
+<p>IMPORTANT: The graceful shutdown period is only applicable if the <code>storage-users</code> service runs as standalone service. It does not apply if the <code>storage-users</code> service runs as part of the single binary or as single Docker environment. To build an environment where the <code>storage-users</code> service runs as a standalone service, you must start two instances, one <em>without</em> the <code>storage-users</code> service and one <em>only with</em> the the <code>storage-users</code> service. Note that both instances must be able to communicate on the same network.</p>
+<p>When hard-stopping Infinite Scale, for example with the <code>kill &lt;pid&gt;</code> command (SIGKILL), it is possible and likely that not all data from the decomposedfs (metadata) has been written to the storage which may result in an inconsistent decomposedfs. When gracefully shutting down Infinite Scale, using a command like SIGTERM, the process will no longer accept any write requests from <em>other</em> services and will try to write the internal open  requests which can take an undefined duration based on many factors. To mitigate that situation, the following things have been implemented:</p>
+<ul>
+<li>
+<p>With the value of the environment variable <code>STORAGE_USERS_GRACEFUL_SHUTDOWN_TIMEOUT</code>, the <code>storage-users</code> service will delay its shutdown giving it time to finalize writing necessary data. This delay can be necessary if there is a lot of data to be saved and/or if storage access/thruput is slow. In such a case you would receive an error log entry informing you that not all data could be saved in time. To prevent such occurrences, you must increase the default value.</p>
+</li>
+<li>
+<p>If a shutdown error has been logged, the command-line maintenance tool <a
+  class="gdoc-markdown__link"
+  href="https://doc.owncloud.com/ocis/next/maintenance/commands/commands.html#inspect-and-manipulate-node-metadata"
+>Inspect and Manipulate Node Metadata</a> can help to fix the issue. Please contact support for details.</p>
+</li>
+</ul>
 <div class="gdoc-page__anchorwrap">
     <h2 id="cli-commands"
     >
@@ -18022,6 +18049,7 @@ Copyright 2022 Fonticons, Inc.
 </span><span class="lnt">111
 </span><span class="lnt">112
 </span><span class="lnt">113
+</span><span class="lnt">114
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># Autogenerated</span><span class="w">
@@ -18058,6 +18086,7 @@ Copyright 2022 Fonticons, Inc.
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">cacert</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">skip_user_groups_in_token</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">graceful_shutdown_timeout</span><span class="p">:</span><span class="w"> </span><span class="m">30</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l">ocis</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">drivers</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ocis</span><span class="p">:</span><span class="w">
@@ -18292,6 +18321,12 @@ Copyright 2022 Fonticons, Inc.
 <td>bool</td>
 <td>false</td>
 <td>Disables the loading of user&rsquo;s group memberships from the reva access token.</td>
+</tr>
+<tr>
+<td>STORAGE_USERS_GRACEFUL_SHUTDOWN_TIMEOUT</td>
+<td>int</td>
+<td>30</td>
+<td>The number of seconds to wait for the &lsquo;storage-users&rsquo; service to shutdown cleanly before exiting with an error that gets logged. Note: This setting is only applicable when running the &lsquo;storage-users&rsquo; service as a standalone service. See the text description for more details.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_DRIVER</td>
