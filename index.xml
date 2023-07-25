@@ -6,7 +6,7 @@
     <description>Recent content on ownCloud</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 25 Jul 2023 09:12:31 +0000</lastBuildDate><atom:link href="https://owncloud.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 Jul 2023 10:49:54 +0000</lastBuildDate><atom:link href="https://owncloud.dev/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>1. Introduce an accounts service</title>
       <link>https://owncloud.dev/ocis/adr/0001-introduce-accounts-service/</link>
@@ -643,6 +643,16 @@ Configure the WebDAV remote First of all we need to set up our credentials and t
       <description>WebDAV with OpenID Connect Rclone itself is not able to open and maintain an OpenID Connect session. But it is able to still use OpenID Connect for authentication by leveraging a so called OIDC-agent.
 Setting up the OIDC-agent You need to install the OIDC-agent from your OS&amp;rsquo; package repository (e.g. Debian or MacOS).
 Configuring the OIDC-agent Run the following command to add a OpenID Connect profile to your OIDC-agent. It will open the login page of OpenID Connect identity provider where you need to log in if you don&amp;rsquo;t have an active session.</description>
+    </item>
+    
+    <item>
+      <title>Additinal Information</title>
+      <link>https://owncloud.dev/services/general-info/additional-information/</link>
+      <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/services/general-info/additional-information/</guid>
+      <description>This section contains information on general topics
+GRPC Maximum Message Size ocis is using grpc for inter-service communication. When having a folder with a lot of files (25.000+, the size does not matter) and doing a PROPFIND on that folder, the server will run into errors. This is because the grpc message body becomes to big. With introduction of the envvar OCIS_GRPC_MAX_RECEIVED_MESSAGE_SIZE, the max size for the grpc body can be raised.</description>
     </item>
     
     <item>
