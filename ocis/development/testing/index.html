@@ -65,7 +65,7 @@
       "url" : "https://owncloud.dev/ocis/development/testing/",
       "headline": "Testing",
       "description": "Testing With Test Suite in Docker Run Full Test Suite Local oCIS Tests (prefix api) Tests Transferred From ownCloud Core (prefix coreApi) Run Single Feature Test oCIS Image to Be Tested (Skip Local Image Build) Test Log Output Cleanup Testing With Test Suite Natively Installed Run oCIS Run Local oCIS Tests (prefix api) Run Tests Transferred From ownCloud Core (prefix coreApi) Use Existing Tests for BDD Running ENV Config Tests (@env-Config) Run oCIS With ociswrapper Run the Tests Writing New ENV Config Tests Running Test Suite With Email Service (@email) Setup Inbucket Run oCIS Run the Acceptance Test Running Tests for Parallel Deployment Setup the Parallel Deployment Environment Getting the Test Helpers Run the Acceptance Tests Running Test Suite With Antivirus Service (@antivirus) Setup clamAV 1.",
-      "wordCount" : "2121",
+      "wordCount" : "2212",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17822,6 +17822,7 @@ Copyright 2022 Fonticons, Inc.
             </li>
           </ul>
         </li>
+        <li><a href="#running-text-preview-tests-containing-unicode-characters">Running Text Preview Tests Containing Unicode Characters</a></li>
       </ul></nav>
       <hr />
     </div>
@@ -18534,6 +18535,23 @@ For antivirus running with docker, use <code>ANTIVIRUS_CLAMAV_SOCKET= &quot;tcp:
 </span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">TEST_SERVER_URL</span><span class="o">=</span><span class="s2">&#34;https://localhost:9200&#34;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">BEHAT_FEATURE</span><span class="o">=</span><span class="s2">&#34;tests/acceptance/features/apiAntivirus/antivirus.feature&#34;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>make test-acceptance-api
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
+    <h2 id="running-text-preview-tests-containing-unicode-characters"
+    >
+        Running Text Preview Tests Containing Unicode Characters
+        <a data-clipboard-text="https://owncloud.dev/ocis/development/testing/#running-text-preview-tests-containing-unicode-characters" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Running Text Preview Tests Containing Unicode Characters" aria-label="Anchor to: Running Text Preview Tests Containing Unicode Characters" href="#running-text-preview-tests-containing-unicode-characters">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>There are some tests that check the text preview of files containing Unicode characters. The oCIS server by default cannot generate the thumbnail of such files correctly but it provides an environment variable to allow the use of custom fonts that support Unicode characters. So to run such tests successfully, we have to run the oCIS server with this environment variable.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl"><span class="nv">THUMBNAILS_TXT_FONTMAP_FILE</span><span class="o">=</span><span class="s2">&#34;/path/to/fontsMap.json&#34;</span>
+</span></span><span class="line"><span class="cl">ocis/bin/ocis server
+</span></span></code></pre></div><p>The sample <code>fontsMap.json</code> file is located in <code>tests/config/drone/fontsMap.json</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;defaultFont&#34;</span><span class="p">:</span> <span class="s2">&#34;/path/to/ocis/tests/config/drone/NotoSans.ttf&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div>
   </article>
 
