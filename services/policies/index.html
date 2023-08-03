@@ -45,11 +45,11 @@ Policies are written in the rego query language. The location of the rego files 
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-08-03T14:36:02+00:00"
+      content="2023-08-03T15:03:41+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-08-03T14:36:02+00:00"
+      content="2023-08-03T15:03:41+00:00"
     />
 
 
@@ -68,7 +68,7 @@ Policies are written in the rego query language. The location of the rego files 
       "url" : "https://owncloud.dev/services/policies/",
       "headline": "Policies",
       "description": "Abstract The policies service provides a new gRPC API which can be used to check whether a requested operation is allowed or not. To do so, Open Policy Agent (OPA) is used to define the set of rules of what is permitted and what is not.\nPolicies are written in the rego query language. The location of the rego files can be configured via yaml, a configuration via environment variables is not possible.",
-      "wordCount" : "1534",
+      "wordCount" : "1738",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ Policies are written in the rego query language. The location of the rego files 
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-08-03T14:36:02.32Z",
-      "datePublished": "2023-08-03T14:36:02.32Z",
-      "dateModified": "2023-08-03T14:36:02.32Z",
+      "dateCreated": "2023-08-03T15:03:41.04Z",
+      "datePublished": "2023-08-03T15:03:41.04Z",
+      "dateModified": "2023-08-03T15:03:41.04Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17817,6 +17817,10 @@ Copyright 2022 Fonticons, Inc.
 >Rego Key Match</a></li>
 <li><a
   class="gdoc-markdown__link"
+  href="#extend-mimetype-file-extension-mapping"
+>Extend Mimetype File Extension Mapping</a></li>
+<li><a
+  class="gdoc-markdown__link"
   href="#example-policies"
 >Example Policies</a></li>
 <li><a
@@ -17849,7 +17853,7 @@ Copyright 2022 Fonticons, Inc.
   class="gdoc-markdown__link"
   href="https://www.openpolicyagent.org/docs/latest/#complete-rules"
 >Complete Rules</a> variable defined in the rego rule set the corresponding step uses for the evaluation. If the variable is mistyped or not found, the evaluation defaults to deny. Individual query definitions can be defined for each module.</p>
-<p>To activate a the policies service for a module, it must be started with a yaml configuration that points to one or more rego files. Note that if the service is scaled horizontally, each instance should have access to the same rego files to avoid unpredictable results. If a file path has been configured but the file it is not present or accessible, the evaluation defaults to deny.</p>
+<p>To activate the policies service for a module, it must be started with a yaml configuration that points to one or more rego files. Note that if the service is scaled horizontally, each instance should have access to the same rego files to avoid unpredictable results. If a file path has been configured but the file is not present or accessible, the evaluation defaults to deny.</p>
 <p>When using async post-processing which is done via the postprocessing service, the value <code>policies</code> must be added to the <code>POSTPROCESSING_STEPS</code> configuration in postprocessing service in the order where the evaluation should take place.</p>
 <p>variable defined in the Rego rule set the corresponding step uses for the evaluation. If the variable is mistyped or not found, the evaluation defaults to deny. Individual query definitions can be defined for each module.</p>
 <p>To activate the policies service for a module, it must be started with a yaml configuration that points to at least one Rego file that contains the complete rule variable to be queried. Note that if the service is scaled horizontally, each instance should have access to the same Rego files to avoid unpredictable results. If a file path has been configured but the file it is not present or accessible, the evaluation defaults to deny.</p>
@@ -17953,8 +17957,8 @@ Copyright 2022 Fonticons, Inc.
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">policies_middleware</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="l">data.proxy.granted</span><span class="w">
 </span></span></span></code></pre></div><p>The same can be achieved by setting the following environment variable:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="l">PROXY_POLICIES_QUERY=data.proxy.granted</span><span class="w">
-</span></span></span></code></pre></div><div class="gdoc-page__anchorwrap">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PROXY_POLICIES_QUERY</span><span class="o">=</span>data.proxy.granted
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h3 id="postprocessing"
     >
         Postprocessing
@@ -17967,10 +17971,10 @@ Copyright 2022 Fonticons, Inc.
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">postprocessing</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="l">data.postprocessing.granted</span><span class="w">
 </span></span></span></code></pre></div><p>The same can be achieved by setting the following environment variable:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="l">POLICIES_POSTPROCESSING_QUERY=data.postprocessing.granted</span><span class="w">
-</span></span></span></code></pre></div><p>As soon as that query is configured, the postprocessing service must be informed to use the policies step by setting the environment variable:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="l">POSTPROCESSING_STEPS=policies</span><span class="w">
-</span></span></span></code></pre></div><p>Note that additional steps can be configured and their position in the list defines the order of processing. For details see the postprocessing service documentation.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">POLICIES_POSTPROCESSING_QUERY</span><span class="o">=</span>data.postprocessing.granted
+</span></span></code></pre></div><p>As soon as that query is configured, the postprocessing service must be informed to use the policies step by setting the environment variable:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">POSTPROCESSING_STEPS</span><span class="o">=</span>policies
+</span></span></code></pre></div><p>Note that additional steps can be configured and their position in the list defines the order of processing. For details see the postprocessing service documentation.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="rego-key-match"
     >
@@ -17987,6 +17991,29 @@ Copyright 2022 Fonticons, Inc.
   class="gdoc-markdown__link"
   href="https://github.com/owncloud/ocis/blob/master/protogen/gen/ocis/services/policies/v0/policies.swagger.json"
 >policies.swagger.json</a> file. Note that which keys are available depends on from which module it is used.</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="extend-mimetype-file-extension-mapping"
+    >
+        Extend Mimetype File Extension Mapping
+        <a data-clipboard-text="https://owncloud.dev/services/policies/#extend-mimetype-file-extension-mapping" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Extend Mimetype File Extension Mapping" aria-label="Anchor to: Extend Mimetype File Extension Mapping" href="#extend-mimetype-file-extension-mapping">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>In the extended set of the rego query language, it is possible to get a list of associated file extensions based on a mimetype, for example <code>ocis.mimetype.extensions(&quot;application/pdf&quot;)</code>.</p>
+<p>The list of mappings is restricted by default and is provided by the host system ocis is installed on.</p>
+<p>In order to extend this list, ocis must be provided with the path to a custom <code>mime.types</code> file that maps mimetypes to extensions.
+The location for the file must be accessible by all instances of the policy service. As a rule of thumb, use the directory where the ocis configuration files are stored.
+Note that existing mappings from the host are extended by the definitions from the mime types file, but not replaced.</p>
+<p>The path to that file can be provided via a yaml configuration or an environment variable. Note to replace the <code>OCIS_CONFIG_DIR</code> string by an existing path.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">OCIS_MACHINE_AUTH_API_KEY</span><span class="o">=</span>OCIS_CONFIG_DIR/mime.types
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">policies</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">engine</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">mimes</span><span class="p">:</span><span class="w"> </span><span class="l">OCIS_CONFIG_DIR/mime.types</span><span class="w">
+</span></span></span></code></pre></div><p>A good example of how such a file should be formatted can be found in the <a
+  class="gdoc-markdown__link"
+  href="https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types"
+>Apache svn repository</a>.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="example-policies"
     >
@@ -18054,6 +18081,7 @@ Copyright 2022 Fonticons, Inc.
 </span><span class="lnt">34
 </span><span class="lnt">35
 </span><span class="lnt">36
+</span><span class="lnt">37
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># Autogenerated</span><span class="w">
@@ -18090,6 +18118,7 @@ Copyright 2022 Fonticons, Inc.
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">engine</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l">10s</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">policies</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">mimes</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">postprocessing</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
@@ -18241,6 +18270,12 @@ Copyright 2022 Fonticons, Inc.
 <td>Duration</td>
 <td>10s</td>
 <td>Sets the timeout the rego expression evaluation can take. The timeout can be set as number followed by a unit identifier like ms, s, etc. Rules default to deny if the timeout was reached.</td>
+</tr>
+<tr>
+<td>POLICIES_ENGINE_MIMES</td>
+<td>string</td>
+<td></td>
+<td>Sets the mimes file path which maps mimetypes to associated file extensions. See the text description for details.</td>
 </tr>
 <tr>
 <td>POLICIES_POSTPROCESSING_QUERY</td>
