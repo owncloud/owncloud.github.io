@@ -12,7 +12,8 @@
 <meta name="generator" content="Hugo 0.115.2">
 
 
-  <meta name="description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare &amp; Start Web Run E2E Tests Options Run E2E Tests with oC10 Acceptance Tests (Nightwatch) Preparation Prepare &amp; Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository." />
+  <meta name="description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare &amp; Start Web Run E2E Tests Options Acceptance Tests (Nightwatch) Preparation Prepare &amp; Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.
+All the steps below require you to have the web repo cloned locally and dependencies installed." />
 
     <title>Running tests | ownCloud</title>
 
@@ -36,7 +37,8 @@
     content="Running tests"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare &amp; Start Web Run E2E Tests Options Run E2E Tests with oC10 Acceptance Tests (Nightwatch) Preparation Prepare &amp; Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository." />
+  <meta property="og:description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare &amp; Start Web Run E2E Tests Options Acceptance Tests (Nightwatch) Preparation Prepare &amp; Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.
+All the steps below require you to have the web repo cloned locally and dependencies installed." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/clients/web/testing/testing/" />
 
@@ -53,7 +55,8 @@
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Running tests" />
-  <meta name="twitter:description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare &amp; Start Web Run E2E Tests Options Run E2E Tests with oC10 Acceptance Tests (Nightwatch) Preparation Prepare &amp; Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository." />
+  <meta name="twitter:description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare &amp; Start Web Run E2E Tests Options Acceptance Tests (Nightwatch) Preparation Prepare &amp; Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.
+All the steps below require you to have the web repo cloned locally and dependencies installed." />
 
 
   <script type="application/ld+json">
@@ -64,8 +67,8 @@
       "name": "Running tests",
       "url" : "https://owncloud.dev/clients/web/testing/testing/",
       "headline": "Running tests",
-      "description": "Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare \u0026 Start Web Run E2E Tests Options Run E2E Tests with oC10 Acceptance Tests (Nightwatch) Preparation Prepare \u0026 Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.",
-      "wordCount" : "929",
+      "description": "Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare \u0026 Start Web Run E2E Tests Options Acceptance Tests (Nightwatch) Preparation Prepare \u0026 Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.\nAll the steps below require you to have the web repo cloned locally and dependencies installed.",
+      "wordCount" : "830",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17772,7 +17775,6 @@ Copyright 2022 Fonticons, Inc.
                 <li><a href="#prepare--start-web">Prepare &amp; Start Web</a></li>
                 <li><a href="#run-e2e-tests">Run E2E Tests</a></li>
                 <li><a href="#options">Options</a></li>
-                <li><a href="#run-e2e-tests-with-oc10">Run E2E Tests with oC10</a></li>
               </ul>
             </li>
             <li><a href="#acceptance-tests-nightwatch">Acceptance Tests (Nightwatch)</a>
@@ -17894,7 +17896,7 @@ which makes it easy to write tests, debug them and have them run cross-browser w
         </a>
     </h4>
 </div>
-<p>To run a particular test, simply add the feature file and line number to the test command, e.g. <code>pnpm test:e2e:cucumber tests/e2e/cucumber/shareFileJourney.feature:13</code></p>
+<p>To run a particular test, simply add the feature file and line number to the test command, e.g. <code>pnpm test:e2e:cucumber tests/e2e/cucumber/features/smoke/admin-settings/users.feature:84</code></p>
 <p>Various options are available via ENV variables, e.g.</p>
 <ul>
 <li><code>RETRY=n</code> to retry failures <code>n</code> times</li>
@@ -17913,20 +17915,6 @@ Again, you can use the following ENV variables in your command:</p>
 </ul>
 <p>To then open e.g. the tracing from the <code>REPORT_DIR</code>, run</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ npx playwright show-trace path/to/file.zip
-</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
-    <h4 id="run-e2e-tests-with-oc10"
-    >
-        Run E2E Tests with oC10
-        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#run-e2e-tests-with-oc10" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Run E2E Tests with oC10" aria-label="Anchor to: Run E2E Tests with oC10" href="#run-e2e-tests-with-oc10">
-            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h4>
-</div>
-<p>Older versions of Web (&lt; 7.1.0) also support running oC10 as server. The e2e tests can be run slightly different then.</p>
-<p>For oCIS:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ <span class="nv">OCIS</span><span class="o">=</span><span class="nb">true</span> pnpm test:e2e:cucumber <span class="s1">&#39;tests/e2e/cucumber/**/*[!.oc10].feature&#39;</span>
-</span></span></code></pre></div><p>For oC10:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">pnpm test:e2e:cucumber <span class="s1">&#39;tests/e2e/cucumber/**/*[!.ocis].feature&#39;</span>
 </span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h3 id="acceptance-tests-nightwatch"
     >
@@ -17985,17 +17973,11 @@ to the nightwatch based e2e tests anymore.</p>
     </h4>
 </div>
 <p>The acceptance tests need additional docker containers to be running.</p>
-<p>For running the test with ocis run</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ docker compose up ocis vnc selenium middleware-ocis
-</span></span></code></pre></div><p>For running the test with oC10 (&lt;= Web version 7.0.2) run</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ docker compose up oc10 vnc selenium middleware-oc10
 </span></span></code></pre></div><p>and make sure there are no conflicting ports and everything runs smoothly. You can check if everything has worked by opening <a
   class="gdoc-markdown__link"
   href="https://host.docker.internal:9200"
->https://host.docker.internal:9200</a> (oCIS) and <a
-  class="gdoc-markdown__link"
-  href="http://host.docker.internal:8080"
->http://host.docker.internal:8080</a> (OC10) and logging in using the demo user (admin/admin).</p>
+>https://host.docker.internal:9200</a> and logging in using the demo user (admin/admin).</p>
 <p>If you&rsquo;re using a M1 Mac, you need to use <code>seleniarm/standalone-chromium:4.4.0-20220814</code>for now. To do so, export <code>SELENIUM_IMAGE=seleniarm/standalone-chromium:4.4.0-20220814</code>.</p>
 <div class="gdoc-page__anchorwrap">
     <h4 id="run-acceptance-tests"
@@ -18014,12 +17996,9 @@ to the nightwatch based e2e tests anymore.</p>
 <p>Install all the test dependencies with <code>pnpm</code> command</p>
 </li>
 <li>
-<p>Depending on the backend you&rsquo;re running the tests on, you can either run</p>
+<p>Run the tests</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ pnpm test:acceptance:ocis features/path/to/test
-</span></span></code></pre></div><p>for oCIS acceptance tests or</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ pnpm test:acceptance:oc10 features/path/to/test
-</span></span></code></pre></div><p>for ownCloud 10.X (&lt;= Web version 7.0.2).</p>
-</li>
+</span></span></code></pre></div></li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h4 id="watch-the-test-run"
