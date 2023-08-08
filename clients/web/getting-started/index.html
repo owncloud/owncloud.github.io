@@ -12,7 +12,7 @@
 <meta name="generator" content="Hugo 0.115.2">
 
 
-  <meta name="description" content="Installation Docker Source code Configuration Options Sentry Setting up backend and running Running Installation Docker Make sure to have Docker, Docker-Compose, Node.js and pnpm installed.
+  <meta name="description" content="Installation Docker Source Code Configuration Options Scripts and Styles Sentry Setting up backend and running Running Installation Docker Make sure to have Docker, Docker-Compose, Node.js and pnpm installed.
 This setup currently doesn&rsquo;t work on Windows out of the box.
 Workaround One of our contributors has opened a PR to a dependency that prevents us from successfully bundling the frontend. Feel free to check out [his changes](https://github.com/egoist/rollup-plugin-postcss/pull/384) and build them locally if you absolutely want to work on Windows." />
 
@@ -38,7 +38,7 @@ Workaround One of our contributors has opened a PR to a dependency that prevents
     content="Getting Started"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Installation Docker Source code Configuration Options Sentry Setting up backend and running Running Installation Docker Make sure to have Docker, Docker-Compose, Node.js and pnpm installed.
+  <meta property="og:description" content="Installation Docker Source Code Configuration Options Scripts and Styles Sentry Setting up backend and running Running Installation Docker Make sure to have Docker, Docker-Compose, Node.js and pnpm installed.
 This setup currently doesn’t work on Windows out of the box.
 Workaround One of our contributors has opened a PR to a dependency that prevents us from successfully bundling the frontend. Feel free to check out [his changes](https://github.com/egoist/rollup-plugin-postcss/pull/384) and build them locally if you absolutely want to work on Windows." />
 <meta property="og:type" content="article" />
@@ -57,7 +57,7 @@ Workaround One of our contributors has opened a PR to a dependency that prevents
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Getting Started" />
-  <meta name="twitter:description" content="Installation Docker Source code Configuration Options Sentry Setting up backend and running Running Installation Docker Make sure to have Docker, Docker-Compose, Node.js and pnpm installed.
+  <meta name="twitter:description" content="Installation Docker Source Code Configuration Options Scripts and Styles Sentry Setting up backend and running Running Installation Docker Make sure to have Docker, Docker-Compose, Node.js and pnpm installed.
 This setup currently doesn’t work on Windows out of the box.
 Workaround One of our contributors has opened a PR to a dependency that prevents us from successfully bundling the frontend. Feel free to check out [his changes](https://github.com/egoist/rollup-plugin-postcss/pull/384) and build them locally if you absolutely want to work on Windows." />
 
@@ -70,8 +70,8 @@ Workaround One of our contributors has opened a PR to a dependency that prevents
       "name": "Getting Started",
       "url" : "https://owncloud.dev/clients/web/getting-started/",
       "headline": "Getting Started",
-      "description": "Installation Docker Source code Configuration Options Sentry Setting up backend and running Running Installation Docker Make sure to have Docker, Docker-Compose, Node.js and pnpm installed.\nThis setup currently doesn’t work on Windows out of the box.\nWorkaround One of our contributors has opened a PR to a dependency that prevents us from successfully bundling the frontend. Feel free to check out [his changes](https:\/\/github.com\/egoist\/rollup-plugin-postcss\/pull\/384) and build them locally if you absolutely want to work on Windows.",
-      "wordCount" : "954",
+      "description": "Installation Docker Source Code Configuration Options Scripts and Styles Sentry Setting up backend and running Running Installation Docker Make sure to have Docker, Docker-Compose, Node.js and pnpm installed.\nThis setup currently doesn’t work on Windows out of the box.\nWorkaround One of our contributors has opened a PR to a dependency that prevents us from successfully bundling the frontend. Feel free to check out [his changes](https:\/\/github.com\/egoist\/rollup-plugin-postcss\/pull\/384) and build them locally if you absolutely want to work on Windows.",
+      "wordCount" : "1173",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17760,7 +17760,7 @@ Copyright 2022 Fonticons, Inc.
         <li><a href="#installation">Installation</a>
           <ul>
             <li><a href="#docker">Docker</a></li>
-            <li><a href="#source-code">Source code</a></li>
+            <li><a href="#source-code">Source Code</a></li>
           </ul>
         </li>
         <li><a href="#configuration">Configuration</a>
@@ -17768,6 +17768,7 @@ Copyright 2022 Fonticons, Inc.
             <li>
               <ul>
                 <li><a href="#options">Options</a></li>
+                <li><a href="#scripts-and-styles">Scripts and Styles</a></li>
               </ul>
             </li>
             <li><a href="#sentry">Sentry</a></li>
@@ -17823,13 +17824,17 @@ Copyright 2022 Fonticons, Inc.
 >https://host.docker.internal:9200</a> (oCIS) and <a
   class="gdoc-markdown__link"
   href="http://host.docker.internal:8080"
->http://host.docker.internal:8080</a> (OC10). If you&rsquo;re not using Docker Desktop, you might have to modify your <code>/etc/hosts</code> and add <code>172.17.0.1 docker.host.internal</code> to make the <code>host.docker.internal</code> links work.</p>
+>http://host.docker.internal:8080</a> (OC10). If you&rsquo;re not using Docker Desktop, you might have to modify your <code>/etc/hosts</code> and add <code>127.0.0.1 host.docker.internal</code> to make the <code>host.docker.internal</code> links work.</p>
 <p>The bundled frontend code automatically gets mounted into the Docker containers, recompiles on changes and you can log in using the demo user (admin/admin) and take a look around!</p>
+<p>For more details on how to set up Web for development, please see <a
+  class="gdoc-markdown__link"
+  href="https://owncloud.dev/clients/web/development/tooling/#development-setup"
+>tooling</a>.</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="source-code"
     >
-        Source code
-        <a data-clipboard-text="https://owncloud.dev/clients/web/getting-started/#source-code" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Source code" aria-label="Anchor to: Source code" href="#source-code">
+        Source Code
+        <a data-clipboard-text="https://owncloud.dev/clients/web/getting-started/#source-code" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Source Code" aria-label="Anchor to: Source Code" href="#source-code">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
@@ -17895,7 +17900,10 @@ allows ownCloud to get feedback from your user base through a dedicated survey w
 <li><code>options.runningOnEos</code> Set this option to <code>true</code> if running on an <a
   class="gdoc-markdown__link"
   href="https://eos-web.web.cern.ch/eos-web/"
->EOS storage backend</a> to enable its specific features. Defaults to <code>false</code>.</li>
+>EOS storage backend</a> to enable its specific features. Defaults to <code>false</code>, and we recommend reaching out to <a
+  class="gdoc-markdown__link"
+  href="https://talk.owncloud.com/channel/web"
+>the ownCloud web team</a> if you&rsquo;re not CERN and thinking about enabling this feature flag.</li>
 <li><code>options.cernFeatures</code> Enabling this will activate CERN-specific features. Defaults to <code>false</code>.</li>
 <li><code>options.hoverableQuickActions</code> Set this option to <code>true</code> to hide the quick actions (buttons appearing on file rows), and only show them when the user
 hovers the row with his mouse. Defaults to <code>false</code>.</li>
@@ -17908,6 +17916,22 @@ hovers the row with his mouse. Defaults to <code>false</code>.</li>
 <li><code>options.editor.autosaveEnabled</code> Specifies if the autosave for the editor apps is enabled.</li>
 <li><code>options.editor.autosaveInterval</code> Specifies the time interval for the autosave of editor apps in seconds.</li>
 <li><code>options.contextHelpersReadMore</code> Specifies whether the &ldquo;Read more&rdquo; link should be displayed or not.</li>
+<li><code>options.openLinksWithDefaultApp</code> Specifies whether single file link shares should be opened with default app or not.</li>
+<li><code>options.tokenStorageLocal</code> Specifies whether the access token will be stored in the local storage when set to <code>true</code> or in the session storage when set to <code>false</code>. If stored in the local storage, login state will be persisted across multiple browser tabs, means no additional logins are required. Defaults to <code>true</code>.</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="scripts-and-styles"
+    >
+        Scripts and Styles
+        <a data-clipboard-text="https://owncloud.dev/clients/web/getting-started/#scripts-and-styles" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Scripts and Styles" aria-label="Anchor to: Scripts and Styles" href="#scripts-and-styles">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+<p>Web supports adding additional CSS and JavaScript files to further customize the user experience and adapt it to your specific needs. Please consider opening a feature request if you feel like your customization could be a benefit to the upstream project, and keep an eye open for future major releases of <code>web</code> since this API may change.</p>
+<ul>
+<li><code>styles</code> expects an array of objects that specify a <code>href</code> attribute, pointing to the path/URL of your stylesheet, like <code>[{ &quot;href&quot;: &quot;css/custom.css&quot; }]</code>.</li>
+<li><code>scripts</code> expects an array of objects that specify a <code>src</code> attribute, pointing to the path/URL of your script, and an optional <code>async</code> attribute (defaults to false), like <code>[{ &quot;src&quot;: &quot;js/custom.js&quot;, &quot;async&quot;: true }]</code>.</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h3 id="sentry"

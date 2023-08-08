@@ -12,7 +12,7 @@
 <meta name="generator" content="Hugo 0.115.2">
 
 
-  <meta name="description" content="Packaging Development Setup Prerequisites Installing Dependencies Starting the Server Building and Accessing Web Using Instant Hot-Reload via Vite Running Web with oC10 Packaging Web is using pnpm as package manager and vite as build tool. The latter is built on top of rollup and brings some additional features such as instant hot-reloading.
+  <meta name="description" content="Packaging Development Setup Prerequisites Installing Dependencies Starting the Server Building and Accessing Web Using Instant Hot-Reload via Vite Packaging Web is using pnpm as package manager and vite as build tool. The latter is built on top of rollup and brings some additional features such as instant hot-reloading.
 Development Setup Prerequisites docker docker-compose (if not already included in your docker installation) pnpm node If you’re not using Docker Desktop, you might have to modify your /etc/hosts and add 127." />
 
     <title>Tooling | ownCloud</title>
@@ -37,7 +37,7 @@ Development Setup Prerequisites docker docker-compose (if not already included i
     content="Tooling"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Packaging Development Setup Prerequisites Installing Dependencies Starting the Server Building and Accessing Web Using Instant Hot-Reload via Vite Running Web with oC10 Packaging Web is using pnpm as package manager and vite as build tool. The latter is built on top of rollup and brings some additional features such as instant hot-reloading.
+  <meta property="og:description" content="Packaging Development Setup Prerequisites Installing Dependencies Starting the Server Building and Accessing Web Using Instant Hot-Reload via Vite Packaging Web is using pnpm as package manager and vite as build tool. The latter is built on top of rollup and brings some additional features such as instant hot-reloading.
 Development Setup Prerequisites docker docker-compose (if not already included in your docker installation) pnpm node If you’re not using Docker Desktop, you might have to modify your /etc/hosts and add 127." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/clients/web/development/tooling/" />
@@ -55,7 +55,7 @@ Development Setup Prerequisites docker docker-compose (if not already included i
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Tooling" />
-  <meta name="twitter:description" content="Packaging Development Setup Prerequisites Installing Dependencies Starting the Server Building and Accessing Web Using Instant Hot-Reload via Vite Running Web with oC10 Packaging Web is using pnpm as package manager and vite as build tool. The latter is built on top of rollup and brings some additional features such as instant hot-reloading.
+  <meta name="twitter:description" content="Packaging Development Setup Prerequisites Installing Dependencies Starting the Server Building and Accessing Web Using Instant Hot-Reload via Vite Packaging Web is using pnpm as package manager and vite as build tool. The latter is built on top of rollup and brings some additional features such as instant hot-reloading.
 Development Setup Prerequisites docker docker-compose (if not already included in your docker installation) pnpm node If you’re not using Docker Desktop, you might have to modify your /etc/hosts and add 127." />
 
 
@@ -67,8 +67,8 @@ Development Setup Prerequisites docker docker-compose (if not already included i
       "name": "Tooling",
       "url" : "https://owncloud.dev/clients/web/development/tooling/",
       "headline": "Tooling",
-      "description": "Packaging Development Setup Prerequisites Installing Dependencies Starting the Server Building and Accessing Web Using Instant Hot-Reload via Vite Running Web with oC10 Packaging Web is using pnpm as package manager and vite as build tool. The latter is built on top of rollup and brings some additional features such as instant hot-reloading.\nDevelopment Setup Prerequisites docker docker-compose (if not already included in your docker installation) pnpm node If you’re not using Docker Desktop, you might have to modify your \/etc\/hosts and add 127.",
-      "wordCount" : "306",
+      "description": "Packaging Development Setup Prerequisites Installing Dependencies Starting the Server Building and Accessing Web Using Instant Hot-Reload via Vite Packaging Web is using pnpm as package manager and vite as build tool. The latter is built on top of rollup and brings some additional features such as instant hot-reloading.\nDevelopment Setup Prerequisites docker docker-compose (if not already included in your docker installation) pnpm node If you’re not using Docker Desktop, you might have to modify your \/etc\/hosts and add 127.",
+      "wordCount" : "267",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17770,7 +17770,6 @@ Copyright 2022 Fonticons, Inc.
             <li><a href="#starting-the-server">Starting the Server</a></li>
             <li><a href="#building-and-accessing-web">Building and Accessing Web</a></li>
             <li><a href="#using-instant-hot-reload-via-vite">Using Instant Hot-Reload via Vite</a></li>
-            <li><a href="#running-web-with-oc10">Running Web with oC10</a></li>
           </ul>
         </li>
       </ul></nav>
@@ -17839,8 +17838,8 @@ Copyright 2022 Fonticons, Inc.
         </a>
     </h3>
 </div>
-<p>You can start the server by running <code>docker-compose up ocis</code>.</p>
-<p>Note that the container needs a short while to start because it is waiting for <code>tika</code> to be initialized. This is the case as soon as the <code>tika-service</code> container has stopped running.</p>
+<p>Web supports oCIS and oC10 as servers. You can start both of them by running <code>docker-compose up ocis oc10</code>.</p>
+<p>Note that <code>ocis</code> needs a short while to start because it is waiting for <code>tika</code> to be initialized. This is the case as soon as the <code>tika-service</code> container has stopped running.</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="building-and-accessing-web"
     >
@@ -17854,7 +17853,10 @@ Copyright 2022 Fonticons, Inc.
 <p>Now you can access Web via <a
   class="gdoc-markdown__link"
   href="https://host.docker.internal:9200"
->https://host.docker.internal:9200</a>.</p>
+>https://host.docker.internal:9200</a> (oCIS) and <a
+  class="gdoc-markdown__link"
+  href="http://host.docker.internal:8080"
+>http://host.docker.internal:8080</a> (OC10).</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="using-instant-hot-reload-via-vite"
     >
@@ -17864,24 +17866,13 @@ Copyright 2022 Fonticons, Inc.
         </a>
     </h3>
 </div>
-<p>To work with instant hot-reloading, you can also build Web by running <code>pnpm vite</code>. The port to access Web is slightly different then: <a
+<p>To work with instant hot-reloading, you can also build Web by running <code>pnpm vite</code>. The ports to access Web are slightly different then: <a
   class="gdoc-markdown__link"
   href="https://host.docker.internal:9201"
->https://host.docker.internal:9201</a>. Also note that the initial page load may take a bit longer than usual. This is normal and to be expected.</p>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="running-web-with-oc10"
-    >
-        Running Web with oC10
-        <a data-clipboard-text="https://owncloud.dev/clients/web/development/tooling/#running-web-with-oc10" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Running Web with oC10" aria-label="Anchor to: Running Web with oC10" href="#running-web-with-oc10">
-            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div>
-<p>Older versions of Web (&lt; 7.1.0) also support running oC10 as server. The development setup is nearly the same as mentioned above, the only differences are:</p>
-<ul>
-<li>The server can be started via <code>docker-compose up oc10</code></li>
-<li>The server port is <code>8080</code> (<code>8081</code> when running Web via <code>pnpm vite:oc10</code>)</li>
-</ul>
+>https://host.docker.internal:9201</a> (oCIS) and <a
+  class="gdoc-markdown__link"
+  href="http://host.docker.internal:8081"
+>http://host.docker.internal:8081</a> (OC10). Also note that the initial page load may take a bit longer than usual. This is normal and to be expected.</p>
 
   </article>
 
