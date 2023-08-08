@@ -13,7 +13,7 @@
 
 
   <meta name="description" content="Abstract The userlog service is a mediator between the eventhistory service and clients who want to be informed about user related events. It provides an API to retrieve those.
-Table of Contents Prerequisites Storing Configuring Retrieving Subscribing Posting Deprovisioning Deleting Translations Translation Rules Example Yaml Config Prerequisites Running the userlog service without running the eventhistory service is not possible.
+Table of Contents Prerequisites Storing Configuring Retrieving Subscribing Posting Authentication Deprovisioning Deleting Translations Translation Rules Example Yaml Config Prerequisites Running the userlog service without running the eventhistory service is not possible.
 Storing The userlog service persists information via the configured store in USERLOG_STORE." />
 
     <title>Userlog | ownCloud</title>
@@ -39,7 +39,7 @@ Storing The userlog service persists information via the configured store in USE
   />
   <meta property="og:site_name" content="ownCloud" />
   <meta property="og:description" content="Abstract The userlog service is a mediator between the eventhistory service and clients who want to be informed about user related events. It provides an API to retrieve those.
-Table of Contents Prerequisites Storing Configuring Retrieving Subscribing Posting Deprovisioning Deleting Translations Translation Rules Example Yaml Config Prerequisites Running the userlog service without running the eventhistory service is not possible.
+Table of Contents Prerequisites Storing Configuring Retrieving Subscribing Posting Authentication Deprovisioning Deleting Translations Translation Rules Example Yaml Config Prerequisites Running the userlog service without running the eventhistory service is not possible.
 Storing The userlog service persists information via the configured store in USERLOG_STORE." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/userlog/" />
@@ -47,18 +47,18 @@ Storing The userlog service persists information via the configured store in USE
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-08-08T06:31:10+00:00"
+      content="2023-08-08T08:43:20+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-08-08T06:31:10+00:00"
+      content="2023-08-08T08:43:20+00:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Userlog" />
   <meta name="twitter:description" content="Abstract The userlog service is a mediator between the eventhistory service and clients who want to be informed about user related events. It provides an API to retrieve those.
-Table of Contents Prerequisites Storing Configuring Retrieving Subscribing Posting Deprovisioning Deleting Translations Translation Rules Example Yaml Config Prerequisites Running the userlog service without running the eventhistory service is not possible.
+Table of Contents Prerequisites Storing Configuring Retrieving Subscribing Posting Authentication Deprovisioning Deleting Translations Translation Rules Example Yaml Config Prerequisites Running the userlog service without running the eventhistory service is not possible.
 Storing The userlog service persists information via the configured store in USERLOG_STORE." />
 
 
@@ -70,8 +70,8 @@ Storing The userlog service persists information via the configured store in USE
       "name": "Userlog",
       "url" : "https://owncloud.dev/services/userlog/",
       "headline": "Userlog",
-      "description": "Abstract The userlog service is a mediator between the eventhistory service and clients who want to be informed about user related events. It provides an API to retrieve those.\nTable of Contents Prerequisites Storing Configuring Retrieving Subscribing Posting Deprovisioning Deleting Translations Translation Rules Example Yaml Config Prerequisites Running the userlog service without running the eventhistory service is not possible.\nStoring The userlog service persists information via the configured store in USERLOG_STORE.",
-      "wordCount" : "1811",
+      "description": "Abstract The userlog service is a mediator between the eventhistory service and clients who want to be informed about user related events. It provides an API to retrieve those.\nTable of Contents Prerequisites Storing Configuring Retrieving Subscribing Posting Authentication Deprovisioning Deleting Translations Translation Rules Example Yaml Config Prerequisites Running the userlog service without running the eventhistory service is not possible.\nStoring The userlog service persists information via the configured store in USERLOG_STORE.",
+      "wordCount" : "1882",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -80,9 +80,9 @@ Storing The userlog service persists information via the configured store in USE
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-08-08T06:31:10.73Z",
-      "datePublished": "2023-08-08T06:31:10.73Z",
-      "dateModified": "2023-08-08T06:31:10.73Z",
+      "dateCreated": "2023-08-08T08:43:20.28Z",
+      "datePublished": "2023-08-08T08:43:20.28Z",
+      "dateModified": "2023-08-08T08:43:20.28Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17795,6 +17795,10 @@ Copyright 2022 Fonticons, Inc.
 <ul>
 <li><a
   class="gdoc-markdown__link"
+  href="#authentication"
+>Authentication</a></li>
+<li><a
+  class="gdoc-markdown__link"
   href="#deprovisioning"
 >Deprovisioning</a></li>
 </ul>
@@ -17902,7 +17906,17 @@ Copyright 2022 Fonticons, Inc.
         </a>
     </h2>
 </div>
-<p>The userlog service is able to store global messages that will be displayed in the Web UI to all users. These messages can only be activated and deleted by users with the <code>admin</code> role but not by ordinary users. If a user deletes the message in the Web UI, it reappears on reload. Global messages use the endpoint <code>/ocs/v2.php/apps/notifications/api/v1/notifications/global</code> and are activated by sending a <code>POST</code> request. Note that sending another <code>POST</code> request of the same type overwrites the previous one. For the time being, only the type <code>deprovision</code> is supported.</p>
+<p>The userlog service is able to store global messages that will be displayed in the Web UI to all users. If a user deletes the message in the Web UI, it reappears on reload. Global messages use the endpoint <code>/ocs/v2.php/apps/notifications/api/v1/notifications/global</code> and are activated by sending a <code>POST</code> request. Note that sending another <code>POST</code> request of the same type overwrites the previous one. For the time being, only the type <code>deprovision</code> is supported.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="authentication"
+    >
+        Authentication
+        <a data-clipboard-text="https://owncloud.dev/services/userlog/#authentication" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Authentication" aria-label="Anchor to: Authentication" href="#authentication">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p><code>POST</code> and <code>DELETE</code> endpoints provide notifications to all users. Therefore only certain users can configure them. Two authentication methods for this endpoint are provided. Users with the <code>admin</code> role can always access these endpoints. Additionally, a static secret via the <code>USERLOG_GLOBAL_NOTIFICATIONS_SECRET</code> can be defined to enable access for users knowing this secret, which has to be sent with the header containing the request.</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="deprovisioning"
     >
@@ -17929,10 +17943,10 @@ Copyright 2022 Fonticons, Inc.
     </h2>
 </div>
 <p>To delete events for an user, use a <code>DELETE</code> request to <code>ocs/v2.php/apps/notifications/api/v1/notifications</code> containing the IDs to delete.</p>
-<p>Only users with the <code>admin</code> role can send a <code>DELETE</code> request to the <code>ocs/v2.php/apps/notifications/api/v1/notifications/global</code> endpoint to remove a global message, see the <a
+<p>Sending a <code>DELETE</code> request to the <code>ocs/v2.php/apps/notifications/api/v1/notifications/global</code> endpoint to remove a global message is a restricted action, see the <a
   class="gdoc-markdown__link"
-  href="#posting"
->Posting</a> section for more details.)</p>
+  href="#authentication"
+>Authentication</a> section for more details.)</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="translations"
     >
@@ -18045,6 +18059,7 @@ which is the source of the texts provided by the code.</li>
 </span><span class="lnt">57
 </span><span class="lnt">58
 </span><span class="lnt">59
+</span><span class="lnt">60
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># Autogenerated</span><span class="w">
@@ -18106,6 +18121,7 @@ which is the source of the texts provided by the code.</li>
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ttl</span><span class="p">:</span><span class="w"> </span><span class="l">336h0m0s</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">disable_sse</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">global_notifications_secret</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div></div>
@@ -18365,10 +18381,16 @@ which is the source of the texts provided by the code.</li>
 <td>The maximum quantity of items in the store. Only applies when store type &lsquo;ocmem&rsquo; is configured. Defaults to 512.</td>
 </tr>
 <tr>
-<td>USERLOG_DISABLE_SSE</td>
+<td>OCIS_DISABLE_SSE,USERLOG_DISABLE_SSE</td>
 <td>bool</td>
 <td>false</td>
 <td>Disables server-sent events (sse). When disabled, clients will no longer be able to connect to the sse endpoint.</td>
+</tr>
+<tr>
+<td>USERLOG_GLOBAL_NOTIFICATIONS_SECRET</td>
+<td>string</td>
+<td></td>
+<td>The secret to secure the global notifications endpoint. Only system admins and users knowing that secret can call the global notifications POST/DELETE endpoints.</td>
 </tr>
 </tbody>
 </table> </div>
