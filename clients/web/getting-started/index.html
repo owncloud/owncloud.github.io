@@ -71,7 +71,7 @@ Workaround One of our contributors has opened a PR to a dependency that prevents
       "url" : "https://owncloud.dev/clients/web/getting-started/",
       "headline": "Getting Started",
       "description": "Installation Docker Source Code Configuration Options Scripts and Styles Sentry Setting up backend and running Running Installation Docker Make sure to have Docker, Docker-Compose, Node.js and pnpm installed.\nThis setup currently doesn’t work on Windows out of the box.\nWorkaround One of our contributors has opened a PR to a dependency that prevents us from successfully bundling the frontend. Feel free to check out [his changes](https:\/\/github.com\/egoist\/rollup-plugin-postcss\/pull\/384) and build them locally if you absolutely want to work on Windows.",
-      "wordCount" : "1180",
+      "wordCount" : "1173",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17818,10 +17818,13 @@ Copyright 2022 Fonticons, Inc.
   class="gdoc-markdown__link"
   href="https://github.com/owncloud/web"
 >source code</a>, install the dependencies via <code>pnpm install</code> and bundle the frontend code by running <code>pnpm build:w</code>.</p>
-<p>Then, you can start the server by running <code>docker-compose up ocis</code> and access it via <a
+<p>Then, you can start the backends by running <code>docker-compose up oc10 ocis</code> and access them via <a
   class="gdoc-markdown__link"
   href="https://host.docker.internal:9200"
->https://host.docker.internal:9200</a>. If you&rsquo;re not using Docker Desktop, you might have to modify your <code>/etc/hosts</code> and add <code>127.0.0.1 host.docker.internal</code> to make the <code>host.docker.internal</code> links work.</p>
+>https://host.docker.internal:9200</a> (oCIS) and <a
+  class="gdoc-markdown__link"
+  href="http://host.docker.internal:8080"
+>http://host.docker.internal:8080</a> (OC10). If you&rsquo;re not using Docker Desktop, you might have to modify your <code>/etc/hosts</code> and add <code>127.0.0.1 host.docker.internal</code> to make the <code>host.docker.internal</code> links work.</p>
 <p>The bundled frontend code automatically gets mounted into the Docker containers, recompiles on changes and you can log in using the demo user (admin/admin) and take a look around!</p>
 <p>For more details on how to set up Web for development, please see <a
   class="gdoc-markdown__link"
@@ -17946,7 +17949,7 @@ hovers the row with his mouse. Defaults to <code>false</code>.</li>
 To enable sending data to a Sentry instance, you can use the following configuration keys:</p>
 <ul>
 <li><code>sentry.dsn</code> Should contain the DSN for your sentry project.</li>
-<li><code>sentry.environment</code>: Lets you specify the environment to use in Sentry. Defaults to <code>production</code>.</li>
+<li><code>sentry.environment</code>: Lets you specify the enviroment to use in Sentry. Defaults to <code>production</code>.</li>
 </ul>
 <p>Any other key under <code>sentry</code> will be forwarded to the Sentry initialization. You can find out more
 settings in the <a
@@ -17973,23 +17976,23 @@ integration libraries.</div>
         </a>
     </h2>
 </div>
-<p>Newer versions of Web (&gt; 7.0.2) can only run against <a
-  class="gdoc-markdown__link"
-  href="https://github.com/owncloud/ocis"
->oCIS</a>, whereas older versions (&lt; 7.1.0) can run against <a
+<p>Web can run against either <a
   class="gdoc-markdown__link"
   href="https://github.com/owncloud/core/"
->ownCloud 10</a> as well.
+>ownCloud 10</a> as backend or <a
+  class="gdoc-markdown__link"
+  href="https://github.com/owncloud/ocis"
+>oCIS</a>.
 Depending which one you chose, please check the matching section:</p>
 <ul>
 <li><a
   class="gdoc-markdown__link"
-  href="https://owncloud.dev/clients/web/backend-ocis/"
->Setting up with oCIS as backend</a></li>
-<li><a
-  class="gdoc-markdown__link"
   href="https://owncloud.dev/clients/web/backend-oc10/"
 >Setting up with ownCloud as backend</a></li>
+<li><a
+  class="gdoc-markdown__link"
+  href="https://owncloud.dev/clients/web/backend-ocis/"
+>Setting up with oCIS as backend</a></li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h2 id="running"
@@ -18003,12 +18006,12 @@ Depending which one you chose, please check the matching section:</p>
 <ul>
 <li><a
   class="gdoc-markdown__link"
-  href="https://owncloud.dev/clients/web/backend-ocis/#running-web"
->Running with oCIS as backend</a></li>
-<li><a
-  class="gdoc-markdown__link"
   href="https://owncloud.dev/clients/web/backend-oc10/#running-web"
 >Running with ownCloud as backend</a></li>
+<li><a
+  class="gdoc-markdown__link"
+  href="https://owncloud.dev/clients/web/backend-ocis/#running-web"
+>Running with oCIS as backend</a></li>
 </ul>
 
   </article>
