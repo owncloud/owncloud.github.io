@@ -68,7 +68,7 @@ All the steps below require you to have the web repo cloned locally and dependen
       "url" : "https://owncloud.dev/clients/web/testing/testing/",
       "headline": "Running tests",
       "description": "Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare \u0026 Start Web Run E2E Tests Options Acceptance Tests (Nightwatch) Preparation Prepare \u0026 Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.\nAll the steps below require you to have the web repo cloned locally and dependencies installed.",
-      "wordCount" : "830",
+      "wordCount" : "919",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17885,9 +17885,12 @@ which makes it easy to write tests, debug them and have them run cross-browser w
         </a>
     </h4>
 </div>
-<p>The following command will run all available e2e tests:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ pnpm test:e2e:cucumber <span class="s1">&#39;tests/e2e/cucumber/**/*.feature&#39;</span>
-</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
+<p>Depending on the backend you want to run the tests on, you can either run</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ pnpm test:e2e:cucumber <span class="s1">&#39;tests/e2e/cucumber/**/*[!.ocis].feature&#39;</span>
+</span></span></code></pre></div><p>for an <strong>ownCloud 10</strong> backend (filenames including <code>.ocis</code> are excluded) or</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ <span class="nv">OCIS</span><span class="o">=</span><span class="nb">true</span> pnpm test:e2e:cucumber <span class="s1">&#39;tests/e2e/cucumber/**/*[!.oc10].feature&#39;</span>
+</span></span></code></pre></div><p>for an <strong>oCIS</strong> backend (filenames including <code>.oc10</code> are excluded).</p>
+<div class="gdoc-page__anchorwrap">
     <h4 id="options"
     >
         Options
@@ -17896,9 +17899,10 @@ which makes it easy to write tests, debug them and have them run cross-browser w
         </a>
     </h4>
 </div>
-<p>To run a particular test, simply add the feature file and line number to the test command, e.g. <code>pnpm test:e2e:cucumber tests/e2e/cucumber/features/smoke/admin-settings/users.feature:84</code></p>
+<p>To run a particular test, simply add the feature file and line number to the test command, e.g. <code>pnpm test:e2e:cucumber tests/e2e/cucumber/shareFileJourney.feature:13</code></p>
 <p>Various options are available via ENV variables, e.g.</p>
 <ul>
+<li><code>OCIS=true</code> to run the E2E tests against an oCIS backend</li>
 <li><code>RETRY=n</code> to retry failures <code>n</code> times</li>
 <li><code>SLOW_MO=n</code> to slow the execution time by <code>n</code> milliseconds</li>
 <li><code>TIMEOUT=n</code> to set tests to timeout after <code>n</code> milliseconds</li>
@@ -17973,11 +17977,17 @@ to the nightwatch based e2e tests anymore.</p>
     </h4>
 </div>
 <p>The acceptance tests need additional docker containers to be running.</p>
+<p>For running the test with oc10 run</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ docker compose up oc10 vnc selenium middleware-oc10
+</span></span></code></pre></div><p>For running the test with ocis run</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ docker compose up ocis vnc selenium middleware-ocis
 </span></span></code></pre></div><p>and make sure there are no conflicting ports and everything runs smoothly. You can check if everything has worked by opening <a
   class="gdoc-markdown__link"
   href="https://host.docker.internal:9200"
->https://host.docker.internal:9200</a> and logging in using the demo user (admin/admin).</p>
+>https://host.docker.internal:9200</a> (oCIS) and <a
+  class="gdoc-markdown__link"
+  href="http://host.docker.internal:8080"
+>http://host.docker.internal:8080</a> (OC10) and logging in using the demo user (admin/admin).</p>
 <p>If you&rsquo;re using a M1 Mac, you need to use <code>seleniarm/standalone-chromium:4.4.0-20220814</code>for now. To do so, export <code>SELENIUM_IMAGE=seleniarm/standalone-chromium:4.4.0-20220814</code>.</p>
 <div class="gdoc-page__anchorwrap">
     <h4 id="run-acceptance-tests"
@@ -17996,9 +18006,12 @@ to the nightwatch based e2e tests anymore.</p>
 <p>Install all the test dependencies with <code>pnpm</code> command</p>
 </li>
 <li>
-<p>Run the tests</p>
+<p>Depending on the backend you&rsquo;re running the tests on, you can either run</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ pnpm test:acceptance:oc10 features/path/to/test
+</span></span></code></pre></div><p>for ownCloud 10.X or</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ pnpm test:acceptance:ocis features/path/to/test
-</span></span></code></pre></div></li>
+</span></span></code></pre></div><p>for oCIS acceptance tests.</p>
+</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h4 id="watch-the-test-run"
