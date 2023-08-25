@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/policies_configvars/",
       "headline": "Policies Configvars",
       "description": "Environment Variables Name Type Default Value Description POLICIES_GRPC_ADDR string 127.0.0.1:9125 The bind address of the GRPC service. POLICIES_DEBUG_ADDR string 127.0.0.1:9129 Bind address of the debug server, where metrics, health, config and debug endpoints will be exposed. POLICIES_DEBUG_TOKEN string Token to secure the metrics endpoint. POLICIES_DEBUG_PPROF bool false Enables pprof, which can be used for profiling. POLICIES_DEBUG_ZPAGES bool false Enables zpages, which can be used for collecting and viewing in-memory traces.",
-      "wordCount" : "437",
+      "wordCount" : "497",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17880,6 +17880,30 @@ Copyright 2022 Fonticons, Inc.
 <td>string</td>
 <td></td>
 <td>Defines the &lsquo;Complete Rules&rsquo; variable defined in the rego rule set this step uses for its evaluation. Defaults to deny if the variable was not found.</td>
+</tr>
+<tr>
+<td>OCIS_TRACING_ENABLED<br/>POLICIES_TRACING_ENABLED</td>
+<td>bool</td>
+<td>false</td>
+<td>Activates tracing.</td>
+</tr>
+<tr>
+<td>OCIS_TRACING_TYPE<br/>POLICIES_TRACING_TYPE</td>
+<td>string</td>
+<td></td>
+<td>The type of tracing. Defaults to &lsquo;&rsquo;, which is the same as &lsquo;jaeger&rsquo;. Allowed tracing types are &lsquo;jaeger&rsquo; and &rsquo;&rsquo; as of now.</td>
+</tr>
+<tr>
+<td>OCIS_TRACING_ENDPOINT<br/>POLICIES_TRACING_ENDPOINT</td>
+<td>string</td>
+<td></td>
+<td>The endpoint of the tracing agent.</td>
+</tr>
+<tr>
+<td>OCIS_TRACING_COLLECTOR<br/>POLICIES_TRACING_COLLECTOR</td>
+<td>string</td>
+<td></td>
+<td>The HTTP endpoint for sending spans directly to a collector, i.e. http://jaeger-collector:14268/api/traces. Only used if the tracing endpoint is unset.</td>
 </tr>
 </tbody>
 </table> </div>
