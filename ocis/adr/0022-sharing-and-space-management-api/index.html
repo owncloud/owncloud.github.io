@@ -12,11 +12,12 @@
 <meta name="generator" content="Hugo 0.115.2">
 
 
-  <meta name="description" content="Uploads are handled by a dedicated service that uses TUS.io for resumable uploads. When all bytes have been transferred the upload is finalized by making the file available in file listings and for download.
-The finalization may be asynchronous when mandatory workflow steps are involved.
-Legacy PUT upload %%{init: {&#34;sequence&#34;: { &#34;showSequenceNumbers&#34;:true, &#34;messageFontFamily&#34;:&#34;courier&#34;, &#34;messageFontWeight&#34;:&#34;normal&#34;, &#34;messageFontSize&#34;:&#34;11&#34;}}}%% %% font weight is a css bug: https://github.com/mermaid-js/mermaid/issues/1976 %% edit this diagram by pasting it into eg." />
+  <meta name="description" content="Status: accepted Deciders: @jammingben @butonic @theonering @kobergj @micbar Date: 2023-08-08 Technical Story: Public issue
+Context and Problem Statement In the early days of the rewrite of ownCloud it was an important goal to keep all important APIs compatible with ownCloud 10. Infinite Scale embraced that goal until version 1.0.0.
+After that first release, the focus changed.
+Infinite Scale started the spaces feature which brings a whole new set of APIs and concepts." />
 
-    <title>Upload processing | ownCloud</title>
+    <title>22. Sharing and Space Management API | ownCloud</title>
 
     <link
   rel="icon"
@@ -35,54 +36,48 @@ Legacy PUT upload %%{init: {&#34;sequence&#34;: { &#34;showSequenceNumbers&#34;:
     
   <meta
     property="og:title"
-    content="Upload processing"
+    content="22. Sharing and Space Management API"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Uploads are handled by a dedicated service that uses TUS.io for resumable uploads. When all bytes have been transferred the upload is finalized by making the file available in file listings and for download.
-The finalization may be asynchronous when mandatory workflow steps are involved.
-Legacy PUT upload %%{init: {&#34;sequence&#34;: { &#34;showSequenceNumbers&#34;:true, &#34;messageFontFamily&#34;:&#34;courier&#34;, &#34;messageFontWeight&#34;:&#34;normal&#34;, &#34;messageFontSize&#34;:&#34;11&#34;}}}%% %% font weight is a css bug: https://github.com/mermaid-js/mermaid/issues/1976 %% edit this diagram by pasting it into eg." />
+  <meta property="og:description" content="Status: accepted Deciders: @jammingben @butonic @theonering @kobergj @micbar Date: 2023-08-08 Technical Story: Public issue
+Context and Problem Statement In the early days of the rewrite of ownCloud it was an important goal to keep all important APIs compatible with ownCloud 10. Infinite Scale embraced that goal until version 1.0.0.
+After that first release, the focus changed.
+Infinite Scale started the spaces feature which brings a whole new set of APIs and concepts." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://owncloud.dev/architecture/upload-processing/" />
+<meta property="og:url" content="https://owncloud.dev/ocis/adr/0022-sharing-and-space-management-api/" />
 
-<meta property="article:section" content="Architecture" />
-    <meta
-      property="article:published_time"
-      content="2022-07-06T12:47:00+01:00"
-    />
-    <meta
-      property="article:modified_time"
-      content="2022-07-06T12:47:00+01:00"
-    />
+<meta property="article:section" content="Ocis" />
 
 
   <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Upload processing" />
-  <meta name="twitter:description" content="Uploads are handled by a dedicated service that uses TUS.io for resumable uploads. When all bytes have been transferred the upload is finalized by making the file available in file listings and for download.
-The finalization may be asynchronous when mandatory workflow steps are involved.
-Legacy PUT upload %%{init: {&#34;sequence&#34;: { &#34;showSequenceNumbers&#34;:true, &#34;messageFontFamily&#34;:&#34;courier&#34;, &#34;messageFontWeight&#34;:&#34;normal&#34;, &#34;messageFontSize&#34;:&#34;11&#34;}}}%% %% font weight is a css bug: https://github.com/mermaid-js/mermaid/issues/1976 %% edit this diagram by pasting it into eg." />
+<meta name="twitter:title" content="22. Sharing and Space Management API" />
+  <meta name="twitter:description" content="Status: accepted Deciders: @jammingben @butonic @theonering @kobergj @micbar Date: 2023-08-08 Technical Story: Public issue
+Context and Problem Statement In the early days of the rewrite of ownCloud it was an important goal to keep all important APIs compatible with ownCloud 10. Infinite Scale embraced that goal until version 1.0.0.
+After that first release, the focus changed.
+Infinite Scale started the spaces feature which brings a whole new set of APIs and concepts." />
 
 
   <script type="application/ld+json">
   {
       "@context": "http://schema.org",
       "@type": "TechArticle",
-      "articleSection": "Architecture",
-      "name": "Upload processing",
-      "url" : "https://owncloud.dev/architecture/upload-processing/",
-      "headline": "Upload processing",
-      "description": "Uploads are handled by a dedicated service that uses TUS.io for resumable uploads. When all bytes have been transferred the upload is finalized by making the file available in file listings and for download.\nThe finalization may be asynchronous when mandatory workflow steps are involved.\nLegacy PUT upload %%{init: {\u0022sequence\u0022: { \u0022showSequenceNumbers\u0022:true, \u0022messageFontFamily\u0022:\u0022courier\u0022, \u0022messageFontWeight\u0022:\u0022normal\u0022, \u0022messageFontSize\u0022:\u002211\u0022}}}%% %% font weight is a css bug: https:\/\/github.com\/mermaid-js\/mermaid\/issues\/1976 %% edit this diagram by pasting it into eg.",
-      "wordCount" : "574",
+      "articleSection": "Ocis",
+      "name": "22. Sharing and Space Management API",
+      "url" : "https://owncloud.dev/ocis/adr/0022-sharing-and-space-management-api/",
+      "headline": "22. Sharing and Space Management API",
+      "description": "Status: accepted Deciders: @jammingben @butonic @theonering @kobergj @micbar Date: 2023-08-08 Technical Story: Public issue\nContext and Problem Statement In the early days of the rewrite of ownCloud it was an important goal to keep all important APIs compatible with ownCloud 10. Infinite Scale embraced that goal until version 1.0.0.\nAfter that first release, the focus changed.\nInfinite Scale started the spaces feature which brings a whole new set of APIs and concepts.",
+      "wordCount" : "592",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://owncloud.dev/architecture/upload-processing/"
+          "@id": "https://owncloud.dev/ocis/adr/0022-sharing-and-space-management-api/"
       },
       "copyrightHolder" : "ownCloud",
-      "copyrightYear" : "2022",
-      "dateCreated": "2022-07-06T12:47:00.00Z",
-      "datePublished": "2022-07-06T12:47:00.00Z",
-      "dateModified": "2022-07-06T12:47:00.00Z",
+      "copyrightYear" : "0001",
+      "dateCreated": "0001-01-01T00:00:00.00Z",
+      "datePublished": "0001-01-01T00:00:00.00Z",
+      "dateModified": "0001-01-01T00:00:00.00Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -160,7 +155,7 @@ Legacy PUT upload %%{init: {&#34;sequence&#34;: { &#34;showSequenceNumbers&#34;:
   href="/custom.css"
   media="all"
 />
-  <link href="https://owncloud.dev/architecture/upload-processing/" rel="canonical" type="text/html" />
+  <link href="https://owncloud.dev/ocis/adr/0022-sharing-and-space-management-api/" rel="canonical" type="text/html" />
 
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
 
@@ -7359,7 +7354,7 @@ Copyright 2022 Fonticons, Inc.
               type="checkbox"
               
                 class="gdoc-nav__toggle" id="navtree-307b2de1"
-                
+                checked
               
             />
             <label
@@ -7425,7 +7420,7 @@ Copyright 2022 Fonticons, Inc.
                 <span class="flex">
                   <a
                     href="/ocis/adr/0022-sharing-and-space-management-api/"
-                    class="gdoc-nav__entry"
+                    class="gdoc-nav__entry is-active"
                   >
                     22. Sharing and Space Management API
                   </a>
@@ -17675,7 +17670,7 @@ Copyright 2022 Fonticons, Inc.
                 <span class="flex">
                   <a
                     href="/architecture/upload-processing/"
-                    class="gdoc-nav__entry is-active"
+                    class="gdoc-nav__entry"
                   >
                     Upload processing
                   </a>
@@ -17735,7 +17730,7 @@ Copyright 2022 Fonticons, Inc.
   
     justify-between
   
-  
+  hidden-mobile
   "
   itemprop="breadcrumb"
 >
@@ -17761,7 +17756,15 @@ Copyright 2022 Fonticons, Inc.
     
   
   
-    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/architecture/' href='/architecture/'><span itemprop='name'>Architecture</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Upload processing</span><meta itemprop='position' content='3' /></li>
+    
+    
+    
+    
+  
+  
+    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/adr/' href='/ocis/adr/'><span itemprop='name'>Architecture Decisions</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>22. Sharing and Space Management API</span><meta itemprop='position' content='4' /></li>
+  
+
   
 
   
@@ -17772,17 +17775,6 @@ Copyright 2022 Fonticons, Inc.
     </div>
   
   
-    <div>
-      <span class="editpage">
-        <svg class="gdoc-icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
-        <a
-          href="https://github.com/owncloud/ocis/edit/master/docs/architecture/upload-processing.md"
-        >
-          Edit page
-        </a>
-      </span>
-    </div>
-  
 </div>
 
 
@@ -17790,157 +17782,180 @@ Copyright 2022 Fonticons, Inc.
   <article
     class="gdoc-markdown gdoc-markdown__align--left"
   >
-    <h1>Upload processing</h1>
-    <p>Uploads are handled by a dedicated service that uses TUS.io for resumable uploads. When all bytes have been transferred the upload is finalized by making the file available in file listings and for download.</p>
-<p>The finalization may be asynchronous when mandatory workflow steps are involved.</p>
+    <h1>22. Sharing and Space Management API</h1>
+    <ul>
+<li>Status: accepted</li>
+<li>Deciders: @jammingben @butonic @theonering @kobergj @micbar</li>
+<li>Date: 2023-08-08</li>
+</ul>
+<p>Technical Story: <a
+  class="gdoc-markdown__link"
+  href="https://github.com/owncloud/ocis/issues/6993"
+>Public issue</a></p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="legacy-put-upload"
+    <h2 id="context-and-problem-statement"
     >
-        Legacy PUT upload
-        <a data-clipboard-text="https://owncloud.dev/architecture/upload-processing/#legacy-put-upload" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Legacy PUT upload" aria-label="Anchor to: Legacy PUT upload" href="#legacy-put-upload">
+        Context and Problem Statement
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0022-sharing-and-space-management-api/#context-and-problem-statement" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Context and Problem Statement" aria-label="Anchor to: Context and Problem Statement" href="#context-and-problem-statement">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div>
-
-
-  
-  <script defer src="/js/mermaid-793cb063.bundle.min.js"></script>
-  
-
-
-
-<pre class="gdoc-mermaid mermaid text-center">
-
-%%{init: {"sequence": { "showSequenceNumbers":true, "messageFontFamily":"courier", "messageFontWeight":"normal", "messageFontSize":"11"}}}%%
-%% font weight is a css bug: https://github.com/mermaid-js/mermaid/issues/1976
-%% edit this diagram by pasting it into eg. https://mermaid.live
-sequenceDiagram
-    participant Client
-    participant ocdav
-    participant storageprovider
-    participant dataprovider
-
-    Client->>+ocdav: PUT /dav/spaces/{spaceid}/newfile.bin
-    ocdav->>+storageprovider: InitiateFileUpload
-    storageprovider-->>-ocdav: OK, Protocol simple, UploadEndpoint: /data, Token: {jwt}
-    Note right of ocdav: The {jwt} contains the internal actual target, eg.:<br>http://localhost:9158/data/simple/91cc9882-db71-4b37-b694-a522850fcee1
-    ocdav->>+dataprovider: PUT /data<br>X-Reva-Transfer: {jwt}
-    dataprovider-->>-ocdav: 201 Created
-    ocdav-->>-Client: 201 Created
-
-</pre>
-
+<p>In the early days of the rewrite of ownCloud it was an important goal to keep all important APIs compatible with ownCloud 10. Infinite Scale embraced that goal until version 1.0.0.</p>
+<p>After that first release, the focus changed.</p>
+<p>Infinite Scale started the spaces feature which brings a whole new set of APIs and concepts. We made the conscious decision to keep the sharing API as it was, live with its shortcomings and create workarounds to support spaces. We have come a long way so far. Now we need to move on. The Web Client has made the decision to drop the support of ownCloud 10 and keep version 7.0 alive for ownCloud 10 to keep the easy migration path intact.</p>
+<p>The desktop and mobile client platforms were suffering from poor support from the server and can now move forward with a new API implementation. By using openApi 3 and all the needed tooling around it developing the LibreGraph specification, documentaion and SDKs, we now feel confident to move on.</p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="tus-upload"
+    <h2 id="decision-drivers"
     >
-        TUS upload
-        <a data-clipboard-text="https://owncloud.dev/architecture/upload-processing/#tus-upload" class="gdoc-page__anchor clip flex align-center" title="Anchor to: TUS upload" aria-label="Anchor to: TUS upload" href="#tus-upload">
+        Decision Drivers
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0022-sharing-and-space-management-api/#decision-drivers" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Decision Drivers" aria-label="Anchor to: Decision Drivers" href="#decision-drivers">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div>
-
-
-
-
-<pre class="gdoc-mermaid mermaid text-center">
-
-%%{init: {"sequence": { "showSequenceNumbers":true, "messageFontFamily":"courier", "messageFontWeight":"normal", "messageFontSize":"11"}}}%%
-%% font weight is a css bug: https://github.com/mermaid-js/mermaid/issues/1976
-%% edit this diagram by pasting it into eg. https://mermaid.live
-sequenceDiagram
-    participant Client
-    participant ocdav
-    participant storageprovider
-    participant datagateway
-    participant dataprovider
-
-
-    Client->>+ocdav: POST /dav/spaces/{spaceid}<br>Upload-Metadata: {base64 encoded filename etc}<br>TUS-Resumable: 1.0.0
-    ocdav->>+storageprovider: InitiateFileUpload
-    storageprovider-->>-ocdav: OK, Protocol tus, UploadEndpoint: /data, Token: {jwt}
-    Note right of ocdav: The {jwt} contains the internal actual target, eg.:<br>http://localhost:9158/data/tus/24d893f5-b942-4bc7-9fb0-28f49f980160
-    ocdav-->>-Client: 201 Created<br>Location: /data/{jwt}<br>TUS-Resumable: 1.0.0
-
-    Client->>+datagateway: PATCH /data/{jwt}<br>TUS-Resumable: 1.0.0<br>Upload-Offset: 0
-    Note over datagateway: unwrap the {jwt} target
-    datagateway->>+dataprovider: PATCH /data/tus/24d893f5-b942-4bc7-9fb0-28f49f980160<br>X-Reva-Transfer: {jwt}
-    Note over dataprovider: storage driver<br>handles request
-    dataprovider-->>-datagateway: 204 No Content<br>TUS-Resumable: 1.0.0<br>Upload-Offset: 363976
-    datagateway-->>-Client: 204 No Content<br>TUS-Resumable: 1.0.0<br>Upload-Offset: 363976
-
-</pre>
-
+<ul>
+<li>The Path based nature of the OCS API lacks spaces support</li>
+<li>The permissions bitmask is no longer working when using sharing roles</li>
+<li>We want to support server announced sharing roles which are different per instance or scope</li>
+<li>We need to get rid of the currently hardcoded sharing roles in our clients</li>
+<li>New sharing roles and permissions are needed to support secure view and other new features</li>
+<li>Space Memberships are not shares and need to have different semantics</li>
+<li>Elevation of permissions in subfolders or full denials should be possible without creating a new share</li>
+<li>Third party integrations need generated SDKs in different languages to speed up the development</li>
+</ul>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="tus-upload-with-async-postprocessing"
+    <h2 id="considered-options"
     >
-        TUS upload with async postprocessing
-        <a data-clipboard-text="https://owncloud.dev/architecture/upload-processing/#tus-upload-with-async-postprocessing" class="gdoc-page__anchor clip flex align-center" title="Anchor to: TUS upload with async postprocessing" aria-label="Anchor to: TUS upload with async postprocessing" href="#tus-upload-with-async-postprocessing">
+        Considered Options
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0022-sharing-and-space-management-api/#considered-options" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Considered Options" aria-label="Anchor to: Considered Options" href="#considered-options">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div>
-
-
-
-
-<pre class="gdoc-mermaid mermaid text-center">
-
-%%{init: {"sequence": { "showSequenceNumbers":true, "messageFontFamily":"courier", "messageFontWeight":"normal", "messageFontSize":"11"}}}%%
-%% font weight is a css bug: https://github.com/mermaid-js/mermaid/issues/1976
-%% edit this diagram by pasting it into eg. https://mermaid.live
-sequenceDiagram
-    participant Client
-    participant ocdav
-    participant storageprovider
-    participant datagateway
-    participant dataprovider
-    participant nats
-
-
-    Client->>+ocdav: POST /dav/spaces/{spaceid}<br>Upload-Metadata: {base64 encoded filename etc}<br>TUS-Resumable: 1.0.0
-    ocdav->>+storageprovider: InitiateFileUpload
-    storageprovider-->>-ocdav: OK, Protocol tus, UploadEndpoint: /data, Token: {jwt}
-    Note right of ocdav: The {jwt} contains the internal actual target, eg.:<br>http://localhost:9158/data/tus/24d893f5-b942-4bc7-9fb0-28f49f980160
-    ocdav-->>-Client: 201 Created<br>Location: /data/{jwt}<br>TUS-Resumable: 1.0.0
-
-    Client->>+datagateway: PATCH /data/{jwt}<br>TUS-Resumable: 1.0.0<br>Upload-Offset: 0
-
-    Note over datagateway: unwrap the {jwt} target
-    datagateway->>+dataprovider: PATCH /data/tus/24d893f5-b942-4bc7-9fb0-28f49f980160<br>X-Reva-Transfer: {jwt}
-    Note over dataprovider: storage driver<br>handles request
-    dataprovider-)nats: emit all-bytes-received event
-    nats-)processing: all-bytes-received({uploadid}) event
-    Note over dataprovider: TODO: A lot of time may pass here, we could use<br> the `Prefer: respond-async` header to return early<br>with a 202 Accepted status and a Location header<br>to a websocket endpoint
-    alt success
-    processing-)nats: emit processing-finished({uploadid}) event
-        nats-)dataprovider: processing-finished({uploadid}) event
-        dataprovider-->>-datagateway: 204 No Content<br>TUS-Resumable: 1.0.0<br>Upload-Offset: 363976
-        datagateway-->>-Client: 204 No Content<br>TUS-Resumable: 1.0.0<br>Upload-Offset: 363976
-    else failure
-        activate dataprovider
-        activate datagateway
-        processing-)nats: emit processing-aborted({uploadid}) event
-        nats-)dataprovider: processing-aborted({uploadid}) event
-        Note over dataprovider: FIXME: What HTTP status code should we report?<br>422 Unprocessable Content is just a proposal, see<br>https://httpwg.org/specs/rfc9110.html#status.422
-        dataprovider-->>-datagateway: 422 Unprocessable Content<br>TUS-Resumable: 1.0.0<br>Upload-Offset: 363976
-        datagateway-->>-Client: 422 Unprocessable Content<br>TUS-Resumable: 1.0.0<br>Upload-Offset: 363976
-    end
-
-</pre>
-
+<ul>
+<li><a
+  class="gdoc-markdown__link"
+  href="#new-ocs-api-version"
+>New OCS Api Version</a></li>
+<li><a
+  class="gdoc-markdown__link"
+  href="#sharing-via-libregraph"
+>Sharing via LibreGraph</a></li>
+</ul>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="async-tus-upload-with-postprocessing"
+    <h2 id="decision-outcome"
     >
-        Async TUS upload with postprocessing
-        <a data-clipboard-text="https://owncloud.dev/architecture/upload-processing/#async-tus-upload-with-postprocessing" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Async TUS upload with postprocessing" aria-label="Anchor to: Async TUS upload with postprocessing" href="#async-tus-upload-with-postprocessing">
+        Decision Outcome
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0022-sharing-and-space-management-api/#decision-outcome" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Decision Outcome" aria-label="Anchor to: Decision Outcome" href="#decision-outcome">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div>
-<p>This might be a TUS extension or a misunderstanding on our side of what tus can do for us. Clients should send a <code>Prefer: respond-async</code> header to allow the server to return early when postprocessing might take longer. The PATCH requests can then return status <code>202 Accepted</code> and a <code>Location</code> header to a websocket that clients can use to track the processing / upload progress.</p>
-<p>TODO there is a conflict with the TUS.io POST request with the creation extension, as that also returns a <code>Location</code> header which carries the upload URL. We would need another header to transport the websocket location. Maybe <code>Websocket-Location</code> or <code>Progress-Location</code>?</p>
+<p>Chosen option: &ldquo;<a
+  class="gdoc-markdown__link"
+  href="#sharing-via-libregraph"
+>LibreGraph</a>&rdquo;</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="positive-consequences"
+    >
+        Positive Consequences:
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0022-sharing-and-space-management-api/#positive-consequences" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Positive Consequences:" aria-label="Anchor to: Positive Consequences:" href="#positive-consequences">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<ul>
+<li>We can create a new clean API which fits the spaces concept</li>
+<li>LibreGraph embraces OData which is a known API pattern</li>
+<li>Sharing will be integrated in the existing SDKs and documentation</li>
+<li>Removing the OCS Api reduces complexity</li>
+<li>Removing the OCS Api makes the clients codebases smaller and removes manually maintained parts of the SDKs</li>
+<li>The extra error handling for the OCS API can be dropped from our clients</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="negative-consequences"
+    >
+        Negative Consequences:
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0022-sharing-and-space-management-api/#negative-consequences" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Negative Consequences:" aria-label="Anchor to: Negative Consequences:" href="#negative-consequences">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<ul>
+<li>We need to deprecate and remove the OCS API</li>
+<li>Existing third party integrations need to do some refactoring</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="pros-and-cons-of-the-options"
+    >
+        Pros and Cons of the Options
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0022-sharing-and-space-management-api/#pros-and-cons-of-the-options" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Pros and Cons of the Options" aria-label="Anchor to: Pros and Cons of the Options" href="#pros-and-cons-of-the-options">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="new-ocs-api-version"
+    >
+        New OCS Api Version
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0022-sharing-and-space-management-api/#new-ocs-api-version" class="gdoc-page__anchor clip flex align-center" title="Anchor to: New OCS Api Version" aria-label="Anchor to: New OCS Api Version" href="#new-ocs-api-version">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>To overcome the limitations of the OCS 2.0 API we could create a new major version with the spaces concept in mind. This would give us the opportunity to create a new openApi Spec.</p>
+<ul>
+<li>Good, because the workarounds from version 2.0 could be dropped</li>
+<li>Bad, because we would need to deprecate the version 2.0</li>
+<li>Bad, because we would need to maintain a separate specification / repository</li>
+<li>Bad, because it would create the need to use two different SDKs in our clients</li>
+<li>Bad, because we would need to implement query parameters and filters on our own</li>
+<li>Bad, because sharing information could not be included in the spaces API via queries or filters</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="sharing-via-libregraph"
+    >
+        Sharing via LibreGraph
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0022-sharing-and-space-management-api/#sharing-via-libregraph" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Sharing via LibreGraph" aria-label="Anchor to: Sharing via LibreGraph" href="#sharing-via-libregraph">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>Integrate Sharing into the <a
+  class="gdoc-markdown__link"
+  href="https://github.com/owncloud/libre-graph-api"
+>LibreGraph API</a> by using the already existing toolchain and documentation flows.</p>
+<ul>
+<li>Good, because that reduces the number of SDKs</li>
+<li>Good, because it reduces the number of APIs</li>
+<li>Good, because spaces and shares can be used together in queries and filters</li>
+<li>Good, because we would use the existing OData pattern</li>
+<li>Bad, because we need to deprecate the OCS API</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="links----optional---"
+    >
+        Links <!-- optional -->
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0022-sharing-and-space-management-api/#links----optional---" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Links " aria-label="Anchor to: Links " href="#links----optional---">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<ul>
+<li><a
+  class="gdoc-markdown__link"
+  href="https://github.com/owncloud/libre-graph-api"
+>LibreGraph API</a></li>
+<li><a
+  class="gdoc-markdown__link"
+  href="https://www.odata.org/documentation/"
+>OData</a></li>
+<li><a
+  class="gdoc-markdown__link"
+  href="https://www.openapis.org/"
+>OpenAPI Standard</a></li>
+</ul>
 
   </article>
 
