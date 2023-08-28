@@ -13,7 +13,7 @@
 
 
   <meta name="description" content="Deprecating Environment Variables Example What happens next? Deprecating Environment Variables Sometimes it is necessary to deprecate environment to align their naming with conventions. We therefore added annotations to automate the documentation process. It is necessary to know when the variable is going to be deprecated, when it is going to be removed and why.
-Example // Nats is the nats config type Nats struct { Host string `yaml:&#34;host&#34; env:&#34;NATS_HOST_ADDRESS;NATS_NATS_HOST&#34; desc:&#34;Bind address." />
+Example // Notifications defines the config options for the notifications service. type Notifications struct { RevaGateway string `yaml:&#34;reva_gateway&#34; env:&#34;OCIS_REVA_GATEWAY;REVA_GATEWAY&#34; desc:&#34;CS3 gateway used to look up user metadata&#34; deprecationVersion:&#34;3." />
 
     <title>Deprecating Variables | ownCloud</title>
 
@@ -38,7 +38,7 @@ Example // Nats is the nats config type Nats struct { Host string `yaml:&#34;hos
   />
   <meta property="og:site_name" content="ownCloud" />
   <meta property="og:description" content="Deprecating Environment Variables Example What happens next? Deprecating Environment Variables Sometimes it is necessary to deprecate environment to align their naming with conventions. We therefore added annotations to automate the documentation process. It is necessary to know when the variable is going to be deprecated, when it is going to be removed and why.
-Example // Nats is the nats config type Nats struct { Host string `yaml:&#34;host&#34; env:&#34;NATS_HOST_ADDRESS;NATS_NATS_HOST&#34; desc:&#34;Bind address." />
+Example // Notifications defines the config options for the notifications service. type Notifications struct { RevaGateway string `yaml:&#34;reva_gateway&#34; env:&#34;OCIS_REVA_GATEWAY;REVA_GATEWAY&#34; desc:&#34;CS3 gateway used to look up user metadata&#34; deprecationVersion:&#34;3." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/ocis/development/deprecating-variables/" />
 
@@ -56,7 +56,7 @@ Example // Nats is the nats config type Nats struct { Host string `yaml:&#34;hos
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Deprecating Variables" />
   <meta name="twitter:description" content="Deprecating Environment Variables Example What happens next? Deprecating Environment Variables Sometimes it is necessary to deprecate environment to align their naming with conventions. We therefore added annotations to automate the documentation process. It is necessary to know when the variable is going to be deprecated, when it is going to be removed and why.
-Example // Nats is the nats config type Nats struct { Host string `yaml:&#34;host&#34; env:&#34;NATS_HOST_ADDRESS;NATS_NATS_HOST&#34; desc:&#34;Bind address." />
+Example // Notifications defines the config options for the notifications service. type Notifications struct { RevaGateway string `yaml:&#34;reva_gateway&#34; env:&#34;OCIS_REVA_GATEWAY;REVA_GATEWAY&#34; desc:&#34;CS3 gateway used to look up user metadata&#34; deprecationVersion:&#34;3." />
 
 
   <script type="application/ld+json">
@@ -67,8 +67,8 @@ Example // Nats is the nats config type Nats struct { Host string `yaml:&#34;hos
       "name": "Deprecating Variables",
       "url" : "https://owncloud.dev/ocis/development/deprecating-variables/",
       "headline": "Deprecating Variables",
-      "description": "Deprecating Environment Variables Example What happens next? Deprecating Environment Variables Sometimes it is necessary to deprecate environment to align their naming with conventions. We therefore added annotations to automate the documentation process. It is necessary to know when the variable is going to be deprecated, when it is going to be removed and why.\nExample \/\/ Nats is the nats config type Nats struct { Host string \u0060yaml:\u0022host\u0022 env:\u0022NATS_HOST_ADDRESS;NATS_NATS_HOST\u0022 desc:\u0022Bind address.",
-      "wordCount" : "213",
+      "description": "Deprecating Environment Variables Example What happens next? Deprecating Environment Variables Sometimes it is necessary to deprecate environment to align their naming with conventions. We therefore added annotations to automate the documentation process. It is necessary to know when the variable is going to be deprecated, when it is going to be removed and why.\nExample \/\/ Notifications defines the config options for the notifications service. type Notifications struct { RevaGateway string \u0060yaml:\u0022reva_gateway\u0022 env:\u0022OCIS_REVA_GATEWAY;REVA_GATEWAY\u0022 desc:\u0022CS3 gateway used to look up user metadata\u0022 deprecationVersion:\u00223.",
+      "wordCount" : "233",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17772,10 +17772,7 @@ Copyright 2022 Fonticons, Inc.
         </a>
     </h2>
 </div>
-<p>Sometimes it is necessary to deprecate environment to align their naming with
-conventions. We therefore added annotations to automate the documentation
-process. It is necessary to know when the variable is going to be deprecated,
-when it is going to be removed and why.</p>
+<p>Sometimes it is necessary to deprecate environment to align their naming with conventions. We therefore added annotations to automate the documentation process. It is necessary to know when the variable is going to be deprecated, when it is going to be removed and why.</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="example"
     >
@@ -17785,9 +17782,9 @@ when it is going to be removed and why.</p>
         </a>
     </h3>
 </div>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-golang" data-lang="golang"><span class="line"><span class="cl"><span class="c1">// Nats is the nats config
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">Nats</span> <span class="kd">struct</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl"><span class="nx">Host</span> <span class="kt">string</span> <span class="s">`yaml:&#34;host&#34; env:&#34;NATS_HOST_ADDRESS;NATS_NATS_HOST&#34; desc:&#34;Bind address.&#34; deprecationVersion:&#34;1.6.2&#34; removalVersion:&#34;1.7.5&#34; deprecationInfo:&#34;NATS_NATS_HOST is confusing&#34; deprecationReplacement:&#34;NATS_HOST_ADDRESS&#34;`</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-golang" data-lang="golang"><span class="line"><span class="cl"><span class="c1">// Notifications defines the config options for the notifications service.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">Notifications</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="nx">RevaGateway</span> <span class="kt">string</span> <span class="s">`yaml:&#34;reva_gateway&#34; env:&#34;OCIS_REVA_GATEWAY;REVA_GATEWAY&#34; desc:&#34;CS3 gateway used to look up user metadata&#34; deprecationVersion:&#34;3.0&#34; removalVersion:&#34;4.0.0&#34; deprecationInfo:&#34;REVA_GATEWAY changing name for consistency&#34; deprecationReplacement:&#34;OCIS_REVA_GATEWAY&#34;`</span>
 </span></span><span class="line"><span class="cl"><span class="o">...</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>There are four different annotation variables that need to be filled:</p>
@@ -17803,11 +17800,11 @@ when it is going to be removed and why.</p>
 <tr>
 <td>deprecationVersion</td>
 <td>The version the variable will be deprecated</td>
-<td>semver (e.g. 1.6.2)</td>
+<td>semver (e.g. 3.0)</td>
 </tr>
 <tr>
 <td>removalVersion</td>
-<td>The version the variable will be removed from the codebase. Note that according to semver, a removal can only be made in a major version change</td>
+<td>The version the variable will be removed from the codebase. Note that according to semver, a removal <strong>MUST NOT</strong> be made in a minor or patch version change, but only in a major release</td>
 <td>semver (e.g. 4.0.0)</td>
 </tr>
 <tr>
