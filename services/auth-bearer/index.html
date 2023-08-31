@@ -13,7 +13,7 @@
 
 
   <meta name="description" content="Abstract The oCIS Auth Bearer service communicates with the configured OpenID Connect identity provider to authenticate requests. OpenID Connect is the default authentication mechanism for all clients: web, desktop and mobile. Basic auth is only used for testing and has to be explicity enabled.
-Table of Contents Built in OpenID Connect identity provider Scalability Example Yaml Config Built in OpenID Connect identity provider A default oCIS deployment will start a built in OpenID Connect identity provider but can be configured to use an external one as well." />
+Table of Contents The auth Service Family Built in OpenID Connect Identity Provider Scalability Example Yaml Config The auth Service Family ocis uses serveral authentication services for different use cases." />
 
     <title>Auth-Bearer | ownCloud</title>
 
@@ -38,25 +38,25 @@ Table of Contents Built in OpenID Connect identity provider Scalability Example 
   />
   <meta property="og:site_name" content="ownCloud" />
   <meta property="og:description" content="Abstract The oCIS Auth Bearer service communicates with the configured OpenID Connect identity provider to authenticate requests. OpenID Connect is the default authentication mechanism for all clients: web, desktop and mobile. Basic auth is only used for testing and has to be explicity enabled.
-Table of Contents Built in OpenID Connect identity provider Scalability Example Yaml Config Built in OpenID Connect identity provider A default oCIS deployment will start a built in OpenID Connect identity provider but can be configured to use an external one as well." />
+Table of Contents The auth Service Family Built in OpenID Connect Identity Provider Scalability Example Yaml Config The auth Service Family ocis uses serveral authentication services for different use cases." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/auth-bearer/" />
 
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-08-31T09:23:29+00:00"
+      content="2023-08-31T11:17:46+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-08-31T09:23:29+00:00"
+      content="2023-08-31T11:17:46+00:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Auth-Bearer" />
   <meta name="twitter:description" content="Abstract The oCIS Auth Bearer service communicates with the configured OpenID Connect identity provider to authenticate requests. OpenID Connect is the default authentication mechanism for all clients: web, desktop and mobile. Basic auth is only used for testing and has to be explicity enabled.
-Table of Contents Built in OpenID Connect identity provider Scalability Example Yaml Config Built in OpenID Connect identity provider A default oCIS deployment will start a built in OpenID Connect identity provider but can be configured to use an external one as well." />
+Table of Contents The auth Service Family Built in OpenID Connect Identity Provider Scalability Example Yaml Config The auth Service Family ocis uses serveral authentication services for different use cases." />
 
 
   <script type="application/ld+json">
@@ -67,8 +67,8 @@ Table of Contents Built in OpenID Connect identity provider Scalability Example 
       "name": "Auth-Bearer",
       "url" : "https://owncloud.dev/services/auth-bearer/",
       "headline": "Auth-Bearer",
-      "description": "Abstract The oCIS Auth Bearer service communicates with the configured OpenID Connect identity provider to authenticate requests. OpenID Connect is the default authentication mechanism for all clients: web, desktop and mobile. Basic auth is only used for testing and has to be explicity enabled.\nTable of Contents Built in OpenID Connect identity provider Scalability Example Yaml Config Built in OpenID Connect identity provider A default oCIS deployment will start a built in OpenID Connect identity provider but can be configured to use an external one as well.",
-      "wordCount" : "646",
+      "description": "Abstract The oCIS Auth Bearer service communicates with the configured OpenID Connect identity provider to authenticate requests. OpenID Connect is the default authentication mechanism for all clients: web, desktop and mobile. Basic auth is only used for testing and has to be explicity enabled.\nTable of Contents The auth Service Family Built in OpenID Connect Identity Provider Scalability Example Yaml Config The auth Service Family ocis uses serveral authentication services for different use cases.",
+      "wordCount" : "714",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ Table of Contents Built in OpenID Connect identity provider Scalability Example 
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-08-31T09:23:29.88Z",
-      "datePublished": "2023-08-31T09:23:29.88Z",
-      "dateModified": "2023-08-31T09:23:29.88Z",
+      "dateCreated": "2023-08-31T11:17:46.66Z",
+      "datePublished": "2023-08-31T11:17:46.66Z",
+      "dateModified": "2023-08-31T11:17:46.66Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17911,8 +17911,12 @@ Copyright 2022 Fonticons, Inc.
 <ul>
 <li><a
   class="gdoc-markdown__link"
+  href="#the-%60auth%60-service-family"
+>The <code>auth</code> Service Family</a></li>
+<li><a
+  class="gdoc-markdown__link"
   href="#built-in-openid-connect-identity-provider"
->Built in OpenID Connect identity provider</a></li>
+>Built in OpenID Connect Identity Provider</a></li>
 <li><a
   class="gdoc-markdown__link"
   href="#scalability"
@@ -17923,10 +17927,26 @@ Copyright 2022 Fonticons, Inc.
 >Example Yaml Config</a></li>
 </ul>
 <div class="gdoc-page__anchorwrap">
+    <h2 id="the-auth-service-family"
+    >
+        The <code>auth</code> Service Family
+        <a data-clipboard-text="https://owncloud.dev/services/auth-bearer/#the-auth-service-family" class="gdoc-page__anchor clip flex align-center" title="Anchor to: The auth Service Family" aria-label="Anchor to: The auth Service Family" href="#the-auth-service-family">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>ocis uses serveral authentication services for different use cases. All services that start with <code>auth-</code> are part of the authentication service family. Each member authenticates requests with different scopes. As of now, these services exist:</p>
+<ul>
+<li><code>auth-basic</code> handles basic authentication</li>
+<li><code>auth-bearer</code> handles oidc authentication</li>
+<li><code>auth-machine</code> handles interservice authentication when a user is impersonated</li>
+<li><code>auth-service</code> handles interservice authentication when using service accounts</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
     <h2 id="built-in-openid-connect-identity-provider"
     >
-        Built in OpenID Connect identity provider
-        <a data-clipboard-text="https://owncloud.dev/services/auth-bearer/#built-in-openid-connect-identity-provider" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Built in OpenID Connect identity provider" aria-label="Anchor to: Built in OpenID Connect identity provider" href="#built-in-openid-connect-identity-provider">
+        Built in OpenID Connect Identity Provider
+        <a data-clipboard-text="https://owncloud.dev/services/auth-bearer/#built-in-openid-connect-identity-provider" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Built in OpenID Connect Identity Provider" aria-label="Anchor to: Built in OpenID Connect Identity Provider" href="#built-in-openid-connect-identity-provider">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
