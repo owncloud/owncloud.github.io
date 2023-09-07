@@ -13,9 +13,8 @@
 
 
   <meta name="description" content="Abstract The frontend service translates various owncloud related HTTP APIs to CS3 requests.
-Table of Contents Endpoints Overview appprovider archiver datagateway ocs Sharing Scalability Define Read-Only Attributes Caching Example Yaml Config Endpoints Overview Currently, the frontend service handles requests for three functionalities, which are appprovider, archiver, datagateway and ocs.
-appprovider The appprovider endpoint, by default /app, forwards HTTP requests to the CS3 App Registry API
-archiver The archiver endpoint, by default /archiver, implements zip and tar download for collections of files." />
+Table of Contents Endpoints Overview appprovider archiver datagateway ocs Sharing Scalability Define Read-Only Attributes Caching Event Handler Auto-Accept Shares Example Yaml Config Endpoints Overview Currently, the frontend service handles requests for three functionalities, which are appprovider, archiver, datagateway and ocs.
+appprovider The appprovider endpoint, by default /app, forwards HTTP requests to the CS3 App Registry API" />
 
     <title>Frontend | ownCloud</title>
 
@@ -40,29 +39,27 @@ archiver The archiver endpoint, by default /archiver, implements zip and tar dow
   />
   <meta property="og:site_name" content="ownCloud" />
   <meta property="og:description" content="Abstract The frontend service translates various owncloud related HTTP APIs to CS3 requests.
-Table of Contents Endpoints Overview appprovider archiver datagateway ocs Sharing Scalability Define Read-Only Attributes Caching Example Yaml Config Endpoints Overview Currently, the frontend service handles requests for three functionalities, which are appprovider, archiver, datagateway and ocs.
-appprovider The appprovider endpoint, by default /app, forwards HTTP requests to the CS3 App Registry API
-archiver The archiver endpoint, by default /archiver, implements zip and tar download for collections of files." />
+Table of Contents Endpoints Overview appprovider archiver datagateway ocs Sharing Scalability Define Read-Only Attributes Caching Event Handler Auto-Accept Shares Example Yaml Config Endpoints Overview Currently, the frontend service handles requests for three functionalities, which are appprovider, archiver, datagateway and ocs.
+appprovider The appprovider endpoint, by default /app, forwards HTTP requests to the CS3 App Registry API" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/frontend/" />
 
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-09-07T00:06:12+00:00"
+      content="2023-09-07T07:08:09+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-09-07T00:06:12+00:00"
+      content="2023-09-07T07:08:09+00:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Frontend" />
   <meta name="twitter:description" content="Abstract The frontend service translates various owncloud related HTTP APIs to CS3 requests.
-Table of Contents Endpoints Overview appprovider archiver datagateway ocs Sharing Scalability Define Read-Only Attributes Caching Example Yaml Config Endpoints Overview Currently, the frontend service handles requests for three functionalities, which are appprovider, archiver, datagateway and ocs.
-appprovider The appprovider endpoint, by default /app, forwards HTTP requests to the CS3 App Registry API
-archiver The archiver endpoint, by default /archiver, implements zip and tar download for collections of files." />
+Table of Contents Endpoints Overview appprovider archiver datagateway ocs Sharing Scalability Define Read-Only Attributes Caching Event Handler Auto-Accept Shares Example Yaml Config Endpoints Overview Currently, the frontend service handles requests for three functionalities, which are appprovider, archiver, datagateway and ocs.
+appprovider The appprovider endpoint, by default /app, forwards HTTP requests to the CS3 App Registry API" />
 
 
   <script type="application/ld+json">
@@ -73,8 +70,8 @@ archiver The archiver endpoint, by default /archiver, implements zip and tar dow
       "name": "Frontend",
       "url" : "https://owncloud.dev/services/frontend/",
       "headline": "Frontend",
-      "description": "Abstract The frontend service translates various owncloud related HTTP APIs to CS3 requests.\nTable of Contents Endpoints Overview appprovider archiver datagateway ocs Sharing Scalability Define Read-Only Attributes Caching Example Yaml Config Endpoints Overview Currently, the frontend service handles requests for three functionalities, which are appprovider, archiver, datagateway and ocs.\nappprovider The appprovider endpoint, by default \/app, forwards HTTP requests to the CS3 App Registry API\narchiver The archiver endpoint, by default \/archiver, implements zip and tar download for collections of files.",
-      "wordCount" : "2143",
+      "description": "Abstract The frontend service translates various owncloud related HTTP APIs to CS3 requests.\nTable of Contents Endpoints Overview appprovider archiver datagateway ocs Sharing Scalability Define Read-Only Attributes Caching Event Handler Auto-Accept Shares Example Yaml Config Endpoints Overview Currently, the frontend service handles requests for three functionalities, which are appprovider, archiver, datagateway and ocs.\nappprovider The appprovider endpoint, by default \/app, forwards HTTP requests to the CS3 App Registry API",
+      "wordCount" : "2391",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -83,9 +80,9 @@ archiver The archiver endpoint, by default /archiver, implements zip and tar dow
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-09-07T00:06:12.92Z",
-      "datePublished": "2023-09-07T00:06:12.92Z",
-      "dateModified": "2023-09-07T00:06:12.92Z",
+      "dateCreated": "2023-09-07T07:08:09.69Z",
+      "datePublished": "2023-09-07T07:08:09.69Z",
+      "dateModified": "2023-09-07T07:08:09.69Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -15537,7 +15534,7 @@ Copyright 2022 Fonticons, Inc.
                     href="/services/ocs/"
                     class="gdoc-nav__entry"
                   >
-                    OCS
+                    OCS Service
                   </a>
                 </span>
               
@@ -17956,6 +17953,17 @@ Copyright 2022 Fonticons, Inc.
 >Caching</a></li>
 <li><a
   class="gdoc-markdown__link"
+  href="#event-handler"
+>Event Handler</a>
+<ul>
+<li><a
+  class="gdoc-markdown__link"
+  href="#auto-accept-shares"
+>Auto-Accept Shares</a></li>
+</ul>
+</li>
+<li><a
+  class="gdoc-markdown__link"
   href="#example-yaml-config"
 >Example Yaml Config</a></li>
 </ul>
@@ -18082,6 +18090,26 @@ Copyright 2022 Fonticons, Inc.
 <li>The frontend service can be scaled if not using <code>in-memory</code> stores and the stores are configured identically over all instances.</li>
 <li>When using <code>redis-sentinel</code>, the Redis master to use is configured via <code>FRONTEND_OCS_STAT_CACHE_STORE_NODES</code> in the form of <code>&lt;sentinel-host&gt;:&lt;sentinel-port&gt;/&lt;redis-master&gt;</code> like <code>10.10.0.200:26379/mymaster</code>.</li>
 </ol>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="event-handler"
+    >
+        Event Handler
+        <a data-clipboard-text="https://owncloud.dev/services/frontend/#event-handler" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Event Handler" aria-label="Anchor to: Event Handler" href="#event-handler">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>The <code>frontend</code> service contains an eventhandler for handling <code>ocs</code> related events. As of now, it only listens to the <code>ShareCreated</code> event.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="auto-accept-shares"
+    >
+        Auto-Accept Shares
+        <a data-clipboard-text="https://owncloud.dev/services/frontend/#auto-accept-shares" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Auto-Accept Shares" aria-label="Anchor to: Auto-Accept Shares" href="#auto-accept-shares">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>When setting the <code>FRONTEND_AUTO_ACCEPT_SHARES</code> to <code>true</code>, all incoming shares will be accepted automatically. Users can overwrite this setting individually in their profile.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="example-yaml-config"
     >
@@ -18221,6 +18249,17 @@ Copyright 2022 Fonticons, Inc.
 </span><span class="lnt">119
 </span><span class="lnt">120
 </span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># Autogenerated</span><span class="w">
@@ -18344,6 +18383,17 @@ Copyright 2022 Fonticons, Inc.
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">middleware</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">auth</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">credentials_by_user_agent</span><span class="p">:</span><span class="w"> </span>{}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">events</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="m">127.0.0.1</span><span class="p">:</span><span class="m">9233</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="l">ocis-cluster</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tls_insecure</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tls_root_ca_certificate</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">enable_tls</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">grpc_client_tls</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">auto_accept_shares</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">service_account</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">service_account_id</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">service_account_secret</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div></div>
@@ -18757,6 +18807,54 @@ Copyright 2022 Fonticons, Inc.
 <td>bool</td>
 <td>false</td>
 <td></td>
+</tr>
+<tr>
+<td>OCIS_EVENTS_ENDPOINT<br/>FRONTEND_EVENTS_ENDPOINT</td>
+<td>string</td>
+<td>127.0.0.1:9233</td>
+<td>The address of the event system. The event system is the message queuing service. It is used as message broker for the microservice architecture.</td>
+</tr>
+<tr>
+<td>OCIS_EVENTS_CLUSTER<br/>FRONTEND_EVENTS_CLUSTER</td>
+<td>string</td>
+<td>ocis-cluster</td>
+<td>The clusterID of the event system. The event system is the message queuing service. It is used as message broker for the microservice architecture. Mandatory when using NATS as event system.</td>
+</tr>
+<tr>
+<td>OCIS_INSECURE<br/>FRONTEND_EVENTS_TLS_INSECURE</td>
+<td>bool</td>
+<td>false</td>
+<td>Whether to verify the server TLS certificates.</td>
+</tr>
+<tr>
+<td>FRONTEND_EVENTS_TLS_ROOT_CA_CERTIFICATE<br/>OCS_EVENTS_TLS_ROOT_CA_CERTIFICATE</td>
+<td>string</td>
+<td></td>
+<td>The root CA certificate used to validate the server&rsquo;s TLS certificate. If provided NOTIFICATIONS_EVENTS_TLS_INSECURE will be seen as false.</td>
+</tr>
+<tr>
+<td>OCIS_EVENTS_ENABLE_TLS<br/>FRONTEND_EVENTS_ENABLE_TLS</td>
+<td>bool</td>
+<td>false</td>
+<td>Enable TLS for the connection to the events broker. The events broker is the ocis service which receives and delivers events between the services..</td>
+</tr>
+<tr>
+<td>FRONTEND_AUTO_ACCEPT_SHARES</td>
+<td>bool</td>
+<td>false</td>
+<td>Defines if shares should be auto accepted by default. Users can change this setting individually in their profile.</td>
+</tr>
+<tr>
+<td>OCIS_SERVICE_ACCOUNT_ID<br/>FRONTEND_SERVICE_ACCOUNT_ID</td>
+<td>string</td>
+<td></td>
+<td>The ID of the service account the service should use. See the &lsquo;auth-service&rsquo; service description for more details.</td>
+</tr>
+<tr>
+<td>OCIS_SERVICE_ACCOUNT_SECRET<br/>FRONTEND_SERVICE_ACCOUNT_SECRET</td>
+<td>string</td>
+<td></td>
+<td>The service account secret.</td>
 </tr>
 </tbody>
 </table> </div>
