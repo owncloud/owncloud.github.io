@@ -13,8 +13,7 @@
 
 
   <meta name="description" content="Abstract The userlog service is a mediator between the eventhistory service and clients who want to be informed about user related events. It provides an API to retrieve those.
-Table of Contents Prerequisites Storing Configuring Retrieving Posting Authentication Deprovisioning Deleting Translations Translation Rules Example Yaml Config Prerequisites Running the userlog service without running the eventhistory service is not possible.
-Storing The userlog service persists information via the configured store in USERLOG_STORE." />
+Table of Contents The Log Service Ecosystem Prerequisites Storing Configuring Retrieving Posting Authentication Deprovisioning Deleting Translations Translation Rules Example Yaml Config The Log Service Ecosystem Log services like the userlog, clientlog and sse are responsible for composing notifications for a certain audience." />
 
     <title>Userlog | ownCloud</title>
 
@@ -39,27 +38,25 @@ Storing The userlog service persists information via the configured store in USE
   />
   <meta property="og:site_name" content="ownCloud" />
   <meta property="og:description" content="Abstract The userlog service is a mediator between the eventhistory service and clients who want to be informed about user related events. It provides an API to retrieve those.
-Table of Contents Prerequisites Storing Configuring Retrieving Posting Authentication Deprovisioning Deleting Translations Translation Rules Example Yaml Config Prerequisites Running the userlog service without running the eventhistory service is not possible.
-Storing The userlog service persists information via the configured store in USERLOG_STORE." />
+Table of Contents The Log Service Ecosystem Prerequisites Storing Configuring Retrieving Posting Authentication Deprovisioning Deleting Translations Translation Rules Example Yaml Config The Log Service Ecosystem Log services like the userlog, clientlog and sse are responsible for composing notifications for a certain audience." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/userlog/" />
 
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-09-07T11:00:17+00:00"
+      content="2023-09-07T13:26:46+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-09-07T11:00:17+00:00"
+      content="2023-09-07T13:26:46+00:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Userlog" />
   <meta name="twitter:description" content="Abstract The userlog service is a mediator between the eventhistory service and clients who want to be informed about user related events. It provides an API to retrieve those.
-Table of Contents Prerequisites Storing Configuring Retrieving Posting Authentication Deprovisioning Deleting Translations Translation Rules Example Yaml Config Prerequisites Running the userlog service without running the eventhistory service is not possible.
-Storing The userlog service persists information via the configured store in USERLOG_STORE." />
+Table of Contents The Log Service Ecosystem Prerequisites Storing Configuring Retrieving Posting Authentication Deprovisioning Deleting Translations Translation Rules Example Yaml Config The Log Service Ecosystem Log services like the userlog, clientlog and sse are responsible for composing notifications for a certain audience." />
 
 
   <script type="application/ld+json">
@@ -70,8 +67,8 @@ Storing The userlog service persists information via the configured store in USE
       "name": "Userlog",
       "url" : "https://owncloud.dev/services/userlog/",
       "headline": "Userlog",
-      "description": "Abstract The userlog service is a mediator between the eventhistory service and clients who want to be informed about user related events. It provides an API to retrieve those.\nTable of Contents Prerequisites Storing Configuring Retrieving Posting Authentication Deprovisioning Deleting Translations Translation Rules Example Yaml Config Prerequisites Running the userlog service without running the eventhistory service is not possible.\nStoring The userlog service persists information via the configured store in USERLOG_STORE.",
-      "wordCount" : "1822",
+      "description": "Abstract The userlog service is a mediator between the eventhistory service and clients who want to be informed about user related events. It provides an API to retrieve those.\nTable of Contents The Log Service Ecosystem Prerequisites Storing Configuring Retrieving Posting Authentication Deprovisioning Deleting Translations Translation Rules Example Yaml Config The Log Service Ecosystem Log services like the userlog, clientlog and sse are responsible for composing notifications for a certain audience.",
+      "wordCount" : "1874",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -80,9 +77,9 @@ Storing The userlog service persists information via the configured store in USE
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-09-07T11:00:17.96Z",
-      "datePublished": "2023-09-07T11:00:17.96Z",
-      "dateModified": "2023-09-07T11:00:17.96Z",
+      "dateCreated": "2023-09-07T13:26:46.80Z",
+      "datePublished": "2023-09-07T13:26:46.80Z",
+      "dateModified": "2023-09-07T13:26:46.80Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17914,6 +17911,10 @@ Copyright 2022 Fonticons, Inc.
 <ul>
 <li><a
   class="gdoc-markdown__link"
+  href="#the-log-service-ecosystem"
+>The Log Service Ecosystem</a></li>
+<li><a
+  class="gdoc-markdown__link"
   href="#prerequisites"
 >Prerequisites</a></li>
 <li><a
@@ -17962,6 +17963,21 @@ Copyright 2022 Fonticons, Inc.
   class="gdoc-markdown__link"
   href="#example-yaml-config"
 >Example Yaml Config</a></li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="the-log-service-ecosystem"
+    >
+        The Log Service Ecosystem
+        <a data-clipboard-text="https://owncloud.dev/services/userlog/#the-log-service-ecosystem" class="gdoc-page__anchor clip flex align-center" title="Anchor to: The Log Service Ecosystem" aria-label="Anchor to: The Log Service Ecosystem" href="#the-log-service-ecosystem">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>Log services like the <code>userlog</code>, <code>clientlog</code> and <code>sse</code> are responsible for composing notifications for a certain audience.</p>
+<ul>
+<li>The <code>userlog</code> service translates and adjusts messages to be human readable.</li>
+<li>The <code>clientlog</code> service composes machine readable messages, so clients can act without the need to query the server.</li>
+<li>The <code>sse</code> service is only responsible for sending these messages. It does not care about their form or language.</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h2 id="prerequisites"
@@ -18189,7 +18205,6 @@ which is the source of the texts provided by the code.</li>
 </span><span class="lnt">60
 </span><span class="lnt">61
 </span><span class="lnt">62
-</span><span class="lnt">63
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># Autogenerated</span><span class="w">
@@ -18234,7 +18249,6 @@ which is the source of the texts provided by the code.</li>
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">grpc_client_tls</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">token_manager</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">jwt_secret</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">machine_auth_api_key</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">reva_gateway</span><span class="p">:</span><span class="w"> </span><span class="l">com.owncloud.api.gateway</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">translation_path</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">events</span><span class="p">:</span><span class="w">
@@ -18428,12 +18442,6 @@ which is the source of the texts provided by the code.</li>
 <td>string</td>
 <td></td>
 <td>The secret to mint and validate jwt tokens.</td>
-</tr>
-<tr>
-<td>OCIS_MACHINE_AUTH_API_KEY<br/>USERLOG_MACHINE_AUTH_API_KEY</td>
-<td>string</td>
-<td></td>
-<td>Machine auth API key used to validate internal requests necessary to access resources from other services.</td>
 </tr>
 <tr>
 <td>OCIS_REVA_GATEWAY</td>
