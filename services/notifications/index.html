@@ -45,11 +45,11 @@ Table of Contents Email Notification Templates Templates subfolder hierarchy Tra
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-10-05T09:35:09+00:00"
+      content="2023-10-05T10:38:09+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-10-05T09:35:09+00:00"
+      content="2023-10-05T10:38:09+00:00"
     />
 
 
@@ -68,7 +68,7 @@ Table of Contents Email Notification Templates Templates subfolder hierarchy Tra
       "url" : "https://owncloud.dev/services/notifications/",
       "headline": "Notification",
       "description": "Abstract The notification service is responsible for sending emails to users informing them about events that happened. To do this, it hooks into the event system and listens for certain events that the users need to be informed about.\nTable of Contents Email Notification Templates Templates subfolder hierarchy Translations Translation Rules Example Yaml Config Email Notification Templates The notifications service has embedded email text and html body templates. Email templates can use the placeholders {{ .",
-      "wordCount" : "1394",
+      "wordCount" : "1410",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ Table of Contents Email Notification Templates Templates subfolder hierarchy Tra
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-10-05T09:35:09.11Z",
-      "datePublished": "2023-10-05T09:35:09.11Z",
-      "dateModified": "2023-10-05T09:35:09.11Z",
+      "dateCreated": "2023-10-05T10:38:09.28Z",
+      "datePublished": "2023-10-05T10:38:09.28Z",
+      "dateModified": "2023-10-05T10:38:09.28Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -18192,12 +18192,12 @@ which is the source of the texts provided by the code.</li>
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">notifications</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">SMTP</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">smtp_host</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">smtp_port</span><span class="p">:</span><span class="w"> </span><span class="m">1025</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">smtp_sender</span><span class="p">:</span><span class="w"> </span><span class="l">ownCloud &lt;noreply@example.com&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">smtp_port</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">smtp_sender</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">smtp_username</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">smtp_password</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">insecure</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">smtp_authentication</span><span class="p">:</span><span class="w"> </span><span class="l">none</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">smtp_authentication</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">smtp_encryption</span><span class="p">:</span><span class="w"> </span><span class="l">none</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">events</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="m">127.0.0.1</span><span class="p">:</span><span class="m">9233</span><span class="w">
@@ -18332,14 +18332,17 @@ which is the source of the texts provided by the code.</li>
 <tr>
 <td>NOTIFICATIONS_SMTP_PORT</td>
 <td>int</td>
-<td>1025</td>
+<td>0</td>
 <td>Port of the SMTP host to connect to.</td>
 </tr>
 <tr>
 <td>NOTIFICATIONS_SMTP_SENDER</td>
 <td>string</td>
-<td>ownCloud &lt;noreply@example.com&gt;</td>
-<td>Sender address of emails that will be sent.</td>
+<td></td>
+<td>Sender address of emails that will be sent (e.g. &lsquo;ownCloud <a
+  class="gdoc-markdown__link"
+  href="mailto:noreply@example.com"
+>noreply@example.com</a>&rsquo;.</td>
 </tr>
 <tr>
 <td>NOTIFICATIONS_SMTP_USERNAME</td>
@@ -18362,8 +18365,8 @@ which is the source of the texts provided by the code.</li>
 <tr>
 <td>NOTIFICATIONS_SMTP_AUTHENTICATION</td>
 <td>string</td>
-<td>none</td>
-<td>Authentication method for the SMTP communication. Possible values are &rsquo;login&rsquo;, &lsquo;plain&rsquo;, &lsquo;crammd5&rsquo;, &rsquo;none&rsquo;</td>
+<td></td>
+<td>Authentication method for the SMTP communication. Possible values are &rsquo;login&rsquo;, &lsquo;plain&rsquo;, &lsquo;crammd5&rsquo;, &rsquo;none&rsquo; or &lsquo;auto&rsquo;. If set to &lsquo;auto&rsquo; or unset, the authentication method is automatically negotiated with the server.</td>
 </tr>
 <tr>
 <td>NOTIFICATIONS_SMTP_ENCRYPTION</td>
