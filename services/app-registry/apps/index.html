@@ -71,7 +71,7 @@ App provider capability The capabilities endpoint (e.g. https://localhost:9200/o
       "url" : "https://owncloud.dev/services/app-registry/apps/",
       "headline": "Apps",
       "description": "oCIS is all about files. But most of the time you want to do something with files that is beyond the basic upload, download and share behavior. Therefore, oCIS has a concept for apps, that can handle specific file types, so-called mime types.\nApp provider capability The capabilities endpoint (e.g. https:\/\/localhost:9200\/ocs\/v1.php\/cloud\/capabilities?format=json) gives you following capabilities which are relevant for the app provider:\n{ \u0022ocs\u0022: { \u0022data\u0022: { \u0022capabilities\u0022: { \u0022files\u0022: { \u0022app_providers\u0022: [ { \u0022enabled\u0022: true, \u0022version\u0022: \u00221.",
-      "wordCount" : "1595",
+      "wordCount" : "1501",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17639,34 +17639,17 @@ Copyright 2022 Fonticons, Inc.
     </h3>
 </div>
 <p>The CS3org WOPI server app driver is included in oCIS by default. It needs at least one WOPI compliant app (e.g. Collabora, OnlyOffice or Microsoft Online Server) or a CS3org WOPI bridge supported app (CodiMD or Etherpad) and the CS3org WOPI server.</p>
-<p>Here is a closer look at the configuration of the actual app provider in a docker-compose example (see also <a
+<p>The configuration of the actual app provider in a docker-compose example can be found in the <a
   class="gdoc-markdown__link"
   href="https://github.com/owncloud/ocis/blob/master/deployments/examples/ocis_wopi/docker-compose.yml"
->full example</a>):</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">services</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ocis</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">owncloud/ocis:latest</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">...</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="l">...</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">GATEWAY_GRPC_ADDR</span><span class="p">:</span><span class="w"> </span><span class="m">0.0.0.0</span><span class="p">:</span><span class="m">9142</span><span class="w"> </span><span class="c"># make the REVA gateway accessible to the app drivers</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ocis-appdriver-collabora</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">owncloud/ocis:latest</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">storage-app-provider server</span><span class="w"> </span><span class="c"># start only the app driver</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">STORAGE_GATEWAY_ENDPOINT</span><span class="p">:</span><span class="w"> </span><span class="l">ocis:9142</span><span class="w"> </span><span class="c"># oCIS gateway endpoint</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">APP_PROVIDER_GRPC_ADDR</span><span class="p">:</span><span class="w"> </span><span class="m">0.0.0.0</span><span class="p">:</span><span class="m">9164</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">APP_PROVIDER_EXTERNAL_ADDR</span><span class="p">:</span><span class="w"> </span><span class="l">ocis-appdriver-collabora:9164</span><span class="w"> </span><span class="c"># how oCIS can reach this app driver</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">OCIS_JWT_SECRET</span><span class="p">:</span><span class="w"> </span><span class="l">ocis-jwt-secret</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">APP_PROVIDER_DRIVER</span><span class="p">:</span><span class="w"> </span><span class="l">wopi</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">APP_PROVIDER_WOPI_DRIVER_APP_NAME</span><span class="p">:</span><span class="w"> </span><span class="l">Collabora</span><span class="w"> </span><span class="c"># will be used as name for this app</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">APP_PROVIDER_WOPI_DRIVER_APP_ICON_URI</span><span class="p">:</span><span class="w"> </span><span class="l">https://www.collaboraoffice.com/wp-content/uploads/2019/01/CP-icon.png</span><span class="w"> </span><span class="c"># will be used as icon for this app</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">APP_PROVIDER_WOPI_DRIVER_APP_URL</span><span class="p">:</span><span class="w"> </span><span class="l">https://collabora.owncloud.test</span><span class="w"> </span><span class="c"># endpoint of collabora</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">APP_PROVIDER_WOPI_DRIVER_INSECURE</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">APP_PROVIDER_WOPI_DRIVER_IOP_SECRET</span><span class="p">:</span><span class="w"> </span><span class="l">wopi-iop-secret</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">APP_PROVIDER_WOPI_DRIVER_WOPI_URL</span><span class="p">:</span><span class="w"> </span><span class="l">https://wopiserver.owncloud.test</span><span class="w"> </span><span class="c"># endpoint of the CS3org WOPI server</span><span class="w">
-</span></span></span></code></pre></div>
+>full example</a> especially <a
+  class="gdoc-markdown__link"
+  href="https://github.com/owncloud/ocis/blob/master/deployments/examples/ocis_wopi/docker-compose.yml#L102-L128"
+>ocis-appprovider-collabora</a> and <a
+  class="gdoc-markdown__link"
+  href="https://github.com/owncloud/ocis/blob/master/deployments/examples/ocis_wopi/docker-compose.yml#L130-L161"
+>ocis-appprovider-onlyoffice</a></p>
+
   </article>
 
 
