@@ -45,11 +45,11 @@ Metadata: all data that describes the file like Name, Size, MimeType, Tags and M
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-11-03T09:28:20+00:00"
+      content="2023-11-03T13:50:29+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-11-03T09:28:20+00:00"
+      content="2023-11-03T13:50:29+00:00"
     />
 
 
@@ -68,7 +68,7 @@ Metadata: all data that describes the file like Name, Size, MimeType, Tags and M
       "url" : "https://owncloud.dev/services/search/",
       "headline": "Search",
       "description": "Abstract The search service is responsible for metadata and content extraction, stores that data as index and makes it searchable. The following clarifies the extraction terms metadata and content:\nMetadata: all data that describes the file like Name, Size, MimeType, Tags and Mtime. Content: all data that relates to content of the file like words, geo data, exif data etc. Table of Contents General Considerations Search engines Query language Extraction Engines Content Extraction Basic Extractor Tika Extractor Search Functionality Indexing Search State Changes which Trigger Indexing Resource Trashed Resource Deleted Resource Restored Resource Moved Folder Created File Created File Version Restored Resource Tag Added Resource Tag Removed File Uploaded - Synchronous File Uploaded - Asynchronous Manually Trigger Re-Indexing a Space Notes Example Yaml Config General Considerations To use the search service, an event system needs to be configured for all services like NATS, which is shipped and preconfigured.",
-      "wordCount" : "2163",
+      "wordCount" : "2173",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ Metadata: all data that describes the file like Name, Size, MimeType, Tags and M
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-11-03T09:28:20.97Z",
-      "datePublished": "2023-11-03T09:28:20.97Z",
-      "dateModified": "2023-11-03T09:28:20.97Z",
+      "dateCreated": "2023-11-03T13:50:29.83Z",
+      "datePublished": "2023-11-03T13:50:29.83Z",
+      "dateModified": "2023-11-03T13:50:29.83Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17716,8 +17716,10 @@ However, <a
 </ul>
 <p>When the search service can reach Tika, it begins to read out the content on demand. Note that files must be downloaded during the process, which can lead to delays with larger documents.</p>
 <p>Content extraction and handling the extracted content can be very resource intensive. Content extraction is therefore limited to files with a certain file size. The default limit is 20MB and can be configured using the <code>SEARCH_CONTENT_EXTRACTION_SIZE_LIMIT</code> variable.</p>
-<p>When extracting the content you can specify whether filler words are ignored or not.
-To keep them, the environment variable <code>SEARCH_EXTRACTOR_TIKA_CLEAN_STOP_WORDS</code> must be set to false.</p>
+<p>When extracting content, you can specify whether <a
+  class="gdoc-markdown__link"
+  href="https://en.wikipedia.org/wiki/Stop_word"
+>stop words</a> like <code>I</code>, <code>you</code>, <code>the</code> are ignored or not. Noramlly, these stop words are removed automatically. To keep them, the environment variable <code>SEARCH_EXTRACTOR_TIKA_CLEAN_STOP_WORDS</code> must be set to <code>false</code>.</p>
 <p>When using the Tika container and docker-compose, consider the following:</p>
 <ul>
 <li>See the <a
