@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/web_configvars/",
       "headline": "Web Configvars",
       "description": "Environment Variables Name Type Default Value Description OCIS_TRACING_ENABLEDWEB_TRACING_ENABLED bool false Activates tracing. OCIS_TRACING_TYPEWEB_TRACING_TYPE string The type of tracing. Defaults to ‘’, which is the same as ‘jaeger’. Allowed tracing types are ‘jaeger’ and ’’ as of now. OCIS_TRACING_ENDPOINTWEB_TRACING_ENDPOINT string The endpoint of the tracing agent. OCIS_TRACING_COLLECTORWEB_TRACING_COLLECTOR string The HTTP endpoint for sending spans directly to a collector, i.e. http:\/\/jaeger-collector:14268\/api\/traces. Only used if the tracing endpoint is unset. OCIS_LOG_LEVELWEB_LOG_LEVEL string The log level.",
-      "wordCount" : "1328",
+      "wordCount" : "1466",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17932,6 +17932,18 @@ Copyright 2022 Fonticons, Inc.
 <td>[]string</td>
 <td>[]</td>
 <td>Disable specific Web extensions identified by their ID. The ID can e.g. be taken from the &lsquo;index.ts&rsquo; file of the web extension. Multiple ID&rsquo;s can be written as comma separated list like: &lsquo;com.github.owncloud.web.files.search&rsquo;,&lsquo;com.github.owncloud.web.files.print&rsquo;. See the Environment Variable Types documentation for details.</td>
+</tr>
+<tr>
+<td>WEB_OPTION_MODE</td>
+<td>string</td>
+<td></td>
+<td>Defines the mode in which Web will be running. Currently, the only supported options are &rsquo;&rsquo; (empty) and &rsquo;embed&rsquo;. With &rsquo;&rsquo; which is the default, Web will run as usual with all functionality enabled. &rsquo;embed&rsquo; will enable a stripped down version of Web with reduced functionality used to integrate Web into other applications like via iFrame. See the documnetation for more details.</td>
+</tr>
+<tr>
+<td>WEB_OPTION_EMBED_TARGET</td>
+<td>string</td>
+<td></td>
+<td>Defines how Web is being integrated when running in &rsquo;embed&rsquo; mode. Currently, the only supported options are &rsquo;&rsquo; (empty) and &rsquo;location&rsquo;.  With &rsquo;&rsquo; which is the default, Web will run regular as defined via the &lsquo;mode&rsquo; config option. With &rsquo;location&rsquo;, Web will run embedded as location picker. Resource selection will be disabled and the selected resources array always includes the current folder as the only item. See the documnetation for more details.</td>
 </tr>
 <tr>
 <td>OCIS_JWT_SECRET<br/>WEB_JWT_SECRET</td>
