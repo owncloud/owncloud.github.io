@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/storage-users_configvars/",
       "headline": "Storage Users Configvars",
       "description": "Environment Variables Name Type Default Value Description OCIS_TRACING_ENABLEDSTORAGE_USERS_TRACING_ENABLED bool false Activates tracing. OCIS_TRACING_TYPESTORAGE_USERS_TRACING_TYPE string The type of tracing. Defaults to ‘’, which is the same as ‘jaeger’. Allowed tracing types are ‘jaeger’ and ’’ as of now. OCIS_TRACING_ENDPOINTSTORAGE_USERS_TRACING_ENDPOINT string The endpoint of the tracing agent. OCIS_TRACING_COLLECTORSTORAGE_USERS_TRACING_COLLECTOR string The HTTP endpoint for sending spans directly to a collector, i.e. http:\/\/jaeger-collector:14268\/api\/traces. Only used if the tracing endpoint is unset. OCIS_LOG_LEVELSTORAGE_USERS_LOG_LEVEL string The log level.",
-      "wordCount" : "2130",
+      "wordCount" : "2156",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -10935,7 +10935,7 @@ Copyright 2022 Fonticons, Inc.
                     href="/apis/http/tus_upload/"
                     class="gdoc-nav__entry"
                   >
-                    tus Upload
+                    Resumable Upload
                   </a>
                 </span>
               
@@ -17801,7 +17801,7 @@ Copyright 2022 Fonticons, Inc.
 <td>STORAGE_USERS_ASYNC_PROPAGATOR_PROPAGATION_DELAY</td>
 <td>Duration</td>
 <td>0s</td>
-<td>The delay in seconds between a change made to a tree and the propagation start on treesize and treetime. Multiple propagations are computed to a single one.</td>
+<td>The delay between a change made to a tree and the propagation start on treesize and treetime. Multiple propagations are computed to a single one. See the Environment Variable Types description for more details.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_OCIS_ROOT</td>
@@ -17885,7 +17885,7 @@ Copyright 2022 Fonticons, Inc.
 <td>STORAGE_USERS_ASYNC_PROPAGATOR_PROPAGATION_DELAY</td>
 <td>Duration</td>
 <td>0s</td>
-<td>The delay in seconds between a change made to a tree and the propagation start on treesize and treetime. Multiple propagations are computed to a single one.</td>
+<td>The delay between a change made to a tree and the propagation start on treesize and treetime. Multiple propagations are computed to a single one. See the Environment Variable Types description for more details.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_S3NG_ROOT</td>
@@ -18107,13 +18107,13 @@ Copyright 2022 Fonticons, Inc.
 <td>OCIS_CACHE_TTL<br/>STORAGE_USERS_STAT_CACHE_TTL</td>
 <td>Duration</td>
 <td>5m0s</td>
-<td>Default time to live for user info in the user info cache. Only applied when access tokens has no expiration. The duration can be set as number followed by a unit identifier like s, m or h. Defaults to &lsquo;300s&rsquo; (300 seconds).</td>
+<td>Default time to live for user info in the user info cache. Only applied when access tokens has no expiration. See the Environment Variable Types description for more details.</td>
 </tr>
 <tr>
 <td>OCIS_CACHE_SIZE<br/>STORAGE_USERS_STAT_CACHE_SIZE</td>
 <td>int</td>
 <td>0</td>
-<td>The maximum quantity of items in the user info cache. Only applies when store type &lsquo;ocmem&rsquo; is configured. Defaults to 512.</td>
+<td>The maximum quantity of items in the user info cache. Only applies when store type &lsquo;ocmem&rsquo; is configured. Defaults to 512 which is derived from the ocmem package though not exclicitely set as default.</td>
 </tr>
 <tr>
 <td>OCIS_CACHE_STORE<br/>STORAGE_USERS_FILEMETADATA_CACHE_STORE</td>
@@ -18137,13 +18137,13 @@ Copyright 2022 Fonticons, Inc.
 <td>OCIS_CACHE_TTL<br/>STORAGE_USERS_FILEMETADATA_CACHE_TTL</td>
 <td>Duration</td>
 <td>24m0s</td>
-<td>Default time to live for user info in the user info cache. Only applied when access tokens has no expiration. The duration can be set as number followed by a unit identifier like s, m or h. Defaults to &lsquo;24h&rsquo; (24 hours).</td>
+<td>Default time to live for user info in the user info cache. Only applied when access tokens has no expiration. See the Environment Variable Types description for more details.</td>
 </tr>
 <tr>
 <td>OCIS_CACHE_SIZE<br/>STORAGE_USERS_FILEMETADATA_CACHE_SIZE</td>
 <td>int</td>
 <td>0</td>
-<td>The maximum quantity of items in the user info cache. Only applies when store type &lsquo;ocmem&rsquo; is configured. Defaults to 512.</td>
+<td>The maximum quantity of items in the user info cache. Only applies when store type &lsquo;ocmem&rsquo; is configured. Defaults to 512 which is derived from the ocmem package though not exclicitely set as default.</td>
 </tr>
 <tr>
 <td>OCIS_CACHE_STORE<br/>STORAGE_USERS_ID_CACHE_STORE</td>
@@ -18167,13 +18167,13 @@ Copyright 2022 Fonticons, Inc.
 <td>OCIS_CACHE_TTL<br/>STORAGE_USERS_ID_CACHE_TTL</td>
 <td>Duration</td>
 <td>0s</td>
-<td>Default time to live for user info in the user info cache. Only applied when access tokens has no expiration. The duration can be set as number followed by a unit identifier like s, m or h. Defaults to &lsquo;300s&rsquo; (300 seconds).</td>
+<td>Default time to live for user info in the user info cache. Only applied when access tokens have no expiration. Defaults to 300s which is derived from the underlaying package though not explicitely set as default. See the Environment Variable Types description for more details.</td>
 </tr>
 <tr>
 <td>OCIS_CACHE_SIZE<br/>STORAGE_USERS_ID_CACHE_SIZE</td>
 <td>int</td>
 <td>0</td>
-<td>The maximum quantity of items in the user info cache. Only applies when store type &lsquo;ocmem&rsquo; is configured. Defaults to 512.</td>
+<td>The maximum quantity of items in the user info cache. Only applies when store type &lsquo;ocmem&rsquo; is configured. Defaults to 512 which is derived from the ocmem package though not exclicitely set as default.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_MOUNT_ID</td>
@@ -18209,13 +18209,13 @@ Copyright 2022 Fonticons, Inc.
 <td>STORAGE_USERS_PURGE_TRASH_BIN_PERSONAL_DELETE_BEFORE</td>
 <td>Duration</td>
 <td>720h0m0s</td>
-<td>Specifies the period of time in which items that have been in the personal trash-bin for longer than this value should be deleted. A value of 0 means no automatic deletion. The value is human-readable, valid values are &lsquo;24h&rsquo;, &lsquo;60m&rsquo;, &rsquo;60s&rsquo; etc.</td>
+<td>Specifies the period of time in which items that have been in the personal trash-bin for longer than this value should be deleted. A value of 0 means no automatic deletion. See the Environment Variable Types description for more details.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_PURGE_TRASH_BIN_PROJECT_DELETE_BEFORE</td>
 <td>Duration</td>
 <td>720h0m0s</td>
-<td>Specifies the period of time in which items that have been in the project trash-bin for longer than this value should be deleted. A value of 0 means no automatic deletion. The value is human-readable, valid values are &lsquo;24h&rsquo;, &lsquo;60m&rsquo;, &rsquo;60s&rsquo; etc.</td>
+<td>Specifies the period of time in which items that have been in the project trash-bin for longer than this value should be deleted. A value of 0 means no automatic deletion. See the Environment Variable Types description for more details.</td>
 </tr>
 <tr>
 <td>OCIS_SERVICE_ACCOUNT_ID<br/>STORAGE_USERS_SERVICE_ACCOUNT_ID</td>

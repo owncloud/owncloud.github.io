@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/postprocessing_configvars/",
       "headline": "Postprocessing Configvars",
       "description": "Environment Variables Name Type Default Value Description OCIS_TRACING_ENABLEDPOSTPROCESSING_TRACING_ENABLED bool false Activates tracing. OCIS_TRACING_TYPEPOSTPROCESSING_TRACING_TYPE string The type of tracing. Defaults to ‘’, which is the same as ‘jaeger’. Allowed tracing types are ‘jaeger’ and ’’ as of now. OCIS_TRACING_ENDPOINTPOSTPROCESSING_TRACING_ENDPOINT string The endpoint of the tracing agent. OCIS_TRACING_COLLECTORPOSTPROCESSING_TRACING_COLLECTOR string The HTTP endpoint for sending spans directly to a collector, i.e. http:\/\/jaeger-collector:14268\/api\/traces. Only used if the tracing endpoint is unset. OCIS_LOG_LEVELPOSTPROCESSING_LOG_LEVEL string The log level.",
-      "wordCount" : "554",
+      "wordCount" : "546",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -10935,7 +10935,7 @@ Copyright 2022 Fonticons, Inc.
                     href="/apis/http/tus_upload/"
                     class="gdoc-nav__entry"
                   >
-                    tus Upload
+                    Resumable Upload
                   </a>
                 </span>
               
@@ -17747,13 +17747,13 @@ Copyright 2022 Fonticons, Inc.
 <td>OCIS_PERSISTENT_STORE_TTL<br/>POSTPROCESSING_STORE_TTL</td>
 <td>Duration</td>
 <td>0s</td>
-<td>Time to live for events in the store. The duration can be set as number followed by a unit identifier like s, m or h. Defaults to &lsquo;336h&rsquo; (2 weeks).</td>
+<td>Time to live for events in the store. See the Environment Variable Types description for more details.</td>
 </tr>
 <tr>
 <td>OCIS_PERSISTENT_STORE_SIZE<br/>POSTPROCESSING_STORE_SIZE</td>
 <td>int</td>
 <td>0</td>
-<td>The maximum quantity of items in the store. Only applies when store type &lsquo;ocmem&rsquo; is configured. Defaults to 512.</td>
+<td>The maximum quantity of items in the store. Only applies when store type &lsquo;ocmem&rsquo; is configured. Defaults to 512 which is derived from the ocmem package though not exclicitely set as default.</td>
 </tr>
 <tr>
 <td>OCIS_EVENTS_ENDPOINT<br/>POSTPROCESSING_EVENTS_ENDPOINT</td>
@@ -17795,7 +17795,7 @@ Copyright 2022 Fonticons, Inc.
 <td>POSTPROCESSING_DELAY</td>
 <td>Duration</td>
 <td>0s</td>
-<td>After uploading a file but before making it available for download, a delay step can be added. Intended for developing purposes only. The duration can be set as number followed by a unit identifier like s, m or h. If a duration is set but the keyword &lsquo;delay&rsquo; is not explicitely added to &lsquo;POSTPROCESSING_STEPS&rsquo;, the delay step will be processed as last step. In such a case, a log entry will be written on service startup to remind the admin about that situation.</td>
+<td>After uploading a file but before making it available for download, a delay step can be added. Intended for developing purposes only. If a duration is set but the keyword &lsquo;delay&rsquo; is not explicitely added to &lsquo;POSTPROCESSING_STEPS&rsquo;, the delay step will be processed as last step. In such a case, a log entry will be written on service startup to remind the admin about that situation. See the Environment Variable Types description for more details.</td>
 </tr>
 </tbody>
 </table> </div>
