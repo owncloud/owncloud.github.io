@@ -77,7 +77,7 @@ docker run --rm -v ${PWD}:/data phpdoc/phpdoc:3 After that you will find the doc
       "url" : "https://owncloud.dev/clients/ocis-php-sdk/",
       "headline": "oCIS PHP SDK",
       "description": "ocis-php-sdk This SDK allows you to interact with ownCloud Infinite Scale (oCIS) storage using PHP.\nDocumentation You can find a rendered version of the API documentation in our dev docs.\nTo render the documentation locally, use the phpDocumentor to run it in the local repo. E.g.:\ndocker run --rm -v ${PWD}:\/data phpdoc\/phpdoc:3 After that you will find the documentation inside the docs folder.\n:exclamation: This SDK is still under heavy development and is not yet ready for production use, the API might change!",
-      "wordCount" : "637",
+      "wordCount" : "701",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -11909,13 +11909,10 @@ Copyright 2022 Fonticons, Inc.
             <input
               type="checkbox"
               
-                class="gdoc-nav__toggle" id="navtree-f8f615df"
-                checked
+                class="hidden"
               
             />
             <label
-              
-                for="navtree-f8f615df" class="flex justify-between align-center"
               
             >
               
@@ -11929,34 +11926,7 @@ Copyright 2022 Fonticons, Inc.
                 </span>
               
               
-                <svg class="gdoc-icon toggle gdoc_keyboard_arrow_left">
-                  <use xlink:href="#gdoc_keyboard_arrow_left"></use>
-                </svg>
-                <svg class="gdoc-icon toggle gdoc_keyboard_arrow_down">
-                  <use xlink:href="#gdoc_keyboard_arrow_down"></use>
-                </svg>
-              
             </label>
-
-            
-              
-  
-
-
-  <ul class="gdoc-nav__list">
-    
-    
-      
-
-      
-        
-      
-
-      
-        
-      
-    
-  </ul>
 
             
           </li>
@@ -17687,7 +17657,47 @@ Copyright 2022 Fonticons, Inc.
     class="gdoc-markdown gdoc-markdown__align--left"
   >
     <h1>oCIS PHP SDK</h1>
-    <div class="gdoc-page__anchorwrap">
+    <p><a
+  class="gdoc-markdown__link--raw"
+  href="https://drone.owncloud.com/owncloud/ocis-php-sdk"
+><img
+  src="https://drone.owncloud.com/api/badges/owncloud/ocis-php-sdk/status.svg?ref=refs/heads/main"
+  alt="Build Status"
+  
+/></a>
+<a
+  class="gdoc-markdown__link--raw"
+  href="https://sonarcloud.io/summary/new_code?id=owncloud_ocis-php-sdk"
+><img
+  src="https://sonarcloud.io/api/project_badges/measure?project=owncloud_ocis-php-sdk&amp;metric=coverage"
+  alt="Coverage"
+  
+/></a>
+<a
+  class="gdoc-markdown__link--raw"
+  href="https://sonarcloud.io/summary/new_code?id=owncloud_ocis-php-sdk"
+><img
+  src="https://sonarcloud.io/api/project_badges/measure?project=owncloud_ocis-php-sdk&amp;metric=code_smells"
+  alt="Code Smells"
+  
+/></a>
+<a
+  class="gdoc-markdown__link--raw"
+  href="https://sonarcloud.io/summary/new_code?id=owncloud_ocis-php-sdk"
+><img
+  src="https://sonarcloud.io/api/project_badges/measure?project=owncloud_ocis-php-sdk&amp;metric=alert_status"
+  alt="Quality Gate Status"
+  
+/></a>
+<a
+  class="gdoc-markdown__link--raw"
+  href="https://sonarcloud.io/summary/new_code?id=owncloud_ocis-php-sdk"
+><img
+  src="https://sonarcloud.io/api/project_badges/measure?project=owncloud_ocis-php-sdk&amp;metric=security_rating"
+  alt="Security Rating"
+  
+/></a></p>
+<div class="gdoc-page__anchorwrap">
     <h1 id="ocis-php-sdk"
     >
         ocis-php-sdk
@@ -17936,6 +17946,35 @@ Copyright 2022 Fonticons, Inc.
 </span></span><span class="line"><span class="cl">		<span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">	<span class="o">...</span>
 </span></span></code></pre></div><p>To test, simply open a browser and head to http://url-of-this-file.</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="development"
+    >
+        Development
+        <a data-clipboard-text="https://owncloud.dev/clients/ocis-php-sdk/#development" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Development" aria-label="Anchor to: Development" href="#development">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="integration-tests"
+    >
+        Integration tests
+        <a data-clipboard-text="https://owncloud.dev/clients/ocis-php-sdk/#integration-tests" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Integration tests" aria-label="Anchor to: Integration tests" href="#integration-tests">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>The integration tests start a full oCIS server with keycloak and other services using docker.
+To run the tests locally</p>
+<ol>
+<li>Install and setup <code>docker</code> (min version 24) and <code>docker compose</code> (min version 2.21).</li>
+<li>add these lines to your <code>/etc/hosts</code> file:
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">127.0.0.1	ocis.owncloud.test
+</span></span><span class="line"><span class="cl">127.0.0.1	keycloak.owncloud.test
+</span></span></code></pre></div></li>
+<li>run <code>make test-php-integration</code></li>
+</ol>
+<p>If something goes wrong, use <code>make clean</code> to clean the created containers and volumes.</p>
 
   </article>
 
