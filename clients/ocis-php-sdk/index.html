@@ -17756,13 +17756,13 @@ Copyright 2022 Fonticons, Inc.
         </a>
     </h2>
 </div>
-<p>Drives can be listed using the <code>listAllDrives</code> or the <code>listMyDrives</code> method.</p>
+<p>Drives can be listed using the <code>getAllDrives</code> or the <code>getMyDrives</code> method.</p>
 <p>The Drive class is responsible for most file/folder related actions, like listing files, creating folders, uploading files, etc.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// get the personal drive of the authorized user
-</span></span></span><span class="line"><span class="cl"><span class="c1">// `listMyDrives` returns all drives that the user is a member of
+</span></span></span><span class="line"><span class="cl"><span class="c1">// `getMyDrives` returns all drives that the user is a member of
 </span></span></span><span class="line"><span class="cl"><span class="c1">// but in this example the result is filtered to only return
 </span></span></span><span class="line"><span class="cl"><span class="c1">// the personal drive (parameter 3 = DriveType::PERSONAL)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$drives</span> <span class="o">=</span> <span class="nv">$ocis</span><span class="o">-&gt;</span><span class="na">listMyDrives</span><span class="p">(</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$drives</span> <span class="o">=</span> <span class="nv">$ocis</span><span class="o">-&gt;</span><span class="na">getMyDrives</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">DriveOrder</span><span class="o">::</span><span class="na">NAME</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">OrderDirection</span><span class="o">::</span><span class="na">ASC</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">DriveType</span><span class="o">::</span><span class="na">PERSONAL</span>
@@ -17784,7 +17784,7 @@ Copyright 2022 Fonticons, Inc.
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$drives</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">uploadFile</span><span class="p">(</span><span class="s2">&#34;/documents/myfile.txt&#34;</span><span class="p">,</span> <span class="s2">&#34;Hello World!&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// get an array of all resources of the &#34;/documents&#34; folder inside the drive
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$resources</span> <span class="o">=</span> <span class="nv">$drives</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">listResources</span><span class="p">(</span><span class="s2">&#34;/documents&#34;</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$resources</span> <span class="o">=</span> <span class="nv">$drives</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">getResources</span><span class="p">(</span><span class="s2">&#34;/documents&#34;</span><span class="p">);</span>
 </span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="notifications"
     >
@@ -17794,7 +17794,7 @@ Copyright 2022 Fonticons, Inc.
         </a>
     </h2>
 </div>
-<p>Notifications can be listed using the <code>listNotifications</code> method, which will return an array of <code>Notification</code> objects representing all active notifications.</p>
+<p>Notifications can be listed using the <code>getNotifications</code> method, which will return an array of <code>Notification</code> objects representing all active notifications.</p>
 <p>The <code>Notification</code> object can retrieve details of the corresponding notification and mark it as read (delete).</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="sharing"
@@ -17807,7 +17807,7 @@ Copyright 2022 Fonticons, Inc.
 </div>
 <p>Given the correct permissions, an <code>OcisResource</code> can be shared with a group or a user. To define the access permissions of the receiver every share has to set <code>SharingRole</code>(s).</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// get the resources of a subfolder inside a drive
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$resources</span> <span class="o">=</span> <span class="nv">$drive</span><span class="o">-&gt;</span><span class="na">listResources</span><span class="p">(</span><span class="s2">&#34;/documents&#34;</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$resources</span> <span class="o">=</span> <span class="nv">$drive</span><span class="o">-&gt;</span><span class="na">getResources</span><span class="p">(</span><span class="s2">&#34;/documents&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// get all roles that are possible for that particular resource
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$roles</span> <span class="o">=</span> <span class="nv">$resources</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">getRoles</span><span class="p">();</span>
