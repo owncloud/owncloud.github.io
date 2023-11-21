@@ -12,7 +12,7 @@
 <meta name="generator" content="Hugo 0.115.2">
 
 
-  <meta name="description" content="Getting started Events Example Location picker Example The ownCloud Web can be consumed by another application in a stripped down version called &ldquo;Embed mode&rdquo;. This mode is supposed to be used in the context of selecting or sharing resources. If you&rsquo;re looking for even more minimalistic approach, you can take a look at the File picker.
+  <meta name="description" content="Getting started Communication Target origin Events Example Location picker Example The ownCloud Web can be consumed by another application in a stripped down version called &ldquo;Embed mode&rdquo;. This mode is supposed to be used in the context of selecting or sharing resources. If you&rsquo;re looking for even more minimalistic approach, you can take a look at the File picker.
 Getting started To integrate ownCloud Web into your application, add an iframe element pointing to your ownCloud Web deployed instance with additional query parameter mode=embed." />
 
     <title>Embed Mode | ownCloud</title>
@@ -37,7 +37,7 @@ Getting started To integrate ownCloud Web into your application, add an iframe e
     content="Embed Mode"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Getting started Events Example Location picker Example The ownCloud Web can be consumed by another application in a stripped down version called “Embed mode”. This mode is supposed to be used in the context of selecting or sharing resources. If you’re looking for even more minimalistic approach, you can take a look at the File picker.
+  <meta property="og:description" content="Getting started Communication Target origin Events Example Location picker Example The ownCloud Web can be consumed by another application in a stripped down version called “Embed mode”. This mode is supposed to be used in the context of selecting or sharing resources. If you’re looking for even more minimalistic approach, you can take a look at the File picker.
 Getting started To integrate ownCloud Web into your application, add an iframe element pointing to your ownCloud Web deployed instance with additional query parameter mode=embed." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/clients/web/embed-mode/" />
@@ -55,7 +55,7 @@ Getting started To integrate ownCloud Web into your application, add an iframe e
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Embed Mode" />
-  <meta name="twitter:description" content="Getting started Events Example Location picker Example The ownCloud Web can be consumed by another application in a stripped down version called “Embed mode”. This mode is supposed to be used in the context of selecting or sharing resources. If you’re looking for even more minimalistic approach, you can take a look at the File picker.
+  <meta name="twitter:description" content="Getting started Communication Target origin Events Example Location picker Example The ownCloud Web can be consumed by another application in a stripped down version called “Embed mode”. This mode is supposed to be used in the context of selecting or sharing resources. If you’re looking for even more minimalistic approach, you can take a look at the File picker.
 Getting started To integrate ownCloud Web into your application, add an iframe element pointing to your ownCloud Web deployed instance with additional query parameter mode=embed." />
 
 
@@ -67,8 +67,8 @@ Getting started To integrate ownCloud Web into your application, add an iframe e
       "name": "Embed Mode",
       "url" : "https://owncloud.dev/clients/web/embed-mode/",
       "headline": "Embed Mode",
-      "description": "Getting started Events Example Location picker Example The ownCloud Web can be consumed by another application in a stripped down version called “Embed mode”. This mode is supposed to be used in the context of selecting or sharing resources. If you’re looking for even more minimalistic approach, you can take a look at the File picker.\nGetting started To integrate ownCloud Web into your application, add an iframe element pointing to your ownCloud Web deployed instance with additional query parameter mode=embed.",
-      "wordCount" : "255",
+      "description": "Getting started Communication Target origin Events Example Location picker Example The ownCloud Web can be consumed by another application in a stripped down version called “Embed mode”. This mode is supposed to be used in the context of selecting or sharing resources. If you’re looking for even more minimalistic approach, you can take a look at the File picker.\nGetting started To integrate ownCloud Web into your application, add an iframe element pointing to your ownCloud Web deployed instance with additional query parameter mode=embed.",
+      "wordCount" : "349",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17659,8 +17659,10 @@ Copyright 2022 Fonticons, Inc.
     <div class="gdoc-toc gdoc-toc__level--3">
       <nav id="TableOfContents"><ul>
         <li><a href="#getting-started">Getting started</a></li>
-        <li><a href="#events">Events</a>
+        <li><a href="#communication">Communication</a>
           <ul>
+            <li><a href="#target-origin">Target origin</a></li>
+            <li><a href="#events">Events</a></li>
             <li><a href="#example">Example</a></li>
           </ul>
         </li>
@@ -17688,20 +17690,40 @@ Copyright 2022 Fonticons, Inc.
 <p>To integrate ownCloud Web into your application, add an iframe element pointing to your ownCloud Web deployed instance with additional query parameter <code>mode=embed</code>.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;&lt;web-url&gt;?mode=embed&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
 </span></span></code></pre></div><div class="gdoc-page__anchorwrap">
-    <h2 id="events"
+    <h2 id="communication"
+    >
+        Communication
+        <a data-clipboard-text="https://owncloud.dev/clients/web/embed-mode/#communication" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Communication" aria-label="Anchor to: Communication" href="#communication">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>To establish seamless cross-origin communication between the embedded instance and the parent application, our approach involves emitting events using the <code>postMessage</code> method. These events can be conveniently captured by utilizing the standard <code>window.addEventListener('message', listener)</code> pattern.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="target-origin"
+    >
+        Target origin
+        <a data-clipboard-text="https://owncloud.dev/clients/web/embed-mode/#target-origin" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Target origin" aria-label="Anchor to: Target origin" href="#target-origin">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>By default, the <code>postMessage</code> method does not specify the <code>targetOrigin</code> parameter. However, it is recommended best practice to explicitly pass in the URI of the iframe origin (not the parent application). To enhance security, you can specify this value by modifying the config option <code>options.embed.messagesOrigin</code>.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="events"
     >
         Events
         <a data-clipboard-text="https://owncloud.dev/clients/web/embed-mode/#events" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Events" aria-label="Anchor to: Events" href="#events">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
-    </h2>
+    </h3>
 </div>
-<p>The app is emitting various events depending on the goal of the user. All events are prefixed with <code>owncloud-embed:</code> to prevent any naming conflicts with other events.</p>
+<p>To maintain uniformity and ease of handling, each event encapsulates the same structure within its payload: <code>{ name: string, data: any }</code>.</p>
 <div class="table-wrap"> <table>
 <thead>
 <tr>
-<th>Event name</th>
-<th>Payload</th>
+<th>Name</th>
+<th>Data</th>
 <th>Description</th>
 </tr>
 </thead>
@@ -17709,7 +17731,7 @@ Copyright 2022 Fonticons, Inc.
 <tr>
 <td><strong>owncloud-embed:select</strong></td>
 <td>Resource[]</td>
-<td>Gets emitted when user selects resources via the &ldquo;Attach as copy&rdquo; action</td>
+<td>Gets emitted when user selects resources or location via the select action</td>
 </tr>
 <tr>
 <td><strong>owncloud-embed:share</strong></td>
@@ -17718,7 +17740,7 @@ Copyright 2022 Fonticons, Inc.
 </tr>
 <tr>
 <td><strong>owncloud-embed:cancel</strong></td>
-<td>void</td>
+<td>null</td>
 <td>Gets emitted when user attempts to close the embedded instance via &ldquo;Cancel&rdquo; action</td>
 </tr>
 </tbody>
@@ -17736,12 +17758,16 @@ Copyright 2022 Fonticons, Inc.
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">selectEventHandler</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">resources</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">detail</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="o">?</span><span class="p">.</span><span class="nx">name</span> <span class="o">!==</span> <span class="s1">&#39;owncloud-embed:select&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">resources</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">data</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="nx">doSomethingWithSelectedResources</span><span class="p">(</span><span class="nx">resources</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;owncloud-embed:select&#39;</span><span class="p">,</span> <span class="nx">selectEventHandler</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="nx">selectEventHandler</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="location-picker"
@@ -17766,12 +17792,16 @@ Copyright 2022 Fonticons, Inc.
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">selectEventHandler</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">currentFolder</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">detail</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="o">?</span><span class="p">.</span><span class="nx">name</span> <span class="o">!==</span> <span class="s1">&#39;owncloud-embed:select&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nx">uploadIntoCurrentFolder</span><span class="p">(</span><span class="nx">currentFolder</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">resources</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">doSomethingWithSelectedResources</span><span class="p">(</span><span class="nx">resources</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;owncloud-embed:select&#39;</span><span class="p">,</span> <span class="nx">selectEventHandler</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="nx">selectEventHandler</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </span></span></code></pre></div>
   </article>
