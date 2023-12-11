@@ -65,7 +65,7 @@
       "url" : "https://owncloud.dev/ocis/deployment/ubernauten/",
       "headline": "Installing ownCloud Infinite Scale at Ubernauten",
       "description": "Uberspace and ownCloud Infinite Scale in 50 seconds Three Steps to your Infinite UberSpace Service Management with Supervisord Updating ownCloud Infinite Scale Wiping and Clean Restart from Scratch Troubleshooting Uberspace and ownCloud Infinite Scale in 50 seconds This howto shows how to set up ownCloud Infinite Scale for a quick test. For convenience, we will use the free service from the Ubernauten – Join us here: Uberspace Registration Page. They offer free of charge (for the first month) web hosting.",
-      "wordCount" : "874",
+      "wordCount" : "936",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17858,7 +17858,11 @@ Copyright 2022 Fonticons, Inc.
 </span></span><span class="line"><span class="cl">[owncloud@ocis ~]$ supervisorctl reread
 </span></span><span class="line"><span class="cl">No config updates to processes
 </span></span><span class="line"><span class="cl">[owncloud@ocis ~]$ supervisorctl update
-</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
+</span></span></code></pre></div><p>Every Uberspace comes with its own HTTPS certificate via Letsencrypt. See the <a
+  class="gdoc-markdown__link"
+  href="https://manual.uberspace.de/web-https/"
+>Uberspace - HTTPS</a> documentation for more details.</p>
+<div class="gdoc-page__anchorwrap">
     <h3 id="updating-owncloud-infinite-scale"
     >
         Updating ownCloud Infinite Scale
@@ -17870,6 +17874,7 @@ Copyright 2022 Fonticons, Inc.
 <p>Updating the ocis binary is simple: When a new version comes to life, just download the new <code>ocis</code> binary from the download server, replacing the old <code>ocis</code> executable on your uberspace server.</p>
 <p>Make a backup of your data and make sure you have read and understood the release notes of your new version , especially the &ldquo;breaking changes&rdquo; section before starting the binary.</p>
 <p>Don&rsquo;t worry, you can always go back to the older version you had installed, there&rsquo;s a long list of older versions available for download.</p>
+<p>Mind that if you want to re-configure, re-install or start a new version of ocis, make sure you have stopped supervisorctl from restarting ocis. Enter <code>supervisorctl stop ocis</code>, followed by a <code>killall -9 ocis</code> to make sure no ocis version is still running.</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="wiping-and-clean-restart-from-scratch"
     >
