@@ -65,7 +65,7 @@
       "url" : "https://owncloud.dev/ocis/deployment/ubernauten/",
       "headline": "Installing ownCloud Infinite Scale at Ubernauten",
       "description": "Uberspace and ownCloud Infinite Scale in 50 seconds Three Steps to your Infinite UberSpace Service Management with Supervisord Updating ownCloud Infinite Scale Wiping and Clean Restart from Scratch Troubleshooting Uberspace and ownCloud Infinite Scale in 50 seconds This howto shows how to set up ownCloud Infinite Scale for a quick test. For convenience, we will use the free service from the Ubernauten – Join us here: Uberspace Registration Page. They offer free of charge (for the first month) web hosting.",
-      "wordCount" : "936",
+      "wordCount" : "934",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17852,16 +17852,16 @@ Copyright 2022 Fonticons, Inc.
 </span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PROXY_HTTP_ADDR</span><span class="o">=</span>0.0.0.0:9200
 </span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PROXY_LOG_LEVEL</span><span class="o">=</span>debug
 </span></span><span class="line"><span class="cl">/home/owncloud/ocis server
-</span></span></code></pre></div><p>There are three supervisorctl commands that you will find useful (many more can be found in its documentation). You can use <code>supervisorctl status</code> to check which services managed by supervisorctl are running, a <code>supervisorctl reread</code> will be necessary after you changed the <code>ini</code> files, and an <code>update</code> is applying the changes:</p>
+</span></span></code></pre></div><p>There are four supervisorctl commands that you will find useful (many more can be found in its documentation). You can use <code>supervisorctl status</code> to check which services managed by supervisorctl are running, a <code>supervisorctl reread</code> will be necessary after you changed the <code>ini</code> files, an <code>update</code> is applying changes, and <code>supervisorctl stop</code> will stop a running service:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[owncloud@ocis ~]$ supervisorctl status
 </span></span><span class="line"><span class="cl">ocis                             RUNNING   pid 9813, uptime 0:01:40
 </span></span><span class="line"><span class="cl">[owncloud@ocis ~]$ supervisorctl reread
 </span></span><span class="line"><span class="cl">No config updates to processes
 </span></span><span class="line"><span class="cl">[owncloud@ocis ~]$ supervisorctl update
-</span></span></code></pre></div><p>Every Uberspace comes with its own HTTPS certificate via Letsencrypt. See the <a
+</span></span></code></pre></div><p>You can find all information on Supervisord and <code>supervisorctl</code> on its website: <a
   class="gdoc-markdown__link"
-  href="https://manual.uberspace.de/web-https/"
->Uberspace - HTTPS</a> documentation for more details.</p>
+  href="http://supervisord.org/running.html"
+>Running Supervisord</a>.</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="updating-owncloud-infinite-scale"
     >
@@ -17908,12 +17908,15 @@ Copyright 2022 Fonticons, Inc.
     </h3>
 </div>
 <ul>
-<li>Some older versions of Infinite Scale also needed this Environment variable to run.</li>
-</ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">export THUMBNAILS_WEBDAVSOURCEBASE_URL=http://localhost:9200/remote.php/webdav/
-</span></span></code></pre></div><p>This should not be necessary for all versions starting with ownCloud Infinite Scale 3.0.</p>
-<ul>
-<li>If you get the following error message, then you probably forgot to run the <code>ocis init</code> command. If <code>ocis server</code> find an configuration hasn&rsquo;t been set up, it will complain like this:</li>
+<li>
+<p>SSL/TLS Certificates: Every Uberspace comes with its own HTTPS certificate via Let&rsquo;s Encrypt. See the <a
+  class="gdoc-markdown__link"
+  href="https://manual.uberspace.de/web-https/"
+>Uberspace - HTTPS</a> documentation for more details.</p>
+</li>
+<li>
+<p>Error message about <code>jwt_secret</code>: If you get the following error message, then you probably forgot to run the <code>ocis init</code> command. If <code>ocis server</code> find an configuration hasn&rsquo;t been set up, it will complain like this:</p>
+</li>
 </ul>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[owncloud@ocis ~]$ ./ocis server
 </span></span><span class="line"><span class="cl">The jwt_secret has not been set properly in your config for ocis.
