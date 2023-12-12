@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/postprocessing_configvars/",
       "headline": "Postprocessing Configvars",
       "description": "Environment Variables Name Type Default Value Description OCIS_TRACING_ENABLEDPOSTPROCESSING_TRACING_ENABLED bool false Activates tracing. OCIS_TRACING_TYPEPOSTPROCESSING_TRACING_TYPE string The type of tracing. Defaults to ‘’, which is the same as ‘jaeger’. Allowed tracing types are ‘jaeger’ and ’’ as of now. OCIS_TRACING_ENDPOINTPOSTPROCESSING_TRACING_ENDPOINT string The endpoint of the tracing agent. OCIS_TRACING_COLLECTORPOSTPROCESSING_TRACING_COLLECTOR string The HTTP endpoint for sending spans directly to a collector, i.e. http:\/\/jaeger-collector:14268\/api\/traces. Only used if the tracing endpoint is unset. OCIS_LOG_LEVELPOSTPROCESSING_LOG_LEVEL string The log level.",
-      "wordCount" : "560",
+      "wordCount" : "598",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17896,6 +17896,18 @@ Copyright 2022 Fonticons, Inc.
 <td>Duration</td>
 <td>0s</td>
 <td>After uploading a file but before making it available for download, a delay step can be added. Intended for developing purposes only. If a duration is set but the keyword &lsquo;delay&rsquo; is not explicitely added to &lsquo;POSTPROCESSING_STEPS&rsquo;, the delay step will be processed as last step. In such a case, a log entry will be written on service startup to remind the admin about that situation. See the Environment Variable Types description for more details.</td>
+</tr>
+<tr>
+<td>POSTPROCESSING_RETRY_BACKOFF_DURATION</td>
+<td>Duration</td>
+<td>5s</td>
+<td>The base for the exponential backoff duration before retrying a failed postprocessing step. See the Environment Variable Types description for more details.</td>
+</tr>
+<tr>
+<td>POSTPROCESSING_MAX_RETRIES</td>
+<td>int</td>
+<td>14</td>
+<td>The maximum number of retries for a failed postprocessing step.</td>
 </tr>
 </tbody>
 </table> </div>
