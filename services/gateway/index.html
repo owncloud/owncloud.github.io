@@ -12,9 +12,9 @@
 <meta name="generator" content="Hugo 0.115.2">
 
 
-  <meta name="description" content="Abstract The gateway service is an &hellip;
-Table of Contents Caching Example Yaml Config Caching The gateway service can use a configured store via GATEWAY_STAT_CACHE_STORE. Possible stores are:
-memory: Basic in-memory store and the default. ocmem: Advanced in-memory store allowing max size. redis: Stores data in a configured Redis cluster. redis-sentinel: Stores data in a configured Redis Sentinel cluster. etcd: Stores data in a configured etcd cluster. nats-js: Stores data using key-value-store feature of nats jetstream noop: Stores nothing." />
+  <meta name="description" content="Abstract The gateway service is responsible for passing requests to the storage providers. Other services never talk to the storage providers directly but will always send their requests via the gateway service.
+Table of Contents Caching Example Yaml Config Caching The gateway service is using caching as it is highly frequented with the same requests. As of now it uses two different caches:
+the provider cache is caching requests to list or get storage providers." />
 
     <title>Gateway | ownCloud</title>
 
@@ -38,28 +38,28 @@ memory: Basic in-memory store and the default. ocmem: Advanced in-memory store a
     content="Gateway"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Abstract The gateway service is an …
-Table of Contents Caching Example Yaml Config Caching The gateway service can use a configured store via GATEWAY_STAT_CACHE_STORE. Possible stores are:
-memory: Basic in-memory store and the default. ocmem: Advanced in-memory store allowing max size. redis: Stores data in a configured Redis cluster. redis-sentinel: Stores data in a configured Redis Sentinel cluster. etcd: Stores data in a configured etcd cluster. nats-js: Stores data using key-value-store feature of nats jetstream noop: Stores nothing." />
+  <meta property="og:description" content="Abstract The gateway service is responsible for passing requests to the storage providers. Other services never talk to the storage providers directly but will always send their requests via the gateway service.
+Table of Contents Caching Example Yaml Config Caching The gateway service is using caching as it is highly frequented with the same requests. As of now it uses two different caches:
+the provider cache is caching requests to list or get storage providers." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/gateway/" />
 
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-12-14T14:26:30+00:00"
+      content="2023-12-14T15:18:11+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-12-14T14:26:30+00:00"
+      content="2023-12-14T15:18:11+00:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Gateway" />
-  <meta name="twitter:description" content="Abstract The gateway service is an …
-Table of Contents Caching Example Yaml Config Caching The gateway service can use a configured store via GATEWAY_STAT_CACHE_STORE. Possible stores are:
-memory: Basic in-memory store and the default. ocmem: Advanced in-memory store allowing max size. redis: Stores data in a configured Redis cluster. redis-sentinel: Stores data in a configured Redis Sentinel cluster. etcd: Stores data in a configured etcd cluster. nats-js: Stores data using key-value-store feature of nats jetstream noop: Stores nothing." />
+  <meta name="twitter:description" content="Abstract The gateway service is responsible for passing requests to the storage providers. Other services never talk to the storage providers directly but will always send their requests via the gateway service.
+Table of Contents Caching Example Yaml Config Caching The gateway service is using caching as it is highly frequented with the same requests. As of now it uses two different caches:
+the provider cache is caching requests to list or get storage providers." />
 
 
   <script type="application/ld+json">
@@ -70,8 +70,8 @@ memory: Basic in-memory store and the default. ocmem: Advanced in-memory store a
       "name": "Gateway",
       "url" : "https://owncloud.dev/services/gateway/",
       "headline": "Gateway",
-      "description": "Abstract The gateway service is an …\nTable of Contents Caching Example Yaml Config Caching The gateway service can use a configured store via GATEWAY_STAT_CACHE_STORE. Possible stores are:\nmemory: Basic in-memory store and the default. ocmem: Advanced in-memory store allowing max size. redis: Stores data in a configured Redis cluster. redis-sentinel: Stores data in a configured Redis Sentinel cluster. etcd: Stores data in a configured etcd cluster. nats-js: Stores data using key-value-store feature of nats jetstream noop: Stores nothing.",
-      "wordCount" : "1222",
+      "description": "Abstract The gateway service is responsible for passing requests to the storage providers. Other services never talk to the storage providers directly but will always send their requests via the gateway service.\nTable of Contents Caching Example Yaml Config Caching The gateway service is using caching as it is highly frequented with the same requests. As of now it uses two different caches:\nthe provider cache is caching requests to list or get storage providers.",
+      "wordCount" : "1284",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -80,9 +80,9 @@ memory: Basic in-memory store and the default. ocmem: Advanced in-memory store a
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-12-14T14:26:30.08Z",
-      "datePublished": "2023-12-14T14:26:30.08Z",
-      "dateModified": "2023-12-14T14:26:30.08Z",
+      "dateCreated": "2023-12-14T15:18:11.17Z",
+      "datePublished": "2023-12-14T15:18:11.17Z",
+      "dateModified": "2023-12-14T15:18:11.17Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17755,7 +17755,7 @@ Copyright 2022 Fonticons, Inc.
         </a>
     </h2>
 </div>
-<p>The gateway service is an &hellip;</p>
+<p>The gateway service is responsible for passing requests to the storage providers. Other services never talk to the storage providers directly but will always send their requests via the <code>gateway</code> service.</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="table-of-contents"
     >
@@ -17784,25 +17784,32 @@ Copyright 2022 Fonticons, Inc.
         </a>
     </h2>
 </div>
-<p>The <code>gateway</code> service can use a configured store via <code>GATEWAY_STAT_CACHE_STORE</code>. Possible stores are:</p>
+<p>The gateway service is using caching as it is highly frequented with the same requests. As of now it uses two different caches:</p>
+<ul>
+<li>the <code>provider cache</code> is caching requests to list or get storage providers.</li>
+<li>the <code>create home cache</code> is caching requests to create personal spaces (as they only need to be executed once).</li>
+</ul>
+<p>Both caches can be configured via the <code>OCIS_CACHE_*</code> envvars (or <code>GATEWAY_PROVIDER_CACHE_*</code> and <code>GATEWAY_CREATE_HOME_CACHE_*</code> respectively). See the <a
+  class="gdoc-markdown__link"
+  href="/services/gateway/configuration/#environment-variables"
+>envvar section</a> for details.</p>
+<p>Use <code>OCIS_CACHE_STORE</code> (<code>GATEWAY_PROVIDER_CACHE_STORE</code>, <code>GATEWAY_CREATE_HOME_CACHE_STORE</code>) to define the type of cache to use:</p>
 <ul>
 <li><code>memory</code>: Basic in-memory store and the default.</li>
-<li><code>ocmem</code>: Advanced in-memory store allowing max size.</li>
-<li><code>redis</code>: Stores data in a configured Redis cluster.</li>
 <li><code>redis-sentinel</code>: Stores data in a configured Redis Sentinel cluster.</li>
-<li><code>etcd</code>: Stores data in a configured etcd cluster.</li>
-<li><code>nats-js</code>: Stores data using key-value-store feature of <a
+<li><code>nats-js-kv</code>: Stores data using key-value-store feature of <a
   class="gdoc-markdown__link"
   href="https://docs.nats.io/nats-concepts/jetstream/key-value-store"
 >nats jetstream</a></li>
 <li><code>noop</code>: Stores nothing. Useful for testing. Not recommended in production environments.</li>
 </ul>
-<ol>
-<li>Note that in-memory stores are by nature not reboot-persistent.</li>
-<li>Though usually not necessary, a database name and a database table can be configured for event stores if the event store supports this. Generally not applicable for stores of type <code>in-memory</code>. These settings are blank by default which means that the standard settings of the configured store apply.</li>
-<li>The gateway service can be scaled if not using <code>in-memory</code> stores and the stores are configured identically over all instances.</li>
-<li>When using <code>redis-sentinel</code>, the Redis master to use is configured via <code>GATEWAY_STAT_CACHE_STORE_NODES</code> in the form of <code>&lt;sentinel-host&gt;:&lt;sentinel-port&gt;/&lt;redis-master&gt;</code> like <code>10.10.0.200:26379/mymaster</code>.</li>
-</ol>
+<p>Other store types may work but are not supported currently.</p>
+<p>Note: The gateway service can only be scaled if not using <code>memory</code> store and the stores are configured identically over all instances!</p>
+<p>Store specific notes:</p>
+<ul>
+<li>When using <code>redis-sentinel</code>, the Redis master to use is configured via e.g. <code>OCIS_CACHE_STORE_NODES</code> in the form of <code>&lt;sentinel-host&gt;:&lt;sentinel-port&gt;/&lt;redis-master&gt;</code> like <code>10.10.0.200:26379/mymaster</code>.</li>
+<li>When using <code>nats-js-kv</code> it is recommended to set <code>OCIS_CACHE_STORE_NODES</code> to the same value as <code>OCIS_EVENTS_ENDPOINT</code>. That way the cache uses the same nats instance as the event bus.</li>
+</ul>
 <div class="gdoc-page__anchorwrap">
     <h2 id="example-yaml-config"
     >
