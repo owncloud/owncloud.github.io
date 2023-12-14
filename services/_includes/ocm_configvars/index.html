@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/ocm_configvars/",
       "headline": "Ocm Configvars",
       "description": "Environment Variables Name Type Default Value Description OCIS_TRACING_ENABLEDOCM_TRACING_ENABLED bool false Activates tracing. OCIS_TRACING_TYPEOCM_TRACING_TYPE string The type of tracing. Defaults to ‘’, which is the same as ‘jaeger’. Allowed tracing types are ‘jaeger’ and ’’ as of now. OCIS_TRACING_ENDPOINTOCM_TRACING_ENDPOINT string The endpoint of the tracing agent. OCIS_TRACING_COLLECTOROCM_TRACING_COLLECTOR string The HTTP endpoint for sending spans directly to a collector, i.e. http:\/\/jaeger-collector:14268\/api\/traces. Only used if the tracing endpoint is unset. OCIS_LOG_LEVELOCM_LOG_LEVEL string The log level.",
-      "wordCount" : "692",
+      "wordCount" : "742",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17922,6 +17922,12 @@ Copyright 2022 Fonticons, Inc.
 <td>URL path prefix for the ScienceMesh service. Note that the string must not start with &lsquo;/&rsquo;.</td>
 </tr>
 <tr>
+<td>OCM_MESH_DIRECTORY_URL</td>
+<td>string</td>
+<td></td>
+<td>URL of the mesh directory service.</td>
+</tr>
+<tr>
 <td>OCM_OCM_INVITE_MANAGER_DRIVER</td>
 <td>string</td>
 <td>json</td>
@@ -17930,7 +17936,7 @@ Copyright 2022 Fonticons, Inc.
 <tr>
 <td>OCM_OCM_INVITE_MANAGER_JSON_FILE</td>
 <td>string</td>
-<td>~/.ocis/storage/ocminvites.json</td>
+<td>~/.ocis/storage/ocm/ocminvites.json</td>
 <td>Path to the JSON file where OCM invite data will be stored. If not defined, the root directory derives from $OCIS_BASE_DATA_PATH:/storage.</td>
 </tr>
 <tr>
@@ -17948,7 +17954,7 @@ Copyright 2022 Fonticons, Inc.
 <tr>
 <td>OCM_OCM_PROVIDER_AUTHORIZER_PROVIDERS_FILE</td>
 <td>string</td>
-<td>~/.ocis/storage/ocmproviders.json</td>
+<td>~/.ocis/storage/ocm/ocmproviders.json</td>
 <td>Path to the JSON file where ocm invite data will be stored. If not defined, the root directory derives from $OCIS_BASE_DATA_PATH:/storage.</td>
 </tr>
 <tr>
@@ -17966,7 +17972,7 @@ Copyright 2022 Fonticons, Inc.
 <tr>
 <td>OCM_OCM_SHAREPROVIDER_JSON_FILE</td>
 <td>string</td>
-<td>~/.ocis/storage/ocmshares.json</td>
+<td>~/.ocis/storage/ocm/ocmshares.json</td>
 <td>Path to the JSON file where OCM share data will be stored. If not defined, the root directory derives from $OCIS_BASE_DATA_PATH:/storage.</td>
 </tr>
 <tr>
@@ -17974,6 +17980,12 @@ Copyright 2022 Fonticons, Inc.
 <td>bool</td>
 <td>false</td>
 <td>Disable TLS certificate validation for the OCM connections. Do not set this in production environments.</td>
+</tr>
+<tr>
+<td>OCM_WEBAPP_TEMPLATE</td>
+<td>string</td>
+<td></td>
+<td>Template for the webapp url.</td>
 </tr>
 <tr>
 <td>OCM_OCM_CORE_DRIVER</td>
@@ -17984,8 +17996,20 @@ Copyright 2022 Fonticons, Inc.
 <tr>
 <td>OCM_OCM_CORE_JSON_FILE</td>
 <td>string</td>
-<td>~/.ocis/storage/ocmshares.json</td>
+<td>~/.ocis/storage/ocm/ocmshares.json</td>
 <td>Path to the JSON file where OCM share data will be stored. If not defined, the root directory derives from $OCIS_BASE_DATA_PATH:/storage.</td>
+</tr>
+<tr>
+<td>OCM_OCM_STORAGE_PROVIDER_INSECURE</td>
+<td>bool</td>
+<td>false</td>
+<td>Disable TLS certificate validation for the OCM connections. Do not set this in production environments.</td>
+</tr>
+<tr>
+<td>OCM_OCM_STORAGE_PROVIDER_STORAGE_ROOT</td>
+<td>string</td>
+<td>~/.ocis/storage/ocm</td>
+<td>Directory where the ocm storage provider persists its data like tus upload info files.</td>
 </tr>
 </tbody>
 </table> </div>
