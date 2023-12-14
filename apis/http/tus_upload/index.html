@@ -65,7 +65,7 @@
       "url" : "https://owncloud.dev/apis/http/tus_upload/",
       "headline": "Resumable Upload",
       "description": "Infinite Scale supports the tus resumable-upload protocol, which is a robust, modular, and open protocol designed to resume large file uploads reliably over HTTP. In situations where file uploads might be interrupted due to network issues, browser crashes, or other unforeseen interruptions, tus ensures that uploads can be resumed from the point of failure without losing data. This documentation shows some basic examples, refer tus official site for more details.",
-      "wordCount" : "954",
+      "wordCount" : "981",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17764,6 +17764,7 @@ This documentation shows some basic examples, refer <a
     </h2>
 </div>
 <p>The backend announces certain tus features to clients. WebDAV responses come with tus HTTP headers for the offical tus features, and additional, ownCloud specific features are announced via the capabilities endpoint (e.g. <code>https://localhost:9200/ocs/v1.php/cloud/capabilities?format=json</code>).</p>
+<p>The following snippet shows the relevant part of the server capabilities of Infinite Scale that concerns the tus upload:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nt">&#34;ocs&#34;</span><span class="p">:</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -18096,7 +18097,7 @@ It ensures data integrity and order during the upload process.</div>
 
 <blockquote class="gdoc-hint warning">
   <div class="gdoc-hint__title flex align-center"><i class="fa warning" title="Important Warning"></i></div>
-  <div class="gdoc-hint__text"><code>Upload-Length</code> header should contain the exact byte as upload content.</div>
+  <div class="gdoc-hint__text">The <code>Upload-Length</code> header of the request has to contain the exact size of the upload content in byte.</div>
 </blockquote>
 
 <div class="gdoc-page__anchorwrap">
