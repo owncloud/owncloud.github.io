@@ -45,11 +45,11 @@ The proxy service is the only service communicating to the outside and needs the
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-12-15T11:58:49+00:00"
+      content="2023-12-15T13:30:58+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-12-15T11:58:49+00:00"
+      content="2023-12-15T13:30:58+00:00"
     />
 
 
@@ -68,7 +68,7 @@ The proxy service is the only service communicating to the outside and needs the
       "url" : "https://owncloud.dev/services/proxy/",
       "headline": "Proxy",
       "description": "Abstract The proxy service is an API-Gateway for the ownCloud Infinite Scale microservices. Every HTTP request goes through this service. Authentication, logging and other preprocessing of requests also happens here. Mechanisms like request rate limiting or intrusion prevention are not included in the proxy service and must be setup in front like with an external reverse proxy.\nThe proxy service is the only service communicating to the outside and needs therefore usual protections against DDOS, Slow Loris or other attack vectors.",
-      "wordCount" : "2779",
+      "wordCount" : "2849",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ The proxy service is the only service communicating to the outside and needs the
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-12-15T11:58:49.69Z",
-      "datePublished": "2023-12-15T11:58:49.69Z",
-      "dateModified": "2023-12-15T11:58:49.69Z",
+      "dateCreated": "2023-12-15T13:30:58.18Z",
+      "datePublished": "2023-12-15T13:30:58.18Z",
+      "dateModified": "2023-12-15T13:30:58.18Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17940,22 +17940,29 @@ the user will not be able to login.</p>
 <p>The <code>proxy</code> service can use a configured store via <code>PROXY_OIDC_USERINFO_CACHE_STORE</code>. Possible stores are:</p>
 <ul>
 <li><code>memory</code>: Basic in-memory store and the default.</li>
-<li><code>ocmem</code>: Advanced in-memory store allowing max size.</li>
-<li><code>redis</code>: Stores data in a configured Redis cluster.</li>
 <li><code>redis-sentinel</code>: Stores data in a configured Redis Sentinel cluster.</li>
-<li><code>etcd</code>: Stores data in a configured etcd cluster.</li>
-<li><code>nats-js</code>: Stores data using key-value-store feature of <a
+<li><code>nats-js-kv</code>: Stores data using key-value-store feature of <a
   class="gdoc-markdown__link"
   href="https://docs.nats.io/nats-concepts/jetstream/key-value-store"
 >nats jetstream</a></li>
 <li><code>noop</code>: Stores nothing. Useful for testing. Not recommended in production environments.</li>
+<li><code>ocmem</code>: Advanced in-memory store allowing max size. (deprecated)</li>
+<li><code>redis</code>: Stores data in a configured Redis cluster. (deprecated)</li>
+<li><code>etcd</code>: Stores data in a configured etcd cluster. (deprecated)</li>
+<li><code>nats-js</code>: Stores data using object-store feature of <a
+  class="gdoc-markdown__link"
+  href="https://docs.nats.io/nats-concepts/jetstream/obj_store"
+>nats jetstream</a> (deprecated)</li>
 </ul>
-<ol>
-<li>Note that in-memory stores are by nature not reboot-persistent.</li>
-<li>Though usually not necessary, a database name and a database table can be configured for event stores if the event store supports this. Generally not applicable for stores of type <code>in-memory</code>. These settings are blank by default which means that the standard settings of the configured store apply.</li>
-<li>The proxy service can be scaled if not using <code>in-memory</code> stores and the stores are configured identically over all instances.</li>
-<li>When using <code>redis-sentinel</code>, the Redis master to use is configured via <code>PROXY_OIDC_USERINFO_CACHE_NODES</code> in the form of <code>&lt;sentinel-host&gt;:&lt;sentinel-port&gt;/&lt;redis-master&gt;</code> like <code>10.10.0.200:26379/mymaster</code>.</li>
-</ol>
+<p>Other store types may work but are not supported currently.</p>
+<p>Note: The service can only be scaled if not using <code>memory</code> store and the stores are configured identically over all instances!</p>
+<p>Note that if you have used one of the deprecated stores, you should reconfigure to one of the supported ones as the deprecated stores will be removed in a later version.</p>
+<p>Store specific notes:</p>
+<ul>
+<li>When using <code>redis-sentinel</code>, the Redis master to use is configured via e.g. <code>OCIS_CACHE_STORE_NODES</code> in the form of <code>&lt;sentinel-host&gt;:&lt;sentinel-port&gt;/&lt;redis-master&gt;</code> like <code>10.10.0.200:26379/mymaster</code>.</li>
+<li>When using <code>nats-js-kv</code> it is recommended to set <code>OCIS_CACHE_STORE_NODES</code> to the same value as <code>OCIS_EVENTS_ENDPOINT</code>. That way the cache uses the same nats instance as the event bus.</li>
+<li>When using the <code>nats-js-kv</code> store, it is possible to set <code>OCIS_CACHE_DISABLE_PERSISTENCE</code> to instruct nats to not persist cache data on disc.</li>
+</ul>
 <div class="gdoc-page__anchorwrap">
     <h2 id="special-settings"
     >
@@ -18159,6 +18166,7 @@ the user will not be able to login.</p>
 </span><span class="lnt">168
 </span><span class="lnt">169
 </span><span class="lnt">170
+</span><span class="lnt">171
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># Autogenerated</span><span class="w">
@@ -18288,6 +18296,7 @@ the user will not be able to login.</p>
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">table</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ttl</span><span class="p">:</span><span class="w"> </span><span class="l">10s</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">disable_persistence</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">jwks</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">refresh_interval</span><span class="p">:</span><span class="w"> </span><span class="m">60</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">refresh_timeout</span><span class="p">:</span><span class="w"> </span><span class="m">10</span><span class="w">
@@ -18509,7 +18518,7 @@ the user will not be able to login.</p>
 <td>OCIS_CACHE_STORE<br/>PROXY_OIDC_USERINFO_CACHE_STORE</td>
 <td>string</td>
 <td>memory</td>
-<td>The type of the cache store. Supported values are: &lsquo;memory&rsquo;, &lsquo;ocmem&rsquo;, &rsquo;etcd&rsquo;, &lsquo;redis&rsquo;, &lsquo;redis-sentinel&rsquo;, &rsquo;nats-js&rsquo;, &rsquo;noop&rsquo;. See the text description for details.</td>
+<td>The type of the cache store. Supported values are: &lsquo;memory&rsquo;, &lsquo;redis-sentinel&rsquo;, &rsquo;nats-js-kv&rsquo;, &rsquo;noop&rsquo;. See the text description for details.</td>
 </tr>
 <tr>
 <td>OCIS_CACHE_STORE_NODES<br/>PROXY_OIDC_USERINFO_CACHE_STORE_NODES</td>
@@ -18540,6 +18549,12 @@ the user will not be able to login.</p>
 <td>int</td>
 <td>0</td>
 <td>The maximum quantity of items in the user info cache. Only applies when store type &lsquo;ocmem&rsquo; is configured. Defaults to 512 which is derived from the ocmem package though not exclicitely set as default.</td>
+</tr>
+<tr>
+<td>OCIS_CACHE_DISABLE_PERSISTENCE<br/>PROXY_OIDC_USERINFO_CACHE_DISABLE_PERSISTENCE</td>
+<td>bool</td>
+<td>false</td>
+<td>Disables persistence of the cache. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured. Defaults to false.</td>
 </tr>
 <tr>
 <td>PROXY_OIDC_JWKS_REFRESH_INTERVAL</td>

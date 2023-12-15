@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/gateway_configvars/",
       "headline": "Gateway Configvars",
       "description": "Environment Variables Name Type Default Value Description OCIS_TRACING_ENABLEDGATEWAY_TRACING_ENABLED bool false Activates tracing. OCIS_TRACING_TYPEGATEWAY_TRACING_TYPE string The type of tracing. Defaults to ‘’, which is the same as ‘jaeger’. Allowed tracing types are ‘jaeger’ and ’’ as of now. OCIS_TRACING_ENDPOINTGATEWAY_TRACING_ENDPOINT string The endpoint of the tracing agent. OCIS_TRACING_COLLECTORGATEWAY_TRACING_COLLECTOR string The HTTP endpoint for sending spans directly to a collector, i.e. http:\/\/jaeger-collector:14268\/api\/traces. Only used if the tracing endpoint is unset. OCIS_LOG_LEVELGATEWAY_LOG_LEVEL string The log level.",
-      "wordCount" : "869",
+      "wordCount" : "924",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17916,10 +17916,16 @@ Copyright 2022 Fonticons, Inc.
 <td>The maximum quantity of items in the cache. Only applies when store type &lsquo;ocmem&rsquo; is configured. Defaults to 512 which is derived from the ocmem package though not exclicitely set as default.</td>
 </tr>
 <tr>
+<td>OCIS_CACHE_DISABLE_PERSISTENCE<br/>GATEWAY_STAT_CACHE_DISABLE_PERSISTENCE</td>
+<td>bool</td>
+<td>false</td>
+<td>Disables persistence of the stat cache. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured. Defaults to false.</td>
+</tr>
+<tr>
 <td>OCIS_CACHE_STORE<br/>GATEWAY_PROVIDER_CACHE_STORE</td>
 <td>string</td>
 <td>noop</td>
-<td>The type of the cache store. Supported values are: &lsquo;memory&rsquo;, &lsquo;ocmem&rsquo;, &rsquo;etcd&rsquo;, &lsquo;redis&rsquo;, &lsquo;redis-sentinel&rsquo;, &rsquo;nats-js&rsquo;, &rsquo;noop&rsquo;. See the text description for details.</td>
+<td>The type of the cache store. Supported values are: &lsquo;memory&rsquo;, &lsquo;redis-sentinel&rsquo;, &rsquo;nats-js-kv&rsquo;, &rsquo;noop&rsquo;. See the text description for details.</td>
 </tr>
 <tr>
 <td>OCIS_CACHE_STORE_NODES<br/>GATEWAY_PROVIDER_CACHE_STORE_NODES</td>
@@ -17946,10 +17952,16 @@ Copyright 2022 Fonticons, Inc.
 <td>The maximum quantity of items in the cache. Only applies when store type &lsquo;ocmem&rsquo; is configured. Defaults to 512 which is derived from the ocmem package though not exclicitely set as default.</td>
 </tr>
 <tr>
+<td>OCIS_CACHE_DISABLE_PERSISTENCE<br/>GATEWAY_PROVIDER_CACHE_DISABLE_PERSISTENCE</td>
+<td>bool</td>
+<td>false</td>
+<td>Disables persistence of the provider cache. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured. Defaults to false.</td>
+</tr>
+<tr>
 <td>OCIS_CACHE_STORE<br/>GATEWAY_CREATE_HOME_CACHE_STORE</td>
 <td>string</td>
 <td>memory</td>
-<td>The type of the cache store. Supported values are: &lsquo;memory&rsquo;, &lsquo;ocmem&rsquo;, &rsquo;etcd&rsquo;, &lsquo;redis&rsquo;, &lsquo;redis-sentinel&rsquo;, &rsquo;nats-js&rsquo;, &rsquo;noop&rsquo;. See the text description for details.</td>
+<td>The type of the cache store. Supported values are: &lsquo;memory&rsquo;, &lsquo;redis-sentinel&rsquo;, &rsquo;nats-js-kv&rsquo;, &rsquo;noop&rsquo;. See the text description for details.</td>
 </tr>
 <tr>
 <td>OCIS_CACHE_STORE_NODES<br/>GATEWAY_CREATE_HOME_CACHE_STORE_NODES</td>
@@ -17974,6 +17986,12 @@ Copyright 2022 Fonticons, Inc.
 <td>int</td>
 <td>0</td>
 <td>The maximum quantity of items in the cache. Only applies when store type &lsquo;ocmem&rsquo; is configured. Defaults to 512 which is derived from the ocmem package though not exclicitely set as default.</td>
+</tr>
+<tr>
+<td>OCIS_CACHE_DISABLE_PERSISTENCE<br/>GATEWAY_CREATE_HOME_CACHE_DISABLE_PERSISTENCE</td>
+<td>bool</td>
+<td>false</td>
+<td>Disables persistence of the create home cache. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured. Defaults to false.</td>
 </tr>
 <tr>
 <td>OCIS_URL<br/>GATEWAY_FRONTEND_PUBLIC_URL</td>
