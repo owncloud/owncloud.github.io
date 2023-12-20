@@ -68,7 +68,7 @@ All the steps below require you to have the web repo cloned locally and dependen
       "url" : "https://owncloud.dev/clients/web/testing/testing/",
       "headline": "Running tests",
       "description": "Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare \u0026 Start Web Run E2E Tests Options Acceptance Tests (Nightwatch) Preparation Prepare \u0026 Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.\nAll the steps below require you to have the web repo cloned locally and dependencies installed.",
-      "wordCount" : "830",
+      "wordCount" : "850",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17909,7 +17909,7 @@ which makes it easy to write tests, debug them and have them run cross-browser w
 </div>
 <p>Bundle the web frontend with the following command:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ pnpm build:w
-</span></span></code></pre></div><p>Our compose setup automatically mounts it into an oC10 and oCIS backend, respectively. Web also gets recompiled on changes.</p>
+</span></span></code></pre></div><p>Our compose setup automatically mounts it into an oCIS backend, respectively. Web also gets recompiled on changes.</p>
 <div class="gdoc-page__anchorwrap">
     <h4 id="run-e2e-tests"
     >
@@ -17933,11 +17933,13 @@ which makes it easy to write tests, debug them and have them run cross-browser w
 <p>To run a particular test, simply add the feature file and line number to the test command, e.g. <code>pnpm test:e2e:cucumber tests/e2e/cucumber/features/smoke/admin-settings/users.feature:84</code></p>
 <p>Various options are available via ENV variables, e.g.</p>
 <ul>
+<li><code>BASIC_AUTH=true</code> use basic authorization for api requests.</li>
 <li><code>RETRY=n</code> to retry failures <code>n</code> times</li>
 <li><code>SLOW_MO=n</code> to slow the execution time by <code>n</code> milliseconds</li>
 <li><code>TIMEOUT=n</code> to set tests to timeout after <code>n</code> milliseconds</li>
 <li><code>HEADLESS=bool</code> to open the browser while the tests run (defaults to true =&gt; headless mode)</li>
-<li><code>BROWSER=name</code> to run tests against a specific browser. Defaults to Chrome, available are Chrome, Firefox, Webkit, Chromium</li>
+<li><code>BROWSER=name</code> to run tests against a specific browser. Defaults to chromium, available are chromium, firefox, webkit, chromium</li>
+<li><code>ADMIN_PASSWORD</code> to set administrator password. By default, the <code>admin</code> password is used in the test</li>
 </ul>
 <p>For debugging reasons, you may want to record a video or traces of your test run.
 Again, you can use the following ENV variables in your command:</p>
@@ -18007,12 +18009,12 @@ to the nightwatch based e2e tests anymore.</p>
     </h4>
 </div>
 <p>The acceptance tests need additional docker containers to be running.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ docker compose up ocis vnc selenium middleware-ocis
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ docker compose up ocis selenium middleware-ocis
 </span></span></code></pre></div><p>and make sure there are no conflicting ports and everything runs smoothly. You can check if everything has worked by opening <a
   class="gdoc-markdown__link"
   href="https://host.docker.internal:9200"
 >https://host.docker.internal:9200</a> and logging in using the demo user (admin/admin).</p>
-<p>If you&rsquo;re using a M1 Mac, you need to use <code>seleniarm/standalone-chromium:4.4.0-20220814</code>for now. To do so, export <code>SELENIUM_IMAGE=seleniarm/standalone-chromium:4.4.0-20220814</code>.</p>
+<p>If you&rsquo;re using a M1 Mac, you need to use <code>seleniarm/standalone-chromium:4.7.0-20221206</code>for now. To do so, export <code>SELENIUM_IMAGE=seleniarm/standalone-chromium:4.7.0-20221206</code>.</p>
 <div class="gdoc-page__anchorwrap">
     <h4 id="run-acceptance-tests"
     >
@@ -18027,7 +18029,7 @@ to the nightwatch based e2e tests anymore.</p>
 <p>Change the directory to <code>tests/acceptance</code></p>
 </li>
 <li>
-<p>Install all the test dependencies with <code>pnpm</code> command</p>
+<p>Install all the test dependencies with <code>pnpm install</code> command</p>
 </li>
 <li>
 <p>Run the tests</p>
@@ -18045,8 +18047,8 @@ to the nightwatch based e2e tests anymore.</p>
 </div>
 <p>To watch the tests while running, open <a
   class="gdoc-markdown__link"
-  href="http://host.docker.internal:6080/"
->http://host.docker.internal:6080/</a> in the browser to access your VNC client.</p>
+  href="http://host.docker.internal:7900/"
+>http://host.docker.internal:7900/</a> in the browser to access your VNC client.</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="analyze-the-test-report"
     >
