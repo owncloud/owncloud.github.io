@@ -71,7 +71,7 @@ Workaround One of our contributors has opened a PR to a dependency that prevents
       "url" : "https://owncloud.dev/clients/web/getting-started/",
       "headline": "Getting Started",
       "description": "Installation Docker Source Code Configuration Options Scripts and Styles Sentry Setting up backend and running Running Installation Docker Make sure to have Docker, Docker-Compose, Node.js and pnpm installed.\nThis setup currently doesn’t work on Windows out of the box.\nWorkaround One of our contributors has opened a PR to a dependency that prevents us from successfully bundling the frontend. Feel free to check out [his changes](https:\/\/github.com\/egoist\/rollup-plugin-postcss\/pull\/384) and build them locally if you absolutely want to work on Windows.",
-      "wordCount" : "1355",
+      "wordCount" : "1434",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17957,6 +17957,18 @@ hovers the row with his mouse. Defaults to <code>false</code>.</li>
 <li><code>options.logoutUrl</code> Adds a link to the user&rsquo;s profile page to point him to an external page, where he can manage his session and devices. This is helpful when an external IdP is used. This option is disabled by default.</li>
 <li><code>options.ocm.openRemotely</code> Specifies whether opening files in remote shares in their original ocm instance should be enabled. Defaults to <code>false</code>.</li>
 <li><code>options.userListRequiresFilter</code> Defines whether one or more filters must be set in order to list users in the Web admin settings. Set this option to &rsquo;true&rsquo; if running in an environment with a lot of users and listing all users could slow down performance. Defaults to <code>false</code>.</li>
+<li><code>options.concurrentRequests</code> This accepts an object with the following optional fields to customize the maximum number of concurrent requests in code paths where we limit concurrent requests
+<ul>
+<li><code>resourceBatchActions</code> Concurrent number of file/folder/space batch actions like e.g. accepting shares. Defaults to 4.</li>
+<li><code>sse</code> Concurrent number of SSE event handlers. Defaults to 4.</li>
+<li><code>shares</code> Accepts an object regarding the following sharing related options:
+<ul>
+<li><code>create</code> Concurrent number of share invites. Defaults to 4.</li>
+<li><code>list</code> Concurrent number of individually loaded shares. Defaults to 2.</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h4 id="scripts-and-styles"
