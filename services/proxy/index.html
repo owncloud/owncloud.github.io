@@ -45,11 +45,11 @@ The proxy service is the only service communicating to the outside and needs the
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2023-12-21T13:37:38+00:00"
+      content="2023-12-21T15:29:48+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-12-21T13:37:38+00:00"
+      content="2023-12-21T15:29:48+00:00"
     />
 
 
@@ -68,7 +68,7 @@ The proxy service is the only service communicating to the outside and needs the
       "url" : "https://owncloud.dev/services/proxy/",
       "headline": "Proxy",
       "description": "Abstract The proxy service is an API-Gateway for the ownCloud Infinite Scale microservices. Every HTTP request goes through this service. Authentication, logging and other preprocessing of requests also happens here. Mechanisms like request rate limiting or intrusion prevention are not included in the proxy service and must be setup in front like with an external reverse proxy.\nThe proxy service is the only service communicating to the outside and needs therefore usual protections against DDOS, Slow Loris or other attack vectors.",
-      "wordCount" : "2889",
+      "wordCount" : "3248",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ The proxy service is the only service communicating to the outside and needs the
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2023",
-      "dateCreated": "2023-12-21T13:37:38.09Z",
-      "datePublished": "2023-12-21T13:37:38.09Z",
-      "dateModified": "2023-12-21T13:37:38.09Z",
+      "dateCreated": "2023-12-21T15:29:48.09Z",
+      "datePublished": "2023-12-21T15:29:48.09Z",
+      "dateModified": "2023-12-21T15:29:48.09Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17830,6 +17830,29 @@ Copyright 2022 Fonticons, Inc.
 >Special Settings</a></li>
 <li><a
   class="gdoc-markdown__link"
+  href="#metrics"
+>Metrics</a>
+<ul>
+<li><a
+  class="gdoc-markdown__link"
+  href="#1"
+>1) Single Process Mode</a>-single-process-mode)</li>
+<li><a
+  class="gdoc-markdown__link"
+  href="#2"
+>2) Standalone Mode</a>-standalone-mode)</li>
+<li><a
+  class="gdoc-markdown__link"
+  href="#available-metrics"
+>Available Metrics</a></li>
+<li><a
+  class="gdoc-markdown__link"
+  href="#prometheus-configuration"
+>Prometheus Configuration</a></li>
+</ul>
+</li>
+<li><a
+  class="gdoc-markdown__link"
   href="#example-yaml-config"
 >Example Yaml Config</a></li>
 </ul>
@@ -18015,6 +18038,102 @@ the user will not be able to login.</p>
 <li><code>PROXY_TLS</code> <strong>can</strong> be set to <code>false</code> if a reverse proxy is used and the https connection is terminated at the reverse proxy. When setting to <code>false</code>, the communication between the reverse proxy and ocis is not secured. If set to <code>true</code>, you must provide certificates.</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
+    <h2 id="metrics"
+    >
+        Metrics
+        <a data-clipboard-text="https://owncloud.dev/services/proxy/#metrics" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Metrics" aria-label="Anchor to: Metrics" href="#metrics">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>The proxy service in ocis has the ability to expose metrics in the prometheus format. The metrics are exposed on the <code>/metrics</code> endpoint. There are two ways to run the ocis proxy service which has an impact on the number of metrics exposed.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="1-single-process-mode"
+    >
+        1) Single Process Mode
+        <a data-clipboard-text="https://owncloud.dev/services/proxy/#1-single-process-mode" class="gdoc-page__anchor clip flex align-center" title="Anchor to: 1) Single Process Mode" aria-label="Anchor to: 1) Single Process Mode" href="#1-single-process-mode">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>In the single process mode, all ocis services are running inside a single process. This is the default mode when using the <code>ocis server</code> command to start the services. In this mode, the proxy service exposes metrics about the proxy service itself and about the ocis services it is proxying. This is due to the nature of the prometheus registry which is a singleton. The metrics exposed by the proxy service itself are prefixed with <code>ocis_proxy_</code> and the metrics exposed by other ocis services are prefixed with <code>ocis_&lt;service-name&gt;_</code>.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="2-standalone-mode"
+    >
+        2) Standalone Mode
+        <a data-clipboard-text="https://owncloud.dev/services/proxy/#2-standalone-mode" class="gdoc-page__anchor clip flex align-center" title="Anchor to: 2) Standalone Mode" aria-label="Anchor to: 2) Standalone Mode" href="#2-standalone-mode">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>In this mode, the proxy service only exposes its own metrics. The metrics of the other ocis services are exposed on their own metrics endpoints.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="available-metrics"
+    >
+        Available Metrics
+        <a data-clipboard-text="https://owncloud.dev/services/proxy/#available-metrics" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Available Metrics" aria-label="Anchor to: Available Metrics" href="#available-metrics">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>The following metrics are exposed by the proxy service:</p>
+<div class="table-wrap"> <table>
+<thead>
+<tr>
+<th>Metric Name</th>
+<th>Description</th>
+<th>Labels</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ocis_proxy_requests_total</code></td>
+<td><a
+  class="gdoc-markdown__link"
+  href="https://prometheus.io/docs/tutorials/understanding_metric_types/#counter"
+>Counter</a> metric which reports the total number of HTTP requests.</td>
+<td><code>method</code>: HTTP method of the request</td>
+</tr>
+<tr>
+<td><code>ocis_proxy_errors_total</code></td>
+<td><a
+  class="gdoc-markdown__link"
+  href="https://prometheus.io/docs/tutorials/understanding_metric_types/#counter"
+>Counter</a> metric which reports the total number of HTTP requests which have failed. That counts all response codes &gt;= 500</td>
+<td><code>method</code>: HTTP method of the request</td>
+</tr>
+<tr>
+<td><code>ocis_proxy_duration_seconds</code></td>
+<td><a
+  class="gdoc-markdown__link"
+  href="https://prometheus.io/docs/tutorials/understanding_metric_types/#histogram"
+>Histogram</a> of the time (in seconds) each request took. A histogram metric uses buckets to count the number of events that fall into each bucket.</td>
+<td><code>method</code>: HTTP method of the request</td>
+</tr>
+<tr>
+<td><code>ocis_proxy_build_info{version}</code></td>
+<td>A metric with a constant <code>1</code> value labeled by version, exposing the version of the ocis proxy service.</td>
+<td><code>version</code>: Build version of the proxy</td>
+</tr>
+</tbody>
+</table> </div>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="prometheus-configuration"
+    >
+        Prometheus Configuration
+        <a data-clipboard-text="https://owncloud.dev/services/proxy/#prometheus-configuration" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Prometheus Configuration" aria-label="Anchor to: Prometheus Configuration" href="#prometheus-configuration">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>The following is an example prometheus configuration for the single process mode. It assumes that the proxy service is configured to bind on all interfaces <code>PROXY_HTTP_ADDR=0.0.0.0:9205</code> and that the proxy is available via the <code>ocis</code> service name (typically in docker-compose). The prometheus service detects the <code>/metrics</code> endpoint automatically and scrapes it every 15 seconds.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">global</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">scrape_interval</span><span class="p">:</span><span class="w"> </span><span class="l">15s</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">scrape_configs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="l">ocis_proxy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">static_configs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;ocis:9205&#34;</span><span class="p">]</span><span class="w">
+</span></span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="example-yaml-config"
     >
         Example Yaml Config
