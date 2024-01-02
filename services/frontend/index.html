@@ -47,11 +47,11 @@ appprovider The appprovider endpoint, by default /app, forwards HTTP requests to
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2024-01-02T13:23:27+00:00"
+      content="2024-01-02T14:52:44+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-01-02T13:23:27+00:00"
+      content="2024-01-02T14:52:44+00:00"
     />
 
 
@@ -71,7 +71,7 @@ appprovider The appprovider endpoint, by default /app, forwards HTTP requests to
       "url" : "https://owncloud.dev/services/frontend/",
       "headline": "Frontend",
       "description": "Abstract The frontend service translates various owncloud related HTTP APIs to CS3 requests.\nTable of Contents Endpoints Overview appprovider archiver datagateway ocs Sharing Scalability Define Read-Only Attributes Caching Event Handler Auto-Accept Shares The password policy The password policy capability Example Yaml Config Endpoints Overview Currently, the frontend service handles requests for three functionalities, which are appprovider, archiver, datagateway and ocs.\nappprovider The appprovider endpoint, by default \/app, forwards HTTP requests to the CS3 App Registry API",
-      "wordCount" : "3127",
+      "wordCount" : "3145",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -80,9 +80,9 @@ appprovider The appprovider endpoint, by default /app, forwards HTTP requests to
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-01-02T13:23:27.67Z",
-      "datePublished": "2024-01-02T13:23:27.67Z",
-      "dateModified": "2024-01-02T13:23:27.67Z",
+      "dateCreated": "2024-01-02T14:52:44.42Z",
+      "datePublished": "2024-01-02T14:52:44.42Z",
+      "dateModified": "2024-01-02T14:52:44.42Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -18036,6 +18036,8 @@ Copyright 2022 Fonticons, Inc.
 <p>The validation against the banned passwords list can be configured via a text file with words separated by new lines. If a user tries to set a password listed in the banned passwords list, the password can not be used (is invalid) even if the other mandatory criteria are passed. The admin can define the path of the banned passwords list file. If the file doesn&rsquo;t exist in a location, Infinite Scale tries to load a file from the <code>OCIS_CONFIG_DIR/OCIS_PASSWORD_POLICY_BANNED_PASSWORDS_LIST</code>. An option will be enabled when the file has been loaded successfully.</p>
 <p>Following environment variables can be set to define the password policy behaviour:</p>
 <ul>
+<li><code>OCIS_PASSWORD_POLICY_DISABLED</code>
+Disable the password policy</li>
 <li><code>OCIS_PASSWORD_POLICY_MIN_CHARACTERS</code>
 Define the minimum password length.</li>
 <li><code>OCIS_PASSWORD_POLICY_MIN_LOWERCASE_CHARACTERS</code>
@@ -18899,34 +18901,40 @@ Path to the &lsquo;banned passwords list&rsquo; file.</li>
 <td>The service account secret.</td>
 </tr>
 <tr>
+<td>OCIS_PASSWORD_POLICY_DISABLED<br/>FRONTEND_PASSWORD_POLICY_DISABLED</td>
+<td>bool</td>
+<td>false</td>
+<td>Disable the password policy. Defaults to false if not set.</td>
+</tr>
+<tr>
 <td>OCIS_PASSWORD_POLICY_MIN_CHARACTERS<br/>FRONTEND_PASSWORD_POLICY_MIN_CHARACTERS</td>
 <td>int</td>
 <td>8</td>
-<td>Define the minimum password length. Defaults to 0 if not set.</td>
+<td>Define the minimum password length. Defaults to 8 if not set.</td>
 </tr>
 <tr>
 <td>OCIS_PASSWORD_POLICY_MIN_LOWERCASE_CHARACTERS<br/>FRONTEND_PASSWORD_POLICY_MIN_LOWERCASE_CHARACTERS</td>
 <td>int</td>
 <td>1</td>
-<td>Define the minimum number of uppercase letters. Defaults to 0 if not set.</td>
+<td>Define the minimum number of uppercase letters. Defaults to 1 if not set.</td>
 </tr>
 <tr>
 <td>OCIS_PASSWORD_POLICY_MIN_UPPERCASE_CHARACTERS<br/>FRONTEND_PASSWORD_POLICY_MIN_UPPERCASE_CHARACTERS</td>
 <td>int</td>
 <td>1</td>
-<td>Define the minimum number of lowercase letters. Defaults to 0 if not set.</td>
+<td>Define the minimum number of lowercase letters. Defaults to 1 if not set.</td>
 </tr>
 <tr>
 <td>OCIS_PASSWORD_POLICY_MIN_DIGITS<br/>FRONTEND_PASSWORD_POLICY_MIN_DIGITS</td>
 <td>int</td>
 <td>1</td>
-<td>Define the minimum number of digits. Defaults to 0 if not set.</td>
+<td>Define the minimum number of digits. Defaults to 1 if not set.</td>
 </tr>
 <tr>
 <td>OCIS_PASSWORD_POLICY_MIN_SPECIAL_CHARACTERS<br/>FRONTEND_PASSWORD_POLICY_MIN_SPECIAL_CHARACTERS</td>
 <td>int</td>
 <td>1</td>
-<td>Define the minimum number of characters from the special characters list to be present. Defaults to 0 if not set.</td>
+<td>Define the minimum number of characters from the special characters list to be present. Defaults to 1 if not set.</td>
 </tr>
 <tr>
 <td>OCIS_PASSWORD_POLICY_BANNED_PASSWORDS_LIST<br/>FRONTEND_PASSWORD_POLICY_BANNED_PASSWORDS_LIST</td>
