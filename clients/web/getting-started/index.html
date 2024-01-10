@@ -71,7 +71,7 @@ Workaround One of our contributors has opened a PR to a dependency that prevents
       "url" : "https://owncloud.dev/clients/web/getting-started/",
       "headline": "Getting Started",
       "description": "Installation Docker Source Code Configuration Options Scripts and Styles Sentry Setting up backend and running Running Installation Docker Make sure to have Docker, Docker-Compose, Node.js and pnpm installed.\nThis setup currently doesn’t work on Windows out of the box.\nWorkaround One of our contributors has opened a PR to a dependency that prevents us from successfully bundling the frontend. Feel free to check out [his changes](https:\/\/github.com\/egoist\/rollup-plugin-postcss\/pull\/384) and build them locally if you absolutely want to work on Windows.",
-      "wordCount" : "1335",
+      "wordCount" : "1180",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17904,6 +17904,10 @@ Please refer to the <a
     </h4>
 </div>
 <ul>
+<li><code>options.homeFolder</code> You can specify a folder that is used when the user navigates <code>home</code>. Navigating home gets triggered by clicking on the <code>All files</code>
+menu item. The user will not be jailed in that directory. It simply serves as a default location. You can either provide a static location, or you can use
+variables of the user object to come up with a user specific home path. This uses twig template variable style and allows you to pick a value or a
+substring of a value of the authenticated user. Examples are <code>/Shares</code>, <code>/{{.Id}}</code> and <code>/{{substr 0 3 .Id}}/{{.Id}</code>.</li>
 <li><code>options.openAppsInTab</code> Configures whether apps and extensions generally should open in a new tab. Defaults to false.</li>
 <li><code>options.disablePreviews</code> Set this option to <code>true</code> to disable previews in all the different file listing views. The only list view that is not affected
 by this is the trash bin, as that doesn&rsquo;t allow showing previews at all.</li>
@@ -17942,29 +17946,9 @@ hovers the row with his mouse. Defaults to <code>false</code>.</li>
 <li><code>options.upload.xhr.timeout</code> Specifies the timeout for XHR uploads in milliseconds.</li>
 <li><code>options.editor.autosaveEnabled</code> Specifies if the autosave for the editor apps is enabled.</li>
 <li><code>options.editor.autosaveInterval</code> Specifies the time interval for the autosave of editor apps in seconds.</li>
-<li><code>options.editor.openAsPreview</code> Specifies if non-personal files i.e. files in shares, spaces or public links are being opened in read only mode so the user needs to manually switch to edit mode. Can be set to <code>true</code>, <code>false</code> or an array of web app/editor names.</li>
 <li><code>options.contextHelpersReadMore</code> Specifies whether the &ldquo;Read more&rdquo; link should be displayed or not.</li>
 <li><code>options.openLinksWithDefaultApp</code> Specifies whether single file link shares should be opened with default app or not.</li>
 <li><code>options.tokenStorageLocal</code> Specifies whether the access token will be stored in the local storage when set to <code>true</code> or in the session storage when set to <code>false</code>. If stored in the local storage, login state will be persisted across multiple browser tabs, means no additional logins are required. Defaults to <code>true</code>.</li>
-<li><code>options.loginUrl</code> Specifies the target URL to the login page. This is helpful when an external IdP is used. This option is disabled by default. Example URL like: &lsquo;<a
-  class="gdoc-markdown__link"
-  href="https://www.myidp.com/login%27"
->https://www.myidp.com/login'</a>.</li>
-<li><code>options.logoutUrl</code> Adds a link to the user&rsquo;s profile page to point him to an external page, where he can manage his session and devices. This is helpful when an external IdP is used. This option is disabled by default.</li>
-<li><code>options.ocm.openRemotely</code> Specifies whether opening files in remote shares in their original ocm instance should be enabled. Defaults to <code>false</code>.</li>
-<li><code>options.userListRequiresFilter</code> Defines whether one or more filters must be set in order to list users in the Web admin settings. Set this option to &rsquo;true&rsquo; if running in an environment with a lot of users and listing all users could slow down performance. Defaults to <code>false</code>.</li>
-<li><code>options.concurrentRequests</code> This accepts an object with the following optional fields to customize the maximum number of concurrent requests in code paths where we limit concurrent requests
-<ul>
-<li><code>resourceBatchActions</code> Concurrent number of file/folder/space batch actions like e.g. accepting shares. Defaults to 4.</li>
-<li><code>sse</code> Concurrent number of SSE event handlers. Defaults to 4.</li>
-<li><code>shares</code> Accepts an object regarding the following sharing related options:
-<ul>
-<li><code>create</code> Concurrent number of share invites. Defaults to 4.</li>
-<li><code>list</code> Concurrent number of individually loaded shares. Defaults to 2.</li>
-</ul>
-</li>
-</ul>
-</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h4 id="scripts-and-styles"
