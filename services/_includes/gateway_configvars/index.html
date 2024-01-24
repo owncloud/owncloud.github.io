@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/gateway_configvars/",
       "headline": "Gateway Configvars",
       "description": "Environment Variables Name Type Default Value Description OCIS_TRACING_ENABLEDGATEWAY_TRACING_ENABLED bool false Activates tracing. OCIS_TRACING_TYPEGATEWAY_TRACING_TYPE string The type of tracing. Defaults to ‘’, which is the same as ‘jaeger’. Allowed tracing types are ‘jaeger’ and ’’ as of now. OCIS_TRACING_ENDPOINTGATEWAY_TRACING_ENDPOINT string The endpoint of the tracing agent. OCIS_TRACING_COLLECTORGATEWAY_TRACING_COLLECTOR string The HTTP endpoint for sending spans directly to a collector, i.e. http:\/\/jaeger-collector:14268\/api\/traces. Only used if the tracing endpoint is unset. OCIS_LOG_LEVELGATEWAY_LOG_LEVEL string The log level.",
-      "wordCount" : "924",
+      "wordCount" : "843",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -17928,36 +17928,6 @@ Copyright 2022 Fonticons, Inc.
 <td>Expiry for the gateway tokens.</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_STORE_NODES<br/>GATEWAY_STAT_CACHE_STORE_NODES</td>
-<td>[]string</td>
-<td>[127.0.0.1:9233]</td>
-<td>A list of nodes to access the configured store. This has no effect when &lsquo;memory&rsquo; or &lsquo;ocmem&rsquo; stores are configured. Note that the behaviour how nodes are used is dependent on the library of the configured store. See the Environment Variable Types description for more details.</td>
-</tr>
-<tr>
-<td>OCIS_CACHE_DATABASE</td>
-<td>string</td>
-<td>ocis</td>
-<td>The database name the configured store should use.</td>
-</tr>
-<tr>
-<td>OCIS_CACHE_TTL<br/>GATEWAY_STAT_CACHE_TTL</td>
-<td>Duration</td>
-<td>5m0s</td>
-<td>Default time to live for user info in the cache. Only applied when access tokens has no expiration. See the Environment Variable Types description for more details.</td>
-</tr>
-<tr>
-<td>OCIS_CACHE_SIZE<br/>GATEWAY_STAT_CACHE_SIZE</td>
-<td>int</td>
-<td>0</td>
-<td>The maximum quantity of items in the cache. Only applies when store type &lsquo;ocmem&rsquo; is configured. Defaults to 512 which is derived from the ocmem package though not exclicitely set as default.</td>
-</tr>
-<tr>
-<td>OCIS_CACHE_DISABLE_PERSISTENCE<br/>GATEWAY_STAT_CACHE_DISABLE_PERSISTENCE</td>
-<td>bool</td>
-<td>false</td>
-<td>Disables persistence of the stat cache. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured. Defaults to false.</td>
-</tr>
-<tr>
 <td>OCIS_CACHE_STORE<br/>GATEWAY_PROVIDER_CACHE_STORE</td>
 <td>string</td>
 <td>noop</td>
@@ -17994,6 +17964,18 @@ Copyright 2022 Fonticons, Inc.
 <td>Disables persistence of the provider cache. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured. Defaults to false.</td>
 </tr>
 <tr>
+<td>OCIS_CACHE_AUTH_USERNAME<br/>GATEWAY_PROVIDER_CACHE_AUTH_USERNAME</td>
+<td>string</td>
+<td></td>
+<td>The username to use for authentication. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
+</tr>
+<tr>
+<td>OCIS_CACHE_AUTH_PASSWORD<br/>GATEWAY_PROVIDER_CACHE_AUTH_PASSWORD</td>
+<td>string</td>
+<td></td>
+<td>The password to use for authentication. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
+</tr>
+<tr>
 <td>OCIS_CACHE_STORE<br/>GATEWAY_CREATE_HOME_CACHE_STORE</td>
 <td>string</td>
 <td>memory</td>
@@ -18028,6 +18010,18 @@ Copyright 2022 Fonticons, Inc.
 <td>bool</td>
 <td>false</td>
 <td>Disables persistence of the create home cache. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured. Defaults to false.</td>
+</tr>
+<tr>
+<td>OCIS_CACHE_AUTH_USERNAME<br/>GATEWAY_CREATE_HOME_CACHE_AUTH_USERNAME</td>
+<td>string</td>
+<td></td>
+<td>The username to use for authentication. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
+</tr>
+<tr>
+<td>OCIS_CACHE_AUTH_PASSWORD<br/>GATEWAY_CREATE_HOME_CACHE_AUTH_PASSWORD</td>
+<td>string</td>
+<td></td>
+<td>The password to use for authentication. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
 </tr>
 <tr>
 <td>OCIS_URL<br/>GATEWAY_FRONTEND_PUBLIC_URL</td>

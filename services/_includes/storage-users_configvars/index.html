@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/storage-users_configvars/",
       "headline": "Storage Users Configvars",
       "description": "Environment Variables Name Type Default Value Description OCIS_TRACING_ENABLEDSTORAGE_USERS_TRACING_ENABLED bool false Activates tracing. OCIS_TRACING_TYPESTORAGE_USERS_TRACING_TYPE string The type of tracing. Defaults to ‘’, which is the same as ‘jaeger’. Allowed tracing types are ‘jaeger’ and ’’ as of now. OCIS_TRACING_ENDPOINTSTORAGE_USERS_TRACING_ENDPOINT string The endpoint of the tracing agent. OCIS_TRACING_COLLECTORSTORAGE_USERS_TRACING_COLLECTOR string The HTTP endpoint for sending spans directly to a collector, i.e. http:\/\/jaeger-collector:14268\/api\/traces. Only used if the tracing endpoint is unset. OCIS_LOG_LEVELSTORAGE_USERS_LOG_LEVEL string The log level.",
-      "wordCount" : "2339",
+      "wordCount" : "2241",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18234,42 +18234,6 @@ Copyright 2022 Fonticons, Inc.
 <td>The password to authenticate with the events broker. The events broker is the ocis service which receives and delivers events between the services..</td>
 </tr>
 <tr>
-<td>OCIS_CACHE_STORE<br/>STORAGE_USERS_STAT_CACHE_STORE</td>
-<td>string</td>
-<td>memory</td>
-<td>The type of the cache store. Supported values are: &lsquo;memory&rsquo;, &lsquo;redis-sentinel&rsquo;, &rsquo;nats-js-kv&rsquo;, &rsquo;noop&rsquo;. See the text description for details.</td>
-</tr>
-<tr>
-<td>OCIS_CACHE_STORE_NODES<br/>STORAGE_USERS_STAT_CACHE_STORE_NODES</td>
-<td>[]string</td>
-<td>[127.0.0.1:9233]</td>
-<td>A list of nodes to access the configured store. This has no effect when &lsquo;memory&rsquo; or &lsquo;ocmem&rsquo; stores are configured. Note that the behaviour how nodes are used is dependent on the library of the configured store. See the Environment Variable Types description for more details.</td>
-</tr>
-<tr>
-<td>OCIS_CACHE_DATABASE</td>
-<td>string</td>
-<td>ocis</td>
-<td>The database name the configured store should use.</td>
-</tr>
-<tr>
-<td>OCIS_CACHE_TTL<br/>STORAGE_USERS_STAT_CACHE_TTL</td>
-<td>Duration</td>
-<td>5m0s</td>
-<td>Default time to live for user info in the user info cache. Only applied when access tokens has no expiration. See the Environment Variable Types description for more details.</td>
-</tr>
-<tr>
-<td>OCIS_CACHE_SIZE<br/>STORAGE_USERS_STAT_CACHE_SIZE</td>
-<td>int</td>
-<td>0</td>
-<td>The maximum quantity of items in the user info cache. Only applies when store type &lsquo;ocmem&rsquo; is configured. Defaults to 512 which is derived from the ocmem package though not exclicitely set as default.</td>
-</tr>
-<tr>
-<td>OCIS_CACHE_DISABLE_PERSISTENCE<br/>STORAGE_USERS_STAT_CACHE_DISABLE_PERSISTENCE</td>
-<td>bool</td>
-<td>false</td>
-<td>Disables persistence of the cache. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured. Defaults to false.</td>
-</tr>
-<tr>
 <td>OCIS_CACHE_STORE<br/>STORAGE_USERS_FILEMETADATA_CACHE_STORE</td>
 <td>string</td>
 <td>memory</td>
@@ -18306,6 +18270,18 @@ Copyright 2022 Fonticons, Inc.
 <td>Disables persistence of the cache. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured. Defaults to false.</td>
 </tr>
 <tr>
+<td>OCIS_CACHE_AUTH_USERNAME<br/>STORAGE_USERS_FILEMETADATA_CACHE_AUTH_USERNAME</td>
+<td>string</td>
+<td></td>
+<td>The username to authenticate with the cache store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
+</tr>
+<tr>
+<td>OCIS_CACHE_AUTH_PASSWORD<br/>STORAGE_USERS_FILEMETADATA_CACHE_AUTH_PASSWORD</td>
+<td>string</td>
+<td></td>
+<td>The password to authenticate with the cache store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
+</tr>
+<tr>
 <td>OCIS_CACHE_STORE<br/>STORAGE_USERS_ID_CACHE_STORE</td>
 <td>string</td>
 <td>memory</td>
@@ -18340,6 +18316,18 @@ Copyright 2022 Fonticons, Inc.
 <td>bool</td>
 <td>false</td>
 <td>Disables persistence of the cache. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured. Defaults to false.</td>
+</tr>
+<tr>
+<td>OCIS_CACHE_AUTH_USERNAME<br/>STORAGE_USERS_ID_CACHE_AUTH_USERNAME</td>
+<td>string</td>
+<td></td>
+<td>The username to authenticate with the cache store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
+</tr>
+<tr>
+<td>OCIS_CACHE_AUTH_PASSWORD<br/>STORAGE_USERS_ID_CACHE_AUTH_PASSWORD</td>
+<td>string</td>
+<td></td>
+<td>The password to authenticate with the cache store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_MOUNT_ID</td>
