@@ -1590,6 +1590,60 @@ Start Jaeger by using the all-in-one docker image: docker run -d --name jaeger \
     </item>
     
     <item>
+      <title>Action extensions</title>
+      <link>https://owncloud.dev/clients/web/extension-system/extension-types/actions/</link>
+      <pubDate>Tue, 23 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/clients/web/extension-system/extension-types/actions/</guid>
+      <description>Action extension type Configuration Action Action extension type Actions are one of the possible extension types. Registered actions get rendered in various places across the UI, depending on their scope and targets.
+Configuration This is what the ActionExtension interface looks like:
+interface ActionExtension { id: string type: &amp;#39;action&amp;#39; scopes?: ExtensionScope[] action: Action // Please check the Action section below } For id, type, and scopes, please see extension base section in top level docs.</description>
+    </item>
+    
+    <item>
+      <title>Folder View extensions</title>
+      <link>https://owncloud.dev/clients/web/extension-system/extension-types/folder-view/</link>
+      <pubDate>Tue, 23 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/clients/web/extension-system/extension-types/folder-view/</guid>
+      <description>Folder view extension type The folder view is one of the possible extension types. Registered folder view can be used to render multiple resources (folders, files, spaces) in the UI.
+Configuration This is what the FolderViewExtension interface looks like:
+interface FolderViewExtension { id: string scopes?: ExtensionScope[] type: &amp;#39;folderView&amp;#39; folderView: FolderView // See FolderView section below } For id, type, and scopes, please see extension base section in top level docs.</description>
+    </item>
+    
+    <item>
+      <title>Left sidebar menu item extensions</title>
+      <link>https://owncloud.dev/clients/web/extension-system/extension-types/left-sidebar-menu-item/</link>
+      <pubDate>Tue, 23 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/clients/web/extension-system/extension-types/left-sidebar-menu-item/</guid>
+      <description>Left sidebar menu item extension type Configuration AppNavigationItem Left sidebar menu item extension type One possible extension type is left sidebar menu items. Registered left sidebar menu items get rendered in the left sidebar, as long as there is more than one available.
+Configuration To define a left sidebar menu item, you implement the SidebarNavExtension interface. It looks like this:
+interface SidebarNavExtension { id: string type: &amp;#39;sidebarNav&amp;#39; scopes?: ExtensionScope[] navItem: AppNavigationItem // Please check the AppNavigationItem section below } } For id, type, and scopes, please see extension base section in top level docs.</description>
+    </item>
+    
+    <item>
+      <title>Right sidebar panel extensions</title>
+      <link>https://owncloud.dev/clients/web/extension-system/extension-types/right-sidebar-panels/</link>
+      <pubDate>Tue, 23 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/clients/web/extension-system/extension-types/right-sidebar-panels/</guid>
+      <description>Extension Type SideBarPanel Configuration SideBarPanelContext SideBarPanel Extension Point FileSideBar Extension Type SideBarPanel The right sidebar is supposed to show information and make context specific actions available for single or multiple selected items.
+It is structured in a hierarchical way:
+Panels which are defined as root panels get rendered as immediate members of the right sidebar. Panels which are defined as non-root panels receive a navigation item below the root panels so that users can navigate into the respective sub panel.</description>
+    </item>
+    
+    <item>
+      <title>Search extensions</title>
+      <link>https://owncloud.dev/clients/web/extension-system/extension-types/search/</link>
+      <pubDate>Tue, 23 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://owncloud.dev/clients/web/extension-system/extension-types/search/</guid>
+      <description>Search extensions Configuration ListSearch PreviewSearch Search extensions One possible extension type is search. Registered search extensions are available when using the search field in the topbar. A search extension can consist of a list and a preview search. The result of a preview search is shown below the search input field while the list search result is
+Configuration An example of a search extension configuration can be found below:</description>
+    </item>
+    
+    <item>
       <title>Running tests</title>
       <link>https://owncloud.dev/clients/web/testing/testing/</link>
       <pubDate>Tue, 27 Jul 2021 00:00:00 +0000</pubDate>
