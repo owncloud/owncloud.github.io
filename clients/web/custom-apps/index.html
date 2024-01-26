@@ -12,10 +12,9 @@
 <meta name="generator" content="Hugo 0.115.2">
 
 
-  <meta name="description" content="Concepts and Building Blocks Distinction between Apps and Extensions Apps Extensions Extension Registry Extension Types Extension Base Configuration Extension Points Concepts and Building Blocks The ownCloud Web can be extended through various entry points with custom apps and extensions.
-Distinction between Apps and Extensions An Application in the context of ownCloud Web is an artifact which can be installed in an ownCloud Infinite Scale instance. It serves two main purposes:" />
+  <meta name="description" content="Introduction Setting up the example &ldquo;skeleton app&rdquo; Configuration options Ways of providing an app Types of apps Accessing existing functionality Introduction In the new web frontend, the way custom/external apps are handled has fundamentally changed from the approach of PHP-based ownCloud X stack. Now, all you have to do is provide a bundled Vue app and reference it in your configuration! Please note that any existing apps you may be used to can not simply be ported from the old to the new frontend." />
 
-    <title>Extension system | ownCloud</title>
+    <title>Custom Apps | ownCloud</title>
 
     <link
   rel="icon"
@@ -34,29 +33,27 @@ Distinction between Apps and Extensions An Application in the context of ownClou
     
   <meta
     property="og:title"
-    content="Extension system"
+    content="Custom Apps"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Concepts and Building Blocks Distinction between Apps and Extensions Apps Extensions Extension Registry Extension Types Extension Base Configuration Extension Points Concepts and Building Blocks The ownCloud Web can be extended through various entry points with custom apps and extensions.
-Distinction between Apps and Extensions An Application in the context of ownCloud Web is an artifact which can be installed in an ownCloud Infinite Scale instance. It serves two main purposes:" />
+  <meta property="og:description" content="Introduction Setting up the example “skeleton app” Configuration options Ways of providing an app Types of apps Accessing existing functionality Introduction In the new web frontend, the way custom/external apps are handled has fundamentally changed from the approach of PHP-based ownCloud X stack. Now, all you have to do is provide a bundled Vue app and reference it in your configuration! Please note that any existing apps you may be used to can not simply be ported from the old to the new frontend." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://owncloud.dev/clients/web/extension-system/" />
+<meta property="og:url" content="https://owncloud.dev/clients/web/custom-apps/" />
 
 <meta property="article:section" content="Clients" />
     <meta
       property="article:published_time"
-      content="2024-01-23T00:00:00+00:00"
+      content="2021-08-26T00:00:00+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-01-23T00:00:00+00:00"
+      content="2021-08-26T00:00:00+00:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Extension system" />
-  <meta name="twitter:description" content="Concepts and Building Blocks Distinction between Apps and Extensions Apps Extensions Extension Registry Extension Types Extension Base Configuration Extension Points Concepts and Building Blocks The ownCloud Web can be extended through various entry points with custom apps and extensions.
-Distinction between Apps and Extensions An Application in the context of ownCloud Web is an artifact which can be installed in an ownCloud Infinite Scale instance. It serves two main purposes:" />
+<meta name="twitter:title" content="Custom Apps" />
+  <meta name="twitter:description" content="Introduction Setting up the example “skeleton app” Configuration options Ways of providing an app Types of apps Accessing existing functionality Introduction In the new web frontend, the way custom/external apps are handled has fundamentally changed from the approach of PHP-based ownCloud X stack. Now, all you have to do is provide a bundled Vue app and reference it in your configuration! Please note that any existing apps you may be used to can not simply be ported from the old to the new frontend." />
 
 
   <script type="application/ld+json">
@@ -64,22 +61,22 @@ Distinction between Apps and Extensions An Application in the context of ownClou
       "@context": "http://schema.org",
       "@type": "TechArticle",
       "articleSection": "Clients",
-      "name": "Extension system",
-      "url" : "https://owncloud.dev/clients/web/extension-system/",
-      "headline": "Extension system",
-      "description": "Concepts and Building Blocks Distinction between Apps and Extensions Apps Extensions Extension Registry Extension Types Extension Base Configuration Extension Points Concepts and Building Blocks The ownCloud Web can be extended through various entry points with custom apps and extensions.\nDistinction between Apps and Extensions An Application in the context of ownCloud Web is an artifact which can be installed in an ownCloud Infinite Scale instance. It serves two main purposes:",
-      "wordCount" : "1129",
+      "name": "Custom Apps",
+      "url" : "https://owncloud.dev/clients/web/custom-apps/",
+      "headline": "Custom Apps",
+      "description": "Introduction Setting up the example “skeleton app” Configuration options Ways of providing an app Types of apps Accessing existing functionality Introduction In the new web frontend, the way custom\/external apps are handled has fundamentally changed from the approach of PHP-based ownCloud X stack. Now, all you have to do is provide a bundled Vue app and reference it in your configuration! Please note that any existing apps you may be used to can not simply be ported from the old to the new frontend.",
+      "wordCount" : "387",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://owncloud.dev/clients/web/extension-system/"
+          "@id": "https://owncloud.dev/clients/web/custom-apps/"
       },
       "copyrightHolder" : "ownCloud",
-      "copyrightYear" : "2024",
-      "dateCreated": "2024-01-23T00:00:00.00Z",
-      "datePublished": "2024-01-23T00:00:00.00Z",
-      "dateModified": "2024-01-23T00:00:00.00Z",
+      "copyrightYear" : "2021",
+      "dateCreated": "2021-08-26T00:00:00.00Z",
+      "datePublished": "2021-08-26T00:00:00.00Z",
+      "dateModified": "2021-08-26T00:00:00.00Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -157,7 +154,7 @@ Distinction between Apps and Extensions An Application in the context of ownClou
   href="/custom.css"
   media="all"
 />
-  <link href="https://owncloud.dev/clients/web/extension-system/" rel="canonical" type="text/html" />
+  <link href="https://owncloud.dev/clients/web/custom-apps/" rel="canonical" type="text/html" />
 
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
 
@@ -12346,6 +12343,42 @@ Copyright 2022 Fonticons, Inc.
             <input
               type="checkbox"
               
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              
+                <span class="flex">
+                  <a
+                    href="/clients/web/custom-apps/"
+                    class="gdoc-nav__entry is-active"
+                  >
+                    Custom Apps
+                  </a>
+                </span>
+              
+              
+            </label>
+
+            
+          </li>
+        
+      
+        
+          
+          
+          
+          
+          
+          
+
+
+          <li>
+            <input
+              type="checkbox"
+              
                 class="gdoc-nav__toggle" id="navtree-373fdd11"
                 
               
@@ -12608,314 +12641,6 @@ Copyright 2022 Fonticons, Inc.
               
               
             </label>
-
-            
-          </li>
-        
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="gdoc-nav__toggle" id="navtree-415d647d"
-                checked
-              
-            />
-            <label
-              
-                for="navtree-415d647d" class="flex justify-between align-center"
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/clients/web/extension-system/"
-                    class="gdoc-nav__entry is-active"
-                  >
-                    Extension system
-                  </a>
-                </span>
-              
-              
-                <svg class="gdoc-icon toggle gdoc_keyboard_arrow_left">
-                  <use xlink:href="#gdoc_keyboard_arrow_left"></use>
-                </svg>
-                <svg class="gdoc-icon toggle gdoc_keyboard_arrow_down">
-                  <use xlink:href="#gdoc_keyboard_arrow_down"></use>
-                </svg>
-              
-            </label>
-
-            
-              
-  
-
-
-  <ul class="gdoc-nav__list">
-    
-    
-      
-
-      
-        
-      
-
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="gdoc-nav__toggle" id="navtree-a73f6653"
-                
-              
-            />
-            <label
-              
-                for="navtree-a73f6653" class="flex justify-between align-center"
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/clients/web/extension-system/extension-types/"
-                    class="gdoc-nav__entry"
-                  >
-                    Extension Types
-                  </a>
-                </span>
-              
-              
-                <svg class="gdoc-icon toggle gdoc_keyboard_arrow_left">
-                  <use xlink:href="#gdoc_keyboard_arrow_left"></use>
-                </svg>
-                <svg class="gdoc-icon toggle gdoc_keyboard_arrow_down">
-                  <use xlink:href="#gdoc_keyboard_arrow_down"></use>
-                </svg>
-              
-            </label>
-
-            
-              
-  
-
-
-  <ul class="gdoc-nav__list">
-    
-    
-      
-
-      
-        
-      
-
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/clients/web/extension-system/extension-types/actions/"
-                    class="gdoc-nav__entry"
-                  >
-                    Action extensions
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/clients/web/extension-system/extension-types/folder-view/"
-                    class="gdoc-nav__entry"
-                  >
-                    Folder View extensions
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/clients/web/extension-system/extension-types/left-sidebar-menu-item/"
-                    class="gdoc-nav__entry"
-                  >
-                    Left sidebar menu item extensions
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/clients/web/extension-system/extension-types/right-sidebar-panels/"
-                    class="gdoc-nav__entry"
-                  >
-                    Right sidebar panel extensions
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/clients/web/extension-system/extension-types/search/"
-                    class="gdoc-nav__entry"
-                  >
-                    Search extensions
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-    
-  </ul>
-
-            
-          </li>
-        
-      
-    
-  </ul>
 
             
           </li>
@@ -18026,7 +17751,7 @@ Copyright 2022 Fonticons, Inc.
     
   
   
-    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/clients/' href='/clients/'><span itemprop='name'>Clients</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/clients/web/' href='/clients/web/'><span itemprop='name'>ownCloud Web</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Extension system</span><meta itemprop='position' content='4' /></li>
+    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/clients/' href='/clients/'><span itemprop='name'>Clients</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/clients/web/' href='/clients/web/'><span itemprop='name'>ownCloud Web</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Custom Apps</span><meta itemprop='position' content='4' /></li>
   
 
   
@@ -18043,7 +17768,7 @@ Copyright 2022 Fonticons, Inc.
       <span class="editpage">
         <svg class="gdoc-icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
         <a
-          href="https://github.com/owncloud/web/edit/master/docs/extension-system/_index.md"
+          href="https://github.com/owncloud/web/edit/master/docs/custom-apps/_index.md"
         >
           Edit page
         </a>
@@ -18057,206 +17782,39 @@ Copyright 2022 Fonticons, Inc.
   <article
     class="gdoc-markdown gdoc-markdown__align--left"
   >
-    <h1>Extension system</h1>
+    <h1>Custom Apps</h1>
     <div class="gdoc-toc gdoc-toc__level--3">
       <nav id="TableOfContents"><ul>
-        <li><a href="#concepts-and-building-blocks">Concepts and Building Blocks</a>
-          <ul>
-            <li><a href="#distinction-between-apps-and-extensions">Distinction between Apps and Extensions</a></li>
-            <li><a href="#apps">Apps</a></li>
-            <li><a href="#extensions">Extensions</a>
-              <ul>
-                <li><a href="#extension-registry">Extension Registry</a></li>
-                <li><a href="#extension-types">Extension Types</a></li>
-                <li><a href="#extension-base-configuration">Extension Base Configuration</a></li>
-                <li><a href="#extension-points">Extension Points</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#setting-up-the-example-skeleton-app">Setting up the example &ldquo;skeleton app&rdquo;</a></li>
+        <li><a href="#configuration-options">Configuration options</a></li>
+        <li><a href="#ways-of-providing-an-app">Ways of providing an app</a></li>
+        <li><a href="#types-of-apps">Types of apps</a></li>
+        <li><a href="#accessing-existing-functionality">Accessing existing functionality</a></li>
       </ul></nav>
       <hr />
     </div>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="concepts-and-building-blocks"
+    <h2 id="introduction"
     >
-        Concepts and Building Blocks
-        <a data-clipboard-text="https://owncloud.dev/clients/web/extension-system/#concepts-and-building-blocks" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Concepts and Building Blocks" aria-label="Anchor to: Concepts and Building Blocks" href="#concepts-and-building-blocks">
+        Introduction
+        <a data-clipboard-text="https://owncloud.dev/clients/web/custom-apps/#introduction" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Introduction" aria-label="Anchor to: Introduction" href="#introduction">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div>
-<p>The ownCloud Web can be extended through various entry points with custom <strong>apps</strong> and <strong>extensions</strong>.</p>
+<p>In the new <code>web</code> frontend, the way custom/external apps are handled has fundamentally changed from the approach of PHP-based ownCloud X stack.
+Now, all you have to do is provide a bundled Vue app and reference it in your configuration! Please note that any existing apps you may be used to can not simply be ported from the old to the new frontend.</p>
+<p>This page documents how you can set up an example app within your frontend repo and play around with different kinds of apps and extensions. This way, you can explore how to provide users of your ownCloud with more functionality.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="distinction-between-apps-and-extensions"
+    <h2 id="setting-up-the-example-skeleton-app"
     >
-        Distinction between Apps and Extensions
-        <a data-clipboard-text="https://owncloud.dev/clients/web/extension-system/#distinction-between-apps-and-extensions" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Distinction between Apps and Extensions" aria-label="Anchor to: Distinction between Apps and Extensions" href="#distinction-between-apps-and-extensions">
+        Setting up the example &ldquo;skeleton app&rdquo;
+        <a data-clipboard-text="https://owncloud.dev/clients/web/custom-apps/#setting-up-the-example-skeleton-app" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Setting up the example &ldquo;skeleton app&rdquo;" aria-label="Anchor to: Setting up the example &ldquo;skeleton app&rdquo;" href="#setting-up-the-example-skeleton-app">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
-    </h3>
+    </h2>
 </div>
-<p>An Application in the context of ownCloud Web is an artifact which can be installed in an ownCloud Infinite Scale instance.
-It serves two main purposes:</p>
-<ol>
-<li>It makes the full app viewport (everything below the top bar) available to the application developer for any custom
-application code. This includes the ability to define views with routes, navigation items for the left sidebar, and more.</li>
-<li>Through the <code>extensions</code> key in the application interface you can register extensions of any extension type. Those extensions
-are then available in standardized extension points. Additionally, they can be queried from the extension registry for
-your own purposes.</li>
-</ol>
-<p>Both parts are optional. This means that an application can be a file editor without any custom extensions, or even contain
-no custom application code at all and only host extensions to be registered in the extension registry, or a combination of both.</p>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="apps"
-    >
-        Apps
-        <a data-clipboard-text="https://owncloud.dev/clients/web/extension-system/#apps" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Apps" aria-label="Anchor to: Apps" href="#apps">
-            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div>
-<p>To get started, define a <code>src/index.ts</code>. Below is the most basic example of its content:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="c1">// Install &#39;@ownclouders/web-pkg&#39; as a devDependency first (only relevant for types and autocompletion, dependency is already provided by ownCloud Web at runtime). 
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">AppWrapperRoute</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">ApplicationFileExtension</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">defineWebApplication</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;@ownclouders/web-pkg&#39;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">defineWebApplication</span><span class="p">({</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">setup</span><span class="p">({</span> <span class="nx">applicationConfig</span> <span class="p">})</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Here, you have access to the full injection context, meaning you can use all composables that we provide via web-pkg
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Needs to be unique within all installed applications in any ownCloud web instance
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// Should be short, unique and expressive as it is used as prefix on all routes within your application
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">appId</span> <span class="o">=</span> <span class="s1">&#39;your-extension&#39;</span> 
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// See extensions section below
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">extensions</span> <span class="o">=</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">        <span class="p">...</span>
-</span></span><span class="line"><span class="cl">    <span class="p">]</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// See details below
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">navItems</span> <span class="o">=</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">      <span class="p">...</span>
-</span></span><span class="line"><span class="cl">    <span class="p">]</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// See details below
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">routes</span> <span class="o">=</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">        <span class="p">...</span>
-</span></span><span class="line"><span class="cl">    <span class="p">]</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nx">appInfo</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">name</span>: <span class="kt">$gettext</span><span class="p">(</span><span class="s1">&#39;Your application name&#39;</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">id</span>: <span class="kt">appId</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">icon</span><span class="o">:</span> <span class="s1">&#39;aliens&#39;</span><span class="p">,</span> <span class="c1">// See https://owncloud.design/#/Design%20Tokens/IconList for available options
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="p">},</span>
-</span></span><span class="line"><span class="cl">      <span class="nx">extensions</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nx">navItems</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nx">routes</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">})</span>
-</span></span></code></pre></div><p>By defining an application via <code>defineWebApplication</code> you can provide the following:</p>
-<ul>
-<li><code>appInfo</code> - the application metadata, which is used to make the application available via the app switcher and the app registry.</li>
-<li><code>navItems</code> - the statically defined navigation items for the left sidebar. Only gets rendered when more than 1 navigation item exists at runtime.
-Additional dynamic navigation items can be registered via the extension registry.</li>
-<li><code>routes</code> - the routes to the different views of your application. May be referenced within the <code>navItems</code>. Authentication requirements can be defined per item.</li>
-<li><code>extensions</code> - the extensions to be registered in the extension registry. For more details see the <code>Extensions</code> section below.</li>
-</ul>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="extensions"
-    >
-        Extensions
-        <a data-clipboard-text="https://owncloud.dev/clients/web/extension-system/#extensions" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Extensions" aria-label="Anchor to: Extensions" href="#extensions">
-            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div>
-<p>In contrast to applications, extensions usually have a rather small scope and dedicated functionality.</p>
-<div class="gdoc-page__anchorwrap">
-    <h4 id="extension-registry"
-    >
-        Extension Registry
-        <a data-clipboard-text="https://owncloud.dev/clients/web/extension-system/#extension-registry" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Extension Registry" aria-label="Anchor to: Extension Registry" href="#extension-registry">
-            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h4>
-</div>
-<p>The globally available extension registry provided by the ownCloud Web runtime can be used to both register and query extensions. All extensions
-which are being made available via an <code>app</code> get registered in the extension registry automatically. In your custom application code you can
-then query any of the available extensions by providing a <code>type</code> string and optionally a list of <code>scopes</code>. Throughout the ownCloud Web platform
-and most prominently also in the <code>files</code> app we have defined some extension points which automatically use certain extensions, see the
-<code>Extension Points</code> section below.</p>
-<div class="gdoc-page__anchorwrap">
-    <h4 id="extension-types"
-    >
-        Extension Types
-        <a data-clipboard-text="https://owncloud.dev/clients/web/extension-system/#extension-types" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Extension Types" aria-label="Anchor to: Extension Types" href="#extension-types">
-            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h4>
-</div>
-<p>For building an extension you can choose from the types predefined by the ownCloud Web extension system. See the full list of available extension types below.</p>
-<ol>
-<li><code>ActionExtension</code> (type <code>action</code>) - An extension that can register <code>Action</code> items which then get shown in various places (e.g. context menus, batch actions), depending on their
-respective scope. Most commonly used for file and folder actions (e.g. copy, rename, delete, etc.). For details, please refer to the <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/clients/web/extension-system/extension-types/actions/"
->action docs</a></li>
-<li><code>SearchExtension</code> (type <code>search</code>) - An extension that can register additional search providers. For details, please refer to the <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/clients/web/extension-system/extension-types/search/"
->search docs</a></li>
-<li><code>SidebarNavExtension</code> (type <code>sidebarNav</code>) - An extension that can register additional navigation items to the left sidebar. These can be scoped to specific apps, and programmatically enabled/disabled.
-For details, please refer to the <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/clients/web/extension-system/extension-types/left-sidebar-menu-item/"
->sidebar nav docs</a></li>
-<li><code>SidebarPanelExtension</code>, (type <code>sidebarPanel</code>) - An extension that can register panels to the right sidebar. For details, please refer to the <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/clients/web/extension-system/extension-types/right-sidebar-panels/"
->sidebar panel docs</a></li>
-<li><code>FolderViewExtension</code> (type <code>folderView</code>) - An extension that can register additional ways of displaying the content of a folder (resources, so spaces, folders or files) to the user.
-For details, please refer to the <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/clients/web/extension-system/extension-types/folder-view/"
->folder view docs</a></li>
-</ol>
-<p>You&rsquo;re free to introduce your own extension types within your application code and use the extension registry to query the available ones. However, if you have the impression
-that an important extension type is missing and would be beneficial for the platform, please reach out to us by opening a <a
-  class="gdoc-markdown__link"
-  href="https://github.com/owncloud/web/issues/new/choose"
->GitHub issue</a>.</p>
-<div class="gdoc-page__anchorwrap">
-    <h4 id="extension-base-configuration"
-    >
-        Extension Base Configuration
-        <a data-clipboard-text="https://owncloud.dev/clients/web/extension-system/#extension-base-configuration" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Extension Base Configuration" aria-label="Anchor to: Extension Base Configuration" href="#extension-base-configuration">
-            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h4>
-</div>
-<p>Any extension is required to define at least an <code>id</code> and a <code>type</code>.</p>
-<p>The <code>id</code> is supposed to be unique throughout the ownCloud Web ecosystem. In order to keep <code>id</code>s readable for humans we didn&rsquo;t want to enforce uniqueness through e.g. uuids.
-Instead, we chose to use dot-formatted namespaces like e.g. <code>com.github.owncloud.web.files.search</code>. We&rsquo;d like to encourage you to follow the same format for your own extensions.</p>
-<p>For the <code>type</code> you can choose from the ones listed above or define a custom one.</p>
-<p>In addition, you can also pass optional <code>scopes</code> to further limit the usage of an extension. The extension system predefines some scopes which are then used in the default extension
-points (see section below). Those include:</p>
-<ul>
-<li><code>resource</code> - For extensions which are meant to work with a <code>file</code>, <code>folder</code> or <code>space</code> as data context.</li>
-<li><code>user</code> - For extensions which are meant to work with a <code>user</code> as data context.</li>
-<li><code>group</code> - For extensions which are meant to work with a <code>group</code> as data context.</li>
-</ul>
-<p>Similar to the extension types, you are always free to define and handle custom scopes within your own application. If you have the impression
-that an important scope is missing and would be beneficial for the platform, please reach out to us by opening a <a
-  class="gdoc-markdown__link"
-  href="https://github.com/owncloud/web/issues/new/choose"
->GitHub issue</a>.</p>
 
 
 
@@ -18264,30 +17822,78 @@ that an important scope is missing and would be beneficial for the platform, ple
 
 <blockquote class="gdoc-hint note">
   <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
-  <div class="gdoc-hint__text">Scopes are meant to be defined in singular form, e.g. <code>resource</code> instead of <code>resources</code>, even when the data context holds multiple items.</div>
+  <div class="gdoc-hint__text">This guide assumes you have an oCIS backend running and followed the <a
+  class="gdoc-markdown__link"
+  href="https://owncloud.dev/clients/web/getting-started/"
+>getting started guide</a> for setting up a development environment with the <code>web</code> frontend, having it running via either <code>pnpm vite</code> or <code>pnpm build:w</code>. You should be able to use the web UI on localhost using the respective port you&rsquo;ve assigned (default is <code>:9200</code>) and see the changes you make.</div>
 </blockquote>
 
+<p>From the root of the <a
+  class="gdoc-markdown__link"
+  href="https://github.com/owncloud/web"
+>web repository</a>, change into the example skeleton app by running</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">cd</span> packages/web-app-skeleton/
+</span></span></code></pre></div><p>Then, you can install the necessary dependencies, bundle the code and start a development server by running</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">pnpm install <span class="o">&amp;&amp;</span> pnpm serve
+</span></span></code></pre></div><p>In your terminal, you should see a success message and rollup (our bundler of choice) serving the content under <code>localhost:3000</code>. However, there&rsquo;s nothing to find under this address.</p>
+<p>In your <code>config/config.json</code>, add the skeleton example app to the <code>&quot;external_apps&quot;</code> array like below:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;skeleton&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:3000/app.js&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>After saving the config file (make sure it&rsquo;s still a valid <code>JSON</code> format), your running <code>web</code> app should be updated automatically. Open your browser&rsquo;s development tools, reload the page and watch for <code>(SKELETON)</code> messages in the browser console.</p>
 <div class="gdoc-page__anchorwrap">
-    <h4 id="extension-points"
+    <h2 id="configuration-options"
     >
-        Extension Points
-        <a data-clipboard-text="https://owncloud.dev/clients/web/extension-system/#extension-points" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Extension Points" aria-label="Anchor to: Extension Points" href="#extension-points">
+        Configuration options
+        <a data-clipboard-text="https://owncloud.dev/clients/web/custom-apps/#configuration-options" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Configuration options" aria-label="Anchor to: Configuration options" href="#configuration-options">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
-    </h4>
+    </h2>
 </div>
-<p>There are standardized components and places where extensions are being used automatically. These are the ones that are currently provided:</p>
-<ol>
-<li>Left Sidebar for Navigation</li>
-<li>Right Sidebar in any file(s) context</li>
-<li>Folder Views in the files app</li>
-<li>Right click context menu in the files app</li>
-<li>Batch actions in the files app</li>
-<li>Upload menu in the files app</li>
-<li>Quick actions in the files list of the files app</li>
-<li>Search results in the search app</li>
-</ol>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">To be defined/documented
+</span></span><span class="line"><span class="cl">- Name, ID, logo
+</span></span><span class="line"><span class="cl">- Nav items, appswitcher items, quick actions
+</span></span><span class="line"><span class="cl">- ...
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
+    <h2 id="ways-of-providing-an-app"
+    >
+        Ways of providing an app
+        <a data-clipboard-text="https://owncloud.dev/clients/web/custom-apps/#ways-of-providing-an-app" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Ways of providing an app" aria-label="Anchor to: Ways of providing an app" href="#ways-of-providing-an-app">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">To be defined/documented (Bundling, CDN, app store, ...)
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
+    <h2 id="types-of-apps"
+    >
+        Types of apps
+        <a data-clipboard-text="https://owncloud.dev/clients/web/custom-apps/#types-of-apps" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Types of apps" aria-label="Anchor to: Types of apps" href="#types-of-apps">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">To be defined/documented
+</span></span><span class="line"><span class="cl">- Application (renderable), e.g. iFrame
+</span></span><span class="line"><span class="cl">- Extension, e.g. preview
+</span></span><span class="line"><span class="cl">- Quick action, e.g. based on WOPI/Appserver
+</span></span><span class="line"><span class="cl">- ...
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
+    <h2 id="accessing-existing-functionality"
+    >
+        Accessing existing functionality
+        <a data-clipboard-text="https://owncloud.dev/clients/web/custom-apps/#accessing-existing-functionality" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Accessing existing functionality" aria-label="Anchor to: Accessing existing functionality" href="#accessing-existing-functionality">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">To be defined/documented
+</span></span><span class="line"><span class="cl">- Styles, Theming
+</span></span><span class="line"><span class="cl">- Notifications
+</span></span><span class="line"><span class="cl">- Authentication, SDK
+</span></span><span class="line"><span class="cl">- ...
+</span></span></code></pre></div>
   </article>
 
 
