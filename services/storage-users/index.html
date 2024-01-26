@@ -45,11 +45,11 @@ Table of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Man
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2024-01-26T06:31:45+00:00"
+      content="2024-01-26T08:24:14+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-01-26T06:31:45+00:00"
+      content="2024-01-26T08:24:14+00:00"
     />
 
 
@@ -68,7 +68,7 @@ Table of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Man
       "url" : "https://owncloud.dev/services/storage-users/",
       "headline": "Storage-Users",
       "description": "Abstract Purpose and description to be added\nTable of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Manage Unfinished Uploads Command Examples Purge Expired Space Trash-Bins Items Purge-expired List and Restore Trash-Bins Items Caching Example Yaml Config Deprecated Metadata Backend Starting with ocis version 3.0.0, the default backend for metadata switched to messagepack. If the setting STORAGE_USERS_OCIS_METADATA_BACKEND has not been defined manually, the backend will be migrated to messagepack automatically.",
-      "wordCount" : "4136",
+      "wordCount" : "4230",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ Table of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Man
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-01-26T06:31:45.21Z",
-      "datePublished": "2024-01-26T06:31:45.21Z",
-      "dateModified": "2024-01-26T06:31:45.21Z",
+      "dateCreated": "2024-01-26T08:24:14.64Z",
+      "datePublished": "2024-01-26T08:24:14.64Z",
+      "dateModified": "2024-01-26T08:24:14.64Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -17921,14 +17921,20 @@ Copyright 2022 Fonticons, Inc.
 </ul>
 <p>Example cases for expired uploads</p>
 <ul>
-<li>When a user uploads a big file but the file exceeds the user-quota, the upload can&rsquo;t be moved to the target after it has finished. The file stays at the upload location until it is manually cleared.</li>
-<li>If the bandwidth is limited and the file to transfer can&rsquo;t be transferred completely before the upload expiration time is reached, the file expires and can&rsquo;t be processed.</li>
+<li>
+<p>In the final step the upload blob is moved from the upload area to the final blobstore (e.g. S3).</p>
+</li>
+<li>
+<p>If the bandwidth is limited and the file to transfer can&rsquo;t be transferred completely before the upload expiration time is reached, the file expires and can&rsquo;t be processed.</p>
+</li>
 </ul>
-<p>There are two commands available to manage unfinished uploads</p>
+<p>The admin can restart the postprocessing for this with the postprocessing cli.</p>
+<p>The storage users service can only list and clean upload sessions:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users uploads &lt;command&gt;
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">COMMANDS:
-</span></span><span class="line"><span class="cl">   list     Print a list of all incomplete uploads
-</span></span><span class="line"><span class="cl">   clean    Clean up leftovers from expired uploads
+</span></span><span class="line"><span class="cl">   sessions   Print a list of upload sessions
+</span></span><span class="line"><span class="cl">   clean      Clean up leftovers from expired uploads
+</span></span><span class="line"><span class="cl">   list       Print a list of all incomplete uploads (deprecated)
 </span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h4 id="command-examples"
     >
@@ -17938,14 +17944,27 @@ Copyright 2022 Fonticons, Inc.
         </a>
     </h4>
 </div>
-<p>Command to identify incomplete uploads</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users uploads list
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">Incomplete uploads:
-</span></span><span class="line"><span class="cl"> - 455bd640-cd08-46e8-a5a0-9304908bd40a (file_example_PPT_1MB.ppt, Size: 1028608, Expires: 2022-08-17T12:35:34+02:00)
+<p>Command to list ongoing upload sessions</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users sessions --expired<span class="o">=</span><span class="nb">false</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">Not expired sessions:
+</span></span><span class="line"><span class="cl">+--------------------------------------+--------------------------------------+---------+--------+------+--------------------------------------+--------------------------------------+---------------------------+------------+
+</span></span><span class="line"><span class="cl">|                Space                 |              Upload Id               |  Name   | Offset | Size |              Executant               |                Owner                 |          Expires          | Processing |
+</span></span><span class="line"><span class="cl">+--------------------------------------+--------------------------------------+---------+--------+------+--------------------------------------+--------------------------------------+---------------------------+------------+
+</span></span><span class="line"><span class="cl">| f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c | 5e387954-7313-4223-a904-bf996da6ec0b | foo.txt |      0 | 1234 | f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c | f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c | 2024-01-26T13:04:31+01:00 | false      |
+</span></span><span class="line"><span class="cl">| f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c | f066244d-97b2-48e7-a30d-b40fcb60cec6 | bar.txt |      0 | 4321 | f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c | f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c | 2024-01-26T13:18:47+01:00 | false      |
+</span></span><span class="line"><span class="cl">+--------------------------------------+--------------------------------------+---------+--------+------+--------------------------------------+--------------------------------------+---------------------------+------------+
+</span></span></code></pre></div><p>The sessions command can also output json</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users sessions --expired<span class="o">=</span><span class="nb">false</span> --json
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;id&#34;</span><span class="p">:</span><span class="s2">&#34;5e387954-7313-4223-a904-bf996da6ec0b&#34;</span><span class="p">,</span><span class="nt">&#34;space&#34;</span><span class="p">:</span><span class="s2">&#34;f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c&#34;</span><span class="p">,</span><span class="nt">&#34;filename&#34;</span><span class="p">:</span><span class="s2">&#34;foo.txt&#34;</span><span class="p">,</span><span class="nt">&#34;offset&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&#34;size&#34;</span><span class="p">:</span><span class="mi">1234</span><span class="p">,</span><span class="nt">&#34;executant&#34;</span><span class="p">:{</span><span class="nt">&#34;idp&#34;</span><span class="p">:</span><span class="s2">&#34;https://cloud.ocis.test&#34;</span><span class="p">,</span><span class="nt">&#34;opaque_id&#34;</span><span class="p">:</span><span class="s2">&#34;f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c&#34;</span><span class="p">},</span><span class="nt">&#34;spaceowner&#34;</span><span class="p">:{</span><span class="nt">&#34;opaque_id&#34;</span><span class="p">:</span><span class="s2">&#34;f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c&#34;</span><span class="p">},</span><span class="nt">&#34;expires&#34;</span><span class="p">:</span><span class="s2">&#34;2024-01-26T13:04:31+01:00&#34;</span><span class="p">,</span><span class="nt">&#34;processing&#34;</span><span class="p">:</span><span class="kc">false</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;id&#34;</span><span class="p">:</span><span class="s2">&#34;f066244d-97b2-48e7-a30d-b40fcb60cec6&#34;</span><span class="p">,</span><span class="nt">&#34;space&#34;</span><span class="p">:</span><span class="s2">&#34;f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c&#34;</span><span class="p">,</span><span class="nt">&#34;filename&#34;</span><span class="p">:</span><span class="s2">&#34;bar.txt&#34;</span><span class="p">,</span><span class="nt">&#34;offset&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&#34;size&#34;</span><span class="p">:</span><span class="mi">4321</span><span class="p">,</span><span class="nt">&#34;executant&#34;</span><span class="p">:{</span><span class="nt">&#34;idp&#34;</span><span class="p">:</span><span class="s2">&#34;https://cloud.ocis.test&#34;</span><span class="p">,</span><span class="nt">&#34;opaque_id&#34;</span><span class="p">:</span><span class="s2">&#34;f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c&#34;</span><span class="p">},</span><span class="nt">&#34;spaceowner&#34;</span><span class="p">:{</span><span class="nt">&#34;opaque_id&#34;</span><span class="p">:</span><span class="s2">&#34;f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c&#34;</span><span class="p">},</span><span class="nt">&#34;expires&#34;</span><span class="p">:</span><span class="s2">&#34;2024-01-26T13:18:47+01:00&#34;</span><span class="p">,</span><span class="nt">&#34;processing&#34;</span><span class="p">:</span><span class="kc">false</span><span class="p">}</span>
 </span></span></code></pre></div><p>Command to clear expired uploads</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users uploads clean
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">Cleaned uploads:
 </span></span><span class="line"><span class="cl">- 455bd640-cd08-46e8-a5a0-9304908bd40a (Filename: file_example_PPT_1MB.ppt, Size: 1028608, Expires: 2022-08-17T12:35:34+02:00)
+</span></span></code></pre></div><p>Deprecated list command to identify unfinished uploads</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users uploads list
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">Incomplete uploads:
+</span></span><span class="line"><span class="cl"> - 455bd640-cd08-46e8-a5a0-9304908bd40a (file_example_PPT_1MB.ppt, Size: 1028608, Expires: 2022-08-17T12:35:34+02:00)
 </span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h3 id="purge-expired-space-trash-bins-items"
     >
