@@ -45,11 +45,11 @@ Table of Contents General Prerequisites Postprocessing Functionality Storing Pos
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2024-01-26T11:36:32+00:00"
+      content="2024-01-26T16:15:42+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-01-26T11:36:32+00:00"
+      content="2024-01-26T16:15:42+00:00"
     />
 
 
@@ -68,7 +68,7 @@ Table of Contents General Prerequisites Postprocessing Functionality Storing Pos
       "url" : "https://owncloud.dev/services/postprocessing/",
       "headline": "Postprocessing",
       "description": "Abstract The postprocessing service handles the coordination of asynchronous postprocessing steps.\nTable of Contents General Prerequisites Postprocessing Functionality Storing Postprocessing Data Additional Prerequisites for the Postprocessing Service Postprocessing Steps Virus Scanning Delay Custom Postprocessing Steps Prerequisites Workflow CLI Commands Resume Postprocessing Example Yaml Config General Prerequisites To use the postprocessing service, an event system needs to be configured for all services. By default, ocis ships with a preconfigured nats service.",
-      "wordCount" : "1987",
+      "wordCount" : "2048",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ Table of Contents General Prerequisites Postprocessing Functionality Storing Pos
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-01-26T11:36:32.10Z",
-      "datePublished": "2024-01-26T11:36:32.10Z",
-      "dateModified": "2024-01-26T11:36:32.10Z",
+      "dateCreated": "2024-01-26T16:15:42.76Z",
+      "datePublished": "2024-01-26T16:15:42.76Z",
+      "dateModified": "2024-01-26T16:15:42.76Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -18300,6 +18300,11 @@ Copyright 2022 Fonticons, Inc.
 <li>Then use the restart command to resume postprocessing of the ID selected.</li>
 </ul>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis postprocessing restart -u &lt;uploadID&gt;
+</span></span></code></pre></div><p>Instead of starting one specific upload, a system admin can also restart all uploads that are currently in a specific step.
+Examples:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ocis postprocessing restart # Restarts all uploads where postprocessing is finished, but upload is not finished
+</span></span><span class="line"><span class="cl">ocis postprocessing restart -s &#34;finished&#34; # Equivalent to the above
+</span></span><span class="line"><span class="cl">ocis postprocessing restart -s &#34;virusscan&#34; # Restart all uploads currently in virusscan step
 </span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="example-yaml-config"
     >
