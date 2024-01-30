@@ -65,7 +65,7 @@
       "url" : "https://owncloud.dev/ocis/development/testing/",
       "headline": "Testing",
       "description": "Testing With Test Suite in Docker Run Full Test Suite Local oCIS Tests (prefix api) Tests Transferred From ownCloud Core (prefix coreApi) Run Single Feature Test oCIS Image to Be Tested (Skip Local Image Build) Test Log Output Cleanup Testing With Test Suite Natively Installed Run oCIS Run Local oCIS Tests (prefix api) Run Tests Transferred From ownCloud Core (prefix coreApi) Use Existing Tests for BDD Running ENV Config Tests (@env-Config) Run oCIS With ociswrapper Run the Tests Writing New ENV Config Tests Running Test Suite With Email Service (@email) Setup Inbucket Run oCIS Run the Acceptance Test Running Test Suite With Tika Service (@tikaServiceNeeded) Setup Tika Service Run oCIS Run the Acceptance Test Running Tests for Parallel Deployment Setup the Parallel Deployment Environment Getting the Test Helpers Run the Acceptance Tests Running Test Suite With Antivirus Service (@antivirus) Setup clamAV 1.",
-      "wordCount" : "2338",
+      "wordCount" : "2324",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18433,7 +18433,6 @@ Copyright 2022 Fonticons, Inc.
 </div>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">make test-acceptance-api <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">TEST_SERVER_URL</span><span class="o">=</span>https://localhost:9200 <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">TEST_WITH_GRAPH_API</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
 </span></span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h4 id="run-tests-transferred-from-owncloud-core-prefix-coreapi"
     >
@@ -18445,7 +18444,6 @@ Copyright 2022 Fonticons, Inc.
 </div>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">make test-acceptance-from-core-api <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">TEST_SERVER_URL</span><span class="o">=</span>https://localhost:9200 <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">TEST_WITH_GRAPH_API</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
 </span></span></span></code></pre></div><p>Useful environment variables:</p>
 <p><code>TEST_SERVER_URL</code>: oCIS server url. Please, adjust the server url according to your setup.</p>
 <p><code>BEHAT_FEATURE</code>: to run a single feature</p>
@@ -18501,7 +18499,6 @@ expected failures. If there are any differences then the CI pipeline fails.</p>
 <p>E.g.:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">make test-acceptance-from-core-api <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">TEST_SERVER_URL</span><span class="o">=</span>https://localhost:9200 <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">TEST_WITH_GRAPH_API</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">STORAGE_DRIVER</span><span class="o">=</span>OCIS <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">BEHAT_FEATURE</span><span class="o">=</span><span class="s1">&#39;tests/acceptance/features/coreApiVersions/fileVersions.feature:147&#39;</span>
 </span></span></code></pre></div></li>
@@ -18566,7 +18563,6 @@ expected failures. If there are any differences then the CI pipeline fails.</p>
     </h3>
 </div>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">OCIS_WRAPPER_URL</span><span class="o">=</span>http://localhost:5200 <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">TEST_WITH_GRAPH_API</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">TEST_SERVER_URL</span><span class="o">=</span><span class="s2">&#34;https://localhost:9200&#34;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">BEHAT_FEATURE</span><span class="o">=</span>tests/acceptance/features/apiAsyncUpload/delayPostprocessing.feature <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>make test-acceptance-api
@@ -18639,8 +18635,7 @@ expected failures. If there are any differences then the CI pipeline fails.</p>
     </h3>
 </div>
 <p>Run the acceptance test with the following command:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">TEST_WITH_GRAPH_API</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">TEST_SERVER_URL</span><span class="o">=</span><span class="s2">&#34;https://localhost:9200&#34;</span> <span class="se">\
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">TEST_SERVER_URL</span><span class="o">=</span><span class="s2">&#34;https://localhost:9200&#34;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">EMAIL_HOST</span><span class="o">=</span><span class="s2">&#34;localhost&#34;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">EMAIL_PORT</span><span class="o">=</span><span class="m">9000</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">BEHAT_FEATURE</span><span class="o">=</span><span class="s2">&#34;tests/acceptance/features/apiNotification/emailNotification.feature&#34;</span> <span class="se">\
@@ -18700,8 +18695,7 @@ expected failures. If there are any differences then the CI pipeline fails.</p>
     </h3>
 </div>
 <p>Run the acceptance test with the following command:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">TEST_WITH_GRAPH_API</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">TEST_SERVER_URL</span><span class="o">=</span><span class="s2">&#34;https://localhost:9200&#34;</span> <span class="se">\
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">TEST_SERVER_URL</span><span class="o">=</span><span class="s2">&#34;https://localhost:9200&#34;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">BEHAT_FEATURE</span><span class="o">=</span><span class="s2">&#34;tests/acceptance/features/apiSearch/contentSearch.feature&#34;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>make test-acceptance-api
 </span></span></code></pre></div><div class="gdoc-page__anchorwrap">
@@ -18910,8 +18904,7 @@ For antivirus running with docker, use <code>ANTIVIRUS_CLAMAV_SOCKET= &quot;tcp:
     </h4>
 </div>
 <p>Run the acceptance test with the following command:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">TEST_WITH_GRAPH_API</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">TEST_SERVER_URL</span><span class="o">=</span><span class="s2">&#34;https://localhost:9200&#34;</span> <span class="se">\
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">TEST_SERVER_URL</span><span class="o">=</span><span class="s2">&#34;https://localhost:9200&#34;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">BEHAT_FEATURE</span><span class="o">=</span><span class="s2">&#34;tests/acceptance/features/apiAntivirus/antivirus.feature&#34;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>make test-acceptance-api
 </span></span></code></pre></div><div class="gdoc-page__anchorwrap">
