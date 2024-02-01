@@ -12,8 +12,7 @@
 <meta name="generator" content="Hugo 0.115.2">
 
 
-  <meta name="description" content="Debugging Start ocis Use the debug binary and attach to the process as needed Start all services independently to replace one of them with a debug process Gather error messages Managing dependencies and testing changes Debugging As a single binary for easy deployment running ocis server just forks itself to start all the services, which makes debugging those processes a little harder.
-Ultimately, we want to be able to stop a single service using e." />
+  <meta name="description" content="Debugging Start ocis Use the debug binary and attach to the process as needed Start all services independently to replace one of them with a debug process Debugging the ocis in a docker container Gather error messages Managing dependencies and testing changes Debugging As a single binary for easy deployment running ocis server just forks itself to start all the services, which makes debugging those processes a little harder." />
 
     <title>Debugging | ownCloud</title>
 
@@ -37,8 +36,7 @@ Ultimately, we want to be able to stop a single service using e." />
     content="Debugging"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Debugging Start ocis Use the debug binary and attach to the process as needed Start all services independently to replace one of them with a debug process Gather error messages Managing dependencies and testing changes Debugging As a single binary for easy deployment running ocis server just forks itself to start all the services, which makes debugging those processes a little harder.
-Ultimately, we want to be able to stop a single service using e." />
+  <meta property="og:description" content="Debugging Start ocis Use the debug binary and attach to the process as needed Start all services independently to replace one of them with a debug process Debugging the ocis in a docker container Gather error messages Managing dependencies and testing changes Debugging As a single binary for easy deployment running ocis server just forks itself to start all the services, which makes debugging those processes a little harder." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/ocis/development/debugging/" />
 
@@ -55,8 +53,7 @@ Ultimately, we want to be able to stop a single service using e." />
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Debugging" />
-  <meta name="twitter:description" content="Debugging Start ocis Use the debug binary and attach to the process as needed Start all services independently to replace one of them with a debug process Gather error messages Managing dependencies and testing changes Debugging As a single binary for easy deployment running ocis server just forks itself to start all the services, which makes debugging those processes a little harder.
-Ultimately, we want to be able to stop a single service using e." />
+  <meta name="twitter:description" content="Debugging Start ocis Use the debug binary and attach to the process as needed Start all services independently to replace one of them with a debug process Debugging the ocis in a docker container Gather error messages Managing dependencies and testing changes Debugging As a single binary for easy deployment running ocis server just forks itself to start all the services, which makes debugging those processes a little harder." />
 
 
   <script type="application/ld+json">
@@ -67,8 +64,8 @@ Ultimately, we want to be able to stop a single service using e." />
       "name": "Debugging",
       "url" : "https://owncloud.dev/ocis/development/debugging/",
       "headline": "Debugging",
-      "description": "Debugging Start ocis Use the debug binary and attach to the process as needed Start all services independently to replace one of them with a debug process Gather error messages Managing dependencies and testing changes Debugging As a single binary for easy deployment running ocis server just forks itself to start all the services, which makes debugging those processes a little harder.\nUltimately, we want to be able to stop a single service using e.",
-      "wordCount" : "1236",
+      "description": "Debugging Start ocis Use the debug binary and attach to the process as needed Start all services independently to replace one of them with a debug process Debugging the ocis in a docker container Gather error messages Managing dependencies and testing changes Debugging As a single binary for easy deployment running ocis server just forks itself to start all the services, which makes debugging those processes a little harder.",
+      "wordCount" : "1421",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18068,6 +18065,7 @@ Copyright 2022 Fonticons, Inc.
                 <li><a href="#start-all-services-independently-to-replace-one-of-them-with-a-debug-process">Start all services independently to replace one of them with a debug process</a></li>
               </ul>
             </li>
+            <li><a href="#debugging-the-ocis-in-a-docker-container">Debugging the ocis in a docker container</a></li>
             <li><a href="#gather-error-messages">Gather error messages</a></li>
             <li><a href="#managing-dependencies-and-testing-changes">Managing dependencies and testing changes</a></li>
           </ul>
@@ -18216,6 +18214,62 @@ Copyright 2022 Fonticons, Inc.
 <li>Start the service you are interested in debug mode. When using make to build the binary there is already a <code>bin/ocis-debug</code> binary for you. When running an IDE tell it which service to start by providing the corresponding sub command, e.g. <code>bin\ocis-debug reva-frontend</code>.</li>
 </ol>
 <div class="gdoc-page__anchorwrap">
+    <h3 id="debugging-the-ocis-in-a-docker-container"
+    >
+        Debugging the ocis in a docker container
+        <a data-clipboard-text="https://owncloud.dev/ocis/development/debugging/#debugging-the-ocis-in-a-docker-container" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Debugging the ocis in a docker container" aria-label="Anchor to: Debugging the ocis in a docker container" href="#debugging-the-ocis-in-a-docker-container">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>Remote debugging is the debug mode commonly used to work with a debugger and target running on a remote machine or a container for example a wopi stack <code>deployments/examples/ocis_wopi/docker-compose.yml</code>.
+Below we describe the steps how to build the image, run the docker-compose and connect via remote debugger.</p>
+<ol>
+<li>Build the image:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> github.com/owncloud/ocis/ocis
+</span></span><span class="line"><span class="cl">make debug-docker
+</span></span></code></pre></div><ol start="2">
+<li>Change the tag label:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">OCIS_DOCKER_TAG</span><span class="o">=</span>debug
+</span></span></code></pre></div><ol start="3">
+<li>Change the docker-compose <code>ocis</code> or <code>ocis-appprovider-collabora</code> or <code>ocis-appprovider-onlyoffice</code> depends on what do you want to debug:
+For example <code>deployments/examples/ocis_wopi/docker-compose.yml</code></li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ocis</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">owncloud/ocis:${OCIS_DOCKER_TAG:-latest}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">ocis-net</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">entrypoint</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/bin/sh</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Comment out command</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#    command: [&#34;-c&#34;, &#34;ocis init || true; ocis server&#34;]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Replace the command and expose the port</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&#34;-c&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;ocis init || true; dlv --listen=:40000 --headless=true --api-version=2 --accept-multiclient exec /usr/bin/ocis server&#34;</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">40000</span><span class="p">:</span><span class="m">40000</span><span class="w">
+</span></span></span></code></pre></div><ol start="4">
+<li>Run the docker-compose</li>
+<li>Connect to remote <code>delve</code></li>
+</ol>
+<ul>
+<li>For the VS Code add the configuration to the <code>.vscode/launch.json</code> <a
+  class="gdoc-markdown__link"
+  href="https://github.com/golang/vscode-go/wiki/debugging#remote-debugging"
+>https://github.com/golang/vscode-go/wiki/debugging#remote-debugging</a></li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Debug remote :40000&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;go&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;request&#34;</span><span class="p">:</span> <span class="s2">&#34;attach&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;mode&#34;</span><span class="p">:</span> <span class="s2">&#34;remote&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;port&#34;</span><span class="p">:</span> <span class="mi">40000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="s2">&#34;localhost&#34;</span><span class="p">,</span> <span class="c1">// optional
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nt">&#34;trace&#34;</span><span class="p">:</span> <span class="s2">&#34;verbose&#34;</span><span class="p">,</span>  <span class="c1">// optional
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nt">&#34;showLog&#34;</span><span class="p">:</span> <span class="kc">true</span>      <span class="c1">// optional
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="err">,</span>
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h3 id="gather-error-messages"
     >
         Gather error messages
