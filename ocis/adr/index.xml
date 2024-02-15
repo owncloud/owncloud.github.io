@@ -165,7 +165,7 @@ Decision Drivers Is the current situation acceptable for the GA Is locking neede
       <pubDate>Wed, 02 Mar 2022 00:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0016-files-metadata/</guid>
-      <description>Status: proposed Deciders: @butonic, @dragotin, @micbar, @C0rby Date: 2022-02-04 Context and Problem Statement In addition to the file content we need to store metadata which is attached to a file. Metadata describes additional properties of a file. These properties need to be stored as close as possible to the file content to avoid inconsistencies. Metadata are key to workflows and search. We consider them as an additional value which enhances the file content.</description>
+      <description>Status: superseded by ADR-0024 Deciders: @butonic, @dragotin, @micbar, @C0rby Date: 2022-02-04 Context and Problem Statement In addition to the file content we need to store metadata which is attached to a file. Metadata describes additional properties of a file. These properties need to be stored as close as possible to the file content to avoid inconsistencies. Metadata are key to workflows and search. We consider them as an additional value which enhances the file content.</description>
     </item>
     
     <item>
@@ -237,6 +237,15 @@ Infinite Scale started the spaces feature which brings a whole new set of APIs a
       
       <guid>https://owncloud.dev/ocis/adr/0023-index-and-store-metadata/</guid>
       <description>Status: accepted Deciders: @butonic, @dschmidt, @micbar, @dragotin Date: 2023-10-17 Context and Problem Statement ownCloud Infinite Scale is supposed to become a data platform and as such it needs to provide access to metadata. Currently only metadata common to all file types (filesize, mime-type, &amp;hellip;) is stored in the index and the metadata storage. We want to make other file type specific metadata available to consumers of our internal and external APIs.</description>
+    </item>
+    
+    <item>
+      <title>24. Index and store metadata</title>
+      <link>https://owncloud.dev/ocis/adr/0024-msgpack-metadata/</link>
+      <pubDate>Fri, 09 Feb 2024 14:57:00 +0100</pubDate>
+      
+      <guid>https://owncloud.dev/ocis/adr/0024-msgpack-metadata/</guid>
+      <description>Status: accepted Deciders: @butonic, @aduffeck, @micbar, @dragotin Date: 2023-03-15 Context and Problem Statement File metadata management is an important aspect for oCIS as a data platform. While using extended attributes to store metadata allows attaching the metadata to the actual file it causes a significant amount of syscalls that outweigh the benefits. Furthermore, filesystems are subject to different limitations in the number of extended attributes or the value size that is available.</description>
     </item>
     
   </channel>
