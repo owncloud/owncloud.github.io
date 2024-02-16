@@ -193,7 +193,7 @@ Decision Drivers Have a simple yet powerful, scalable and performant way of find
       <pubDate>Fri, 18 Mar 2022 09:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0019-file-search-index/</guid>
-      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @C0rby Date: 2022-03-18 Context and Problem Statement The ability to find files based on certain search terms is a key requirement for a system that provides the ability to store unstructured data on a large scale.
+      <description>Status: accepted Deciders: @butonic, @micbar, @dragotin, @C0rby Date: 2022-03-18 Context and Problem Statement The ability to find files based on certain search terms is a key requirement for a system that provides the ability to store unstructured data on a large scale.
 More sophisticated search capabilities are expected and can be implemented, especially based on metadata.
 To trigger the indexing of a file, the search service listens to create, update and delete events on the internal event bus of oCIS.</description>
     </item>
@@ -240,12 +240,22 @@ Infinite Scale started the spaces feature which brings a whole new set of APIs a
     </item>
     
     <item>
-      <title>24. Index and store metadata</title>
+      <title>24. Messagepack metadata</title>
       <link>https://owncloud.dev/ocis/adr/0024-msgpack-metadata/</link>
       <pubDate>Fri, 09 Feb 2024 14:57:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0024-msgpack-metadata/</guid>
       <description>Status: accepted Deciders: @butonic, @aduffeck, @micbar, @dragotin Date: 2023-03-15 Context and Problem Statement File metadata management is an important aspect for oCIS as a data platform. While using extended attributes to store metadata allows attaching the metadata to the actual file it causes a significant amount of syscalls that outweigh the benefits. Furthermore, filesystems are subject to different limitations in the number of extended attributes or the value size that is available.</description>
+    </item>
+    
+    <item>
+      <title>25. Distributed Search Index</title>
+      <link>https://owncloud.dev/ocis/adr/0025-distributed-search-index/</link>
+      <pubDate>Fri, 09 Feb 2024 16:27:00 +0100</pubDate>
+      
+      <guid>https://owncloud.dev/ocis/adr/0025-distributed-search-index/</guid>
+      <description>Status: draft Deciders: @butonic, @fschade, @aduffeck Date: 2024-02-09 Context and Problem Statement Search is currently implemented with blevesearch, which internally uses bbolt. bbolt writes to a local file, which prevents scaling out the service.
+The initial implementation used a single blevesearch index for all spaces. While this makes querying all spaces easy because the results do not need to be aggregated from multiple indexes, the single node becomes a bottleneck when answering search queries.</description>
     </item>
     
     <item>

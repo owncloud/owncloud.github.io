@@ -12,9 +12,10 @@
 <meta name="generator" content="Hugo 0.115.2">
 
 
-  <meta name="description" content="Getting started Communication Target origin Events Example Location picker Example Delegate authentication Configuration Events Opening Embed mode Updating the token The ownCloud Web can be consumed by another application in a stripped down version called &ldquo;Embed mode&rdquo;. This mode is supposed to be used in the context of selecting or sharing resources. If you&rsquo;re looking for even more minimalistic approach, you can take a look at the File picker." />
+  <meta name="description" content="Status: draft Deciders: @butonic, @fschade, @aduffeck Date: 2024-02-09 Context and Problem Statement Search is currently implemented with blevesearch, which internally uses bbolt. bbolt writes to a local file, which prevents scaling out the service.
+The initial implementation used a single blevesearch index for all spaces. While this makes querying all spaces easy because the results do not need to be aggregated from multiple indexes, the single node becomes a bottleneck when answering search queries." />
 
-    <title>Embed Mode | ownCloud</title>
+    <title>25. Distributed Search Index | ownCloud</title>
 
     <link
   rel="icon"
@@ -33,50 +34,52 @@
     
   <meta
     property="og:title"
-    content="Embed Mode"
+    content="25. Distributed Search Index"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Getting started Communication Target origin Events Example Location picker Example Delegate authentication Configuration Events Opening Embed mode Updating the token The ownCloud Web can be consumed by another application in a stripped down version called “Embed mode”. This mode is supposed to be used in the context of selecting or sharing resources. If you’re looking for even more minimalistic approach, you can take a look at the File picker." />
+  <meta property="og:description" content="Status: draft Deciders: @butonic, @fschade, @aduffeck Date: 2024-02-09 Context and Problem Statement Search is currently implemented with blevesearch, which internally uses bbolt. bbolt writes to a local file, which prevents scaling out the service.
+The initial implementation used a single blevesearch index for all spaces. While this makes querying all spaces easy because the results do not need to be aggregated from multiple indexes, the single node becomes a bottleneck when answering search queries." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://owncloud.dev/clients/web/embed-mode/" />
+<meta property="og:url" content="https://owncloud.dev/ocis/adr/0025-distributed-search-index/" />
 
-<meta property="article:section" content="Clients" />
+<meta property="article:section" content="Ocis" />
     <meta
       property="article:published_time"
-      content="2023-10-23T00:00:00+00:00"
+      content="2024-02-09T16:27:00+01:00"
     />
     <meta
       property="article:modified_time"
-      content="2023-10-23T00:00:00+00:00"
+      content="2024-02-09T16:27:00+01:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Embed Mode" />
-  <meta name="twitter:description" content="Getting started Communication Target origin Events Example Location picker Example Delegate authentication Configuration Events Opening Embed mode Updating the token The ownCloud Web can be consumed by another application in a stripped down version called “Embed mode”. This mode is supposed to be used in the context of selecting or sharing resources. If you’re looking for even more minimalistic approach, you can take a look at the File picker." />
+<meta name="twitter:title" content="25. Distributed Search Index" />
+  <meta name="twitter:description" content="Status: draft Deciders: @butonic, @fschade, @aduffeck Date: 2024-02-09 Context and Problem Statement Search is currently implemented with blevesearch, which internally uses bbolt. bbolt writes to a local file, which prevents scaling out the service.
+The initial implementation used a single blevesearch index for all spaces. While this makes querying all spaces easy because the results do not need to be aggregated from multiple indexes, the single node becomes a bottleneck when answering search queries." />
 
 
   <script type="application/ld+json">
   {
       "@context": "http://schema.org",
       "@type": "TechArticle",
-      "articleSection": "Clients",
-      "name": "Embed Mode",
-      "url" : "https://owncloud.dev/clients/web/embed-mode/",
-      "headline": "Embed Mode",
-      "description": "Getting started Communication Target origin Events Example Location picker Example Delegate authentication Configuration Events Opening Embed mode Updating the token The ownCloud Web can be consumed by another application in a stripped down version called “Embed mode”. This mode is supposed to be used in the context of selecting or sharing resources. If you’re looking for even more minimalistic approach, you can take a look at the File picker.",
-      "wordCount" : "751",
+      "articleSection": "Ocis",
+      "name": "25. Distributed Search Index",
+      "url" : "https://owncloud.dev/ocis/adr/0025-distributed-search-index/",
+      "headline": "25. Distributed Search Index",
+      "description": "Status: draft Deciders: @butonic, @fschade, @aduffeck Date: 2024-02-09 Context and Problem Statement Search is currently implemented with blevesearch, which internally uses bbolt. bbolt writes to a local file, which prevents scaling out the service.\nThe initial implementation used a single blevesearch index for all spaces. While this makes querying all spaces easy because the results do not need to be aggregated from multiple indexes, the single node becomes a bottleneck when answering search queries.",
+      "wordCount" : "345",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://owncloud.dev/clients/web/embed-mode/"
+          "@id": "https://owncloud.dev/ocis/adr/0025-distributed-search-index/"
       },
       "copyrightHolder" : "ownCloud",
-      "copyrightYear" : "2023",
-      "dateCreated": "2023-10-23T00:00:00.00Z",
-      "datePublished": "2023-10-23T00:00:00.00Z",
-      "dateModified": "2023-10-23T00:00:00.00Z",
+      "copyrightYear" : "2024",
+      "dateCreated": "2024-02-09T16:27:00.00Z",
+      "datePublished": "2024-02-09T16:27:00.00Z",
+      "dateModified": "2024-02-09T16:27:00.00Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -154,7 +157,7 @@
   href="/custom.css"
   media="all"
 />
-  <link href="https://owncloud.dev/clients/web/embed-mode/" rel="canonical" type="text/html" />
+  <link href="https://owncloud.dev/ocis/adr/0025-distributed-search-index/" rel="canonical" type="text/html" />
 
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
 
@@ -6371,7 +6374,7 @@ Copyright 2022 Fonticons, Inc.
               type="checkbox"
               
                 class="gdoc-nav__toggle" id="navtree-65703881"
-                
+                checked
               
             />
             <label
@@ -7373,7 +7376,7 @@ Copyright 2022 Fonticons, Inc.
               type="checkbox"
               
                 class="gdoc-nav__toggle" id="navtree-307b2de1"
-                
+                checked
               
             />
             <label
@@ -8495,7 +8498,7 @@ Copyright 2022 Fonticons, Inc.
                 <span class="flex">
                   <a
                     href="/ocis/adr/0025-distributed-search-index/"
-                    class="gdoc-nav__entry"
+                    class="gdoc-nav__entry is-active"
                   >
                     25. Distributed Search Index
                   </a>
@@ -12169,7 +12172,7 @@ Copyright 2022 Fonticons, Inc.
               type="checkbox"
               
                 class="gdoc-nav__toggle" id="navtree-32682c38"
-                checked
+                
               
             />
             <label
@@ -12219,7 +12222,7 @@ Copyright 2022 Fonticons, Inc.
               type="checkbox"
               
                 class="gdoc-nav__toggle" id="navtree-8397230f"
-                checked
+                
               
             />
             <label
@@ -12937,7 +12940,7 @@ Copyright 2022 Fonticons, Inc.
                 <span class="flex">
                   <a
                     href="/clients/web/embed-mode/"
-                    class="gdoc-nav__entry is-active"
+                    class="gdoc-nav__entry"
                   >
                     Embed Mode
                   </a>
@@ -18227,7 +18230,7 @@ Copyright 2022 Fonticons, Inc.
     
   
   
-    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/clients/' href='/clients/'><span itemprop='name'>Clients</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/clients/web/' href='/clients/web/'><span itemprop='name'>ownCloud Web</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Embed Mode</span><meta itemprop='position' content='4' /></li>
+    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/adr/' href='/ocis/adr/'><span itemprop='name'>Architecture Decisions</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>25. Distributed Search Index</span><meta itemprop='position' content='4' /></li>
   
 
   
@@ -18244,7 +18247,7 @@ Copyright 2022 Fonticons, Inc.
       <span class="editpage">
         <svg class="gdoc-icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
         <a
-          href="https://github.com/owncloud/web/edit/master/docs/embed-mode/_index.md"
+          href="https://github.com/owncloud/ocis/edit/master/docs/ocis/adr/0025-distributed-search-index.md"
         >
           Edit page
         </a>
@@ -18258,234 +18261,203 @@ Copyright 2022 Fonticons, Inc.
   <article
     class="gdoc-markdown gdoc-markdown__align--left"
   >
-    <h1>Embed Mode</h1>
-    <div class="gdoc-toc gdoc-toc__level--3">
-      <nav id="TableOfContents"><ul>
-        <li><a href="#getting-started">Getting started</a></li>
-        <li><a href="#communication">Communication</a>
-          <ul>
-            <li><a href="#target-origin">Target origin</a></li>
-            <li><a href="#events">Events</a></li>
-            <li><a href="#example">Example</a></li>
-          </ul>
-        </li>
-        <li><a href="#location-picker">Location picker</a>
-          <ul>
-            <li><a href="#example-1">Example</a></li>
-          </ul>
-        </li>
-        <li><a href="#delegate-authentication">Delegate authentication</a>
-          <ul>
-            <li><a href="#configuration">Configuration</a></li>
-            <li><a href="#events-1">Events</a>
-              <ul>
-                <li><a href="#opening-embed-mode">Opening Embed mode</a></li>
-                <li><a href="#updating-the-token">Updating the token</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul></nav>
-      <hr />
-    </div>
-<p>The ownCloud Web can be consumed by another application in a stripped down version called &ldquo;Embed mode&rdquo;. This mode is supposed to be used in the context of selecting or sharing resources. If you&rsquo;re looking for even more minimalistic approach, you can take a look at the <a
+    <h1>25. Distributed Search Index</h1>
+    <ul>
+<li>Status: draft</li>
+<li>Deciders: @butonic, @fschade, @aduffeck</li>
+<li>Date: 2024-02-09</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="context-and-problem-statement"
+    >
+        Context and Problem Statement
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0025-distributed-search-index/#context-and-problem-statement" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Context and Problem Statement" aria-label="Anchor to: Context and Problem Statement" href="#context-and-problem-statement">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>Search is currently implemented with <a
   class="gdoc-markdown__link"
-  href="https://owncloud.dev/integration/file_picker/"
->File picker</a>.</p>
+  href="https://github.com/blevesearch/bleve"
+>blevesearch</a>, which internally uses bbolt. bbolt writes to a local file, which prevents scaling out the service.</p>
+<p>The initial implementation used a single blevesearch index for all spaces. While this makes querying all spaces easy because the results do not need to be aggregated from multiple indexes, the single node becomes a bottleneck when answering search queries. Furthermore, indexing is also part of the search service and has to share the resources.</p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="getting-started"
+    <h2 id="decision-drivers----optional---"
     >
-        Getting started
-        <a data-clipboard-text="https://owncloud.dev/clients/web/embed-mode/#getting-started" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Getting started" aria-label="Anchor to: Getting started" href="#getting-started">
+        Decision Drivers <!-- optional -->
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0025-distributed-search-index/#decision-drivers----optional---" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Decision Drivers " aria-label="Anchor to: Decision Drivers " href="#decision-drivers----optional---">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div>
-<p>To integrate ownCloud Web into your application, add an iframe element pointing to your ownCloud Web deployed instance with additional query parameter <code>embed=true</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;&lt;web-url&gt;?embed=true&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
-</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
-    <h2 id="communication"
+<ul>
+<li>Indexing should be decoupled from the search service</li>
+<li>The search service should be able to scale horizontally</li>
+<li>The solution needs to be embeddable in the single binary</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="considered-options"
     >
-        Communication
-        <a data-clipboard-text="https://owncloud.dev/clients/web/embed-mode/#communication" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Communication" aria-label="Anchor to: Communication" href="#communication">
+        Considered Options
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0025-distributed-search-index/#considered-options" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Considered Options" aria-label="Anchor to: Considered Options" href="#considered-options">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div>
-<p>To establish seamless cross-origin communication between the embedded instance and the parent application, our approach involves emitting events using the <code>postMessage</code> method. These events can be conveniently captured by utilizing the standard <code>window.addEventListener('message', listener)</code> pattern.</p>
+<ul>
+<li>one index per space</li>
+<li><a
+  class="gdoc-markdown__link"
+  href="https://github.com/elastic/elasticsearch"
+>elasticsearch</a> (java)</li>
+<li><a
+  class="gdoc-markdown__link"
+  href="https://github.com/dgraph-io/dgraph"
+>dgraph</a> (go)</li>
+<li><a
+  class="gdoc-markdown__link"
+  href="https://github.com/manticoresoftware/manticoresearch/"
+>manticore</a> (C++)</li>
+<li><a
+  class="gdoc-markdown__link"
+  href="https://github.com/meilisearch/meilisearch"
+>meilisearch</a> (Rust)</li>
+</ul>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="target-origin"
+    <h2 id="decision-outcome"
     >
-        Target origin
-        <a data-clipboard-text="https://owncloud.dev/clients/web/embed-mode/#target-origin" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Target origin" aria-label="Anchor to: Target origin" href="#target-origin">
-            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div>
-<p>By default, the <code>postMessage</code> method does not specify the <code>targetOrigin</code> parameter. However, it is recommended best practice to explicitly pass in the URI of the iframe origin (not the parent application). To enhance security, you can specify this value by modifying the config option <code>options.embed.messagesOrigin</code>.</p>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="events"
-    >
-        Events
-        <a data-clipboard-text="https://owncloud.dev/clients/web/embed-mode/#events" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Events" aria-label="Anchor to: Events" href="#events">
-            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div>
-<p>To maintain uniformity and ease of handling, each event encapsulates the same structure within its payload: <code>{ name: string, data: any }</code>.</p>
-<div class="table-wrap"> <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Data</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>owncloud-embed:select</strong></td>
-<td>Resource[]</td>
-<td>Gets emitted when user selects resources or location via the select action</td>
-</tr>
-<tr>
-<td><strong>owncloud-embed:share</strong></td>
-<td>string[]</td>
-<td>Gets emitted when user selects resources and shares them via the &ldquo;Share links&rdquo; action</td>
-</tr>
-<tr>
-<td><strong>owncloud-embed:cancel</strong></td>
-<td>null</td>
-<td>Gets emitted when user attempts to close the embedded instance via &ldquo;Cancel&rdquo; action</td>
-</tr>
-</tbody>
-</table> </div>
-<div class="gdoc-page__anchorwrap">
-    <h3 id="example"
-    >
-        Example
-        <a data-clipboard-text="https://owncloud.dev/clients/web/embed-mode/#example" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Example" aria-label="Anchor to: Example" href="#example">
-            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://my-owncloud-web-instance?embed=true&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">selectEventHandler</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="o">?</span><span class="p">.</span><span class="nx">name</span> <span class="o">!==</span> <span class="s1">&#39;owncloud-embed:select&#39;</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="k">return</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">resources</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">data</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nx">doSomethingWithSelectedResources</span><span class="p">(</span><span class="nx">resources</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="nx">selectEventHandler</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
-    <h2 id="location-picker"
-    >
-        Location picker
-        <a data-clipboard-text="https://owncloud.dev/clients/web/embed-mode/#location-picker" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Location picker" aria-label="Anchor to: Location picker" href="#location-picker">
+        Decision Outcome
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0025-distributed-search-index/#decision-outcome" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Decision Outcome" aria-label="Anchor to: Decision Outcome" href="#decision-outcome">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div>
-<p>By default, the Embed mode allows users to select resources. In certain cases (e.g. uploading a file), this needs to be changed to allow selecting a location. This can be achieved by running the embed mode with additional parameter <code>embed-target=location</code>. With this parameter, resource selection is disabled and the selected resources array always includes the current folder as the only item.</p>
+<p>Chosen option: <em>???</em></p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="example-1"
+    <h3 id="positive-consequences"
     >
-        Example
-        <a data-clipboard-text="https://owncloud.dev/clients/web/embed-mode/#example-1" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Example" aria-label="Anchor to: Example" href="#example-1">
+        Positive Consequences:
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0025-distributed-search-index/#positive-consequences" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Positive Consequences:" aria-label="Anchor to: Positive Consequences:" href="#positive-consequences">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
 </div>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://my-owncloud-web-instance?embed=true&amp;embed-target=location&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">selectEventHandler</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="o">?</span><span class="p">.</span><span class="nx">name</span> <span class="o">!==</span> <span class="s1">&#39;owncloud-embed:select&#39;</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="k">return</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">resources</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nx">doSomethingWithSelectedResources</span><span class="p">(</span><span class="nx">resources</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="nx">selectEventHandler</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
-    <h2 id="delegate-authentication"
+<ul>
+<li>TODO</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="negative-consequences"
     >
-        Delegate authentication
-        <a data-clipboard-text="https://owncloud.dev/clients/web/embed-mode/#delegate-authentication" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Delegate authentication" aria-label="Anchor to: Delegate authentication" href="#delegate-authentication">
+        Negative Consequences:
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0025-distributed-search-index/#negative-consequences" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Negative Consequences:" aria-label="Anchor to: Negative Consequences:" href="#negative-consequences">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<ul>
+<li>TODO</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="pros-and-cons-of-the-options----optional---"
+    >
+        Pros and Cons of the Options <!-- optional -->
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0025-distributed-search-index/#pros-and-cons-of-the-options----optional---" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Pros and Cons of the Options " aria-label="Anchor to: Pros and Cons of the Options " href="#pros-and-cons-of-the-options----optional---">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div>
-<p>If you already have a valid <code>access_token</code> that can be used to call the API from within the Embed mode and do not want to force the user to authenticate again, you can delegate the authentication. Delegating authentication will disable internal login form in ownCloud Web and will instead use events to obtain the token and update it.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="configuration"
+    <h3 id="one-index-per-space"
     >
-        Configuration
-        <a data-clipboard-text="https://owncloud.dev/clients/web/embed-mode/#configuration" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Configuration" aria-label="Anchor to: Configuration" href="#configuration">
+        one index per space
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0025-distributed-search-index/#one-index-per-space" class="gdoc-page__anchor clip flex align-center" title="Anchor to: one index per space" aria-label="Anchor to: one index per space" href="#one-index-per-space">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
 </div>
-<p>To allow authentication delegation, you need to set the config option <code>options.embed.delegateAuthentication</code> to <code>true</code>. This can be achieved via query parameter <code>embed-delegate-authentication=true</code>. Because we are using the <code>postMessage</code> method to communicate across different origins, it is best practice to verify that the event originated from a known origin and not from some malicious site. We highly recommend to allow this check in production environments. You can enable it by setting the config option <code>options.embed.delegateAuthenticationOrigin</code> via query parameter <code>embed-delegate-authentication-origin=my-origin</code>. The value of this parameter will be compared against the <code>MessageEvent.origin</code> value and if they do not match, the token will be rejected.</p>
+<p>Instead of using a single index (current implementation) or a distributed search index like elasticsearch the search service should aggregate queries from dedicated indexes per space. The api to a space index provider should be able to take multiple space ids in the request, similar to how a storage provider can handle multiple spaces. When treating spaces and the corresponding search index to belong together we can also treat them as a single unit for backup and restore. In federated deployments we can send the search queries to all search providers / spaces that the user has access to.</p>
+<p>How a search provider is implemented then depends on the requirements. For a single node deployment bleve might be fine, for a kubernetes deployment a dedicated service might be the better fit.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="events-1"
+    <h3 id="elasticsearch"
     >
-        Events
-        <a data-clipboard-text="https://owncloud.dev/clients/web/embed-mode/#events-1" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Events" aria-label="Anchor to: Events" href="#events-1">
+        elasticsearch
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0025-distributed-search-index/#elasticsearch" class="gdoc-page__anchor clip flex align-center" title="Anchor to: elasticsearch" aria-label="Anchor to: elasticsearch" href="#elasticsearch">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
 </div>
+<ul>
+<li>Good, commercial support available at <a
+  class="gdoc-markdown__link"
+  href="https://www.elastic.co/de/pricing"
+>https://www.elastic.co/de/pricing</a></li>
+<li>Good, industry standard</li>
+<li>Bad, nobody seems to like it</li>
+<li>Bad, not embeddable (Java)</li>
+</ul>
 <div class="gdoc-page__anchorwrap">
-    <h4 id="opening-embed-mode"
+    <h3 id="dgraph"
     >
-        Opening Embed mode
-        <a data-clipboard-text="https://owncloud.dev/clients/web/embed-mode/#opening-embed-mode" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Opening Embed mode" aria-label="Anchor to: Opening Embed mode" href="#opening-embed-mode">
+        dgraph
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0025-distributed-search-index/#dgraph" class="gdoc-page__anchor clip flex align-center" title="Anchor to: dgraph" aria-label="Anchor to: dgraph" href="#dgraph">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
-    </h4>
+    </h3>
 </div>
-<p>As already mentioned, we&rsquo;re using the <code>postMessage</code> method to allow communication between the Embed mode and the parent application. When the Embed mode is opened for the first time, the user gets redirected to the <code>/web-oidc-callback</code> page where a message with payload <code>{ name: 'owncloud-embed:request-token', data: undefined }</code> is sent to request the <code>access_token</code> from the parent application. The parent application should set an event listener before opening the Embed mode and once received, it should send a message with payload <code>{ name: 'owncloud-embed:update-token', data: { access_token: '&lt;bearer-token&gt;' } }</code>. Once the Embed mode receives this message, it will save the token in the application state and will automatically authenticate the user.</p>
-
-
-
-
-
-<blockquote class="gdoc-hint note">
-  <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
-  <div class="gdoc-hint__text">When passing the token in the message payload, use only the token itself without <code>Bearer </code> string as that will be added automatically in the Embed mode.</div>
-</blockquote>
-
-
-
-
-
-
-<blockquote class="gdoc-hint note">
-  <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
-  <div class="gdoc-hint__text">To save unnecessary duplication of messages with only different names, the name in the message payload above is exactly the same for both the initial authentication and subsequent token updates after renewal.</div>
-</blockquote>
-
+<ul>
+<li>Good, commercial support available at <a
+  class="gdoc-markdown__link"
+  href="https://dgraph.io/pricing"
+>https://dgraph.io/pricing</a></li>
+<li>Good, embeddable? (go) - TODO verify</li>
+</ul>
 <div class="gdoc-page__anchorwrap">
-    <h4 id="updating-the-token"
+    <h3 id="manticore"
     >
-        Updating the token
-        <a data-clipboard-text="https://owncloud.dev/clients/web/embed-mode/#updating-the-token" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Updating the token" aria-label="Anchor to: Updating the token" href="#updating-the-token">
+        manticore
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0025-distributed-search-index/#manticore" class="gdoc-page__anchor clip flex align-center" title="Anchor to: manticore" aria-label="Anchor to: manticore" href="#manticore">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
-    </h4>
+    </h3>
 </div>
-<p>When authentication is delegated, the automatic renewal of the token inside of ownCloud Web is disabled. In order to update the token, a listener is created which awaits a message with payload <code>{ name: 'owncloud-embed:update-token', data: { access_token: '&lt;bearer-token&gt;' } }</code>. The token will then be replaced inside of the Embed mode automatically.</p>
+<ul>
+<li>Good, commercial support available at <a
+  class="gdoc-markdown__link"
+  href="https://manticoresearch.com/services/"
+>https://manticoresearch.com/services/</a></li>
+<li>Bad, not embeddable (C++)</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="meilisearch"
+    >
+        meilisearch
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0025-distributed-search-index/#meilisearch" class="gdoc-page__anchor clip flex align-center" title="Anchor to: meilisearch" aria-label="Anchor to: meilisearch" href="#meilisearch">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<ul>
+<li>Good, commercial support available at <a
+  class="gdoc-markdown__link"
+  href="https://www.meilisearch.com/pricing"
+>https://www.meilisearch.com/pricing</a></li>
+<li>Bad, not embeddable (Rust)</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="links----optional---"
+    >
+        Links <!-- optional -->
+        <a data-clipboard-text="https://owncloud.dev/ocis/adr/0025-distributed-search-index/#links----optional---" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Links " aria-label="Anchor to: Links " href="#links----optional---">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<ul>
+<li>supersedes <a
+  class="gdoc-markdown__link"
+  href="https://owncloud.dev/ocis/adr/0019-file-search-index/"
+>ADR-0019 File Search Index</a></li>
+</ul>
 
   </article>
 
