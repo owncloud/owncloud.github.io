@@ -127,7 +127,7 @@ GET https://demo.owncloud.com/apps/files/?dir=/path/to/resource&amp;amp;fileid=5
       <pubDate>Tue, 17 Aug 2021 12:56:53 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0012-tracing/</guid>
-      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @mstingl, @pmaier1, @fschade Date: 2021-08-17 Context and Problem Statement At the time of this writing we are in a situation where our logs have too much verbosity, rendering impossible or rather difficult to debug an instance. For this reason we are giving some care to our traces by updating dependencies from OpenCensus to OpenTelemetry.
+      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @mstingl @pmaier1, @fschade Date: 2021-08-17 Context and Problem Statement At the time of this writing we are in a situation where our logs have too much verbosity, rendering impossible or rather difficult to debug an instance. For this reason we are giving some care to our traces by updating dependencies from OpenCensus to OpenTelemetry.
 Decision Drivers We don&amp;rsquo;t want to rely only on logs to debug an instance.</description>
     </item>
     
@@ -147,7 +147,7 @@ Decision Drivers Is the current situation acceptable for the GA Is locking neede
       <pubDate>Fri, 21 Jan 2022 12:56:53 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0014-microservices-runtime/</guid>
-      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @mstingl, @pmaier1, @fschade Date: 2022-01-21 Context and Problem Statement In an environment where shipping a single binary makes it easier for the end user to use oCIS, embedding a whole family of microservices within a package and running it leveraging the use of the Go language has plenty of value. In such environment, a runtime is necessary to orchestrate the services that run within it.</description>
+      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @mstingl @pmaier1, @fschade Date: 2022-01-21 Context and Problem Statement In an environment where shipping a single binary makes it easier for the end user to use oCIS, embedding a whole family of microservices within a package and running it leveraging the use of the Go language has plenty of value. In such environment, a runtime is necessary to orchestrate the services that run within it.</description>
     </item>
     
     <item>
@@ -165,7 +165,7 @@ Decision Drivers Is the current situation acceptable for the GA Is locking neede
       <pubDate>Wed, 02 Mar 2022 00:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0016-files-metadata/</guid>
-      <description>Status: superseded by ADR-0024 Deciders: @butonic, @dragotin, @micbar, @C0rby Date: 2022-02-04 Context and Problem Statement In addition to the file content we need to store metadata which is attached to a file. Metadata describes additional properties of a file. These properties need to be stored as close as possible to the file content to avoid inconsistencies. Metadata are key to workflows and search. We consider them as an additional value which enhances the file content.</description>
+      <description>Status: superseded by ADR-0024 Deciders: @butonic, @dragotin, @micbar, @c0rby Date: 2022-02-04 Context and Problem Statement In addition to the file content we need to store metadata which is attached to a file. Metadata describes additional properties of a file. These properties need to be stored as close as possible to the file content to avoid inconsistencies. Metadata are key to workflows and search. We consider them as an additional value which enhances the file content.</description>
     </item>
     
     <item>
@@ -183,7 +183,7 @@ Decision Drivers Is the current situation acceptable for the GA Is locking neede
       <pubDate>Fri, 18 Mar 2022 09:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0018-file-search-api/</guid>
-      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @C0rby Date: 2022-03-18 Context and Problem Statement The ability to find files based on certain search terms is a key requirement for a system that provides the ability to store unstructured data on a large scale.
+      <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @c0rby Date: 2022-03-18 Context and Problem Statement The ability to find files based on certain search terms is a key requirement for a system that provides the ability to store unstructured data on a large scale.
 Decision Drivers Have a simple yet powerful, scalable and performant way of finding files in oCIS Be able to construct intelligent searches based on metadata Allow the user to filter the search queries based on metadata Considered Options Libre Graph API WebDAV API Decision Outcome Chosen option: WebDAV API because the current WebUI is compatible with that API.</description>
     </item>
     
@@ -193,7 +193,7 @@ Decision Drivers Have a simple yet powerful, scalable and performant way of find
       <pubDate>Fri, 18 Mar 2022 09:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0019-file-search-index/</guid>
-      <description>Status: accepted Deciders: @butonic, @micbar, @dragotin, @C0rby Date: 2022-03-18 Context and Problem Statement The ability to find files based on certain search terms is a key requirement for a system that provides the ability to store unstructured data on a large scale.
+      <description>Status: accepted Deciders: @butonic, @micbar, @dragotin, @c0rby Date: 2022-03-18 Context and Problem Statement The ability to find files based on certain search terms is a key requirement for a system that provides the ability to store unstructured data on a large scale.
 More sophisticated search capabilities are expected and can be implemented, especially based on metadata.
 To trigger the indexing of a file, the search service listens to create, update and delete events on the internal event bus of oCIS.</description>
     </item>
@@ -204,7 +204,7 @@ To trigger the indexing of a file, the search service listens to create, update 
       <pubDate>Thu, 23 Jun 2022 09:00:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0020-file-search-query-language/</guid>
-      <description>Status: accepted Deciders: @butonic, @micbar, @dragotin, @C0rby, @kulmann, @felix-schwarz, @JammingBen Date: 2023-06-23 Context and Problem Statement From the users perspective, the interface to search is just a single form field where the user enters one or more search terms. The minimum expectation is that the search returns file names and links to files that:
+      <description>Status: accepted Deciders: @butonic, @micbar, @dragotin, @c0rby, @kulmann, @felix-schwarz, @JammingBen Date: 2023-06-23 Context and Problem Statement From the users perspective, the interface to search is just a single form field where the user enters one or more search terms. The minimum expectation is that the search returns file names and links to files that:
 have a file name that contains at least one of the search terms contain at least one of the search terms in the file contents have metadata that is equal or contains one of the search terms Decision Drivers The standard user should not be bothered by a query syntax The power user should also be able to narrow his search with an efficient and flexible syntax We need to consider different backend technologies which we need to access through an abstraction layer Using different indexing systems should lead to a slightly different feature set without changing the syntax completely Considered Options KQL - Keyword Query Language Simple Query Lucene Query Language Solr Query Language Elasticsearch Query Language Decision Outcome Chosen option: KQL - Keyword Query Language, because it enables advanced search across all platforms.</description>
     </item>
     
@@ -214,7 +214,7 @@ have a file name that contains at least one of the search terms contain at least
       <pubDate>Wed, 18 Jan 2023 16:07:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0021-service-accounts/</guid>
-      <description>Status: proposed Deciders: @butonic, @C0rby Date: 2023-01-18 Context and Problem Statement There are three levels of security checks in a microservice web application that uses OpenID Connect:
+      <description>Status: proposed Deciders: @butonic, @c0rby Date: 2023-01-18 Context and Problem Statement There are three levels of security checks in a microservice web application that uses OpenID Connect:
 scope claims limit the possible operations to what the user (or admin on behalf of the organization) consented to service authorization limit the possible operations to what specific services are allowed to do, on behalf of users or even without them permission checks limit the possible operations to the relationships between subject, permission and resource allow This ADR deals with a prerequisite for service authorization: service accounts.</description>
     </item>
     
@@ -224,7 +224,7 @@ scope claims limit the possible operations to what the user (or admin on behalf 
       <pubDate>Fri, 08 Sep 2023 02:29:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0022-sharing-and-space-management-api/</guid>
-      <description>Status: accepted Deciders: @jammingben @butonic @theonering @kobergj @micbar Date: 2023-08-08 Technical Story: Public issue
+      <description>Status: accepted Deciders: @JammingBen @butonic @theonering @kobergj @micbar Date: 2023-08-08 Technical Story: Public issue
 Context and Problem Statement In the early days of the rewrite of ownCloud it was an important goal to keep all important APIs compatible with ownCloud 10. Infinite Scale embraced that goal until version 1.0.0.
 After that first release, the focus changed.
 Infinite Scale started the spaces feature which brings a whole new set of APIs and concepts.</description>
@@ -236,7 +236,7 @@ Infinite Scale started the spaces feature which brings a whole new set of APIs a
       <pubDate>Tue, 17 Oct 2023 15:15:00 +0100</pubDate>
       
       <guid>https://owncloud.dev/ocis/adr/0023-index-and-store-metadata/</guid>
-      <description>Status: accepted Deciders: @butonic, @dschmidt, @micbar, @dragotin Date: 2023-10-17 Context and Problem Statement ownCloud Infinite Scale is supposed to become a data platform and as such it needs to provide access to metadata. Currently only metadata common to all file types (filesize, mime-type, &amp;hellip;) is stored in the index and the metadata storage. We want to make other file type specific metadata available to consumers of our internal and external APIs.</description>
+      <description>Status: accepted Deciders: @butonic, @theonering, @micbar, @dragotin Date: 2023-10-17 Context and Problem Statement ownCloud Infinite Scale is supposed to become a data platform and as such it needs to provide access to metadata. Currently only metadata common to all file types (filesize, mime-type, &amp;hellip;) is stored in the index and the metadata storage. We want to make other file type specific metadata available to consumers of our internal and external APIs.</description>
     </item>
     
     <item>
