@@ -45,11 +45,11 @@ The proxy service is the only service communicating to the outside and needs the
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2024-02-26T13:22:56+00:00"
+      content="2024-02-26T15:35:44+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-02-26T13:22:56+00:00"
+      content="2024-02-26T15:35:44+00:00"
     />
 
 
@@ -68,7 +68,7 @@ The proxy service is the only service communicating to the outside and needs the
       "url" : "https://owncloud.dev/services/proxy/",
       "headline": "Proxy",
       "description": "Abstract The proxy service is an API-Gateway for the ownCloud Infinite Scale microservices. Every HTTP request goes through this service. Authentication, logging and other preprocessing of requests also happens here. Mechanisms like request rate limiting or intrusion prevention are not included in the proxy service and must be setup in front like with an external reverse proxy.\nThe proxy service is the only service communicating to the outside and needs therefore usual protections against DDOS, Slow Loris or other attack vectors.",
-      "wordCount" : "3249",
+      "wordCount" : "3610",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ The proxy service is the only service communicating to the outside and needs the
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-02-26T13:22:56.71Z",
-      "datePublished": "2024-02-26T13:22:56.71Z",
-      "dateModified": "2024-02-26T13:22:56.71Z",
+      "dateCreated": "2024-02-26T15:35:44.13Z",
+      "datePublished": "2024-02-26T15:35:44.13Z",
+      "dateModified": "2024-02-26T15:35:44.13Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -18302,6 +18302,10 @@ Copyright 2022 Fonticons, Inc.
 >Caching</a></li>
 <li><a
   class="gdoc-markdown__link"
+  href="#presigned-urls"
+>Presigned Urls</a></li>
+<li><a
+  class="gdoc-markdown__link"
   href="#special-settings"
 >Special Settings</a></li>
 <li><a
@@ -18497,6 +18501,33 @@ the user will not be able to login.</p>
 <li>When using <code>redis-sentinel</code>, the Redis master to use is configured via e.g. <code>OCIS_CACHE_STORE_NODES</code> in the form of <code>&lt;sentinel-host&gt;:&lt;sentinel-port&gt;/&lt;redis-master&gt;</code> like <code>10.10.0.200:26379/mymaster</code>.</li>
 <li>When using <code>nats-js-kv</code> it is recommended to set <code>OCIS_CACHE_STORE_NODES</code> to the same value as <code>OCIS_EVENTS_ENDPOINT</code>. That way the cache uses the same nats instance as the event bus.</li>
 <li>When using the <code>nats-js-kv</code> store, it is possible to set <code>OCIS_CACHE_DISABLE_PERSISTENCE</code> to instruct nats to not persist cache data on disc.</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="presigned-urls"
+    >
+        Presigned Urls
+        <a data-clipboard-text="https://owncloud.dev/services/proxy/#presigned-urls" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Presigned Urls" aria-label="Anchor to: Presigned Urls" href="#presigned-urls">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>To authenticate presigned URLs the proxy service needs to read signing keys from a store that is populated by the ocs service. Possible stores are:</p>
+<ul>
+<li><code>nats-js-kv</code>: Stores data using key-value-store feature of <a
+  class="gdoc-markdown__link"
+  href="https://docs.nats.io/nats-concepts/jetstream/key-value-store"
+>nats jetstream</a></li>
+<li><code>redis-sentinel</code>: Stores data in a configured Redis Sentinel cluster.</li>
+<li><code>ocisstoreservice</code>:  Stores data in the legacy ocis store service. Requires setting <code>PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE_NODES</code> to <code>com.owncloud.api.store</code>.</li>
+</ul>
+<p>The <code>memory</code> or <code>ocmem</code> stores cannot be used as they do not share the memory from the ocs service signing key memory store, even in a single process.</p>
+<p>Make sure to configure the same store in the ocs service.</p>
+<p>Store specific notes:</p>
+<ul>
+<li>When using <code>redis-sentinel</code>, the Redis master to use is configured via e.g. <code>OCIS_CACHE_STORE_NODES</code> in the form of <code>&lt;sentinel-host&gt;:&lt;sentinel-port&gt;/&lt;redis-master&gt;</code> like <code>10.10.0.200:26379/mymaster</code>.</li>
+<li>When using <code>nats-js-kv</code> it is recommended to set <code>OCS_PRESIGNEDURL_SIGNING_KEYS_STORE_NODES</code> to the same value as <code>PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE_NODES</code>. That way the ocs uses the same nats instance as the proxy service.</li>
+<li>When using the <code>nats-js-kv</code> store, it is possible to set <code>PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE_DISABLE_PERSISTENCE</code> to instruct nats to not persist signing key data on disc.</li>
+<li>When using <code>ocisstoreservice</code> the <code>PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE_NODES</code> must be set to the service name <code>com.owncloud.api.store</code>. It does not support TTL and stores the presigning keys indefinitely. Also, the store service needs to be started.</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h2 id="special-settings"
@@ -18800,6 +18831,14 @@ the user will not be able to login.</p>
 </span><span class="lnt">171
 </span><span class="lnt">172
 </span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># Autogenerated</span><span class="w">
@@ -18963,6 +19002,14 @@ the user will not be able to login.</p>
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">allowed_http_methods</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">GET</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">signing_keys</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">store</span><span class="p">:</span><span class="w"> </span><span class="l">nats-js-kv</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">addresses</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">127.0.0.1</span><span class="p">:</span><span class="m">9233</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ttl</span><span class="p">:</span><span class="w"> </span><span class="l">12h0m0s</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">disable_persistence</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">account_backend</span><span class="p">:</span><span class="w"> </span><span class="l">cs3</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">user_oidc_claim</span><span class="p">:</span><span class="w"> </span><span class="l">preferred_username</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">user_cs3_claim</span><span class="p">:</span><span class="w"> </span><span class="l">username</span><span class="w">
@@ -19262,6 +19309,42 @@ the user will not be able to login.</p>
 <td>bool</td>
 <td>true</td>
 <td>Allow OCS to get a signing key to sign requests.</td>
+</tr>
+<tr>
+<td>OCIS_CACHE_STORE<br/>PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE</td>
+<td>string</td>
+<td>nats-js-kv</td>
+<td>The type of the signing key store. Supported values are: &lsquo;redis-sentinel&rsquo;, &rsquo;nats-js-kv&rsquo; and &lsquo;ocisstoreservice&rsquo; (deprecated). See the text description for details.</td>
+</tr>
+<tr>
+<td>OCIS_CACHE_STORE_NODES<br/>PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE_NODES</td>
+<td>[]string</td>
+<td>[127.0.0.1:9233]</td>
+<td>A list of nodes to access the configured store. Note that the behaviour how nodes are used is dependent on the library of the configured store. See the Environment Variable Types description for more details.</td>
+</tr>
+<tr>
+<td>OCIS_CACHE_TTL<br/>PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE_TTL</td>
+<td>Duration</td>
+<td>12h0m0s</td>
+<td>Default time to live for signing keys. See the Environment Variable Types description for more details.</td>
+</tr>
+<tr>
+<td>OCIS_CACHE_DISABLE_PERSISTENCE<br/>PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE_DISABLE_PERSISTENCE</td>
+<td>bool</td>
+<td>true</td>
+<td>Disables persistence of the store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured. Defaults to true.</td>
+</tr>
+<tr>
+<td>OCIS_CACHE_AUTH_USERNAME<br/>PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE_AUTH_USERNAME</td>
+<td>string</td>
+<td></td>
+<td>The username to authenticate with the store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
+</tr>
+<tr>
+<td>OCIS_CACHE_AUTH_PASSWORD<br/>PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE_AUTH_PASSWORD</td>
+<td>string</td>
+<td></td>
+<td>The password to authenticate with the store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
 </tr>
 <tr>
 <td>PROXY_ACCOUNT_BACKEND_TYPE</td>

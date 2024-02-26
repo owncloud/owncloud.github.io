@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/proxy_configvars/",
       "headline": "Proxy Configvars",
       "description": "Environment Variables Name Type Default Value Description OCIS_TRACING_ENABLEDPROXY_TRACING_ENABLED bool false Activates tracing. OCIS_TRACING_TYPEPROXY_TRACING_TYPE string The type of tracing. Defaults to ‘’, which is the same as ‘jaeger’. Allowed tracing types are ‘jaeger’ and ’’ as of now. OCIS_TRACING_ENDPOINTPROXY_TRACING_ENDPOINT string The endpoint of the tracing agent. OCIS_TRACING_COLLECTORPROXY_TRACING_COLLECTOR string The HTTP endpoint for sending spans directly to a collector, i.e. http:\/\/jaeger-collector:14268\/api\/traces. Only used if the tracing endpoint is unset. OCIS_LOG_LEVELPROXY_LOG_LEVEL string The log level.",
-      "wordCount" : "1173",
+      "wordCount" : "1307",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18516,6 +18516,42 @@ Copyright 2022 Fonticons, Inc.
 <td>bool</td>
 <td>true</td>
 <td>Allow OCS to get a signing key to sign requests.</td>
+</tr>
+<tr>
+<td>OCIS_CACHE_STORE<br/>PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE</td>
+<td>string</td>
+<td>nats-js-kv</td>
+<td>The type of the signing key store. Supported values are: &lsquo;redis-sentinel&rsquo;, &rsquo;nats-js-kv&rsquo; and &lsquo;ocisstoreservice&rsquo; (deprecated). See the text description for details.</td>
+</tr>
+<tr>
+<td>OCIS_CACHE_STORE_NODES<br/>PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE_NODES</td>
+<td>[]string</td>
+<td>[127.0.0.1:9233]</td>
+<td>A list of nodes to access the configured store. Note that the behaviour how nodes are used is dependent on the library of the configured store. See the Environment Variable Types description for more details.</td>
+</tr>
+<tr>
+<td>OCIS_CACHE_TTL<br/>PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE_TTL</td>
+<td>Duration</td>
+<td>12h0m0s</td>
+<td>Default time to live for signing keys. See the Environment Variable Types description for more details.</td>
+</tr>
+<tr>
+<td>OCIS_CACHE_DISABLE_PERSISTENCE<br/>PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE_DISABLE_PERSISTENCE</td>
+<td>bool</td>
+<td>true</td>
+<td>Disables persistence of the store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured. Defaults to true.</td>
+</tr>
+<tr>
+<td>OCIS_CACHE_AUTH_USERNAME<br/>PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE_AUTH_USERNAME</td>
+<td>string</td>
+<td></td>
+<td>The username to authenticate with the store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
+</tr>
+<tr>
+<td>OCIS_CACHE_AUTH_PASSWORD<br/>PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE_AUTH_PASSWORD</td>
+<td>string</td>
+<td></td>
+<td>The password to authenticate with the store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
 </tr>
 <tr>
 <td>PROXY_ACCOUNT_BACKEND_TYPE</td>
