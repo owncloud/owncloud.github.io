@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/general-info/env-var-deltas/4.0.0-5.0.0-added/",
       "headline": "4.0.0 5.0.0 Added",
       "description": "Added Variables between oCIS 4.0.0 and oCIS 5.0.0 File Variable Description Default ocis-pkg\/shared\/shared_types.go OCIS_CACHE_DISABLE_PERSISTENCE Disables persistence of the cache. Only applies when store type ’nats-js-kv’ is configured. false ocis-pkg\/registry\/registry.go MICRO_REGISTRY (important change) The Go micro registry type to use. Supported types are: ‘memory’, ’nats-js-kv’ (default) and ‘kubernetes’. Note that ’nats’, ’etcd’, ‘consul’ and ‘mdns’ are deprecated and will be removed in a later version. Only change on supervision of ownCloud Support.",
-      "wordCount" : "3996",
+      "wordCount" : "4224",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -19124,6 +19124,36 @@ Copyright 2022 Fonticons, Inc.
 <td></td>
 </tr>
 <tr>
+<td>services/ocs/pkg/config/config.go</td>
+<td><code>OCIS_CACHE_STORE;OCS_PRESIGNEDURL_SIGNING_KEYS_STORE</code></td>
+<td>The type of the signing key store. Supported values are: &lsquo;redis-sentinel&rsquo; and &rsquo;nats-js-kv&rsquo;. See the text description for details.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_CACHE_STORE_NODES;OCS_PRESIGNEDURL_SIGNING_KEYS_STORE_NODES</code></td>
+<td>A list of nodes to access the configured store. Note that the behaviour how nodes are used is dependent on the library of the configured store. See the Environment Variable Types description for more details.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_CACHE_TTL;OCS_PRESIGNEDURL_SIGNING_KEYS_STORE_TTL</code></td>
+<td>Default time to live for signing keys. See the Environment Variable Types description for more details.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_CACHE_AUTH_USERNAME;OCS_PRESIGNEDURL_SIGNING_KEYS_STORE_AUTH_USERNAME</code></td>
+<td>The username to authenticate with the store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_CACHE_AUTH_PASSWORD;OCS_PRESIGNEDURL_SIGNING_KEYS_STORE_AUTH_PASSWORD</code></td>
+<td>The password to authenticate with the store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
+<td></td>
+</tr>
+<tr>
 <td>services/postprocessing/pkg/config/config.go</td>
 <td><code>POSTPROCESSING_RETRY_BACKOFF_DURATION</code></td>
 <td>The base for the exponential backoff duration before retrying a failed postprocessing step. See the Environment Variable Types description for more details.</td>
@@ -19193,6 +19223,42 @@ Copyright 2022 Fonticons, Inc.
 <td></td>
 <td><code>OCIS_CACHE_AUTH_PASSWORD;PROXY_OIDC_USERINFO_CACHE_AUTH_PASSWORD</code></td>
 <td>The password to authenticate with the cache. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_CACHE_STORE;PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE</code></td>
+<td>The type of the signing key store. Supported values are: &lsquo;redis-sentinel&rsquo; and &rsquo;nats-js-kv&rsquo;. See the text description for details.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_CACHE_STORE_NODES;PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE_NODES</code></td>
+<td>A list of nodes to access the configured store. Note that the behaviour how nodes are used is dependent on the library of the configured store. See the Environment Variable Types description for more details.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_CACHE_TTL;PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE_TTL</code></td>
+<td>Default time to live for signing keys. See the Environment Variable Types description for more details.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_CACHE_DISABLE_PERSISTENCE;PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE_DISABLE_PERSISTENCE</code></td>
+<td>Disables persistence of the store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured. Defaults to true.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_CACHE_AUTH_USERNAME;PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE_AUTH_USERNAME</code></td>
+<td>The username to authenticate with the store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_CACHE_AUTH_PASSWORD;PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE_AUTH_PASSWORD</code></td>
+<td>The password to authenticate with the store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
 <td></td>
 </tr>
 <tr>
@@ -19438,14 +19504,14 @@ Copyright 2022 Fonticons, Inc.
 <tr>
 <td></td>
 <td><code>SSE_HTTP_ADDR</code></td>
-<td></td>
 <td>The bind address of the HTTP service.</td>
+<td></td>
 </tr>
 <tr>
 <td></td>
 <td><code>SSE_HTTP_ROOT</code></td>
-<td></td>
 <td>The root path of the HTTP service.</td>
+<td></td>
 </tr>
 <tr>
 <td></td>
