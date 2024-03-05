@@ -18411,7 +18411,7 @@ Copyright 2022 Fonticons, Inc.
 </tr>
 <tr>
 <td>services/clientlog/pkg/config/config.go</td>
-<td><code>OCIS_REVA_GATEWAY</code></td>
+<td><code>OCIS_REVA_GATEWAY;CLIENTLOG_REVA_GATEWAY</code></td>
 <td>CS3 gateway used to look up user metadata</td>
 <td></td>
 </tr>
@@ -19088,6 +19088,36 @@ Copyright 2022 Fonticons, Inc.
 <td></td>
 </tr>
 <tr>
+<td>services/ocs/pkg/config/config.go</td>
+<td><code>OCIS_CACHE_STORE;OCS_PRESIGNEDURL_SIGNING_KEYS_STORE</code></td>
+<td>The type of the signing key store. Supported values are: &lsquo;redis-sentinel&rsquo; and &rsquo;nats-js-kv&rsquo;. See the text description for details.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_CACHE_STORE_NODES;OCS_PRESIGNEDURL_SIGNING_KEYS_STORE_NODES</code></td>
+<td>A list of nodes to access the configured store. Note that the behaviour how nodes are used is dependent on the library of the configured store. See the Environment Variable Types description for more details.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_CACHE_TTL;OCS_PRESIGNEDURL_SIGNING_KEYS_STORE_TTL</code></td>
+<td>Default time to live for signing keys. See the Environment Variable Types description for more details.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_CACHE_AUTH_USERNAME;OCS_PRESIGNEDURL_SIGNING_KEYS_STORE_AUTH_USERNAME</code></td>
+<td>The username to authenticate with the store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_CACHE_AUTH_PASSWORD;OCS_PRESIGNEDURL_SIGNING_KEYS_STORE_AUTH_PASSWORD</code></td>
+<td>The password to authenticate with the store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
+<td></td>
+</tr>
+<tr>
 <td>services/policies/pkg/config/config.go</td>
 <td><code>OCIS_EVENTS_AUTH_USERNAME;POLICIES_EVENTS_AUTH_USERNAME</code></td>
 <td>The username to authenticate with the events broker. The events broker is the ocis service which receives and delivers events between the services.</td>
@@ -19121,36 +19151,6 @@ Copyright 2022 Fonticons, Inc.
 <td></td>
 <td><code>OCIS_TRACING_COLLECTOR;POLICIES_TRACING_COLLECTOR</code></td>
 <td>The HTTP endpoint for sending spans directly to a collector, i.e. http://jaeger-collector:14268/api/traces. Only used if the tracing endpoint is unset.</td>
-<td></td>
-</tr>
-<tr>
-<td>services/ocs/pkg/config/config.go</td>
-<td><code>OCIS_CACHE_STORE;OCS_PRESIGNEDURL_SIGNING_KEYS_STORE</code></td>
-<td>The type of the signing key store. Supported values are: &lsquo;redis-sentinel&rsquo; and &rsquo;nats-js-kv&rsquo;. See the text description for details.</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td><code>OCIS_CACHE_STORE_NODES;OCS_PRESIGNEDURL_SIGNING_KEYS_STORE_NODES</code></td>
-<td>A list of nodes to access the configured store. Note that the behaviour how nodes are used is dependent on the library of the configured store. See the Environment Variable Types description for more details.</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td><code>OCIS_CACHE_TTL;OCS_PRESIGNEDURL_SIGNING_KEYS_STORE_TTL</code></td>
-<td>Default time to live for signing keys. See the Environment Variable Types description for more details.</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td><code>OCIS_CACHE_AUTH_USERNAME;OCS_PRESIGNEDURL_SIGNING_KEYS_STORE_AUTH_USERNAME</code></td>
-<td>The username to authenticate with the store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td><code>OCIS_CACHE_AUTH_PASSWORD;OCS_PRESIGNEDURL_SIGNING_KEYS_STORE_AUTH_PASSWORD</code></td>
-<td>The password to authenticate with the store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
 <td></td>
 </tr>
 <tr>
