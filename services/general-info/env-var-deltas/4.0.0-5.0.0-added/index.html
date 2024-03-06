@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/general-info/env-var-deltas/4.0.0-5.0.0-added/",
       "headline": "4.0.0 5.0.0 Added",
       "description": "Added Variables between oCIS 4.0.0 and oCIS 5.0.0 File Variable Description Default ocis-pkg\/shared\/shared_types.go OCIS_CACHE_DISABLE_PERSISTENCE Disables persistence of the cache. Only applies when store type ’nats-js-kv’ is configured. false ocis-pkg\/registry\/registry.go MICRO_REGISTRY (important change) The Go micro registry type to use. Supported types are: ‘memory’, ’nats-js-kv’ (default) and ‘kubernetes’. Note that ’nats’, ’etcd’, ‘consul’ and ‘mdns’ are deprecated and will be removed in a later version. Only change on supervision of ownCloud Support.",
-      "wordCount" : "4224",
+      "wordCount" : "4469",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18278,12 +18278,6 @@ Copyright 2022 Fonticons, Inc.
 <td></td>
 </tr>
 <tr>
-<td></td>
-<td><code>MICRO_REGISTRY_AUTH_PASSWORD</code></td>
-<td>Optional when using nats to authenticate with the nats cluster.</td>
-<td></td>
-</tr>
-<tr>
 <td>services/antivirus/pkg/config/config.go</td>
 <td><code>OCIS_EVENTS_AUTH_USERNAME</code></td>
 <td>The username to authenticate with the events broker. The events broker is the ocis service which receives and delivers events between the services.</td>
@@ -18365,6 +18359,12 @@ Copyright 2022 Fonticons, Inc.
 <td></td>
 <td><code>AUTH_SERVICE_DEBUG_ADDR</code></td>
 <td>Bind address of the debug server, where metrics, health, config and debug endpoints will be exposed.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>AUTH_SERVICE_DEBUG_PPROF</code></td>
+<td>Enables pprof, which can be used for profiling.</td>
 <td></td>
 </tr>
 <tr>
@@ -18573,12 +18573,6 @@ Copyright 2022 Fonticons, Inc.
 </tr>
 <tr>
 <td>services/frontend/pkg/config/config.go</td>
-<td><code>OCIS_ENABLE_RESHARING</code></td>
-<td>Changing this value is NOT supported. Enables the support for resharing in the clients.</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
 <td><code>FRONTEND_DEFAULT_LINK_PERMISSIONS</code></td>
 <td>Defines the default permissions a link is being created with. Possible values are 0 (= internal link, for instance members only) and 1 (= public link with viewer permissions). Defaults to 1.</td>
 <td></td>
@@ -18597,6 +18591,18 @@ Copyright 2022 Fonticons, Inc.
 </tr>
 <tr>
 <td></td>
+<td><code>OCIS_CACHE_AUTH_USERNAME;FRONTEND_OCS_STAT_CACHE_AUTH_USERNAME</code></td>
+<td>The username to use for authentication. Only applies when using the &rsquo;nats-js-kv&rsquo; store type.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_CACHE_AUTH_PASSWORD;FRONTEND_OCS_STAT_CACHE_AUTH_PASSWORD</code></td>
+<td>The password to use for authentication. Only applies when using the &rsquo;nats-js-kv&rsquo; store type.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td><code>FRONTEND_OCS_LIST_OCM_SHARES</code></td>
 <td>Include OCM shares when listing shares. See the OCM service documentation for more details.</td>
 <td></td>
@@ -18609,8 +18615,14 @@ Copyright 2022 Fonticons, Inc.
 </tr>
 <tr>
 <td></td>
+<td><code>OCIS_SHARING_PUBLIC_WRITEABLE_SHARE_MUST_HAVE_PASSWORD;FRONTEND_OCS_PUBLIC_WRITEABLE_SHARE_MUST_HAVE_PASSWORD</code></td>
+<td>Set this to true if you want to enforce passwords on Uploader, Editor or Contributor shares.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td><code>FRONTEND_OCS_INCLUDE_OCM_SHAREES</code></td>
-<td>nclude OCM sharees when listing sharees.</td>
+<td>Include OCM sharees when listing sharees.</td>
 <td></td>
 </tr>
 <tr>
@@ -18639,8 +18651,14 @@ Copyright 2022 Fonticons, Inc.
 </tr>
 <tr>
 <td></td>
+<td><code>OCIS_CACHE_AUTH_USERNAME;FRONTEND_OCS_STAT_CACHE_AUTH_USERNAME</code></td>
+<td>The username to use for authentication. Only applies when using the &rsquo;nats-js-kv&rsquo; store type.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td><code>OCIS_EVENTS_ENABLE_TLS;FRONTEND_EVENTS_ENABLE_TLS</code></td>
-<td>Enable TLS for the connection to the events broker. The events broker is the ocis service which receives and delivers events between the services..</td>
+<td>Enable TLS for the connection to the events broker. The events broker is the ocis service which receives and delivers events between the services.</td>
 <td></td>
 </tr>
 <tr>
@@ -18665,6 +18683,12 @@ Copyright 2022 Fonticons, Inc.
 <td></td>
 <td><code>OCIS_SERVICE_ACCOUNT_SECRET;FRONTEND_SERVICE_ACCOUNT_SECRET</code></td>
 <td>The service account secret.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_PASSWORD_POLICY_DISABLED;FRONTEND_PASSWORD_POLICY_DISABLED</code></td>
+<td>Disable the password policy. Defaults to false if not set.</td>
 <td></td>
 </tr>
 <tr>
@@ -18705,24 +18729,6 @@ Copyright 2022 Fonticons, Inc.
 </tr>
 <tr>
 <td>services/gateway/pkg/config/config.go</td>
-<td><code>GATEWAY_STORAGE_REGISTRY_DRIVER</code></td>
-<td>The driver name of the storage registry to use.</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td><code>GATEWAY_STORAGE_REGISTRY_RULES</code></td>
-<td>The rules for the storage registry. See the Environment Variable Types description for more details.</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td><code>GATEWAY_STORAGE_REGISTRY_CONFIG_JSON</code></td>
-<td>Additional configuration for the storage registry in json format.</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
 <td><code>OCIS_CACHE_DISABLE_PERSISTENCE;GATEWAY_STAT_CACHE_DISABLE_PERSISTENCE</code></td>
 <td>Disables persistence of the stat cache. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured. Defaults to false.</td>
 <td>false</td>
@@ -18735,9 +18741,33 @@ Copyright 2022 Fonticons, Inc.
 </tr>
 <tr>
 <td></td>
+<td><code>OCIS_CACHE_AUTH_USERNAME;GATEWAY_PROVIDER_CACHE_AUTH_USERNAME</code></td>
+<td>The username to use for authentication. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_CACHE_AUTH_PASSWORD;GATEWAY_PROVIDER_CACHE_AUTH_PASSWORD</code></td>
+<td>The password to use for authentication. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td><code>OCIS_CACHE_DISABLE_PERSISTENCE;GATEWAY_CREATE_HOME_CACHE_DISABLE_PERSISTENCE</code></td>
 <td>Disables persistence of the create home cache. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured. Defaults to false.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_CACHE_AUTH_USERNAME;GATEWAY_CREATE_HOME_CACHE_AUTH_USERNAME</code></td>
+<td>The username to use for authentication. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
 <td>false</td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_CACHE_AUTH_PASSWORD;GATEWAY_CREATE_HOME_CACHE_AUTH_PASSWORD</code></td>
+<td>The password to use for authentication. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
+<td></td>
 </tr>
 <tr>
 <td>services/graph/pkg/config/cache.go</td>
@@ -18791,6 +18821,12 @@ Copyright 2022 Fonticons, Inc.
 <td></td>
 <td><code>OCIS_ENABLE_RESHARING;GRAPH_ENABLE_RESHARING</code></td>
 <td>Changing this value is NOT supported. Enables the support for resharing in the clients.</td>
+<td></td>
+</tr>
+<tr>
+<td>services/idp/pkg/config/config.go</td>
+<td><code>IDP_LOGIN_BACKGROUND_URL</code></td>
+<td>Configure an alternative URL to the background image for the login page.</td>
 <td></td>
 </tr>
 <tr>
@@ -19335,8 +19371,32 @@ Copyright 2022 Fonticons, Inc.
 </tr>
 <tr>
 <td>services/sharing/pkg/config/config.go</td>
+<td><code>OCIS_SHARING_PUBLIC_WRITEABLE_SHARE_MUST_HAVE_PASSWORD;SHARING_PUBLIC_WRITEABLE_SHARE_MUST_HAVE_PASSWORD</code></td>
+<td>Set this to true if you want to enforce passwords on Uploader, Editor or Contributor shares. If not using the global OCIS_SHARING_PUBLIC_WRITEABLE_SHARE_MUST_HAVE_PASSWORD, you must define the FRONTEND_OCS_PUBLIC_WRITEABLE_SHARE_MUST_HAVE_PASSWORD in the frontend service.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td><code>OCIS_SHARING_PUBLIC_SHARE_MUST_HAVE_PASSWORD;SHARING_PUBLIC_SHARE_MUST_HAVE_PASSWORD</code></td>
 <td>Set this to true if you want to enforce passwords on all public shares.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_EVENTS_AUTH_USERNAME;SHARING_EVENTS_AUTH_USERNAME</code></td>
+<td>Username for the events broker.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_EVENTS_AUTH_PASSWORD;SHARING_EVENTS_AUTH_PASSWORD</code></td>
+<td>Password for the events broker.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_PASSWORD_POLICY_DISABLED;SHARING_PASSWORD_POLICY_DISABLED</code></td>
+<td>Disable the password policy. Defaults to false if not set.</td>
 <td></td>
 </tr>
 <tr>
@@ -19550,6 +19610,18 @@ Copyright 2022 Fonticons, Inc.
 <td>false</td>
 </tr>
 <tr>
+<td></td>
+<td><code>OCIS_CACHE_AUTH_USERNAME;STORAGE_SYSTEM_CACHE_AUTH_USERNAME</code></td>
+<td>Username for the configured store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_CACHE_AUTH_PASSWORD;STORAGE_SYSTEM_CACHE_AUTH_PASSWORD</code></td>
+<td>TPassword for the configured store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
+<td></td>
+</tr>
+<tr>
 <td>services/storage-users/pkg/config/config.go</td>
 <td><code>OCIS_GATEWAY_GRPC_ADDR;STORAGE_USERS_GATEWAY_GRPC_ADDR</code></td>
 <td>The bind address of the gateway GRPC address.</td>
@@ -19593,9 +19665,33 @@ Copyright 2022 Fonticons, Inc.
 </tr>
 <tr>
 <td></td>
+<td><code>OCIS_CACHE_AUTH_USERNAME;STORAGE_USERS_FILEMETADATA_CACHE_AUTH_USERNAME</code></td>
+<td>The username to authenticate with the cache store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_CACHE_AUTH_PASSWORD;STORAGE_USERS_FILEMETADATA_CACHE_AUTH_PASSWORD</code></td>
+<td>The password to authenticate with the cache store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td><code>OCIS_CACHE_DISABLE_PERSISTENCE;STORAGE_USERS_ID_CACHE_DISABLE_PERSISTENCE</code></td>
 <td>Disables persistence of the id cache. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured. Defaults to false.</td>
 <td>false</td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_CACHE_AUTH_USERNAME;STORAGE_USERS_ID_CACHE_AUTH_USERNAME</code></td>
+<td>The username to authenticate with the cache store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>OCIS_CACHE_AUTH_PASSWORD;STORAGE_USERS_ID_CACHE_AUTH_PASSWORD</code></td>
+<td>The password to authenticate with the cache store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
+<td></td>
 </tr>
 <tr>
 <td></td>
