@@ -12,8 +12,7 @@
 <meta name="generator" content="Hugo 0.115.2">
 
 
-  <meta name="description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare &amp; Start Web Run E2E Tests Options Acceptance Tests (Nightwatch) Preparation Prepare &amp; Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.
-All the steps below require you to have the web repo cloned locally and dependencies installed." />
+  <meta name="description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare &amp; Start Web Run E2E Tests Options Lint E2E Test Code Acceptance Tests (Nightwatch) Preparation Prepare &amp; Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository." />
 
     <title>Running tests | ownCloud</title>
 
@@ -37,8 +36,7 @@ All the steps below require you to have the web repo cloned locally and dependen
     content="Running tests"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare &amp; Start Web Run E2E Tests Options Acceptance Tests (Nightwatch) Preparation Prepare &amp; Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.
-All the steps below require you to have the web repo cloned locally and dependencies installed." />
+  <meta property="og:description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare &amp; Start Web Run E2E Tests Options Lint E2E Test Code Acceptance Tests (Nightwatch) Preparation Prepare &amp; Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/clients/web/testing/testing/" />
 
@@ -55,8 +53,7 @@ All the steps below require you to have the web repo cloned locally and dependen
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Running tests" />
-  <meta name="twitter:description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare &amp; Start Web Run E2E Tests Options Acceptance Tests (Nightwatch) Preparation Prepare &amp; Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.
-All the steps below require you to have the web repo cloned locally and dependencies installed." />
+  <meta name="twitter:description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare &amp; Start Web Run E2E Tests Options Lint E2E Test Code Acceptance Tests (Nightwatch) Preparation Prepare &amp; Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository." />
 
 
   <script type="application/ld+json">
@@ -67,8 +64,8 @@ All the steps below require you to have the web repo cloned locally and dependen
       "name": "Running tests",
       "url" : "https://owncloud.dev/clients/web/testing/testing/",
       "headline": "Running tests",
-      "description": "Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare \u0026 Start Web Run E2E Tests Options Acceptance Tests (Nightwatch) Preparation Prepare \u0026 Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.\nAll the steps below require you to have the web repo cloned locally and dependencies installed.",
-      "wordCount" : "850",
+      "description": "Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare \u0026 Start Web Run E2E Tests Options Lint E2E Test Code Acceptance Tests (Nightwatch) Preparation Prepare \u0026 Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.",
+      "wordCount" : "907",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18285,6 +18282,7 @@ Copyright 2022 Fonticons, Inc.
                 <li><a href="#prepare--start-web">Prepare &amp; Start Web</a></li>
                 <li><a href="#run-e2e-tests">Run E2E Tests</a></li>
                 <li><a href="#options">Options</a></li>
+                <li><a href="#lint-e2e-test-code">Lint E2E Test Code</a></li>
               </ul>
             </li>
             <li><a href="#acceptance-tests-nightwatch">Acceptance Tests (Nightwatch)</a>
@@ -18428,6 +18426,20 @@ Again, you can use the following ENV variables in your command:</p>
 <p>To then open e.g. the tracing from the <code>REPORT_DIR</code>, run</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ npx playwright show-trace path/to/file.zip
 </span></span></code></pre></div><div class="gdoc-page__anchorwrap">
+    <h4 id="lint-e2e-test-code"
+    >
+        Lint E2E Test Code
+        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#lint-e2e-test-code" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Lint E2E Test Code" aria-label="Anchor to: Lint E2E Test Code" href="#lint-e2e-test-code">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+<p>Run the following command to find out the lint issues early in the test codes:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ pnpm lint
+</span></span></code></pre></div><p>And to fix the lint problems run the following command:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ pnpm lint --fix
+</span></span></code></pre></div><p>If the lint problems are not fixed by <code>--fix</code> option, we have to manually fix the code.</p>
+<div class="gdoc-page__anchorwrap">
     <h3 id="acceptance-tests-nightwatch"
     >
         Acceptance Tests (Nightwatch)
