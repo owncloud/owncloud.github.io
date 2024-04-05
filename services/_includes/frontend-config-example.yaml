@@ -22,13 +22,14 @@ http:
   prefix: ""
   cors:
     allow_origins:
-    - '*'
+    - https://localhost:9200
     allow_methods:
     - OPTIONS
     - HEAD
     - GET
     - PUT
     - POST
+    - PATCH
     - DELETE
     - MKCOL
     - PROPFIND
@@ -61,7 +62,7 @@ http:
     - Upload-Offset
     - X-HTTP-Method-Override
     - Cache-Control
-    allow_credentials: true
+    allow_credentials: false
 transfer_secret: ""
 token_manager:
   jwt_secret: ""
@@ -77,7 +78,6 @@ max_quota: 0
 upload_max_chunk_size: 10000000
 upload_http_method_override: ""
 default_upload_protocol: tus
-enable_resharing: true
 enable_federated_sharing_incoming: false
 enable_federated_sharing_outgoing: false
 search_min_length: 3
