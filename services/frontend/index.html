@@ -13,8 +13,7 @@
 
 
   <meta name="description" content="Abstract The frontend service translates various owncloud related HTTP APIs to CS3 requests.
-Table of Contents Endpoints Overview appprovider archiver datagateway ocs Sharing Scalability Define Read-Only Attributes Caching Event Handler Auto-Accept Shares The password policy The password policy capability Example Yaml Config Endpoints Overview Currently, the frontend service handles requests for three functionalities, which are appprovider, archiver, datagateway and ocs.
-appprovider The appprovider endpoint, by default /app, forwards HTTP requests to the CS3 App Registry API" />
+Table of Contents Endpoints Overview appprovider archiver datagateway ocs Event Handler Sharing Scalability Define Read-Only Attributes Caching Auto-Accept Shares Passwords The Password Policy The Password Policy Capability Password Enforcement for all Public Links Password Enforcement for Writeable Public Links Example Yaml Config Endpoints Overview Currently, the frontend service handles requests for three functionalities, which are appprovider, archiver, datagateway and ocs." />
 
     <title>Frontend | ownCloud</title>
 
@@ -39,27 +38,25 @@ appprovider The appprovider endpoint, by default /app, forwards HTTP requests to
   />
   <meta property="og:site_name" content="ownCloud" />
   <meta property="og:description" content="Abstract The frontend service translates various owncloud related HTTP APIs to CS3 requests.
-Table of Contents Endpoints Overview appprovider archiver datagateway ocs Sharing Scalability Define Read-Only Attributes Caching Event Handler Auto-Accept Shares The password policy The password policy capability Example Yaml Config Endpoints Overview Currently, the frontend service handles requests for three functionalities, which are appprovider, archiver, datagateway and ocs.
-appprovider The appprovider endpoint, by default /app, forwards HTTP requests to the CS3 App Registry API" />
+Table of Contents Endpoints Overview appprovider archiver datagateway ocs Event Handler Sharing Scalability Define Read-Only Attributes Caching Auto-Accept Shares Passwords The Password Policy The Password Policy Capability Password Enforcement for all Public Links Password Enforcement for Writeable Public Links Example Yaml Config Endpoints Overview Currently, the frontend service handles requests for three functionalities, which are appprovider, archiver, datagateway and ocs." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/frontend/" />
 
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2024-04-11T10:10:36+00:00"
+      content="2024-04-11T11:10:15+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-04-11T10:10:36+00:00"
+      content="2024-04-11T11:10:15+00:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Frontend" />
   <meta name="twitter:description" content="Abstract The frontend service translates various owncloud related HTTP APIs to CS3 requests.
-Table of Contents Endpoints Overview appprovider archiver datagateway ocs Sharing Scalability Define Read-Only Attributes Caching Event Handler Auto-Accept Shares The password policy The password policy capability Example Yaml Config Endpoints Overview Currently, the frontend service handles requests for three functionalities, which are appprovider, archiver, datagateway and ocs.
-appprovider The appprovider endpoint, by default /app, forwards HTTP requests to the CS3 App Registry API" />
+Table of Contents Endpoints Overview appprovider archiver datagateway ocs Event Handler Sharing Scalability Define Read-Only Attributes Caching Auto-Accept Shares Passwords The Password Policy The Password Policy Capability Password Enforcement for all Public Links Password Enforcement for Writeable Public Links Example Yaml Config Endpoints Overview Currently, the frontend service handles requests for three functionalities, which are appprovider, archiver, datagateway and ocs." />
 
 
   <script type="application/ld+json">
@@ -70,8 +67,8 @@ appprovider The appprovider endpoint, by default /app, forwards HTTP requests to
       "name": "Frontend",
       "url" : "https://owncloud.dev/services/frontend/",
       "headline": "Frontend",
-      "description": "Abstract The frontend service translates various owncloud related HTTP APIs to CS3 requests.\nTable of Contents Endpoints Overview appprovider archiver datagateway ocs Sharing Scalability Define Read-Only Attributes Caching Event Handler Auto-Accept Shares The password policy The password policy capability Example Yaml Config Endpoints Overview Currently, the frontend service handles requests for three functionalities, which are appprovider, archiver, datagateway and ocs.\nappprovider The appprovider endpoint, by default \/app, forwards HTTP requests to the CS3 App Registry API",
-      "wordCount" : "3176",
+      "description": "Abstract The frontend service translates various owncloud related HTTP APIs to CS3 requests.\nTable of Contents Endpoints Overview appprovider archiver datagateway ocs Event Handler Sharing Scalability Define Read-Only Attributes Caching Auto-Accept Shares Passwords The Password Policy The Password Policy Capability Password Enforcement for all Public Links Password Enforcement for Writeable Public Links Example Yaml Config Endpoints Overview Currently, the frontend service handles requests for three functionalities, which are appprovider, archiver, datagateway and ocs.",
+      "wordCount" : "3266",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -80,9 +77,9 @@ appprovider The appprovider endpoint, by default /app, forwards HTTP requests to
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-04-11T10:10:36.56Z",
-      "datePublished": "2024-04-11T10:10:36.56Z",
-      "dateModified": "2024-04-11T10:10:36.56Z",
+      "dateCreated": "2024-04-11T11:10:15.84Z",
+      "datePublished": "2024-04-11T11:10:15.84Z",
+      "dateModified": "2024-04-11T11:10:15.84Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -18414,7 +18411,14 @@ Copyright 2022 Fonticons, Inc.
 <li><a
   class="gdoc-markdown__link"
   href="#ocs"
->ocs</a></li>
+>ocs</a>
+<ul>
+<li><a
+  class="gdoc-markdown__link"
+  href="#event-handler"
+>Event Handler</a></li>
+</ul>
+</li>
 <li><a
   class="gdoc-markdown__link"
   href="#sharing"
@@ -18432,11 +18436,7 @@ Copyright 2022 Fonticons, Inc.
 <li><a
   class="gdoc-markdown__link"
   href="#caching"
->Caching</a></li>
-<li><a
-  class="gdoc-markdown__link"
-  href="#event-handler"
->Event Handler</a>
+>Caching</a>
 <ul>
 <li><a
   class="gdoc-markdown__link"
@@ -18446,13 +18446,25 @@ Copyright 2022 Fonticons, Inc.
 </li>
 <li><a
   class="gdoc-markdown__link"
-  href="#the-password-policy"
->The password policy</a>
+  href="#passwords"
+>Passwords</a>
 <ul>
 <li><a
   class="gdoc-markdown__link"
+  href="#the-password-policy"
+>The Password Policy</a></li>
+<li><a
+  class="gdoc-markdown__link"
   href="#the-password-policy-capability"
->The password policy capability</a></li>
+>The Password Policy Capability</a></li>
+<li><a
+  class="gdoc-markdown__link"
+  href="#password-enforcement-for-all-public-links"
+>Password Enforcement for all Public Links</a></li>
+<li><a
+  class="gdoc-markdown__link"
+  href="#password-enforcement-for-writeable-public-links"
+>Password Enforcement for Writeable Public Links</a></li>
 </ul>
 </li>
 <li><a
@@ -18516,6 +18528,16 @@ Copyright 2022 Fonticons, Inc.
   class="gdoc-markdown__link"
   href="https://github.com/owncloud/ocis/tree/master/services/ocs"
 >ocs</a> service.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="event-handler"
+    >
+        Event Handler
+        <a data-clipboard-text="https://owncloud.dev/services/frontend/#event-handler" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Event Handler" aria-label="Anchor to: Event Handler" href="#event-handler">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+<p>The <code>frontend</code> service contains an eventhandler for handling <code>ocs</code> related events. As of now, it only listens to the <code>ShareCreated</code> event.</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="sharing"
     >
@@ -18591,16 +18613,6 @@ Copyright 2022 Fonticons, Inc.
 <li>When using the <code>nats-js-kv</code> store, it is possible to set <code>OCIS_CACHE_DISABLE_PERSISTENCE</code> to instruct nats to not persist cache data on disc.</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="event-handler"
-    >
-        Event Handler
-        <a data-clipboard-text="https://owncloud.dev/services/frontend/#event-handler" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Event Handler" aria-label="Anchor to: Event Handler" href="#event-handler">
-            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h2>
-</div>
-<p>The <code>frontend</code> service contains an eventhandler for handling <code>ocs</code> related events. As of now, it only listens to the <code>ShareCreated</code> event.</p>
-<div class="gdoc-page__anchorwrap">
     <h3 id="auto-accept-shares"
     >
         Auto-Accept Shares
@@ -18611,13 +18623,22 @@ Copyright 2022 Fonticons, Inc.
 </div>
 <p>When setting the <code>FRONTEND_AUTO_ACCEPT_SHARES</code> to <code>true</code>, all incoming shares will be accepted automatically. Users can overwrite this setting individually in their profile.</p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="the-password-policy"
+    <h2 id="passwords"
     >
-        The password policy
-        <a data-clipboard-text="https://owncloud.dev/services/frontend/#the-password-policy" class="gdoc-page__anchor clip flex align-center" title="Anchor to: The password policy" aria-label="Anchor to: The password policy" href="#the-password-policy">
+        Passwords
+        <a data-clipboard-text="https://owncloud.dev/services/frontend/#passwords" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Passwords" aria-label="Anchor to: Passwords" href="#passwords">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
+</div>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="the-password-policy"
+    >
+        The Password Policy
+        <a data-clipboard-text="https://owncloud.dev/services/frontend/#the-password-policy" class="gdoc-page__anchor clip flex align-center" title="Anchor to: The Password Policy" aria-label="Anchor to: The Password Policy" href="#the-password-policy">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
 </div>
 <p>Note that the password policy currently impacts only <strong>public link password validation</strong>.</p>
 <p>In Infinite Scale, the password policy is always enabled because the max-length restriction is always applying and should be taken into account by the clients.</p>
@@ -18649,8 +18670,8 @@ Path to the &lsquo;banned passwords list&rsquo; file.</li>
 <div class="gdoc-page__anchorwrap">
     <h3 id="the-password-policy-capability"
     >
-        The password policy capability
-        <a data-clipboard-text="https://owncloud.dev/services/frontend/#the-password-policy-capability" class="gdoc-page__anchor clip flex align-center" title="Anchor to: The password policy capability" aria-label="Anchor to: The password policy capability" href="#the-password-policy-capability">
+        The Password Policy Capability
+        <a data-clipboard-text="https://owncloud.dev/services/frontend/#the-password-policy-capability" class="gdoc-page__anchor clip flex align-center" title="Anchor to: The Password Policy Capability" aria-label="Anchor to: The Password Policy Capability" href="#the-password-policy-capability">
             <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
@@ -18676,6 +18697,31 @@ Path to the &lsquo;banned passwords list&rsquo; file.</li>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><div class="gdoc-page__anchorwrap">
+    <h3 id="password-enforcement-for-all-public-links"
+    >
+        Password Enforcement for all Public Links
+        <a data-clipboard-text="https://owncloud.dev/services/frontend/#password-enforcement-for-all-public-links" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Password Enforcement for all Public Links" aria-label="Anchor to: Password Enforcement for all Public Links" href="#password-enforcement-for-all-public-links">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>For public accessible shares, independent if read only or writable, a password is enforced. To change this requirement, set the following environment variable to <code>false</code>:</p>
+<p><code>OCIS_SHARING_PUBLIC_SHARE_MUST_HAVE_PASSWORD</code></p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="password-enforcement-for-writeable-public-links"
+    >
+        Password Enforcement for Writeable Public Links
+        <a data-clipboard-text="https://owncloud.dev/services/frontend/#password-enforcement-for-writeable-public-links" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Password Enforcement for Writeable Public Links" aria-label="Anchor to: Password Enforcement for Writeable Public Links" href="#password-enforcement-for-writeable-public-links">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>For public accessible writable shares, a password can be enforced. To change the current setting, set the following environment variable to <code>true</code>:</p>
+<p><code>OCIS_SHARING_PUBLIC_WRITEABLE_SHARE_MUST_HAVE_PASSWORD</code></p>
+<p>Note that changing this environment variable only makes sense if<br>
+<code>OCIS_SHARING_PUBLIC_SHARE_MUST_HAVE_PASSWORD</code><br>
+is set to <code>false</code>.</p>
+<div class="gdoc-page__anchorwrap">
     <h2 id="example-yaml-config"
     >
         Example Yaml Config
