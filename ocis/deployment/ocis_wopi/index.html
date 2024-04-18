@@ -12,7 +12,7 @@
 <meta name="generator" content="Hugo 0.115.2">
 
 
-  <meta name="description" content="Overview Overview Image Server Deployment Requirements Install oCIS and Traefik Local setup Local setup for web development Overview oCIS, Wopi server, Collabora and OnlyOffice running behind Traefik as reverse proxy Collabora and OnlyOffice enable you to edit documents in your browser Wopi server acts as a bridge to make the oCIS storage accessible to Collabora and OnlyOffice Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup Find this example on GitHub" />
+  <meta name="description" content="Overview Overview Image Server Deployment Requirements Install oCIS and Traefik Local setup Local setup for web development Using Podman Overview oCIS, Wopi server, Collabora and OnlyOffice running behind Traefik as reverse proxy Collabora and OnlyOffice enable you to edit documents in your browser Wopi server acts as a bridge to make the oCIS storage accessible to Collabora and OnlyOffice Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup Find this example on GitHub" />
 
     <title>oCIS with WOPI server | ownCloud</title>
 
@@ -36,7 +36,7 @@
     content="oCIS with WOPI server"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Overview Overview Image Server Deployment Requirements Install oCIS and Traefik Local setup Local setup for web development Overview oCIS, Wopi server, Collabora and OnlyOffice running behind Traefik as reverse proxy Collabora and OnlyOffice enable you to edit documents in your browser Wopi server acts as a bridge to make the oCIS storage accessible to Collabora and OnlyOffice Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup Find this example on GitHub" />
+  <meta property="og:description" content="Overview Overview Image Server Deployment Requirements Install oCIS and Traefik Local setup Local setup for web development Using Podman Overview oCIS, Wopi server, Collabora and OnlyOffice running behind Traefik as reverse proxy Collabora and OnlyOffice enable you to edit documents in your browser Wopi server acts as a bridge to make the oCIS storage accessible to Collabora and OnlyOffice Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup Find this example on GitHub" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/ocis/deployment/ocis_wopi/" />
 
@@ -53,7 +53,7 @@
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="oCIS with WOPI server" />
-  <meta name="twitter:description" content="Overview Overview Image Server Deployment Requirements Install oCIS and Traefik Local setup Local setup for web development Overview oCIS, Wopi server, Collabora and OnlyOffice running behind Traefik as reverse proxy Collabora and OnlyOffice enable you to edit documents in your browser Wopi server acts as a bridge to make the oCIS storage accessible to Collabora and OnlyOffice Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup Find this example on GitHub" />
+  <meta name="twitter:description" content="Overview Overview Image Server Deployment Requirements Install oCIS and Traefik Local setup Local setup for web development Using Podman Overview oCIS, Wopi server, Collabora and OnlyOffice running behind Traefik as reverse proxy Collabora and OnlyOffice enable you to edit documents in your browser Wopi server acts as a bridge to make the oCIS storage accessible to Collabora and OnlyOffice Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup Find this example on GitHub" />
 
 
   <script type="application/ld+json">
@@ -64,8 +64,8 @@
       "name": "oCIS with WOPI server",
       "url" : "https://owncloud.dev/ocis/deployment/ocis_wopi/",
       "headline": "oCIS with WOPI server",
-      "description": "Overview Overview Image Server Deployment Requirements Install oCIS and Traefik Local setup Local setup for web development Overview oCIS, Wopi server, Collabora and OnlyOffice running behind Traefik as reverse proxy Collabora and OnlyOffice enable you to edit documents in your browser Wopi server acts as a bridge to make the oCIS storage accessible to Collabora and OnlyOffice Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup Find this example on GitHub",
-      "wordCount" : "1244",
+      "description": "Overview Overview Image Server Deployment Requirements Install oCIS and Traefik Local setup Local setup for web development Using Podman Overview oCIS, Wopi server, Collabora and OnlyOffice running behind Traefik as reverse proxy Collabora and OnlyOffice enable you to edit documents in your browser Wopi server acts as a bridge to make the oCIS storage accessible to Collabora and OnlyOffice Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup Find this example on GitHub",
+      "wordCount" : "1292",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18387,6 +18387,7 @@ Copyright 2022 Fonticons, Inc.
         </li>
         <li><a href="#local-setup">Local setup</a></li>
         <li><a href="#local-setup-for-web-development">Local setup for web development</a></li>
+        <li><a href="#using-podman">Using Podman</a></li>
       </ul></nav>
       <hr />
     </div>
@@ -18620,7 +18621,21 @@ Copyright 2022 Fonticons, Inc.
 <li>Start the deployment example as described above in the <code>Local setup</code> section.</li>
 </ol>
 <p>For app provider frontend development in <code>web</code> you can find the source code in <code>web/packages/web-app-external</code>. Some parts of the integration live in <code>web/packages/web-app-files</code>.</p>
-
+<div class="gdoc-page__anchorwrap">
+    <h2 id="using-podman"
+    >
+        Using Podman
+        <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_wopi/#using-podman" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Using Podman" aria-label="Anchor to: Using Podman" href="#using-podman">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>Podman doesn&rsquo;t have a &ldquo;local&rdquo; log driver. Also it&rsquo;s docker-compatibility socket does live in a different location, especially when running a rootless podman.</p>
+<p>Using the following settings you can run the deployment with a recent podman version:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">LOG_DRIVER</span><span class="o">=</span>journald <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">DOCKER_SOCKET_PATH</span><span class="o">=</span>/run/user/1000/podman/podman.sock <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>podman compose start
+</span></span></code></pre></div>
   </article>
 
 
