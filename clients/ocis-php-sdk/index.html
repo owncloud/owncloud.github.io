@@ -16,7 +16,7 @@
 Documentation You can find a rendered version of the API documentation in our dev docs.
 To render the documentation locally, use the phpDocumentor to run it in the local repo. E.g.:
 docker run --rm -v ${PWD}:/data phpdoc/phpdoc:3 After that you will find the documentation inside the docs folder.
-:exclamation: This SDK is still under heavy development and is not yet ready for production use, the API might change!" />
+Installation via Composer Add &ldquo;owncloud/ocis-php-sdk&rdquo; to the require block in your composer." />
 
     <title>oCIS PHP SDK | ownCloud</title>
 
@@ -44,7 +44,7 @@ docker run --rm -v ${PWD}:/data phpdoc/phpdoc:3 After that you will find the doc
 Documentation You can find a rendered version of the API documentation in our dev docs.
 To render the documentation locally, use the phpDocumentor to run it in the local repo. E.g.:
 docker run --rm -v ${PWD}:/data phpdoc/phpdoc:3 After that you will find the documentation inside the docs folder.
-:exclamation: This SDK is still under heavy development and is not yet ready for production use, the API might change!" />
+Installation via Composer Add “owncloud/ocis-php-sdk” to the require block in your composer." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/clients/ocis-php-sdk/" />
 
@@ -65,7 +65,7 @@ docker run --rm -v ${PWD}:/data phpdoc/phpdoc:3 After that you will find the doc
 Documentation You can find a rendered version of the API documentation in our dev docs.
 To render the documentation locally, use the phpDocumentor to run it in the local repo. E.g.:
 docker run --rm -v ${PWD}:/data phpdoc/phpdoc:3 After that you will find the documentation inside the docs folder.
-:exclamation: This SDK is still under heavy development and is not yet ready for production use, the API might change!" />
+Installation via Composer Add “owncloud/ocis-php-sdk” to the require block in your composer." />
 
 
   <script type="application/ld+json">
@@ -76,8 +76,8 @@ docker run --rm -v ${PWD}:/data phpdoc/phpdoc:3 After that you will find the doc
       "name": "oCIS PHP SDK",
       "url" : "https://owncloud.dev/clients/ocis-php-sdk/",
       "headline": "oCIS PHP SDK",
-      "description": "ocis-php-sdk This SDK allows you to interact with ownCloud Infinite Scale (oCIS) storage using PHP.\nDocumentation You can find a rendered version of the API documentation in our dev docs.\nTo render the documentation locally, use the phpDocumentor to run it in the local repo. E.g.:\ndocker run --rm -v ${PWD}:\/data phpdoc\/phpdoc:3 After that you will find the documentation inside the docs folder.\n:exclamation: This SDK is still under heavy development and is not yet ready for production use, the API might change!",
-      "wordCount" : "810",
+      "description": "ocis-php-sdk This SDK allows you to interact with ownCloud Infinite Scale (oCIS) storage using PHP.\nDocumentation You can find a rendered version of the API documentation in our dev docs.\nTo render the documentation locally, use the phpDocumentor to run it in the local repo. E.g.:\ndocker run --rm -v ${PWD}:\/data phpdoc\/phpdoc:3 After that you will find the documentation inside the docs folder.\nInstallation via Composer Add “owncloud\/ocis-php-sdk” to the require block in your composer.",
+      "wordCount" : "922",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18451,8 +18451,32 @@ Copyright 2022 Fonticons, Inc.
 >phpDocumentor</a> to run it in the local repo. E.g.:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker run --rm -v ${PWD}:/data phpdoc/phpdoc:3
 </span></span></code></pre></div><p>After that you will find the documentation inside the <code>docs</code> folder.</p>
-<p>:exclamation: This SDK is still under heavy development and is not yet ready for production use, the API might change!</p>
 <div class="gdoc-page__anchorwrap">
+    <h2 id="installation-via-composer"
+    >
+        Installation via Composer
+        <a data-clipboard-text="https://owncloud.dev/clients/ocis-php-sdk/#installation-via-composer" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Installation via Composer" aria-label="Anchor to: Installation via Composer" href="#installation-via-composer">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>Add &ldquo;owncloud/ocis-php-sdk&rdquo; to the <code>require</code> block in your composer.json and then run composer install.</p>
+<blockquote>
+<p>[!WARNING]<br>
+The ocis-php-sdk currently relies on a development version of the &ldquo;owncloud/libre-graph-api-php&rdquo; package. To ensure proper dependency resolution, it is necessary to set &ldquo;minimum-stability&rdquo;: &ldquo;dev&rdquo; and &ldquo;prefer-stable&rdquo;: true in your composer.json file.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;minimum-stability&#34;</span><span class="p">:</span> <span class="s2">&#34;dev&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;prefer-stable&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;require&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;owncloud/ocis-php-sdk&#34;</span><span class="p">:</span> <span class="s2">&#34;^1.0&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Alternatively, you can simply run the following from the command line:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">composer config minimum-stability dev
+</span></span><span class="line"><span class="cl">composer config prefer-stable <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">composer require owncloud/ocis-php-sdk
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="getting-started"
     >
         Getting started
@@ -18536,14 +18560,14 @@ Copyright 2022 Fonticons, Inc.
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// find the role that is allowed to read and write the shared file or folder 
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="nv">$roles</span> <span class="k">as</span> <span class="nv">$role</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nv">$role</span><span class="o">-&gt;</span><span class="na">getDisplayName</span><span class="p">()</span> <span class="o">===</span> <span class="s1">&#39;Editor&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nv">$role</span><span class="o">-&gt;</span><span class="na">getDisplayName</span><span class="p">()</span> <span class="o">===</span> <span class="s1">&#39;Can edit&#39;</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="nv">$editorRole</span> <span class="o">=</span> <span class="nv">$role</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// find all users with a specific surname
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$users</span> <span class="o">=</span> <span class="nv">$ocis</span><span class="o">-&gt;</span><span class="na">getUsers</span><span class="p">(</span><span class="s2">&#34;gurung&#34;</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$users</span> <span class="o">=</span> <span class="nv">$ocis</span><span class="o">-&gt;</span><span class="na">getUsers</span><span class="p">(</span><span class="s2">&#34;einstein&#34;</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// share the resource with the users
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$resources</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">invite</span><span class="p">(</span><span class="nv">$users</span><span class="p">,</span> <span class="nv">$editorRole</span><span class="p">);</span>
@@ -18715,17 +18739,34 @@ Copyright 2022 Fonticons, Inc.
         </a>
     </h3>
 </div>
-<p>The integration tests start a full oCIS server with keycloak and other services using docker.
-To run the tests locally</p>
+<p>To run the tests locally</p>
 <ol>
-<li>Install and setup <code>docker</code> (min version 24) and <code>docker compose</code> (min version 2.21).</li>
-<li>add these lines to your <code>/etc/hosts</code> file:
+<li>
+<p>Install and setup <code>docker</code> (min version 24) and <code>docker compose</code> (min version 2.21).</p>
+</li>
+<li>
+<p>Ensure that the following php dependencies are installed for executing the integration tests:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">- php-curl
+</span></span><span class="line"><span class="cl">- php-dom
+</span></span><span class="line"><span class="cl">- php-phpdbg
+</span></span><span class="line"><span class="cl">- php-mbstring
+</span></span><span class="line"><span class="cl">- php-ast
+</span></span></code></pre></div></li>
+<li>
+<p>add these lines to your <code>/etc/hosts</code> file:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">127.0.0.1	ocis.owncloud.test
 </span></span><span class="line"><span class="cl">127.0.0.1	keycloak.owncloud.test
 </span></span></code></pre></div></li>
-<li>run <code>make test-php-integration</code></li>
+<li>
+<p>run whole tests</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">make test-php-integration        // start a full oCIS server with keycloak and other services using docker before running tests
+</span></span></code></pre></div></li>
+<li>
+<p>run single test</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">make test-php-integration testGetResources   // start a full oCIS server with keycloak and other services using docker before running single test
+</span></span></code></pre></div><p>If something goes wrong, use <code>make clean</code> to clean the created containers and volumes.</p>
+</li>
 </ol>
-<p>If something goes wrong, use <code>make clean</code> to clean the created containers and volumes.</p>
 
   </article>
 
