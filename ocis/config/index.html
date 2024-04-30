@@ -12,7 +12,7 @@
 <meta name="generator" content="Hugo 0.115.2">
 
 
-  <meta name="description" content="Configuration Framework Overview of the approach In-depth configuration Flows Examples Expected loading locations Only config files Using ENV variables Workflows Supervised Unsupervised Shared Values Log config keys Default config values (in yaml) Configuration Framework In order to simplify deployments and development the configuration model from oCIS aims to be simple yet flexible.
+  <meta name="description" content="Configuration Framework Overview of the approach In-depth configuration Flows Examples Expected loading locations Only config files Using ENV variables Substitute ENV variables in configuration files Workflows Supervised Unsupervised Shared Values Log config keys Default config values (in yaml) Configuration Framework In order to simplify deployments and development the configuration model from oCIS aims to be simple yet flexible.
 Overview of the approach In-depth configuration Since we include a set of predefined extensions within the single binary, configuring an extension can be done in a variety of ways." />
 
     <title>Configuration | ownCloud</title>
@@ -37,7 +37,7 @@ Overview of the approach In-depth configuration Since we include a set of predef
     content="Configuration"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Configuration Framework Overview of the approach In-depth configuration Flows Examples Expected loading locations Only config files Using ENV variables Workflows Supervised Unsupervised Shared Values Log config keys Default config values (in yaml) Configuration Framework In order to simplify deployments and development the configuration model from oCIS aims to be simple yet flexible.
+  <meta property="og:description" content="Configuration Framework Overview of the approach In-depth configuration Flows Examples Expected loading locations Only config files Using ENV variables Substitute ENV variables in configuration files Workflows Supervised Unsupervised Shared Values Log config keys Default config values (in yaml) Configuration Framework In order to simplify deployments and development the configuration model from oCIS aims to be simple yet flexible.
 Overview of the approach In-depth configuration Since we include a set of predefined extensions within the single binary, configuring an extension can be done in a variety of ways." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/ocis/config/" />
@@ -55,7 +55,7 @@ Overview of the approach In-depth configuration Since we include a set of predef
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Configuration" />
-  <meta name="twitter:description" content="Configuration Framework Overview of the approach In-depth configuration Flows Examples Expected loading locations Only config files Using ENV variables Workflows Supervised Unsupervised Shared Values Log config keys Default config values (in yaml) Configuration Framework In order to simplify deployments and development the configuration model from oCIS aims to be simple yet flexible.
+  <meta name="twitter:description" content="Configuration Framework Overview of the approach In-depth configuration Flows Examples Expected loading locations Only config files Using ENV variables Substitute ENV variables in configuration files Workflows Supervised Unsupervised Shared Values Log config keys Default config values (in yaml) Configuration Framework In order to simplify deployments and development the configuration model from oCIS aims to be simple yet flexible.
 Overview of the approach In-depth configuration Since we include a set of predefined extensions within the single binary, configuring an extension can be done in a variety of ways." />
 
 
@@ -67,8 +67,8 @@ Overview of the approach In-depth configuration Since we include a set of predef
       "name": "Configuration",
       "url" : "https://owncloud.dev/ocis/config/",
       "headline": "Configuration",
-      "description": "Configuration Framework Overview of the approach In-depth configuration Flows Examples Expected loading locations Only config files Using ENV variables Workflows Supervised Unsupervised Shared Values Log config keys Default config values (in yaml) Configuration Framework In order to simplify deployments and development the configuration model from oCIS aims to be simple yet flexible.\nOverview of the approach In-depth configuration Since we include a set of predefined extensions within the single binary, configuring an extension can be done in a variety of ways.",
-      "wordCount" : "747",
+      "description": "Configuration Framework Overview of the approach In-depth configuration Flows Examples Expected loading locations Only config files Using ENV variables Substitute ENV variables in configuration files Workflows Supervised Unsupervised Shared Values Log config keys Default config values (in yaml) Configuration Framework In order to simplify deployments and development the configuration model from oCIS aims to be simple yet flexible.\nOverview of the approach In-depth configuration Since we include a set of predefined extensions within the single binary, configuring an extension can be done in a variety of ways.",
+      "wordCount" : "800",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18568,6 +18568,7 @@ Copyright 2022 Fonticons, Inc.
                 <li><a href="#expected-loading-locations">Expected loading locations</a></li>
                 <li><a href="#only-config-files">Only config files</a></li>
                 <li><a href="#using-env-variables">Using ENV variables</a></li>
+                <li><a href="#substitute-env-variables-in-configuration-files">Substitute ENV variables in configuration files</a></li>
               </ul>
             </li>
             <li><a href="#workflows">Workflows</a>
@@ -18660,7 +18661,7 @@ Copyright 2022 Fonticons, Inc.
 <li>docker images: <code>/etc/ocis/</code></li>
 <li>binary releases: <code>$HOME/.ocis/config/</code></li>
 </ul>
-<p>followed by the <code>&lt;extension name&gt;.yaml</code>, eg <code>proxy.yaml</code> for the extension configuration. You also can put an <code>ocis.yaml</code> config file to the expected loading location to use a single config file.</p>
+<p>followed by the <code>&lt;extension name&gt;.yaml</code>, e.g. <code>proxy.yaml</code> for the extension configuration. You also can put an <code>ocis.yaml</code> config file to the expected loading location to use a single config file.</p>
 <p>You can set another directory as config path in the environment variable <code>OCIS_CONFIG_DIR</code>. It will then pick the same file names, but from the folder you configured.</p>
 <div class="gdoc-page__anchorwrap">
     <h4 id="only-config-files"
@@ -18708,6 +18709,24 @@ Copyright 2022 Fonticons, Inc.
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">proxy</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">http</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">addr</span><span class="p">:</span><span class="w"> </span><span class="l">localhost:5555</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">log</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">pretty</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">color</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">level</span><span class="p">:</span><span class="w"> </span><span class="l">info</span><span class="w">
+</span></span></span></code></pre></div><div class="gdoc-page__anchorwrap">
+    <h4 id="substitute-env-variables-in-configuration-files"
+    >
+        Substitute ENV variables in configuration files
+        <a data-clipboard-text="https://owncloud.dev/ocis/config/#substitute-env-variables-in-configuration-files" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Substitute ENV variables in configuration files" aria-label="Anchor to: Substitute ENV variables in configuration files" href="#substitute-env-variables-in-configuration-files">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+<p>Environment variables can be used in the configurations files and will be replaced by oCIS when loading these.
+Default values can be specified after a <code>|</code> character - see below.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">proxy</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">http</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">addr</span><span class="p">:</span><span class="w"> </span><span class="l">${PROXY_HTTP_ADDR|localhost:4321}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">log</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">pretty</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">color</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
