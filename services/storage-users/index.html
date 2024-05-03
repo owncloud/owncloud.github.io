@@ -13,7 +13,7 @@
 
 
   <meta name="description" content="Abstract Purpose and description to be added
-Table of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Manage Unfinished Uploads Command Examples Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Deprecated Metadata Backend Starting with ocis version 3.0.0, the default backend for metadata switched to messagepack. If the setting STORAGE_USERS_OCIS_METADATA_BACKEND has not been defined manually, the backend will be migrated to messagepack automatically. Though still possible to manually configure xattrs, this setting should not be used anymore as it will be removed in a later version." />
+Table of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Manage Unfinished Uploads Sessions command Command Examples Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Deprecated Metadata Backend Starting with ocis version 3.0.0, the default backend for metadata switched to messagepack. If the setting STORAGE_USERS_OCIS_METADATA_BACKEND has not been defined manually, the backend will be migrated to messagepack automatically." />
 
     <title>Storage-Users | ownCloud</title>
 
@@ -38,25 +38,25 @@ Table of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Man
   />
   <meta property="og:site_name" content="ownCloud" />
   <meta property="og:description" content="Abstract Purpose and description to be added
-Table of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Manage Unfinished Uploads Command Examples Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Deprecated Metadata Backend Starting with ocis version 3.0.0, the default backend for metadata switched to messagepack. If the setting STORAGE_USERS_OCIS_METADATA_BACKEND has not been defined manually, the backend will be migrated to messagepack automatically. Though still possible to manually configure xattrs, this setting should not be used anymore as it will be removed in a later version." />
+Table of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Manage Unfinished Uploads Sessions command Command Examples Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Deprecated Metadata Backend Starting with ocis version 3.0.0, the default backend for metadata switched to messagepack. If the setting STORAGE_USERS_OCIS_METADATA_BACKEND has not been defined manually, the backend will be migrated to messagepack automatically." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/storage-users/" />
 
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2024-05-03T07:46:40+00:00"
+      content="2024-05-03T09:06:29+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-05-03T07:46:40+00:00"
+      content="2024-05-03T09:06:29+00:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Storage-Users" />
   <meta name="twitter:description" content="Abstract Purpose and description to be added
-Table of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Manage Unfinished Uploads Command Examples Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Deprecated Metadata Backend Starting with ocis version 3.0.0, the default backend for metadata switched to messagepack. If the setting STORAGE_USERS_OCIS_METADATA_BACKEND has not been defined manually, the backend will be migrated to messagepack automatically. Though still possible to manually configure xattrs, this setting should not be used anymore as it will be removed in a later version." />
+Table of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Manage Unfinished Uploads Sessions command Command Examples Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Deprecated Metadata Backend Starting with ocis version 3.0.0, the default backend for metadata switched to messagepack. If the setting STORAGE_USERS_OCIS_METADATA_BACKEND has not been defined manually, the backend will be migrated to messagepack automatically." />
 
 
   <script type="application/ld+json">
@@ -67,8 +67,8 @@ Table of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Man
       "name": "Storage-Users",
       "url" : "https://owncloud.dev/services/storage-users/",
       "headline": "Storage-Users",
-      "description": "Abstract Purpose and description to be added\nTable of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Manage Unfinished Uploads Command Examples Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Deprecated Metadata Backend Starting with ocis version 3.0.0, the default backend for metadata switched to messagepack. If the setting STORAGE_USERS_OCIS_METADATA_BACKEND has not been defined manually, the backend will be migrated to messagepack automatically. Though still possible to manually configure xattrs, this setting should not be used anymore as it will be removed in a later version.",
-      "wordCount" : "4490",
+      "description": "Abstract Purpose and description to be added\nTable of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Manage Unfinished Uploads Sessions command Command Examples Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Deprecated Metadata Backend Starting with ocis version 3.0.0, the default backend for metadata switched to messagepack. If the setting STORAGE_USERS_OCIS_METADATA_BACKEND has not been defined manually, the backend will be migrated to messagepack automatically.",
+      "wordCount" : "4769",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ Table of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Man
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-05-03T07:46:40.46Z",
-      "datePublished": "2024-05-03T07:46:40.46Z",
-      "dateModified": "2024-05-03T07:46:40.46Z",
+      "dateCreated": "2024-05-03T09:06:29.56Z",
+      "datePublished": "2024-05-03T09:06:29.56Z",
+      "dateModified": "2024-05-03T09:06:29.56Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -18597,6 +18597,10 @@ Copyright 2022 Fonticons, Inc.
 <ul>
 <li><a
   class="gdoc-markdown__link"
+  href="#sessions-command"
+>Sessions command</a></li>
+<li><a
+  class="gdoc-markdown__link"
   href="#command-examples"
 >Command Examples</a></li>
 </ul>
@@ -18720,9 +18724,42 @@ Copyright 2022 Fonticons, Inc.
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users uploads &lt;command&gt;
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">COMMANDS:
 </span></span><span class="line"><span class="cl">   sessions   Print a list of upload sessions
-</span></span><span class="line"><span class="cl">   clean      Clean up leftovers from expired uploads
+</span></span><span class="line"><span class="cl">   clean      Clean up leftovers from expired uploads (deprecated)
 </span></span><span class="line"><span class="cl">   list       Print a list of all incomplete uploads (deprecated)
 </span></span></code></pre></div><div class="gdoc-page__anchorwrap">
+    <h4 id="sessions-command"
+    >
+        Sessions command
+        <a data-clipboard-text="https://owncloud.dev/services/storage-users/#sessions-command" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Sessions command" aria-label="Anchor to: Sessions command" href="#sessions-command">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+<p>The <code>sessions</code> command is the entry point for listing, restarting and cleaning unfinished uploads.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users uploads sessions &lt;command&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">NAME:
+</span></span><span class="line"><span class="cl">   ocis storage-users uploads sessions - Print a list of upload sessions
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">USAGE:
+</span></span><span class="line"><span class="cl">   ocis storage-users uploads sessions [command options]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">OPTIONS:
+</span></span><span class="line"><span class="cl">   --id value    filter sessions by upload session id (default: unset)
+</span></span><span class="line"><span class="cl">   --processing  filter sessions by processing status (default: unset)
+</span></span><span class="line"><span class="cl">   --expired     filter sessions by expired status (default: unset)
+</span></span><span class="line"><span class="cl">   --has-virus   filter sessions by virus scan result (default: unset)
+</span></span><span class="line"><span class="cl">   --json        output as json (default: false)
+</span></span><span class="line"><span class="cl">   --restart     send restart event for all listed sessions (default: false)
+</span></span><span class="line"><span class="cl">   --clean       remove uploads (default: false)
+</span></span><span class="line"><span class="cl">   --help, -h    show help
+</span></span></code></pre></div><p>This will always output a list of uploads that match the criteria. See Command Examples section.</p>
+<p>Some additional information on returned information:</p>
+<ul>
+<li><code>Offset</code> is the amount of bytes the server has already received. If <code>Offset</code> == <code>Size</code> the server has reveived all bytes of the upload.</li>
+<li><code>Processing</code> indicates if the uploaded file is currently going through postprocessing.</li>
+<li><code>Scan Date</code> and <code>Scan Result</code> indicate the scanning status. If <code>Scan Date</code> is set and <code>Scan Result</code> is empty the file is not virus infected.</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
     <h4 id="command-examples"
     >
         Command Examples
@@ -18732,26 +18769,31 @@ Copyright 2022 Fonticons, Inc.
     </h4>
 </div>
 <p>Command to list ongoing upload sessions</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users sessions --expired<span class="o">=</span><span class="nb">false</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users uploads sessions --expired<span class="o">=</span><span class="nb">false</span> --processing<span class="o">=</span><span class="nb">false</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">Not expired sessions:
-</span></span><span class="line"><span class="cl">+--------------------------------------+--------------------------------------+---------+--------+------+--------------------------------------+--------------------------------------+---------------------------+------------+
-</span></span><span class="line"><span class="cl">|                Space                 |              Upload Id               |  Name   | Offset | Size |              Executant               |                Owner                 |          Expires          | Processing |
-</span></span><span class="line"><span class="cl">+--------------------------------------+--------------------------------------+---------+--------+------+--------------------------------------+--------------------------------------+---------------------------+------------+
-</span></span><span class="line"><span class="cl">| f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c | 5e387954-7313-4223-a904-bf996da6ec0b | foo.txt |      0 | 1234 | f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c | f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c | 2024-01-26T13:04:31+01:00 | false      |
-</span></span><span class="line"><span class="cl">| f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c | f066244d-97b2-48e7-a30d-b40fcb60cec6 | bar.txt |      0 | 4321 | f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c | f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c | 2024-01-26T13:18:47+01:00 | false      |
-</span></span><span class="line"><span class="cl">+--------------------------------------+--------------------------------------+---------+--------+------+--------------------------------------+--------------------------------------+---------------------------+------------+
+</span></span><span class="line"><span class="cl">+--------------------------------------+--------------------------------------+---------+--------+------+--------------------------------------+--------------------------------------+---------------------------+------------+---------------------------+-----------------------+
+</span></span><span class="line"><span class="cl">|                Space                 |              Upload Id               |  Name   | Offset | Size |              Executant               |                Owner                 |          Expires          | Processing |         Scan Date         |      Scan Result      |
+</span></span><span class="line"><span class="cl">+--------------------------------------+--------------------------------------+---------+--------+------+--------------------------------------+--------------------------------------+---------------------------+------------+---------------------------+-----------------------+
+</span></span><span class="line"><span class="cl">| f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c | 5e387954-7313-4223-a904-bf996da6ec0b | foo.txt |      0 | 1234 | f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c | f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c | 2024-01-26T13:04:31+01:00 | false      | 2024-04-24T11:24:14+02:00 |   infected: virus A   |
+</span></span><span class="line"><span class="cl">| f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c | f066244d-97b2-48e7-a30d-b40fcb60cec6 | bar.txt |      0 | 4321 | f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c | f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c | 2024-01-26T13:18:47+01:00 | false      | 2024-04-24T14:38:29+02:00 |                       |
+</span></span><span class="line"><span class="cl">+--------------------------------------+--------------------------------------+---------+--------+------+--------------------------------------+--------------------------------------+---------------------------+------------+---------------------------+-----------------------+
 </span></span></code></pre></div><p>The sessions command can also output json</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users sessions --expired<span class="o">=</span><span class="nb">false</span> --json
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;id&#34;</span><span class="p">:</span><span class="s2">&#34;5e387954-7313-4223-a904-bf996da6ec0b&#34;</span><span class="p">,</span><span class="nt">&#34;space&#34;</span><span class="p">:</span><span class="s2">&#34;f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c&#34;</span><span class="p">,</span><span class="nt">&#34;filename&#34;</span><span class="p">:</span><span class="s2">&#34;foo.txt&#34;</span><span class="p">,</span><span class="nt">&#34;offset&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&#34;size&#34;</span><span class="p">:</span><span class="mi">1234</span><span class="p">,</span><span class="nt">&#34;executant&#34;</span><span class="p">:{</span><span class="nt">&#34;idp&#34;</span><span class="p">:</span><span class="s2">&#34;https://cloud.ocis.test&#34;</span><span class="p">,</span><span class="nt">&#34;opaque_id&#34;</span><span class="p">:</span><span class="s2">&#34;f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c&#34;</span><span class="p">},</span><span class="nt">&#34;spaceowner&#34;</span><span class="p">:{</span><span class="nt">&#34;opaque_id&#34;</span><span class="p">:</span><span class="s2">&#34;f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c&#34;</span><span class="p">},</span><span class="nt">&#34;expires&#34;</span><span class="p">:</span><span class="s2">&#34;2024-01-26T13:04:31+01:00&#34;</span><span class="p">,</span><span class="nt">&#34;processing&#34;</span><span class="p">:</span><span class="kc">false</span><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;id&#34;</span><span class="p">:</span><span class="s2">&#34;f066244d-97b2-48e7-a30d-b40fcb60cec6&#34;</span><span class="p">,</span><span class="nt">&#34;space&#34;</span><span class="p">:</span><span class="s2">&#34;f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c&#34;</span><span class="p">,</span><span class="nt">&#34;filename&#34;</span><span class="p">:</span><span class="s2">&#34;bar.txt&#34;</span><span class="p">,</span><span class="nt">&#34;offset&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&#34;size&#34;</span><span class="p">:</span><span class="mi">4321</span><span class="p">,</span><span class="nt">&#34;executant&#34;</span><span class="p">:{</span><span class="nt">&#34;idp&#34;</span><span class="p">:</span><span class="s2">&#34;https://cloud.ocis.test&#34;</span><span class="p">,</span><span class="nt">&#34;opaque_id&#34;</span><span class="p">:</span><span class="s2">&#34;f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c&#34;</span><span class="p">},</span><span class="nt">&#34;spaceowner&#34;</span><span class="p">:{</span><span class="nt">&#34;opaque_id&#34;</span><span class="p">:</span><span class="s2">&#34;f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c&#34;</span><span class="p">},</span><span class="nt">&#34;expires&#34;</span><span class="p">:</span><span class="s2">&#34;2024-01-26T13:18:47+01:00&#34;</span><span class="p">,</span><span class="nt">&#34;processing&#34;</span><span class="p">:</span><span class="kc">false</span><span class="p">}</span>
-</span></span></code></pre></div><p>Command to clear expired uploads</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users uploads clean
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">Cleaned uploads:
-</span></span><span class="line"><span class="cl">- 455bd640-cd08-46e8-a5a0-9304908bd40a (Filename: file_example_PPT_1MB.ppt, Size: 1028608, Expires: 2022-08-17T12:35:34+02:00)
-</span></span></code></pre></div><p>Deprecated list command to identify unfinished uploads</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users uploads list
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">Incomplete uploads:
-</span></span><span class="line"><span class="cl"> - 455bd640-cd08-46e8-a5a0-9304908bd40a (file_example_PPT_1MB.ppt, Size: 1028608, Expires: 2022-08-17T12:35:34+02:00)
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users uploads sessions --expired<span class="o">=</span><span class="nb">false</span> --processing<span class="o">=</span><span class="nb">false</span> --json
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;id&#34;</span><span class="p">:</span><span class="s2">&#34;5e387954-7313-4223-a904-bf996da6ec0b&#34;</span><span class="p">,</span><span class="nt">&#34;space&#34;</span><span class="p">:</span><span class="s2">&#34;f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c&#34;</span><span class="p">,</span><span class="nt">&#34;filename&#34;</span><span class="p">:</span><span class="s2">&#34;foo.txt&#34;</span><span class="p">,</span><span class="nt">&#34;offset&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&#34;size&#34;</span><span class="p">:</span><span class="mi">1234</span><span class="p">,</span><span class="nt">&#34;executant&#34;</span><span class="p">:{</span><span class="nt">&#34;idp&#34;</span><span class="p">:</span><span class="s2">&#34;https://cloud.ocis.test&#34;</span><span class="p">,</span><span class="nt">&#34;opaque_id&#34;</span><span class="p">:</span><span class="s2">&#34;f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c&#34;</span><span class="p">},</span><span class="nt">&#34;spaceowner&#34;</span><span class="p">:{</span><span class="nt">&#34;opaque_id&#34;</span><span class="p">:</span><span class="s2">&#34;f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c&#34;</span><span class="p">},</span><span class="nt">&#34;expires&#34;</span><span class="p">:</span><span class="s2">&#34;2024-01-26T13:04:31+01:00&#34;</span><span class="p">,</span><span class="nt">&#34;processing&#34;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span> <span class="nt">&#34;scanDate&#34;</span><span class="p">:</span> <span class="s2">&#34;2024-04-24T11:24:14+02:00&#34;</span><span class="p">,</span> <span class="nt">&#34;scanResult&#34;</span><span class="p">:</span> <span class="s2">&#34;infected: virus A&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;id&#34;</span><span class="p">:</span><span class="s2">&#34;f066244d-97b2-48e7-a30d-b40fcb60cec6&#34;</span><span class="p">,</span><span class="nt">&#34;space&#34;</span><span class="p">:</span><span class="s2">&#34;f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c&#34;</span><span class="p">,</span><span class="nt">&#34;filename&#34;</span><span class="p">:</span><span class="s2">&#34;bar.txt&#34;</span><span class="p">,</span><span class="nt">&#34;offset&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&#34;size&#34;</span><span class="p">:</span><span class="mi">4321</span><span class="p">,</span><span class="nt">&#34;executant&#34;</span><span class="p">:{</span><span class="nt">&#34;idp&#34;</span><span class="p">:</span><span class="s2">&#34;https://cloud.ocis.test&#34;</span><span class="p">,</span><span class="nt">&#34;opaque_id&#34;</span><span class="p">:</span><span class="s2">&#34;f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c&#34;</span><span class="p">},</span><span class="nt">&#34;spaceowner&#34;</span><span class="p">:{</span><span class="nt">&#34;opaque_id&#34;</span><span class="p">:</span><span class="s2">&#34;f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c&#34;</span><span class="p">},</span><span class="nt">&#34;expires&#34;</span><span class="p">:</span><span class="s2">&#34;2024-01-26T13:18:47+01:00&#34;</span><span class="p">,</span><span class="nt">&#34;processing&#34;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span> <span class="nt">&#34;scanDate&#34;</span><span class="p">:</span> <span class="s2">&#34;2024-04-24T14:38:29+02:00&#34;</span><span class="p">,</span> <span class="nt">&#34;scanResult&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">}</span>
+</span></span></code></pre></div><p>The sessions command can also clear and restart uploads. The output is the same as if run without <code>--clean</code> or <code>--restart</code> flag.
+Note: It is recommended to run to command first without the <code>--clean</code> (<code>--processing</code>) flag to double check which uploads get cleaned (restarted).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># cleans all expired uploads regardless of processing and virus state.</span>
+</span></span><span class="line"><span class="cl">ocis storage-users uploads sessions --expired<span class="o">=</span><span class="nb">true</span> --clean
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># restarts all uploads that are processing and are not virus infected</span>
+</span></span><span class="line"><span class="cl">ocis storage-users uploads sessions --processing<span class="o">=</span><span class="nb">false</span> --has-virus<span class="o">=</span><span class="nb">false</span> --restart
+</span></span></code></pre></div><p>IMPOTANT: <code>list</code> and <code>clean</code> commands are deprecated. Do not use them.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># deprecated</span>
+</span></span><span class="line"><span class="cl">ocis storage-users uploads list
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># deprecated</span>
+</span></span><span class="line"><span class="cl">ocis storage-users uploads clean
 </span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h3 id="manage-trash-bin-items"
     >
