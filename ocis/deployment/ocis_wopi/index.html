@@ -65,7 +65,7 @@
       "url" : "https://owncloud.dev/ocis/deployment/ocis_wopi/",
       "headline": "oCIS with WOPI server",
       "description": "Overview Overview Image Server Deployment Requirements Install oCIS and Traefik Local setup Local setup for web development Using Podman Overview oCIS, Wopi server, Collabora and OnlyOffice running behind Traefik as reverse proxy Collabora and OnlyOffice enable you to edit documents in your browser Wopi server acts as a bridge to make the oCIS storage accessible to Collabora and OnlyOffice Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup Find this example on GitHub",
-      "wordCount" : "1296",
+      "wordCount" : "1414",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18642,6 +18642,7 @@ Copyright 2022 Fonticons, Inc.
 <li>onlyoffice.* for serving OnlyOffice</li>
 <li>wopiserver.* for serving the WOPI server</li>
 <li>traefik.* for serving the Traefik dashboard</li>
+<li>companion.* for serving the uppy companion app</li>
 </ul>
 </li>
 </ul>
@@ -18679,7 +18680,7 @@ Copyright 2022 Fonticons, Inc.
 </span></span><span class="line"><span class="cl"><span class="nv">TRAEFIK_DASHBOARD</span><span class="o">=</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Domain of Traefik, where you can find the dashboard. Defaults to &#34;traefik.owncloud.test&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">TRAEFIK_DOMAIN</span><span class="o">=</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Basic authentication for the dashboard. Defaults to user &#34;admin&#34; and password &#34;admin&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Basic authentication for the dashboard. Defaults to user &#34;admin&#34; and password &#34;admin&#34; (written as: &#34;admin:admin&#34;).</span>
 </span></span><span class="line"><span class="cl"><span class="nv">TRAEFIK_BASIC_AUTH_USERS</span><span class="o">=</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Email address for obtaining LetsEncrypt certificates, needs only be changed if this is a public facing server</span>
 </span></span><span class="line"><span class="cl"><span class="nv">TRAEFIK_ACME_MAIL</span><span class="o">=</span>
@@ -18694,6 +18695,8 @@ Copyright 2022 Fonticons, Inc.
 </span></span><span class="line"><span class="cl"><span class="c1"># The demo users should not be created on a production instance</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># because their passwords are public. Defaults to &#34;false&#34;.</span>
 </span></span><span class="line"><span class="cl"><span class="nv">DEMO_USERS</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Log level for oCIS. Defaults to &#34;info&#34;.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">OCIS_LOG_LEVEL</span><span class="o">=</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">### Wopi server settings ###</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># cs3org wopi server version. Defaults to &#34;v8.3.3&#34;</span>
@@ -18706,7 +18709,7 @@ Copyright 2022 Fonticons, Inc.
 </span></span><span class="line"><span class="cl"><span class="c1">### Collabora settings ###</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Domain of Collabora, where you can find the frontend. Defaults to &#34;collabora.owncloud.test&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">COLLABORA_DOMAIN</span><span class="o">=</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Admin user for Collabora. Defaults to blank, provide one to enable access</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Admin user for Collabora. Defaults to blank, provide one to enable access. Collabora Admin Panel URL: https://{COLLABORA_DOMAIN}/browser/dist/admin/admin.html</span>
 </span></span><span class="line"><span class="cl"><span class="nv">COLLABORA_ADMIN_USER</span><span class="o">=</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Admin password for Collabora. Defaults to blank, provide one to enable access</span>
 </span></span><span class="line"><span class="cl"><span class="nv">COLLABORA_ADMIN_PASSWORD</span><span class="o">=</span>
@@ -18714,6 +18717,27 @@ Copyright 2022 Fonticons, Inc.
 </span></span><span class="line"><span class="cl"><span class="c1">### OnlyOffice settings ###</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Domain of OnlyOffice, where you can find the frontend. Defaults to &#34;onlyoffice.owncloud.test&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">ONLYOFFICE_DOMAIN</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### Email / Inbucket settings ###</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Inbucket / Mail domain. Defaults to &#34;mail.owncloud.test&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">INBUCKET_DOMAIN</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### Apache Tika Content analysis toolkit ###</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Set the desired docker image tag or digest, defaults to &#34;latest&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">TIKA_IMAGE</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># If you want to use debugging and tracing with this stack,</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># you need uncomment following line. Please see documentation at</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># https://owncloud.dev/ocis/deployment/monitoring-tracing/</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#COMPOSE_FILE=docker-compose.yml:monitoring_tracing/docker-compose-additions.yml</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### Uppy Companion settings ###</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Domain of Uppy Companion. Defaults to &#34;companion.owncloud.test&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">COMPANION_IMAGE</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="nv">COMPANION_DOMAIN</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Provider settings, see https://uppy.io/docs/companion/#provideroptions for reference. Empty by default, which disables providers.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">COMPANION_ONEDRIVE_KEY</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="nv">COMPANION_ONEDRIVE_SECRET</span><span class="o">=</span>
 </span></span></code></pre></div><p>You are installing oCIS on a server and Traefik will obtain valid certificates for you so please remove <code>INSECURE=true</code> or set it to <code>false</code>.</p>
 <p>If you want to use the Traefik dashboard, set TRAEFIK_DASHBOARD to <code>true</code> (default is <code>false</code> and therefore not active). If you activate it, you must set a domain for the Traefik dashboard in <code>TRAEFIK_DOMAIN=</code> e.g. <code>TRAEFIK_DOMAIN=traefik.owncloud.test</code>.</p>
 <p>The Traefik dashboard is secured by basic auth. Default credentials are the user <code>admin</code> with the password <code>admin</code>. To set your own credentials, generate a htpasswd (e.g. by using <a
@@ -18766,6 +18790,8 @@ Copyright 2022 Fonticons, Inc.
 </span></span><span class="line"><span class="cl">127.0.0.1 collabora.owncloud.test
 </span></span><span class="line"><span class="cl">127.0.0.1 onlyoffice.owncloud.test
 </span></span><span class="line"><span class="cl">127.0.0.1 wopiserver.owncloud.test
+</span></span><span class="line"><span class="cl">127.0.0.1 mail.owncloud.test
+</span></span><span class="line"><span class="cl">127.0.0.1 companion.owncloud.test
 </span></span></code></pre></div><p>After that you&rsquo;re ready to start the application stack:</p>
 <p><code>docker-compose up -d</code></p>
 <p>Open <a
