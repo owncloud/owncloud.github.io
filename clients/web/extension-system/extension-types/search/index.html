@@ -12,7 +12,7 @@
 <meta name="generator" content="Hugo 0.115.2">
 
 
-  <meta name="description" content="Search extensions Configuration ListSearch PreviewSearch Search extensions One possible extension type is search. Registered search extensions are available when using the search field in the topbar. A search extension can consist of a list and a preview search. The result of a preview search is shown below the search input field while the list search result is
+  <meta name="description" content="Search extensions Configuration ListSearch PreviewSearch Example Search extensions One possible extension type is search. Registered search extensions are available when using the search field in the topbar. A search extension can consist of a list and a preview search. The result of a preview search is shown below the search input field while the list search result is
 Configuration An example of a search extension configuration can be found below:" />
 
     <title>Search extensions | ownCloud</title>
@@ -37,7 +37,7 @@ Configuration An example of a search extension configuration can be found below:
     content="Search extensions"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Search extensions Configuration ListSearch PreviewSearch Search extensions One possible extension type is search. Registered search extensions are available when using the search field in the topbar. A search extension can consist of a list and a preview search. The result of a preview search is shown below the search input field while the list search result is
+  <meta property="og:description" content="Search extensions Configuration ListSearch PreviewSearch Example Search extensions One possible extension type is search. Registered search extensions are available when using the search field in the topbar. A search extension can consist of a list and a preview search. The result of a preview search is shown below the search input field while the list search result is
 Configuration An example of a search extension configuration can be found below:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/clients/web/extension-system/extension-types/search/" />
@@ -55,7 +55,7 @@ Configuration An example of a search extension configuration can be found below:
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Search extensions" />
-  <meta name="twitter:description" content="Search extensions Configuration ListSearch PreviewSearch Search extensions One possible extension type is search. Registered search extensions are available when using the search field in the topbar. A search extension can consist of a list and a preview search. The result of a preview search is shown below the search input field while the list search result is
+  <meta name="twitter:description" content="Search extensions Configuration ListSearch PreviewSearch Example Search extensions One possible extension type is search. Registered search extensions are available when using the search field in the topbar. A search extension can consist of a list and a preview search. The result of a preview search is shown below the search input field while the list search result is
 Configuration An example of a search extension configuration can be found below:" />
 
 
@@ -67,8 +67,8 @@ Configuration An example of a search extension configuration can be found below:
       "name": "Search extensions",
       "url" : "https://owncloud.dev/clients/web/extension-system/extension-types/search/",
       "headline": "Search extensions",
-      "description": "Search extensions Configuration ListSearch PreviewSearch Search extensions One possible extension type is search. Registered search extensions are available when using the search field in the topbar. A search extension can consist of a list and a preview search. The result of a preview search is shown below the search input field while the list search result is\nConfiguration An example of a search extension configuration can be found below:",
-      "wordCount" : "274",
+      "description": "Search extensions Configuration ListSearch PreviewSearch Example Search extensions One possible extension type is search. Registered search extensions are available when using the search field in the topbar. A search extension can consist of a list and a preview search. The result of a preview search is shown below the search input field while the list search result is\nConfiguration An example of a search extension configuration can be found below:",
+      "wordCount" : "517",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18592,6 +18592,7 @@ Copyright 2022 Fonticons, Inc.
             </li>
           </ul>
         </li>
+        <li><a href="#example">Example</a></li>
       </ul></nav>
       <hr />
     </div>
@@ -18655,7 +18656,7 @@ Copyright 2022 Fonticons, Inc.
 <li><code>search(term: string)</code> - Function that exectues the search, based on a given term. The term is formatted in <a
   class="gdoc-markdown__link"
   href="https://owncloud.dev/services/search/#query-language"
->KQL</a>. Please note that the returned values needs to be formatted to fit either <code>SearchResource</code>  or <code>GenericSearchResultItem</code> type</li>
+>KQL</a>. Please note that the returned values needs to be formatted to fit either <code>SearchResource</code> or <code>GenericSearchResultItem</code> type</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h4 id="previewsearch"
@@ -18670,7 +18671,90 @@ Copyright 2022 Fonticons, Inc.
 <ul>
 <li><code>available</code> - Indicates whether a preview underneath the search bar is available for this search provider</li>
 </ul>
-
+<div class="gdoc-page__anchorwrap">
+    <h2 id="example"
+    >
+        Example
+        <a data-clipboard-text="https://owncloud.dev/clients/web/extension-system/extension-types/search/#example" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Example" aria-label="Anchor to: Example" href="#example">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>The following example shows how a search extension that queries a Solr search engine could look like. Note that the extension is wrapped inside a Vue composable so it can easily be reused. All helper types and composables are being provided via the <a
+  class="gdoc-markdown__link"
+  href="https://github.com/owncloud/web/tree/master/packages/web-pkg"
+>web-pkg</a> and the <a
+  class="gdoc-markdown__link"
+  href="https://github.com/owncloud/web/tree/master/packages/web-client"
+>web-client</a> packages.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">useSolrSearchExtension</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">{</span> <span class="nx">$gettext</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useGettext</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">previewSearch</span>: <span class="kt">SearchPreview</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">component</span>: <span class="kt">SolarSearchComponent</span><span class="p">,</span> <span class="c1">// see the next example snippet
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">available</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">search</span><span class="o">:</span> <span class="p">(</span><span class="nx">term</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// actual search implementation
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Querying solr search engine...&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">searchProvider</span>: <span class="kt">SearchProvider</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;solr-search&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">available</span>: <span class="kt">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">displayName</span><span class="o">:</span> <span class="s1">&#39;Solr Search&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">previewSearch</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">extension</span> <span class="o">=</span> <span class="nx">computed</span><span class="p">&lt;</span><span class="nt">SearchExtension</span><span class="p">&gt;(()</span> <span class="o">=&gt;</span> <span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;com.github.owncloud.web.solr-search&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">type</span><span class="o">:</span> <span class="s1">&#39;search&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">searchProvider</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">{</span> <span class="nx">extension</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>The search component for the preview search container may look like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Vue" data-lang="Vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">resource-list-item</span> <span class="nt">:resource</span><span class="s">=&#34;resource&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;ts&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">computed</span><span class="p">,</span> <span class="nx">defineComponent</span><span class="p">,</span> <span class="nx">PropType</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Resource</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@ownclouders/web-client&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">SearchResultValue</span><span class="p">,</span> <span class="nx">ResourceListItem</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@ownclouders/web-pkg&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">defineComponent</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;SolarSearchComponent&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">components</span><span class="o">:</span> <span class="p">{</span> <span class="nx">ResourceListItem</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">props</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">searchResult</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">type</span><span class="o">:</span> <span class="nb">Object</span> <span class="nx">as</span> <span class="nx">PropType</span><span class="p">&lt;</span><span class="nt">SearchResultValue</span><span class="p">&gt;,</span>
+</span></span><span class="line"><span class="cl">      <span class="k">default</span><span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">({})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">setup</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">resource</span> <span class="o">=</span> <span class="nx">computed</span><span class="p">&lt;</span><span class="nt">Resource</span><span class="p">&gt;(()</span> <span class="p">=&gt;</span> <span class="nx">props</span><span class="p">.</span><span class="nx">searchResult</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">{</span> <span class="nx">resource</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>The extension can then be registered in any app like so:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">defineWebApplication</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">setup() {</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="p">{</span> <span class="nx">extension</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useSolrSearchExtension</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">appInfo</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">name</span>: <span class="kt">$gettext</span><span class="p">(</span><span class="s1">&#39;Solr search app&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;solrs-search-app&#39;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">extensions</span>: <span class="kt">computed</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="nx">unref</span><span class="p">(</span><span class="nx">extension</span><span class="p">)])</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div>
   </article>
 
 

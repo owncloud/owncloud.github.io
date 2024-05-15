@@ -12,7 +12,7 @@
 <meta name="generator" content="Hugo 0.115.2">
 
 
-  <meta name="description" content="Extension Type SideBarPanel Configuration SideBarPanelContext SideBarPanel Extension Point FileSideBar Extension Type SideBarPanel The right sidebar is supposed to show information and make context specific actions available for single or multiple selected items.
+  <meta name="description" content="Extension Type SideBarPanel Configuration SideBarPanelContext SideBarPanel Extension Point FileSideBar Example Extension Type SideBarPanel The right sidebar is supposed to show information and make context specific actions available for single or multiple selected items.
 It is structured in a hierarchical way:
 Panels which are defined as root panels get rendered as immediate members of the right sidebar. Panels which are defined as non-root panels receive a navigation item below the root panels so that users can navigate into the respective sub panel." />
 
@@ -38,7 +38,7 @@ Panels which are defined as root panels get rendered as immediate members of the
     content="Right sidebar panel extensions"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Extension Type SideBarPanel Configuration SideBarPanelContext SideBarPanel Extension Point FileSideBar Extension Type SideBarPanel The right sidebar is supposed to show information and make context specific actions available for single or multiple selected items.
+  <meta property="og:description" content="Extension Type SideBarPanel Configuration SideBarPanelContext SideBarPanel Extension Point FileSideBar Example Extension Type SideBarPanel The right sidebar is supposed to show information and make context specific actions available for single or multiple selected items.
 It is structured in a hierarchical way:
 Panels which are defined as root panels get rendered as immediate members of the right sidebar. Panels which are defined as non-root panels receive a navigation item below the root panels so that users can navigate into the respective sub panel." />
 <meta property="og:type" content="article" />
@@ -57,7 +57,7 @@ Panels which are defined as root panels get rendered as immediate members of the
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Right sidebar panel extensions" />
-  <meta name="twitter:description" content="Extension Type SideBarPanel Configuration SideBarPanelContext SideBarPanel Extension Point FileSideBar Extension Type SideBarPanel The right sidebar is supposed to show information and make context specific actions available for single or multiple selected items.
+  <meta name="twitter:description" content="Extension Type SideBarPanel Configuration SideBarPanelContext SideBarPanel Extension Point FileSideBar Example Extension Type SideBarPanel The right sidebar is supposed to show information and make context specific actions available for single or multiple selected items.
 It is structured in a hierarchical way:
 Panels which are defined as root panels get rendered as immediate members of the right sidebar. Panels which are defined as non-root panels receive a navigation item below the root panels so that users can navigate into the respective sub panel." />
 
@@ -70,8 +70,8 @@ Panels which are defined as root panels get rendered as immediate members of the
       "name": "Right sidebar panel extensions",
       "url" : "https://owncloud.dev/clients/web/extension-system/extension-types/right-sidebar-panels/",
       "headline": "Right sidebar panel extensions",
-      "description": "Extension Type SideBarPanel Configuration SideBarPanelContext SideBarPanel Extension Point FileSideBar Extension Type SideBarPanel The right sidebar is supposed to show information and make context specific actions available for single or multiple selected items.\nIt is structured in a hierarchical way:\nPanels which are defined as root panels get rendered as immediate members of the right sidebar. Panels which are defined as non-root panels receive a navigation item below the root panels so that users can navigate into the respective sub panel.",
-      "wordCount" : "536",
+      "description": "Extension Type SideBarPanel Configuration SideBarPanelContext SideBarPanel Extension Point FileSideBar Example Extension Type SideBarPanel The right sidebar is supposed to show information and make context specific actions available for single or multiple selected items.\nIt is structured in a hierarchical way:\nPanels which are defined as root panels get rendered as immediate members of the right sidebar. Panels which are defined as non-root panels receive a navigation item below the root panels so that users can navigate into the respective sub panel.",
+      "wordCount" : "695",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18596,6 +18596,7 @@ Copyright 2022 Fonticons, Inc.
           </ul>
         </li>
         <li><a href="#extension-point-filesidebar">Extension Point FileSideBar</a></li>
+        <li><a href="#example">Example</a></li>
       </ul></nav>
       <hr />
     </div>
@@ -18627,9 +18628,9 @@ sub panel.</li>
 <p>To define a right sidebar panel extension, you implement the <code>SidebarPanelExtension</code> interface.
 It can be found below:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kr">interface</span> <span class="nx">SidebarPanelExtension</span><span class="p">&lt;</span><span class="nt">R</span> <span class="na">extends</span> <span class="na">Item</span><span class="err">,</span> <span class="na">P</span> <span class="na">extends</span> <span class="na">Item</span><span class="err">,</span> <span class="na">T</span> <span class="na">extends</span> <span class="na">Item</span><span class="p">&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">id</span>: <span class="kt">string</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="kr">type</span><span class="o">:</span> <span class="s1">&#39;sidebarPanel&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">scopes?</span>: <span class="kt">ExtensionScope</span><span class="p">[],</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">id</span>: <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">type</span><span class="o">:</span> <span class="s1">&#39;sidebarPanel&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">scopes?</span>: <span class="kt">ExtensionScope</span><span class="p">[]</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">panel</span>: <span class="kt">SideBarPanel</span><span class="p">&lt;</span><span class="nt">R</span><span class="err">,</span> <span class="na">P</span><span class="err">,</span> <span class="na">T</span><span class="p">&gt;</span> <span class="c1">// Please check the SideBarPanel section below
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
 </span></span></code></pre></div><p>For <code>id</code>, <code>type</code>, and <code>scopes</code>, please see <a
@@ -18700,7 +18701,62 @@ the selected files reside. Can be <code>null</code> for non-hierarchical context
 toggled (shown/hidden) with a button in the top bar. The component queries all extensions of the type <code>sideBarPanel</code> from the extension
 registry that also fulfill the scope <code>resource</code>. By registering an custom extension of type <code>sideBarPanel</code> and scope <code>resource</code>, your extension
 will automatically become available in all environments that display the <code>FileSideBar</code> (i.e. any file viewer, file editor, file listing).</p>
-
+<div class="gdoc-page__anchorwrap">
+    <h2 id="example"
+    >
+        Example
+        <a data-clipboard-text="https://owncloud.dev/clients/web/extension-system/extension-types/right-sidebar-panels/#example" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Example" aria-label="Anchor to: Example" href="#example">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>The following example shows how a sidebar panel for displaying exif data for a resource could look like. Note that the extension is wrapped inside a Vue composable so it can easily be reused. All helper types and composables are being provided via the <a
+  class="gdoc-markdown__link"
+  href="https://github.com/owncloud/web/tree/master/packages/web-pkg"
+>web-pkg</a> and the <a
+  class="gdoc-markdown__link"
+  href="https://github.com/owncloud/web/tree/master/packages/web-client"
+>web-client</a> packages.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">useExifDataPanelExtension</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">{</span> <span class="nx">$gettext</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useGettext</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">extension</span> <span class="o">=</span> <span class="nx">computed</span><span class="p">&lt;</span><span class="nt">SidebarPanelExtension</span><span class="err">&lt;</span><span class="na">SpaceResource</span><span class="err">,</span> <span class="na">Resource</span><span class="err">,</span> <span class="na">Resource</span><span class="p">&gt;</span><span class="o">&gt;</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;com.github.owncloud.web.files.sidebar-panel.exif-data&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">type</span><span class="o">:</span> <span class="s1">&#39;sidebarPanel&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">scopes</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;resource&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">panel</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;exif-data&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">icon</span><span class="o">:</span> <span class="s1">&#39;image&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">title</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">$gettext</span><span class="p">(</span><span class="s1">&#39;EXIF data&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">component</span>: <span class="kt">ExifDataPanelComponent</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">isRoot</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">isVisible</span><span class="o">:</span> <span class="p">({</span> <span class="nx">items</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nx">items</span><span class="o">?</span><span class="p">.</span><span class="nx">length</span> <span class="o">!==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">{</span> <span class="nx">extension</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>The extension can then be registered in any app like so:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">defineWebApplication</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">setup() {</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="p">{</span> <span class="nx">extension</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useExifDataPanelExtension</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">appInfo</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">name</span>: <span class="kt">$gettext</span><span class="p">(</span><span class="s1">&#39;Exif panel app&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;exif-panel-app&#39;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">extensions</span>: <span class="kt">computed</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="nx">unref</span><span class="p">(</span><span class="nx">extension</span><span class="p">)])</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div>
   </article>
 
 
