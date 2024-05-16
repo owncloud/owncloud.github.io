@@ -12,7 +12,7 @@
 <meta name="generator" content="Hugo 0.115.2">
 
 
-  <meta name="description" content="Concepts and Building Blocks Distinction between Apps and Extensions Apps Extensions Extension Registry Extension Types Extension Base Configuration Extension Points User Preferences for Extensions Helpful packages Concepts and Building Blocks The ownCloud Web can be extended through various entry points with custom apps and extensions.
+  <meta name="description" content="Concepts and Building Blocks Distinction between Apps and Extensions Examples Apps Extensions Extension Registry Extension Types Extension Base Configuration Extension Points User Preferences for Extensions Helpful packages Concepts and Building Blocks ownCloud Web can be extended through various entry points with custom apps and extensions.
 Distinction between Apps and Extensions An Application in the context of ownCloud Web is an artifact which can be installed in an ownCloud Infinite Scale instance." />
 
     <title>Extension system | ownCloud</title>
@@ -37,7 +37,7 @@ Distinction between Apps and Extensions An Application in the context of ownClou
     content="Extension system"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Concepts and Building Blocks Distinction between Apps and Extensions Apps Extensions Extension Registry Extension Types Extension Base Configuration Extension Points User Preferences for Extensions Helpful packages Concepts and Building Blocks The ownCloud Web can be extended through various entry points with custom apps and extensions.
+  <meta property="og:description" content="Concepts and Building Blocks Distinction between Apps and Extensions Examples Apps Extensions Extension Registry Extension Types Extension Base Configuration Extension Points User Preferences for Extensions Helpful packages Concepts and Building Blocks ownCloud Web can be extended through various entry points with custom apps and extensions.
 Distinction between Apps and Extensions An Application in the context of ownCloud Web is an artifact which can be installed in an ownCloud Infinite Scale instance." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/clients/web/extension-system/" />
@@ -55,7 +55,7 @@ Distinction between Apps and Extensions An Application in the context of ownClou
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Extension system" />
-  <meta name="twitter:description" content="Concepts and Building Blocks Distinction between Apps and Extensions Apps Extensions Extension Registry Extension Types Extension Base Configuration Extension Points User Preferences for Extensions Helpful packages Concepts and Building Blocks The ownCloud Web can be extended through various entry points with custom apps and extensions.
+  <meta name="twitter:description" content="Concepts and Building Blocks Distinction between Apps and Extensions Examples Apps Extensions Extension Registry Extension Types Extension Base Configuration Extension Points User Preferences for Extensions Helpful packages Concepts and Building Blocks ownCloud Web can be extended through various entry points with custom apps and extensions.
 Distinction between Apps and Extensions An Application in the context of ownCloud Web is an artifact which can be installed in an ownCloud Infinite Scale instance." />
 
 
@@ -67,8 +67,8 @@ Distinction between Apps and Extensions An Application in the context of ownClou
       "name": "Extension system",
       "url" : "https://owncloud.dev/clients/web/extension-system/",
       "headline": "Extension system",
-      "description": "Concepts and Building Blocks Distinction between Apps and Extensions Apps Extensions Extension Registry Extension Types Extension Base Configuration Extension Points User Preferences for Extensions Helpful packages Concepts and Building Blocks The ownCloud Web can be extended through various entry points with custom apps and extensions.\nDistinction between Apps and Extensions An Application in the context of ownCloud Web is an artifact which can be installed in an ownCloud Infinite Scale instance.",
-      "wordCount" : "1313",
+      "description": "Concepts and Building Blocks Distinction between Apps and Extensions Examples Apps Extensions Extension Registry Extension Types Extension Base Configuration Extension Points User Preferences for Extensions Helpful packages Concepts and Building Blocks ownCloud Web can be extended through various entry points with custom apps and extensions.\nDistinction between Apps and Extensions An Application in the context of ownCloud Web is an artifact which can be installed in an ownCloud Infinite Scale instance.",
+      "wordCount" : "1495",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18569,6 +18569,7 @@ Copyright 2022 Fonticons, Inc.
         <li><a href="#concepts-and-building-blocks">Concepts and Building Blocks</a>
           <ul>
             <li><a href="#distinction-between-apps-and-extensions">Distinction between Apps and Extensions</a></li>
+            <li><a href="#examples">Examples</a></li>
             <li><a href="#apps">Apps</a></li>
             <li><a href="#extensions">Extensions</a>
               <ul>
@@ -18594,7 +18595,7 @@ Copyright 2022 Fonticons, Inc.
         </a>
     </h2>
 </div>
-<p>The ownCloud Web can be extended through various entry points with custom <strong>apps</strong> and <strong>extensions</strong>.</p>
+<p>ownCloud Web can be extended through various entry points with custom <strong>apps</strong> and <strong>extensions</strong>.</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="distinction-between-apps-and-extensions"
     >
@@ -18615,6 +18616,20 @@ your own purposes.</li>
 </ol>
 <p>Both parts are optional. This means that an application can be a file editor without any custom extensions, or even contain
 no custom application code at all and only host extensions to be registered in the extension registry, or a combination of both.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="examples"
+    >
+        Examples
+        <a data-clipboard-text="https://owncloud.dev/clients/web/extension-system/#examples" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Examples" aria-label="Anchor to: Examples" href="#examples">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>You can find open source examples for apps and extensions in our <a
+  class="gdoc-markdown__link"
+  href="https://github.com/owncloud/awesome-ocis"
+>curated list of ownCloud apps and extensions</a>.
+Feel free to contribute or just be inspired for your own apps or extensions.</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="apps"
     >
@@ -18702,7 +18717,7 @@ Additional dynamic navigation items can be registered via the extension registry
 </div>
 <p>The globally available extension registry provided by the ownCloud Web runtime can be used to both register and query extensions. All extensions
 which are being made available via an <code>app</code> get registered in the extension registry automatically. In your custom application code you can
-then query any of the available extensions by providing a <code>type</code> string and optionally a list of <code>scopes</code>. Throughout the ownCloud Web platform
+then query any of the available extensions by providing an <code>extensionPoint</code> entity. Throughout the ownCloud Web platform
 and most prominently also in the <code>files</code> app we have defined some extension points which automatically use certain extensions, see the
 <code>Extension Points</code> section below.</p>
 <div class="gdoc-page__anchorwrap">
@@ -18716,29 +18731,29 @@ and most prominently also in the <code>files</code> app we have defined some ext
 </div>
 <p>For building an extension you can choose from the types predefined by the ownCloud Web extension system. See the full list of available extension types below.</p>
 <ol>
-<li><code>ActionExtension</code> (type <code>action</code>) - An extension that can register <code>Action</code> items which then get shown in various places (e.g. context menus, batch actions), depending on their
-respective scope. Most commonly used for file and folder actions (e.g. copy, rename, delete, etc.). For details, please refer to the <a
+<li><code>ActionExtension</code> (type <code>action</code>) - An extension that can register <code>Action</code> items which then get shown in various places (e.g. context menus, batch actions), depending on the
+extension points referenced in the extension respectively. Most commonly used for file and folder actions (e.g. copy, rename, delete, etc.). For details, please refer to the <a
   class="gdoc-markdown__link"
   href="https://owncloud.dev/clients/web/extension-system/extension-types/actions/"
->action docs</a></li>
+>action docs</a>.</li>
 <li><code>SearchExtension</code> (type <code>search</code>) - An extension that can register additional search providers. For details, please refer to the <a
   class="gdoc-markdown__link"
   href="https://owncloud.dev/clients/web/extension-system/extension-types/search/"
->search docs</a></li>
-<li><code>SidebarNavExtension</code> (type <code>sidebarNav</code>) - An extension that can register additional navigation items to the left sidebar. These can be scoped to specific apps, and programmatically enabled/disabled.
+>search docs</a>.</li>
+<li><code>SidebarNavExtension</code> (type <code>sidebarNav</code>) - An extension that can register additional navigation items for the left sidebar. These can be scoped to specific apps, and programmatically enabled/disabled.
 For details, please refer to the <a
   class="gdoc-markdown__link"
   href="https://owncloud.dev/clients/web/extension-system/extension-types/left-sidebar-menu-item/"
->sidebar nav docs</a></li>
-<li><code>SidebarPanelExtension</code>, (type <code>sidebarPanel</code>) - An extension that can register panels to the right sidebar. For details, please refer to the <a
+>sidebar nav docs</a>.</li>
+<li><code>SidebarPanelExtension</code>, (type <code>sidebarPanel</code>) - An extension that can register panels for the right sidebar. For details, please refer to the <a
   class="gdoc-markdown__link"
   href="https://owncloud.dev/clients/web/extension-system/extension-types/right-sidebar-panels/"
->sidebar panel docs</a></li>
-<li><code>FolderViewExtension</code> (type <code>folderView</code>) - An extension that can register additional ways of displaying the content of a folder (resources, so spaces, folders or files) to the user.
+>sidebar panel docs</a>.</li>
+<li><code>FolderViewExtension</code> (type <code>folderView</code>) - An extension that can register additional ways of displaying the content of a folder (resources like spaces, folders or files) to the user.
 For details, please refer to the <a
   class="gdoc-markdown__link"
   href="https://owncloud.dev/clients/web/extension-system/extension-types/folder-view/"
->folder view docs</a></li>
+>folder view docs</a>.</li>
 <li><code>CustomComponentExtension</code> (type <code>customComponent</code>) - An extension that can register a custom component for a render target. For details, please refer to the
 <a
   class="gdoc-markdown__link"
@@ -18759,7 +18774,7 @@ that an important extension type is missing and would be beneficial for the plat
         </a>
     </h4>
 </div>
-<p>Any extension is required to define at least an <code>id</code> and a <code>type</code>.</p>
+<p>Any extension is required to define at least an <code>id</code> and a <code>type</code> in order to fulfill the generic <code>Extension</code> interface.</p>
 <p>The <code>id</code> is supposed to be unique throughout the ownCloud Web ecosystem. In order to keep <code>id</code>s readable for humans we didn&rsquo;t want to enforce uniqueness through e.g. uuids.
 Instead, we chose to use dot-formatted namespaces like e.g. <code>com.github.owncloud.web.files.search</code>. We&rsquo;d like to encourage you to follow the same format for your own extensions.</p>
 <p>For the <code>type</code> you can choose from the ones listed above or define a custom one.</p>
@@ -18775,18 +18790,30 @@ You can find predefined extension point ids in the extension points section belo
         </a>
     </h4>
 </div>
-<p>There are standardized components and places where extensions are being used automatically. The following are the ones that are currently provided
-by the ownCloud Web runtime or the <code>files</code> app.</p>
+<p>There are standardized components and places where extensions are being used automatically. The following ones are currently provided by the ownCloud Web runtime or
+the <code>files</code> app. If you decide to develop an extension which fulfills the type and registers itself for the extensionPointId of the respective extension point,
+your extension will be used automatically.</p>
 <ol>
-<li>Left Sidebar for Navigation</li>
-<li>Right Sidebar in any file(s) context</li>
-<li>Folder Views in the files app</li>
-<li>Right click context menu in the files app</li>
-<li>Batch actions in the files app</li>
-<li>Upload menu in the files app</li>
-<li>Quick actions in the files list of the files app</li>
-<li>Search results in the search app</li>
-<li>Global progress bar for the global loading state. Extension point id <code>app.runtime.global-progress-bar</code>. Allows to render a single custom component.</li>
+<li>Left Sidebar for Navigation. ExtensionPointId <code>app.${appName}.navItems</code> (dynamically created for each app). Mounts extensions of type <code>sidebarNav</code>.</li>
+<li>Global top bar
+<ol>
+<li>Center area. ExtensionPointId <code>app.runtime.header.center</code>. Mounts extensions of type <code>customComponent</code>.</li>
+<li>Progress bar for the global loading state. ExtensionPointId <code>app.runtime.global-progress-bar</code>. Mounts a single extensions of type <code>customComponent</code>. If multiple exist, the user can choose via the account page.</li>
+</ol>
+</li>
+<li>Files app
+<ol>
+<li>Right sidebar. ExtensionPointId <code>app.files.sidebar</code>. Mounts extensions of type <code>sidebarPanel</code>. Used in any file(s) context (files app, file viewer apps, file editor apps).</li>
+<li>Folder views for regular folders. ExtensionPointId <code>app.files.folder-views.folder</code>. Mounts extensions of type <code>folderView</code>.</li>
+<li>Folder views for the project spaces overview. ExtensionPointId <code>app.files.folder-views.project-spaces</code>. Mounts extensions of type <code>folderView</code>.</li>
+<li>Folder views for the favorites page. ExtensionPointId <code>app.files.folder-views.favorites</code>. Mounts extensions of type <code>folderView</code>.</li>
+<li>Right click context menu. ExtensionPointId <code>app.files.context-actions</code>. Mounts extensions of type <code>action</code>.</li>
+<li>Batch actions in the app bar above file lists. ExtensionPointId <code>app.files.batch-actions</code>. Mounts extensions of type <code>action</code>.</li>
+<li>Upload menu. ExtensionPointId <code>app.files.upload-menu</code>. Mounts extensions of type <code>action</code>.</li>
+<li>Quick actions. ExtensionPointId <code>app.files.quick-actions</code>. Mounts extensions of type <code>action</code>.</li>
+</ol>
+</li>
+<li>Global search providers. ExtensionPointId <code>app.search.providers</code>. Utilizes extensions of type <code>search</code> as search engines for the search input in the global top bar.</li>
 </ol>
 <div class="gdoc-page__anchorwrap">
     <h4 id="user-preferences-for-extensions"
@@ -18809,9 +18836,9 @@ The user can then select one out of all the extensions which have been registere
         </a>
     </h3>
 </div>
-<p>We currently offer two packages that can be integrated into your app, providing useful utilities and types.</p>
+<p>We currently offer the following packages that can be integrated into your app, providing useful utilities and types.</p>
 <ul>
-<li><code>web-client</code> - This package serves as an abstraction layer between the server APIs and an app or extension. It converts API data into objects with helpful types and utilities. For details, please refer to the package&rsquo;s <a
+<li><code>web-client</code> - This package serves as an abstraction layer between the server APIs and an app or extension. It converts raw API data into objects with helpful types and utilities. For details, please refer to the package&rsquo;s <a
   class="gdoc-markdown__link"
   href="https://github.com/owncloud/web/blob/master/packages/web-client/README.md"
 >README.md</a>.</li>

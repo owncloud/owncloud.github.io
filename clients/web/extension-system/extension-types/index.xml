@@ -15,7 +15,7 @@
       <guid>https://owncloud.dev/clients/web/extension-system/extension-types/custom-components/</guid>
       <description>Extension Type CustomComponent Configuration Example Extension Type CustomComponent CustomComponent extensions need to define one or multiple extensionPointIds as render target. A CustomComponentTarget component for this very extension point needs to be mounted in the current view.
 Configuration To define a custom component extension, you implement the CustomComponentExtension interface. Here&amp;rsquo;s what it looks like:
-interface CustomComponentExtension { id: string, type: &amp;#39;customComponent&amp;#39;, extensionPointIds: string[], content: Slot | Component } For id, type, and extensionPointIds, please see extension base section in the top level docs.</description>
+interface CustomComponentExtension { id: string type: &amp;#39;customComponent&amp;#39; extensionPointIds?: string[] content: Slot | Component } For id, type, and extensionPointIds, please see extension base section in the top level docs.</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@ interface CustomComponentExtension { id: string, type: &amp;#39;customComponent&
       <guid>https://owncloud.dev/clients/web/extension-system/extension-types/actions/</guid>
       <description>Action extension type Configuration Action Example Action extension type Actions are one of the possible extension types. Registered actions get rendered in various places across the UI, depending on their scope and targets.
 Configuration This is what the ActionExtension interface looks like:
-interface ActionExtension { id: string type: &amp;#39;action&amp;#39; scopes?: ExtensionScope[] action: Action // Please check the Action section below } For id, type, and scopes, please see extension base section in top level docs.</description>
+interface ActionExtension { id: string type: &amp;#39;action&amp;#39; extensionPointIds?: string[] action: Action // Please check the Action section below } For id, type, and extensionPointIds, please see extension base section in top level docs.</description>
     </item>
     
     <item>
@@ -37,7 +37,7 @@ interface ActionExtension { id: string type: &amp;#39;action&amp;#39; scopes?: E
       <guid>https://owncloud.dev/clients/web/extension-system/extension-types/folder-view/</guid>
       <description>Folder view extension type The folder view is one of the possible extension types. Registered folder view can be used to render multiple resources (folders, files, spaces) in the UI.
 Configuration This is what the FolderViewExtension interface looks like:
-interface FolderViewExtension { id: string scopes?: ExtensionScope[] type: &amp;#39;folderView&amp;#39; folderView: FolderView // See FolderView section below } For id, type, and scopes, please see extension base section in top level docs.</description>
+interface FolderViewExtension { id: string type: &amp;#39;folderView&amp;#39; extensionPointIds?: string[] folderView: FolderView // See FolderView section below } For id, type, and extensionPointIds, please see extension base section in top level docs.</description>
     </item>
     
     <item>
@@ -48,7 +48,7 @@ interface FolderViewExtension { id: string scopes?: ExtensionScope[] type: &amp;
       <guid>https://owncloud.dev/clients/web/extension-system/extension-types/left-sidebar-menu-item/</guid>
       <description>Left sidebar menu item extension type Configuration AppNavigationItem Example Left sidebar menu item extension type One possible extension type is left sidebar menu items. Registered left sidebar menu items get rendered in the left sidebar, as long as there is more than one available.
 Configuration To define a left sidebar menu item, you implement the SidebarNavExtension interface. It looks like this:
-interface SidebarNavExtension { id: string type: &amp;#39;sidebarNav&amp;#39; scopes?: ExtensionScope[] navItem: AppNavigationItem // Please check the AppNavigationItem section below } } For id, type, and scopes, please see extension base section in top level docs.</description>
+interface SidebarNavExtension { id: string type: &amp;#39;sidebarNav&amp;#39; extensionPointIds?: string[] navItem: AppNavigationItem // Please check the AppNavigationItem section below } } For id, type, and extensionPointIds, please see extension base section in top level docs.</description>
     </item>
     
     <item>
