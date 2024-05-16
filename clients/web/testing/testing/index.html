@@ -12,7 +12,8 @@
 <meta name="generator" content="Hugo 0.115.2">
 
 
-  <meta name="description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare &amp; Start Web Run E2E Tests Options Lint E2E Test Code Acceptance Tests (Nightwatch) Preparation Prepare &amp; Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository." />
+  <meta name="description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare &amp; Start Web Run E2E Tests Options Lint E2E Test Code Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.
+All the steps below require you to have the web repo cloned locally and dependencies installed." />
 
     <title>Running tests | ownCloud</title>
 
@@ -36,7 +37,8 @@
     content="Running tests"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare &amp; Start Web Run E2E Tests Options Lint E2E Test Code Acceptance Tests (Nightwatch) Preparation Prepare &amp; Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository." />
+  <meta property="og:description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare &amp; Start Web Run E2E Tests Options Lint E2E Test Code Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.
+All the steps below require you to have the web repo cloned locally and dependencies installed." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/clients/web/testing/testing/" />
 
@@ -53,7 +55,8 @@
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Running tests" />
-  <meta name="twitter:description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare &amp; Start Web Run E2E Tests Options Lint E2E Test Code Acceptance Tests (Nightwatch) Preparation Prepare &amp; Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository." />
+  <meta name="twitter:description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare &amp; Start Web Run E2E Tests Options Lint E2E Test Code Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.
+All the steps below require you to have the web repo cloned locally and dependencies installed." />
 
 
   <script type="application/ld+json">
@@ -64,8 +67,8 @@
       "name": "Running tests",
       "url" : "https://owncloud.dev/clients/web/testing/testing/",
       "headline": "Running tests",
-      "description": "Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare \u0026 Start Web Run E2E Tests Options Lint E2E Test Code Acceptance Tests (Nightwatch) Preparation Prepare \u0026 Start Web Start Docker Run acceptance tests Watch the Test Run Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.",
-      "wordCount" : "907",
+      "description": "Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare \u0026 Start Web Run E2E Tests Options Lint E2E Test Code Analyze the Test Report Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.\nAll the steps below require you to have the web repo cloned locally and dependencies installed.",
+      "wordCount" : "610",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18587,15 +18590,6 @@ Copyright 2022 Fonticons, Inc.
                 <li><a href="#lint-e2e-test-code">Lint E2E Test Code</a></li>
               </ul>
             </li>
-            <li><a href="#acceptance-tests-nightwatch">Acceptance Tests (Nightwatch)</a>
-              <ul>
-                <li><a href="#preparation-1">Preparation</a></li>
-                <li><a href="#prepare--start-web-1">Prepare &amp; Start Web</a></li>
-                <li><a href="#start-docker">Start Docker</a></li>
-                <li><a href="#run-acceptance-tests">Run acceptance tests</a></li>
-                <li><a href="#watch-the-test-run">Watch the Test Run</a></li>
-              </ul>
-            </li>
             <li><a href="#analyze-the-test-report">Analyze the Test Report</a></li>
           </ul>
         </li>
@@ -18742,104 +18736,6 @@ Again, you can use the following ENV variables in your command:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ pnpm lint --fix
 </span></span></code></pre></div><p>If the lint problems are not fixed by <code>--fix</code> option, we have to manually fix the code.</p>
 <div class="gdoc-page__anchorwrap">
-    <h3 id="acceptance-tests-nightwatch"
-    >
-        Acceptance Tests (Nightwatch)
-        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#acceptance-tests-nightwatch" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Acceptance Tests (Nightwatch)" aria-label="Anchor to: Acceptance Tests (Nightwatch)" href="#acceptance-tests-nightwatch">
-            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div>
-
-
-
-
-
-<blockquote class="gdoc-hint note">
-  <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
-  <div class="gdoc-hint__text"><p>We&rsquo;ve decided to switch to playwright for end-to-end tests. As we steadily increase the coverage of our playwright
-based e2e tests we keep the existing nightwatch based e2e tests maintained. However, we decided to not add new scenarios
-to the nightwatch based e2e tests anymore.</p>
-<p>In other words: only continue reading about our nightwatch based acceptance tests below if you need to debug a failing test.</p>
-</div>
-</blockquote>
-
-<p>At ownCloud, we have decided to adopt Docker as the main environment for developing our application. This also applies for running our acceptance tests.</p>
-<div class="gdoc-page__anchorwrap">
-    <h4 id="preparation-1"
-    >
-        Preparation
-        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#preparation-1" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Preparation" aria-label="Anchor to: Preparation" href="#preparation-1">
-            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h4>
-</div>
-<p>Please make sure you have installed all dependencies and started the server(s) as described in <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/clients/web/development/tooling/#development-setup"
->tooling</a>.</p>
-<div class="gdoc-page__anchorwrap">
-    <h4 id="prepare--start-web-1"
-    >
-        Prepare &amp; Start Web
-        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#prepare--start-web-1" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Prepare &amp; Start Web" aria-label="Anchor to: Prepare &amp; Start Web" href="#prepare--start-web-1">
-            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h4>
-</div>
-<p>Bundle the web frontend, which then gets mounted into the respective backends. It also gets recompiled on changes.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ pnpm build:w
-</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
-    <h4 id="start-docker"
-    >
-        Start Docker
-        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#start-docker" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Start Docker" aria-label="Anchor to: Start Docker" href="#start-docker">
-            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h4>
-</div>
-<p>The acceptance tests need additional docker containers to be running.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ docker compose up ocis selenium middleware-ocis
-</span></span></code></pre></div><p>and make sure there are no conflicting ports and everything runs smoothly. You can check if everything has worked by opening <a
-  class="gdoc-markdown__link"
-  href="https://host.docker.internal:9200"
->https://host.docker.internal:9200</a> and logging in using the demo user (admin/admin).</p>
-<p>If you&rsquo;re using a M1 Mac, you need to use <code>seleniarm/standalone-chromium:4.7.0-20221206</code>for now. To do so, export <code>SELENIUM_IMAGE=seleniarm/standalone-chromium:4.7.0-20221206</code>.</p>
-<div class="gdoc-page__anchorwrap">
-    <h4 id="run-acceptance-tests"
-    >
-        Run acceptance tests
-        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#run-acceptance-tests" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Run acceptance tests" aria-label="Anchor to: Run acceptance tests" href="#run-acceptance-tests">
-            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h4>
-</div>
-<ul>
-<li>
-<p>Change the directory to <code>tests/acceptance</code></p>
-</li>
-<li>
-<p>Install all the test dependencies with <code>pnpm install</code> command</p>
-</li>
-<li>
-<p>Run the tests</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ pnpm test:acceptance:ocis features/path/to/test
-</span></span></code></pre></div></li>
-</ul>
-<div class="gdoc-page__anchorwrap">
-    <h4 id="watch-the-test-run"
-    >
-        Watch the Test Run
-        <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#watch-the-test-run" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Watch the Test Run" aria-label="Anchor to: Watch the Test Run" href="#watch-the-test-run">
-            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h4>
-</div>
-<p>To watch the tests while running, open <a
-  class="gdoc-markdown__link"
-  href="http://host.docker.internal:7900/"
->http://host.docker.internal:7900/</a> in the browser to access your VNC client.</p>
-<div class="gdoc-page__anchorwrap">
     <h3 id="analyze-the-test-report"
     >
         Analyze the Test Report
@@ -18848,10 +18744,8 @@ to the nightwatch based e2e tests anymore.</p>
         </a>
     </h3>
 </div>
-<p>The cucumber library is used as the test runner for both e2e and acceptance tests. The report generator script lives inside the <code>tests/e2e/cucumber/report</code> folder. If you want to create a report after the tests are done, run the command:</p>
+<p>The cucumber library is used as the test runner for e2e tests. The report generator script lives inside the <code>tests/e2e/cucumber/report</code> folder. If you want to create a report after the tests are done, run the command:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">node tests/e2e/cucumber/report --report-input<span class="o">=</span>tests/e2e/cucumber/report/report.json
-</span></span></code></pre></div><p><code>--report-input</code> is the path to the report file generated by the test runner. If you want to generate a report for the acceptance tests, you can run the command</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">node tests/e2e/cucumber/report --report-input<span class="o">=</span>tests/acceptance/report/report.json
 </span></span></code></pre></div><p>By default, the report gets generated to reports/e2e/cucumber/releaseReport/cucumber_report.html.
 The location can be changed by adding the <code>--report-location</code> flag.</p>
 <p>To see all available options run</p>
