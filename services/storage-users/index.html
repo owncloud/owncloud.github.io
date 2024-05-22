@@ -45,11 +45,11 @@ Table of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Man
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2024-05-22T08:56:15+00:00"
+      content="2024-05-22T09:04:38+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-05-22T08:56:15+00:00"
+      content="2024-05-22T09:04:38+00:00"
     />
 
 
@@ -68,7 +68,7 @@ Table of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Man
       "url" : "https://owncloud.dev/services/storage-users/",
       "headline": "Storage-Users",
       "description": "Abstract Purpose and description to be added\nTable of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Manage Unfinished Uploads Sessions command Command Examples Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Deprecated Metadata Backend Starting with ocis version 3.0.0, the default backend for metadata switched to messagepack. If the setting STORAGE_USERS_OCIS_METADATA_BACKEND has not been defined manually, the backend will be migrated to messagepack automatically.",
-      "wordCount" : "4769",
+      "wordCount" : "4933",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ Table of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Man
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-05-22T08:56:15.46Z",
-      "datePublished": "2024-05-22T08:56:15.46Z",
-      "dateModified": "2024-05-22T08:56:15.46Z",
+      "dateCreated": "2024-05-22T09:04:38.81Z",
+      "datePublished": "2024-05-22T09:04:38.81Z",
+      "dateModified": "2024-05-22T09:04:38.81Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -18711,7 +18711,7 @@ Copyright 2022 Fonticons, Inc.
 <p>Example cases for expired uploads:</p>
 <ul>
 <li>
-<p>In the final step the upload blob is moved from the upload area to the final blobstore (e.g. S3).</p>
+<p>In the final step, the upload blob is moved from the upload area to the final blobstore (e.g. S3).</p>
 </li>
 <li>
 <p>If the bandwidth is limited and the file to transfer can&rsquo;t be transferred completely before the upload expiration time is reached, the file expires and can&rsquo;t be processed.</p>
@@ -18858,19 +18858,29 @@ Has a default value of <code>720h</code> which equals <code>30 days</code>. This
         </a>
     </h4>
 </div>
-<p>The variable <code>STORAGE_USERS_CLI_MAX_ATTEMPTS_RENAME_FILE</code> defines a maximum number of attempts to rename a file when the admin restores the file with the CLI option <code>--option keep-both</code> to an existing destination with the same name.</p>
+<p>Restoring is possible only to the original location. The personal or project space ID <code>spaceID</code> is required for the items to be restored.
+To authenticate the cli tool use <code>OCIS_SERVICE_ACCOUNT_SECRET=&lt;acc-secret&gt;</code> and <code>OCIS_SERVICE_ACCOUNT_ID=&lt;acc-id&gt;</code>. The <code>storage-users</code> cli tool uses the default address to establish the connection to the <code>gateway</code> service. If the connection fails, check your custom <code>gateway</code>
+service <code>GATEWAY_GRPC_ADDR</code> configuration and set the same address to <code>storage-users</code> variable <code>OCIS_GATEWAY_GRPC_ADDR</code> or <code>STORAGE_USERS_GATEWAY_GRPC_ADDR</code>.</p>
 <ul>
 <li>
-<p>Print a list of all trash-bin items of a space</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users trash-bin list
+<p>Export the gateway address if your configuration differs from the default</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">STORAGE_USERS_GATEWAY_GRPC_ADDR</span><span class="o">=</span>127.0.0.1:9142
 </span></span></code></pre></div></li>
 <li>
+<p>Print a list of all trash-bin items of a space</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users trash-bin list <span class="o">[</span><span class="nb">command</span> options<span class="o">]</span> <span class="o">[</span><span class="s1">&#39;spaceID&#39;</span> required<span class="o">]</span>
+</span></span></code></pre></div></li>
+</ul>
+<p>The restore option defines the behavior for an item to be restored, when the item name already exists in the target space. Supported options are: <code>skip</code>, <code>replace</code> and <code>keep-both</code>. The default value is <code>skip</code>.</p>
+<p>When the cli tool restores the item with the <code>replace</code> option, the existing item will be moved to a trash-bin. When the cli tool restores the item with the <code>keep-both</code> option and the designated item already exists, the name of the restored item will be changed by adding a numeric suffix in parentheses. The variable <code>STORAGE_USERS_CLI_MAX_ATTEMPTS_RENAME_FILE</code> defines a maximum number of attempts to rename an item.</p>
+<ul>
+<li>
 <p>Restore all trash-bin items for a space</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users trash-bin restore-all
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users trash-bin restore-all <span class="o">[</span><span class="nb">command</span> options<span class="o">]</span> <span class="o">[</span><span class="s1">&#39;spaceID&#39;</span> required<span class="o">]</span>
 </span></span></code></pre></div></li>
 <li>
 <p>Restore a trash-bin item by ID</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users trash-bin restore
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users trash-bin restore <span class="o">[</span><span class="nb">command</span> options<span class="o">]</span> <span class="o">[</span><span class="s1">&#39;spaceID&#39;</span> required<span class="o">]</span> <span class="o">[</span><span class="s1">&#39;itemID&#39;</span> required<span class="o">]</span>
 </span></span></code></pre></div></li>
 </ul>
 <div class="gdoc-page__anchorwrap">
