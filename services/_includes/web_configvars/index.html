@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/web_configvars/",
       "headline": "Web Configvars",
       "description": "Environment Variables Name Type Default Value Description OCIS_TRACING_ENABLEDWEB_TRACING_ENABLED bool false Activates tracing. OCIS_TRACING_TYPEWEB_TRACING_TYPE string The type of tracing. Defaults to ‘’, which is the same as ‘jaeger’. Allowed tracing types are ‘jaeger’ and ’’ as of now. OCIS_TRACING_ENDPOINTWEB_TRACING_ENDPOINT string The endpoint of the tracing agent. OCIS_TRACING_COLLECTORWEB_TRACING_COLLECTOR string The HTTP endpoint for sending spans directly to a collector, i.e. http:\/\/jaeger-collector:14268\/api\/traces. Only used if the tracing endpoint is unset. OCIS_LOG_LEVELWEB_LOG_LEVEL string The log level.",
-      "wordCount" : "1446",
+      "wordCount" : "1490",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -6528,10 +6528,10 @@ Copyright 2022 Fonticons, Inc.
               
                 <span class="flex">
                   <a
-                    href="/ocis/release_notes/"
+                    href="/ocis/release_roadmap/"
                     class="gdoc-nav__entry"
                   >
-                    Release Notes
+                    Release Life Cycle
                   </a>
                 </span>
               
@@ -6564,10 +6564,10 @@ Copyright 2022 Fonticons, Inc.
               
                 <span class="flex">
                   <a
-                    href="/ocis/release_roadmap/"
+                    href="/ocis/release_notes/"
                     class="gdoc-nav__entry"
                   >
-                    Release Roadmap
+                    Release Notes
                   </a>
                 </span>
               
@@ -18839,13 +18839,19 @@ Copyright 2022 Fonticons, Inc.
 <td>WEB_ASSET_CORE_PATH</td>
 <td>string</td>
 <td>/var/lib/ocis/web/assets/core</td>
-<td>Serve ownCloud Web assets from a path on the filesystem instead of the builtin assets.</td>
+<td>Serve ownCloud Web assets from a path on the filesystem instead of the builtin assets. If not defined, the root directory derives from $OCIS_BASE_DATA_PATH:/web/assets/core</td>
+</tr>
+<tr>
+<td>OCIS_ASSET_THEMES_PATH<br/>WEB_ASSET_THEMES_PATH</td>
+<td>string</td>
+<td>/var/lib/ocis/web/assets/themes</td>
+<td>Serve ownCloud themes from a path on the filesystem instead of the builtin assets. If not defined, the root directory derives from $OCIS_BASE_DATA_PATH:/web/assets/themes</td>
 </tr>
 <tr>
 <td>WEB_ASSET_APPS_PATH</td>
 <td>string</td>
 <td>/var/lib/ocis/web/assets/apps</td>
-<td>Serve ownCloud Web apps assets from a path on the filesystem instead of the builtin assets.</td>
+<td>Serve ownCloud Web apps assets from a path on the filesystem instead of the builtin assets. If not defined, the root directory derives from $OCIS_BASE_DATA_PATH:/web/assets/apps</td>
 </tr>
 <tr>
 <td>WEB_UI_CONFIG_FILE</td>
