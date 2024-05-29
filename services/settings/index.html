@@ -13,7 +13,7 @@
 
 
   <meta name="description" content="Abstract The settings service provides functionality for other services to register new settings as well as storing and retrieving the respective settings&rsquo; values.
-Table of Contents Settings Managed Caching Settings Management Settings Usage Service Accounts Default Language Example Yaml Config Settings Managed The settings service is currently used for managing the:
+Table of Contents Settings Managed Caching Settings Management Settings Usage Service Accounts Default Language Custom Roles Example Yaml Config Settings Managed The settings service is currently used for managing the:
 users&rsquo; profile settings like the language and the email notification settings, possible user roles and their respective permissions, assignment of roles to users." />
 
     <title>Settings | ownCloud</title>
@@ -39,7 +39,7 @@ users&rsquo; profile settings like the language and the email notification setti
   />
   <meta property="og:site_name" content="ownCloud" />
   <meta property="og:description" content="Abstract The settings service provides functionality for other services to register new settings as well as storing and retrieving the respective settings’ values.
-Table of Contents Settings Managed Caching Settings Management Settings Usage Service Accounts Default Language Example Yaml Config Settings Managed The settings service is currently used for managing the:
+Table of Contents Settings Managed Caching Settings Management Settings Usage Service Accounts Default Language Custom Roles Example Yaml Config Settings Managed The settings service is currently used for managing the:
 users’ profile settings like the language and the email notification settings, possible user roles and their respective permissions, assignment of roles to users." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/settings/" />
@@ -47,18 +47,18 @@ users’ profile settings like the language and the email notification settings,
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2024-05-28T10:03:18+00:00"
+      content="2024-05-29T00:07:38+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-05-28T10:03:18+00:00"
+      content="2024-05-29T00:07:38+00:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Settings" />
   <meta name="twitter:description" content="Abstract The settings service provides functionality for other services to register new settings as well as storing and retrieving the respective settings’ values.
-Table of Contents Settings Managed Caching Settings Management Settings Usage Service Accounts Default Language Example Yaml Config Settings Managed The settings service is currently used for managing the:
+Table of Contents Settings Managed Caching Settings Management Settings Usage Service Accounts Default Language Custom Roles Example Yaml Config Settings Managed The settings service is currently used for managing the:
 users’ profile settings like the language and the email notification settings, possible user roles and their respective permissions, assignment of roles to users." />
 
 
@@ -70,8 +70,8 @@ users’ profile settings like the language and the email notification settings,
       "name": "Settings",
       "url" : "https://owncloud.dev/services/settings/",
       "headline": "Settings",
-      "description": "Abstract The settings service provides functionality for other services to register new settings as well as storing and retrieving the respective settings’ values.\nTable of Contents Settings Managed Caching Settings Management Settings Usage Service Accounts Default Language Example Yaml Config Settings Managed The settings service is currently used for managing the:\nusers’ profile settings like the language and the email notification settings, possible user roles and their respective permissions, assignment of roles to users.",
-      "wordCount" : "1841",
+      "description": "Abstract The settings service provides functionality for other services to register new settings as well as storing and retrieving the respective settings’ values.\nTable of Contents Settings Managed Caching Settings Management Settings Usage Service Accounts Default Language Custom Roles Example Yaml Config Settings Managed The settings service is currently used for managing the:\nusers’ profile settings like the language and the email notification settings, possible user roles and their respective permissions, assignment of roles to users.",
+      "wordCount" : "2753",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -80,9 +80,9 @@ users’ profile settings like the language and the email notification settings,
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-05-28T10:03:18.68Z",
-      "datePublished": "2024-05-28T10:03:18.68Z",
-      "dateModified": "2024-05-28T10:03:18.68Z",
+      "dateCreated": "2024-05-29T00:07:38.98Z",
+      "datePublished": "2024-05-29T00:07:38.98Z",
+      "dateModified": "2024-05-29T00:07:38.98Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -18730,6 +18730,10 @@ Copyright 2022 Fonticons, Inc.
 >Default Language</a></li>
 <li><a
   class="gdoc-markdown__link"
+  href="#custom-roles"
+>Custom Roles</a></li>
+<li><a
+  class="gdoc-markdown__link"
   href="#example-yaml-config"
 >Example Yaml Config</a></li>
 </ul>
@@ -18860,6 +18864,355 @@ graph TD
 </li>
 </ul>
 <div class="flex align-center gdoc-page__anchorwrap">
+    <h2 id="custom-roles"
+    >
+        Custom Roles
+    </h2>
+    <a data-clipboard-text="https://owncloud.dev/services/settings/#custom-roles" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Custom Roles" aria-label="Anchor to: Custom Roles" href="#custom-roles">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>It is possible to replace the default ocis roles (<code>admin</code>, <code>user</code>) with custom roles that contain custom permissions. One can set <code>SETTINGS_BUNDLES_PATH</code> to the path of a <code>json</code> file containing the new roles.</p>
+<p>Role Example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;38071a68-456a-4553-846a-fa67bf5596cc&#34;</span><span class="p">,</span> <span class="c1">// ID of the role. Recommendation is to use a random uuidv4. But any unique string will do.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;user-light&#34;</span><span class="p">,</span>                         <span class="c1">// Internal name of the role. This is used by the system to identify the role. Any string will do here, but it should be unique among the other roles.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_ROLE&#34;</span><span class="p">,</span>                          <span class="c1">// Always use `TYPE_ROLE`
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nt">&#34;extension&#34;</span><span class="p">:</span> <span class="s2">&#34;ocis-roles&#34;</span><span class="p">,</span>                    <span class="c1">// Always use `ocis-roles`
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;User Light&#34;</span><span class="p">,</span>                  <span class="c1">// DisplayName of the role used in webui
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nt">&#34;settings&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">],</span>                                            <span class="c1">// Permissions attached to the role. See Details below.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_SYSTEM&#34;</span>                     <span class="c1">// Always use `TYPE_SYSTEM`
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span></code></pre></div><p>To create custom roles:</p>
+<ul>
+<li>Copy the role example to a <code>json</code> file.</li>
+<li>Change <code>id</code>, <code>name</code>, and <code>displayName</code> to your liking.</li>
+<li>Copy the desired permissions from the <code>user-all-permissions</code> example below to the <code>settings</code> array of the role.</li>
+<li>Set the <code>SETTINGS_BUNDLE_PATH</code> envvar to the path of the json file and start ocis</li>
+</ul>
+<p>Example File:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;38071a68-456a-4553-846a-fa67bf5596cc&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;user-1-permission&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_ROLE&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;extension&#34;</span><span class="p">:</span> <span class="s2">&#34;ocis-roles&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;User with one permission only&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;settings&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;7d81f103-0488-4853-bce5-98dcce36d649&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Language.ReadWrite&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Permission to read and set the language&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;permissionValue&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;operation&#34;</span><span class="p">:</span> <span class="s2">&#34;OPERATION_READWRITE&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;constraint&#34;</span><span class="p">:</span> <span class="s2">&#34;CONSTRAINT_OWN&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_SETTING&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;aa8cfbe5-95d4-4f7e-a032-c3c01f5f062f&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_SYSTEM&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;71881883-1768-46bd-a24d-a356a2afdf7f&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;user-all-permissions&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_ROLE&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;extension&#34;</span><span class="p">:</span> <span class="s2">&#34;ocis-roles&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;User with all available permissions&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;settings&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;8e587774-d929-4215-910b-a317b1e80f73&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Accounts.ReadWrite&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Account Management&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;This permission gives full access to everything that is related to account management.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;permissionValue&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;operation&#34;</span><span class="p">:</span> <span class="s2">&#34;OPERATION_READWRITE&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;constraint&#34;</span><span class="p">:</span> <span class="s2">&#34;CONSTRAINT_ALL&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_USER&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;all&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;4e41363c-a058-40a5-aec8-958897511209&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;AutoAcceptShares.ReadWriteDisabled&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;enable/disable auto accept shares&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;permissionValue&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;operation&#34;</span><span class="p">:</span> <span class="s2">&#34;OPERATION_READWRITE&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;constraint&#34;</span><span class="p">:</span> <span class="s2">&#34;CONSTRAINT_OWN&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_SETTING&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;ec3ed4a3-3946-4efc-8f9f-76d38b12d3a9&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;ed83fc10-1f54-4a9e-b5a7-fb517f5f3e01&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Logo.Write&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Change logo&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;This permission permits to change the system logo.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;permissionValue&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;operation&#34;</span><span class="p">:</span> <span class="s2">&#34;OPERATION_READWRITE&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;constraint&#34;</span><span class="p">:</span> <span class="s2">&#34;CONSTRAINT_ALL&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_SYSTEM&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;11516bbd-7157-49e1-b6ac-d00c820f980b&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;PublicLink.Write&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Write publiclink&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;This permission allows creating public links.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;permissionValue&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;operation&#34;</span><span class="p">:</span> <span class="s2">&#34;OPERATION_WRITE&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;constraint&#34;</span><span class="p">:</span> <span class="s2">&#34;CONSTRAINT_ALL&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_SHARE&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;069c08b1-e31f-4799-9ed6-194b310e7244&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Shares.Write&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Write share&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;This permission allows creating shares.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;permissionValue&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;operation&#34;</span><span class="p">:</span> <span class="s2">&#34;OPERATION_WRITE&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;constraint&#34;</span><span class="p">:</span> <span class="s2">&#34;CONSTRAINT_ALL&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_SHARE&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;79e13b30-3e22-11eb-bc51-0b9f0bad9a58&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Drives.Create&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Create Space&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;This permission allows creating new spaces.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;permissionValue&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;operation&#34;</span><span class="p">:</span> <span class="s2">&#34;OPERATION_READWRITE&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;constraint&#34;</span><span class="p">:</span> <span class="s2">&#34;CONSTRAINT_ALL&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_SYSTEM&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;5de9fe0a-4bc5-4a47-b758-28f370caf169&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Drives.DeletePersonal&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Delete All Home Spaces&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;This permission allows deleting home spaces.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;permissionValue&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;operation&#34;</span><span class="p">:</span> <span class="s2">&#34;OPERATION_DELETE&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;constraint&#34;</span><span class="p">:</span> <span class="s2">&#34;CONSTRAINT_ALL&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_SYSTEM&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;fb60b004-c1fa-4f09-bf87-55ce7d46ac61&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Drives.DeleteProject&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Delete AllSpaces&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;This permission allows deleting all spaces.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;permissionValue&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;operation&#34;</span><span class="p">:</span> <span class="s2">&#34;OPERATION_DELETE&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;constraint&#34;</span><span class="p">:</span> <span class="s2">&#34;CONSTRAINT_ALL&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_SYSTEM&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;e9a697c5-c67b-40fc-982b-bcf628e9916d&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;ReadOnlyPublicLinkPassword.Delete&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Delete Read-Only Public link password&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;This permission permits to opt out of a public link password enforcement.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;permissionValue&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;operation&#34;</span><span class="p">:</span> <span class="s2">&#34;OPERATION_WRITE&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;constraint&#34;</span><span class="p">:</span> <span class="s2">&#34;CONSTRAINT_ALL&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_SHARE&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;ad5bb5e5-dc13-4cd3-9304-09a424564ea8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;EmailNotifications.ReadWriteDisabled&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Disable Email Notifications&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;permissionValue&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;operation&#34;</span><span class="p">:</span> <span class="s2">&#34;OPERATION_READWRITE&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;constraint&#34;</span><span class="p">:</span> <span class="s2">&#34;CONSTRAINT_OWN&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_SETTING&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;33ffb5d6-cd07-4dc0-afb0-84f7559ae438&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;522adfbe-5908-45b4-b135-41979de73245&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Groups.ReadWrite&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Group Management&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;This permission gives full access to everything that is related to group management.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;permissionValue&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;operation&#34;</span><span class="p">:</span> <span class="s2">&#34;OPERATION_READWRITE&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;constraint&#34;</span><span class="p">:</span> <span class="s2">&#34;CONSTRAINT_ALL&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_GROUP&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;all&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;7d81f103-0488-4853-bce5-98dcce36d649&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Language.ReadWrite&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Permission to read and set the language&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;permissionValue&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;operation&#34;</span><span class="p">:</span> <span class="s2">&#34;OPERATION_READWRITE&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;constraint&#34;</span><span class="p">:</span> <span class="s2">&#34;CONSTRAINT_ALL&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_SETTING&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;aa8cfbe5-95d4-4f7e-a032-c3c01f5f062f&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;4ebaa725-bfaa-43c5-9817-78bc9994bde4&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Favorites.List&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;List Favorites&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;This permission allows listing favorites.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;permissionValue&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;operation&#34;</span><span class="p">:</span> <span class="s2">&#34;OPERATION_READ&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;constraint&#34;</span><span class="p">:</span> <span class="s2">&#34;CONSTRAINT_OWN&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_SYSTEM&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;016f6ddd-9501-4a0a-8ebe-64a20ee8ec82&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Drives.List&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;List All Spaces&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;This permission allows listing all spaces.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;permissionValue&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;operation&#34;</span><span class="p">:</span> <span class="s2">&#34;OPERATION_READ&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;constraint&#34;</span><span class="p">:</span> <span class="s2">&#34;CONSTRAINT_ALL&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_SYSTEM&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;b44b4054-31a2-42b8-bb71-968b15cfbd4f&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Drives.ReadWrite&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Manage space properties&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;This permission allows managing space properties such as name and description.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;permissionValue&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;operation&#34;</span><span class="p">:</span> <span class="s2">&#34;OPERATION_READWRITE&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;constraint&#34;</span><span class="p">:</span> <span class="s2">&#34;CONSTRAINT_ALL&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_SYSTEM&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;a53e601e-571f-4f86-8fec-d4576ef49c62&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Roles.ReadWrite&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Role Management&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;This permission gives full access to everything that is related to role management.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;permissionValue&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;operation&#34;</span><span class="p">:</span> <span class="s2">&#34;OPERATION_READWRITE&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;constraint&#34;</span><span class="p">:</span> <span class="s2">&#34;CONSTRAINT_ALL&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_USER&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;all&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;4e6f9709-f9e7-44f1-95d4-b762d27b7896&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Drives.ReadWritePersonalQuota&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Set Personal Space Quota&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;This permission allows managing personal space quotas.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;permissionValue&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;operation&#34;</span><span class="p">:</span> <span class="s2">&#34;OPERATION_READWRITE&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;constraint&#34;</span><span class="p">:</span> <span class="s2">&#34;CONSTRAINT_ALL&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_SYSTEM&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;977f0ae6-0da2-4856-93f3-22e0a8482489&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Drives.ReadWriteProjectQuota&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Set Project Space Quota&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;This permission allows managing project space quotas.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;permissionValue&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;operation&#34;</span><span class="p">:</span> <span class="s2">&#34;OPERATION_READWRITE&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;constraint&#34;</span><span class="p">:</span> <span class="s2">&#34;CONSTRAINT_ALL&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_SYSTEM&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;3d58f441-4a05-42f8-9411-ef5874528ae1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Settings.ReadWrite&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Settings Management&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;This permission gives full access to everything that is related to settings management.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;permissionValue&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;operation&#34;</span><span class="p">:</span> <span class="s2">&#34;OPERATION_READWRITE&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;constraint&#34;</span><span class="p">:</span> <span class="s2">&#34;CONSTRAINT_ALL&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_USER&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;all&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;cf3faa8c-50d9-4f84-9650-ff9faf21aa9d&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Drives.ReadWriteEnabled&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Space ability&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;This permission allows enabling and disabling spaces.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;permissionValue&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;operation&#34;</span><span class="p">:</span> <span class="s2">&#34;OPERATION_READWRITE&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;constraint&#34;</span><span class="p">:</span> <span class="s2">&#34;CONSTRAINT_ALL&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_SYSTEM&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;a54778fd-1c45-47f0-892d-655caf5236f2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Favorites.Write&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Write Favorites&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;This permission allows marking files as favorites.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;permissionValue&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;operation&#34;</span><span class="p">:</span> <span class="s2">&#34;OPERATION_WRITE&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;constraint&#34;</span><span class="p">:</span> <span class="s2">&#34;CONSTRAINT_OWN&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_FILE&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;TYPE_SYSTEM&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span></code></pre></div><div class="flex align-center gdoc-page__anchorwrap">
     <h2 id="example-yaml-config"
     >
         Example Yaml Config
