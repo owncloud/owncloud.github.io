@@ -45,11 +45,11 @@ Table of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Man
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2024-06-03T08:48:12+00:00"
+      content="2024-06-03T13:30:28+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-06-03T08:48:12+00:00"
+      content="2024-06-03T13:30:28+00:00"
     />
 
 
@@ -68,7 +68,7 @@ Table of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Man
       "url" : "https://owncloud.dev/services/storage-users/",
       "headline": "Storage-Users",
       "description": "Abstract Purpose and description to be added\nTable of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Manage Unfinished Uploads Sessions command Command Examples Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Deprecated Metadata Backend Starting with ocis version 3.0.0, the default backend for metadata switched to messagepack. If the setting STORAGE_USERS_OCIS_METADATA_BACKEND has not been defined manually, the backend will be migrated to messagepack automatically.",
-      "wordCount" : "5187",
+      "wordCount" : "5188",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ Table of Contents Deprecated Metadata Backend Graceful Shutdown CLI Commands Man
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-06-03T08:48:12.02Z",
-      "datePublished": "2024-06-03T08:48:12.02Z",
-      "dateModified": "2024-06-03T08:48:12.02Z",
+      "dateCreated": "2024-06-03T13:30:28.66Z",
+      "datePublished": "2024-06-03T13:30:28.66Z",
+      "dateModified": "2024-06-03T13:30:28.66Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -18950,9 +18950,12 @@ Note: It is recommended to run to command first without the <code>--clean</code>
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
 </div>
-<p>Purge all expired items from the trash-bin.</p>
+<ul>
+<li>Purge all expired items from the trash-bin.
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users trash-bin purge-expired
-</span></span></code></pre></div><p>The behaviour of the <code>purge-expired</code> command can be configured by using the following environment variables.</p>
+</span></span></code></pre></div></li>
+</ul>
+<p>The behaviour of the <code>purge-expired</code> command can be configured by using the following environment variables.</p>
 <ul>
 <li>
 <p><code>STORAGE_USERS_PURGE_TRASH_BIN_USER_ID</code><br>
@@ -18962,14 +18965,14 @@ Used to obtain space trash-bin information and takes the system admin user as th
 <p><code>STORAGE_USERS_PURGE_TRASH_BIN_PERSONAL_DELETE_BEFORE</code><br>
 Has a default value of <code>720h</code> which equals <code>30 days</code>. This means, the command will delete all files older than <code>30 days</code>. The value is human-readable, for valid values see the duration type described in the <a
   class="gdoc-markdown__link"
-  href="https://doc.owncloud.com/ocis/5.0/deployment/services/envvar-types-description.html"
+  href="https://doc.owncloud.com/ocis/latest/deployment/services/envvar-types-description.html"
 >Environment Variable Types</a>. A value of <code>0</code> is equivalent to disable and prevents the deletion of <code>personal space</code> trash-bin files.</p>
 </li>
 <li>
 <p><code>STORAGE_USERS_PURGE_TRASH_BIN_PROJECT_DELETE_BEFORE</code><br>
 Has a default value of <code>720h</code> which equals <code>30 days</code>. This means, the command will delete all files older than <code>30 days</code>. The value is human-readable, for valid values see the duration type described in the <a
   class="gdoc-markdown__link"
-  href="https://doc.owncloud.com/ocis/5.0/deployment/services/envvar-types-description.html"
+  href="https://doc.owncloud.com/ocis/latest/deployment/services/envvar-types-description.html"
 >Environment Variable Types</a>. A value of <code>0</code> is equivalent to disable and prevents the deletion of <code>project space</code> trash-bin files.</p>
 </li>
 </ul>
@@ -18982,9 +18985,10 @@ Has a default value of <code>720h</code> which equals <code>30 days</code>. This
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
 </div>
-<p>Restoring is possible only to the original location. The personal or project space ID <code>spaceID</code> is required for the items to be restored.
-To authenticate the cli tool use <code>OCIS_SERVICE_ACCOUNT_SECRET=&lt;acc-secret&gt;</code> and <code>OCIS_SERVICE_ACCOUNT_ID=&lt;acc-id&gt;</code>. The <code>storage-users</code> cli tool uses the default address to establish the connection to the <code>gateway</code> service. If the connection fails, check your custom <code>gateway</code>
-service <code>GATEWAY_GRPC_ADDR</code> configuration and set the same address to <code>storage-users</code> variable <code>OCIS_GATEWAY_GRPC_ADDR</code> or <code>STORAGE_USERS_GATEWAY_GRPC_ADDR</code>.</p>
+<p>Restoring is possible only to the original location. The personal or project <code>spaceID</code> is required for the items to be restored. To authenticate the CLI tool use:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">OCIS_SERVICE_ACCOUNT_SECRET</span><span class="o">=</span>&lt;acc-secret&gt;
+</span></span><span class="line"><span class="cl"><span class="nv">OCIS_SERVICE_ACCOUNT_ID</span><span class="o">=</span>&lt;acc-id&gt;
+</span></span></code></pre></div><p>The <code>storage-users</code> CLI tool uses the default address to establish the connection to the <code>gateway</code> service. If the connection fails, check the <code>GATEWAY_GRPC_ADDR</code> configuration from your <code>gateway</code> service and set the same address to the <code>storage-users</code> variable <code>STORAGE_USERS_GATEWAY_GRPC_ADDR</code> or globally with <code>OCIS_GATEWAY_GRPC_ADDR</code>.</p>
 <ul>
 <li>
 <p>Export the gateway address if your configuration differs from the default</p>
@@ -18996,7 +19000,7 @@ service <code>GATEWAY_GRPC_ADDR</code> configuration and set the same address to
 </span></span></code></pre></div></li>
 </ul>
 <p>The restore option defines the behavior for an item to be restored, when the item name already exists in the target space. Supported options are: <code>skip</code>, <code>replace</code> and <code>keep-both</code>. The default value is <code>skip</code>.</p>
-<p>When the cli tool restores the item with the <code>replace</code> option, the existing item will be moved to a trash-bin. When the cli tool restores the item with the <code>keep-both</code> option and the designated item already exists, the name of the restored item will be changed by adding a numeric suffix in parentheses. The variable <code>STORAGE_USERS_CLI_MAX_ATTEMPTS_RENAME_FILE</code> defines a maximum number of attempts to rename an item.</p>
+<p>When the CLI tool restores the item with the <code>replace</code> option, the existing item will be moved to a trash-bin. When the CLI tool restores the item with the <code>keep-both</code> option and the designated item already exists, the name of the restored item will be changed by adding a numeric suffix in parentheses. The variable <code>STORAGE_USERS_CLI_MAX_ATTEMPTS_RENAME_FILE</code> defines a maximum number of attempts to rename an item.</p>
 <ul>
 <li>
 <p>Restore all trash-bin items for a space</p>
