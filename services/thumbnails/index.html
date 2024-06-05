@@ -13,7 +13,7 @@
 
 
   <meta name="description" content="Abstract The thumbnails service provides methods to generate thumbnails for various files and resolutions based on requests. It retrieves the sources at the location where the user files are stored and saves the thumbnails where system files are stored. Those locations have defaults but can be manually defined via environment variables.
-Table of Contents File Locations Overview Thumbnail Location Thumbnail Source File Types Thumbnail Target File Types Thumbnail Query String Parameters Thumbnail Resolution Thumbnail Processors Deleting Thumbnails Memory Considerations Example Yaml Config File Locations Overview The relevant environment variables defining file locations are:" />
+Table of Contents File Locations Overview Thumbnail Location Thumbnail Source File Types Thumbnail Target File Types Thumbnail Query String Parameters Thumbnail Resolution Thumbnail Processors Deleting Thumbnails Memory Considerations Thumbnails and SecureView Example Yaml Config File Locations Overview The relevant environment variables defining file locations are:" />
 
     <title>Thumbnails | ownCloud</title>
 
@@ -38,25 +38,25 @@ Table of Contents File Locations Overview Thumbnail Location Thumbnail Source Fi
   />
   <meta property="og:site_name" content="ownCloud" />
   <meta property="og:description" content="Abstract The thumbnails service provides methods to generate thumbnails for various files and resolutions based on requests. It retrieves the sources at the location where the user files are stored and saves the thumbnails where system files are stored. Those locations have defaults but can be manually defined via environment variables.
-Table of Contents File Locations Overview Thumbnail Location Thumbnail Source File Types Thumbnail Target File Types Thumbnail Query String Parameters Thumbnail Resolution Thumbnail Processors Deleting Thumbnails Memory Considerations Example Yaml Config File Locations Overview The relevant environment variables defining file locations are:" />
+Table of Contents File Locations Overview Thumbnail Location Thumbnail Source File Types Thumbnail Target File Types Thumbnail Query String Parameters Thumbnail Resolution Thumbnail Processors Deleting Thumbnails Memory Considerations Thumbnails and SecureView Example Yaml Config File Locations Overview The relevant environment variables defining file locations are:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/thumbnails/" />
 
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2024-06-05T09:13:15+00:00"
+      content="2024-06-05T10:06:01+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-06-05T09:13:15+00:00"
+      content="2024-06-05T10:06:01+00:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Thumbnails" />
   <meta name="twitter:description" content="Abstract The thumbnails service provides methods to generate thumbnails for various files and resolutions based on requests. It retrieves the sources at the location where the user files are stored and saves the thumbnails where system files are stored. Those locations have defaults but can be manually defined via environment variables.
-Table of Contents File Locations Overview Thumbnail Location Thumbnail Source File Types Thumbnail Target File Types Thumbnail Query String Parameters Thumbnail Resolution Thumbnail Processors Deleting Thumbnails Memory Considerations Example Yaml Config File Locations Overview The relevant environment variables defining file locations are:" />
+Table of Contents File Locations Overview Thumbnail Location Thumbnail Source File Types Thumbnail Target File Types Thumbnail Query String Parameters Thumbnail Resolution Thumbnail Processors Deleting Thumbnails Memory Considerations Thumbnails and SecureView Example Yaml Config File Locations Overview The relevant environment variables defining file locations are:" />
 
 
   <script type="application/ld+json">
@@ -67,8 +67,8 @@ Table of Contents File Locations Overview Thumbnail Location Thumbnail Source Fi
       "name": "Thumbnails",
       "url" : "https://owncloud.dev/services/thumbnails/",
       "headline": "Thumbnails",
-      "description": "Abstract The thumbnails service provides methods to generate thumbnails for various files and resolutions based on requests. It retrieves the sources at the location where the user files are stored and saves the thumbnails where system files are stored. Those locations have defaults but can be manually defined via environment variables.\nTable of Contents File Locations Overview Thumbnail Location Thumbnail Source File Types Thumbnail Target File Types Thumbnail Query String Parameters Thumbnail Resolution Thumbnail Processors Deleting Thumbnails Memory Considerations Example Yaml Config File Locations Overview The relevant environment variables defining file locations are:",
-      "wordCount" : "1528",
+      "description": "Abstract The thumbnails service provides methods to generate thumbnails for various files and resolutions based on requests. It retrieves the sources at the location where the user files are stored and saves the thumbnails where system files are stored. Those locations have defaults but can be manually defined via environment variables.\nTable of Contents File Locations Overview Thumbnail Location Thumbnail Source File Types Thumbnail Target File Types Thumbnail Query String Parameters Thumbnail Resolution Thumbnail Processors Deleting Thumbnails Memory Considerations Thumbnails and SecureView Example Yaml Config File Locations Overview The relevant environment variables defining file locations are:",
+      "wordCount" : "1570",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ Table of Contents File Locations Overview Thumbnail Location Thumbnail Source Fi
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-06-05T09:13:15.16Z",
-      "datePublished": "2024-06-05T09:13:15.16Z",
-      "dateModified": "2024-06-05T09:13:15.16Z",
+      "dateCreated": "2024-06-05T10:06:01.58Z",
+      "datePublished": "2024-06-05T10:06:01.58Z",
+      "dateModified": "2024-06-05T10:06:01.58Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -18739,6 +18739,10 @@ Copyright 2022 Fonticons, Inc.
 >Memory Considerations</a></li>
 <li><a
   class="gdoc-markdown__link"
+  href="#thumbnails-and-secureview"
+>Thumbnails and SecureView</a></li>
+<li><a
+  class="gdoc-markdown__link"
   href="#example-yaml-config"
 >Example Yaml Config</a></li>
 </ul>
@@ -18919,6 +18923,16 @@ impacts on previews as only a part of the image will be shown. When using an <em
 </div>
 <p>Since source files need to be loaded into memory when generating thumbnails, large source files could potentially crash this service if there is insufficient memory available. For bigger instances when using container orchestration deployment methods, this service can be dedicated to its own server(s) with more memory.
 To have more control over memory (and CPU) consumption the maximum number of concurrent requests can be limited by setting the environment variable <code>THUMBNAILS_MAX_CONCURRENT_REQUESTS</code>. The default value is 0 which does not apply any restrictions to the number of concurrent requests. As soon as the number of concurrent requests is reached any further request will be responded with <code>429/Too Many Requests</code> and the client can retry at a later point in time.</p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h2 id="thumbnails-and-secureview"
+    >
+        Thumbnails and SecureView
+    </h2>
+    <a data-clipboard-text="https://owncloud.dev/services/thumbnails/#thumbnails-and-secureview" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Thumbnails and SecureView" aria-label="Anchor to: Thumbnails and SecureView" href="#thumbnails-and-secureview">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>If a resource is shared using SecureView, the share reciever will get a 403 (forbidden) response when requesting a thumbnail. The requesting client needs to decide what to show and usually a placeholder thumbnail is used.</p>
 <div class="flex align-center gdoc-page__anchorwrap">
     <h2 id="example-yaml-config"
     >
