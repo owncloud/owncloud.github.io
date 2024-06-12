@@ -71,7 +71,7 @@ Ocis Data Structure Ocis stores its data in a folder that can be configured via 
       "url" : "https://owncloud.dev/ocis/backup/",
       "headline": "Backup Considerations",
       "description": "This small guide aims to shed some light on the internal Infinite Scale data structure. You can refer to it when you are trying to optimize your backups or if you are just curious about how Infinite Scale stores its data.\nNote, as a prerequisite backing up Infinite Scale, the instance has to be fully shut down for the time being.\nOcis Data Structure Ocis stores its data in a folder that can be configured via the environment variable OCIS_BASE_DATA_PATH.",
-      "wordCount" : "1198",
+      "wordCount" : "1292",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -19049,6 +19049,19 @@ BACKUP RECOMMENDED/OMITABLE. This folder contains custom web assets. Can be spec
     </a>
 </div>
 <p>When using an external idp/idm/nats or blobstore, its data needs to be backed up separately. Refer to your idp/idm/nats/blobstore documentation for backup details.</p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h2 id="backup-consistency-command"
+    >
+        Backup Consistency Command
+    </h2>
+    <a data-clipboard-text="https://owncloud.dev/ocis/backup/#backup-consistency-command" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Backup Consistency Command" aria-label="Anchor to: Backup Consistency Command" href="#backup-consistency-command">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>Infinite Scale now allows checking an existing backup for consistency. Use the command:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis backup consistency -p <span class="s2">&#34;&lt;path-to-base-folder&gt;&#34;</span>
+</span></span></code></pre></div><p><code>path-to-base-folder</code> needs to be replaced with the path to the storage providers base path. Should be same as the <code>STORAGE_USERS_OCIS_ROOT</code></p>
+<p>Use the <code>-b s3ng</code> option when using an external (s3) blobstore. Note: When using this flag, the path to the blobstore must be configured via envvars or a yaml file to match the configuration of the original instance. Consistency checks for other blobstores than <code>ocis</code> and <code>s3ng</code> are not supported at the moment.</p>
 
   </article>
 
