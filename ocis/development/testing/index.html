@@ -65,7 +65,7 @@
       "url" : "https://owncloud.dev/ocis/development/testing/",
       "headline": "Acceptance Testing",
       "description": "Testing With Test Suite in Docker Run Full Test Suite Local oCIS Tests (prefix api) Tests Transferred From ownCloud Core (prefix coreApi) Run Single Feature Test oCIS Image to Be Tested (Skip Local Image Build) Test Log Output Cleanup Testing With Test Suite Natively Installed Run oCIS Run Local oCIS Tests (prefix api) Run Tests Transferred From ownCloud Core (prefix coreApi) Use Existing Tests for BDD Running ENV Config Tests (@env-Config) Run oCIS With ociswrapper Run the Tests Writing New ENV Config Tests Running Test Suite With Email Service (@email) Setup Inbucket Run oCIS Run the Acceptance Test Running Test Suite With Tika Service (@tikaServiceNeeded) Setup Tika Service Run oCIS Run the Acceptance Test Running Tests for Parallel Deployment Setup the Parallel Deployment Environment Getting the Test Helpers Run the Acceptance Tests Running Test Suite With Antivirus Service (@antivirus) Setup clamAV 1.",
-      "wordCount" : "2327",
+      "wordCount" : "2500",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18837,6 +18837,18 @@ Copyright 2022 Fonticons, Inc.
             </li>
           </ul>
         </li>
+        <li><a href="#running-test-suite-with-federated-sharing-ocm">Running Test Suite With Federated Sharing (@ocm)</a>
+          <ul>
+            <li><a href="#setup-first-ocis-instance">Setup first ocis instance</a></li>
+            <li><a href="#setup-second-ocis-instance">Setup second ocis instance</a>
+              <ul>
+                <li><a href="#using-vscodelaunchjson">Using .vscode/launch.json</a></li>
+                <li><a href="#using-env-file">Using .env file</a></li>
+                <li><a href="#run-the-acceptance-test-3">Run the Acceptance Test</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
         <li><a href="#running-text-preview-tests-containing-unicode-characters">Running Text Preview Tests Containing Unicode Characters</a></li>
       </ul></nav>
       <hr />
@@ -19609,6 +19621,109 @@ For antivirus running with docker, use <code>ANTIVIRUS_CLAMAV_SOCKET= &quot;tcp:
 <p>Run the acceptance test with the following command:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">TEST_SERVER_URL</span><span class="o">=</span><span class="s2">&#34;https://localhost:9200&#34;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">BEHAT_FEATURE</span><span class="o">=</span><span class="s2">&#34;tests/acceptance/features/apiAntivirus/antivirus.feature&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>make test-acceptance-api
+</span></span></code></pre></div><div class="flex align-center gdoc-page__anchorwrap">
+    <h2 id="running-test-suite-with-federated-sharing-ocm"
+    >
+        Running Test Suite With Federated Sharing (@ocm)
+    </h2>
+    <a data-clipboard-text="https://owncloud.dev/ocis/development/testing/#running-test-suite-with-federated-sharing-ocm" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Running Test Suite With Federated Sharing (@ocm)" aria-label="Anchor to: Running Test Suite With Federated Sharing (@ocm)" href="#running-test-suite-with-federated-sharing-ocm">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>Test suites that are tagged with <code>@ocm</code> require running two different ocis instances. More detailed information and configuration related to it can be found <a
+  class="gdoc-markdown__link"
+  href="https://doc.owncloud.com/ocis/5.0/deployment/services/s-list/ocm.html"
+>here</a>.</p>
+<p>Put</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">127.0.0.1 ocis-server
+</span></span><span class="line"><span class="cl">127.0.0.1 federation-ocis-server
+</span></span></code></pre></div><p>in the <code>/etc/hosts</code> file</p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="setup-first-ocis-instance"
+    >
+        Setup first ocis instance
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/ocis/development/testing/#setup-first-ocis-instance" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Setup first ocis instance" aria-label="Anchor to: Setup first ocis instance" href="#setup-first-ocis-instance">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># run oCIS</span>
+</span></span><span class="line"><span class="cl"><span class="nv">OCIS_URL</span><span class="o">=</span><span class="s2">&#34;https://ocis-server:9200&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">PROXY_ENABLE_BASIC_AUTH</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">GRAPH_INCLUDE_OCM_SHAREES</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">OCM_OCM_INVITE_MANAGER_INSECURE</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">OCM_OCM_SHARE_PROVIDER_INSECURE</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">OCM_OCM_STORAGE_PROVIDER_INSECURE</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">OCM_OCM_PROVIDER_AUTHORIZER_PROVIDERS_FILE</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">workspaceFolder</span><span class="si">}</span><span class="s2">/tests/config/drone/providers.json&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">OCIS_ADD_RUN_SERVICES</span><span class="o">=</span><span class="s2">&#34;ocm&#34;</span>
+</span></span><span class="line"><span class="cl">ocis/bin/ocis server
+</span></span></code></pre></div><p>The first oCIS instance should be available at: https://ocis-server:9200/</p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="setup-second-ocis-instance"
+    >
+        Setup second ocis instance
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/ocis/development/testing/#setup-second-ocis-instance" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Setup second ocis instance" aria-label="Anchor to: Setup second ocis instance" href="#setup-second-ocis-instance">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h4 id="using-vscodelaunchjson"
+    >
+        Using .vscode/launch.json
+    </h4>
+    <a data-clipboard-text="https://owncloud.dev/ocis/development/testing/#using-vscodelaunchjson" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Using .vscode/launch.json" aria-label="Anchor to: Using .vscode/launch.json" href="#using-vscodelaunchjson">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h4 id="using-env-file"
+    >
+        Using .env file
+    </h4>
+    <a data-clipboard-text="https://owncloud.dev/ocis/development/testing/#using-env-file" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Using .env file" aria-label="Anchor to: Using .env file" href="#using-env-file">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># init oCIS</span>
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> tests/config/drone/.env-federation <span class="o">&amp;&amp;</span> ocis/bin/ocis init
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># run oCIS</span>
+</span></span><span class="line"><span class="cl">ocis/bin/ocis server
+</span></span></code></pre></div><p>The second oCIS instance should be available at: https://federation-ocis-server:10200/</p>
+
+
+
+
+
+<blockquote class="gdoc-hint note">
+  <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
+  <div class="gdoc-hint__text"><p>To enable ocm in the web interface, you need to set the following envs:
+<code>FRONTEND_OCS_INCLUDE_OCM_SHAREES=true</code> <br>
+<code>FRONTEND_OCS_LIST_OCM_SHARES=true</code> <br>
+<code>FRONTEND_ENABLE_FEDERATED_SHARING_INCOMING=true</code> <br>
+<code>FRONTEND_ENABLE_FEDERATED_SHARING_OUTGOING=true</code></p>
+<p>and put <code>ocm</code> to apps <a
+  class="gdoc-markdown__link"
+  href="https://github.com/owncloud/ocis/blob/master/services/web/pkg/config/defaults/defaultconfig.go#L101"
+>https://github.com/owncloud/ocis/blob/master/services/web/pkg/config/defaults/defaultconfig.go#L101</a></p>
+</div>
+</blockquote>
+
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h4 id="run-the-acceptance-test-3"
+    >
+        Run the Acceptance Test
+    </h4>
+    <a data-clipboard-text="https://owncloud.dev/ocis/development/testing/#run-the-acceptance-test-3" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Run the Acceptance Test" aria-label="Anchor to: Run the Acceptance Test" href="#run-the-acceptance-test-3">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>Run the acceptance test with the following command:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">TEST_SERVER_URL</span><span class="o">=</span><span class="s2">&#34;https://ocis-server:9200&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">TEST_SERVER_FED_URL</span><span class="o">=</span><span class="s2">&#34;https://federation-ocis-server:10200&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">BEHAT_FEATURE</span><span class="o">=</span><span class="s2">&#34;tests/acceptance/features/apiOcm/ocm.feature&#34;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>make test-acceptance-api
 </span></span></code></pre></div><div class="flex align-center gdoc-page__anchorwrap">
     <h2 id="running-text-preview-tests-containing-unicode-characters"
