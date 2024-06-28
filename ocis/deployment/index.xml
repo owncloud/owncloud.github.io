@@ -50,6 +50,15 @@ If you need to access oCIS running in a docker container, on a VM or a remote ma
     </item>
     
     <item>
+      <title>Full modular oCIS with WebOffice</title>
+      <link>https://owncloud.dev/ocis/deployment/ocis_full/</link>
+      <pubDate>Tue, 25 Jun 2024 00:00:00 +0100</pubDate>
+      
+      <guid>https://owncloud.dev/ocis/deployment/ocis_full/</guid>
+      <description>Overview Easy Default Goal: Default components Optional components Server Deployment Requirements Install oCIS and Traefik Reverse Proxy and SSL Infinite Scale Release and Version Local setup Additional services Clamav Virusscanner Traefik dashboard Cloud Importer S3 Storage Use a local minio S3 storage backend Local setup for web development Using Podman Overview oCIS, the collaboration service, Collabora or OnlyOffice running behind Traefik as reverse proxy Collabora or OnlyOffice enable you to edit office documents in your browser The collaboration server acts as a bridge to make the oCIS storage accessible to Collabora and OnlyOffice Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup The whole deployment acts as a modular toolkit to use different flavors of office suites and ocis features Find this example on GitHub</description>
+    </item>
+    
+    <item>
       <title>oCIS with Hello extension</title>
       <link>https://owncloud.dev/ocis/deployment/ocis_hello/</link>
       <pubDate>Mon, 12 Oct 2020 14:04:00 +0100</pubDate>
@@ -77,36 +86,6 @@ The docker stack consists 4 containers. One of them is Traefik, a proxy which is
       <guid>https://owncloud.dev/ocis/deployment/ocis_ldap/</guid>
       <description>Overview Server Deployment Requirements Install this example Local setup Overview Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup OpenLDAP server with demo users LDAP admin interface to edit users oCIS running behind Traefik as reverse proxy oCIS is using the LDAP server as user backend Find this example on GitHub
 Server Deployment Requirements Linux server with docker and docker-compose installed four domains set up and pointing to your server ocis.</description>
-    </item>
-    
-    <item>
-      <title>oCIS with S3 storage backend (MinIO)</title>
-      <link>https://owncloud.dev/ocis/deployment/ocis_s3/</link>
-      <pubDate>Mon, 12 Oct 2020 14:04:00 +0100</pubDate>
-      
-      <guid>https://owncloud.dev/ocis/deployment/ocis_s3/</guid>
-      <description>Overview Server Deployment Requirements Install oCIS and Traefik Local setup Overview oCIS running behind Traefik as reverse proxy MinIO as S3 compatible storage provider oCIS is configured to use S3 as user storage provider Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup Find this example on GitHub
-The docker stack consists 3 containers. One of them is Traefik, a proxy which is terminating SSL and forwards the requests to oCIS in the internal docker network.</description>
-    </item>
-    
-    <item>
-      <title>oCIS with Traefik</title>
-      <link>https://owncloud.dev/ocis/deployment/ocis_traefik/</link>
-      <pubDate>Mon, 12 Oct 2020 14:04:00 +0100</pubDate>
-      
-      <guid>https://owncloud.dev/ocis/deployment/ocis_traefik/</guid>
-      <description>Overview Server Deployment Requirements Install oCIS and Traefik Local setup Overview oCIS running behind Traefik as reverse proxy Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup Find this example on GitHub
-The docker stack consists of three containers. One of them is Traefik, a proxy which is terminating ssl and forwards the requests to oCIS in the internal docker network.
-The other one is oCIS itself running all extensions in one container.</description>
-    </item>
-    
-    <item>
-      <title>oCIS with WOPI server</title>
-      <link>https://owncloud.dev/ocis/deployment/ocis_wopi/</link>
-      <pubDate>Mon, 12 Oct 2020 14:04:00 +0100</pubDate>
-      
-      <guid>https://owncloud.dev/ocis/deployment/ocis_wopi/</guid>
-      <description>Overview Overview Image Server Deployment Requirements Install oCIS and Traefik Local setup Local setup for web development Using Podman Overview oCIS, Wopi server, Collabora and OnlyOffice running behind Traefik as reverse proxy Collabora and OnlyOffice enable you to edit documents in your browser Wopi server acts as a bridge to make the oCIS storage accessible to Collabora and OnlyOffice Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup Find this example on GitHub</description>
     </item>
     
     <item>
@@ -159,19 +138,6 @@ Configure DNS A-records for needed domains pointing on the servers ip address, f
 Access server via ssh as root
 Create a new user
 $ adduser --disabled-password --gecos &amp;quot;&amp;quot; admin</description>
-    </item>
-    
-    <item>
-      <title>oCIS with clamav</title>
-      <link>https://owncloud.dev/ocis/deployment/ocis_clamav/</link>
-      <pubDate>Tue, 21 May 2024 14:04:00 +0100</pubDate>
-      
-      <guid>https://owncloud.dev/ocis/deployment/ocis_clamav/</guid>
-      <description>Overview Server Deployment Local setup Overview oCIS with standard clamav setup Find this example on GitHub
-The docker stack contains the following services:
-oCIS itself, without any proxy in front of it, keep in mind, the example is for demonstration purposes only and should not be used in production.
-A pre-configured clamav container to virus scan files uploaded to oCIS.
-Server Deployment The provided docker compose file is for local demonstration purposes only.</description>
     </item>
     
   </channel>

@@ -65,7 +65,7 @@
       "url" : "https://owncloud.dev/ocis/development/debugging/",
       "headline": "Debugging",
       "description": "Debugging Start ocis Use the debug binary and attach to the process as needed Start all services independently to replace one of them with a debug process Debugging the ocis in a docker container Gather error messages Managing dependencies and testing changes Debugging As a single binary for easy deployment running ocis server just forks itself to start all the services, which makes debugging those processes a little harder.",
-      "wordCount" : "1421",
+      "wordCount" : "1419",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -9044,6 +9044,42 @@ Copyright 2022 Fonticons, Inc.
               
                 <span class="flex">
                   <a
+                    href="/ocis/deployment/ocis_full/"
+                    class="gdoc-nav__entry"
+                  >
+                    Full modular oCIS with WebOffice
+                  </a>
+                </span>
+              
+              
+            </label>
+
+            
+          </li>
+        
+      
+        
+          
+          
+          
+          
+          
+          
+
+
+          <li>
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              
+                <span class="flex">
+                  <a
                     href="/ocis/deployment/ocis_hello/"
                     class="gdoc-nav__entry"
                   >
@@ -9120,114 +9156,6 @@ Copyright 2022 Fonticons, Inc.
                     class="gdoc-nav__entry"
                   >
                     oCIS with LDAP
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/ocis/deployment/ocis_s3/"
-                    class="gdoc-nav__entry"
-                  >
-                    oCIS with S3 storage backend (MinIO)
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/ocis/deployment/ocis_traefik/"
-                    class="gdoc-nav__entry"
-                  >
-                    oCIS with Traefik
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/ocis/deployment/ocis_wopi/"
-                    class="gdoc-nav__entry"
-                  >
-                    oCIS with WOPI server
                   </a>
                 </span>
               
@@ -9432,50 +9360,6 @@ Copyright 2022 Fonticons, Inc.
                     class="gdoc-nav__entry"
                   >
                     Preparing a server
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-    
-      
-
-      
-        
-      
-
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/ocis/deployment/ocis_clamav/"
-                    class="gdoc-nav__entry"
-                  >
-                    oCIS with clamav
                   </a>
                 </span>
               
@@ -18924,7 +18808,7 @@ Copyright 2022 Fonticons, Inc.
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
 </div>
-<p>Remote debugging is the debug mode commonly used to work with a debugger and target running on a remote machine or a container for example a wopi stack <code>deployments/examples/ocis_wopi/docker-compose.yml</code>.
+<p>Remote debugging is the debug mode commonly used to work with a debugger and target running on a remote machine or a container for example a wopi stack <code>deployments/examples/ocis_full/docker-compose.yml</code>.
 Below we describe the steps how to build the image, run the docker-compose and connect via remote debugger.</p>
 <ol>
 <li>Build the image:</li>
@@ -18936,11 +18820,11 @@ Below we describe the steps how to build the image, run the docker-compose and c
 </ol>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">OCIS_DOCKER_TAG</span><span class="o">=</span>debug
 </span></span></code></pre></div><ol start="3">
-<li>Change the docker-compose <code>ocis</code> or <code>ocis-appprovider-collabora</code> or <code>ocis-appprovider-onlyoffice</code> depends on what do you want to debug:
-For example <code>deployments/examples/ocis_wopi/docker-compose.yml</code></li>
+<li>Change the docker-compose <code>ocis</code> or <code>collaboration</code> depends on what do you want to debug:
+For example <code>deployments/examples/ocis_full/ocis.yml</code></li>
 </ol>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ocis</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">owncloud/ocis:${OCIS_DOCKER_TAG:-latest}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">${OCIS_DOCKER_IMAGE:-owncloud/ocis}:${OCIS_DOCKER_TAG:-latest}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">ocis-net</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">entrypoint</span><span class="p">:</span><span class="w">
@@ -21174,54 +21058,6 @@ error sending a grpc stat request</p>
         
       
     
-      
-      
-
-      
-        
-        
-        
-        
-
-        
-        
-
-        
-
-        
-
-        
-          
-        
-
-        
-        
-      
-    
-      
-      
-
-      
-        
-        
-        
-        
-
-        
-        
-
-        
-
-        
-
-        
-          
-        
-
-        
-        
-      
-    
 
   
     
@@ -21320,39 +21156,6 @@ error sending a grpc stat request</p>
         
         
       
-    
-      
-      
-
-      
-        
-        
-        
-        
-
-        
-        
-
-        
-
-        
-
-        
-          
-        
-
-        
-        
-      
-    
-
-  
-    
-
-    
-      
-    
-
     
       
       

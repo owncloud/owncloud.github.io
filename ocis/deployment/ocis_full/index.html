@@ -12,11 +12,9 @@
 <meta name="generator" content="Hugo 0.115.2">
 
 
-  <meta name="description" content="Overview Server Deployment Requirements Install oCIS and Traefik Local setup Overview oCIS running behind Traefik as reverse proxy Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup Find this example on GitHub
-The docker stack consists of three containers. One of them is Traefik, a proxy which is terminating ssl and forwards the requests to oCIS in the internal docker network.
-The other one is oCIS itself running all extensions in one container." />
+  <meta name="description" content="Overview Easy Default Goal: Default components Optional components Server Deployment Requirements Install oCIS and Traefik Reverse Proxy and SSL Infinite Scale Release and Version Local setup Additional services Clamav Virusscanner Traefik dashboard Cloud Importer S3 Storage Use a local minio S3 storage backend Local setup for web development Using Podman Overview oCIS, the collaboration service, Collabora or OnlyOffice running behind Traefik as reverse proxy Collabora or OnlyOffice enable you to edit office documents in your browser The collaboration server acts as a bridge to make the oCIS storage accessible to Collabora and OnlyOffice Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup The whole deployment acts as a modular toolkit to use different flavors of office suites and ocis features Find this example on GitHub" />
 
-    <title>oCIS with Traefik | ownCloud</title>
+    <title>Full modular oCIS with WebOffice | ownCloud</title>
 
     <link
   rel="icon"
@@ -35,31 +33,27 @@ The other one is oCIS itself running all extensions in one container." />
     
   <meta
     property="og:title"
-    content="oCIS with Traefik"
+    content="Full modular oCIS with WebOffice"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Overview Server Deployment Requirements Install oCIS and Traefik Local setup Overview oCIS running behind Traefik as reverse proxy Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup Find this example on GitHub
-The docker stack consists of three containers. One of them is Traefik, a proxy which is terminating ssl and forwards the requests to oCIS in the internal docker network.
-The other one is oCIS itself running all extensions in one container." />
+  <meta property="og:description" content="Overview Easy Default Goal: Default components Optional components Server Deployment Requirements Install oCIS and Traefik Reverse Proxy and SSL Infinite Scale Release and Version Local setup Additional services Clamav Virusscanner Traefik dashboard Cloud Importer S3 Storage Use a local minio S3 storage backend Local setup for web development Using Podman Overview oCIS, the collaboration service, Collabora or OnlyOffice running behind Traefik as reverse proxy Collabora or OnlyOffice enable you to edit office documents in your browser The collaboration server acts as a bridge to make the oCIS storage accessible to Collabora and OnlyOffice Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup The whole deployment acts as a modular toolkit to use different flavors of office suites and ocis features Find this example on GitHub" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://owncloud.dev/ocis/deployment/ocis_traefik/" />
+<meta property="og:url" content="https://owncloud.dev/ocis/deployment/ocis_full/" />
 
 <meta property="article:section" content="Ocis" />
     <meta
       property="article:published_time"
-      content="2020-10-12T14:04:00+01:00"
+      content="2024-06-25T00:00:00+01:00"
     />
     <meta
       property="article:modified_time"
-      content="2020-10-12T14:04:00+01:00"
+      content="2024-06-25T00:00:00+01:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="oCIS with Traefik" />
-  <meta name="twitter:description" content="Overview Server Deployment Requirements Install oCIS and Traefik Local setup Overview oCIS running behind Traefik as reverse proxy Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup Find this example on GitHub
-The docker stack consists of three containers. One of them is Traefik, a proxy which is terminating ssl and forwards the requests to oCIS in the internal docker network.
-The other one is oCIS itself running all extensions in one container." />
+<meta name="twitter:title" content="Full modular oCIS with WebOffice" />
+  <meta name="twitter:description" content="Overview Easy Default Goal: Default components Optional components Server Deployment Requirements Install oCIS and Traefik Reverse Proxy and SSL Infinite Scale Release and Version Local setup Additional services Clamav Virusscanner Traefik dashboard Cloud Importer S3 Storage Use a local minio S3 storage backend Local setup for web development Using Podman Overview oCIS, the collaboration service, Collabora or OnlyOffice running behind Traefik as reverse proxy Collabora or OnlyOffice enable you to edit office documents in your browser The collaboration server acts as a bridge to make the oCIS storage accessible to Collabora and OnlyOffice Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup The whole deployment acts as a modular toolkit to use different flavors of office suites and ocis features Find this example on GitHub" />
 
 
   <script type="application/ld+json">
@@ -67,22 +61,22 @@ The other one is oCIS itself running all extensions in one container." />
       "@context": "http://schema.org",
       "@type": "TechArticle",
       "articleSection": "Ocis",
-      "name": "oCIS with Traefik",
-      "url" : "https://owncloud.dev/ocis/deployment/ocis_traefik/",
-      "headline": "oCIS with Traefik",
-      "description": "Overview Server Deployment Requirements Install oCIS and Traefik Local setup Overview oCIS running behind Traefik as reverse proxy Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup Find this example on GitHub\nThe docker stack consists of three containers. One of them is Traefik, a proxy which is terminating ssl and forwards the requests to oCIS in the internal docker network.\nThe other one is oCIS itself running all extensions in one container.",
-      "wordCount" : "735",
+      "name": "Full modular oCIS with WebOffice",
+      "url" : "https://owncloud.dev/ocis/deployment/ocis_full/",
+      "headline": "Full modular oCIS with WebOffice",
+      "description": "Overview Easy Default Goal: Default components Optional components Server Deployment Requirements Install oCIS and Traefik Reverse Proxy and SSL Infinite Scale Release and Version Local setup Additional services Clamav Virusscanner Traefik dashboard Cloud Importer S3 Storage Use a local minio S3 storage backend Local setup for web development Using Podman Overview oCIS, the collaboration service, Collabora or OnlyOffice running behind Traefik as reverse proxy Collabora or OnlyOffice enable you to edit office documents in your browser The collaboration server acts as a bridge to make the oCIS storage accessible to Collabora and OnlyOffice Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup The whole deployment acts as a modular toolkit to use different flavors of office suites and ocis features Find this example on GitHub",
+      "wordCount" : "2426",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://owncloud.dev/ocis/deployment/ocis_traefik/"
+          "@id": "https://owncloud.dev/ocis/deployment/ocis_full/"
       },
       "copyrightHolder" : "ownCloud",
-      "copyrightYear" : "2020",
-      "dateCreated": "2020-10-12T14:04:00.00Z",
-      "datePublished": "2020-10-12T14:04:00.00Z",
-      "dateModified": "2020-10-12T14:04:00.00Z",
+      "copyrightYear" : "2024",
+      "dateCreated": "2024-06-25T00:00:00.00Z",
+      "datePublished": "2024-06-25T00:00:00.00Z",
+      "dateModified": "2024-06-25T00:00:00.00Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -160,7 +154,7 @@ The other one is oCIS itself running all extensions in one container." />
   href="/custom.css"
   media="all"
 />
-  <link href="https://owncloud.dev/ocis/deployment/ocis_traefik/" rel="canonical" type="text/html" />
+  <link href="https://owncloud.dev/ocis/deployment/ocis_full/" rel="canonical" type="text/html" />
 
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
 
@@ -9050,6 +9044,42 @@ Copyright 2022 Fonticons, Inc.
               
                 <span class="flex">
                   <a
+                    href="/ocis/deployment/ocis_full/"
+                    class="gdoc-nav__entry is-active"
+                  >
+                    Full modular oCIS with WebOffice
+                  </a>
+                </span>
+              
+              
+            </label>
+
+            
+          </li>
+        
+      
+        
+          
+          
+          
+          
+          
+          
+
+
+          <li>
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              
+                <span class="flex">
+                  <a
                     href="/ocis/deployment/ocis_hello/"
                     class="gdoc-nav__entry"
                   >
@@ -9126,114 +9156,6 @@ Copyright 2022 Fonticons, Inc.
                     class="gdoc-nav__entry"
                   >
                     oCIS with LDAP
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/ocis/deployment/ocis_s3/"
-                    class="gdoc-nav__entry"
-                  >
-                    oCIS with S3 storage backend (MinIO)
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/ocis/deployment/ocis_traefik/"
-                    class="gdoc-nav__entry is-active"
-                  >
-                    oCIS with Traefik
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/ocis/deployment/ocis_wopi/"
-                    class="gdoc-nav__entry"
-                  >
-                    oCIS with WOPI server
                   </a>
                 </span>
               
@@ -9438,50 +9360,6 @@ Copyright 2022 Fonticons, Inc.
                     class="gdoc-nav__entry"
                   >
                     Preparing a server
-                  </a>
-                </span>
-              
-              
-            </label>
-
-            
-          </li>
-        
-      
-    
-      
-
-      
-        
-      
-
-      
-        
-          
-          
-          
-          
-          
-          
-
-
-          <li>
-            <input
-              type="checkbox"
-              
-                class="hidden"
-              
-            />
-            <label
-              
-            >
-              
-                <span class="flex">
-                  <a
-                    href="/ocis/deployment/ocis_clamav/"
-                    class="gdoc-nav__entry"
-                  >
-                    oCIS with clamav
                   </a>
                 </span>
               
@@ -18731,7 +18609,7 @@ Copyright 2022 Fonticons, Inc.
     
   
   
-    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/deployment/' href='/ocis/deployment/'><span itemprop='name'>Deployment</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>oCIS with Traefik</span><meta itemprop='position' content='4' /></li>
+    <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>ownCloud</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/' href='/ocis/'><span itemprop='name'>oCIS - ownCloud Infinite Scale</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/ocis/deployment/' href='/ocis/deployment/'><span itemprop='name'>Deployment</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Full modular oCIS with WebOffice</span><meta itemprop='position' content='4' /></li>
   
 
   
@@ -18748,7 +18626,7 @@ Copyright 2022 Fonticons, Inc.
       <span class="editpage">
         <svg class="gdoc-icon gdoc_code"><use xlink:href="#gdoc_code"></use></svg>
         <a
-          href="https://github.com/owncloud/ocis/edit/master/docs/ocis/deployment/ocis_traefik.md"
+          href="https://github.com/owncloud/ocis/edit/master/docs/ocis/deployment/ocis_full.md"
         >
           Edit page
         </a>
@@ -18762,17 +18640,43 @@ Copyright 2022 Fonticons, Inc.
   <article
     class="gdoc-markdown gdoc-markdown__align--left"
   >
-    <h1>oCIS with Traefik</h1>
+    <h1>Full modular oCIS with WebOffice</h1>
     <div class="gdoc-toc gdoc-toc__level--3">
       <nav id="TableOfContents"><ul>
         <li><a href="#overview">Overview</a></li>
+        <li><a href="#easy-default">Easy Default</a>
+          <ul>
+            <li><a href="#goal">Goal:</a></li>
+            <li><a href="#default-components">Default components</a></li>
+            <li><a href="#optional-components">Optional components</a></li>
+          </ul>
+        </li>
         <li><a href="#server-deployment">Server Deployment</a>
           <ul>
             <li><a href="#requirements">Requirements</a></li>
-            <li><a href="#install-ocis-and-traefik">Install oCIS and Traefik</a></li>
+            <li><a href="#install-ocis-and-traefik">Install oCIS and Traefik</a>
+              <ul>
+                <li><a href="#reverse-proxy-and-ssl">Reverse Proxy and SSL</a></li>
+                <li><a href="#infinite-scale-release-and-version">Infinite Scale Release and Version</a></li>
+              </ul>
+            </li>
           </ul>
         </li>
         <li><a href="#local-setup">Local setup</a></li>
+        <li><a href="#additional-services">Additional services</a>
+          <ul>
+            <li><a href="#clamav-virusscanner">Clamav Virusscanner</a></li>
+            <li><a href="#traefik-dashboard">Traefik dashboard</a></li>
+            <li><a href="#cloud-importer">Cloud Importer</a></li>
+            <li><a href="#s3-storage">S3 Storage</a>
+              <ul>
+                <li><a href="#use-a-local-minio-s3-storage-backend">Use a local minio S3 storage backend</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#local-setup-for-web-development">Local setup for web development</a></li>
+        <li><a href="#using-podman">Using Podman</a></li>
       </ul></nav>
       <hr />
     </div>
@@ -18781,36 +18685,82 @@ Copyright 2022 Fonticons, Inc.
     >
         Overview
     </h2>
-    <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_traefik/#overview" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Overview" aria-label="Anchor to: Overview" href="#overview">
+    <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_full/#overview" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Overview" aria-label="Anchor to: Overview" href="#overview">
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
 </div>
 <ul>
-<li>oCIS running behind Traefik as reverse proxy</li>
+<li>oCIS, the collaboration service, Collabora or OnlyOffice running behind Traefik as reverse proxy</li>
+<li>Collabora or OnlyOffice enable you to edit office documents in your browser</li>
+<li>The collaboration server acts as a bridge to make the oCIS storage accessible to Collabora and OnlyOffice</li>
 <li>Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup</li>
+<li>The whole deployment acts as a modular toolkit to use different flavors of office suites and ocis features</li>
 </ul>
 <p><a
   class="gdoc-markdown__link"
-  href="https://github.com/owncloud/ocis/tree/master/deployments/examples/ocis_traefik"
+  href="https://github.com/owncloud/ocis/tree/master/deployments/examples/ocis_full"
 >Find this example on GitHub</a></p>
-<p>The docker stack consists of three containers. One of them is Traefik, a proxy which is terminating ssl and forwards the requests to oCIS in the internal docker network.</p>
-<p>The other one is oCIS itself running all extensions in one container. In this example, oCIS uses its internal IDP <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/services/idp/"
->LibreGraph Connect</a> and the <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/ocis/storage/storagedrivers/"
->oCIS storage driver</a></p>
-<p>The last one is <a
-  class="gdoc-markdown__link"
-  href="https://inbucket.org"
->Inbucket</a> a mail service to view the notification mails oCIS generates.</p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h2 id="easy-default"
+    >
+        Easy Default
+    </h2>
+    <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_full/#easy-default" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Easy Default" aria-label="Anchor to: Easy Default" href="#easy-default">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>The Infinite Scale Team and product management are providing a default setup for oCIS.</p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="goal"
+    >
+        Goal:
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_full/#goal" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Goal:" aria-label="Anchor to: Goal:" href="#goal">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<ul>
+<li>provide a good starting point for a production deployment</li>
+<li>minimal effort to get started with an opinionated setup</li>
+<li>keep it adjustable it to your needs.</li>
+</ul>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="default-components"
+    >
+        Default components
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_full/#default-components" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Default components" aria-label="Anchor to: Default components" href="#default-components">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<ul>
+<li>Infinite Scale</li>
+<li>Full Text Search</li>
+<li>Collabora Online Web Office</li>
+<li>LetsEncrypt for SSL certificates via Traefik Reverse Proxy</li>
+</ul>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="optional-components"
+    >
+        Optional components
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_full/#optional-components" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Optional components" aria-label="Anchor to: Optional components" href="#optional-components">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<ul>
+<li>ClamAV Virusscanner</li>
+<li>Cloud Importer (Experimental)</li>
+<li>OnlyOffice as an alternative to Collabora</li>
+<li>S3 Storage config to connect to an S3 storage backend</li>
+<li>S3 Minio Server as a local S3 storage backend for debugging and development</li>
+</ul>
 <div class="flex align-center gdoc-page__anchorwrap">
     <h2 id="server-deployment"
     >
         Server Deployment
     </h2>
-    <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_traefik/#server-deployment" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Server Deployment" aria-label="Anchor to: Server Deployment" href="#server-deployment">
+    <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_full/#server-deployment" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Server Deployment" aria-label="Anchor to: Server Deployment" href="#server-deployment">
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
 </div>
@@ -18819,7 +18769,7 @@ Copyright 2022 Fonticons, Inc.
     >
         Requirements
     </h3>
-    <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_traefik/#requirements" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Requirements" aria-label="Anchor to: Requirements" href="#requirements">
+    <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_full/#requirements" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Requirements" aria-label="Anchor to: Requirements" href="#requirements">
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
 </div>
@@ -18828,8 +18778,11 @@ Copyright 2022 Fonticons, Inc.
 <li>Three domains set up and pointing to your server
 <ul>
 <li>ocis.* for serving oCIS</li>
+<li>collabora.* for serving Collabora</li>
+<li>onlyoffice.* for serving OnlyOffice</li>
+<li>wopiserver.* for serving the WOPI server</li>
 <li>traefik.* for serving the Traefik dashboard</li>
-<li>mail.* for serving the Inbucket mail service</li>
+<li>companion.* for serving the uppy companion app</li>
 </ul>
 </li>
 </ul>
@@ -18842,71 +18795,357 @@ Copyright 2022 Fonticons, Inc.
     >
         Install oCIS and Traefik
     </h3>
-    <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_traefik/#install-ocis-and-traefik" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Install oCIS and Traefik" aria-label="Anchor to: Install oCIS and Traefik" href="#install-ocis-and-traefik">
+    <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_full/#install-ocis-and-traefik" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Install oCIS and Traefik" aria-label="Anchor to: Install oCIS and Traefik" href="#install-ocis-and-traefik">
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
 </div>
 <ul>
 <li>
 <p>Clone oCIS repository</p>
-<p><code>git clone https://github.com/owncloud/ocis.git</code></p>
+<p><code>git clone https://github.com/owncloud/ocis.git --depth 1</code></p>
 </li>
 <li>
 <p>Go to the deployment example</p>
-<p><code>cd ocis/deployments/examples/ocis_traefik</code></p>
+<p><code>cd ocis/deployments/examples/ocis_full</code></p>
 </li>
 <li>
 <p>Open the <code>.env</code> file in a text editor.</p>
 <p>The file by default looks like this:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># If you&#39;re on a internet facing server please comment out following line.</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># It skips certificate validation for various parts of oCIS and is needed if you use self signed certificates.</span>
-</span></span><span class="line"><span class="cl"><span class="nv">INSECURE</span><span class="o">=</span><span class="nb">true</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="hl"><span class="lnt">  7
+</span></span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="hl"><span class="lnt"> 21
+</span></span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="hl"><span class="lnt"> 42
+</span></span><span class="lnt"> 43
+</span><span class="hl"><span class="lnt"> 44
+</span></span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="hl"><span class="lnt">120
+</span></span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="hl"><span class="lnt">123
+</span></span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># Define the docker compose log driver used.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Defaults to local</span>
+</span></span><span class="line"><span class="cl"><span class="nv">LOG_DRIVER</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># If you&#39;re on an internet facing server. comment out following line.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># It skips certificate validation for various parts of Infinite Scale and is</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># needed when self signed certificates are used.</span>
+</span></span><span class="line hl"><span class="cl"><span class="nv">INSECURE</span><span class="o">=</span><span class="nb">true</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">### Traefik settings ###</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Serve Traefik dashboard. Defaults to &#34;false&#34;.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">### Traefik Settings ###</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Serve Traefik dashboard.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Defaults to &#34;false&#34;.</span>
 </span></span><span class="line"><span class="cl"><span class="nv">TRAEFIK_DASHBOARD</span><span class="o">=</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Domain of Traefik, where you can find the dashboard. Defaults to &#34;traefik.owncloud.test&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Domain of Traefik, where you can find the dashboard.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Defaults to &#34;traefik.owncloud.test&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">TRAEFIK_DOMAIN</span><span class="o">=</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Basic authentication for the dashboard. Defaults to user &#34;admin&#34; and password &#34;admin&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Basic authentication for the traefik dashboard.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Defaults to user &#34;admin&#34; and password &#34;admin&#34; (written as: &#34;admin:admin&#34;).</span>
 </span></span><span class="line"><span class="cl"><span class="nv">TRAEFIK_BASIC_AUTH_USERS</span><span class="o">=</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Email address for obtaining LetsEncrypt certificates, needs only be changed if this is a public facing server</span>
-</span></span><span class="line"><span class="cl"><span class="nv">TRAEFIK_ACME_MAIL</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Email address for obtaining LetsEncrypt certificates.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Needs only be changed if this is a public facing server.</span>
+</span></span><span class="line hl"><span class="cl"><span class="nv">TRAEFIK_ACME_MAIL</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Set to the following for testing to check the certificate process:</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &#34;https://acme-staging-v02.api.letsencrypt.org/directory&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># With staging configured, there will be an SSL error in the browser.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># When certificates are displayed and are emitted by # &#34;Fake LE Intermediate X1&#34;,</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># the process went well and the envvar can be reset to empty to get valid certificates.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">TRAEFIK_ACME_CASERVER</span><span class="o">=</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">### oCIS settings ###</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># oCIS version. Defaults to &#34;latest&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### Infinite Scale Settings ###</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Beside Traefik, this service must stay enabled.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Disable only for testing purposes.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">OCIS</span><span class="o">=</span>:ocis.yml
+</span></span><span class="line"><span class="cl"><span class="c1"># The oCIS container image.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Defaults to &#34;owncloud/ocis&#34; which contains the production releases.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">OCIS_DOCKER_IMAGE</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># The oCIS container version.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Defaults to &#34;latest&#34;. This will point to the latest stable tag.</span>
 </span></span><span class="line"><span class="cl"><span class="nv">OCIS_DOCKER_TAG</span><span class="o">=</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Domain of oCIS, where you can find the frontend. Defaults to &#34;ocis.owncloud.test&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">OCIS_DOMAIN</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Domain of oCIS, where you can find the frontend.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Defaults to &#34;ocis.owncloud.test&#34;</span>
+</span></span><span class="line hl"><span class="cl"><span class="nv">OCIS_DOMAIN</span><span class="o">=</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># oCIS admin user password. Defaults to &#34;admin&#34;.</span>
-</span></span><span class="line"><span class="cl"><span class="nv">ADMIN_PASSWORD</span><span class="o">=</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># The demo users should not be created on a production instance</span>
+</span></span><span class="line hl"><span class="cl"><span class="nv">ADMIN_PASSWORD</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Demo users should not be created on a production instance,</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># because their passwords are public. Defaults to &#34;false&#34;.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Also see: https://doc.owncloud.com/ocis/latest/deployment/general/general-info.html#demo-users-and-groups</span>
 </span></span><span class="line"><span class="cl"><span class="nv">DEMO_USERS</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Define the loglevel used.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># For more details see:</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># https://doc.owncloud.com/ocis/latest/deployment/services/env-vars-special-scope.html</span>
+</span></span><span class="line"><span class="cl"><span class="nv">LOG_LEVEL</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Define the kind of logging.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># The default log can be read by machines.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Set this to true to make the log human readable</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># LOG_PRETTY=true</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">### Email / Inbucket settings ###</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Inbucket / Mail domain. Defaults to &#34;mail.owncloud.test&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">INBUCKET_DOMAIN</span><span class="o">=</span>
-</span></span></code></pre></div><p>You are installing oCIS on a server and Traefik will obtain valid certificates for you so please remove <code>INSECURE=true</code> or set it to <code>false</code>.</p>
-<p>If you want to use the Traefik dashboard, set TRAEFIK_DASHBOARD to <code>true</code> (default is <code>false</code> and therefore not active). If you activate it, you must set a domain for the Traefik dashboard in <code>TRAEFIK_DOMAIN=</code> e.g. <code>TRAEFIK_DOMAIN=traefik.owncloud.test</code>.</p>
-<p>The Traefik dashboard is secured by basic auth. Default credentials are the user <code>admin</code> with the password <code>admin</code>. To set your own credentials, generate a htpasswd (e.g. by using <a
-  class="gdoc-markdown__link"
-  href="https://htpasswdgenerator.de/"
->an online tool</a> or a cli tool).</p>
+</span></span><span class="line"><span class="cl"><span class="c1"># S3 Storage configuration</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - optional</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Infinite Scale supports S3 storage as primary storage.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Per default, S3 storage is disabled and we use the local filesystem.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># To enable S3 storage, uncomment the following lines and configure the S3 storage.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># The leading colon is required to enable the service.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># S3NG=:s3ng.yml</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Configure the S3 storage endpoint. Defaults to &#34;http://minio:9000&#34; for testing purposes.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">S3NG_ENDPOINT</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># S3 region. Defaults to &#34;default&#34;.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">S3NG_REGION</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># S3 access key. Defaults to &#34;ocis&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">S3NG_ACCESS_KEY</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># S3 secret. Defaults to &#34;ocis-secret-key&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">S3NG_SECRET_KEY</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># S3 bucket. Defaults to &#34;ocis&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">S3NG_BUCKET</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Add local minio S3 storage to the docker-compose file.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># This is needed for testing purposes.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># The leading colon is required to enable the service.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># S3NG_MINIO=:minio.yml</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Minio domain. Defaults to &#34;minio.owncloud.test&#34;.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">MINIO_DOMAIN</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Define SMPT settings if you would like to send Infinite Scale email notifications.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># For more details see:</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># https://doc.owncloud.com/ocis/latest/deployment/services/s-list/notifications.html</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># NOTE: this doesn&#39;t work if you are using inbucket.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># SMTP host to connect to.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">SMTP_HOST</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Port of the SMTP host to connect to.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">SMTP_PORT</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># An eMail address that is used for sending Infinite Scale notification eMails</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># like &#34;ocis notifications &lt;noreply@yourdomain.com&gt;&#34;.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">SMTP_SENDER</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Username for the SMTP host to connect to.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">SMTP_USERNAME</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Password for the SMTP host to connect to.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">SMTP_PASSWORD</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Authentication method for the SMTP communication.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">SMTP_AUTHENTICATION</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Allow insecure connections to the SMTP server. Defaults to false.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">SMTP_INSECURE</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Default Enabled Services ##</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### Apache Tika Content Analysis Toolkit ###</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Tika (search) is enabled by default, comment if not required.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># The leading colon is required to enable the service.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">TIKA</span><span class="o">=</span>:tika.yml
+</span></span><span class="line"><span class="cl"><span class="c1"># Set the desired docker image tag or digest.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Defaults to &#34;latest&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">TIKA_IMAGE</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### Collabora Settings ###</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Collabora web office is default enabled, comment if not required.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># The leading colon is required to enable the service.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">COLLABORA</span><span class="o">=</span>:collabora.yml
+</span></span><span class="line"><span class="cl"><span class="c1"># Domain of Collabora, where you can find the frontend.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Defaults to &#34;collabora.owncloud.test&#34;</span>
+</span></span><span class="line hl"><span class="cl"><span class="nv">COLLABORA_DOMAIN</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Domain of the wopiserver which handles OnlyOffice.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Defaults to &#34;wopiserver.owncloud.test&#34;</span>
+</span></span><span class="line hl"><span class="cl"><span class="nv">WOPISERVER_DOMAIN</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Admin user for Collabora.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Defaults to &#34;admin&#34;.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Collabora Admin Panel URL:</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># https://{COLLABORA_DOMAIN}/browser/dist/admin/admin.html</span>
+</span></span><span class="line"><span class="cl"><span class="nv">COLLABORA_ADMIN_USER</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Admin password for Collabora.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Defaults to &#34;admin&#34;.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">COLLABORA_ADMIN_PASSWORD</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="flex align-center gdoc-page__anchorwrap">
+    <h4 id="reverse-proxy-and-ssl"
+    >
+        Reverse Proxy and SSL
+    </h4>
+    <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_full/#reverse-proxy-and-ssl" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Reverse Proxy and SSL" aria-label="Anchor to: Reverse Proxy and SSL" href="#reverse-proxy-and-ssl">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+
+
+
+
+
+<blockquote class="gdoc-hint important">
+  <div class="gdoc-hint__title flex align-center"><i class="fa important" title="Important"></i></div>
+  <div class="gdoc-hint__text"><strong>Domains and SSL</strong><br>
+Though it may sound strange, most of the setups are failing due to a misconfiguration regarding domains and SSL. Please make sure that you have set up the domains correctly and that they are pointing to your server. Also, make sure that you have set up the email address for the LetsEncrypt certificates in <code>TRAEFIK_ACME_MAIL=</code>.</div>
+</blockquote>
+
+<p>You are installing oCIS on a server and Traefik will obtain valid certificates for you so please remove <code>INSECURE=true</code> or set it to <code>false</code>.</p>
 <p>Traefik will issue certificates with LetsEncrypt and therefore you must set an email address in <code>TRAEFIK_ACME_MAIL=</code>.</p>
-<p>By default ocis will be started in the <code>latest</code> version. If you want to start a specific version of oCIS set the version to <code>OCIS_DOCKER_TAG=</code>. Available versions can be found on <a
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h4 id="infinite-scale-release-and-version"
+    >
+        Infinite Scale Release and Version
+    </h4>
+    <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_full/#infinite-scale-release-and-version" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Infinite Scale Release and Version" aria-label="Anchor to: Infinite Scale Release and Version" href="#infinite-scale-release-and-version">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>By default oCIS will be started in the <code>latest</code> production version.
+You can change it to use the oCIS rolling releases by setting <code>OCIS_DOCKER_IMAGE=owncloud/ocis-rolling</code>. This will always use the latest rolling release.</p>
+<p>If you want to use a specific version of oCIS, set the version to a dedicated tag like <code>OCIS_DOCKER_TAG=5.0.1</code>. Available  production versions can be found on <a
   class="gdoc-markdown__link"
   href="https://hub.docker.com/r/owncloud/ocis/tags?page=1&amp;ordering=last_updated"
->Docker Hub</a>.</p>
+>Docker Hub Production</a> and available rolling releases can be found on <a
+  class="gdoc-markdown__link"
+  href="https://hub.docker.com/r/owncloud/ocis-rolling/tags?page=1&amp;ordering=last_updated"
+>Docker Hub Rolling</a></p>
+
+
+
+
+
+<blockquote class="gdoc-hint info">
+  <div class="gdoc-hint__title flex align-center"><i class="fa info" title="oCIS Releases"></i></div>
+  <div class="gdoc-hint__text">You can read more about the different oCIS releases in the <a
+  class="gdoc-markdown__link"
+  href="../release_roadmap.md"
+>oCIS Release Lifecycle</a>.</div>
+</blockquote>
+
 <p>Set your domain for the oCIS frontend in <code>OCIS_DOMAIN=</code>, e.g. <code>OCIS_DOMAIN=ocis.owncloud.test</code>.</p>
 <p>Set the initial admin user password in <code>ADMIN_PASSWORD=</code>, it defaults to <code>admin</code>.</p>
-<p>Now you have configured everything and can save the file.</p>
+<p>Web Office needs a public domain for the WOPI server to be set in <code>WOPISERVER_DOMAIN=</code>, where the office suite can work on the files via the WOPI protocol.</p>
+<p>Now it&rsquo;s time to set up Collabora and you need to configure the domain of Collabora in <code>COLLABORA_DOMAIN=</code>.</p>
+<p>If you want to use the Collabora admin panel you need to set the username and password for the administrator in <code>COLLABORA_ADMIN_USER=</code> and <code>COLLABORA_ADMIN_PASSWORD=</code>.</p>
 </li>
 <li>
 <p>Start the docker stack</p>
 <p><code>docker-compose up -d</code></p>
 </li>
 <li>
-<p>You now can visit oCIS, Traefik dashboard and Inbucket on your configured domains. You may need to wait some minutes until all services are fully ready, so make sure that you try to reload the pages from time to time.</p>
+<p>You now can visit oCIS and are able to open an office document in your browser. You may need to wait some minutes until all services are fully ready, so make sure that you try to reload the pages from time to time.</p>
 </li>
 </ul>
 <div class="flex align-center gdoc-page__anchorwrap">
@@ -18914,29 +19153,259 @@ Copyright 2022 Fonticons, Inc.
     >
         Local setup
     </h2>
-    <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_traefik/#local-setup" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Local setup" aria-label="Anchor to: Local setup" href="#local-setup">
+    <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_full/#local-setup" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Local setup" aria-label="Anchor to: Local setup" href="#local-setup">
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
 </div>
-<p>For a more simple local ocis setup see <a
-  class="gdoc-markdown__link"
-  href="https://owncloud.dev/ocis/getting-started/"
->Getting started</a></p>
 <p>This docker stack can also be run locally. One downside is that Traefik can not obtain valid SSL certificates and therefore will create self-signed ones. This means that your browser will show scary warnings. Another downside is that you can not point DNS entries to your localhost. So you have to add static host entries to your computer.</p>
 <p>On Linux and macOS you can add them to your <code>/etc/hosts</code> file and on Windows to <code>C:\Windows\System32\Drivers\etc\hosts</code> file like this:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">127.0.0.1 ocis.owncloud.test
 </span></span><span class="line"><span class="cl">127.0.0.1 traefik.owncloud.test
+</span></span><span class="line"><span class="cl">127.0.0.1 collabora.owncloud.test
+</span></span><span class="line"><span class="cl">127.0.0.1 onlyoffice.owncloud.test
+</span></span><span class="line"><span class="cl">127.0.0.1 wopiserver.owncloud.test
 </span></span><span class="line"><span class="cl">127.0.0.1 mail.owncloud.test
-</span></span></code></pre></div><p>After that you&rsquo;re ready to start the application stack:</p>
-<p><code>docker-compose up -d</code></p>
+</span></span><span class="line"><span class="cl">127.0.0.1 companion.owncloud.test
+</span></span><span class="line"><span class="cl">127.0.0.1 minio.owncloud.test
+</span></span></code></pre></div><p>After that, you&rsquo;re ready to start the application stack:</p>
+<p><code>docker-compose pull &amp;&amp; docker-compose up -d</code></p>
+<p>Open <a
+  class="gdoc-markdown__link"
+  href="https://collabora.owncloud.test"
+>https://collabora.owncloud.test</a> in your browser and accept the invalid certificate warning.</p>
 <p>Open <a
   class="gdoc-markdown__link"
   href="https://ocis.owncloud.test"
->https://ocis.owncloud.test</a> in your browser and accept the invalid certificate warning. You now can login to oCIS with the default users, which also can be found here: <a
+>https://ocis.owncloud.test</a> in your browser and accept the invalid certificate warning. You are now able to open an office document in your browser. You may need to wait some minutes until all services are fully ready, so make sure that you try to reload the pages from time to time.</p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h2 id="additional-services"
+    >
+        Additional services
+    </h2>
+    <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_full/#additional-services" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Additional services" aria-label="Anchor to: Additional services" href="#additional-services">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="clamav-virusscanner"
+    >
+        Clamav Virusscanner
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_full/#clamav-virusscanner" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Clamav Virusscanner" aria-label="Anchor to: Clamav Virusscanner" href="#clamav-virusscanner">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>You can add a Clamav Virusscanner to the stack. The service is disabled by default. To enable it, uncomment the <code>CLAMAV</code> line in the <code>.env</code> file.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="hl"><span class="lnt">3
+</span></span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## Clamav Settings ##</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># The leading colon is required to enable the service.</span>
+</span></span><span class="line hl"><span class="cl"><span class="nv">CLAMAV</span><span class="o">=</span>:clamav.yml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>After enabling that service, you can add the service to the stack with <code>docker-compose up -d</code> again.</p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="traefik-dashboard"
+    >
+        Traefik dashboard
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_full/#traefik-dashboard" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Traefik dashboard" aria-label="Anchor to: Traefik dashboard" href="#traefik-dashboard">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>If you want to use the Traefik dashboard, set TRAEFIK_DASHBOARD to <code>true</code> (default is <code>false</code> and therefore not active). If you activate it, you must set a domain for the Traefik dashboard in <code>TRAEFIK_DOMAIN=</code> e.g. <code>TRAEFIK_DOMAIN=traefik.owncloud.test</code>.</p>
+<p>The Traefik dashboard is secured by basic auth. Default credentials are the user <code>admin</code> with the password <code>admin</code>. To set your own credentials, generate a htpasswd (e.g. by using <a
   class="gdoc-markdown__link"
-  href="https://owncloud.dev/ocis/getting-started/#login-to-ocis-web"
->Getting started</a>. You may need to wait some minutes until all services are fully ready, so make sure that you try to reload the pages from time to time.</p>
+  href="https://htpasswdgenerator.de/"
+>an online tool</a> or a cli tool).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="hl"><span class="lnt"> 4
+</span></span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="hl"><span class="lnt"> 7
+</span></span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="hl"><span class="lnt">10
+</span></span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">### Traefik Settings ###</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Serve Traefik dashboard.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Defaults to &#34;false&#34;.</span>
+</span></span><span class="line hl"><span class="cl"><span class="nv">TRAEFIK_DASHBOARD</span><span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Domain of Traefik, where you can find the dashboard.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Defaults to &#34;traefik.owncloud.test&#34;</span>
+</span></span><span class="line hl"><span class="cl"><span class="nv">TRAEFIK_DOMAIN</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Basic authentication for the traefik dashboard.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Defaults to user &#34;admin&#34; and password &#34;admin&#34; (written as: &#34;admin:admin&#34;).</span>
+</span></span><span class="line hl"><span class="cl"><span class="nv">TRAEFIK_BASIC_AUTH_USERS</span><span class="o">=</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="cloud-importer"
+    >
+        Cloud Importer
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_full/#cloud-importer" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Cloud Importer" aria-label="Anchor to: Cloud Importer" href="#cloud-importer">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>Cloud importer can provide an Upload Interface to your oCIS instance. It is a separate service that can be enabled in the <code>.env</code> file.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="hl"><span class="lnt"> 3
+</span></span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## Uppy Companion Settings ##</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># The leading colon is required to enable the service.</span>
+</span></span><span class="line hl"><span class="cl"><span class="nv">CLOUD_IMPORTER</span><span class="o">=</span>:cloudimporter.yml
+</span></span><span class="line"><span class="cl"><span class="c1">## The docker image to be used for uppy companion.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># owncloud has built a container with public link import support.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">COMPANION_IMAGE</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Domain of Uppy Companion. Defaults to &#34;companion.owncloud.test&#34;.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">COMPANION_DOMAIN</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Provider settings, see https://uppy.io/docs/companion/#provideroptions for reference.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Empty by default, which disables providers.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">COMPANION_ONEDRIVE_KEY</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="nv">COMPANION_ONEDRIVE_SECRET</span><span class="o">=</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>After Enabling that servive by uncommenting the <code>CLOUD_IMPORTER</code> line, you can add the service to the stack with <code>docker-compose up -d</code> again.</p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="s3-storage"
+    >
+        S3 Storage
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_full/#s3-storage" class="gdoc-page__anchor clip flex align-center" title="Anchor to: S3 Storage" aria-label="Anchor to: S3 Storage" href="#s3-storage">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>You can use an S3 compatible Storage as the primary data store. The metadatata of the files will still be stored on the local filesystem.</p>
 
+
+
+
+
+<blockquote class="gdoc-hint info">
+  <div class="gdoc-hint__title flex align-center"><i class="fa info" title="Info"></i></div>
+  <div class="gdoc-hint__text">The endpoint, region and keys for your S3 Server need to be provided by the service or company who operates it. Normally you can get these via web portal.</div>
+</blockquote>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="hl"><span class="lnt"> 9
+</span></span><span class="lnt">10
+</span><span class="hl"><span class="lnt">11
+</span></span><span class="lnt">12
+</span><span class="hl"><span class="lnt">13
+</span></span><span class="lnt">14
+</span><span class="hl"><span class="lnt">15
+</span></span><span class="lnt">16
+</span><span class="hl"><span class="lnt">17
+</span></span><span class="lnt">18
+</span><span class="hl"><span class="lnt">19
+</span></span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># S3 Storage configuration</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - optional</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Infinite Scale supports S3 storage as primary storage.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Per default, S3 storage is disabled and we use the local filesystem.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># To enable S3 storage, uncomment the following lines and configure the S3 storage.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># The leading colon is required to enable the service.</span>
+</span></span><span class="line hl"><span class="cl"><span class="nv">S3NG</span><span class="o">=</span>:s3ng.yml
+</span></span><span class="line"><span class="cl"><span class="c1"># Configure the S3 storage endpoint. Defaults to &#34;http://minio:9000&#34; for testing purposes.</span>
+</span></span><span class="line hl"><span class="cl"><span class="nv">S3NG_ENDPOINT</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># S3 region. Defaults to &#34;default&#34;.</span>
+</span></span><span class="line hl"><span class="cl"><span class="nv">S3NG_REGION</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># S3 access key. Defaults to &#34;ocis&#34;</span>
+</span></span><span class="line hl"><span class="cl"><span class="nv">S3NG_ACCESS_KEY</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># S3 secret. Defaults to &#34;ocis-secret-key&#34;</span>
+</span></span><span class="line hl"><span class="cl"><span class="nv">S3NG_SECRET_KEY</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># S3 bucket. Defaults to &#34;ocis&#34;</span>
+</span></span><span class="line hl"><span class="cl"><span class="nv">S3NG_BUCKET</span><span class="o">=</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="flex align-center gdoc-page__anchorwrap">
+    <h4 id="use-a-local-minio-s3-storage-backend"
+    >
+        Use a local minio S3 storage backend
+    </h4>
+    <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_full/#use-a-local-minio-s3-storage-backend" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Use a local minio S3 storage backend" aria-label="Anchor to: Use a local minio S3 storage backend" href="#use-a-local-minio-s3-storage-backend">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>For testing purposes, you can use a local minio S3 storage backend. To enable it, uncomment the <code>S3NG_MINIO</code> line in the <code>.env</code> file.</p>
+<p>The frontend for the minio server is available at <code>http://minio.owncloud.test</code> and the access key is <code>ocis</code> and the secret key is <code>ocis-secret</code>.</p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h2 id="local-setup-for-web-development"
+    >
+        Local setup for web development
+    </h2>
+    <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_full/#local-setup-for-web-development" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Local setup for web development" aria-label="Anchor to: Local setup for web development" href="#local-setup-for-web-development">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>In case you want to run ownCloud Web from a development branch together with this deployment example (e.g. for feature development for the app provider frontend) you can use this deployment example with the local setup and some additional steps as described below.</p>
+<ol>
+<li>Clone the <a
+  class="gdoc-markdown__link"
+  href="https://github.com/owncloud/web"
+>ownCloud Web repository</a> on your development machine.</li>
+<li>Run <code>pnpm i &amp;&amp; pnpm build:w</code> for <code>web</code>, so that it creates and continuously updates the <code>dist</code> folder for web.</li>
+<li>Add the dist folder as read only volume to <code>volumes</code> section of the <code>ocis</code> service in the <code>docker-compose.yml</code> file:
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl">- <span class="l">/your/local/path/to/web/dist/:/web/dist:ro</span><span class="w">
+</span></span></span></code></pre></div>Make sure to point to the <code>dist</code> folder inside your local copy of the web repository.</li>
+<li>Set the oCIS environment variables <code>WEB_ASSET_CORE_PATH</code> and <code>WEB_ASSET_APPS_PATH</code> in the <code>environment</code> section of the <code>ocis</code> service, so that it uses your mounted dist folder for the web assets, instead of the assets that are embedded into oCIS.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">WEB_ASSET_CORE_PATH</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;/web/dist&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">WEB_ASSET_APPS_PATH</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;/web/dist&#34;</span><span class="w">
+</span></span></span></code></pre></div></li>
+<li>Start the deployment example as described above in the <code>Local setup</code> section.</li>
+</ol>
+<p>For app provider frontend development in <code>web</code> you can find the source code in <code>web/packages/web-app-external</code>. Some parts of the integration live in <code>web/packages/web-app-files</code>.</p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h2 id="using-podman"
+    >
+        Using Podman
+    </h2>
+    <a data-clipboard-text="https://owncloud.dev/ocis/deployment/ocis_full/#using-podman" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Using Podman" aria-label="Anchor to: Using Podman" href="#using-podman">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>Podman doesn&rsquo;t have a &ldquo;local&rdquo; log driver. Also it&rsquo;s docker-compatibility socket does live in a different location, especially when running a rootless podman.</p>
+<p>Using the following settings you can run the deployment with a recent podman version:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">LOG_DRIVER</span><span class="o">=</span>journald <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">DOCKER_SOCKET_PATH</span><span class="o">=</span>/run/user/1000/podman/podman.sock <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>podman compose start
+</span></span></code></pre></div>
   </article>
 
 
@@ -20925,102 +21394,6 @@ Copyright 2022 Fonticons, Inc.
         
 
         
-
-        
-          
-        
-
-        
-        
-      
-    
-      
-      
-
-      
-        
-        
-        
-        
-
-        
-        
-
-        
-
-        
-
-        
-          
-        
-
-        
-        
-      
-    
-      
-      
-
-      
-        
-        
-        
-        
-
-        
-        
-
-        
-
-        
-
-        
-          
-        
-
-        
-        
-      
-    
-      
-      
-
-      
-        
-        
-        
-        
-
-        
-        
-
-        
-
-        
-
-        
-          
-        
-
-        
-        
-      
-    
-      
-      
-
-      
-        
-        
-        
-        
-
-        
-        
-
-        
-
-        
           
           
         
@@ -21086,6 +21459,54 @@ Copyright 2022 Fonticons, Inc.
         
       
     
+      
+      
+
+      
+        
+        
+        
+        
+
+        
+        
+
+        
+
+        
+
+        
+          
+        
+
+        
+        
+      
+    
+      
+      
+
+      
+        
+        
+        
+        
+
+        
+        
+
+        
+
+        
+
+        
+          
+        
+
+        
+        
+      
+    
 
   
     
@@ -21184,39 +21605,6 @@ Copyright 2022 Fonticons, Inc.
         
         
       
-    
-      
-      
-
-      
-        
-        
-        
-        
-
-        
-        
-
-        
-
-        
-
-        
-          
-        
-
-        
-        
-      
-    
-
-  
-    
-
-    
-      
-    
-
     
       
       
@@ -27476,11 +27864,11 @@ Copyright 2022 Fonticons, Inc.
   
     <a
       class="gdoc-page__nav--prev flex align-center"
-      href="/ocis/deployment/ocis_s3/"
-      title="oCIS with S3 storage backend (MinIO)"
+      href="/ocis/deployment/systemd/"
+      title="Systemd service"
     >
       <i class="gdoc-icon">gdoc_arrow_left_alt</i>
-      oCIS with S3 storage backend (MinIO)
+      Systemd service
     </a>
   
 </span>
@@ -27488,10 +27876,10 @@ Copyright 2022 Fonticons, Inc.
   
     <a
       class="gdoc-page__nav--next flex align-center"
-      href="/ocis/deployment/ocis_wopi/"
-      title="oCIS with WOPI server"
+      href="/ocis/deployment/ocis_hello/"
+      title="oCIS with Hello extension"
     >
-      oCIS with WOPI server
+      oCIS with Hello extension
       <i class="gdoc-icon">gdoc_arrow_right_alt</i>
     </a>
   
