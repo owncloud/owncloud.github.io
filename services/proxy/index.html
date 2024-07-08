@@ -45,11 +45,11 @@ The proxy service is the only service communicating to the outside and needs the
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2024-07-08T07:48:10+00:00"
+      content="2024-07-08T08:58:36+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-07-08T07:48:10+00:00"
+      content="2024-07-08T08:58:36+00:00"
     />
 
 
@@ -68,7 +68,7 @@ The proxy service is the only service communicating to the outside and needs the
       "url" : "https://owncloud.dev/services/proxy/",
       "headline": "Proxy",
       "description": "Abstract The proxy service is an API-Gateway for the ownCloud Infinite Scale microservices. Every HTTP request goes through this service. Authentication, logging and other preprocessing of requests also happens here. Mechanisms like request rate limiting or intrusion prevention are not included in the proxy service and must be setup in front like with an external reverse proxy.\nThe proxy service is the only service communicating to the outside and needs therefore usual protections against DDOS, Slow Loris or other attack vectors.",
-      "wordCount" : "3874",
+      "wordCount" : "4481",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ The proxy service is the only service communicating to the outside and needs the
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-07-08T07:48:10.49Z",
-      "datePublished": "2024-07-08T07:48:10.49Z",
-      "dateModified": "2024-07-08T07:48:10.49Z",
+      "dateCreated": "2024-07-08T08:58:36.32Z",
+      "datePublished": "2024-07-08T08:58:36.32Z",
+      "dateModified": "2024-07-08T08:58:36.32Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -18668,6 +18668,25 @@ Copyright 2022 Fonticons, Inc.
 >Configuring Routes</a></li>
 <li><a
   class="gdoc-markdown__link"
+  href="#automatic-user-and-group-provisioning"
+>Automatic User and Group Provisioning</a>
+<ul>
+<li><a
+  class="gdoc-markdown__link"
+  href="#prequisites"
+>Prequisites</a></li>
+<li><a
+  class="gdoc-markdown__link"
+  href="#configuration"
+>Configuration</a></li>
+<li><a
+  class="gdoc-markdown__link"
+  href="#how-it-works"
+>How it Works</a></li>
+</ul>
+</li>
+<li><a
+  class="gdoc-markdown__link"
   href="#automatic-quota-assignments"
 >Automatic Quota Assignments</a></li>
 <li><a
@@ -18768,6 +18787,102 @@ Copyright 2022 Fonticons, Inc.
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">unprotected</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="c"># with false (default), calling the endpoint requires authorization.</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">                   </span><span class="c"># with true, anyone can call the endpoint without authorisation.</span><span class="w">
 </span></span></span></code></pre></div><div class="flex align-center gdoc-page__anchorwrap">
+    <h2 id="automatic-user-and-group-provisioning"
+    >
+        Automatic User and Group Provisioning
+    </h2>
+    <a data-clipboard-text="https://owncloud.dev/services/proxy/#automatic-user-and-group-provisioning" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Automatic User and Group Provisioning" aria-label="Anchor to: Automatic User and Group Provisioning" href="#automatic-user-and-group-provisioning">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>When using an external OpenID Connect IDP, the proxy can be configured to automatically provision
+users upon their first login.</p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="prequisites"
+    >
+        Prequisites
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/services/proxy/#prequisites" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Prequisites" aria-label="Anchor to: Prequisites" href="#prequisites">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>A number of prerequisites must be met for automatic user provisioning to work:</p>
+<ul>
+<li>ownCloud Infinite Scale must be configured to use an external OpenID Connect IDP</li>
+<li>The <code>graph</code> service must be configured to allow updating users and groups
+(<code>GRAPH_LDAP_SERVER_WRITE_ENABLED</code>).</li>
+<li>The IDP must return a unique value in the user&rsquo;s claims (as part of the
+userinfo response and/or the access tokens) that can be used to identify
+the user. This claim needs to be stable and cannot be changed for the whole
+lifetime of the user. That means, if a claim like <code>email</code> or
+<code>preferred_username</code> is used, you must ensure that the user&rsquo;s email address or
+username never changes.</li>
+</ul>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="configuration"
+    >
+        Configuration
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/services/proxy/#configuration" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Configuration" aria-label="Anchor to: Configuration" href="#configuration">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>To enable automatic user provisioning, the following environment variables must
+be set for the proxy service:</p>
+<ul>
+<li><code>PROXY_AUTOPROVISION_ACCOUNTS</code><br>
+Set to <code>true</code> to enable automatic user provisioning.</li>
+<li><code>PROXY_AUTOPROVISION_CLAIM_USERNAME</code><br>
+The name of an OIDC claim whose value should be used as the username for the
+autoprovsioned user in ownCloud Infinite Scale. Defaults to <code>preferred_username</code>.
+Can also be set to e.g. <code>sub</code> to guarantee a unique and stable username.</li>
+<li><code>PROXY_AUTOPROVISION_CLAIM_EMAIL</code><br>
+The name of an OIDC claim whose value should be used for the <code>mail</code> attribute
+of the autoprovisioned user in ownCloud Infinite Scale. Defaults to <code>email</code>.</li>
+<li><code>PROXY_AUTOPROVISION_CLAIM_DISPLAYNAME</code><br>
+The name of an OIDC claim whose value should be used for the <code>displayname</code>
+attribute of the autoprovisioned user in ownCloud Infinite Scale. Defaults to <code>name</code>.</li>
+<li><code>PROXY_AUTOPROVISION_CLAIM_GROUPS</code><br>
+The name of an OIDC claim whose value should be used to maintain a user&rsquo;s group
+membership. The claim value should contain a list of group names the user should
+be a member of. Defaults to <code>groups</code>.</li>
+<li><code>PROXY_USER_OIDC_CLAIM</code><br>
+When resolving and authenticated OIDC user, the value of this claims is used to
+lookup the user in the users service. For auto provisioning setups this usually is the
+same claims as set via <code>PROXY_AUTOPROVISION_CLAIM_USERNAME</code>.</li>
+<li><code>PROXY_USER_CS3_CLAIM</code><br>
+This is the name of the user attribute in ocis that is used to lookup the user by the
+value of the <code>PROXY_USER_OIDC_CLAIM</code>. For auto provisioning setups this usually
+needs to be set to <code>username</code>.</li>
+</ul>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="how-it-works"
+    >
+        How it Works
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/services/proxy/#how-it-works" class="gdoc-page__anchor clip flex align-center" title="Anchor to: How it Works" aria-label="Anchor to: How it Works" href="#how-it-works">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>When a user logs into ownCloud Infinite Scale for the first time, the proxy
+checks if that user already exists. This is done by querying the <code>users</code> service for users,
+where the attribute set in <code>PROXY_USER_CS3_CLAIM</code> matches the value of the OIDC
+claim configured in <code>PROXY_USER_OIDC_CLAIM</code>.</p>
+<p>If the users does not exist, the proxy will create a new user via the <code>graph</code>
+service using the claim values configured in
+<code>PROXY_AUTOPROVISION_CLAIM_USERNAME</code>, <code>PROXY_AUTOPROVISION_CLAIM_EMAIL</code> and
+<code>PROXY_AUTOPROVISION_CLAIM_DISPLAYNAME</code>.</p>
+<p>If the user does already exist, the proxy will check if the user&rsquo;s email or
+displayname has changed and updates those accordingly via <code>graph</code> service.</p>
+<p>Next, the proxy will check if the user is a member of the groups configured in
+<code>PROXY_AUTOPROVISION_CLAIM_GROUPS</code>. It will add the user to the groups listed
+via the OIDC claim that holds the groups defined in the envvar and removes it from
+all other groups that he is currently a member of.
+Groups that do not exist in the external IDP yet will be created. Note: This can be a
+somewhat costly operation, especially if the user is a member of a large number of
+groups. If the group memberships of a user are changed in the IDP after the
+first login, it can take up to 5 minutes until the changes are reflected in Infinite Scale.</p>
+<div class="flex align-center gdoc-page__anchorwrap">
     <h2 id="automatic-quota-assignments"
     >
         Automatic Quota Assignments
@@ -18803,8 +18918,7 @@ is unset.</p>
 based on the values of an OpenID Connect Claim of that user. The name of the OpenID Connect Claim to
 be used for the role assignment can be configured via the <code>PROXY_ROLE_ASSIGNMENT_OIDC_CLAIM</code>
 environment variable. It is also possible to define a mapping of claim values to role names defined
-in ownCloud Infinite Scale via a <code>yaml</code> configuration. See the following <code>proxy.yaml</code> snippet for an
-example.</p>
+in Infinite Scale via a <code>yaml</code> configuration. See the following <code>proxy.yaml</code> snippet for an example.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">role_assignment</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l">oidc</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">oidc_role_mapper</span><span class="p">:</span><span class="w">
@@ -19236,6 +19350,7 @@ the user will not be able to login.</p>
 </span><span class="lnt">194
 </span><span class="lnt">195
 </span><span class="lnt">196
+</span><span class="lnt">197
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># Autogenerated</span><span class="w">
@@ -19418,6 +19533,7 @@ the user will not be able to login.</p>
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">preferred_username</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">email</span><span class="p">:</span><span class="w"> </span><span class="l">email</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">display_name</span><span class="p">:</span><span class="w"> </span><span class="l">name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">groups</span><span class="p">:</span><span class="w"> </span><span class="l">groups</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">enable_basic_auth</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">insecure_backends</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">backend_https_cacert</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
@@ -19805,6 +19921,12 @@ the user will not be able to login.</p>
 <td>string</td>
 <td>name</td>
 <td>The name of the OIDC claim that holds the display name.</td>
+</tr>
+<tr>
+<td>PROXY_AUTOPROVISION_CLAIM_GROUPS</td>
+<td>string</td>
+<td>groups</td>
+<td>The name of the OIDC claim that holds the groups.</td>
 </tr>
 <tr>
 <td>PROXY_ENABLE_BASIC_AUTH</td>
