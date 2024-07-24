@@ -71,7 +71,7 @@ Basic app structure An app is essentially a distinct package that must be specif
       "url" : "https://owncloud.dev/clients/web/extension-system/viewer-editor-apps/",
       "headline": "Viewer and editor apps",
       "description": "Viewer and editor apps Basic app structure App setup Viewer and editor apps ownCloud Web allows developers to implement apps for viewing and editing specific file types. For instance, the built-in preview app serves as the default application for opening media files like images, videos, or audio.\nThis section will guide you through the process of implementing such an app within ownCloud Web.\nBasic app structure An app is essentially a distinct package that must be specified as an external application in the Web configuration.",
-      "wordCount" : "463",
+      "wordCount" : "484",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -13366,6 +13366,42 @@ Copyright 2022 Fonticons, Inc.
               
                 <span class="flex">
                   <a
+                    href="/clients/web/extension-system/extension-types/app-menu-items/"
+                    class="gdoc-nav__entry"
+                  >
+                    Application menu item extensions
+                  </a>
+                </span>
+              
+              
+            </label>
+
+            
+          </li>
+        
+      
+        
+          
+          
+          
+          
+          
+          
+
+
+          <li>
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              
+                <span class="flex">
+                  <a
                     href="/clients/web/extension-system/extension-types/custom-components/"
                     class="gdoc-nav__entry"
                   >
@@ -18780,9 +18816,10 @@ Copyright 2022 Fonticons, Inc.
   class="gdoc-markdown__link"
   href="https://owncloud.dev/clients/web/extension-system/#apps"
 >the apps section</a>, so it may look like this:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">AppWrapperRoute</span><span class="p">,</span> <span class="nx">defineWebApplication</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;@ownclouders/web-pkg&#39;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">AppWrapperRoute</span><span class="p">,</span> <span class="nx">defineWebApplication</span><span class="p">,</span> <span class="nx">AppMenuItemExtension</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;@ownclouders/web-pkg&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">translations</span> <span class="kr">from</span> <span class="s1">&#39;../l10n/translations.json&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">useGettext</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;vue3-gettext&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">computed</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;vue&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// This is the base component of your app.
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="nx">App</span> <span class="kr">from</span> <span class="s1">&#39;./App.vue&#39;</span>
@@ -18811,6 +18848,17 @@ Copyright 2022 Fonticons, Inc.
 </span></span><span class="line"><span class="cl">      <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">]</span>
 </span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// if you want your app to be present in the app menu on the top left.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">menuItems</span> <span class="o">=</span> <span class="nx">computed</span><span class="p">&lt;</span><span class="nt">AppMenuItemExtension</span><span class="err">[]</span><span class="p">&gt;(()</span> <span class="o">=&gt;</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">label</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">$gettext</span><span class="p">(</span><span class="s1">&#39;Advanced PDF Viewer&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">type</span><span class="o">:</span> <span class="s1">&#39;appMenuItem&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">handler</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="c1">// do stuff...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">])</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">appInfo</span><span class="o">:</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Advanced PDF Viewer&#39;</span><span class="p">,</span>
@@ -18831,17 +18879,11 @@ Copyright 2022 Fonticons, Inc.
 </span></span><span class="line"><span class="cl">              <span class="p">}</span>
 </span></span><span class="line"><span class="cl">            <span class="p">}</span>
 </span></span><span class="line"><span class="cl">          <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="p">],</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1">// Add this if you want your app to be present in the app menu on the top left.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">applicationMenu</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">          <span class="nx">enabled</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">          <span class="nx">openAsEditor</span>: <span class="kt">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">          <span class="nx">priority</span>: <span class="kt">10</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">]</span>
 </span></span><span class="line"><span class="cl">      <span class="p">},</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">routes</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nx">translations</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">translations</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">extensions</span>: <span class="kt">menuItems</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
@@ -23821,6 +23863,30 @@ Copyright 2022 Fonticons, Inc.
       
     
 
+    
+      
+      
+
+      
+        
+        
+        
+        
+
+        
+        
+
+        
+
+        
+
+        
+          
+        
+
+        
+        
+      
     
       
       
