@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/web_configvars/",
       "headline": "Web Configvars",
       "description": "Environment Variables Name Type Default Value Description OCIS_TRACING_ENABLEDWEB_TRACING_ENABLED bool false Activates tracing. OCIS_TRACING_TYPEWEB_TRACING_TYPE string The type of tracing. Defaults to ‘’, which is the same as ‘jaeger’. Allowed tracing types are ‘jaeger’ and ’’ as of now. OCIS_TRACING_ENDPOINTWEB_TRACING_ENDPOINT string The endpoint of the tracing agent. OCIS_TRACING_COLLECTORWEB_TRACING_COLLECTOR string The HTTP endpoint for sending spans directly to a collector, i.e. http:\/\/jaeger-collector:14268\/api\/traces. Only used if the tracing endpoint is unset. OCIS_LOG_LEVELWEB_LOG_LEVEL string The log level.",
-      "wordCount" : "1135",
+      "wordCount" : "1413",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -19030,6 +19030,36 @@ Copyright 2022 Fonticons, Inc.
 <td>[]string</td>
 <td>[]</td>
 <td>A list to disable specific Web extensions identified by their ID. The ID can e.g. be taken from the &lsquo;index.ts&rsquo; file of the web extension. Example: &lsquo;com.github.owncloud.web.files.search,com.github.owncloud.web.files.print&rsquo;. See the Environment Variable Types description for more details.</td>
+</tr>
+<tr>
+<td>WEB_OPTION_EMBED_ENABLED</td>
+<td>string</td>
+<td></td>
+<td>Defines whether Web should be running in &rsquo;embed&rsquo; mode. Setting this to &rsquo;true&rsquo; will enable a stripped down version of Web with reduced functionality used to integrate Web into other applications like via iFrame. Setting it to &lsquo;false&rsquo; or not setting it (default) will run Web as usual with all functionality enabled. See the text description for more details.</td>
+</tr>
+<tr>
+<td>WEB_OPTION_EMBED_TARGET</td>
+<td>string</td>
+<td></td>
+<td>Defines how Web is being integrated when running in &rsquo;embed&rsquo; mode. Currently, the only supported options are &rsquo;&rsquo; (empty) and &rsquo;location&rsquo;. With &rsquo;&rsquo; which is the default, Web will run regular as defined via the &rsquo;embed.enabled&rsquo; config option. With &rsquo;location&rsquo;, Web will run embedded as location picker. Resource selection will be disabled and the selected resources array always includes the current folder as the only item. See the text description for more details.</td>
+</tr>
+<tr>
+<td>WEB_OPTION_EMBED_MESSAGES_ORIGIN</td>
+<td>string</td>
+<td></td>
+<td>Defines a URL under which Web can be integrated via iFrame in &rsquo;embed&rsquo; mode. Note that setting this is mandatory when running Web in &rsquo;embed&rsquo; mode. Use &lsquo;*&rsquo; as value to allow running the iFrame under any URL, although this is not recommended for security reasons. See the text description for more details.</td>
+</tr>
+<tr>
+<td>WEB_OPTION_EMBED_DELEGATE_AUTHENTICATION</td>
+<td>bool</td>
+<td>false</td>
+<td>Defines whether Web should require authentication to be done by the parent application when running in &rsquo;embed&rsquo; mode. If set to &rsquo;true&rsquo; Web will not try to authenticate the user on its own but will require an access token coming from the parent application. Defaults to being unset.</td>
+</tr>
+<tr>
+<td>WEB_OPTION_EMBED_DELEGATE_AUTHENTICATION_ORIGIN</td>
+<td>string</td>
+<td></td>
+<td>Defines the host to validate the message event origin against when running Web in &rsquo;embed&rsquo; mode with delegated authentication. Defaults to event message origin validation being omitted, which is only recommended for development setups.</td>
 </tr>
 <tr>
 <td>WEB_OPTION_USER_LIST_REQUIRES_FILTER</td>
