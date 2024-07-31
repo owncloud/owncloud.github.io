@@ -13,7 +13,7 @@
 
 
   <meta name="description" content="Abstract The gateway service is responsible for passing requests to the storage providers. Other services never talk to the storage providers directly but will always send their requests via the gateway service.
-Table of Contents Caching Example Yaml Config Caching The gateway service is using caching as it is highly frequented with the same requests. As of now it uses two different caches:
+Table of Contents Caching Storage registry Example Yaml Config Caching The gateway service is using caching as it is highly frequented with the same requests. As of now it uses two different caches:
 the provider cache is caching requests to list or get storage providers." />
 
     <title>Gateway | ownCloud</title>
@@ -39,7 +39,7 @@ the provider cache is caching requests to list or get storage providers." />
   />
   <meta property="og:site_name" content="ownCloud" />
   <meta property="og:description" content="Abstract The gateway service is responsible for passing requests to the storage providers. Other services never talk to the storage providers directly but will always send their requests via the gateway service.
-Table of Contents Caching Example Yaml Config Caching The gateway service is using caching as it is highly frequented with the same requests. As of now it uses two different caches:
+Table of Contents Caching Storage registry Example Yaml Config Caching The gateway service is using caching as it is highly frequented with the same requests. As of now it uses two different caches:
 the provider cache is caching requests to list or get storage providers." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/gateway/" />
@@ -47,18 +47,18 @@ the provider cache is caching requests to list or get storage providers." />
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2024-07-31T06:58:11+00:00"
+      content="2024-07-31T12:52:29+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-07-31T06:58:11+00:00"
+      content="2024-07-31T12:52:29+00:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Gateway" />
   <meta name="twitter:description" content="Abstract The gateway service is responsible for passing requests to the storage providers. Other services never talk to the storage providers directly but will always send their requests via the gateway service.
-Table of Contents Caching Example Yaml Config Caching The gateway service is using caching as it is highly frequented with the same requests. As of now it uses two different caches:
+Table of Contents Caching Storage registry Example Yaml Config Caching The gateway service is using caching as it is highly frequented with the same requests. As of now it uses two different caches:
 the provider cache is caching requests to list or get storage providers." />
 
 
@@ -70,8 +70,8 @@ the provider cache is caching requests to list or get storage providers." />
       "name": "Gateway",
       "url" : "https://owncloud.dev/services/gateway/",
       "headline": "Gateway",
-      "description": "Abstract The gateway service is responsible for passing requests to the storage providers. Other services never talk to the storage providers directly but will always send their requests via the gateway service.\nTable of Contents Caching Example Yaml Config Caching The gateway service is using caching as it is highly frequented with the same requests. As of now it uses two different caches:\nthe provider cache is caching requests to list or get storage providers.",
-      "wordCount" : "1346",
+      "description": "Abstract The gateway service is responsible for passing requests to the storage providers. Other services never talk to the storage providers directly but will always send their requests via the gateway service.\nTable of Contents Caching Storage registry Example Yaml Config Caching The gateway service is using caching as it is highly frequented with the same requests. As of now it uses two different caches:\nthe provider cache is caching requests to list or get storage providers.",
+      "wordCount" : "1553",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -80,9 +80,9 @@ the provider cache is caching requests to list or get storage providers." />
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-07-31T06:58:11.52Z",
-      "datePublished": "2024-07-31T06:58:11.52Z",
-      "dateModified": "2024-07-31T06:58:11.52Z",
+      "dateCreated": "2024-07-31T12:52:29.77Z",
+      "datePublished": "2024-07-31T12:52:29.77Z",
+      "dateModified": "2024-07-31T12:52:29.77Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -18774,6 +18774,10 @@ Copyright 2022 Fonticons, Inc.
 >Caching</a></li>
 <li><a
   class="gdoc-markdown__link"
+  href="#storage-registry"
+>Storage registry</a></li>
+<li><a
+  class="gdoc-markdown__link"
   href="#example-yaml-config"
 >Example Yaml Config</a></li>
 </ul>
@@ -18822,14 +18826,79 @@ Copyright 2022 Fonticons, Inc.
 <li>When using the <code>nats-js-kv</code> store, it is possible to set <code>OCIS_CACHE_DISABLE_PERSISTENCE</code> to instruct nats to not persist cache data on disc.</li>
 </ul>
 <div class="flex align-center gdoc-page__anchorwrap">
-    <h2 id="example-yaml-config"
+    <h2 id="storage-registry"
     >
-        Example Yaml Config
+        Storage registry
     </h2>
-    <a data-clipboard-text="https://owncloud.dev/services/gateway/#example-yaml-config" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Example Yaml Config" aria-label="Anchor to: Example Yaml Config" href="#example-yaml-config">
+    <a data-clipboard-text="https://owncloud.dev/services/gateway/#storage-registry" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Storage registry" aria-label="Anchor to: Storage registry" href="#storage-registry">
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
 </div>
+<p>In order to add another storage provider the CS3 storage registry that is running as part of the CS3 gateway hes to be made aware of it. The easiest cleanest way to do it is to set <code>GATEWAY_STORAGE_REGISTRY_CONFIG_JSON=/path/to/storages.json</code> and list all storage providers like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;com.owncloud.api.storage-users&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;providerid&#34;</span><span class="p">:</span> <span class="s2">&#34;{storage-users-mount-uuid}&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;spaces&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;personal&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;mount_point&#34;</span><span class="p">:</span>   <span class="s2">&#34;/users&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;path_template&#34;</span><span class="p">:</span> <span class="s2">&#34;/users/{{.Space.Owner.Id.OpaqueId}}&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;project&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;mount_point&#34;</span><span class="p">:</span>   <span class="s2">&#34;/projects&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;path_template&#34;</span><span class="p">:</span> <span class="s2">&#34;/projects/{{.Space.Name}}&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;com.owncloud.api.storage-shares&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;providerid&#34;</span><span class="p">:</span> <span class="s2">&#34;a0ca6a90-a365-4782-871e-d44447bbc668&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;spaces&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;virtual&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;mount_point&#34;</span><span class="p">:</span> <span class="s2">&#34;/users/{{.CurrentUser.Id.OpaqueId}}/Shares&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;grant&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;mount_point&#34;</span><span class="p">:</span> <span class="s2">&#34;.&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;mountpoint&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;mount_point&#34;</span><span class="p">:</span>   <span class="s2">&#34;/users/{{.CurrentUser.Id.OpaqueId}}/Shares&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;path_template&#34;</span><span class="p">:</span> <span class="s2">&#34;/users/{{.CurrentUser.Id.OpaqueId}}/Shares/{{.Space.Name}}&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;com.owncloud.api.storage-publiclink&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;providerid&#34;</span><span class="p">:</span> <span class="s2">&#34;7993447f-687f-490d-875c-ac95e89a62a4&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;spaces&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;grant&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;mount_point&#34;</span><span class="p">:</span> <span class="s2">&#34;.&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;mountpoint&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;mount_point&#34;</span><span class="p">:</span>   <span class="s2">&#34;/public&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;path_template&#34;</span><span class="p">:</span> <span class="s2">&#34;/public/{{.Space.Root.OpaqueId}}&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;com.owncloud.api.ocm&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;providerid&#34;</span><span class="p">:</span> <span class="s2">&#34;89f37a33-858b-45fa-8890-a1f2b27d90e1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;spaces&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;grant&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;mount_point&#34;</span><span class="p">:</span> <span class="s2">&#34;.&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;mountpoint&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;mount_point&#34;</span><span class="p">:</span>   <span class="s2">&#34;/ocm&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;path_template&#34;</span><span class="p">:</span> <span class="s2">&#34;/ocm/{{.Space.Root.OpaqueId}}&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;com.owncloud.api.storage-hello&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;providerid&#34;</span><span class="p">:</span> <span class="s2">&#34;hello-storage-id&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;spaces&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;project&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;mount_point&#34;</span><span class="p">:</span>   <span class="s2">&#34;/hello&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;path_template&#34;</span><span class="p">:</span> <span class="s2">&#34;/hello/{{.Space.Name}}&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>In the above replace <code>{storage-users-mount-uuid}</code> with the mount UUID that was generated for the storage-users service. You can find it in the <code>config.yaml</code> generated on by <code>ocis init</code>. The last entry <code>com.owncloud.api.storage-hello</code> and its <code>providerid</code> <code>&quot;hello-storage-id&quot;</code> are an example for in additional storage provider, in this case running <code>hellofs</code>, an example minimal storage driver.## Example Yaml Config
 
 
 
@@ -18964,7 +19033,7 @@ Copyright 2022 Fonticons, Inc.
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div></div>
-
+</p>
 
 
 
