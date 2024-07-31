@@ -12,7 +12,7 @@
 <meta name="generator" content="Hugo 0.115.2">
 
 
-  <meta name="description" content="Spaces API Example Space Creating Spaces Create a single space POST /drives Reading Spaces List all spaces GET /drives List My Spaces GET /me/drives List my spaces with filters GET /me/drives/$filter=&lt;attribute&gt; &lt;comparison operator&gt; &lt;value&gt; Example filters List my spaces with ordering GET /me/drives/$orderby=&lt;key&gt; &lt;order&gt; Ordering examples Modifying Spaces Set the space quota to 5GB PATCH /drives/{drive-id} Change the space name, subtitle and alias PATCH /drives/{drive-id} Disabling / Deleting Spaces Disable a space DELETE /drives/{drive-id} Restore a space PATCH /drives/{drive-id} Permanently delete a space DELETE /drives/{drive-id} Spaces API The Spaces API is implementing a subset of the functionality of the MS Graph Drives resource." />
+  <meta name="description" content="Spaces API Example Space Creating Spaces Create a single space POST /drives Create a space item (Enable sync) POST /drives/{drive-id}/root/children Reading Spaces List all spaces GET /drives List My Spaces GET /me/drives Modifying Spaces Set the space quota to 5GB PATCH /drives/{drive-id} Change the space name, subtitle and alias PATCH /drives/{drive-id} Disabling / Deleting Spaces Disable a space DELETE /drives/{drive-id} Restore a space PATCH /drives/{drive-id} Permanently delete a space DELETE /drives/{drive-id} Sharing Space Add member to space POST /drives/{drive-id}/root/invite Sharing space as a link POST /drives/{drive-id}/root/createLink Reading Space Permissions Listing permissions of a space GET /drives/{drive-id}/root/permissions Modifying / Deleting Space Permissions Update permissions of a drive PATCH /drives/{drive-id}/root/permissions/{perm-id} Set password of a link share POST /drives/{drive-id}/root/permissions/{perm-id}/setPassword Removing acess to a space DELETE /drives/{drive-id}/root/permissions/{perm-id} Spaces API The Spaces API is implementing a subset of the functionality of the MS Graph Drives resource." />
 
     <title>Spaces | ownCloud</title>
 
@@ -36,7 +36,7 @@
     content="Spaces"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Spaces API Example Space Creating Spaces Create a single space POST /drives Reading Spaces List all spaces GET /drives List My Spaces GET /me/drives List my spaces with filters GET /me/drives/$filter=&lt;attribute&gt; &lt;comparison operator&gt; &lt;value&gt; Example filters List my spaces with ordering GET /me/drives/$orderby=&lt;key&gt; &lt;order&gt; Ordering examples Modifying Spaces Set the space quota to 5GB PATCH /drives/{drive-id} Change the space name, subtitle and alias PATCH /drives/{drive-id} Disabling / Deleting Spaces Disable a space DELETE /drives/{drive-id} Restore a space PATCH /drives/{drive-id} Permanently delete a space DELETE /drives/{drive-id} Spaces API The Spaces API is implementing a subset of the functionality of the MS Graph Drives resource." />
+  <meta property="og:description" content="Spaces API Example Space Creating Spaces Create a single space POST /drives Create a space item (Enable sync) POST /drives/{drive-id}/root/children Reading Spaces List all spaces GET /drives List My Spaces GET /me/drives Modifying Spaces Set the space quota to 5GB PATCH /drives/{drive-id} Change the space name, subtitle and alias PATCH /drives/{drive-id} Disabling / Deleting Spaces Disable a space DELETE /drives/{drive-id} Restore a space PATCH /drives/{drive-id} Permanently delete a space DELETE /drives/{drive-id} Sharing Space Add member to space POST /drives/{drive-id}/root/invite Sharing space as a link POST /drives/{drive-id}/root/createLink Reading Space Permissions Listing permissions of a space GET /drives/{drive-id}/root/permissions Modifying / Deleting Space Permissions Update permissions of a drive PATCH /drives/{drive-id}/root/permissions/{perm-id} Set password of a link share POST /drives/{drive-id}/root/permissions/{perm-id}/setPassword Removing acess to a space DELETE /drives/{drive-id}/root/permissions/{perm-id} Spaces API The Spaces API is implementing a subset of the functionality of the MS Graph Drives resource." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/apis/http/graph/spaces/" />
 
@@ -45,7 +45,7 @@
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Spaces" />
-  <meta name="twitter:description" content="Spaces API Example Space Creating Spaces Create a single space POST /drives Reading Spaces List all spaces GET /drives List My Spaces GET /me/drives List my spaces with filters GET /me/drives/$filter=&lt;attribute&gt; &lt;comparison operator&gt; &lt;value&gt; Example filters List my spaces with ordering GET /me/drives/$orderby=&lt;key&gt; &lt;order&gt; Ordering examples Modifying Spaces Set the space quota to 5GB PATCH /drives/{drive-id} Change the space name, subtitle and alias PATCH /drives/{drive-id} Disabling / Deleting Spaces Disable a space DELETE /drives/{drive-id} Restore a space PATCH /drives/{drive-id} Permanently delete a space DELETE /drives/{drive-id} Spaces API The Spaces API is implementing a subset of the functionality of the MS Graph Drives resource." />
+  <meta name="twitter:description" content="Spaces API Example Space Creating Spaces Create a single space POST /drives Create a space item (Enable sync) POST /drives/{drive-id}/root/children Reading Spaces List all spaces GET /drives List My Spaces GET /me/drives Modifying Spaces Set the space quota to 5GB PATCH /drives/{drive-id} Change the space name, subtitle and alias PATCH /drives/{drive-id} Disabling / Deleting Spaces Disable a space DELETE /drives/{drive-id} Restore a space PATCH /drives/{drive-id} Permanently delete a space DELETE /drives/{drive-id} Sharing Space Add member to space POST /drives/{drive-id}/root/invite Sharing space as a link POST /drives/{drive-id}/root/createLink Reading Space Permissions Listing permissions of a space GET /drives/{drive-id}/root/permissions Modifying / Deleting Space Permissions Update permissions of a drive PATCH /drives/{drive-id}/root/permissions/{perm-id} Set password of a link share POST /drives/{drive-id}/root/permissions/{perm-id}/setPassword Removing acess to a space DELETE /drives/{drive-id}/root/permissions/{perm-id} Spaces API The Spaces API is implementing a subset of the functionality of the MS Graph Drives resource." />
 
 
   <script type="application/ld+json">
@@ -56,8 +56,8 @@
       "name": "Spaces",
       "url" : "https://owncloud.dev/apis/http/graph/spaces/",
       "headline": "Spaces",
-      "description": "Spaces API Example Space Creating Spaces Create a single space POST \/drives Reading Spaces List all spaces GET \/drives List My Spaces GET \/me\/drives List my spaces with filters GET \/me\/drives\/$filter=\u003cattribute\u003e \u003ccomparison operator\u003e \u003cvalue\u003e Example filters List my spaces with ordering GET \/me\/drives\/$orderby=\u003ckey\u003e \u003corder\u003e Ordering examples Modifying Spaces Set the space quota to 5GB PATCH \/drives\/{drive-id} Change the space name, subtitle and alias PATCH \/drives\/{drive-id} Disabling \/ Deleting Spaces Disable a space DELETE \/drives\/{drive-id} Restore a space PATCH \/drives\/{drive-id} Permanently delete a space DELETE \/drives\/{drive-id} Spaces API The Spaces API is implementing a subset of the functionality of the MS Graph Drives resource.",
-      "wordCount" : "1646",
+      "description": "Spaces API Example Space Creating Spaces Create a single space POST \/drives Create a space item (Enable sync) POST \/drives\/{drive-id}\/root\/children Reading Spaces List all spaces GET \/drives List My Spaces GET \/me\/drives Modifying Spaces Set the space quota to 5GB PATCH \/drives\/{drive-id} Change the space name, subtitle and alias PATCH \/drives\/{drive-id} Disabling \/ Deleting Spaces Disable a space DELETE \/drives\/{drive-id} Restore a space PATCH \/drives\/{drive-id} Permanently delete a space DELETE \/drives\/{drive-id} Sharing Space Add member to space POST \/drives\/{drive-id}\/root\/invite Sharing space as a link POST \/drives\/{drive-id}\/root\/createLink Reading Space Permissions Listing permissions of a space GET \/drives\/{drive-id}\/root\/permissions Modifying \/ Deleting Space Permissions Update permissions of a drive PATCH \/drives\/{drive-id}\/root\/permissions\/{perm-id} Set password of a link share POST \/drives\/{drive-id}\/root\/permissions\/{perm-id}\/setPassword Removing acess to a space DELETE \/drives\/{drive-id}\/root\/permissions\/{perm-id} Spaces API The Spaces API is implementing a subset of the functionality of the MS Graph Drives resource.",
+      "wordCount" : "1340",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18759,22 +18759,13 @@ Copyright 2022 Fonticons, Inc.
         <li><a href="#creating-spaces">Creating Spaces</a>
           <ul>
             <li><a href="#create-a-single-space-post-drives">Create a single space <code>POST /drives</code></a></li>
+            <li><a href="#create-a-space-item-enable-sync-post-drivesdrive-idrootchildren">Create a space item (Enable sync) <code>POST /drives/{drive-id}/root/children</code></a></li>
           </ul>
         </li>
         <li><a href="#reading-spaces">Reading Spaces</a>
           <ul>
             <li><a href="#list-all-spaces-get-drives">List all spaces <code>GET /drives</code></a></li>
             <li><a href="#list-my-spaces-get-medrives">List My Spaces <code>GET /me/drives</code></a></li>
-            <li><a href="#list-my-spaces-with-filters-get-medrivesfilterattribute-comparison-operator-value">List my spaces with filters <code>GET /me/drives/$filter=&lt;attribute&gt; &lt;comparison operator&gt; &lt;value&gt;</code></a>
-              <ul>
-                <li><a href="#example-filters">Example filters</a></li>
-              </ul>
-            </li>
-            <li><a href="#list-my-spaces-with-ordering-get-medrivesorderbykey-order">List my spaces with ordering <code>GET /me/drives/$orderby=&lt;key&gt; &lt;order&gt;</code></a>
-              <ul>
-                <li><a href="#ordering-examples">Ordering examples</a></li>
-              </ul>
-            </li>
           </ul>
         </li>
         <li><a href="#modifying-spaces">Modifying Spaces</a>
@@ -18788,6 +18779,24 @@ Copyright 2022 Fonticons, Inc.
             <li><a href="#disable-a-space-delete-drivesdrive-id">Disable a space <code>DELETE /drives/{drive-id}</code></a></li>
             <li><a href="#restore-a-space-patch-drivesdrive-id">Restore a space <code>PATCH /drives/{drive-id}</code></a></li>
             <li><a href="#permanently-delete-a-space-delete-drivesdrive-id">Permanently delete a space <code>DELETE /drives/{drive-id}</code></a></li>
+          </ul>
+        </li>
+        <li><a href="#sharing-space">Sharing Space</a>
+          <ul>
+            <li><a href="#add-member-to-space-post-drivesdrive-idrootinvite">Add member to space <code>POST /drives/{drive-id}/root/invite</code></a></li>
+            <li><a href="#sharing-space-as-a-link-post-drivesdrive-idrootcreatelink">Sharing space as a link <code>POST /drives/{drive-id}/root/createLink</code></a></li>
+          </ul>
+        </li>
+        <li><a href="#reading-space-permissions">Reading Space Permissions</a>
+          <ul>
+            <li><a href="#listing-permissions-of-a-space-get-drivesdrive-idrootpermissions">Listing permissions of a space <code>GET /drives/{drive-id}/root/permissions</code></a></li>
+          </ul>
+        </li>
+        <li><a href="#modifying--deleting-space-permissions">Modifying / Deleting Space Permissions</a>
+          <ul>
+            <li><a href="#update-permissions-of-a-drive-patch-drivesdrive-idrootpermissionsperm-id">Update permissions of a drive <code>PATCH /drives/{drive-id}/root/permissions/{perm-id}</code></a></li>
+            <li><a href="#set-password-of-a-link-share-post-drivesdrive-idrootpermissionsperm-idsetpassword">Set password of a link share <code>POST /drives/{drive-id}/root/permissions/{perm-id}/setPassword</code></a></li>
+            <li><a href="#removing-acess-to-a-space-delete-drivesdrive-idrootpermissionsperm-id">Removing acess to a space <code>DELETE /drives/{drive-id}/root/permissions/{perm-id}</code></a></li>
           </ul>
         </li>
       </ul></nav>
@@ -18905,86 +18914,23 @@ Copyright 2022 Fonticons, Inc.
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
 </div>
-<p>Create a new space with properties.</p>
-
-
-
-<div class="gdoc-tabs">
-    <input
-      type="radio"
-      class="gdoc-tabs__control hidden"
-      name="tabs-create-space"
-      id="tabs-create-space-0"
-      checked="checked"
-    />
-    <label for="tabs-create-space-0" class="gdoc-tabs__label">
-      Request
-    </label>
-    <div class="gdoc-markdown--nested gdoc-tabs__content">
-      <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">curl -L -X POST <span class="s1">&#39;https://localhost:9200/graph/v1.0/drives/&#39;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>-H <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--data-raw <span class="s1">&#39;{
-</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;name&#34;: &#34;Marketing&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;description&#34;: &#34;Marketing team resources&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;quota&#34;: {
-</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;total&#34;: 5368709120
-</span></span></span><span class="line"><span class="cl"><span class="s1">    }
-</span></span></span><span class="line"><span class="cl"><span class="s1">}&#39;</span>
-</span></span></code></pre></div>
-    </div>
-    <input
-      type="radio"
-      class="gdoc-tabs__control hidden"
-      name="tabs-create-space"
-      id="tabs-create-space-1"
-      
-    />
-    <label for="tabs-create-space-1" class="gdoc-tabs__label">
-      Response - 201 Created
-    </label>
-    <div class="gdoc-markdown--nested gdoc-tabs__content">
-      <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line hl"><span class="cl">  <span class="nt">&#34;description&#34;</span><span class="p">:</span><span class="s2">&#34;Marketing team resources&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;driveAlias&#34;</span><span class="p">:</span><span class="s2">&#34;project/marketing&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;driveType&#34;</span><span class="p">:</span><span class="s2">&#34;project&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;id&#34;</span><span class="p">:</span><span class="s2">&#34;storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;lastModifiedDateTime&#34;</span><span class="p">:</span><span class="s2">&#34;2023-01-18T17:13:48.385204589+01:00&#34;</span><span class="p">,</span>
-</span></span><span class="line hl"><span class="cl">  <span class="nt">&#34;name&#34;</span><span class="p">:</span><span class="s2">&#34;Marketing&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;owner&#34;</span><span class="p">:{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;user&#34;</span><span class="p">:{</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;displayName&#34;</span><span class="p">:</span><span class="s2">&#34;&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;id&#34;</span><span class="p">:</span><span class="s2">&#34;535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;quota&#34;</span><span class="p">:{</span>
-</span></span><span class="line hl"><span class="cl">    <span class="nt">&#34;total&#34;</span><span class="p">:</span><span class="mi">5368709120</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;root&#34;</span><span class="p">:{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;eTag&#34;</span><span class="p">:</span><span class="s2">&#34;\&#34;f91e56554fd9305db81a93778c0fae96\&#34;&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span><span class="s2">&#34;storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;permissions&#34;</span><span class="p">:[</span>
-</span></span><span class="line"><span class="cl">      <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;grantedToIdentities&#34;</span><span class="p">:[</span>
-</span></span><span class="line"><span class="cl">          <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;user&#34;</span><span class="p">:{</span>
-</span></span><span class="line"><span class="cl">              <span class="nt">&#34;displayName&#34;</span><span class="p">:</span><span class="s2">&#34;Admin&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">              <span class="nt">&#34;id&#34;</span><span class="p">:</span><span class="s2">&#34;some-admin-user-id-0000-000000000000&#34;</span>
-</span></span><span class="line"><span class="cl">            <span class="p">}</span>
-</span></span><span class="line"><span class="cl">          <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="p">],</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;roles&#34;</span><span class="p">:[</span>
-</span></span><span class="line"><span class="cl">          <span class="s2">&#34;manager&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">]</span>
-</span></span><span class="line"><span class="cl">      <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;webDavUrl&#34;</span><span class="p">:</span><span class="s2">&#34;https://localhost:9200/dav/spaces/storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;webUrl&#34;</span><span class="p">:</span><span class="s2">&#34;https://localhost:9200/f/storage-users-1$535aa42d-a3c7-4329-9eba-5ef48fcaa3ff&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div>
-    </div>
+<p><a
+  class="gdoc-markdown__link"
+  href="https://owncloud.dev/libre-graph-api/#/drives/CreateDrive"
+>https://owncloud.dev/libre-graph-api/#/drives/CreateDrive</a></p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="create-a-space-item-enable-sync-post-drivesdrive-idrootchildren"
+    >
+        Create a space item (Enable sync) <code>POST /drives/{drive-id}/root/children</code>
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#create-a-space-item-enable-sync-post-drivesdrive-idrootchildren" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Create a space item (Enable sync) POST /drives/{drive-id}/root/children" aria-label="Anchor to: Create a space item (Enable sync) POST /drives/{drive-id}/root/children" href="#create-a-space-item-enable-sync-post-drivesdrive-idrootchildren">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
 </div>
-
+<p><a
+  class="gdoc-markdown__link"
+  href="https://owncloud.dev/libre-graph-api/#/drives.root/CreateDriveItem"
+>https://owncloud.dev/libre-graph-api/#/drives.root/CreateDriveItem</a></p>
 <div class="flex align-center gdoc-page__anchorwrap">
     <h2 id="reading-spaces"
     >
@@ -19051,248 +18997,10 @@ The &ldquo;Space Manager&rdquo; is a user which is a regular member of a space b
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
 </div>
-<p>Returns a list of all spaces where the user is a regular member of.</p>
-
-
-
-<div class="gdoc-tabs">
-    <input
-      type="radio"
-      class="gdoc-tabs__control hidden"
-      name="tabs-list-drives"
-      id="tabs-list-drives-0"
-      checked="checked"
-    />
-    <label for="tabs-list-drives-0" class="gdoc-tabs__label">
-      Request
-    </label>
-    <div class="gdoc-markdown--nested gdoc-tabs__content">
-      <code>curl -L -k -X GET 'https://localhost:9200/graph/v1.0/me/drives/'</code>
-    </div>
-    <input
-      type="radio"
-      class="gdoc-tabs__control hidden"
-      name="tabs-list-drives"
-      id="tabs-list-drives-1"
-      
-    />
-    <label for="tabs-list-drives-1" class="gdoc-tabs__label">
-      Response - 200 OK
-    </label>
-    <div class="gdoc-markdown--nested gdoc-tabs__content">
-      <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;driveAlias&#34;</span><span class="p">:</span> <span class="s2">&#34;personal/admin&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;driveType&#34;</span><span class="p">:</span> <span class="s2">&#34;personal&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;storage-users-1$some-admin-user-id-0000-000000000000&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;lastModifiedDateTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2023-01-17T21:37:17.692033183+01:00&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Admin&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;owner&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;some-admin-user-id-0000-000000000000&#34;</span>
-</span></span><span class="line"><span class="cl">                <span class="p">}</span>
-</span></span><span class="line"><span class="cl">            <span class="p">},</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;quota&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="nt">&#34;remaining&#34;</span><span class="p">:</span> <span class="mi">4497686528</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nt">&#34;state&#34;</span><span class="p">:</span> <span class="s2">&#34;normal&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nt">&#34;total&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nt">&#34;used&#34;</span><span class="p">:</span> <span class="mi">0</span>
-</span></span><span class="line"><span class="cl">            <span class="p">},</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;root&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="nt">&#34;eTag&#34;</span><span class="p">:</span> <span class="s2">&#34;\&#34;4b65d2cbce79b2ecc45f876cc6e460d8\&#34;&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;storage-users-1$some-admin-user-id-0000-000000000000&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nt">&#34;webDavUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/dav/spaces/storage-users-1$some-admin-user-id-0000-000000000000&#34;</span>
-</span></span><span class="line"><span class="cl">            <span class="p">},</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;webUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/f/storage-users-1$some-admin-user-id-0000-000000000000&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">},</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;driveAlias&#34;</span><span class="p">:</span> <span class="s2">&#34;virtual/shares&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;driveType&#34;</span><span class="p">:</span> <span class="s2">&#34;virtual&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Shares&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;quota&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="nt">&#34;remaining&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nt">&#34;state&#34;</span><span class="p">:</span> <span class="s2">&#34;exceeded&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nt">&#34;total&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nt">&#34;used&#34;</span><span class="p">:</span> <span class="mi">0</span>
-</span></span><span class="line"><span class="cl">            <span class="p">},</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;root&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="nt">&#34;eTag&#34;</span><span class="p">:</span> <span class="s2">&#34;DECAFC00FEE&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nt">&#34;webDavUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/dav/spaces/a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668&#34;</span>
-</span></span><span class="line"><span class="cl">            <span class="p">},</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;webUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://localhost:9200/f/a0ca6a90-a365-4782-871e-d44447bbc668$a0ca6a90-a365-4782-871e-d44447bbc668&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div>
-    </div>
-</div>
-
-<div class="flex align-center gdoc-page__anchorwrap">
-    <h3 id="list-my-spaces-with-filters-get-medrivesfilterattribute-comparison-operator-value"
-    >
-        List my spaces with filters <code>GET /me/drives/$filter=&lt;attribute&gt; &lt;comparison operator&gt; &lt;value&gt;</code>
-    </h3>
-    <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#list-my-spaces-with-filters-get-medrivesfilterattribute-comparison-operator-value" class="gdoc-page__anchor clip flex align-center" title="Anchor to: List my spaces with filters GET /me/drives/$filter=&lt;attribute&gt; &lt;comparison operator&gt; &lt;value&gt;" aria-label="Anchor to: List my spaces with filters GET /me/drives/$filter=&lt;attribute&gt; &lt;comparison operator&gt; &lt;value&gt;" href="#list-my-spaces-with-filters-get-medrivesfilterattribute-comparison-operator-value">
-        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-    </a>
-</div>
-<p>Returns a list of all project spaces where the user is a regular member of. The filter query parameter supports the <code>eq</code>(equals) comparison operator. Possible filter attributes are:</p>
-<div class="table-wrap"> <table>
-<thead>
-<tr>
-<th>Attribute</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>driveType</td>
-<td>The space type. Values could be <code>project</code>, <code>personal</code>, <code>virtual</code>, <code>mountpoint</code></td>
-</tr>
-<tr>
-<td>id</td>
-<td>The space id. The value needs to be a space ID</td>
-</tr>
-</tbody>
-</table> </div>
-<div class="flex align-center gdoc-page__anchorwrap">
-    <h4 id="example-filters"
-    >
-        Example filters
-    </h4>
-    <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#example-filters" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Example filters" aria-label="Anchor to: Example filters" href="#example-filters">
-        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-    </a>
-</div>
-
-
-
-<div class="gdoc-tabs">
-    <input
-      type="radio"
-      class="gdoc-tabs__control hidden"
-      name="tabs-filter-drives"
-      id="tabs-filter-drives-0"
-      checked="checked"
-    />
-    <label for="tabs-filter-drives-0" class="gdoc-tabs__label">
-      Filter by space type project
-    </label>
-    <div class="gdoc-markdown--nested gdoc-tabs__content">
-      <p><code>curl -L -k -X GET 'https://localhost:9200/graph/v1.0/me/drives/$filter=driveType eq project'</code></p>
-<p>This returns a list of spaces of type <code>project</code>.</p>
-
-    </div>
-    <input
-      type="radio"
-      class="gdoc-tabs__control hidden"
-      name="tabs-filter-drives"
-      id="tabs-filter-drives-1"
-      
-    />
-    <label for="tabs-filter-drives-1" class="gdoc-tabs__label">
-      Filter by space type mountpoint
-    </label>
-    <div class="gdoc-markdown--nested gdoc-tabs__content">
-      <p><code>curl -L -k -X GET 'https://localhost:9200/graph/v1.0/me/drives/$filter=driveType eq mountpoint'</code></p>
-<p>This returns a list of spaces of type <code>mountpoint</code>.</p>
-
-    </div>
-    <input
-      type="radio"
-      class="gdoc-tabs__control hidden"
-      name="tabs-filter-drives"
-      id="tabs-filter-drives-2"
-      
-    />
-    <label for="tabs-filter-drives-2" class="gdoc-tabs__label">
-      Filter by space id
-    </label>
-    <div class="gdoc-markdown--nested gdoc-tabs__content">
-      <p><code>curl -L -k -X GET 'https://localhost:9200/graph/v1.0/me/drives/$filter=id eq some-space-id'</code></p>
-<p>This returns one space with the id from the filter if it exists.</p>
-
-    </div>
-</div>
-
-<div class="flex align-center gdoc-page__anchorwrap">
-    <h3 id="list-my-spaces-with-ordering-get-medrivesorderbykey-order"
-    >
-        List my spaces with ordering <code>GET /me/drives/$orderby=&lt;key&gt; &lt;order&gt;</code>
-    </h3>
-    <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#list-my-spaces-with-ordering-get-medrivesorderbykey-order" class="gdoc-page__anchor clip flex align-center" title="Anchor to: List my spaces with ordering GET /me/drives/$orderby=&lt;key&gt; &lt;order&gt;" aria-label="Anchor to: List my spaces with ordering GET /me/drives/$orderby=&lt;key&gt; &lt;order&gt;" href="#list-my-spaces-with-ordering-get-medrivesorderbykey-order">
-        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-    </a>
-</div>
-<p>Returns a list of all spaces ordered by the specified key. Possible order keys are</p>
-<div class="table-wrap"> <table>
-<thead>
-<tr>
-<th>key</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>name</td>
-<td>The space name</td>
-</tr>
-<tr>
-<td>lastModifiedDateTime</td>
-<td>The last modified date and time of the space</td>
-</tr>
-</tbody>
-</table> </div>
-<p>Both sort orders are supported, <code>asc</code> (ascending) and <code>desc</code> (descending).</p>
-<div class="flex align-center gdoc-page__anchorwrap">
-    <h4 id="ordering-examples"
-    >
-        Ordering examples
-    </h4>
-    <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#ordering-examples" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Ordering examples" aria-label="Anchor to: Ordering examples" href="#ordering-examples">
-        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-    </a>
-</div>
-
-
-
-<div class="gdoc-tabs">
-    <input
-      type="radio"
-      class="gdoc-tabs__control hidden"
-      name="tabs-sort-drives"
-      id="tabs-sort-drives-0"
-      checked="checked"
-    />
-    <label for="tabs-sort-drives-0" class="gdoc-tabs__label">
-      Sort by name
-    </label>
-    <div class="gdoc-markdown--nested gdoc-tabs__content">
-      <p><code>curl -L -k -X GET 'https://localhost:9200/graph/v1.0/me/drives/$orderby=name asc'</code></p>
-<p>This returns a list of spaces ordered by name ascending.</p>
-
-    </div>
-    <input
-      type="radio"
-      class="gdoc-tabs__control hidden"
-      name="tabs-sort-drives"
-      id="tabs-sort-drives-1"
-      
-    />
-    <label for="tabs-sort-drives-1" class="gdoc-tabs__label">
-      Sort by date
-    </label>
-    <div class="gdoc-markdown--nested gdoc-tabs__content">
-      <p><code>curl -L -k -X GET 'https://localhost:9200/graph/v1.0/me/drives/$orderby=lastModifiedDateTime desc'</code></p>
-<p>This returns a list of spaces ordered by the last modified date starting with the latest one.</p>
-
-    </div>
-</div>
-
+<p><a
+  class="gdoc-markdown__link"
+  href="https://owncloud.dev/libre-graph-api/#/me.drives/ListMyDrives"
+>https://owncloud.dev/libre-graph-api/#/me.drives/ListMyDrives</a></p>
 <div class="flex align-center gdoc-page__anchorwrap">
     <h2 id="modifying-spaces"
     >
@@ -19777,6 +19485,111 @@ The &ldquo;Space Manager&rdquo; is a user which is a regular member of a space b
     </div>
 </div>
 
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h2 id="sharing-space"
+    >
+        Sharing Space
+    </h2>
+    <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#sharing-space" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Sharing Space" aria-label="Anchor to: Sharing Space" href="#sharing-space">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="add-member-to-space-post-drivesdrive-idrootinvite"
+    >
+        Add member to space <code>POST /drives/{drive-id}/root/invite</code>
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#add-member-to-space-post-drivesdrive-idrootinvite" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Add member to space POST /drives/{drive-id}/root/invite" aria-label="Anchor to: Add member to space POST /drives/{drive-id}/root/invite" href="#add-member-to-space-post-drivesdrive-idrootinvite">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p><a
+  class="gdoc-markdown__link"
+  href="https://owncloud.dev/libre-graph-api/#/drives.permissions/Invite"
+>https://owncloud.dev/libre-graph-api/#/drives.permissions/Invite</a></p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="sharing-space-as-a-link-post-drivesdrive-idrootcreatelink"
+    >
+        Sharing space as a link <code>POST /drives/{drive-id}/root/createLink</code>
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#sharing-space-as-a-link-post-drivesdrive-idrootcreatelink" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Sharing space as a link POST /drives/{drive-id}/root/createLink" aria-label="Anchor to: Sharing space as a link POST /drives/{drive-id}/root/createLink" href="#sharing-space-as-a-link-post-drivesdrive-idrootcreatelink">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p><a
+  class="gdoc-markdown__link"
+  href="https://owncloud.dev/libre-graph-api/#/drives.root/CreateLinkSpaceRoot"
+>https://owncloud.dev/libre-graph-api/#/drives.root/CreateLinkSpaceRoot</a></p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h2 id="reading-space-permissions"
+    >
+        Reading Space Permissions
+    </h2>
+    <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#reading-space-permissions" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Reading Space Permissions" aria-label="Anchor to: Reading Space Permissions" href="#reading-space-permissions">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="listing-permissions-of-a-space-get-drivesdrive-idrootpermissions"
+    >
+        Listing permissions of a space <code>GET /drives/{drive-id}/root/permissions</code>
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#listing-permissions-of-a-space-get-drivesdrive-idrootpermissions" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Listing permissions of a space GET /drives/{drive-id}/root/permissions" aria-label="Anchor to: Listing permissions of a space GET /drives/{drive-id}/root/permissions" href="#listing-permissions-of-a-space-get-drivesdrive-idrootpermissions">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p><a
+  class="gdoc-markdown__link"
+  href="https://owncloud.dev/libre-graph-api/#/drives.root/ListPermissionsSpaceRoot"
+>https://owncloud.dev/libre-graph-api/#/drives.root/ListPermissionsSpaceRoot</a></p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h2 id="modifying--deleting-space-permissions"
+    >
+        Modifying / Deleting Space Permissions
+    </h2>
+    <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#modifying--deleting-space-permissions" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Modifying / Deleting Space Permissions" aria-label="Anchor to: Modifying / Deleting Space Permissions" href="#modifying--deleting-space-permissions">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="update-permissions-of-a-drive-patch-drivesdrive-idrootpermissionsperm-id"
+    >
+        Update permissions of a drive <code>PATCH /drives/{drive-id}/root/permissions/{perm-id}</code>
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#update-permissions-of-a-drive-patch-drivesdrive-idrootpermissionsperm-id" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Update permissions of a drive PATCH /drives/{drive-id}/root/permissions/{perm-id}" aria-label="Anchor to: Update permissions of a drive PATCH /drives/{drive-id}/root/permissions/{perm-id}" href="#update-permissions-of-a-drive-patch-drivesdrive-idrootpermissionsperm-id">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p><a
+  class="gdoc-markdown__link"
+  href="https://owncloud.dev/libre-graph-api/#/drives.root/UpdatePermissionSpaceRoot"
+>https://owncloud.dev/libre-graph-api/#/drives.root/UpdatePermissionSpaceRoot</a></p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="set-password-of-a-link-share-post-drivesdrive-idrootpermissionsperm-idsetpassword"
+    >
+        Set password of a link share <code>POST /drives/{drive-id}/root/permissions/{perm-id}/setPassword</code>
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#set-password-of-a-link-share-post-drivesdrive-idrootpermissionsperm-idsetpassword" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Set password of a link share POST /drives/{drive-id}/root/permissions/{perm-id}/setPassword" aria-label="Anchor to: Set password of a link share POST /drives/{drive-id}/root/permissions/{perm-id}/setPassword" href="#set-password-of-a-link-share-post-drivesdrive-idrootpermissionsperm-idsetpassword">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p><a
+  class="gdoc-markdown__link"
+  href="https://owncloud.dev/libre-graph-api/#/drives.root/SetPermissionPasswordSpaceRoot"
+>https://owncloud.dev/libre-graph-api/#/drives.root/SetPermissionPasswordSpaceRoot</a></p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="removing-acess-to-a-space-delete-drivesdrive-idrootpermissionsperm-id"
+    >
+        Removing acess to a space <code>DELETE /drives/{drive-id}/root/permissions/{perm-id}</code>
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/apis/http/graph/spaces/#removing-acess-to-a-space-delete-drivesdrive-idrootpermissionsperm-id" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Removing acess to a space DELETE /drives/{drive-id}/root/permissions/{perm-id}" aria-label="Anchor to: Removing acess to a space DELETE /drives/{drive-id}/root/permissions/{perm-id}" href="#removing-acess-to-a-space-delete-drivesdrive-idrootpermissionsperm-id">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p><a
+  class="gdoc-markdown__link"
+  href="https://owncloud.dev/libre-graph-api/#/drives.root/DeletePermissionSpaceRoot"
+>https://owncloud.dev/libre-graph-api/#/drives.root/DeletePermissionSpaceRoot</a></p>
 
   </article>
 
