@@ -71,7 +71,7 @@ interface AppMenuItemExtension { id: string type: &#39;appMenuItem&#39; extensio
       "url" : "https://owncloud.dev/clients/web/extension-system/extension-types/app-menu-items/",
       "headline": "Application menu item extensions",
       "description": "Extension Type AppMenuItem Configuration Example Extension Type AppMenuItem This extension type allows apps to register links to internal or external pages within the application switcher menu on the top left.\nConfiguration The Interface for an AppMenuItemExtension looks like so:\ninterface AppMenuItemExtension { id: string type: \u0027appMenuItem\u0027 extensionPointIds?: string[] label: () =\u003e string color?: string handler?: () =\u003e void icon?: string path?: string priority?: number url?: string } For id, type, and extensionPointIds, please see extension base section in the top level docs.",
-      "wordCount" : "283",
+      "wordCount" : "344",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18822,6 +18822,7 @@ Copyright 2022 Fonticons, Inc.
 <p>A <code>path</code> will result in an <code>&lt;a&gt;</code> element that links to an internal page via the vue router. That means the given path needs to exist within the application.</p>
 <p>A <code>url</code> will result in an <code>&lt;a&gt;</code> element that links to an external page. External pages always open in a new tab or window.</p>
 <p>At least one of these properties has to be provided when registering an extension. If you define more than one, the priority order is <code>handler</code> &gt; <code>path</code> &gt; <code>url</code>.</p>
+<p><code>priority</code> specifies the order of the menu items. 50 is a good number to start with, then go up/down based on where the item should be placed. Defaults to the highest possible number, so the item will most likely end up at the bottom of the list if you don&rsquo;t specify a <code>priority</code>. Leave it empty if unsure what to pick.</p>
 <div class="flex align-center gdoc-page__anchorwrap">
     <h2 id="example"
     >
