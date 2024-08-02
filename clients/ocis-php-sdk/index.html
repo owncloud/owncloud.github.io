@@ -77,7 +77,7 @@ Installation via Composer Add “owncloud/ocis-php-sdk” to the require block i
       "url" : "https://owncloud.dev/clients/ocis-php-sdk/",
       "headline": "oCIS PHP SDK",
       "description": "ocis-php-sdk This SDK allows you to interact with ownCloud Infinite Scale (oCIS) storage using PHP.\nDocumentation You can find a rendered version of the API documentation in our dev docs.\nTo render the documentation locally, use the phpDocumentor to run it in the local repo. E.g.:\ndocker run --rm -v ${PWD}:\/data phpdoc\/phpdoc:3 After that you will find the documentation inside the docs folder.\nInstallation via Composer Add “owncloud\/ocis-php-sdk” to the require block in your composer.",
-      "wordCount" : "922",
+      "wordCount" : "1066",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18905,6 +18905,48 @@ The ocis-php-sdk currently relies on a development version of the &ldquo;ownclou
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// get an array of all resources of the &#34;/documents&#34; folder inside the drive
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$resources</span> <span class="o">=</span> <span class="nv">$drives</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">getResources</span><span class="p">(</span><span class="s2">&#34;/documents&#34;</span><span class="p">);</span>
+</span></span></code></pre></div><div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="drive-permission"
+    >
+        Drive Permission
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/clients/ocis-php-sdk/#drive-permission" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Drive Permission" aria-label="Anchor to: Drive Permission" href="#drive-permission">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>Users/Groups can be invited to drives by specifying permissions. The <strong>Drive</strong> class has methods to invite Users/Groups, update permission roles and expiration dates, remove users and groups, etc.</p>
+<p>Drive invitations are only possible on <strong>project drives</strong>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// find all users with a specific surname
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$users</span> <span class="o">=</span> <span class="nv">$ocis</span><span class="o">-&gt;</span><span class="na">getUsers</span><span class="p">(</span><span class="s2">&#34;einstein&#34;</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// get all drives of type project
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$drives</span> <span class="o">=</span> <span class="nv">$ocis</span><span class="o">-&gt;</span><span class="na">getMyDrives</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">DriveOrder</span><span class="o">::</span><span class="na">NAME</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">OrderDirection</span><span class="o">::</span><span class="na">ASC</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">DriveType</span><span class="o">::</span><span class="na">PROJECT</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// get the drive named &#39;game&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">foreach</span> <span class="p">(</span><span class="nv">$drives</span> <span class="k">as</span> <span class="nv">$drive</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nv">$drive</span><span class="o">-&gt;</span><span class="na">getName</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;game&#39;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$gameDrive</span> <span class="o">=</span> <span class="nv">$drive</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// get all roles that are possible for that drive
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$driveRoles</span> <span class="o">=</span> <span class="nv">$gameDrive</span><span class="o">-&gt;</span><span class="na">getRoles</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// get the role that is allowed to view, download, upload, edit, add, delete and manage members
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">foreach</span> <span class="p">(</span><span class="nv">$driveRoles</span> <span class="k">as</span> <span class="nv">$role</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nv">$role</span><span class="o">-&gt;</span><span class="na">getDisplayName</span><span class="p">()</span> <span class="o">===</span> <span class="s1">&#39;Manager&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$managerRole</span> <span class="o">=</span> <span class="nv">$role</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// invite user einstein on project drive &#39;game&#39; with manager permission
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$gameDrive</span><span class="o">-&gt;</span><span class="na">invite</span><span class="p">(</span><span class="nv">$users</span><span class="p">,</span> <span class="nv">$managerRole</span><span class="p">);</span>
 </span></span></code></pre></div><div class="flex align-center gdoc-page__anchorwrap">
     <h2 id="notifications"
     >
