@@ -47,11 +47,11 @@ Table of Contents Custom Compiled Web Assets Web UI Configuration Web UI Options
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2024-08-06T06:27:32+00:00"
+      content="2024-08-06T07:37:03+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-08-06T06:27:32+00:00"
+      content="2024-08-06T07:37:03+00:00"
     />
 
 
@@ -71,7 +71,7 @@ Table of Contents Custom Compiled Web Assets Web UI Configuration Web UI Options
       "url" : "https://owncloud.dev/services/web/",
       "headline": "Web",
       "description": "Abstract The web service embeds and serves the static files for the Infinite Scale Web Client. Note that clients will respond with a connection error if the web service is not available.\nThe web service also provides a minimal API for branding functionality like changing the logo shown.\nTable of Contents Custom Compiled Web Assets Web UI Configuration Web UI Options Web UI Config File Embedding Web Web Apps Loading Themes Loading Applications Application Structure Application Configuration Using Custom Assets Miscellaneous Example Yaml Config Custom Compiled Web Assets If you want to use your custom compiled web client assets instead of the embedded ones, then you can do that by setting the WEB_ASSET_PATH variable to point to your compiled files.",
-      "wordCount" : "2790",
+      "wordCount" : "2834",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -80,9 +80,9 @@ Table of Contents Custom Compiled Web Assets Web UI Configuration Web UI Options
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-08-06T06:27:32.45Z",
-      "datePublished": "2024-08-06T06:27:32.45Z",
-      "dateModified": "2024-08-06T06:27:32.45Z",
+      "dateCreated": "2024-08-06T07:37:03.88Z",
+      "datePublished": "2024-08-06T07:37:03.88Z",
+      "dateModified": "2024-08-06T07:37:03.88Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -18976,6 +18976,7 @@ Everything else is skipped and not considered as an application.</p>
 <ul>
 <li>Each application must be in its own directory accessed via <code>WEB_ASSET_APPS_PATH</code>.</li>
 <li>Each application directory must contain a <code>manifest.json</code> file.</li>
+<li>Each application directory can contain a <code>config.json</code> file.</li>
 </ul>
 </li>
 <li>
@@ -19015,21 +19016,29 @@ A list of key-value pairs that are passed to the global web application configur
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">config</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">maxHeight</span><span class="p">:</span><span class="w"> </span><span class="m">640</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">maxSize</span><span class="p">:</span><span class="w"> </span><span class="m">512</span><span class="w">
-</span></span></span></code></pre></div><p>The final configuration for web will be:</p>
+</span></span></span></code></pre></div><p>optional each application can have its own configuration file, which will be loaded by the WEB service.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;config&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;maxWidth&#34;</span><span class="p">:</span> <span class="mi">320</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>The Merge order is as follows: local.config overwrites &gt; global.config overwrites &gt; manifest.config.
+The result will be:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nt">&#34;external_apps&#34;</span><span class="p">:</span> <span class="p">[</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;image-viewer-obj&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;index.js&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;config&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;maxWidth&#34;</span><span class="p">:</span> <span class="mi">1280</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;maxWidth&#34;</span><span class="p">:</span> <span class="mi">320</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">        <span class="nt">&#34;maxHeight&#34;</span><span class="p">:</span> <span class="mi">640</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">        <span class="nt">&#34;maxSize&#34;</span><span class="p">:</span> <span class="mi">512</span>
 </span></span><span class="line"><span class="cl">      <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Besides the configuration from the <code>manifest.json</code> file, the <code>apps.yaml</code> file can also contain the following fields:</p>
+</span></span></code></pre></div><p>Besides the configuration from the <code>manifest.json</code> file,
+the <code>apps.yaml</code> or the <code>config.json</code> file can also contain the following fields:</p>
 <ul>
 <li><code>disabled</code> - optional<br>
 Defaults to <code>false</code>. If set to <code>true</code>, the application will not be loaded.</li>
@@ -19044,7 +19053,7 @@ Defaults to <code>false</code>. If set to <code>true</code>, the application wil
     </a>
 </div>
 <p>Besides the configuration and application registration, in the process of loading the application assets, the system uses a mechanism to load custom assets.</p>
-<p>This is very useful for cases where just a single asset should be overwritten, like a logo or similar.</p>
+<p>This is useful for cases where just a single asset should be overwritten, like a logo or similar.</p>
 <p>Consider the following: Infinite Scale is shipped with a default web app named <code>image-viewer-dfx</code> which contains a logo,
 but the administrator wants to provide a custom logo for that application.</p>
 <p>This can be achieved using the path defined via <code>WEB_ASSET_APPS_PATH</code> and adding a custom structure like <code>WEB_ASSET_APPS_PATH/image-viewer-dfx/</code>. Here you can add all custom assets to load like <code>logo.png</code>. On loading the web app, custom assets defined overwrite default ones.</p>
