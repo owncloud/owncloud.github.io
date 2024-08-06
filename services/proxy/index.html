@@ -45,11 +45,11 @@ The proxy service is the only service communicating to the outside and needs the
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2024-08-06T04:07:33+00:00"
+      content="2024-08-06T06:27:32+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-08-06T04:07:33+00:00"
+      content="2024-08-06T06:27:32+00:00"
     />
 
 
@@ -68,7 +68,7 @@ The proxy service is the only service communicating to the outside and needs the
       "url" : "https://owncloud.dev/services/proxy/",
       "headline": "Proxy",
       "description": "Abstract The proxy service is an API-Gateway for the ownCloud Infinite Scale microservices. Every HTTP request goes through this service. Authentication, logging and other preprocessing of requests also happens here. Mechanisms like request rate limiting or intrusion prevention are not included in the proxy service and must be setup in front like with an external reverse proxy.\nThe proxy service is the only service communicating to the outside and needs therefore usual protections against DDOS, Slow Loris or other attack vectors.",
-      "wordCount" : "4511",
+      "wordCount" : "4561",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ The proxy service is the only service communicating to the outside and needs the
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-08-06T04:07:33.61Z",
-      "datePublished": "2024-08-06T04:07:33.61Z",
-      "dateModified": "2024-08-06T04:07:33.61Z",
+      "dateCreated": "2024-08-06T06:27:32.45Z",
+      "datePublished": "2024-08-06T06:27:32.45Z",
+      "dateModified": "2024-08-06T06:27:32.45Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -18919,12 +18919,13 @@ users upon their first login.</p>
 <li>ownCloud Infinite Scale must be configured to use an external OpenID Connect IDP</li>
 <li>The <code>graph</code> service must be configured to allow updating users and groups
 (<code>GRAPH_LDAP_SERVER_WRITE_ENABLED</code>).</li>
-<li>The IDP must return a unique value in the user&rsquo;s claims (as part of the
-userinfo response and/or the access tokens) that can be used to identify
-the user. This claim needs to be stable and cannot be changed for the whole
-lifetime of the user. That means, if a claim like <code>email</code> or
-<code>preferred_username</code> is used, you must ensure that the user&rsquo;s email address or
-username never changes.</li>
+<li>One of the claim values returned by the IDP as part of the userinfo response
+or the access token must be unique and stable for the user. I.e. the value
+must not change for the whole lifetime of the user. This claim is configured
+via the <code>PROXY_USER_OIDC_CLAIM</code> environment variable (see below). A natural
+choice would e.g. be the <code>sub</code> claim which is guaranteed to be unique and
+stable per IDP. If a claim like <code>email</code> or <code>preferred_username</code> is used, you
+have to ensure that the user&rsquo;s email address or username never changes.</li>
 </ul>
 <div class="flex align-center gdoc-page__anchorwrap">
     <h3 id="configuration"
@@ -18980,8 +18981,11 @@ claim configured in <code>PROXY_USER_OIDC_CLAIM</code>.</p>
 service using the claim values configured in
 <code>PROXY_AUTOPROVISION_CLAIM_USERNAME</code>, <code>PROXY_AUTOPROVISION_CLAIM_EMAIL</code> and
 <code>PROXY_AUTOPROVISION_CLAIM_DISPLAYNAME</code>.</p>
-<p>If the user does already exist, the proxy will check if the user&rsquo;s email or
-displayname has changed and updates those accordingly via <code>graph</code> service.</p>
+<p>If the user does already exist, the proxy checks if the displayname has changed
+and updates that accordingly via <code>graph</code> service.</p>
+<p>Unless the claim configured via <code>PROXY_AUTOPROVISION_CLAIM_EMAIL</code> is the same
+as the one set via <code>PROXY_USER_OIDC_CLAIM</code> the proxy will also check if the
+email address has changed and update that as well.</p>
 <p>Next, the proxy will check if the user is a member of the groups configured in
 <code>PROXY_AUTOPROVISION_CLAIM_GROUPS</code>. It will add the user to the groups listed
 via the OIDC claim that holds the groups defined in the envvar and removes it from
