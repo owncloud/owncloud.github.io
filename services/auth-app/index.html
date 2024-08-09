@@ -13,8 +13,7 @@
 
 
   <meta name="description" content="Abstract The auth-app service provides authentication for 3rd party apps.
-Table of Contents The auth Service Family Service Startup App Tokens Example Yaml Config The auth Service Family ocis uses serveral authentication services for different use cases. All services that start with auth- are part of the authentication service family. Each member authenticates requests with different scopes. As of now, these services exist:
-auth-app handles authentication of external 3rd party apps auth-basic handles basic authentication auth-bearer handles oidc authentication auth-machine handles interservice authentication when a user is impersonated auth-service handles interservice authentication when using service accounts Service Startup Because this service is not started automatically, a manual start needs to be initiated which can be done in several ways." />
+Table of Contents The auth Service Family Service Startup App Tokens Via CLI (dev only) Via API Via Impersonation API Example Yaml Config The auth Service Family ocis uses serveral authentication services for different use cases. All services that start with auth- are part of the authentication service family. Each member authenticates requests with different scopes. As of now, these services exist:" />
 
     <title>Auth-App | ownCloud</title>
 
@@ -39,27 +38,25 @@ auth-app handles authentication of external 3rd party apps auth-basic handles ba
   />
   <meta property="og:site_name" content="ownCloud" />
   <meta property="og:description" content="Abstract The auth-app service provides authentication for 3rd party apps.
-Table of Contents The auth Service Family Service Startup App Tokens Example Yaml Config The auth Service Family ocis uses serveral authentication services for different use cases. All services that start with auth- are part of the authentication service family. Each member authenticates requests with different scopes. As of now, these services exist:
-auth-app handles authentication of external 3rd party apps auth-basic handles basic authentication auth-bearer handles oidc authentication auth-machine handles interservice authentication when a user is impersonated auth-service handles interservice authentication when using service accounts Service Startup Because this service is not started automatically, a manual start needs to be initiated which can be done in several ways." />
+Table of Contents The auth Service Family Service Startup App Tokens Via CLI (dev only) Via API Via Impersonation API Example Yaml Config The auth Service Family ocis uses serveral authentication services for different use cases. All services that start with auth- are part of the authentication service family. Each member authenticates requests with different scopes. As of now, these services exist:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/auth-app/" />
 
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2024-08-09T07:41:15+00:00"
+      content="2024-08-09T11:58:47+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-08-09T07:41:15+00:00"
+      content="2024-08-09T11:58:47+00:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Auth-App" />
   <meta name="twitter:description" content="Abstract The auth-app service provides authentication for 3rd party apps.
-Table of Contents The auth Service Family Service Startup App Tokens Example Yaml Config The auth Service Family ocis uses serveral authentication services for different use cases. All services that start with auth- are part of the authentication service family. Each member authenticates requests with different scopes. As of now, these services exist:
-auth-app handles authentication of external 3rd party apps auth-basic handles basic authentication auth-bearer handles oidc authentication auth-machine handles interservice authentication when a user is impersonated auth-service handles interservice authentication when using service accounts Service Startup Because this service is not started automatically, a manual start needs to be initiated which can be done in several ways." />
+Table of Contents The auth Service Family Service Startup App Tokens Via CLI (dev only) Via API Via Impersonation API Example Yaml Config The auth Service Family ocis uses serveral authentication services for different use cases. All services that start with auth- are part of the authentication service family. Each member authenticates requests with different scopes. As of now, these services exist:" />
 
 
   <script type="application/ld+json">
@@ -70,8 +67,8 @@ auth-app handles authentication of external 3rd party apps auth-basic handles ba
       "name": "Auth-App",
       "url" : "https://owncloud.dev/services/auth-app/",
       "headline": "Auth-App",
-      "description": "Abstract The auth-app service provides authentication for 3rd party apps.\nTable of Contents The auth Service Family Service Startup App Tokens Example Yaml Config The auth Service Family ocis uses serveral authentication services for different use cases. All services that start with auth- are part of the authentication service family. Each member authenticates requests with different scopes. As of now, these services exist:\nauth-app handles authentication of external 3rd party apps auth-basic handles basic authentication auth-bearer handles oidc authentication auth-machine handles interservice authentication when a user is impersonated auth-service handles interservice authentication when using service accounts Service Startup Because this service is not started automatically, a manual start needs to be initiated which can be done in several ways.",
-      "wordCount" : "720",
+      "description": "Abstract The auth-app service provides authentication for 3rd party apps.\nTable of Contents The auth Service Family Service Startup App Tokens Via CLI (dev only) Via API Via Impersonation API Example Yaml Config The auth Service Family ocis uses serveral authentication services for different use cases. All services that start with auth- are part of the authentication service family. Each member authenticates requests with different scopes. As of now, these services exist:",
+      "wordCount" : "1091",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -80,9 +77,9 @@ auth-app handles authentication of external 3rd party apps auth-basic handles ba
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-08-09T07:41:15.64Z",
-      "datePublished": "2024-08-09T07:41:15.64Z",
-      "dateModified": "2024-08-09T07:41:15.64Z",
+      "dateCreated": "2024-08-09T11:58:47.12Z",
+      "datePublished": "2024-08-09T11:58:47.12Z",
+      "dateModified": "2024-08-09T11:58:47.12Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -18779,7 +18776,22 @@ Copyright 2022 Fonticons, Inc.
 <li><a
   class="gdoc-markdown__link"
   href="#app-tokens"
->App Tokens</a></li>
+>App Tokens</a>
+<ul>
+<li><a
+  class="gdoc-markdown__link"
+  href="#via-cli-%28dev-only%29"
+>Via CLI (dev only)</a></li>
+<li><a
+  class="gdoc-markdown__link"
+  href="#via-api"
+>Via API</a></li>
+<li><a
+  class="gdoc-markdown__link"
+  href="#via-impersonation-api"
+>Via Impersonation API</a></li>
+</ul>
+</li>
 <li><a
   class="gdoc-markdown__link"
   href="#example-yaml-config"
@@ -18823,9 +18835,40 @@ Copyright 2022 Fonticons, Inc.
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
 </div>
-<p>App Tokens are used to authenticate 3rd party access via https like when using curl (apps) to access an API endpoint. These apps need to authenticate themselves as no logged in user authenticates the request. To be able to use an app token, one must first create a token via the cli. Replace the <code>user-name</code> with an existing user. For the <code>token-expiration</code>, you can use any time abbreviation from the following list: <code>h, m, s</code>. Examples: <code>72h</code> or <code>1h</code> or <code>1m</code> or <code>1s.</code> Default is <code>72h</code>.</p>
+<p>App Tokens are used to authenticate 3rd party access via https like when using curl (apps) to access an API endpoint. These apps need to authenticate themselves as no logged in user authenticates the request. To be able to use an app token, one must first create a token. There are different options of creating a token.</p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="via-cli-dev-only"
+    >
+        Via CLI (dev only)
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/services/auth-app/#via-cli-dev-only" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Via CLI (dev only)" aria-label="Anchor to: Via CLI (dev only)" href="#via-cli-dev-only">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>Replace the <code>user-name</code> with an existing user. For the <code>token-expiration</code>, you can use any time abbreviation from the following list: <code>h, m, s</code>. Examples: <code>72h</code> or <code>1h</code> or <code>1m</code> or <code>1s.</code> Default is <code>72h</code>.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis auth-app create --user-name<span class="o">={</span>user-name<span class="o">}</span> --expiration<span class="o">={</span>token-expiration<span class="o">}</span>
 </span></span></code></pre></div><p>Once generated, these tokens can be used to authenticate requests to ocis. They are passed as part of the request as <code>Basic Auth</code> header.</p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="via-api"
+    >
+        Via API
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/services/auth-app/#via-api" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Via API" aria-label="Anchor to: Via API" href="#via-api">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>The <code>auth-app</code> service provides an API to create (POST), list (GET) and delete (DELETE) tokens at <code>/auth-app/tokens</code>.</p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="via-impersonation-api"
+    >
+        Via Impersonation API
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/services/auth-app/#via-impersonation-api" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Via Impersonation API" aria-label="Anchor to: Via Impersonation API" href="#via-impersonation-api">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>When setting the environment variable <code>AUTH_APP_ENABLE_IMPERSONATION</code> to <code>true</code>, admins will be able to use the <code>/auth-app/tokens</code> endpoint to create tokens for other users. This is crucial for migration scenarios,
+but should not be used on a productive system.</p>
 <div class="flex align-center gdoc-page__anchorwrap">
     <h2 id="example-yaml-config"
     >
@@ -18875,6 +18918,31 @@ Copyright 2022 Fonticons, Inc.
 </span><span class="lnt">29
 </span><span class="lnt">30
 </span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># Autogenerated</span><span class="w">
@@ -18899,6 +18967,30 @@ Copyright 2022 Fonticons, Inc.
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">addr</span><span class="p">:</span><span class="w"> </span><span class="m">127.0.0.1</span><span class="p">:</span><span class="m">9246</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tls</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">tcp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">http</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">addr</span><span class="p">:</span><span class="w"> </span><span class="m">127.0.0.1</span><span class="p">:</span><span class="m">9247</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">root</span><span class="p">:</span><span class="w"> </span><span class="l">/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">cors</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">allow_origins</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s1">&#39;*&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">allow_methods</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">GET</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">POST</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">DELETE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">allow_headers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">Authorization</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">Origin</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">Content-Type</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">Accept</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">X-Requested-With</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">X-Request-Id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">Ocs-Apirequest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">allow_credentials</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tls</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">cert</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">grpc_client_tls</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">token_manager</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">jwt_secret</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">reva</span><span class="p">:</span><span class="w">
@@ -18908,6 +19000,7 @@ Copyright 2022 Fonticons, Inc.
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">cacert</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">skip_user_groups_in_token</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">machine_auth_api_key</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">allow_impersonation</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div></div>
@@ -19023,6 +19116,72 @@ Copyright 2022 Fonticons, Inc.
 <td>The transport protocol of the GRPC service.</td>
 </tr>
 <tr>
+<td>AUTH_APP_HTTP_ADDR</td>
+<td>string</td>
+<td>127.0.0.1:9247</td>
+<td>The bind address of the HTTP service.</td>
+</tr>
+<tr>
+<td>AUTH_APP_HTTP_ROOT</td>
+<td>string</td>
+<td>/</td>
+<td>Subdirectory that serves as the root for this HTTP service.</td>
+</tr>
+<tr>
+<td>OCIS_CORS_ALLOW_ORIGINS<br/>AUTH_APP_CORS_ALLOW_ORIGINS</td>
+<td>[]string</td>
+<td>[*]</td>
+<td>A list of allowed CORS origins. See following chapter for more details: <em>Access-Control-Allow-Origin</em> at <a
+  class="gdoc-markdown__link"
+  href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin"
+>https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin</a>. See the Environment Variable Types description for more details.</td>
+</tr>
+<tr>
+<td>OCIS_CORS_ALLOW_METHODS<br/>AUTH_APP_CORS_ALLOW_METHODS</td>
+<td>[]string</td>
+<td>[GET POST DELETE]</td>
+<td>A list of allowed CORS methods. See following chapter for more details: <em>Access-Control-Request-Method</em> at <a
+  class="gdoc-markdown__link"
+  href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Request-Method"
+>https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Request-Method</a>. See the Environment Variable Types description for more details.</td>
+</tr>
+<tr>
+<td>OCIS_CORS_ALLOW_HEADERS<br/>AUTH_APP_CORS_ALLOW_HEADERS</td>
+<td>[]string</td>
+<td>[Authorization Origin Content-Type Accept X-Requested-With X-Request-Id Ocs-Apirequest]</td>
+<td>A list of allowed CORS headers. See following chapter for more details: <em>Access-Control-Request-Headers</em> at <a
+  class="gdoc-markdown__link"
+  href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Request-Headers"
+>https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Request-Headers</a>. See the Environment Variable Types description for more details.</td>
+</tr>
+<tr>
+<td>OCIS_CORS_ALLOW_CREDENTIALS<br/>AUTH_APP_CORS_ALLOW_CREDENTIALS</td>
+<td>bool</td>
+<td>true</td>
+<td>Allow credentials for CORS.See following chapter for more details: <em>Access-Control-Allow-Credentials</em> at <a
+  class="gdoc-markdown__link"
+  href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials"
+>https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials</a>.</td>
+</tr>
+<tr>
+<td>OCIS_HTTP_TLS_ENABLED</td>
+<td>bool</td>
+<td>false</td>
+<td>Activates TLS for the http based services using the server certifcate and key configured via OCIS_HTTP_TLS_CERTIFICATE and OCIS_HTTP_TLS_KEY. If OCIS_HTTP_TLS_CERTIFICATE is not set a temporary server certificate is generated - to be used with PROXY_INSECURE_BACKEND=true.</td>
+</tr>
+<tr>
+<td>OCIS_HTTP_TLS_CERTIFICATE</td>
+<td>string</td>
+<td></td>
+<td>Path/File name of the TLS server certificate (in PEM format) for the http services.</td>
+</tr>
+<tr>
+<td>OCIS_HTTP_TLS_KEY</td>
+<td>string</td>
+<td></td>
+<td>Path/File name for the TLS certificate key (in PEM format) for the server certificate to use for the http services.</td>
+</tr>
+<tr>
 <td>OCIS_JWT_SECRET<br/>AUTH_APP_JWT_SECRET</td>
 <td>string</td>
 <td></td>
@@ -19057,6 +19216,12 @@ Copyright 2022 Fonticons, Inc.
 <td>string</td>
 <td></td>
 <td>The machine auth API key used to validate internal requests necessary to access resources from other services.</td>
+</tr>
+<tr>
+<td>AUTH_APP_ENABLE_IMPERSONATION</td>
+<td>bool</td>
+<td>false</td>
+<td>Allows admins to create app tokens for other users. Used for migration. Do NOT use in productive deployments.</td>
 </tr>
 </tbody>
 </table> </div>
