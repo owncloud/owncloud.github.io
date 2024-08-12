@@ -45,11 +45,11 @@ Table of Contents Endpoints Overview appprovider archiver datagateway ocs Event 
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2024-08-12T12:12:01+00:00"
+      content="2024-08-12T15:21:23+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-08-12T12:12:01+00:00"
+      content="2024-08-12T15:21:23+00:00"
     />
 
 
@@ -77,9 +77,9 @@ Table of Contents Endpoints Overview appprovider archiver datagateway ocs Event 
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-08-12T12:12:01.52Z",
-      "datePublished": "2024-08-12T12:12:01.52Z",
-      "dateModified": "2024-08-12T12:12:01.52Z",
+      "dateCreated": "2024-08-12T15:21:23.17Z",
+      "datePublished": "2024-08-12T15:21:23.17Z",
+      "dateModified": "2024-08-12T15:21:23.17Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -19421,9 +19421,9 @@ is set to <code>false</code>.</p>
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">stat_cache_auth_password</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">enable_denials</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">list_ocm_shares</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">include_ocm_sharees</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">public_sharing_share_must_have_password</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">public_sharing_writeableshare_must_have_password</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">include_ocm_sharees</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">show_email_in_results</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">checksums</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">supported_types</span><span class="p">:</span><span class="w">
@@ -19686,13 +19686,13 @@ is set to <code>false</code>.</p>
 <td>The default upload protocol to use in clients. Currently only &rsquo;tus&rsquo; is available. See the developer API documentation for more details about TUS.</td>
 </tr>
 <tr>
-<td>FRONTEND_ENABLE_FEDERATED_SHARING_INCOMING</td>
+<td>OCIS_ENABLE_OCM<br/>FRONTEND_ENABLE_FEDERATED_SHARING_INCOMING</td>
 <td>bool</td>
 <td>false</td>
 <td>Changing this value is NOT supported. Enables support for incoming federated sharing for clients. The backend behaviour is not changed.</td>
 </tr>
 <tr>
-<td>FRONTEND_ENABLE_FEDERATED_SHARING_OUTGOING</td>
+<td>OCIS_ENABLE_OCM<br/>FRONTEND_ENABLE_FEDERATED_SHARING_OUTGOING</td>
 <td>bool</td>
 <td>false</td>
 <td>Changing this value is NOT supported. Enables support for outgoing federated sharing for clients. The backend behaviour is not changed.</td>
@@ -19848,10 +19848,16 @@ is set to <code>false</code>.</p>
 <td>EXPERIMENTAL: enable the feature to deny access on folders.</td>
 </tr>
 <tr>
-<td>FRONTEND_OCS_LIST_OCM_SHARES</td>
+<td>OCIS_ENABLE_OCM<br/>FRONTEND_OCS_LIST_OCM_SHARES</td>
 <td>bool</td>
 <td>true</td>
 <td>Include OCM shares when listing shares. See the OCM service documentation for more details.</td>
+</tr>
+<tr>
+<td>OCIS_ENABLE_OCM<br/>FRONTEND_OCS_INCLUDE_OCM_SHAREES</td>
+<td>bool</td>
+<td>false</td>
+<td>Include OCM sharees when listing sharees.</td>
 </tr>
 <tr>
 <td>OCIS_SHARING_PUBLIC_SHARE_MUST_HAVE_PASSWORD<br/>FRONTEND_OCS_PUBLIC_SHARE_MUST_HAVE_PASSWORD</td>
@@ -19864,12 +19870,6 @@ is set to <code>false</code>.</p>
 <td>bool</td>
 <td>false</td>
 <td>Set this to true if you want to enforce passwords for writable shares. Only effective if the setting for &lsquo;passwords on all public shares&rsquo; is set to false.</td>
-</tr>
-<tr>
-<td>FRONTEND_OCS_INCLUDE_OCM_SHAREES</td>
-<td>bool</td>
-<td>false</td>
-<td>Include OCM sharees when listing sharees.</td>
 </tr>
 <tr>
 <td>OCIS_SHOW_USER_EMAIL_IN_RESULTS</td>

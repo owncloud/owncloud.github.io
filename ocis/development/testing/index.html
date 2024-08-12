@@ -65,7 +65,7 @@
       "url" : "https://owncloud.dev/ocis/development/testing/",
       "headline": "Acceptance Testing",
       "description": "Testing With Test Suite in Docker Run Full Test Suite Local oCIS Tests (prefix api) Tests Transferred From ownCloud Core (prefix coreApi) Run Single Feature Test oCIS Image to Be Tested (Skip Local Image Build) Test Log Output Cleanup Testing With Test Suite Natively Installed Run oCIS Run Local oCIS Tests (prefix api) Run Tests Transferred From ownCloud Core (prefix coreApi) Use Existing Tests for BDD Running ENV Config Tests (@env-Config) Run oCIS With ociswrapper Run the Tests Writing New ENV Config Tests Running Test Suite With Email Service (@email) Setup Inbucket Run oCIS Run the Acceptance Test Running Test Suite With Tika Service (@tikaServiceNeeded) Setup Tika Service Run oCIS Run the Acceptance Test Running Tests for Parallel Deployment Setup the Parallel Deployment Environment Getting the Test Helpers Run the Acceptance Tests Running Test Suite With Antivirus Service (@antivirus) Setup clamAV 1.",
-      "wordCount" : "2504",
+      "wordCount" : "2489",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -19688,10 +19688,7 @@ For antivirus running with docker, use <code>ANTIVIRUS_CLAMAV_SOCKET= &quot;tcp:
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># run oCIS</span>
 </span></span><span class="line"><span class="cl"><span class="nv">OCIS_URL</span><span class="o">=</span><span class="s2">&#34;https://ocis-server:9200&#34;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">PROXY_ENABLE_BASIC_AUTH</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">GRAPH_INCLUDE_OCM_SHAREES</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">OCM_OCM_INVITE_MANAGER_INSECURE</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">OCM_OCM_SHARE_PROVIDER_INSECURE</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">OCM_OCM_STORAGE_PROVIDER_INSECURE</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">OCIS_ENABLE_OCM</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">OCM_OCM_PROVIDER_AUTHORIZER_PROVIDERS_FILE</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">workspaceFolder</span><span class="si">}</span><span class="s2">/tests/config/drone/providers.json&#34;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">OCIS_ADD_RUN_SERVICES</span><span class="o">=</span><span class="s2">&#34;ocm&#34;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>ocis/bin/ocis server
@@ -19736,16 +19733,9 @@ For antivirus running with docker, use <code>ANTIVIRUS_CLAMAV_SOCKET= &quot;tcp:
 
 <blockquote class="gdoc-hint note">
   <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
-  <div class="gdoc-hint__text"><p>To enable ocm in the web interface, you need to set the following envs:
-<code>FRONTEND_OCS_INCLUDE_OCM_SHAREES=true</code> <br>
-<code>FRONTEND_OCS_LIST_OCM_SHARES=true</code> <br>
-<code>FRONTEND_ENABLE_FEDERATED_SHARING_INCOMING=true</code> <br>
-<code>FRONTEND_ENABLE_FEDERATED_SHARING_OUTGOING=true</code> \</p>
-<p>and put <code>ocm</code> to apps <a
-  class="gdoc-markdown__link"
-  href="https://github.com/owncloud/ocis/blob/master/services/web/pkg/config/defaults/defaultconfig.go#L101"
->https://github.com/owncloud/ocis/blob/master/services/web/pkg/config/defaults/defaultconfig.go#L101</a></p>
-</div>
+  <div class="gdoc-hint__text">To enable ocm in the web interface, you need to set the following envs:
+<code>OCIS_ENABLE_OCM=&quot;true&quot;</code>
+<code>OCIS_ADD_RUN_SERVICES=&quot;ocm&quot;</code></div>
 </blockquote>
 
 <div class="flex align-center gdoc-page__anchorwrap">
