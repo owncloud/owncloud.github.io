@@ -65,7 +65,7 @@
       "url" : "https://owncloud.dev/ocis/deployment/ocis_full/",
       "headline": "Full modular oCIS with WebOffice",
       "description": "Overview Easy Default Goal: Default components Optional components Server Deployment Requirements Install oCIS and Traefik Reverse Proxy and SSL Infinite Scale Release and Version Local setup Additional services Clamav Virusscanner Traefik dashboard Cloud Importer S3 Storage Use a local minio S3 storage backend Local setup for web development Using Podman Overview oCIS, the collaboration service, Collabora or OnlyOffice running behind Traefik as reverse proxy Collabora or OnlyOffice enable you to edit office documents in your browser The collaboration server acts as a bridge to make the oCIS storage accessible to Collabora and OnlyOffice Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup The whole deployment acts as a modular toolkit to use different flavors of office suites and ocis features Find this example on GitHub",
-      "wordCount" : "2575",
+      "wordCount" : "2597",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -19159,7 +19159,7 @@ Copyright 2022 Fonticons, Inc.
 </span></span><span class="line"><span class="cl"><span class="c1"># The oCIS container image.</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># For production releases: &#34;owncloud/ocis&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># For rolling releases:    &#34;owncloud/ocis-rolling&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Defaults to &#34;owncloud/ocis&#34; (production)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Defaults to &#34;owncloud/ocis-rolling&#34; (rolling release)</span>
 </span></span><span class="line"><span class="cl"><span class="nv">OCIS_DOCKER_IMAGE</span><span class="o">=</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># The oCIS container version.</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Defaults to &#34;latest&#34; and points to the latest stable tag.</span>
@@ -19304,9 +19304,9 @@ Though it may sound strange, most of the setups are failing due to a misconfigur
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
 </div>
-<p>By default oCIS will be started in the <code>latest</code> production version.
-You can change it to use the oCIS rolling releases by setting <code>OCIS_DOCKER_IMAGE=owncloud/ocis-rolling</code>. This will always use the latest rolling release.</p>
-<p>If you want to use a specific version of oCIS, set the version to a dedicated tag like <code>OCIS_DOCKER_TAG=5.0.1</code>. Available  production versions can be found on <a
+<p>By default oCIS will be started in the <code>latest</code> rolling version. Please note that this deployment does currently not work with the 5.x productions releases.
+The oCIS &ldquo;collaboration&rdquo; service, which is required by this deployment, is not part of the 5.x releases.</p>
+<p>If you want to use a specific version of oCIS, set the version to a dedicated tag like <code>OCIS_DOCKER_TAG=6.2.0</code>. The minimal required oCIS Version to run this deployment is 6.2.0. Available  production versions can be found on <a
   class="gdoc-markdown__link"
   href="https://hub.docker.com/r/owncloud/ocis/tags?page=1&amp;ordering=last_updated"
 >Docker Hub Production</a> and available rolling releases can be found on <a
