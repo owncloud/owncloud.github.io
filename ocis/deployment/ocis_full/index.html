@@ -65,7 +65,7 @@
       "url" : "https://owncloud.dev/ocis/deployment/ocis_full/",
       "headline": "Full modular oCIS with WebOffice",
       "description": "Overview Easy Default Goal: Default components Optional components Server Deployment Requirements Install oCIS and Traefik Reverse Proxy and SSL Infinite Scale Release and Version Local setup Additional services Clamav Virusscanner Traefik dashboard Cloud Importer S3 Storage Use a local minio S3 storage backend Local setup for web development Using Podman Overview oCIS, the collaboration service, Collabora or OnlyOffice running behind Traefik as reverse proxy Collabora or OnlyOffice enable you to edit office documents in your browser The collaboration server acts as a bridge to make the oCIS storage accessible to Collabora and OnlyOffice Traefik generating self-signed certificates for local setup or obtaining valid SSL certificates for a server setup The whole deployment acts as a modular toolkit to use different flavors of office suites and ocis features Find this example on GitHub",
-      "wordCount" : "2426",
+      "wordCount" : "2568",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18971,9 +18971,9 @@ Copyright 2022 Fonticons, Inc.
 </span><span class="lnt">  4
 </span><span class="lnt">  5
 </span><span class="lnt">  6
-</span><span class="hl"><span class="lnt">  7
-</span></span><span class="lnt">  8
-</span><span class="lnt">  9
+</span><span class="lnt">  7
+</span><span class="hl"><span class="lnt">  8
+</span></span><span class="lnt">  9
 </span><span class="lnt"> 10
 </span><span class="lnt"> 11
 </span><span class="lnt"> 12
@@ -18985,11 +18985,11 @@ Copyright 2022 Fonticons, Inc.
 </span><span class="lnt"> 18
 </span><span class="lnt"> 19
 </span><span class="lnt"> 20
-</span><span class="hl"><span class="lnt"> 21
-</span></span><span class="lnt"> 22
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
 </span><span class="lnt"> 23
-</span><span class="lnt"> 24
-</span><span class="lnt"> 25
+</span><span class="hl"><span class="lnt"> 24
+</span></span><span class="lnt"> 25
 </span><span class="lnt"> 26
 </span><span class="lnt"> 27
 </span><span class="lnt"> 28
@@ -19006,14 +19006,14 @@ Copyright 2022 Fonticons, Inc.
 </span><span class="lnt"> 39
 </span><span class="lnt"> 40
 </span><span class="lnt"> 41
-</span><span class="hl"><span class="lnt"> 42
-</span></span><span class="lnt"> 43
-</span><span class="hl"><span class="lnt"> 44
-</span></span><span class="lnt"> 45
-</span><span class="lnt"> 46
-</span><span class="lnt"> 47
-</span><span class="lnt"> 48
-</span><span class="lnt"> 49
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="hl"><span class="lnt"> 46
+</span></span><span class="lnt"> 47
+</span><span class="hl"><span class="lnt"> 48
+</span></span><span class="lnt"> 49
 </span><span class="lnt"> 50
 </span><span class="lnt"> 51
 </span><span class="lnt"> 52
@@ -19084,11 +19084,11 @@ Copyright 2022 Fonticons, Inc.
 </span><span class="lnt">117
 </span><span class="lnt">118
 </span><span class="lnt">119
-</span><span class="hl"><span class="lnt">120
-</span></span><span class="lnt">121
+</span><span class="lnt">120
+</span><span class="lnt">121
 </span><span class="lnt">122
-</span><span class="hl"><span class="lnt">123
-</span></span><span class="lnt">124
+</span><span class="lnt">123
+</span><span class="lnt">124
 </span><span class="lnt">125
 </span><span class="lnt">126
 </span><span class="lnt">127
@@ -19097,17 +19097,38 @@ Copyright 2022 Fonticons, Inc.
 </span><span class="lnt">130
 </span><span class="lnt">131
 </span><span class="lnt">132
+</span><span class="hl"><span class="lnt">133
+</span></span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="hl"><span class="lnt">136
+</span></span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># Define the docker compose log driver used.</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## Basic Settings ##</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Define the docker compose log driver used.</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Defaults to local</span>
 </span></span><span class="line"><span class="cl"><span class="nv">LOG_DRIVER</span><span class="o">=</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># If you&#39;re on an internet facing server. comment out following line.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># If you&#39;re on an internet facing server, comment out following line.</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># It skips certificate validation for various parts of Infinite Scale and is</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># needed when self signed certificates are used.</span>
 </span></span><span class="line hl"><span class="cl"><span class="nv">INSECURE</span><span class="o">=</span><span class="nb">true</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">### Traefik Settings ###</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Traefik Settings ##</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Note: Traefik is always enabled and can&#39;t be disabled.</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Serve Traefik dashboard.</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Defaults to &#34;false&#34;.</span>
 </span></span><span class="line"><span class="cl"><span class="nv">TRAEFIK_DASHBOARD</span><span class="o">=</span>
@@ -19128,9 +19149,10 @@ Copyright 2022 Fonticons, Inc.
 </span></span><span class="line"><span class="cl"><span class="nv">TRAEFIK_ACME_CASERVER</span><span class="o">=</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">### Infinite Scale Settings ###</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## Infinite Scale Settings ##</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Beside Traefik, this service must stay enabled.</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Disable only for testing purposes.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Note: the leading colon is required to enable the service.</span>
 </span></span><span class="line"><span class="cl"><span class="nv">OCIS</span><span class="o">=</span>:ocis.yml
 </span></span><span class="line"><span class="cl"><span class="c1"># The oCIS container image.</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Defaults to &#34;owncloud/ocis&#34; which contains the production releases.</span>
@@ -19147,24 +19169,31 @@ Copyright 2022 Fonticons, Inc.
 </span></span><span class="line"><span class="cl"><span class="c1"># because their passwords are public. Defaults to &#34;false&#34;.</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Also see: https://doc.owncloud.com/ocis/latest/deployment/general/general-info.html#demo-users-and-groups</span>
 </span></span><span class="line"><span class="cl"><span class="nv">DEMO_USERS</span><span class="o">=</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Define the loglevel used.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Define the oCIS loglevel used.</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># For more details see:</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># https://doc.owncloud.com/ocis/latest/deployment/services/env-vars-special-scope.html</span>
 </span></span><span class="line"><span class="cl"><span class="nv">LOG_LEVEL</span><span class="o">=</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Define the kind of logging.</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># The default log can be read by machines.</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Set this to true to make the log human readable</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Set this to true to make the log human readable.</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># LOG_PRETTY=true</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Define the oCIS storage location. Set the paths for config and data to a local path.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Note that especially the data directory can grow big.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Leaving it default stores data in docker internal volumes.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># For more details see:</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># https://doc.owncloud.com/ocis/next/deployment/general/general-info.html#default-paths</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># OCIS_CONFIG_DIR=/your/local/ocis/config</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># OCIS_DATA_DIR=/your/local/ocis/data</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># S3 Storage configuration</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># - optional</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># S3 Storage configuration - optional</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Infinite Scale supports S3 storage as primary storage.</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Per default, S3 storage is disabled and we use the local filesystem.</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># To enable S3 storage, uncomment the following lines and configure the S3 storage.</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># The leading colon is required to enable the service.</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># S3NG=:s3ng.yml</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Per default, S3 storage is disabled and the local filesystem is used.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># To enable S3 storage, uncomment the following line and configure the S3 storage.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># For more details see:</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># https://doc.owncloud.com/ocis/next/deployment/storage/s3.html</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Note: the leading colon is required to enable the service.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#S3NG=:s3ng.yml</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Configure the S3 storage endpoint. Defaults to &#34;http://minio:9000&#34; for testing purposes.</span>
 </span></span><span class="line"><span class="cl"><span class="nv">S3NG_ENDPOINT</span><span class="o">=</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># S3 region. Defaults to &#34;default&#34;.</span>
@@ -19175,17 +19204,17 @@ Copyright 2022 Fonticons, Inc.
 </span></span><span class="line"><span class="cl"><span class="nv">S3NG_SECRET_KEY</span><span class="o">=</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># S3 bucket. Defaults to &#34;ocis&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">S3NG_BUCKET</span><span class="o">=</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Add local minio S3 storage to the docker-compose file.</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># This is needed for testing purposes.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># For testing purposes, add local minio S3 storage to the docker-compose file.</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># The leading colon is required to enable the service.</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># S3NG_MINIO=:minio.yml</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#S3NG_MINIO=:minio.yml</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Minio domain. Defaults to &#34;minio.owncloud.test&#34;.</span>
 </span></span><span class="line"><span class="cl"><span class="nv">MINIO_DOMAIN</span><span class="o">=</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Define SMPT settings if you would like to send Infinite Scale email notifications.</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># For more details see:</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># https://doc.owncloud.com/ocis/latest/deployment/services/s-list/notifications.html</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># NOTE: this doesn&#39;t work if you are using inbucket.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># NOTE: when configuring Inbucket, these settings have no effect, see inbucket.yml for details.</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># SMTP host to connect to.</span>
 </span></span><span class="line"><span class="cl"><span class="nv">SMTP_HOST</span><span class="o">=</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Port of the SMTP host to connect to.</span>
@@ -19202,19 +19231,21 @@ Copyright 2022 Fonticons, Inc.
 </span></span><span class="line"><span class="cl"><span class="c1"># Allow insecure connections to the SMTP server. Defaults to false.</span>
 </span></span><span class="line"><span class="cl"><span class="nv">SMTP_INSECURE</span><span class="o">=</span>
 </span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">## Default Enabled Services ##</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">### Apache Tika Content Analysis Toolkit ###</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Tika (search) is enabled by default, comment if not required.</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># The leading colon is required to enable the service.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Note: the leading colon is required to enable the service.</span>
 </span></span><span class="line"><span class="cl"><span class="nv">TIKA</span><span class="o">=</span>:tika.yml
 </span></span><span class="line"><span class="cl"><span class="c1"># Set the desired docker image tag or digest.</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Defaults to &#34;latest&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">TIKA_IMAGE</span><span class="o">=</span>
 </span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">### Collabora Settings ###</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Collabora web office is default enabled, comment if not required.</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># The leading colon is required to enable the service.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Note: the leading colon is required to enable the service.</span>
 </span></span><span class="line"><span class="cl"><span class="nv">COLLABORA</span><span class="o">=</span>:collabora.yml
 </span></span><span class="line"><span class="cl"><span class="c1"># Domain of Collabora, where you can find the frontend.</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Defaults to &#34;collabora.owncloud.test&#34;</span>
@@ -19230,6 +19261,11 @@ Copyright 2022 Fonticons, Inc.
 </span></span><span class="line"><span class="cl"><span class="c1"># Admin password for Collabora.</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Defaults to &#34;admin&#34;.</span>
 </span></span><span class="line"><span class="cl"><span class="nv">COLLABORA_ADMIN_PASSWORD</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Set to true to enable SSL for Collabora Online. Default is true if not specified.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">COLLABORA_SSL_ENABLE</span><span class="o">=</span><span class="nb">false</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># If you&#39;re on an internet-facing server, enable SSL verification for Collabora Online.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Please comment out the following line:</span>
+</span></span><span class="line"><span class="cl"><span class="nv">COLLABORA_SSL_VERIFICATION</span><span class="o">=</span><span class="nb">false</span>
 </span></span><span class="line"><span class="cl">...
 </span></span></code></pre></td></tr></table>
 </div>
@@ -19471,29 +19507,27 @@ You can change it to use the oCIS rolling releases by setting <code>OCIS_DOCKER_
 </span><span class="lnt"> 5
 </span><span class="lnt"> 6
 </span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="hl"><span class="lnt"> 9
-</span></span><span class="lnt">10
-</span><span class="hl"><span class="lnt">11
-</span></span><span class="lnt">12
-</span><span class="hl"><span class="lnt">13
-</span></span><span class="lnt">14
-</span><span class="hl"><span class="lnt">15
-</span></span><span class="lnt">16
-</span><span class="hl"><span class="lnt">17
-</span></span><span class="lnt">18
-</span><span class="hl"><span class="lnt">19
+</span><span class="hl"><span class="lnt"> 8
+</span></span><span class="lnt"> 9
+</span><span class="hl"><span class="lnt">10
+</span></span><span class="lnt">11
+</span><span class="hl"><span class="lnt">12
+</span></span><span class="lnt">13
+</span><span class="hl"><span class="lnt">14
+</span></span><span class="lnt">15
+</span><span class="hl"><span class="lnt">16
+</span></span><span class="lnt">17
+</span><span class="hl"><span class="lnt">18
 </span></span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># S3 Storage configuration</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># - optional</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># S3 Storage configuration - optional</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Infinite Scale supports S3 storage as primary storage.</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Per default, S3 storage is disabled and we use the local filesystem.</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># To enable S3 storage, uncomment the following lines and configure the S3 storage.</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># The leading colon is required to enable the service.</span>
-</span></span><span class="line hl"><span class="cl"><span class="nv">S3NG</span><span class="o">=</span>:s3ng.yml
+</span></span><span class="line"><span class="cl"><span class="c1"># Per default, S3 storage is disabled and the local filesystem is used.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># To enable S3 storage, uncomment the following line and configure the S3 storage.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># For more details see:</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># https://doc.owncloud.com/ocis/next/deployment/storage/s3.html</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Note: the leading colon is required to enable the service.</span>
+</span></span><span class="line hl"><span class="cl"><span class="c1"># S3NG=:s3ng.yml</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Configure the S3 storage endpoint. Defaults to &#34;http://minio:9000&#34; for testing purposes.</span>
 </span></span><span class="line hl"><span class="cl"><span class="nv">S3NG_ENDPOINT</span><span class="o">=</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># S3 region. Defaults to &#34;default&#34;.</span>
