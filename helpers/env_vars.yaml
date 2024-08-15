@@ -5906,10 +5906,10 @@ IDM_ADMIN_USER_ID:
   removalVersion: ""
   deprecationInfo: ""
 IDM_CREATE_DEMO_USERS:
-  name: SETTINGS_SETUP_DEFAULT_ASSIGNMENTS;IDM_CREATE_DEMO_USERS
+  name: IDM_CREATE_DEMO_USERS
   defaultValue: "false"
   type: bool
-  description: The default role assignments the demo users should be setup.
+  description: Flag to enable or disable the creation of the demo users.
   introductionVersion: pre5.0
   deprecationVersion: ""
   removalVersion: ""
@@ -7954,10 +7954,10 @@ OCIS_EMAIL_TEMPLATE_PATH:
   removalVersion: ""
   deprecationInfo: ""
 OCIS_ENABLE_OCM:
-  name: OCIS_ENABLE_OCM;GRAPH_INCLUDE_OCM_SHAREES
+  name: OCIS_ENABLE_OCM;FRONTEND_OCS_INCLUDE_OCM_SHAREES
   defaultValue: "false"
   type: bool
-  description: Include OCM sharees when listing users.
+  description: Include OCM sharees when listing sharees.
   introductionVersion: "5.0"
   deprecationVersion: ""
   removalVersion: ""
@@ -8115,7 +8115,7 @@ OCIS_JWT_SECRET:
   removalVersion: ""
   deprecationInfo: ""
 OCIS_KEYCLOAK_BASE_PATH:
-  name: OCIS_KEYCLOAK_BASE_PATH;GRAPH_KEYCLOAK_BASE_PATH
+  name: OCIS_KEYCLOAK_BASE_PATH;INVITATIONS_KEYCLOAK_BASE_PATH
   defaultValue: ""
   type: string
   description: The URL to access keycloak.
@@ -8124,16 +8124,16 @@ OCIS_KEYCLOAK_BASE_PATH:
   removalVersion: ""
   deprecationInfo: ""
 OCIS_KEYCLOAK_CLIENT_ID:
-  name: OCIS_KEYCLOAK_CLIENT_ID;GRAPH_KEYCLOAK_CLIENT_ID
+  name: OCIS_KEYCLOAK_CLIENT_ID;INVITATIONS_KEYCLOAK_CLIENT_ID
   defaultValue: ""
   type: string
-  description: The client id to authenticate with keycloak.
+  description: The client ID to authenticate with keycloak.
   introductionVersion: pre5.0
   deprecationVersion: ""
   removalVersion: ""
   deprecationInfo: ""
 OCIS_KEYCLOAK_CLIENT_REALM:
-  name: OCIS_KEYCLOAK_CLIENT_REALM;GRAPH_KEYCLOAK_CLIENT_REALM
+  name: OCIS_KEYCLOAK_CLIENT_REALM;INVITATIONS_KEYCLOAK_CLIENT_REALM
   defaultValue: ""
   type: string
   description: The realm the client is defined in.
@@ -8142,7 +8142,7 @@ OCIS_KEYCLOAK_CLIENT_REALM:
   removalVersion: ""
   deprecationInfo: ""
 OCIS_KEYCLOAK_CLIENT_SECRET:
-  name: OCIS_KEYCLOAK_CLIENT_SECRET;GRAPH_KEYCLOAK_CLIENT_SECRET
+  name: OCIS_KEYCLOAK_CLIENT_SECRET;INVITATIONS_KEYCLOAK_CLIENT_SECRET
   defaultValue: ""
   type: string
   description: The client secret to use in authentication.
@@ -8151,7 +8151,7 @@ OCIS_KEYCLOAK_CLIENT_SECRET:
   removalVersion: ""
   deprecationInfo: ""
 OCIS_KEYCLOAK_INSECURE_SKIP_VERIFY:
-  name: OCIS_KEYCLOAK_INSECURE_SKIP_VERIFY;GRAPH_KEYCLOAK_INSECURE_SKIP_VERIFY
+  name: OCIS_KEYCLOAK_INSECURE_SKIP_VERIFY;INVITATIONS_KEYCLOAK_INSECURE_SKIP_VERIFY
   defaultValue: "false"
   type: bool
   description: Disable TLS certificate validation for Keycloak connections. Do not
@@ -8161,7 +8161,7 @@ OCIS_KEYCLOAK_INSECURE_SKIP_VERIFY:
   removalVersion: ""
   deprecationInfo: ""
 OCIS_KEYCLOAK_USER_REALM:
-  name: OCIS_KEYCLOAK_USER_REALM;GRAPH_KEYCLOAK_USER_REALM
+  name: OCIS_KEYCLOAK_USER_REALM;INVITATIONS_KEYCLOAK_USER_REALM
   defaultValue: ""
   type: string
   description: The realm users are defined.
@@ -8329,7 +8329,7 @@ OCIS_LDAP_INSECURE:
   removalVersion: ""
   deprecationInfo: ""
 OCIS_LDAP_SERVER_WRITE_ENABLED:
-  name: OCIS_LDAP_SERVER_WRITE_ENABLED;GRAPH_LDAP_SERVER_WRITE_ENABLED
+  name: OCIS_LDAP_SERVER_WRITE_ENABLED;FRONTEND_LDAP_SERVER_WRITE_ENABLED
   defaultValue: "true"
   type: bool
   description: Allow creating, modifying and deleting LDAP users via the GRAPH API.
@@ -8514,7 +8514,7 @@ OCIS_OIDC_CLIENT_ID:
   removalVersion: ""
   deprecationInfo: ""
 OCIS_OIDC_ISSUER:
-  name: OCIS_URL;OCIS_OIDC_ISSUER;PROXY_OIDC_ISSUER
+  name: OCIS_URL;OCIS_OIDC_ISSUER;AUTH_BEARER_OIDC_ISSUER
   defaultValue: https://localhost:9200
   type: string
   description: URL of the OIDC issuer. It defaults to URL of the builtin IDP.
@@ -8590,7 +8590,7 @@ OCIS_PASSWORD_POLICY_MIN_UPPERCASE_CHARACTERS:
   removalVersion: ""
   deprecationInfo: ""
 OCIS_PERSISTENT_STORE:
-  name: OCIS_PERSISTENT_STORE;EVENTHISTORY_STORE
+  name: OCIS_PERSISTENT_STORE;POSTPROCESSING_STORE
   defaultValue: nats-js-kv
   type: string
   description: 'The type of the store. Supported values are: ''memory'', ''ocmem'',
@@ -8601,7 +8601,7 @@ OCIS_PERSISTENT_STORE:
   removalVersion: ""
   deprecationInfo: ""
 OCIS_PERSISTENT_STORE_AUTH_PASSWORD:
-  name: OCIS_PERSISTENT_STORE_AUTH_PASSWORD;EVENTHISTORY_STORE_AUTH_PASSWORD
+  name: OCIS_PERSISTENT_STORE_AUTH_PASSWORD;POSTPROCESSING_STORE_AUTH_PASSWORD
   defaultValue: ""
   type: string
   description: The password to authenticate with the store. Only applies when store
@@ -8611,7 +8611,7 @@ OCIS_PERSISTENT_STORE_AUTH_PASSWORD:
   removalVersion: ""
   deprecationInfo: ""
 OCIS_PERSISTENT_STORE_AUTH_USERNAME:
-  name: OCIS_PERSISTENT_STORE_AUTH_USERNAME;EVENTHISTORY_STORE_AUTH_USERNAME
+  name: OCIS_PERSISTENT_STORE_AUTH_USERNAME;POSTPROCESSING_STORE_AUTH_USERNAME
   defaultValue: ""
   type: string
   description: The username to authenticate with the store. Only applies when store
@@ -8621,7 +8621,7 @@ OCIS_PERSISTENT_STORE_AUTH_USERNAME:
   removalVersion: ""
   deprecationInfo: ""
 OCIS_PERSISTENT_STORE_NODES:
-  name: OCIS_PERSISTENT_STORE_NODES;EVENTHISTORY_STORE_NODES
+  name: OCIS_PERSISTENT_STORE_NODES;POSTPROCESSING_STORE_NODES
   defaultValue: '[127.0.0.1:9233]'
   type: '[]string'
   description: A list of nodes to access the configured store. This has no effect
@@ -8633,22 +8633,22 @@ OCIS_PERSISTENT_STORE_NODES:
   removalVersion: ""
   deprecationInfo: ""
 OCIS_PERSISTENT_STORE_SIZE:
-  name: OCIS_PERSISTENT_STORE_SIZE;EVENTHISTORY_STORE_SIZE
+  name: OCIS_PERSISTENT_STORE_SIZE;POSTPROCESSING_STORE_SIZE
   defaultValue: "0"
   type: int
   description: The maximum quantity of items in the store. Only applies when store
-    type 'ocmem' is configured. Defaults to 512 which is derived and used from the
-    ocmem package though no explicit default was set.
+    type 'ocmem' is configured. Defaults to 512 which is derived from the ocmem package
+    though not exclicitly set as default.
   introductionVersion: pre5.0
   deprecationVersion: ""
   removalVersion: ""
   deprecationInfo: ""
 OCIS_PERSISTENT_STORE_TTL:
-  name: OCIS_PERSISTENT_STORE_TTL;EVENTHISTORY_STORE_TTL
-  defaultValue: 336h0m0s
+  name: OCIS_PERSISTENT_STORE_TTL;POSTPROCESSING_STORE_TTL
+  defaultValue: 0s
   type: Duration
-  description: Time to live for events in the store. Defaults to '336h' (2 weeks).
-    See the Environment Variable Types description for more details.
+  description: Time to live for events in the store. See the Environment Variable
+    Types description for more details.
   introductionVersion: pre5.0
   deprecationVersion: ""
   removalVersion: ""
@@ -8754,7 +8754,7 @@ OCIS_SPACES_MAX_QUOTA:
   removalVersion: ""
   deprecationInfo: ""
 OCIS_SYSTEM_USER_API_KEY:
-  name: OCIS_SYSTEM_USER_API_KEY
+  name: OCIS_SYSTEM_USER_API_KEY;SHARING_PUBLIC_CS3_SYSTEM_USER_API_KEY
   defaultValue: ""
   type: string
   description: API key for the STORAGE-SYSTEM system user.
@@ -8763,7 +8763,7 @@ OCIS_SYSTEM_USER_API_KEY:
   removalVersion: ""
   deprecationInfo: ""
 OCIS_SYSTEM_USER_ID:
-  name: OCIS_SYSTEM_USER_ID;SETTINGS_SYSTEM_USER_ID
+  name: OCIS_SYSTEM_USER_ID;SHARING_PUBLIC_CS3_SYSTEM_USER_ID
   defaultValue: ""
   type: string
   description: ID of the oCIS STORAGE-SYSTEM system user. Admins need to set the ID
@@ -8775,7 +8775,7 @@ OCIS_SYSTEM_USER_ID:
   removalVersion: ""
   deprecationInfo: ""
 OCIS_SYSTEM_USER_IDP:
-  name: OCIS_SYSTEM_USER_IDP;SETTINGS_SYSTEM_USER_IDP
+  name: OCIS_SYSTEM_USER_IDP;SHARING_PUBLIC_CS3_SYSTEM_USER_IDP
   defaultValue: internal
   type: string
   description: IDP of the oCIS STORAGE-SYSTEM system user.
@@ -8842,21 +8842,20 @@ OCIS_TRANSLATION_PATH:
   removalVersion: ""
   deprecationInfo: ""
 OCIS_URL:
-  name: OCIS_URL;NOTIFICATIONS_WEB_UI_URL
+  name: OCIS_URL;FRONTEND_PUBLIC_URL
   defaultValue: https://localhost:9200
   type: string
-  description: The public facing URL of the oCIS Web UI, used e.g. when sending notification
-    eMails
+  description: The public facing URL of the oCIS frontend.
   introductionVersion: pre5.0
   deprecationVersion: ""
   removalVersion: ""
   deprecationInfo: ""
 OCIS_WOPI_DISABLE_CHAT:
-  name: APP_PROVIDER_WOPI_DISABLE_CHAT;OCIS_WOPI_DISABLE_CHAT
+  name: COLLABORATION_WOPI_DISABLE_CHAT;OCIS_WOPI_DISABLE_CHAT
   defaultValue: "false"
   type: bool
-  description: Disable the chat functionality of the office app.
-  introductionVersion: pre5.0
+  description: Disable chat in the frontend.
+  introductionVersion: '%%NEXT%%'
   deprecationVersion: ""
   removalVersion: ""
   deprecationInfo: ""
