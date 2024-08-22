@@ -13,7 +13,7 @@
 
 
   <meta name="description" content="Abstract The activitylog service is responsible for storing events (activities) per resource.
-Table of Contents The Log Service Ecosystem Activitylog Store Example Yaml Config The Log Service Ecosystem Log services like the activitylog, userlog, clientlog and sse are responsible for composing notifications for a specific audience.
+Table of Contents The Log Service Ecosystem Activitylog Store Translations Translation Rules Default Language Example Yaml Config The Log Service Ecosystem Log services like the activitylog, userlog, clientlog and sse are responsible for composing notifications for a specific audience.
 The userlog service translates and adjusts messages to be human readable. The clientlog service composes machine readable messages, so clients can act without the need to query the server." />
 
     <title>Activitylog Service | ownCloud</title>
@@ -39,7 +39,7 @@ The userlog service translates and adjusts messages to be human readable. The cl
   />
   <meta property="og:site_name" content="ownCloud" />
   <meta property="og:description" content="Abstract The activitylog service is responsible for storing events (activities) per resource.
-Table of Contents The Log Service Ecosystem Activitylog Store Example Yaml Config The Log Service Ecosystem Log services like the activitylog, userlog, clientlog and sse are responsible for composing notifications for a specific audience.
+Table of Contents The Log Service Ecosystem Activitylog Store Translations Translation Rules Default Language Example Yaml Config The Log Service Ecosystem Log services like the activitylog, userlog, clientlog and sse are responsible for composing notifications for a specific audience.
 The userlog service translates and adjusts messages to be human readable. The clientlog service composes machine readable messages, so clients can act without the need to query the server." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/activitylog/" />
@@ -47,18 +47,18 @@ The userlog service translates and adjusts messages to be human readable. The cl
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2024-08-22T12:48:15+00:00"
+      content="2024-08-22T14:33:19+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-08-22T12:48:15+00:00"
+      content="2024-08-22T14:33:19+00:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Activitylog Service" />
   <meta name="twitter:description" content="Abstract The activitylog service is responsible for storing events (activities) per resource.
-Table of Contents The Log Service Ecosystem Activitylog Store Example Yaml Config The Log Service Ecosystem Log services like the activitylog, userlog, clientlog and sse are responsible for composing notifications for a specific audience.
+Table of Contents The Log Service Ecosystem Activitylog Store Translations Translation Rules Default Language Example Yaml Config The Log Service Ecosystem Log services like the activitylog, userlog, clientlog and sse are responsible for composing notifications for a specific audience.
 The userlog service translates and adjusts messages to be human readable. The clientlog service composes machine readable messages, so clients can act without the need to query the server." />
 
 
@@ -70,8 +70,8 @@ The userlog service translates and adjusts messages to be human readable. The cl
       "name": "Activitylog Service",
       "url" : "https://owncloud.dev/services/activitylog/",
       "headline": "Activitylog Service",
-      "description": "Abstract The activitylog service is responsible for storing events (activities) per resource.\nTable of Contents The Log Service Ecosystem Activitylog Store Example Yaml Config The Log Service Ecosystem Log services like the activitylog, userlog, clientlog and sse are responsible for composing notifications for a specific audience.\nThe userlog service translates and adjusts messages to be human readable. The clientlog service composes machine readable messages, so clients can act without the need to query the server.",
-      "wordCount" : "1080",
+      "description": "Abstract The activitylog service is responsible for storing events (activities) per resource.\nTable of Contents The Log Service Ecosystem Activitylog Store Translations Translation Rules Default Language Example Yaml Config The Log Service Ecosystem Log services like the activitylog, userlog, clientlog and sse are responsible for composing notifications for a specific audience.\nThe userlog service translates and adjusts messages to be human readable. The clientlog service composes machine readable messages, so clients can act without the need to query the server.",
+      "wordCount" : "1482",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -80,9 +80,9 @@ The userlog service translates and adjusts messages to be human readable. The cl
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-08-22T12:48:15.85Z",
-      "datePublished": "2024-08-22T12:48:15.85Z",
-      "dateModified": "2024-08-22T12:48:15.85Z",
+      "dateCreated": "2024-08-22T14:33:19.89Z",
+      "datePublished": "2024-08-22T14:33:19.89Z",
+      "dateModified": "2024-08-22T14:33:19.89Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -18766,6 +18766,21 @@ Copyright 2022 Fonticons, Inc.
 >Activitylog Store</a></li>
 <li><a
   class="gdoc-markdown__link"
+  href="#translations"
+>Translations</a>
+<ul>
+<li><a
+  class="gdoc-markdown__link"
+  href="#translation-rules"
+>Translation Rules</a></li>
+</ul>
+</li>
+<li><a
+  class="gdoc-markdown__link"
+  href="#default-language"
+>Default Language</a></li>
+<li><a
+  class="gdoc-markdown__link"
   href="#example-yaml-config"
 >Example Yaml Config</a></li>
 </ul>
@@ -18795,6 +18810,51 @@ Copyright 2022 Fonticons, Inc.
     </a>
 </div>
 <p>The <code>activitylog</code> stores activities for each resource. It works in conjunction with the <code>eventhistory</code> service to keep the data it needs to store to a minimum.</p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h2 id="translations"
+    >
+        Translations
+    </h2>
+    <a data-clipboard-text="https://owncloud.dev/services/activitylog/#translations" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Translations" aria-label="Anchor to: Translations" href="#translations">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>The <code>activitylog</code> service has embedded translations sourced via transifex to provide a basic set of translated languages. These embedded translations are available for all deployment scenarios. In addition, the service supports custom translations, though it is currently not possible to just add custom translations to embedded ones. If custom translations are configured, the embedded ones are not used. To configure custom translations, the <code>ACTIVITYLOG_TRANSLATION_PATH</code> environment variable needs to point to a base folder that will contain the translation files. This path must be available from all instances of the activitylog service, a shared storage is recommended. Translation files must be of type  <a
+  class="gdoc-markdown__link"
+  href="https://www.gnu.org/software/gettext/manual/html_node/PO-Files.html#PO-Files"
+>.po</a> or <a
+  class="gdoc-markdown__link"
+  href="https://www.gnu.org/software/gettext/manual/html_node/Binaries.html"
+>.mo</a>. For each language, the filename needs to be <code>activitylog.po</code> (or <code>activitylog.mo</code>) and stored in a folder structure defining the language code. In general the path/name pattern for a translation file needs to be:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">{ACTIVITYLOG_TRANSLATION_PATH}/{language-code}/LC_MESSAGES/activitylog.po
+</span></span></code></pre></div><p>The language code pattern is composed of <code>language[_territory]</code> where  <code>language</code> is the base language and <code>_territory</code> is optional and defines a country.</p>
+<p>For example, for the language <code>de</code>, one needs to place the corresponding translation files to <code>{ACTIVITYLOG_TRANSLATION_PATH}/de_DE/LC_MESSAGES/activitylog.po</code>.</p>
+<!-- also see the notifications readme -->
+<p>Important: For the time being, the embedded ownCloud Web frontend only supports the main language code but does not handle any territory. When strings are available in the language code <code>language_territory</code>, the web frontend does not see it as it only requests <code>language</code>. In consequence, any translations made must exist in the requested <code>language</code> to avoid a fallback to the default.</p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="translation-rules"
+    >
+        Translation Rules
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/services/activitylog/#translation-rules" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Translation Rules" aria-label="Anchor to: Translation Rules" href="#translation-rules">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<ul>
+<li>If a requested language code is not available, the service tries to fall back to the base language if available. For example, if the requested language-code <code>de_DE</code> is not available, the service tries to fall back to translations in the <code>de</code> folder.</li>
+<li>If the base language <code>de</code> is also not available, the service falls back to the system&rsquo;s default English (<code>en</code>),
+which is the source of the texts provided by the code.</li>
+</ul>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h2 id="default-language"
+    >
+        Default Language
+    </h2>
+    <a data-clipboard-text="https://owncloud.dev/services/activitylog/#default-language" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Default Language" aria-label="Anchor to: Default Language" href="#default-language">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>The default language can be defined via the <code>OCIS_DEFAULT_LANGUAGE</code> environment variable. See the <code>settings</code> service for a detailed description.</p>
 <div class="flex align-center gdoc-page__anchorwrap">
     <h2 id="example-yaml-config"
     >
@@ -18877,6 +18937,8 @@ Copyright 2022 Fonticons, Inc.
 </span><span class="lnt">62
 </span><span class="lnt">63
 </span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># Autogenerated</span><span class="w">
@@ -18940,6 +19002,8 @@ Copyright 2022 Fonticons, Inc.
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">token_manager</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">jwt_secret</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">translation_path</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">default_language</span><span class="p">:</span><span class="w"> </span><span class="l">en</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">service_account</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">service_account_id</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">service_account_secret</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
@@ -19212,6 +19276,18 @@ Copyright 2022 Fonticons, Inc.
 <td>string</td>
 <td></td>
 <td>The secret to mint and validate jwt tokens.</td>
+</tr>
+<tr>
+<td>OCIS_TRANSLATION_PATH<br/>ACTIVITYLOG_TRANSLATION_PATH</td>
+<td>string</td>
+<td></td>
+<td>(optional) Set this to a path with custom translations to overwrite the builtin translations. Note that file and folder naming rules apply, see the documentation for more details.</td>
+</tr>
+<tr>
+<td>OCIS_DEFAULT_LANGUAGE</td>
+<td>string</td>
+<td>en</td>
+<td>The default language used by services and the WebUI. If not defined, English will be used as default. See the documentation for more details.</td>
 </tr>
 <tr>
 <td>OCIS_SERVICE_ACCOUNT_ID<br/>ACTIVITYLOG_SERVICE_ACCOUNT_ID</td>
