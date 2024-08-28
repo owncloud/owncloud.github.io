@@ -45,11 +45,11 @@ Services can Publish events to the nats service and nats will store these events
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2024-08-28T05:51:01+00:00"
+      content="2024-08-28T06:47:09+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-08-28T05:51:01+00:00"
+      content="2024-08-28T06:47:09+00:00"
     />
 
 
@@ -68,7 +68,7 @@ Services can Publish events to the nats service and nats will store these events
       "url" : "https://owncloud.dev/services/nats/",
       "headline": "Nats",
       "description": "Abstract The nats service is the event broker of the system. It distributes events among all other services and enables other services to communicate asynchronous.\nServices can Publish events to the nats service and nats will store these events on disk and distribute these events to other services eventually. Services can Consume events from the nats service by registering to a ConsumerGroup. Each ConsumerGroup is guaranteed to get each event exactly once.",
-      "wordCount" : "639",
+      "wordCount" : "732",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ Services can Publish events to the nats service and nats will store these events
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-08-28T05:51:01.43Z",
-      "datePublished": "2024-08-28T05:51:01.43Z",
-      "dateModified": "2024-08-28T05:51:01.43Z",
+      "dateCreated": "2024-08-28T06:47:09.55Z",
+      "datePublished": "2024-08-28T06:47:09.55Z",
+      "dateModified": "2024-08-28T06:47:09.55Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -18721,7 +18721,11 @@ Copyright 2022 Fonticons, Inc.
 <li><a
   class="gdoc-markdown__link"
   href="#underlying-technology"
->Underlying technology</a></li>
+>Underlying Technology</a></li>
+<li><a
+  class="gdoc-markdown__link"
+  href="#default-registry"
+>Default Registry</a></li>
 <li><a
   class="gdoc-markdown__link"
   href="#persistance"
@@ -18738,9 +18742,9 @@ Copyright 2022 Fonticons, Inc.
 <div class="flex align-center gdoc-page__anchorwrap">
     <h2 id="underlying-technology"
     >
-        Underlying technology
+        Underlying Technology
     </h2>
-    <a data-clipboard-text="https://owncloud.dev/services/nats/#underlying-technology" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Underlying technology" aria-label="Anchor to: Underlying technology" href="#underlying-technology">
+    <a data-clipboard-text="https://owncloud.dev/services/nats/#underlying-technology" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Underlying Technology" aria-label="Anchor to: Underlying Technology" href="#underlying-technology">
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
 </div>
@@ -18751,6 +18755,17 @@ Copyright 2022 Fonticons, Inc.
   class="gdoc-markdown__link"
   href="https://docs.nats.io/nats-concepts/jetstream"
 >NATS Jetstream</a> to enable persistence.</p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h2 id="default-registry"
+    >
+        Default Registry
+    </h2>
+    <a data-clipboard-text="https://owncloud.dev/services/nats/#default-registry" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Default Registry" aria-label="Anchor to: Default Registry" href="#default-registry">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>By default, <code>nats-js-kv</code> is configured as embedded default registry via the <code>MICRO_REGISTRY</code> environment variable. If you do not want using the build-in nats registry, set <code>MICRO_REGISTRY_ADDRESS</code> to the address of the nats-js cluster, which is the same value as <code>OCIS_EVENTS_ENDPOINT</code>. Optionally use <code>MICRO_REGISTRY_AUTH_USERNAME</code> and <code>MICRO_REGISTRY_AUTH_PASSWORD</code> to authenticate with the external nats cluster.</p>
+<p>Note that when <code>MICRO_REGISTRY</code> is configured using <code>kubernetes</code>, the NATS service will not be used but the Kubernetes registry. In this case, the <code>MICRO_REGISTRY_ADDRESS</code> environment variable needs to be set to the url of the Kubernetes registry.</p>
 <div class="flex align-center gdoc-page__anchorwrap">
     <h2 id="persistance"
     >
