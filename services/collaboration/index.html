@@ -14,7 +14,7 @@
 
   <meta name="description" content="Abstract The collaboration service connects ocis with document servers such as Collabora and ONLYOFFICE using the WOPI protocol.
 Since this service requires an external document server, it won&rsquo;t start by default when using ocis server. You must start it manually with the ocis collaboration server command.
-Table of Contents Requirements WOPI Configuration Example Yaml Config Requirements The collaboration service requires the target document server (ONLYOFFICE, Collabora, etc.) to be up and running." />
+This service needs to be part of the ocis service mesh. It is not intended to be used as a standalone service. You must share the common config variables like OCIS_URL, OCIS_JWT_SECRET and OCIS_REVA_GATEWAY betweed this service and the other ocis services." />
 
     <title>Collaboration | ownCloud</title>
 
@@ -40,18 +40,18 @@ Table of Contents Requirements WOPI Configuration Example Yaml Config Requiremen
   <meta property="og:site_name" content="ownCloud" />
   <meta property="og:description" content="Abstract The collaboration service connects ocis with document servers such as Collabora and ONLYOFFICE using the WOPI protocol.
 Since this service requires an external document server, it won’t start by default when using ocis server. You must start it manually with the ocis collaboration server command.
-Table of Contents Requirements WOPI Configuration Example Yaml Config Requirements The collaboration service requires the target document server (ONLYOFFICE, Collabora, etc.) to be up and running." />
+This service needs to be part of the ocis service mesh. It is not intended to be used as a standalone service. You must share the common config variables like OCIS_URL, OCIS_JWT_SECRET and OCIS_REVA_GATEWAY betweed this service and the other ocis services." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/collaboration/" />
 
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2024-08-30T12:11:50+00:00"
+      content="2024-08-30T17:42:01+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-08-30T12:11:50+00:00"
+      content="2024-08-30T17:42:01+00:00"
     />
 
 
@@ -59,7 +59,7 @@ Table of Contents Requirements WOPI Configuration Example Yaml Config Requiremen
 <meta name="twitter:title" content="Collaboration" />
   <meta name="twitter:description" content="Abstract The collaboration service connects ocis with document servers such as Collabora and ONLYOFFICE using the WOPI protocol.
 Since this service requires an external document server, it won’t start by default when using ocis server. You must start it manually with the ocis collaboration server command.
-Table of Contents Requirements WOPI Configuration Example Yaml Config Requirements The collaboration service requires the target document server (ONLYOFFICE, Collabora, etc.) to be up and running." />
+This service needs to be part of the ocis service mesh. It is not intended to be used as a standalone service. You must share the common config variables like OCIS_URL, OCIS_JWT_SECRET and OCIS_REVA_GATEWAY betweed this service and the other ocis services." />
 
 
   <script type="application/ld+json">
@@ -70,8 +70,8 @@ Table of Contents Requirements WOPI Configuration Example Yaml Config Requiremen
       "name": "Collaboration",
       "url" : "https://owncloud.dev/services/collaboration/",
       "headline": "Collaboration",
-      "description": "Abstract The collaboration service connects ocis with document servers such as Collabora and ONLYOFFICE using the WOPI protocol.\nSince this service requires an external document server, it won’t start by default when using ocis server. You must start it manually with the ocis collaboration server command.\nTable of Contents Requirements WOPI Configuration Example Yaml Config Requirements The collaboration service requires the target document server (ONLYOFFICE, Collabora, etc.) to be up and running.",
-      "wordCount" : "872",
+      "description": "Abstract The collaboration service connects ocis with document servers such as Collabora and ONLYOFFICE using the WOPI protocol.\nSince this service requires an external document server, it won’t start by default when using ocis server. You must start it manually with the ocis collaboration server command.\nThis service needs to be part of the ocis service mesh. It is not intended to be used as a standalone service. You must share the common config variables like OCIS_URL, OCIS_JWT_SECRET and OCIS_REVA_GATEWAY betweed this service and the other ocis services.",
+      "wordCount" : "1041",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -80,9 +80,9 @@ Table of Contents Requirements WOPI Configuration Example Yaml Config Requiremen
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-08-30T12:11:50.59Z",
-      "datePublished": "2024-08-30T12:11:50.59Z",
-      "dateModified": "2024-08-30T12:11:50.59Z",
+      "dateCreated": "2024-08-30T17:42:01.17Z",
+      "datePublished": "2024-08-30T17:42:01.17Z",
+      "dateModified": "2024-08-30T17:42:01.17Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -18711,6 +18711,7 @@ Copyright 2022 Fonticons, Inc.
 </div>
 <p>The collaboration service connects ocis with document servers such as Collabora and ONLYOFFICE using the WOPI protocol.</p>
 <p>Since this service requires an external document server, it won&rsquo;t start by default when using <code>ocis server</code>. You must start it manually with the <code>ocis collaboration server</code> command.</p>
+<p>This service needs to be part of the ocis service mesh. It is not intended to be used as a standalone service. You must share the common config variables like OCIS_URL, OCIS_JWT_SECRET and OCIS_REVA_GATEWAY betweed this service and the other ocis services. In addition to that, MICRO_REGISTRY_ADDRESS should point to the main ocis service registry.</p>
 <div class="flex align-center gdoc-page__anchorwrap">
     <h2 id="table-of-contents"
     >
@@ -18761,6 +18762,10 @@ Copyright 2022 Fonticons, Inc.
 </div>
 <p>There are a few variables that you need to set:</p>
 <ul>
+<li>
+<p><code>COLLABORATION_APP_NAME</code>:<br>
+The name of the connected WebOffice app, either <code>Collabora</code>, <code>OnlyOffice</code>, <code>Microsoft365</code> or <code>MicrosoftOfficeOnline</code>.</p>
+</li>
 <li>
 <p><code>COLLABORATION_APP_ADDR</code>:<br>
 The URL of the collaborative editing app (onlyoffice, collabora, etc).<br>
@@ -18843,6 +18848,9 @@ For example: <code>https://wopi.example.com</code>.</p>
 </span><span class="lnt">46
 </span><span class="lnt">47
 </span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># Autogenerated</span><span class="w">
@@ -18858,6 +18866,7 @@ For example: <code>https://wopi.example.com</code>.</p>
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">proofkeys</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">duration</span><span class="p">:</span><span class="w"> </span><span class="l">12h</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">licensecheckenable</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">token_manager</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">jwt_secret</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">grpc</span><span class="p">:</span><span class="w">
@@ -18873,6 +18882,8 @@ For example: <code>https://wopi.example.com</code>.</p>
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">wopisrc</span><span class="p">:</span><span class="w"> </span><span class="l">https://localhost:9300</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">secret</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">disable_chat</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">proxy_url</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">proxy_secret</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">cs3api</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">gateway</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">com.owncloud.api.gateway</span><span class="w">
@@ -18972,6 +18983,12 @@ For example: <code>https://wopi.example.com</code>.</p>
 <td>Duration for the proof keys to be cached in memory, using time.ParseDuration format. If the duration can&rsquo;t be parsed, we&rsquo;ll use the default 12h as duration</td>
 </tr>
 <tr>
+<td>COLLABORATION_APP_LICENSE_CHECK_ENABLE</td>
+<td>bool</td>
+<td>false</td>
+<td>Enable license check for edit. Needs to be enabled when using Microsoft365 with the business flow.</td>
+</tr>
+<tr>
 <td>OCIS_JWT_SECRET<br/>COLLABORATION_JWT_SECRET</td>
 <td>string</td>
 <td></td>
@@ -19032,7 +19049,22 @@ For example: <code>https://wopi.example.com</code>.</p>
 <td>COLLABORATION_WOPI_DISABLE_CHAT<br/>OCIS_WOPI_DISABLE_CHAT</td>
 <td>bool</td>
 <td>false</td>
-<td>Disable chat in the frontend.</td>
+<td>Disable chat in the frontend. This feature is available in OnlyOffice and Microsoft.</td>
+</tr>
+<tr>
+<td>COLLABORATION_WOPI_PROXY_URL</td>
+<td>string</td>
+<td></td>
+<td>The URL to the ownCloud Office365 WOPI proxy. Optional. To use this feature, you need an office365 proxy subscription. If you become part of the Microsoft CSP program (<a
+  class="gdoc-markdown__link"
+  href="https://learn.microsoft.com/en-us/partner-center/enroll/csp-overview%29"
+>https://learn.microsoft.com/en-us/partner-center/enroll/csp-overview)</a>, you can use the WebOffice without a proxy.</td>
+</tr>
+<tr>
+<td>COLLABORATION_WOPI_PROXY_SECRET</td>
+<td>string</td>
+<td></td>
+<td>The secret to authenticate against the ownCloud Office365 WOPI proxy. Optional. This secret can be obtained from ownCloud via the office365 proxy subscription.</td>
 </tr>
 <tr>
 <td>OCIS_REVA_GATEWAY<br/>COLLABORATION_CS3API_GATEWAY_NAME</td>
