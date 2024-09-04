@@ -68,7 +68,7 @@ Independent of ownCloud Web on Transifex. Are located in the ownCloud Transifex 
       "url" : "https://owncloud.dev/services/general-info/add-translations/",
       "headline": "Add Translations",
       "description": "Services can have texts that need to be translated. These translations will be shown in the ownCloud Web UI. Compared to web, these translations are:\nIndependent of ownCloud Web on Transifex. Are located in the ownCloud Transifex Project. Have a name starting with ocis- for ease of identification. The process for synchronisation with Transifex is already setup and nothing needs to be done here. For any translation, it is necessary to set it up in the respective service and tell to sync it.",
-      "wordCount" : "413",
+      "wordCount" : "425",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18747,10 +18747,12 @@ For details see the userlog or notifications service code.</p>
 </span></span><span class="line"><span class="cl">[o:owncloud-org:p:owncloud:r:ocis-&lt;service-name&gt;]
 </span></span><span class="line"><span class="cl">file_filter = locale/&lt;lang&gt;/LC_MESSAGES/&lt;service-name&gt;.po
 </span></span><span class="line"><span class="cl">minimum_perc = 75
+</span></span><span class="line"><span class="cl">resource_name = ocis-&lt;service-name&gt;
 </span></span><span class="line"><span class="cl">source_file = &lt;service-name&gt;.pot
 </span></span><span class="line"><span class="cl">source_lang = en
 </span></span><span class="line"><span class="cl">type = PO
-</span></span></code></pre></div></li>
+</span></span></code></pre></div><p>Note: o: organization, p: project, r: resource</p>
+</li>
 <li>
 <p>Create a go file like <code>templates.go</code> in <code>ocis/services/&lt;service-name&gt;/pkg/service</code> that will define your translation sources like the following:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">// context string
@@ -18763,6 +18765,7 @@ For details see the userlog or notifications service code.</p>
 </span></span><span class="line"><span class="cl">	services/notifications \
 </span></span><span class="line"><span class="cl">	services/userlog \
 </span></span><span class="line"><span class="cl">	services/graph \
+</span></span><span class="line"><span class="cl">	services/activitylog \
 </span></span><span class="line"><span class="cl">	services/&lt;service-name&gt;
 </span></span></code></pre></div></li>
 <li>
