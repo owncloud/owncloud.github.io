@@ -12,7 +12,7 @@
 <meta name="generator" content="Hugo 0.115.2">
 
 
-  <meta name="description" content="Envvar Definition Naming Scope Local Envvars Global Envvars Lifecycle of Envvars Introduce new Envvars Deprecate Existing Envvars Separating Multiple Envvars The scope of an environment variable can be derived from its name. Therefore, it is important to follow the correct naming scheme to enable easy and proper identification. This is important when either:
+  <meta name="description" content="Envvar Definition Naming Scope Local Envvars Global Envvars Lifecycle of Envvars Introduce new Envvars Adding Envvars to Existing Ones Deprecate Existing Envvars Separating Multiple Envvars The scope of an environment variable can be derived from its name. Therefore, it is important to follow the correct naming scheme to enable easy and proper identification. This is important when either:
 a new local envvar is introduced. a new global envvar is added to an existing local envvar." />
 
     <title>Envvar Naming Scopes | ownCloud</title>
@@ -37,7 +37,7 @@ a new local envvar is introduced. a new global envvar is added to an existing lo
     content="Envvar Naming Scopes"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Envvar Definition Naming Scope Local Envvars Global Envvars Lifecycle of Envvars Introduce new Envvars Deprecate Existing Envvars Separating Multiple Envvars The scope of an environment variable can be derived from its name. Therefore, it is important to follow the correct naming scheme to enable easy and proper identification. This is important when either:
+  <meta property="og:description" content="Envvar Definition Naming Scope Local Envvars Global Envvars Lifecycle of Envvars Introduce new Envvars Adding Envvars to Existing Ones Deprecate Existing Envvars Separating Multiple Envvars The scope of an environment variable can be derived from its name. Therefore, it is important to follow the correct naming scheme to enable easy and proper identification. This is important when either:
 a new local envvar is introduced. a new global envvar is added to an existing local envvar." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/general-info/envvar-scopes/" />
@@ -55,7 +55,7 @@ a new local envvar is introduced. a new global envvar is added to an existing lo
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Envvar Naming Scopes" />
-  <meta name="twitter:description" content="Envvar Definition Naming Scope Local Envvars Global Envvars Lifecycle of Envvars Introduce new Envvars Deprecate Existing Envvars Separating Multiple Envvars The scope of an environment variable can be derived from its name. Therefore, it is important to follow the correct naming scheme to enable easy and proper identification. This is important when either:
+  <meta name="twitter:description" content="Envvar Definition Naming Scope Local Envvars Global Envvars Lifecycle of Envvars Introduce new Envvars Adding Envvars to Existing Ones Deprecate Existing Envvars Separating Multiple Envvars The scope of an environment variable can be derived from its name. Therefore, it is important to follow the correct naming scheme to enable easy and proper identification. This is important when either:
 a new local envvar is introduced. a new global envvar is added to an existing local envvar." />
 
 
@@ -67,8 +67,8 @@ a new local envvar is introduced. a new global envvar is added to an existing lo
       "name": "Envvar Naming Scopes",
       "url" : "https://owncloud.dev/services/general-info/envvar-scopes/",
       "headline": "Envvar Naming Scopes",
-      "description": "Envvar Definition Naming Scope Local Envvars Global Envvars Lifecycle of Envvars Introduce new Envvars Deprecate Existing Envvars Separating Multiple Envvars The scope of an environment variable can be derived from its name. Therefore, it is important to follow the correct naming scheme to enable easy and proper identification. This is important when either:\na new local envvar is introduced. a new global envvar is added to an existing local envvar.",
-      "wordCount" : "395",
+      "description": "Envvar Definition Naming Scope Local Envvars Global Envvars Lifecycle of Envvars Introduce new Envvars Adding Envvars to Existing Ones Deprecate Existing Envvars Separating Multiple Envvars The scope of an environment variable can be derived from its name. Therefore, it is important to follow the correct naming scheme to enable easy and proper identification. This is important when either:\na new local envvar is introduced. a new global envvar is added to an existing local envvar.",
+      "wordCount" : "444",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18752,6 +18752,7 @@ Copyright 2022 Fonticons, Inc.
         <li><a href="#lifecycle-of-envvars">Lifecycle of Envvars</a>
           <ul>
             <li><a href="#introduce-new-envvars">Introduce new Envvars</a></li>
+            <li><a href="#adding-envvars-to-existing-ones">Adding Envvars to Existing Ones</a></li>
             <li><a href="#deprecate-existing-envvars">Deprecate Existing Envvars</a></li>
           </ul>
         </li>
@@ -18852,6 +18853,16 @@ Copyright 2022 Fonticons, Inc.
 
 <p>For the documentation to show the correct value for the <code>IV</code> (introduction version), our docs helper scripts will automatically generate the correct version to be printed in the documentation. If <code>%%NEXT%%</code> is found in the query, it will be replaced with <code>next</code>, else the value found is used.</p>
 <p>During the releasing process for a production release, the placeholder <code>%%NEXT%%</code> has to be replaced with the new production version number like <code>%%NEXT%%</code> → <code>7.0.0</code>.</p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="adding-envvars-to-existing-ones"
+    >
+        Adding Envvars to Existing Ones
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/services/general-info/envvar-scopes/#adding-envvars-to-existing-ones" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Adding Envvars to Existing Ones" aria-label="Anchor to: Adding Envvars to Existing Ones" href="#adding-envvars-to-existing-ones">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>If an envvar has been introduced with a particular version, the <code>introductionVersion</code> gets a value accordingly. If an additional envvar like a global one is added to this existing envvar later on, the introduction version will <em>not</em> be changed.</p>
 <div class="flex align-center gdoc-page__anchorwrap">
     <h3 id="deprecate-existing-envvars"
     >
