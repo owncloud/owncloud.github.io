@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/storage-users_configvars/",
       "headline": "Storage Users Configvars",
       "description": "Environment Variables Name Type Default Value Description STORAGE_USERS_SERVICE_NAME string storage-users Service name to use. Change this when starting an additional storage provider with a custom configuration to prevent it from colliding with the default ‘storage-users’ service. OCIS_TRACING_ENABLEDSTORAGE_USERS_TRACING_ENABLED bool false Activates tracing. OCIS_TRACING_TYPESTORAGE_USERS_TRACING_TYPE string The type of tracing. Defaults to ‘’, which is the same as ‘jaeger’. Allowed tracing types are ‘jaeger’ and ’’ as of now. OCIS_TRACING_ENDPOINTSTORAGE_USERS_TRACING_ENDPOINT string The endpoint of the tracing agent.",
-      "wordCount" : "2773",
+      "wordCount" : "2795",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -19256,8 +19256,8 @@ Copyright 2022 Fonticons, Inc.
 <tr>
 <td>STORAGE_USERS_POSIX_ROOT</td>
 <td>string</td>
-<td></td>
-<td>The directory where the filesystem storage will store its data. If not defined, the root directory derives from $OCIS_BASE_DATA_PATH:/storage/owncloud.</td>
+<td>/var/lib/ocis/storage/users</td>
+<td>The directory where the filesystem storage will store its data. If not defined, the root directory derives from $OCIS_BASE_DATA_PATH:/storage/users.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_POSIX_PERSONAL_SPACE_PATH_TEMPLATE</td>
@@ -19282,6 +19282,12 @@ Copyright 2022 Fonticons, Inc.
 <td>bool</td>
 <td>true</td>
 <td>Enable asynchronous file uploads.</td>
+</tr>
+<tr>
+<td>STORAGE_USERS_POSIX_SCAN_DEBOUNCE_DELAY</td>
+<td>Duration</td>
+<td>1s</td>
+<td>The time in milliseconds to wait before scanning the filesystem for changes after a change has been detected.</td>
 </tr>
 <tr>
 <td>STORAGE_USERS_POSIX_USE_SPACE_GROUPS</td>
