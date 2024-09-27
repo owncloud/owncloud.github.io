@@ -77,7 +77,7 @@ Installation via Composer Add “owncloud/ocis-php-sdk” to the require block i
       "url" : "https://owncloud.dev/clients/ocis-php-sdk/",
       "headline": "oCIS PHP SDK",
       "description": "ocis-php-sdk This SDK allows you to interact with ownCloud Infinite Scale (oCIS) storage using PHP.\nDocumentation You can find a rendered version of the API documentation in our dev docs.\nTo render the documentation locally, use the phpDocumentor to run it in the local repo. E.g.:\ndocker run --rm -v ${PWD}:\/data phpdoc\/phpdoc:3 After that you will find the documentation inside the docs folder.\nInstallation via Composer Add “owncloud\/ocis-php-sdk” to the require block in your composer.",
-      "wordCount" : "1066",
+      "wordCount" : "1222",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18847,14 +18847,20 @@ The ocis-php-sdk currently relies on a development version of the &ldquo;ownclou
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
 </div>
-<p>Create an Ocis object using the service Url and an access token:</p>
+<p>Ocis has two types of access token, one which is used to interact with drive, group, user, shares etc.(OICD access token) and another which can be used to interact with education endpoints (education access token).</p>
+<p>Create an Ocis object using the service Url and an OIDC access token:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$ocis</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Ocis</span><span class="p">(</span><span class="s1">&#39;https://example.ocis.com&#39;</span><span class="p">,</span> <span class="nv">$accessToken</span><span class="p">);</span>
-</span></span></code></pre></div><p>Acquiring an access token is out of scope of this SDK, but you can find <a
+</span></span></code></pre></div><p>Or create an Ocis object to interact with education endpoints using the service Url and an education access token:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$ocis</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Ocis</span><span class="p">(</span><span class="s1">&#39;https://education.ocis.com&#39;</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="p">[],</span> <span class="nv">$educationAccessToken</span><span class="p">);</span>
+</span></span></code></pre></div><p>At least one access token should be provided to use the SKD.</p>
+<p>Acquiring an OICD access token is out of scope of this SDK, but you can find <a
   class="gdoc-markdown__link"
   href="#acquiring-an-access-token"
 >examples for that below</a>.</p>
-<p>Also refreshing tokens is not part of the SDK, but after you got a new token, you can update the Ocis object:</p>
+<p>Also refreshing OICD tokens is not part of the SDK, but after you got a new token, you can update the Ocis object:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$ocis</span><span class="o">-&gt;</span><span class="na">setAccessToken</span><span class="p">(</span><span class="nv">$newAccessToken</span><span class="p">);</span>
+</span></span></code></pre></div><p>Education access token is set when starting the ocis graph server. You can get it using following snippet</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$educationAccessToken</span> <span class="o">=</span> <span class="nx">getenv</span><span class="p">(</span><span class="s2">&#34;GRAPH_HTTP_API_TOKEN&#34;</span><span class="p">)</span>
 </span></span></code></pre></div><div class="flex align-center gdoc-page__anchorwrap">
     <h2 id="drives-spaces"
     >
@@ -18975,6 +18981,24 @@ The ocis-php-sdk currently relies on a development version of the &ldquo;ownclou
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// share the resource with the users
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$resources</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">invite</span><span class="p">(</span><span class="nv">$users</span><span class="p">,</span> <span class="nv">$editorRole</span><span class="p">);</span>
+</span></span></code></pre></div><div class="flex align-center gdoc-page__anchorwrap">
+    <h2 id="education-user"
+    >
+        Education User
+    </h2>
+    <a data-clipboard-text="https://owncloud.dev/clients/ocis-php-sdk/#education-user" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Education User" aria-label="Anchor to: Education User" href="#education-user">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>Education Users can only be created, listed and deleted using education access token. If you want to use other APIs you need to use the OICD access token.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// create education user
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$educationUsers</span> <span class="o">=</span> <span class="nv">$ocis</span><span class="o">-&gt;</span><span class="na">createEducationUser</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// list all education user
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$educationUsers</span> <span class="o">=</span> <span class="nv">$ocis</span><span class="o">-&gt;</span><span class="na">getEducationUsers</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// list education user by id
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$educationUsers</span> <span class="o">=</span> <span class="nv">$ocis</span><span class="o">-&gt;</span><span class="na">getEducationUserById</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// delete education user
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$educationUser</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">()</span>
 </span></span></code></pre></div><div class="flex align-center gdoc-page__anchorwrap">
     <h2 id="requirements"
     >
