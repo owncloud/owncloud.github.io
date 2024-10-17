@@ -13,7 +13,7 @@
 
 
   <meta name="description" content="Abstract The thumbnails service provides methods to generate thumbnails for various files and resolutions based on requests. It retrieves the sources at the location where the user files are stored and saves the thumbnails where system files are stored. Those locations have defaults but can be manually defined via environment variables.
-Table of Contents File Locations Overview Thumbnail Location Thumbnail Source File Types Thumbnail Target File Types Thumbnail Query String Parameters Thumbnail Resolution Thumbnail Processors Deleting Thumbnails Memory Considerations Thumbnails and SecureView Example Yaml Config File Locations Overview The relevant environment variables defining file locations are:" />
+Table of Contents File Locations Overview Thumbnail Location Thumbnail Source File Types Thumbnail Target File Types Thumbnail Query String Parameters Thumbnail Resolution Thumbnail Processors Deleting Thumbnails Memory Considerations Thumbnails and SecureView Using libvips for Thumbnail Generation Example Yaml Config File Locations Overview The relevant environment variables defining file locations are:" />
 
     <title>Thumbnails | ownCloud</title>
 
@@ -38,25 +38,25 @@ Table of Contents File Locations Overview Thumbnail Location Thumbnail Source Fi
   />
   <meta property="og:site_name" content="ownCloud" />
   <meta property="og:description" content="Abstract The thumbnails service provides methods to generate thumbnails for various files and resolutions based on requests. It retrieves the sources at the location where the user files are stored and saves the thumbnails where system files are stored. Those locations have defaults but can be manually defined via environment variables.
-Table of Contents File Locations Overview Thumbnail Location Thumbnail Source File Types Thumbnail Target File Types Thumbnail Query String Parameters Thumbnail Resolution Thumbnail Processors Deleting Thumbnails Memory Considerations Thumbnails and SecureView Example Yaml Config File Locations Overview The relevant environment variables defining file locations are:" />
+Table of Contents File Locations Overview Thumbnail Location Thumbnail Source File Types Thumbnail Target File Types Thumbnail Query String Parameters Thumbnail Resolution Thumbnail Processors Deleting Thumbnails Memory Considerations Thumbnails and SecureView Using libvips for Thumbnail Generation Example Yaml Config File Locations Overview The relevant environment variables defining file locations are:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/thumbnails/" />
 
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2024-10-17T08:01:31+00:00"
+      content="2024-10-17T12:33:41+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-10-17T08:01:31+00:00"
+      content="2024-10-17T12:33:41+00:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Thumbnails" />
   <meta name="twitter:description" content="Abstract The thumbnails service provides methods to generate thumbnails for various files and resolutions based on requests. It retrieves the sources at the location where the user files are stored and saves the thumbnails where system files are stored. Those locations have defaults but can be manually defined via environment variables.
-Table of Contents File Locations Overview Thumbnail Location Thumbnail Source File Types Thumbnail Target File Types Thumbnail Query String Parameters Thumbnail Resolution Thumbnail Processors Deleting Thumbnails Memory Considerations Thumbnails and SecureView Example Yaml Config File Locations Overview The relevant environment variables defining file locations are:" />
+Table of Contents File Locations Overview Thumbnail Location Thumbnail Source File Types Thumbnail Target File Types Thumbnail Query String Parameters Thumbnail Resolution Thumbnail Processors Deleting Thumbnails Memory Considerations Thumbnails and SecureView Using libvips for Thumbnail Generation Example Yaml Config File Locations Overview The relevant environment variables defining file locations are:" />
 
 
   <script type="application/ld+json">
@@ -67,8 +67,8 @@ Table of Contents File Locations Overview Thumbnail Location Thumbnail Source Fi
       "name": "Thumbnails",
       "url" : "https://owncloud.dev/services/thumbnails/",
       "headline": "Thumbnails",
-      "description": "Abstract The thumbnails service provides methods to generate thumbnails for various files and resolutions based on requests. It retrieves the sources at the location where the user files are stored and saves the thumbnails where system files are stored. Those locations have defaults but can be manually defined via environment variables.\nTable of Contents File Locations Overview Thumbnail Location Thumbnail Source File Types Thumbnail Target File Types Thumbnail Query String Parameters Thumbnail Resolution Thumbnail Processors Deleting Thumbnails Memory Considerations Thumbnails and SecureView Example Yaml Config File Locations Overview The relevant environment variables defining file locations are:",
-      "wordCount" : "1730",
+      "description": "Abstract The thumbnails service provides methods to generate thumbnails for various files and resolutions based on requests. It retrieves the sources at the location where the user files are stored and saves the thumbnails where system files are stored. Those locations have defaults but can be manually defined via environment variables.\nTable of Contents File Locations Overview Thumbnail Location Thumbnail Source File Types Thumbnail Target File Types Thumbnail Query String Parameters Thumbnail Resolution Thumbnail Processors Deleting Thumbnails Memory Considerations Thumbnails and SecureView Using libvips for Thumbnail Generation Example Yaml Config File Locations Overview The relevant environment variables defining file locations are:",
+      "wordCount" : "1928",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ Table of Contents File Locations Overview Thumbnail Location Thumbnail Source Fi
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-10-17T08:01:31.97Z",
-      "datePublished": "2024-10-17T08:01:31.97Z",
-      "dateModified": "2024-10-17T08:01:31.97Z",
+      "dateCreated": "2024-10-17T12:33:41.83Z",
+      "datePublished": "2024-10-17T12:33:41.83Z",
+      "dateModified": "2024-10-17T12:33:41.83Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -18802,6 +18802,10 @@ Copyright 2022 Fonticons, Inc.
 >Thumbnails and SecureView</a></li>
 <li><a
   class="gdoc-markdown__link"
+  href="#using-libvips-for-thumbnail-generation"
+>Using libvips for Thumbnail Generation</a></li>
+<li><a
+  class="gdoc-markdown__link"
   href="#example-yaml-config"
 >Example Yaml Config</a></li>
 </ul>
@@ -18992,6 +18996,32 @@ To have more control over memory (and CPU) consumption the maximum number of con
     </a>
 </div>
 <p>If a resource is shared using SecureView, the share reciever will get a 403 (forbidden) response when requesting a thumbnail. The requesting client needs to decide what to show and usually a placeholder thumbnail is used.</p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h2 id="using-libvips-for-thumbnail-generation"
+    >
+        Using libvips for Thumbnail Generation
+    </h2>
+    <a data-clipboard-text="https://owncloud.dev/services/thumbnails/#using-libvips-for-thumbnail-generation" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Using libvips for Thumbnail Generation" aria-label="Anchor to: Using libvips for Thumbnail Generation" href="#using-libvips-for-thumbnail-generation">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>To improve performance and to support a wider range of images formats, the thumbnails service is able to utilize the <a
+  class="gdoc-markdown__link"
+  href="https://www.libvips.org/"
+>libvips library</a> for thumbnail generation. Support for libvips needs to be
+enabled at buildtime and has a couple of implications:</p>
+<ul>
+<li>With libvips support enabled, it is not possible to create a statically linked ocis binary.</li>
+<li>Therefore, the libvips shared libraries need to be available at runtime in the same release that was used to build the ocis binary.</li>
+<li>When using the ocis docker images, the libvips shared libraries are included in the image and are correctly embedded.</li>
+</ul>
+<p>Support of libvips is disabled by default. To enable it, make sure libvips and its buildtime dependencies are installed in your build environment.
+Then you just need to set the <code>ENABLE_VIPS</code> variable on the <code>make</code> command:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">make -C ocis build <span class="nv">ENABLE_VIPS</span><span class="o">=</span><span class="m">1</span>
+</span></span></code></pre></div><p>Or include the <code>enable_vips</code> build tag in the <code>go build</code> command:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">go build -tags enable_vips -o ocis -o bin/ocis ./cmd/ocis
+</span></span></code></pre></div><p>When building a docker image using the Dockerfile in the top-level directory of ocis, libvips support is enabled and the libvips shared libraries are included
+in the resulting docker image.</p>
 <div class="flex align-center gdoc-page__anchorwrap">
     <h2 id="example-yaml-config"
     >
