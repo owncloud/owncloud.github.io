@@ -47,11 +47,11 @@ the provider cache is caching requests to list or get storage providers." />
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2024-10-23T14:52:14+00:00"
+      content="2024-10-23T15:20:53+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-10-23T14:52:14+00:00"
+      content="2024-10-23T15:20:53+00:00"
     />
 
 
@@ -71,7 +71,7 @@ the provider cache is caching requests to list or get storage providers." />
       "url" : "https://owncloud.dev/services/gateway/",
       "headline": "Gateway",
       "description": "Abstract The gateway service is responsible for passing requests to the storage providers. Other services never talk to the storage providers directly but will always send their requests via the gateway service.\nTable of Contents Caching Service Endpoints Storage Registry Example Yaml Config Caching The gateway service is using caching as it is highly frequented with the same requests. As of now it uses two different caches:\nthe provider cache is caching requests to list or get storage providers.",
-      "wordCount" : "2012",
+      "wordCount" : "2076",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -80,9 +80,9 @@ the provider cache is caching requests to list or get storage providers." />
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-10-23T14:52:14.47Z",
-      "datePublished": "2024-10-23T14:52:14.47Z",
-      "dateModified": "2024-10-23T14:52:14.47Z",
+      "dateCreated": "2024-10-23T15:20:53.32Z",
+      "datePublished": "2024-10-23T15:20:53.32Z",
+      "dateModified": "2024-10-23T15:20:53.32Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -18827,9 +18827,36 @@ Copyright 2022 Fonticons, Inc.
     </a>
 </div>
 <p><strong>IMPORTANT</strong><br>
-This functionality is currently experimental.</p>
+This functionality is currently highly experimental and intended for testing only! There are known bugs that need to be sorted out like not removing sockets when a service ends.</p>
 <p>The gateway acts as a proxy for other CS3 services. As such it has to forward requests to a lot of services and needs to establish connections by looking up the IP address using the service registry. Instead of using the service registry each endpoint can also be configured to use the grpc <code>dns://</code> or <code>kubernetes://</code> URLs, which might be useful when running in kubernetes.</p>
 <p>For a local single node deployment you might want to use <code>unix:</code> sockets as shown below. Using unix sockets will reduce the amount of service lookups and omit the TCP stack. For now, this is experimental and the services do not delete the socket on shutdown. PRs welcome.</p>
+<p>The scheme for this setup is the following. Note that there is, except storage, always a service and a gateway envvar triple:</p>
+<div class="table-wrap"> <table>
+<thead>
+<tr>
+<th><strong>envvar</strong></th>
+<th><strong>default</strong></th>
+<th><strong>alternative</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OCIS_GRPC_PROTOCOL or <br> <code>&lt;service&gt;</code>_GRPC_PROTOCOL</td>
+<td>tcp</td>
+<td>unix</td>
+</tr>
+<tr>
+<td><code>&lt;service&gt;</code>_GRPC_ADDR</td>
+<td>127.0.0.1:<code>&lt;port&gt;</code></td>
+<td>/var/run/ocis/<code>&lt;service&gt;</code>.sock</td>
+</tr>
+<tr>
+<td>GATEWAY_<code>&lt;service&gt;</code>_ENDPOINT</td>
+<td>com.owncloud.api.<code>&lt;service&gt;</code></td>
+<td>unix:/var/run/ocis/<code>&lt;service&gt;</code>.sock <br> dns: &hellip; <br> kubernetes: &hellip;</td>
+</tr>
+</tbody>
+</table> </div>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">USERS_GRPC_PROTOCOL=unix&#34;
 </span></span></span><span class="line"><span class="cl"><span class="go">USERS_GRPC_ADDR=/var/run/ocis/users.sock&#34;
 </span></span></span><span class="line"><span class="cl"><span class="go">GATEWAY_USERS_ENDPOINT=unix:/var/run/ocis/users.sock&#34;
@@ -18876,11 +18903,11 @@ This functionality is currently experimental.</p>
 </span></span></span><span class="line"><span class="cl"><span class="go">OCM_GRPC_ADDR=/var/run/ocis/ocm.sock&#34;
 </span></span></span><span class="line"><span class="cl"><span class="go">GATEWAY_OCM_ENDPOINT=unix:/var/run/ocis/ocm.sock&#34;
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="go">// storage system
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="go">// storage related
+</span></span></span><span class="line"><span class="cl"><span class="go">SETTINGS_STORAGE_GATEWAY_GRPC_ADDR=&#34;unix:/var/run/ocis/storage-system.sock&#34;
+</span></span></span><span class="line"><span class="cl"><span class="go">SETTINGS_STORAGE_GRPC_ADDR=&#34;unix:/var/run/ocis/storage-system.sock&#34;
 </span></span></span><span class="line"><span class="cl"><span class="go">STORAGE_SYSTEM_GRPC_PROTOCOL=&#34;unix&#34;
 </span></span></span><span class="line"><span class="cl"><span class="go">STORAGE_SYSTEM_GRPC_ADDR=&#34;/var/run/ocis/storage-system.sock&#34;
-</span></span></span><span class="line"><span class="cl"><span class="go">STORAGE_GATEWAY_GRPC_ADDR=&#34;unix:/var/run/ocis/storage-system.sock&#34;
-</span></span></span><span class="line"><span class="cl"><span class="go">STORAGE_GRPC_ADDR=&#34;unix:/var/run/ocis/storage-system.sock&#34;
 </span></span></span><span class="line"><span class="cl"><span class="go">SHARING_USER_CS3_PROVIDER_ADDR=&#34;unix:/var/run/ocis/storage-system.sock&#34;
 </span></span></span><span class="line"><span class="cl"><span class="go">SHARING_USER_JSONCS3_PROVIDER_ADDR=&#34;unix:/var/run/ocis/storage-system.sock&#34;
 </span></span></span><span class="line"><span class="cl"><span class="go">SHARING_PUBLIC_CS3_PROVIDER_ADDR=&#34;unix:/var/run/ocis/storage-system.sock&#34;

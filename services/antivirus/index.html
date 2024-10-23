@@ -13,7 +13,7 @@
 
 
   <meta name="description" content="Abstract The antivirus service is responsible for scanning files for viruses.
-Table of Contents Configuration Antivirus Scanner Type Maximum Scan Size Infected File Handling Scanner Inaccessibility Operation Modes Postprocessing Scaling in Kubernetes Example Yaml Config Configuration Antivirus Scanner Type The antivirus service currently supports ICAP and ClamAV as antivirus scanners. The ANTIVIRUS_SCANNER_TYPE environment variable is used to select the scanner. The detailed configuration for each scanner heavily depends on the scanner type selected." />
+Table of Contents Configuration Antivirus Scanner Type Maximum Scan Size Antivirus Workers Infected File Handling Scanner Inaccessibility Operation Modes Postprocessing Scaling in Kubernetes Example Yaml Config Configuration Antivirus Scanner Type The antivirus service currently supports ICAP and ClamAV as antivirus scanners. The ANTIVIRUS_SCANNER_TYPE environment variable is used to select the scanner. The detailed configuration for each scanner heavily depends on the scanner type selected." />
 
     <title>Antivirus | ownCloud</title>
 
@@ -38,25 +38,25 @@ Table of Contents Configuration Antivirus Scanner Type Maximum Scan Size Infecte
   />
   <meta property="og:site_name" content="ownCloud" />
   <meta property="og:description" content="Abstract The antivirus service is responsible for scanning files for viruses.
-Table of Contents Configuration Antivirus Scanner Type Maximum Scan Size Infected File Handling Scanner Inaccessibility Operation Modes Postprocessing Scaling in Kubernetes Example Yaml Config Configuration Antivirus Scanner Type The antivirus service currently supports ICAP and ClamAV as antivirus scanners. The ANTIVIRUS_SCANNER_TYPE environment variable is used to select the scanner. The detailed configuration for each scanner heavily depends on the scanner type selected." />
+Table of Contents Configuration Antivirus Scanner Type Maximum Scan Size Antivirus Workers Infected File Handling Scanner Inaccessibility Operation Modes Postprocessing Scaling in Kubernetes Example Yaml Config Configuration Antivirus Scanner Type The antivirus service currently supports ICAP and ClamAV as antivirus scanners. The ANTIVIRUS_SCANNER_TYPE environment variable is used to select the scanner. The detailed configuration for each scanner heavily depends on the scanner type selected." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/antivirus/" />
 
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2024-10-23T14:52:14+00:00"
+      content="2024-10-23T15:20:53+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-10-23T14:52:14+00:00"
+      content="2024-10-23T15:20:53+00:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Antivirus" />
   <meta name="twitter:description" content="Abstract The antivirus service is responsible for scanning files for viruses.
-Table of Contents Configuration Antivirus Scanner Type Maximum Scan Size Infected File Handling Scanner Inaccessibility Operation Modes Postprocessing Scaling in Kubernetes Example Yaml Config Configuration Antivirus Scanner Type The antivirus service currently supports ICAP and ClamAV as antivirus scanners. The ANTIVIRUS_SCANNER_TYPE environment variable is used to select the scanner. The detailed configuration for each scanner heavily depends on the scanner type selected." />
+Table of Contents Configuration Antivirus Scanner Type Maximum Scan Size Antivirus Workers Infected File Handling Scanner Inaccessibility Operation Modes Postprocessing Scaling in Kubernetes Example Yaml Config Configuration Antivirus Scanner Type The antivirus service currently supports ICAP and ClamAV as antivirus scanners. The ANTIVIRUS_SCANNER_TYPE environment variable is used to select the scanner. The detailed configuration for each scanner heavily depends on the scanner type selected." />
 
 
   <script type="application/ld+json">
@@ -67,8 +67,8 @@ Table of Contents Configuration Antivirus Scanner Type Maximum Scan Size Infecte
       "name": "Antivirus",
       "url" : "https://owncloud.dev/services/antivirus/",
       "headline": "Antivirus",
-      "description": "Abstract The antivirus service is responsible for scanning files for viruses.\nTable of Contents Configuration Antivirus Scanner Type Maximum Scan Size Infected File Handling Scanner Inaccessibility Operation Modes Postprocessing Scaling in Kubernetes Example Yaml Config Configuration Antivirus Scanner Type The antivirus service currently supports ICAP and ClamAV as antivirus scanners. The ANTIVIRUS_SCANNER_TYPE environment variable is used to select the scanner. The detailed configuration for each scanner heavily depends on the scanner type selected.",
-      "wordCount" : "1183",
+      "description": "Abstract The antivirus service is responsible for scanning files for viruses.\nTable of Contents Configuration Antivirus Scanner Type Maximum Scan Size Antivirus Workers Infected File Handling Scanner Inaccessibility Operation Modes Postprocessing Scaling in Kubernetes Example Yaml Config Configuration Antivirus Scanner Type The antivirus service currently supports ICAP and ClamAV as antivirus scanners. The ANTIVIRUS_SCANNER_TYPE environment variable is used to select the scanner. The detailed configuration for each scanner heavily depends on the scanner type selected.",
+      "wordCount" : "1207",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ Table of Contents Configuration Antivirus Scanner Type Maximum Scan Size Infecte
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-10-23T14:52:14.46Z",
-      "datePublished": "2024-10-23T14:52:14.46Z",
-      "dateModified": "2024-10-23T14:52:14.46Z",
+      "dateCreated": "2024-10-23T15:20:53.32Z",
+      "datePublished": "2024-10-23T15:20:53.32Z",
+      "dateModified": "2024-10-23T15:20:53.32Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -18775,6 +18775,10 @@ Copyright 2022 Fonticons, Inc.
 >Maximum Scan Size</a></li>
 <li><a
   class="gdoc-markdown__link"
+  href="#antivirus-workers"
+>Antivirus Workers</a></li>
+<li><a
+  class="gdoc-markdown__link"
   href="#infected-file-handling"
 >Infected File Handling</a></li>
 <li><a
@@ -18850,6 +18854,16 @@ Streaming of files to the virus scan service still <a
 >needs to be implemented</a>. To prevent OOM errors <code>ANTIVIRUS_MAX_SCAN_SIZE</code> needs to be set lower than available ram.</p>
 </blockquote>
 <div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="antivirus-workers"
+    >
+        Antivirus Workers
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/services/antivirus/#antivirus-workers" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Antivirus Workers" aria-label="Anchor to: Antivirus Workers" href="#antivirus-workers">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>The number of concurrent scans can be increased by setting <code>ANTIVIRUS_WORKERS</code>. Be aware that this will also increase memory usage.</p>
+<div class="flex align-center gdoc-page__anchorwrap">
     <h3 id="infected-file-handling"
     >
         Infected File Handling
@@ -18911,7 +18925,7 @@ Streaming of files to the virus scan service still <a
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
 </div>
-<p>In kubernetes <code>ANTIVIRUS_WORKERS</code> and <code>ANTIVIRUS_MAX_SCAN_SIZE</code> can be used to trigger the horizontal pod autoscaler by requesting a memory size that is below <code>ANTIVIRUS_MAX_SCAN_SIZE</code>. Keep in mind that <code>ANTIVIRUS_MAX_SCAN_SIZE</code> amount of memory might be held by <code>ANTIVIRUS_WORKERS</code> number of go routines.</p>
+<p>In kubernetes, <code>ANTIVIRUS_WORKERS</code> and <code>ANTIVIRUS_MAX_SCAN_SIZE</code> can be used to trigger the horizontal pod autoscaler by requesting a memory size that is below <code>ANTIVIRUS_MAX_SCAN_SIZE</code>. Keep in mind that <code>ANTIVIRUS_MAX_SCAN_SIZE</code> amount of memory might be held by <code>ANTIVIRUS_WORKERS</code> number of go routines.</p>
 <div class="flex align-center gdoc-page__anchorwrap">
     <h2 id="example-yaml-config"
     >
