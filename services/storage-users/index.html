@@ -47,11 +47,11 @@ IMPORTANT: The graceful shutdown period is only applicable if the storage-users 
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2024-11-04T13:26:06+00:00"
+      content="2024-11-04T18:23:58+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-11-04T13:26:06+00:00"
+      content="2024-11-04T18:23:58+00:00"
     />
 
 
@@ -71,7 +71,7 @@ IMPORTANT: The graceful shutdown period is only applicable if the storage-users 
       "url" : "https://owncloud.dev/services/storage-users/",
       "headline": "Storage-Users",
       "description": "Abstract Purpose and description to be added\nTable of Contents Graceful Shutdown CLI Commands Manage Unfinished Uploads Sessions command Command Examples Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Graceful Shutdown Starting with Infinite Scale version 3.1, you can define a graceful shutdown period for the storage-users service.\nIMPORTANT: The graceful shutdown period is only applicable if the storage-users service runs as standalone service.",
-      "wordCount" : "5049",
+      "wordCount" : "5071",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -80,9 +80,9 @@ IMPORTANT: The graceful shutdown period is only applicable if the storage-users 
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-11-04T13:26:06.23Z",
-      "datePublished": "2024-11-04T13:26:06.23Z",
-      "dateModified": "2024-11-04T13:26:06.23Z",
+      "dateCreated": "2024-11-04T18:23:58.37Z",
+      "datePublished": "2024-11-04T18:23:58.37Z",
+      "dateModified": "2024-11-04T18:23:58.37Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -18896,8 +18896,6 @@ Copyright 2022 Fonticons, Inc.
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users uploads &lt;command&gt;
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">COMMANDS:
 </span></span><span class="line"><span class="cl">   sessions   Print a list of upload sessions
-</span></span><span class="line"><span class="cl">   clean      Clean up leftovers from expired uploads (deprecated)
-</span></span><span class="line"><span class="cl">   list       Print a list of all incomplete uploads (deprecated)
 </span></span></code></pre></div><div class="flex align-center gdoc-page__anchorwrap">
     <h4 id="sessions-command"
     >
@@ -18908,6 +18906,16 @@ Copyright 2022 Fonticons, Inc.
     </a>
 </div>
 <p>The <code>sessions</code> command is the entry point for listing, restarting and cleaning unfinished uploads.</p>
+<p><strong>IMPORTANT</strong></p>
+<blockquote>
+<p>If not noted otherwise, commands with the <code>restart</code> option can also use the <code>resume</code> option. This changes behaviour slightly.</p>
+<ul>
+<li><code>restart</code><br>
+When restarting an upload, all steps for open items will be restarted, except if otherwise defined.</li>
+<li><code>resume</code><br>
+When resuming an upload, processing will continue unfinished items from their last completed step.</li>
+</ul>
+</blockquote>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users uploads sessions &lt;commandoptions&gt;
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">NAME:
 </span></span><span class="line"><span class="cl">   ocis storage-users uploads sessions - Print a list of upload sessions
@@ -18922,6 +18930,7 @@ Copyright 2022 Fonticons, Inc.
 </span></span><span class="line"><span class="cl">   --has-virus   filter sessions by virus scan result (default: unset)
 </span></span><span class="line"><span class="cl">   --json        output as json (default: false)
 </span></span><span class="line"><span class="cl">   --restart     send restart event for all listed sessions (default: false)
+</span></span><span class="line"><span class="cl">   --resume      send resume event for all listed sessions (default: false)
 </span></span><span class="line"><span class="cl">   --clean       remove uploads (default: false)
 </span></span><span class="line"><span class="cl">   --help, -h    show help
 </span></span></code></pre></div><p>This will always output a list of uploads that match the criteria. See Command Examples section.</p>
@@ -18953,19 +18962,13 @@ Copyright 2022 Fonticons, Inc.
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users uploads sessions --expired<span class="o">=</span><span class="nb">false</span> --processing<span class="o">=</span><span class="nb">false</span> --json
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;id&#34;</span><span class="p">:</span><span class="s2">&#34;5e387954-7313-4223-a904-bf996da6ec0b&#34;</span><span class="p">,</span><span class="nt">&#34;space&#34;</span><span class="p">:</span><span class="s2">&#34;f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c&#34;</span><span class="p">,</span><span class="nt">&#34;filename&#34;</span><span class="p">:</span><span class="s2">&#34;foo.txt&#34;</span><span class="p">,</span><span class="nt">&#34;offset&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&#34;size&#34;</span><span class="p">:</span><span class="mi">1234</span><span class="p">,</span><span class="nt">&#34;executant&#34;</span><span class="p">:{</span><span class="nt">&#34;idp&#34;</span><span class="p">:</span><span class="s2">&#34;https://cloud.ocis.test&#34;</span><span class="p">,</span><span class="nt">&#34;opaque_id&#34;</span><span class="p">:</span><span class="s2">&#34;f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c&#34;</span><span class="p">},</span><span class="nt">&#34;spaceowner&#34;</span><span class="p">:{</span><span class="nt">&#34;opaque_id&#34;</span><span class="p">:</span><span class="s2">&#34;f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c&#34;</span><span class="p">},</span><span class="nt">&#34;expires&#34;</span><span class="p">:</span><span class="s2">&#34;2024-01-26T13:04:31+01:00&#34;</span><span class="p">,</span><span class="nt">&#34;processing&#34;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span> <span class="nt">&#34;scanDate&#34;</span><span class="p">:</span> <span class="s2">&#34;2024-04-24T11:24:14+02:00&#34;</span><span class="p">,</span> <span class="nt">&#34;scanResult&#34;</span><span class="p">:</span> <span class="s2">&#34;infected: virus A&#34;</span><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;id&#34;</span><span class="p">:</span><span class="s2">&#34;f066244d-97b2-48e7-a30d-b40fcb60cec6&#34;</span><span class="p">,</span><span class="nt">&#34;space&#34;</span><span class="p">:</span><span class="s2">&#34;f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c&#34;</span><span class="p">,</span><span class="nt">&#34;filename&#34;</span><span class="p">:</span><span class="s2">&#34;bar.txt&#34;</span><span class="p">,</span><span class="nt">&#34;offset&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&#34;size&#34;</span><span class="p">:</span><span class="mi">4321</span><span class="p">,</span><span class="nt">&#34;executant&#34;</span><span class="p">:{</span><span class="nt">&#34;idp&#34;</span><span class="p">:</span><span class="s2">&#34;https://cloud.ocis.test&#34;</span><span class="p">,</span><span class="nt">&#34;opaque_id&#34;</span><span class="p">:</span><span class="s2">&#34;f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c&#34;</span><span class="p">},</span><span class="nt">&#34;spaceowner&#34;</span><span class="p">:{</span><span class="nt">&#34;opaque_id&#34;</span><span class="p">:</span><span class="s2">&#34;f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c&#34;</span><span class="p">},</span><span class="nt">&#34;expires&#34;</span><span class="p">:</span><span class="s2">&#34;2024-01-26T13:18:47+01:00&#34;</span><span class="p">,</span><span class="nt">&#34;processing&#34;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span> <span class="nt">&#34;scanDate&#34;</span><span class="p">:</span> <span class="s2">&#34;2024-04-24T14:38:29+02:00&#34;</span><span class="p">,</span> <span class="nt">&#34;scanResult&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">}</span>
-</span></span></code></pre></div><p>The sessions command can also clear and restart uploads. The output is the same as if run without <code>--clean</code> or <code>--restart</code> flag.
-Note: It is recommended to run to command first without the <code>--clean</code> (<code>--processing</code>) flag to double check which uploads get cleaned (restarted).</p>
+</span></span></code></pre></div><p>The sessions command can also clear and restart/resume uploads. The output is the same as if run without <code>--clean</code> or <code>--restart</code> flag.
+Note: It is recommended to run to command first without the <code>--clean</code> (<code>--processing</code>) flag to double check which uploads get cleaned (restarted/resumed).</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># cleans all expired uploads regardless of processing and virus state.</span>
 </span></span><span class="line"><span class="cl">ocis storage-users uploads sessions --expired<span class="o">=</span><span class="nb">true</span> --clean
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># restarts all uploads that are processing and are not virus infected</span>
-</span></span><span class="line"><span class="cl">ocis storage-users uploads sessions --processing<span class="o">=</span><span class="nb">false</span> --has-virus<span class="o">=</span><span class="nb">false</span> --restart
-</span></span></code></pre></div><p>IMPORTANT: <code>list</code> and <code>clean</code> commands are deprecated. Do not use them.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># deprecated</span>
-</span></span><span class="line"><span class="cl">ocis storage-users uploads list
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># deprecated</span>
-</span></span><span class="line"><span class="cl">ocis storage-users uploads clean
+</span></span><span class="line"><span class="cl"><span class="c1"># resumes all uploads that are processing and are not virus infected</span>
+</span></span><span class="line"><span class="cl">ocis storage-users uploads sessions --processing<span class="o">=</span><span class="nb">false</span> --has-virus<span class="o">=</span><span class="nb">false</span> --resume
 </span></span></code></pre></div><div class="flex align-center gdoc-page__anchorwrap">
     <h3 id="manage-trash-bin-items"
     >

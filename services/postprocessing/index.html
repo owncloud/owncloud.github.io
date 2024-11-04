@@ -45,11 +45,11 @@ Table of Contents General Prerequisites Postprocessing Functionality Storing Pos
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2024-11-04T13:26:06+00:00"
+      content="2024-11-04T18:23:58+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-11-04T13:26:06+00:00"
+      content="2024-11-04T18:23:58+00:00"
     />
 
 
@@ -68,7 +68,7 @@ Table of Contents General Prerequisites Postprocessing Functionality Storing Pos
       "url" : "https://owncloud.dev/services/postprocessing/",
       "headline": "Postprocessing",
       "description": "Abstract The postprocessing service handles the coordination of asynchronous postprocessing steps.\nTable of Contents General Prerequisites Postprocessing Functionality Storing Postprocessing Data Additional Prerequisites for the Postprocessing Service Postprocessing Steps Virus Scanning Delay Custom Postprocessing Steps Prerequisites Workflow CLI Commands Resume Postprocessing Example Yaml Config General Prerequisites To use the postprocessing service, an event system needs to be configured for all services. By default, ocis ships with a preconfigured nats service.",
-      "wordCount" : "2066",
+      "wordCount" : "2219",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ Table of Contents General Prerequisites Postprocessing Functionality Storing Pos
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-11-04T13:26:06.23Z",
-      "datePublished": "2024-11-04T13:26:06.23Z",
-      "dateModified": "2024-11-04T13:26:06.23Z",
+      "dateCreated": "2024-11-04T18:23:58.37Z",
+      "datePublished": "2024-11-04T18:23:58.37Z",
+      "dateModified": "2024-11-04T18:23:58.37Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -18973,27 +18973,50 @@ Copyright 2022 Fonticons, Inc.
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
 </div>
-<p>If postprocessing fails in one step due to an unforseen error, current uploads will not be retried automatically. A system admin can instead run a CLI command to retry the failed upload which is a two step process. For details on the <code>storage-users</code> command see the <strong>Manage Unfinished Uploads</strong> documentation in the <code>storage-users</code> service documentation:</p>
+<p><strong>IMPORTANT</strong></p>
+<blockquote>
+<p>If not noted otherwise, commands with the <code>restart</code> option can also use the <code>resume</code> option. This changes behaviour slightly.</p>
+<ul>
+<li><code>restart</code><br>
+When restarting an upload, all steps for open items will be restarted, except if otherwise defined.</li>
+<li><code>resume</code><br>
+When resuming an upload, processing will continue unfinished items from their last completed step.</li>
+</ul>
+</blockquote>
+<p>If post-processing fails in one step due to an unforeseen error, current uploads will not be resumed automatically. A system administrator can instead run CLI commands to resume the failed upload manually which is at minimum a two step process.</p>
+<p>For details on the <code>storage-users</code> command see the <strong>Manage Unfinished Uploads</strong> documentation in the <code>storage-users</code> service documentation.</p>
+<p>Depending if you want to restart/resume all or defined failed uploads, different commands are used.</p>
 <ul>
 <li>
-<p>First list ongoing upload sessions</p>
+<p>First, list ongoing upload sessions to identify possibly failed ones.<br>
+Note that there never can be a clear identification of a failed upload session due to various reasons causing them. You need to apply more critera like free space on disk, a failed service like antivirus etc. to declare an upload as failed.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users uploads sessions
 </span></span></code></pre></div></li>
 <li>
-<p>If you want to restart all uploads just rerun the command with the <code>--restart</code> flag</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users uploads sessions --restart
+<p><strong>All failed uploads</strong><br>
+If you want to restart/resume all failed uploads, just rerun the command with the relevant flag. Note that this is the preferred command to handle failed processing steps:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users uploads sessions --resume
 </span></span></code></pre></div></li>
 <li>
-<p>If you want to restart only one upload use the postprocessing restart command</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis postprocessing restart -u &lt;uploadID&gt;
+<p><strong>Particular failed uploads</strong><br>
+Use the <code>postprocessing</code> command to resume defined failed uploads. For postprocessing steps, the default is to resume . Note that at the moment, <code>resume</code> is an alias for <code>restart</code> to keep old functionality. <code>restart</code> is subject of change and will most likely be removed in a later version.</p>
+<ul>
+<li>
+<p><strong>Defined by ID</strong><br>
+If you want to resume only a specific upload, use the postprocessing resume command with the ID selected:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis postprocessing resume -u &lt;uploadID&gt;
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Defined by step</strong><br>
+Alternatively, instead of restarting one specific upload, a system admin can also resume all uploads that are currently in a specific step.<br>
+Examples:\</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis postprocessing resume                <span class="c1"># Resumes all uploads where postprocessing is finished, but upload is not finished</span>
+</span></span><span class="line"><span class="cl">ocis postprocessing resume -s <span class="s2">&#34;finished&#34;</span>  <span class="c1"># Equivalent to the above</span>
+</span></span><span class="line"><span class="cl">ocis postprocessing resume -s <span class="s2">&#34;virusscan&#34;</span> <span class="c1"># Resume all uploads currently in virusscan step</span>
 </span></span></code></pre></div></li>
 </ul>
-<p>Instead of starting one specific upload, a system admin can also restart all uploads that are currently in a specific step.
-Examples:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ocis postprocessing restart                # Restarts all uploads where postprocessing is finished, but upload is not finished
-</span></span><span class="line"><span class="cl">ocis postprocessing restart -s &#34;finished&#34;  # Equivalent to the above
-</span></span><span class="line"><span class="cl">ocis postprocessing restart -s &#34;virusscan&#34; # Restart all uploads currently in virusscan step
-</span></span></code></pre></div><p>Note: All above commands containing the word <code>restart</code> can also be replaced by <code>resume</code>. This changes behaviour slightly. When <code>restarting</code> an upload, the whole postprocessing will be (re)done. If <code>resuming</code> an upload, it will only continue from the last step that was completed.</p>
+</li>
+</ul>
 <div class="flex align-center gdoc-page__anchorwrap">
     <h2 id="example-yaml-config"
     >
