@@ -45,11 +45,11 @@ Table of Contents The auth Service Family Service Startup App Tokens Via CLI (de
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2024-11-22T08:16:15+00:00"
+      content="2024-11-22T09:27:25+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2024-11-22T08:16:15+00:00"
+      content="2024-11-22T09:27:25+00:00"
     />
 
 
@@ -68,7 +68,7 @@ Table of Contents The auth Service Family Service Startup App Tokens Via CLI (de
       "url" : "https://owncloud.dev/services/auth-app/",
       "headline": "Auth-App",
       "description": "Abstract The auth-app service provides authentication for 3rd party apps.\nTable of Contents The auth Service Family Service Startup App Tokens Via CLI (dev only) Via API Via Impersonation API Example Yaml Config The auth Service Family ocis uses serveral authentication services for different use cases. All services that start with auth- are part of the authentication service family. Each member authenticates requests with different scopes. As of now, these services exist:",
-      "wordCount" : "1091",
+      "wordCount" : "1398",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ Table of Contents The auth Service Family Service Startup App Tokens Via CLI (de
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-11-22T08:16:15.74Z",
-      "datePublished": "2024-11-22T08:16:15.74Z",
-      "dateModified": "2024-11-22T08:16:15.74Z",
+      "dateCreated": "2024-11-22T09:27:25.48Z",
+      "datePublished": "2024-11-22T09:27:25.48Z",
+      "dateModified": "2024-11-22T09:27:25.48Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -18888,7 +18888,64 @@ Copyright 2022 Fonticons, Inc.
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
 </div>
-<p>The <code>auth-app</code> service provides an API to create (POST), list (GET) and delete (DELETE) tokens at <code>/auth-app/tokens</code>.</p>
+<p>The <code>auth-app</code> service provides an API to create (POST), list (GET) and delete (DELETE) tokens at the <code>/auth-app/tokens</code> endpoint.</p>
+<p>When using curl for the respective command, you need to authenticate with a header. To do so, get from the browsers developer console the currently active bearer token. Consider that this token has a short lifetime. In any example, replace <code>&lt;your host[:port]&gt;</code> with the URL:port of your Infinite Scale instance, and <code>{token}</code>  <code>{value}</code> accordingly. Note that the active bearer token authenticates the user the token was issued for.</p>
+<ul>
+<li>
+<p><strong>Create a token</strong><br>
+The POST request requires:</p>
+<ul>
+<li>A <code>expiry</code> key/value pair in the form of <code>expiry=&lt;number&gt;&lt;h|m|s&gt;</code><br>
+Example: <code>expiry=72h</code></li>
+<li>An active bearer token</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl --request POST <span class="s1">&#39;https://&lt;your host:9200&gt;/auth-app/tokens?expiry={value}&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>     --header <span class="s1">&#39;Accept: application/json&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>     --header <span class="s1">&#39;Authorization: bearer {token}&#39;</span>
+</span></span></code></pre></div><p>Example output:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">&#34;token&#34;: &#34;3s2K7816M4vuSpd5&#34;,
+</span></span><span class="line"><span class="cl">&#34;expiration_date&#34;: &#34;2024-08-08T13:42:42.796888022+02:00&#34;,
+</span></span><span class="line"><span class="cl">&#34;created_date&#34;: &#34;2024-08-07T13:42:42+02:00&#34;,
+</span></span><span class="line"><span class="cl">&#34;label&#34;: &#34;Generated via API&#34;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></div></li>
+<li>
+<p><strong>List tokens</strong><br>
+The GET request only requires an active bearer token for authentication:<br>
+Note that <code>--request GET</code> is technically not required because it is curl default.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl --request GET <span class="s1">&#39;https://&lt;your host:9200&gt;/auth-app/tokens&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>     --header <span class="s1">&#39;Accept: application/json&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>     --header <span class="s1">&#39;Authorization: bearer {token}&#39;</span>
+</span></span></code></pre></div><p>Example output:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[
+</span></span><span class="line"><span class="cl">  {
+</span></span><span class="line"><span class="cl">    &#34;token&#34;: &#34;$2a$11$EyudDGAJ18bBf5NG6PL9Ru9gygZAu0oPyLawdieNjGozcbXyyuUhG&#34;,
+</span></span><span class="line"><span class="cl">    &#34;expiration_date&#34;: &#34;2024-08-08T13:44:31.025199075+02:00&#34;,
+</span></span><span class="line"><span class="cl">    &#34;created_date&#34;: &#34;2024-08-07T13:44:31+02:00&#34;,
+</span></span><span class="line"><span class="cl">    &#34;label&#34;: &#34;Generated via Impersonation API&#34;
+</span></span><span class="line"><span class="cl">  },
+</span></span><span class="line"><span class="cl">  {
+</span></span><span class="line"><span class="cl">    &#34;token&#34;: &#34;$2a$11$dfRBQrxRMPg8fvyvkFwaX.IPoIUiokvhzK.YNI/pCafk0us3MyPzy&#34;,
+</span></span><span class="line"><span class="cl">    &#34;expiration_date&#34;: &#34;2024-08-08T13:46:41.936052281+02:00&#34;,
+</span></span><span class="line"><span class="cl">    &#34;created_date&#34;: &#34;2024-08-07T13:46:42+02:00&#34;,
+</span></span><span class="line"><span class="cl">    &#34;label&#34;: &#34;Generated via Impersonation API&#34;
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">]
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Delete a token</strong><br>
+The DELETE request requires:</p>
+<ul>
+<li>A <code>token</code> key/value pair in the form of <code>token=&lt;token_issued&gt;</code><br>
+Example: <code>token=Z3s2K7816M4vuSpd5</code></li>
+<li>An active bearer token</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl --request GET <span class="s1">&#39;https://&lt;your host:9200&gt;/auth-app/tokens?token={value}&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>     --header <span class="s1">&#39;Accept: application/json&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>     --header <span class="s1">&#39;Authorization: bearer {token}&#39;</span>
+</span></span></code></pre></div></li>
+</ul>
 <div class="flex align-center gdoc-page__anchorwrap">
     <h3 id="via-impersonation-api"
     >
@@ -18898,9 +18955,26 @@ Copyright 2022 Fonticons, Inc.
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
 </div>
-<p>When setting the environment variable <code>AUTH_APP_ENABLE_IMPERSONATION</code> to <code>true</code>, admins will be able to use the <code>/auth-app/tokens</code> endpoint to create tokens for other users. This is crucial for migration scenarios,
-but should not be used on a productive system.</p>
-<div class="flex align-center gdoc-page__anchorwrap">
+<p>When setting the environment variable <code>AUTH_APP_ENABLE_IMPERSONATION</code> to <code>true</code>, admins will be able to use the <code>/auth-app/tokens</code> endpoint to create tokens for other users but using their own bearer token for authentication. This can be important for migration scenarios, but should not be considered for regular tasks on a production system for security reasons.</p>
+<p>To impersonate, the respective requests from the CLI commands above extend with the following parameters, where you can use one or the other:</p>
+<ul>
+<li>
+<p>The <code>userID</code> in the form of: <code>userID={value}</code><br>
+Example:<br>
+<code>userID=4c510ada- ... -42cdf82c3d51</code></p>
+</li>
+<li>
+<p>The <code>userName</code> in the form of: <code>userName={value}</code><br>
+Example:<br>
+<code>userName=einstein</code></p>
+</li>
+</ul>
+<p>Example:<br>
+A final create request would then look like:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl --request POST <span class="s1">&#39;https://&lt;your host:9200&gt;/auth-app/tokens?expiry={value}?userName={value}&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>     --header <span class="s1">&#39;Accept: application/json&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>     --header <span class="s1">&#39;Authorization: bearer {token}&#39;</span>
+</span></span></code></pre></div><div class="flex align-center gdoc-page__anchorwrap">
     <h2 id="example-yaml-config"
     >
         Example Yaml Config
