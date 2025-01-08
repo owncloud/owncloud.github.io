@@ -68,7 +68,7 @@ Independent of ownCloud Web on Transifex. Are located in the ownCloud Transifex 
       "url" : "https://owncloud.dev/services/general-info/add-translations/",
       "headline": "Add Translations",
       "description": "Services can have texts that need to be translated. These translations will be shown in the ownCloud Web UI. Compared to web, these translations are:\nIndependent of ownCloud Web on Transifex. Are located in the ownCloud Transifex Project. Have a name starting with ocis- for ease of identification. The process for synchronisation with Transifex is already setup and nothing needs to be done here. For any translation, it is necessary to set it up in the respective service and tell to sync it.",
-      "wordCount" : "425",
+      "wordCount" : "498",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18816,7 +18816,14 @@ Translations have a <code>context</code> and a <code>translatable string</code>.
 For details see the userlog or notifications service code.</p>
 </li>
 <li>
-<p>Use <code>&quot;github.com/owncloud/ocis/v2/ocis-pkg/l10n&quot;</code> for the translation.</p>
+<p>Add the <code>&lt;SERVICE_NAME&gt;_TRANSLATION_PATH</code> envvar in <code>services/&lt;service-name&gt;/pkg/config/config.go</code>.<br>
+For details see the userlog or notifications service code.</p>
+</li>
+<li>
+<p>Use <code>&quot;github.com/owncloud/ocis/v2/ocis-pkg/l10n&quot;</code> for the translation.<br>
+Use <code>l10n.Template</code> to define the translation string.<br>
+Use <code>l10n.NewTranslator</code> or <code>l10n.NewTranslatorFromCommonConfig</code> to get the translator.<br>
+Use <code>t.Get</code> to translate the string. See package for more advanced usage.</p>
 </li>
 <li>
 <p>Create a config in <code>services/&lt;service-name&gt;/pkg/service/l10n/.tx/config</code> with the following content. Note that it is important to stick with <code>ocis-&lt;service-name&gt;</code> to easily identify all ocis translations on Transifex:</p>
@@ -18833,8 +18840,11 @@ For details see the userlog or notifications service code.</p>
 </span></span></code></pre></div><p>Note: o: organization, p: project, r: resource</p>
 </li>
 <li>
-<p>Create a go file like <code>templates.go</code> in <code>ocis/services/&lt;service-name&gt;/pkg/service</code> that will define your translation sources like the following:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">// context string
+<p>Create an empty file <code>services/&lt;service-name&gt;/pkg/service/l10n/locale/en/LC_MESSAGES/&lt;service-name&gt;.po</code>. This is required for ocis to build. This file will be replaced nightly with the latest translations from Transifex.</p>
+</li>
+<li>
+<p>Create a go file like <code>templates.go</code> in e.g. <code>ocis/services/&lt;service-name&gt;/pkg/service</code> that will define your translation sources like the following:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">// this comment will appear in transifex as context
 </span></span><span class="line"><span class="cl">var yourString = l10n.Template(&#34;Translation String&#34;)
 </span></span></code></pre></div></li>
 <li>
@@ -18867,7 +18877,7 @@ For details see the userlog or notifications service code.</p>
 </span></span><span class="line"><span class="cl">l10n-read: $(GO_XGETTEXT)
 </span></span><span class="line"><span class="cl">	go-xgettext -o $(OUTPUT_DIR)/&lt;service-name&gt;.pot \
 </span></span><span class="line"><span class="cl">	--keyword=l10n.Template --add-comments -s \
-</span></span><span class="line"><span class="cl">	ocis/services/&lt;service-name&gt;/pkg/service/templates.go
+</span></span><span class="line"><span class="cl">	pkg/service/templates.go
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">.PHONY: l10n-write
 </span></span><span class="line"><span class="cl">l10n-write:
