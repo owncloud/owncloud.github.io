@@ -57,7 +57,7 @@
       "url" : "https://owncloud.dev/services/_includes/notifications_configvars/",
       "headline": "Notifications Configvars",
       "description": "Environment Variables Name Type Default Value Description OCIS_TRACING_ENABLEDNOTIFICATIONS_TRACING_ENABLED bool false Activates tracing. OCIS_TRACING_TYPENOTIFICATIONS_TRACING_TYPE string The type of tracing. Defaults to ‘’, which is the same as ‘jaeger’. Allowed tracing types are ‘jaeger’ and ’’ as of now. OCIS_TRACING_ENDPOINTNOTIFICATIONS_TRACING_ENDPOINT string The endpoint of the tracing agent. OCIS_TRACING_COLLECTORNOTIFICATIONS_TRACING_COLLECTOR string The HTTP endpoint for sending spans directly to a collector, i.e. http:\/\/jaeger-collector:14268\/api\/traces. Only used if the tracing endpoint is unset. OCIS_LOG_LEVELNOTIFICATIONS_LOG_LEVEL string The log level.",
-      "wordCount" : "639",
+      "wordCount" : "786",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -19034,6 +19034,48 @@ Copyright 2022 Fonticons, Inc.
 <td>string</td>
 <td></td>
 <td>The service account secret.</td>
+</tr>
+<tr>
+<td>OCIS_PERSISTENT_STORE<br/>NOTIFICATIONS_STORE</td>
+<td>string</td>
+<td>nats-js-kv</td>
+<td>The type of the store. Supported values are: &lsquo;memory&rsquo;, &rsquo;nats-js-kv&rsquo;, &lsquo;redis-sentinel&rsquo;, &rsquo;noop&rsquo;. See the text description for details.</td>
+</tr>
+<tr>
+<td>OCIS_PERSISTENT_STORE_NODES<br/>NOTIFICATIONS_STORE_NODES</td>
+<td>[]string</td>
+<td>[127.0.0.1:9233]</td>
+<td>A list of nodes to access the configured store. This has no effect when &lsquo;memory&rsquo; store is configured. Note that the behaviour how nodes are used is dependent on the library of the configured store. See the Environment Variable Types description for more details.</td>
+</tr>
+<tr>
+<td>NOTIFICATIONS_STORE_DATABASE</td>
+<td>string</td>
+<td>notifications</td>
+<td>The database name the configured store should use.</td>
+</tr>
+<tr>
+<td>NOTIFICATIONS_STORE_TABLE</td>
+<td>string</td>
+<td></td>
+<td>The database table the store should use.</td>
+</tr>
+<tr>
+<td>OCIS_PERSISTENT_STORE_TTL<br/>NOTIFICATIONS_STORE_TTL</td>
+<td>Duration</td>
+<td>336h0m0s</td>
+<td>Time to live for notifications in the store. Defaults to &lsquo;336h&rsquo; (2 weeks). See the Environment Variable Types description for more details.</td>
+</tr>
+<tr>
+<td>OCIS_PERSISTENT_STORE_AUTH_USERNAME<br/>NOTIFICATIONS_STORE_AUTH_USERNAME</td>
+<td>string</td>
+<td></td>
+<td>The username to authenticate with the store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
+</tr>
+<tr>
+<td>OCIS_PERSISTENT_STORE_AUTH_PASSWORD<br/>NOTIFICATIONS_STORE_AUTH_PASSWORD</td>
+<td>string</td>
+<td></td>
+<td>The password to authenticate with the store. Only applies when store type &rsquo;nats-js-kv&rsquo; is configured.</td>
 </tr>
 </tbody>
 </table> </div>
