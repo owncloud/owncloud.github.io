@@ -68,7 +68,7 @@ Independent of ownCloud Web on Transifex. Are located in the ownCloud Transifex 
       "url" : "https://owncloud.dev/services/general-info/add-translations/",
       "headline": "Add Translations",
       "description": "Services can have texts that need to be translated. These translations will be shown in the ownCloud Web UI. Compared to web, these translations are:\nIndependent of ownCloud Web on Transifex. Are located in the ownCloud Transifex Project. Have a name starting with ocis- for ease of identification. The process for synchronisation with Transifex is already setup and nothing needs to be done here. For any translation, it is necessary to set it up in the respective service and tell to sync it.",
-      "wordCount" : "498",
+      "wordCount" : "554",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18796,7 +18796,16 @@ Copyright 2022 Fonticons, Inc.
 <li>Have a name starting with <code>ocis-</code> for ease of identification.</li>
 </ul>
 <p>The process for <em>synchronisation</em> with Transifex is already setup and nothing needs to be done here. For any translation, it is necessary to set it up in the respective service and tell to sync it.</p>
-<p>Translations are automatically synced on a daily basis in the night.</p>
+<p><strong>IMPORTANT</strong><br>
+Translations are automatically synced on a daily basis in the night. To do so, there is an own repo that covers the process for ALL translations from all configured repos: <a
+  class="gdoc-markdown__link"
+  href="https://github.com/owncloud/translation-sync"
+>translation-sync</a>. If there is a manual &ldquo;emergency&rdquo; sync necessary, you only need to trigger <a
+  class="gdoc-markdown__link"
+  href="https://drone.owncloud.com/owncloud/translation-sync"
+>drone</a> via cli</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">drone cron <span class="nb">exec</span> owncloud/translation-sync nightly
+</span></span></code></pre></div><p>Note that you need to be logged on in drone to execute the command.</p>
 <div class="flex align-center gdoc-page__anchorwrap">
     <h2 id="implementing-ocis-translations"
     >
