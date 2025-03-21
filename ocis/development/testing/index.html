@@ -18976,7 +18976,7 @@ Copyright 2022 Fonticons, Inc.
   href="https://github.com/owncloud/ocis/blob/master/tests/ociswrapper/README.md"
 >ociswrapper</a> (i.e. <code>WITH_WRAPPER=true</code>) by default. In order to run the tests without ociswrapper, provide <code>WITH_WRAPPER=false</code> when running the tests. For example:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">WITH_WRAPPER</span><span class="o">=</span><span class="nb">false</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">BEHAT_FEATURE</span><span class="o">=</span><span class="s1">&#39;tests/acceptance/features/apiGraphUser/createUser.feature:26&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">BEHAT_FEATURE</span><span class="o">=</span><span class="s1">&#39;tests/acceptance/features/apiGraphUserGroup/createUser.feature:26&#39;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>make -C tests/acceptance/docker test-ocis-feature-ocis-storage
 </span></span></code></pre></div><p>But some test suites that are tagged with <code>@env-config</code> require the oCIS server to be run with ociswrapper. So, running those tests require <code>WITH_WRAPPER=true</code> (default setting).</p>
 </div>
@@ -19050,7 +19050,7 @@ Copyright 2022 Fonticons, Inc.
 </div>
 <p>The tests for a single feature (a feature file) can also be run against the different storage backends. To do that, multiple make targets with the schema <strong>test-<em>&lt;test-source&gt;</em>-feature-<em>&lt;storage-backend&gt;</em></strong> are available. To select a single feature you have to add an additional <code>BEHAT_FEATURE=&lt;path-to-feature-file&gt;</code> parameter when invoking the make command.</p>
 <p>For example;</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">BEHAT_FEATURE</span><span class="o">=</span><span class="s1">&#39;tests/acceptance/features/apiGraphUser/createUser.feature&#39;</span> <span class="se">\
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">BEHAT_FEATURE</span><span class="o">=</span><span class="s1">&#39;tests/acceptance/features/apiGraphUserGroup/createUser.feature&#39;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>make -C tests/acceptance/docker test-ocis-feature-ocis-storage
 </span></span></code></pre></div>
 
@@ -19070,18 +19070,18 @@ Copyright 2022 Fonticons, Inc.
 
 <blockquote class="gdoc-hint note">
   <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
-  <div class="gdoc-hint__text">A specific scenario from a feature can be run by adding <code>:&lt;line-number&gt;</code> at the end of the feature file path. For example, to run the scenario at line 26 of the feature file <code>apiGraphUser/createUser.feature</code>, simply add the line number like this: <code>apiGraphUser/createUser.feature:26</code>. Note that the line numbers mentioned in the examples might not always point to a scenario, so always check the line numbers before running the test.</div>
+  <div class="gdoc-hint__text">A specific scenario from a feature can be run by adding <code>:&lt;line-number&gt;</code> at the end of the feature file path. For example, to run the scenario at line 26 of the feature file <code>apiGraphUserGroup/createUser.feature</code>, simply add the line number like this: <code>apiGraphUserGroup/createUser.feature:26</code>. Note that the line numbers mentioned in the examples might not always point to a scenario, so always check the line numbers before running the test.</div>
 </blockquote>
 
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">BEHAT_FEATURE</span><span class="o">=</span><span class="s1">&#39;tests/acceptance/features/apiGraphUser/createUser.feature:26&#39;</span> <span class="se">\
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">BEHAT_FEATURE</span><span class="o">=</span><span class="s1">&#39;tests/acceptance/features/apiGraphUserGroup/createUser.feature:26&#39;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>make -C tests/acceptance/docker test-ocis-feature-ocis-storage
 </span></span></code></pre></div><p>Similarly, with S3 storage;</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># run a whole feature</span>
-</span></span><span class="line"><span class="cl"><span class="nv">BEHAT_FEATURE</span><span class="o">=</span><span class="s1">&#39;tests/acceptance/features/apiGraphUser/createUser.feature&#39;</span> <span class="se">\
+</span></span><span class="line"><span class="cl"><span class="nv">BEHAT_FEATURE</span><span class="o">=</span><span class="s1">&#39;tests/acceptance/features/apiGraphUserGroup/createUser.feature&#39;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>make -C tests/acceptance/docker test-ocis-feature-s3ng-storage
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># run a single scenario</span>
-</span></span><span class="line"><span class="cl"><span class="nv">BEHAT_FEATURE</span><span class="o">=</span><span class="s1">&#39;tests/acceptance/features/apiGraphUser/createUser.feature:26&#39;</span> <span class="se">\
+</span></span><span class="line"><span class="cl"><span class="nv">BEHAT_FEATURE</span><span class="o">=</span><span class="s1">&#39;tests/acceptance/features/apiGraphUserGroup/createUser.feature:26&#39;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>make -C tests/acceptance/docker test-ocis-feature-s3ng-storage
 </span></span></code></pre></div><p>In the same way, tests transferred from ownCloud core can be run as:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># run a whole feature</span>
@@ -19198,14 +19198,14 @@ Copyright 2022 Fonticons, Inc.
 
 <blockquote class="gdoc-hint note">
   <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
-  <div class="gdoc-hint__text">A specific scenario from a feature can be run by adding <code>:&lt;line-number&gt;</code> at the end of the feature file path. For example, to run the scenario at line 26 of the feature file <code>apiGraphUser/createUser.feature</code>, simply add the line number like this: <code>apiGraphUser/createUser.feature:26</code>. Note that the line numbers mentioned in the examples might not always point to a scenario, so always check the line numbers before running the test.</div>
+  <div class="gdoc-hint__text">A specific scenario from a feature can be run by adding <code>:&lt;line-number&gt;</code> at the end of the feature file path. For example, to run the scenario at line 26 of the feature file <code>apiGraphUserGroup/createUser.feature</code>, simply add the line number like this: <code>apiGraphUserGroup/createUser.feature:26</code>. Note that the line numbers mentioned in the examples might not always point to a scenario, so always check the line numbers before running the test.</div>
 </blockquote>
 
 <blockquote>
 <p>Example:</p>
-<p>BEHAT_FEATURE=tests/acceptance/features/apiGraphUser/createUser.feature</p>
+<p>BEHAT_FEATURE=tests/acceptance/features/apiGraphUserGroup/createUser.feature</p>
 <p>Or</p>
-<p>BEHAT_FEATURE=tests/acceptance/features/apiGraphUser/createUser.feature:13</p>
+<p>BEHAT_FEATURE=tests/acceptance/features/apiGraphUserGroup/createUser.feature:13</p>
 </blockquote>
 <p><code>BEHAT_SUITE</code>: to run a single suite</p>
 <blockquote>
