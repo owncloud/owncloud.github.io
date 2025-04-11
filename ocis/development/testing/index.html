@@ -65,7 +65,7 @@
       "url" : "https://owncloud.dev/ocis/development/testing/",
       "headline": "Acceptance Testing",
       "description": "Running Test Suite in Docker Run Full Test Suite Local oCIS Tests (prefix api) Tests Transferred From ownCloud Core (prefix coreApi) Run Single Feature Test oCIS Image to Be Tested (Skip Local Image Build) Test Log Output Cleanup Running Test Suite in Local Environment Run oCIS Run Local oCIS Tests (prefix api) and Tests Transferred From ownCloud Core (prefix coreApi) Use Existing Tests for BDD Running Tests With And Without remote.",
-      "wordCount" : "2399",
+      "wordCount" : "2526",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18902,6 +18902,7 @@ Copyright 2022 Fonticons, Inc.
           </ul>
         </li>
         <li><a href="#running-text-preview-tests-containing-unicode-characters">Running Text Preview Tests Containing Unicode Characters</a></li>
+        <li><a href="#generating-code-coverage-report-by-running-acceptance-tests">Generating Code Coverage Report by Running Acceptance Tests</a></li>
       </ul></nav>
       <hr />
     </div>
@@ -19727,7 +19728,31 @@ For antivirus running with docker, use <code>ANTIVIRUS_CLAMAV_SOCKET= &quot;tcp:
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nt">&#34;defaultFont&#34;</span><span class="p">:</span> <span class="s2">&#34;/path/to/ocis/tests/config/drone/NotoSans.ttf&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div>
+</span></span></code></pre></div><div class="flex align-center gdoc-page__anchorwrap">
+    <h2 id="generating-code-coverage-report-by-running-acceptance-tests"
+    >
+        Generating Code Coverage Report by Running Acceptance Tests
+    </h2>
+    <a data-clipboard-text="https://owncloud.dev/ocis/development/testing/#generating-code-coverage-report-by-running-acceptance-tests" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Generating Code Coverage Report by Running Acceptance Tests" aria-label="Anchor to: Generating Code Coverage Report by Running Acceptance Tests" href="#generating-code-coverage-report-by-running-acceptance-tests">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>To find out what oCIS code is covered by the API tests, first create a debug build of oCIS.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">make -c ocis build-debug
+</span></span></code></pre></div><p>oCIS should be served by the debug binary.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ocis/bin/ocis-debug server
+</span></span></code></pre></div><p>Then define a folder to store the coverage report.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">GOCOVERDIR</span><span class="o">=</span>coveragedatafiles
+</span></span></code></pre></div><p>Running the tests will generate the coverage report inside the <code>coveragedatafiles</code> directory.</p>
+<p>To view the report in human readable form, enter the following command or refer to the official <a
+  class="gdoc-markdown__link"
+  href="https://go.dev/doc/build-cover#working"
+>documentation</a> for more formats.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">go tool covdata textfmt -i=coveragedatafiles -o=cov.txt
+</span></span></code></pre></div><p>You can also view the report in a web UI using the following command.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">go tool cover -html=cov.txt
+</span></span></code></pre></div><p>This command should open a browser with the code report.</p>
+
   </article>
 
 
