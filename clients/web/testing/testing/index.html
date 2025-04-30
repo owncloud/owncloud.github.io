@@ -12,8 +12,7 @@
 <meta name="generator" content="Hugo 0.115.2">
 
 
-  <meta name="description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare Web Start Web Run E2E Tests Options Lint E2E Test Code Analyze the Test Report E2E Tests on oCIS With Keycloak Run oCIS With Keycloak Run E2E Tests Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.
-All the steps below require you to have the web repo cloned locally and dependencies installed." />
+  <meta name="description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare Web Start Web Run E2E Tests Options Lint E2E Test Code Analyze the Test Report E2E Tests on oCIS With Keycloak Run oCIS With Keycloak Run E2E Tests E2E Tests With Predefiend Users (@predefined-users) Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository." />
 
     <title>Running tests | ownCloud</title>
 
@@ -37,8 +36,7 @@ All the steps below require you to have the web repo cloned locally and dependen
     content="Running tests"
   />
   <meta property="og:site_name" content="ownCloud" />
-  <meta property="og:description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare Web Start Web Run E2E Tests Options Lint E2E Test Code Analyze the Test Report E2E Tests on oCIS With Keycloak Run oCIS With Keycloak Run E2E Tests Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.
-All the steps below require you to have the web repo cloned locally and dependencies installed." />
+  <meta property="og:description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare Web Start Web Run E2E Tests Options Lint E2E Test Code Analyze the Test Report E2E Tests on oCIS With Keycloak Run oCIS With Keycloak Run E2E Tests E2E Tests With Predefiend Users (@predefined-users) Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/clients/web/testing/testing/" />
 
@@ -55,8 +53,7 @@ All the steps below require you to have the web repo cloned locally and dependen
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Running tests" />
-  <meta name="twitter:description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare Web Start Web Run E2E Tests Options Lint E2E Test Code Analyze the Test Report E2E Tests on oCIS With Keycloak Run oCIS With Keycloak Run E2E Tests Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.
-All the steps below require you to have the web repo cloned locally and dependencies installed." />
+  <meta name="twitter:description" content="Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare Web Start Web Run E2E Tests Options Lint E2E Test Code Analyze the Test Report E2E Tests on oCIS With Keycloak Run oCIS With Keycloak Run E2E Tests E2E Tests With Predefiend Users (@predefined-users) Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository." />
 
 
   <script type="application/ld+json">
@@ -67,8 +64,8 @@ All the steps below require you to have the web repo cloned locally and dependen
       "name": "Running tests",
       "url" : "https://owncloud.dev/clients/web/testing/testing/",
       "headline": "Running tests",
-      "description": "Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare Web Start Web Run E2E Tests Options Lint E2E Test Code Analyze the Test Report E2E Tests on oCIS With Keycloak Run oCIS With Keycloak Run E2E Tests Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.\nAll the steps below require you to have the web repo cloned locally and dependencies installed.",
-      "wordCount" : "757",
+      "description": "Introduction Unit Tests Unit Test File Structure E2E Tests (Playwright) Preparation Prepare Web Start Web Run E2E Tests Options Lint E2E Test Code Analyze the Test Report E2E Tests on oCIS With Keycloak Run oCIS With Keycloak Run E2E Tests E2E Tests With Predefiend Users (@predefined-users) Introduction In order to allow us to make changes quickly, often and with a high level of confidence, we heavily rely on tests within the web repository.",
+      "wordCount" : "962",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -18853,6 +18850,7 @@ Copyright 2022 Fonticons, Inc.
                 <li><a href="#run-e2e-tests-1">Run E2E Tests</a></li>
               </ul>
             </li>
+            <li><a href="#e2e-tests-with-predefiend-users-predefined-users">E2E Tests With Predefiend Users (<code>@predefined-users</code>)</a></li>
           </ul>
         </li>
       </ul></nav>
@@ -19065,6 +19063,65 @@ The location can be changed by adding the <code>--report-location</code> flag.</
 <li><code>KEYCLOAK_HOST</code> sets Keycloak url (e.g.: keycloak.owncloud.test)</li>
 <li><code>KEYCLOAK=true</code> runs the tests with Keycloak</li>
 <li><code>KEYCLOAK_REALM</code> sets oCIS realm name used on Keycloak</li>
+</ul>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="e2e-tests-with-predefiend-users-predefined-users"
+    >
+        E2E Tests With Predefiend Users (<code>@predefined-users</code>)
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/clients/web/testing/testing/#e2e-tests-with-predefiend-users-predefined-users" class="gdoc-page__anchor clip flex align-center" title="Anchor to: E2E Tests With Predefiend Users (@predefined-users)" aria-label="Anchor to: E2E Tests With Predefiend Users (@predefined-users)" href="#e2e-tests-with-predefiend-users-predefined-users">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>It is possible to run e2e tests with predefined users. This is useful for running tests in a production-like environment.
+The following environment variables are used to run the tests with predefined users:</p>
+<ul>
+<li><code>PREDEFINED_USERS</code>: <code>true</code>|<code>false</code></li>
+<li><code>PREDEFINED_USERS_FILE</code>: path to a JSON file mapping predefined users</li>
+</ul>
+<p>We have to create a JSON file that contains the mapping of the users. JSON file MUST contain the following keys:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="nt">&#34;alice&#34;</span><span class="p">:</span> <span class="p">{</span><span class="c1">// map user},
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="nt">&#34;brian&#34;</span><span class="p">:</span> <span class="p">{</span><span class="c1">// mapuser},
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="nt">&#34;carol&#34;</span><span class="p">:</span> <span class="p">{</span><span class="c1">// mapuser},
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><p>And the user object MUST have the following properties defined:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;usernmae&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;display-name&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;password&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;password&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;email&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;email&gt;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>A complete example of a JSON file.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;alice&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;einstein&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Albert Einstein&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;password&#34;</span><span class="p">:</span> <span class="s2">&#34;relativity&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;email&#34;</span><span class="p">:</span> <span class="s2">&#34;einstein@example.org&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;brian&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;marie&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Marie Skłodowska Curie&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;password&#34;</span><span class="p">:</span> <span class="s2">&#34;radioactivity&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;email&#34;</span><span class="p">:</span> <span class="s2">&#34;marie@example.org&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;carol&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;moss&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;displayName&#34;</span><span class="p">:</span> <span class="s2">&#34;Maurice Moss&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;password&#34;</span><span class="p">:</span> <span class="s2">&#34;vista&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;email&#34;</span><span class="p">:</span> <span class="s2">&#34;moss@example.org&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>The test scenarios that can run with predefined users are marked with the <code>@predefined-users</code> tag and can be run with the following command:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">PREDEFINED_USERS</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">PREDEFINED_USERS_FILE</span><span class="o">=</span><span class="s1">&#39;&lt;path-to&gt;/users.json&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>pnpm test:e2e:cucumber tests/e2e/cucumber/features/file-action/rename.feature --tags <span class="s1">&#39;@predefined-users&#39;</span>
+</span></span></code></pre></div><p><strong>The following tests cannot be run with predefined users:</strong></p>
+<p>All tests which are related to:</p>
+<ul>
+<li>Admin Actions</li>
+<li>Groups</li>
 </ul>
 
   </article>
