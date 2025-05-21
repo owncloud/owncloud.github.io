@@ -45,11 +45,11 @@ The proxy service is the only service communicating to the outside and needs the
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2025-05-21T08:45:34+00:00"
+      content="2025-05-21T13:29:47+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2025-05-21T08:45:34+00:00"
+      content="2025-05-21T13:29:47+00:00"
     />
 
 
@@ -68,7 +68,7 @@ The proxy service is the only service communicating to the outside and needs the
       "url" : "https://owncloud.dev/services/proxy/",
       "headline": "Proxy",
       "description": "Abstract The proxy service is an API-Gateway for the ownCloud Infinite Scale microservices. Every HTTP request goes through this service. Authentication, logging and other preprocessing of requests also happens here. Mechanisms like request rate limiting or intrusion prevention are not included in the proxy service and must be setup in front like with an external reverse proxy.\nThe proxy service is the only service communicating to the outside and needs therefore usual protections against DDOS, Slow Loris or other attack vectors.",
-      "wordCount" : "4991",
+      "wordCount" : "5522",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ The proxy service is the only service communicating to the outside and needs the
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2025",
-      "dateCreated": "2025-05-21T08:45:34.89Z",
-      "datePublished": "2025-05-21T08:45:34.89Z",
-      "dateModified": "2025-05-21T08:45:34.89Z",
+      "dateCreated": "2025-05-21T13:29:47.40Z",
+      "datePublished": "2025-05-21T13:29:47.40Z",
+      "dateModified": "2025-05-21T13:29:47.40Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -18895,6 +18895,11 @@ Copyright 2022 Fonticons, Inc.
 >Configuring Routes</a></li>
 <li><a
   class="gdoc-markdown__link"
+  href="#automatic-assignments"
+>Automatic Assignments</a>
+<ul>
+<li><a
+  class="gdoc-markdown__link"
   href="#automatic-user-and-group-provisioning"
 >Automatic User and Group Provisioning</a>
 <ul>
@@ -18913,24 +18918,27 @@ Copyright 2022 Fonticons, Inc.
 <li><a
   class="gdoc-markdown__link"
   href="#claim-updates"
->Claim Updates</a>
-<ul>
+>Claim Updates</a></li>
 <li><a
   class="gdoc-markdown__link"
   href="#impacts"
 >Impacts</a></li>
 </ul>
 </li>
+<li><a
+  class="gdoc-markdown__link"
+  href="#quota-assignments"
+>Quota Assignments</a></li>
+<li><a
+  class="gdoc-markdown__link"
+  href="#role-assignments"
+>Role Assignments</a></li>
+<li><a
+  class="gdoc-markdown__link"
+  href="#space-management-through-oidc-claims"
+>Space Management Through OIDC Claims</a></li>
 </ul>
 </li>
-<li><a
-  class="gdoc-markdown__link"
-  href="#automatic-quota-assignments"
->Automatic Quota Assignments</a></li>
-<li><a
-  class="gdoc-markdown__link"
-  href="#automatic-role-assignments"
->Automatic Role Assignments</a></li>
 <li><a
   class="gdoc-markdown__link"
   href="#recommendations-for-production-deployments"
@@ -19032,10 +19040,20 @@ Copyright 2022 Fonticons, Inc.
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">unprotected</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="c"># with false (default), calling the endpoint requires authorization.</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">                   </span><span class="c"># with true, anyone can call the endpoint without authorisation.</span><span class="w">
 </span></span></span></code></pre></div><div class="flex align-center gdoc-page__anchorwrap">
-    <h2 id="automatic-user-and-group-provisioning"
+    <h2 id="automatic-assignments"
+    >
+        Automatic Assignments
+    </h2>
+    <a data-clipboard-text="https://owncloud.dev/services/proxy/#automatic-assignments" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Automatic Assignments" aria-label="Anchor to: Automatic Assignments" href="#automatic-assignments">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>Some assignments can be automated using yaml files, environment variables and/or OIDC claims.</p>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="automatic-user-and-group-provisioning"
     >
         Automatic User and Group Provisioning
-    </h2>
+    </h3>
     <a data-clipboard-text="https://owncloud.dev/services/proxy/#automatic-user-and-group-provisioning" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Automatic User and Group Provisioning" aria-label="Anchor to: Automatic User and Group Provisioning" href="#automatic-user-and-group-provisioning">
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
@@ -19043,10 +19061,10 @@ Copyright 2022 Fonticons, Inc.
 <p>When using an external OpenID Connect IDP, the proxy can be configured to automatically provision
 users upon their first login.</p>
 <div class="flex align-center gdoc-page__anchorwrap">
-    <h3 id="prequisites"
+    <h4 id="prequisites"
     >
         Prequisites
-    </h3>
+    </h4>
     <a data-clipboard-text="https://owncloud.dev/services/proxy/#prequisites" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Prequisites" aria-label="Anchor to: Prequisites" href="#prequisites">
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
@@ -19065,10 +19083,10 @@ stable per IDP. If a claim like <code>email</code> or <code>preferred_username</
 have to ensure that the user&rsquo;s email address or username never changes.</li>
 </ul>
 <div class="flex align-center gdoc-page__anchorwrap">
-    <h3 id="configuration"
+    <h4 id="configuration"
     >
         Configuration
-    </h3>
+    </h4>
     <a data-clipboard-text="https://owncloud.dev/services/proxy/#configuration" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Configuration" aria-label="Anchor to: Configuration" href="#configuration">
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
@@ -19102,10 +19120,10 @@ value of the <code>PROXY_USER_OIDC_CLAIM</code>. For auto provisioning setups th
 needs to be set to <code>username</code>.</li>
 </ul>
 <div class="flex align-center gdoc-page__anchorwrap">
-    <h3 id="how-it-works"
+    <h4 id="how-it-works"
     >
         How it Works
-    </h3>
+    </h4>
     <a data-clipboard-text="https://owncloud.dev/services/proxy/#how-it-works" class="gdoc-page__anchor clip flex align-center" title="Anchor to: How it Works" aria-label="Anchor to: How it Works" href="#how-it-works">
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
@@ -19132,10 +19150,10 @@ somewhat costly operation, especially if the user is a member of a large number 
 groups. If the group memberships of a user are changed in the IDP after the
 first login, it can take up to 5 minutes until the changes are reflected in Infinite Scale.</p>
 <div class="flex align-center gdoc-page__anchorwrap">
-    <h3 id="claim-updates"
+    <h4 id="claim-updates"
     >
         Claim Updates
-    </h3>
+    </h4>
     <a data-clipboard-text="https://owncloud.dev/services/proxy/#claim-updates" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Claim Updates" aria-label="Anchor to: Claim Updates" href="#claim-updates">
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
@@ -19171,11 +19189,11 @@ first login, it can take up to 5 minutes until the changes are reflected in Infi
 </ul>
 <p>To give access for rejected users on a resource, one with rights to share must update the group information.</p>
 <div class="flex align-center gdoc-page__anchorwrap">
-    <h2 id="automatic-quota-assignments"
+    <h3 id="quota-assignments"
     >
-        Automatic Quota Assignments
-    </h2>
-    <a data-clipboard-text="https://owncloud.dev/services/proxy/#automatic-quota-assignments" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Automatic Quota Assignments" aria-label="Anchor to: Automatic Quota Assignments" href="#automatic-quota-assignments">
+        Quota Assignments
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/services/proxy/#quota-assignments" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Quota Assignments" aria-label="Anchor to: Quota Assignments" href="#quota-assignments">
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
 </div>
@@ -19187,11 +19205,11 @@ See the following <code>proxy.yaml</code> config snippet for a configuration exa
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">&lt;role ID1&gt;</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;quota1&gt;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">&lt;role ID2&gt;</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;quota2&gt;</span><span class="w">
 </span></span></span></code></pre></div><div class="flex align-center gdoc-page__anchorwrap">
-    <h2 id="automatic-role-assignments"
+    <h3 id="role-assignments"
     >
-        Automatic Role Assignments
-    </h2>
-    <a data-clipboard-text="https://owncloud.dev/services/proxy/#automatic-role-assignments" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Automatic Role Assignments" aria-label="Anchor to: Automatic Role Assignments" href="#automatic-role-assignments">
+        Role Assignments
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/services/proxy/#role-assignments" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Role Assignments" aria-label="Anchor to: Role Assignments" href="#role-assignments">
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
 </div>
@@ -19242,6 +19260,54 @@ the user will not be able to login.</p>
 </span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">role_name</span><span class="p">:</span><span class="w"> </span><span class="l">guest</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">claim_value</span><span class="p">:</span><span class="w"> </span><span class="l">ocisGuest</span><span class="w">
 </span></span></span></code></pre></div><div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="space-management-through-oidc-claims"
+    >
+        Space Management Through OIDC Claims
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/services/proxy/#space-management-through-oidc-claims" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Space Management Through OIDC Claims" aria-label="Anchor to: Space Management Through OIDC Claims" href="#space-management-through-oidc-claims">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p><strong>IMPORTANT</strong></p>
+<ul>
+<li>This is an experimental/preview feature and may change.</li>
+<li>This feature only works using an external IDP. The embedded IDP does not support this.</li>
+<li>If you enable this feature, you can no longer use the Web UI to manually to assign or remove users to Spaces. The Web UI no longer displays related configuration options. Assigning or removing users from a Space can only be done by claims managed through the IDP.</li>
+<li>If enabled and a user is not assigned a claim with defined spaces and roles, the user can only access his personal space.</li>
+<li>When this functionality has been enabled via the envvar <code>OCIS_CLAIM_MANAGED_SPACES_ENABLED</code>, this envvar must also be set in the <code>frontend</code> service. This is necessary to block adding or removing users to or from spaces through the web UI.</li>
+</ul>
+<p>If required, users can be assigned or removed to Spaces via OIDC claims. This makes central user/Space management easy. Managed via environment variables, administrators can define the claim to use, a regex ruleset to extract the Space IDs and roles from a claim for provisioning. It is also possible to manually map OIDC roles to Infinite Scale Space roles. Note that assigning works both ways. Users can be added to Spaces as well as removed. Users must log out and log in again to activate any changes. The relevant environment variables that manage Spaces through OIDC claims follow the <code>OCIS_CLAIM_MANAGED_SPACES_xxx</code> pattern. See xref:maintenance/space-ids/space-ids.adoc[Listing Space IDs] for how to obtain the ID of a Space.</p>
+<p><strong>NOTE</strong><br>
+The following rules apply if enabled:</p>
+<ul>
+<li>If the claim is not found, it is not considered but the incident is logged.</li>
+<li>A faulty regex prevents the proxy service from starting. By this, admins can immediately identify a major configuration issue. The incident is logged.</li>
+<li>Entries in a claim that do not match the regex are not considered, the incident is not logged ^(1)^.</li>
+<li>Unknown Space IDs and unknown roles are not considered, the incident is not logged ^(1)^.</li>
+<li>When multiple entries are created with the same Space ID but different roles, the role with the highest permission counts.</li>
+</ul>
+<p>(1) &hellip; These incidents cannot be logged due to the fact that claims can have a variety of layouts and may also contain data unrelated to Infinite Scale.</p>
+<p><strong>Example Setup</strong><br>
+The following is a simple setup of what space management through OIDC claims can look like. The way how a claim is setup depends on the IDP used. It is important to understand, that the claim setup and the corresponding regex must match.</p>
+<p>A claim defined as <code>ocis-spaces</code> containing two entries:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-JSON" data-lang="JSON"><span class="line"><span class="cl"><span class="s2">&#34;ocis-spaces&#34;</span><span class="err">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;spaceid=b622d44a-1747-4eda-8905-89f3605d5849:role=member&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;spaceid=129cb9b6-c579-41b5-9316-93c6543484e5:role=spectator&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span></code></pre></div><p>The environment variables to extract the data from the above claim look like this:</p>
+<p>Environment variable definition:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">OCIS_CLAIM_MANAGED_SPACES_ENABLED=true
+</span></span><span class="line"><span class="cl">OCIS_CLAIM_MANAGED_SPACES_CLAIMNAME=ocis-spaces
+</span></span><span class="line"><span class="cl">OCIS_CLAIM_MANAGED_SPACES_REGEXP=&#34;spaceid=([a-zA-Z0-9-]+):role=(.*)&#34;,
+</span></span><span class="line"><span class="cl">OCIS_CLAIM_MANAGED_SPACES_MAPPING=&#34;member:editor,spectator:viewer&#34;
+</span></span></code></pre></div><p>Result:<br>
+This would add a user, to which this claim is assigned, to the following Spaces with defined roles:</p>
+<ul>
+<li><code>b622d44a-1747-4eda-8905-89f3605d5849</code> with the role <code>editor</code> and to</li>
+<li><code>129cb9b6-c579-41b5-9316-93c6543484e5</code> with the role <code>viewer</code>.</li>
+</ul>
+<p>Note that <code>OCIS_CLAIM_MANAGED_SPACES_MAPPING</code> can be omitted if roles in the claim already match roles defined by Infinite Scale.</p>
+<div class="flex align-center gdoc-page__anchorwrap">
     <h2 id="recommendations-for-production-deployments"
     >
         Recommendations for Production Deployments
@@ -20324,7 +20390,7 @@ the user will not be able to login.</p>
 <td>OCIS_CLAIM_MANAGED_SPACES_ENABLED</td>
 <td>bool</td>
 <td>false</td>
-<td>Enables Space management through OIDC claims.</td>
+<td>Enables Space management through OIDC claims. See the text description for more details.</td>
 </tr>
 <tr>
 <td>OCIS_CLAIM_MANAGED_SPACES_CLAIMNAME</td>
