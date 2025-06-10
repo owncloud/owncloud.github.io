@@ -10,15 +10,15 @@ concurrency:
   limit: 1
 
 steps:
+- name: purge-content
+  image: docker.io/owncloudci/alpine
+  commands:
+  - make clean
+
 - name: assets
   image: docker.io/owncloudci/alpine
   commands:
   - make theme
-
-- name: purge-content
-  image: docker.io/owncloudci/alpine
-  commands:
-  - rm -rf content/
 
 - name: sync
   image: quay.io/thegeeklab/git-batch
