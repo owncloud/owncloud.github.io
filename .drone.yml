@@ -45,6 +45,19 @@ steps:
     ref:
     - refs/heads/main
 
+- name: notification
+  image: docker.io/owncloudci/alpine
+  environment:
+    MATRIX_TOKEN":
+      from_secret: matrix_token
+  commands: 
+    - bash /drone/src/config/drone/notification.sh
+  when:
+    cron:
+      - hourly
+    status:
+      - failure
+
 trigger:
   ref:
   - refs/heads/main
