@@ -26,7 +26,11 @@ steps:
   - git-batch -vv
 
 - name: build
-  image: docker.io/owncloudci/hugo:0.115.2
+  # matching images and/or versions in:
+  # - the Makefile of this repo
+  # - repo:ocis|web (.drone.star) and
+  # - ocis: cat .bingo/Variables.mk | grep HUGO
+  image: hugomods/hugo:base-0.129.0
   commands:
   - hugo
 
