@@ -2,7 +2,8 @@
 THEME_VERSION ?= v0.47.0
 HUGO_IMAGE = hugomods/hugo:base-0.129.0
 
-# note that we cannot run docker as plain command. we need to find the exact location first
+# note that we cannot run docker as plain command because make uses sh and the path variable might not have it included.
+# we need to find the exact location first so it is available for all shells
 DOCKER=$(shell command -v docker)
 
 .PHONY: theme
