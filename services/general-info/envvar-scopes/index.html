@@ -68,7 +68,7 @@ a new local envvar is introduced. a new global envvar is added to an existing lo
       "url" : "https://owncloud.dev/services/general-info/envvar-scopes/",
       "headline": "Envvar Naming Scopes",
       "description": "Envvar Definition Naming Scope Local Envvars Global Envvars Lifecycle of Envvars Introduce new Envvars Adding Envvars to Existing Ones Deprecate Existing Envvars Separating Multiple Envvars The scope of an environment variable can be derived from its name. Therefore, it is important to follow the correct naming scheme to enable easy and proper identification. This is important when either:\na new local envvar is introduced. a new global envvar is added to an existing local envvar.",
-      "wordCount" : "444",
+      "wordCount" : "424",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -19152,8 +19152,8 @@ Copyright 2022 Fonticons, Inc.
 <ul>
 <li>A variable that is only used in a particular service is a <strong>local envvar</strong>.</li>
 <li>A variable that is used in more than one service is a <strong>global envvar</strong>.</li>
-<li>Mandatory when used in a service, a global envvar must have a local counterpart.</li>
-<li>Variables that do not belong to any service are by definition global.</li>
+<li>If applicapable, a global envvar has a local counterpart.</li>
+<li>Variables that are not limited to any service are by definition global.</li>
 </ul>
 <div class="flex align-center gdoc-page__anchorwrap">
     <h2 id="naming-scope"
@@ -19173,7 +19173,7 @@ Copyright 2022 Fonticons, Inc.
         <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
     </a>
 </div>
-<p>A local envvar always starts with the service name like <code>POSTPROCESSING_LOG_FILE</code>.</p>
+<p>A local envvar always starts with the service name such as <code>POSTPROCESSING_LOG_FILE</code>.</p>
 <div class="flex align-center gdoc-page__anchorwrap">
     <h3 id="global-envvars"
     >
@@ -19223,11 +19223,25 @@ Copyright 2022 Fonticons, Inc.
 
 <blockquote class="gdoc-hint note">
   <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
-  <div class="gdoc-hint__text">During the development cycle, the value for the <code>introductionVersion</code> must be set to <code>%%NEXT%%</code>. This placeholder will be removed by the real version number during the production releasing process.</div>
+  <div class="gdoc-hint__text"><ul>
+<li>During development, set <code>introductionVersion</code> to a short, <strong>alphabetic code name</strong> that represents the upcoming release (e.g. <code>releaseX</code>).</li>
+<li>This identifier stays constant until the release receives its final production semantic-version number.</li>
+</ul>
+</div>
 </blockquote>
 
-<p>For the documentation to show the correct value for the <code>IV</code> (introduction version), our docs helper scripts will automatically generate the correct version to be printed in the documentation. If <code>%%NEXT%%</code> is found in the query, it will be replaced with <code>next</code>, else the value found is used.</p>
-<p>During the releasing process for a production release, the placeholder <code>%%NEXT%%</code> has to be replaced with the new production version number like <code>%%NEXT%%</code> → <code>7.0.0</code>.</p>
+<p>The docs helper scripts render these alphabetic identifiers verbatim. They appear in the next (master) branch of the admin docs as rendered here.</p>
+<p>Once the release is cut, before tagging, replace them with the actual semantic version (e.g. <code>releaseX</code> → <code>7.2.0</code>).</p>
+
+
+
+
+
+<blockquote class="gdoc-hint note">
+  <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
+  <div class="gdoc-hint__text">A new production version <strong>MUST NOT</strong> contain any alphabetic identifyers but the semantic version only.</div>
+</blockquote>
+
 <div class="flex align-center gdoc-page__anchorwrap">
     <h3 id="adding-envvars-to-existing-ones"
     >

@@ -77,7 +77,7 @@ The version it is finally going to be removed is defined via the mandatory place
       "url" : "https://owncloud.dev/services/general-info/deprecating-variables/",
       "headline": "Envvar Deprecation",
       "description": "Deprecating Environment Variables Example What Happens Next? Deprecating Environment Variables Sometimes it is necessary to deprecate an environment variable to align the naming with conventions or remove it completely. We therefore added annotations to automate the documentation process.\nThe relevant annotations in the envvar struct tag are:\ndeprecationVersion\nThe release an envvar is announced for deprecation. removalVersion\nThe version it is finally going to be removed is defined via the mandatory placeholder %%NEXT_PRODUCTION_VERSION%%, not an actual version number.",
-      "wordCount" : "347",
+      "wordCount" : "354",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -19163,7 +19163,11 @@ Only if it is going to be replaced, not necessary if removed.</li>
 
 <blockquote class="gdoc-hint note">
   <div class="gdoc-hint__title flex align-center"><i class="fa note" title="Note"></i></div>
-  <div class="gdoc-hint__text">During the development cycle, the value for the <code>removalVersion</code> must be set to <code>%%NEXT_PRODUCTION_VERSION%%</code>.  This placeholder will be replaced by the real version number during the production releasing process.</div>
+  <div class="gdoc-hint__text"><ul>
+<li>During the development cycle, the value for the <code>removalVersion</code> must be set to <code>%%NEXT_PRODUCTION_VERSION%%</code>. This placeholder will be replaced by the real semantic-version number during the production releasing process.</li>
+<li>Compared when introducing new envvars where you can use arbitrary alphabetic identifyers, the string for deprecation is fixed and cannot be altered.</li>
+</ul>
+</div>
 </blockquote>
 
 <p>For the documentation to show the correct value for the <code>removalVersion</code>, our docs helper scripts will automatically generate the correct version to be printed in the documentation. If <code>%%NEXT_PRODUCTION_VERSION%%</code> is found in the query, it will be replaced with <code>next-prod</code>, else the value found is used.</p>
@@ -19198,7 +19202,7 @@ Only if it is going to be replaced, not necessary if removed.</li>
 </tr>
 <tr>
 <td>removalVersion</td>
-<td>The version the variable will be removed from the codebase. Note that according to semver, a removal <strong>MUST NOT</strong> be made in a minor or patch version change, but only in a major release</td>
+<td>The version the variable will be removed from the codebase. Consider semver rules when finally removing a deprecated ennvar</td>
 <td><code>%%NEXT_PRODUCTION_VERSION%%</code></td>
 </tr>
 <tr>
