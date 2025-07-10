@@ -16,6 +16,20 @@
       <description>Any CLI command that is added to Infinite Scale must be documented in the dev docs and the admin docs. Note that the admin docs mainly differentiate between online and offline commands as the docs structure is different. Any command documented in the dev docs is properly integrated into the admin docs. The following description is for dev docs, admin docs derive from it.&#xA;Note that ANY CLI command needs documentation, but it can be decided that a CLI command will not be added to the admin docs (the reasons should be really valid for such a case).</description>
     </item>
     <item>
+      <title>Envvar Deprecation</title>
+      <link>https://owncloud.dev/services/general-info/deprecating-variables/</link>
+      <pubDate>Thu, 22 Aug 2024 15:41:00 +0100</pubDate>
+      <guid>https://owncloud.dev/services/general-info/deprecating-variables/</guid>
+      <description>Deprecating Environment Variables Example What Happens Next? Deprecating Environment Variables Sometimes it is necessary to deprecate an environment variable to align the naming with conventions or remove it completely. We therefore added annotations to automate the documentation process.&#xA;The relevant annotations in the envvar struct tag are:&#xA;deprecationVersion&#xA;The release an envvar is announced for deprecation. removalVersion&#xA;The version it is finally going to be removed is defined via the mandatory placeholder %%NEXT_PRODUCTION_VERSION%%, not an actual version number.</description>
+    </item>
+    <item>
+      <title>Added Services per Release</title>
+      <link>https://owncloud.dev/services/general-info/added-services/</link>
+      <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>https://owncloud.dev/services/general-info/added-services/</guid>
+      <description>Over time, services get added with new releases published. This page gives an overview of which services exist and which have been added per release.&#xA;Added Services The following table gives an overview about releases and their services. Note that v6.x were rolling releases only and not mentioned therefore. Any changes from v6.x were incorporated in v7.&#xA;3.0 4.0 5.0 7.0 Rolling activitylog activitylog antivirus antivirus antivirus antivirus antivirus app-provider app-provider app-provider app-provider app-provider app-registry app-registry app-registry app-registry app-registry audit audit audit audit audit auth-app auth-basic auth-basic auth-basic auth-basic auth-basic auth-bearer auth-bearer auth-bearer auth-bearer auth-bearer auth-machine auth-machine auth-machine auth-machine auth-machine eventhistory eventhistory auth-service auth-service auth-service clientlog clientlog clientlog collaboration collaboration eventhistory eventhistory eventhistory frontend frontend frontend frontend frontend gateway gateway gateway gateway gateway graph graph graph graph graph groups groups groups groups groups idm idm idm idm idm idp idp idp idp idp invitations invitations invitations invitations invitations nats nats nats nats nats notifications notifications notifications notifications notifications ocdav ocdav ocdav ocdav ocdav ocm ocm ocm ocs ocs ocs ocs ocs policies policies policies policies policies postprocessing postprocessing postprocessing postprocessing postprocessing proxy proxy proxy proxy proxy search search search search search settings settings settings settings settings sharing sharing sharing sharing sharing sse sse sse store store store store store storage-publiclink storage-publiclink storage-publiclink storage-publiclink storage-publiclink storage-shares storage-shares storage-shares storage-shares storage-shares storage-system storage-system storage-system storage-system storage-system storage-users storage-users storage-users storage-users storage-users thumbnails thumbnails thumbnails thumbnails thumbnails userlog userlog userlog userlog userlog users users users users users web web web web web webdav webdav webdav webdav webdav webfinger webfinger webfinger webfinger webfinger </description>
+    </item>
+    <item>
       <title>Add Translations</title>
       <link>https://owncloud.dev/services/general-info/add-translations/</link>
       <pubDate>Mon, 08 Apr 2024 00:00:00 +0000</pubDate>
@@ -28,6 +42,13 @@
       <pubDate>Tue, 19 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://owncloud.dev/services/general-info/registry/</guid>
       <description>To be able to communicate with each other, services need to register in a common registry.&#xA;Configuration nats-js-kv (Default) kubernetes memory Deprecated Registries Configuration The type of registry to use can be configured with the MICRO_REGISTRY environment variable. Supported values are:&#xA;nats-js-kv (Default) Set the environment variable to nats-js-kv or leave it empty to use a nats-js key value store as registry.&#xA;Note: If not running build-in nats, MICRO_REGISTRY_ADDRESS needs to be set to the address of the nats-js cluster, which is the same value as OCIS_EVENTS_ENDPOINT.</description>
+    </item>
+    <item>
+      <title>Envvar Naming Scopes</title>
+      <link>https://owncloud.dev/services/general-info/envvar-scopes/</link>
+      <pubDate>Thu, 23 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>https://owncloud.dev/services/general-info/envvar-scopes/</guid>
+      <description>Envvar Definition Naming Scope Local Envvars Global Envvars Lifecycle of Envvars Introduce new Envvars Adding Envvars to Existing Ones Deprecate Existing Envvars Separating Multiple Envvars The scope of an environment variable can be derived from its name. Therefore, it is important to follow the correct naming scheme to enable easy and proper identification. This is important when either:&#xA;a new local envvar is introduced. a new global envvar is added to an existing local envvar.</description>
     </item>
     <item>
       <title>New Service Checklist</title>
@@ -49,6 +70,20 @@
       <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
       <guid>https://owncloud.dev/services/general-info/port-ranges/</guid>
       <description>oCIS services often need a port to expose their services to other services or the outside world. As users may have many different extensions running on the same machine, we should track port usage in the oCIS ecosystem. In the best case, we ensure that each extension uses a non-colliding port range, to make life easier for users.&#xA;This page tracks the knowingly used port ranges.&#xA;Feel free to &amp;ldquo;reserve&amp;rdquo; a free port range when you&amp;rsquo;re developing an extension by adding your extension to the list (see the edit button in the top right corner).</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://owncloud.dev/services/general-info/env-var-deltas/4.0.0-5.0.0-added/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://owncloud.dev/services/general-info/env-var-deltas/4.0.0-5.0.0-added/</guid>
+      <description>Added Variables between oCIS 4.0.0 and oCIS 5.0.0 File Variable Description Default ocis-pkg/shared/shared_types.go OCIS_CACHE_DISABLE_PERSISTENCE Disables persistence of the cache. Only applies when store type &amp;rsquo;nats-js-kv&amp;rsquo; is configured. false ocis-pkg/registry/registry.go MICRO_REGISTRY (important change) The Go micro registry type to use. Supported types are: &amp;lsquo;memory&amp;rsquo;, &amp;rsquo;nats-js-kv&amp;rsquo; (default) and &amp;lsquo;kubernetes&amp;rsquo;. Note that &amp;rsquo;nats&amp;rsquo;, &amp;rsquo;etcd&amp;rsquo;, &amp;lsquo;consul&amp;rsquo; and &amp;lsquo;mdns&amp;rsquo; are deprecated and will be removed in a later version. Only change on supervision of ownCloud Support.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://owncloud.dev/services/general-info/env-var-deltas/4.0.0-5.0.0-removed/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://owncloud.dev/services/general-info/env-var-deltas/4.0.0-5.0.0-removed/</guid>
+      <description>Removed Variables between oCIS 4.0.0 and oCIS 5.0.0 File Variable Replacement Description services/auth-basic/pkg/config/config.go LDAP_BIND_PASSWORD OCIS_LDAP_BIND_PASSWORD Password to use for authenticating the &amp;lsquo;bind_dn&amp;rsquo;. services/graph/pkg/config/config.go LDAP_BIND_PASSWORD OCIS_LDAP_BIND_PASSWORD Password to use for authenticating the &amp;lsquo;bind_dn&amp;rsquo;. services/groups/pkg/config/config.go LDAP_BIND_PASSWORD OCIS_LDAP_BIND_PASSWORD Password to use for authenticating the &amp;lsquo;bind_dn&amp;rsquo;. services/idp/pkg/config/config.go LDAP_BIND_PASSWORD OCIS_LDAP_BIND_PASSWORD Password to use for authenticating the &amp;lsquo;bind_dn&amp;rsquo;. services/sharing/pkg/config/config.go SHARING_EVENTS_TLS_ROOT_CA_CERT SHARING_EVENTS_TLS_ROOT_CA_CERTIFICATE The root CA certificate used to validate the server&amp;rsquo;s TLS certificate. If provided SHARING_EVENTS_TLS_INSECURE will be seen as false.</description>
     </item>
   </channel>
 </rss>
