@@ -6,7 +6,7 @@
     <description>Recent content on ownCloud</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 10 Jul 2025 14:24:49 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 10 Jul 2025 15:08:43 +0000</lastBuildDate>
     <atom:link href="https://owncloud.dev/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>1. Introduce an accounts service</title>
@@ -177,6 +177,13 @@
       <description>Prerequisites Getting Started Bootstrap Adding Specs to the Suite Writing Specs Describe Context It Expect BeforeEach Focused Specs Pending Specs Test Driven Development Mocking In this section we try to enable developers to write tests in oCIS using Ginkgo and Gomega and explain how to mock other microservices to also cover some integration tests. The full documentation of the tools can be found on the Ginkgo and Gomega websites.</description>
     </item>
     <item>
+      <title>Envvar Naming Scopes</title>
+      <link>https://owncloud.dev/services/general-info/envvars/envvar-naming-scopes/</link>
+      <pubDate>Thu, 23 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>https://owncloud.dev/services/general-info/envvars/envvar-naming-scopes/</guid>
+      <description>Envvar Definition Naming Scope Local Envvars Global Envvars Reserved Envvar Names Lifecycle of Envvars Introduce new Envvars Adding Envvars to Existing Ones Deprecate Existing Envvars Separating Multiple Envvars The scope of an environment variable can be derived from its name. Therefore, it is important to follow the correct naming scheme to enable easy and proper identification. This is important when either:&#xA;a new local envvar is introduced. a new global envvar is added to an existing local envvar.</description>
+    </item>
+    <item>
       <title>10. Extension Policies</title>
       <link>https://owncloud.dev/ocis/adr/0010-policy-enforcement/</link>
       <pubDate>Wed, 30 Jun 2021 14:00:00 +0100</pubDate>
@@ -247,11 +254,25 @@
       <description>Status: accepted Deciders: @hodyroff, @pmaier1, @jojowein, @dragotin, @micbar, @tbsbdr, @wkloucek Date: 2021-11-03 Context and Problem Statement At the time of this writing no locking mechanisms exists in oCIS / REVA for both directories and files. The CS3org WOPI server implements a file based locking in order to lock files. This ADR discusses if this approach is ok for the general availability of oCIS or if changes are needed.&#xA;Decision Drivers Is the current situation acceptable for the GA Is locking needed or can we have oCIS / REVA without locking Considered Options File based locking No locking CS3 API locking Decision Outcome For the GA we chose option 2.</description>
     </item>
     <item>
+      <title>Special Envvars</title>
+      <link>https://owncloud.dev/services/general-info/envvars/special-envvars/</link>
+      <pubDate>Fri, 04 Jul 2025 00:00:00 +0100</pubDate>
+      <guid>https://owncloud.dev/services/general-info/envvars/special-envvars/</guid>
+      <description>Special Scope Envvars Extended Envvars General Info Fixing Changed Items Handling these envvars properly is very important for the automated doc process for both the developer and the admin docs!&#xA;Special Scope Envvars Variables with special scope are only related to a deployment method such as OCIS_RUN_SERVICES. These variables cannot be gathered automatically, rarely change, can be viewed and must be maintained manually via the admin documentation.&#xA;Extended Envvars Environment variables with extended scope are not included in a service.</description>
+    </item>
+    <item>
       <title>14. Microservices Runtime</title>
       <link>https://owncloud.dev/ocis/adr/0014-microservices-runtime/</link>
       <pubDate>Fri, 21 Jan 2022 12:56:53 +0100</pubDate>
       <guid>https://owncloud.dev/ocis/adr/0014-microservices-runtime/</guid>
       <description>Status: proposed Deciders: @butonic, @micbar, @dragotin, @mstingl @pmaier1, @fschade Date: 2022-01-21 Context and Problem Statement In an environment where shipping a single binary makes it easier for the end user to use oCIS, embedding a whole family of microservices within a package and running it leveraging the use of the Go language has plenty of value. In such environment, a runtime is necessary to orchestrate the services that run within it.</description>
+    </item>
+    <item>
+      <title>Envvar Deprecation</title>
+      <link>https://owncloud.dev/services/general-info/envvars/deprecating-variables/</link>
+      <pubDate>Thu, 22 Aug 2024 15:41:00 +0100</pubDate>
+      <guid>https://owncloud.dev/services/general-info/envvars/deprecating-variables/</guid>
+      <description>Deprecating Environment Variables Example What Happens Next? Deprecating Environment Variables Sometimes it is necessary to deprecate an environment variable to align the naming with conventions or remove it completely. We therefore added annotations to automate the documentation process.&#xA;The relevant annotations in the envvar struct tag are:&#xA;deprecationVersion&#xA;The release an envvar is announced for deprecation. removalVersion&#xA;The version it is finally going to be removed is defined via the mandatory placeholder %%NEXT_PRODUCTION_VERSION%%, not an actual version number.</description>
     </item>
     <item>
       <title>15. oCIS Event System</title>
@@ -338,6 +359,13 @@
       <description>Status: accepted Deciders: @butonic, @micbar, @dragotin, @c0rby Date: 2022-03-18 Context and Problem Statement The ability to find files based on certain search terms is a key requirement for a system that provides the ability to store unstructured data on a large scale.&#xA;More sophisticated search capabilities are expected and can be implemented, especially based on metadata.&#xA;To trigger the indexing of a file, the search service listens to create, update and delete events on the internal event bus of oCIS.</description>
     </item>
     <item>
+      <title>Release Process for Envvars</title>
+      <link>https://owncloud.dev/services/general-info/envvars/new-release-process/</link>
+      <pubDate>Fri, 04 Jul 2025 00:00:00 +0100</pubDate>
+      <guid>https://owncloud.dev/services/general-info/envvars/new-release-process/</guid>
+      <description>Special Scope Envvars Extended Envvars Ordinary Envvars Maintain env_vars.yaml Create Envvar Delta Files IMPORTANT&#xA;For a new ocis release, some tasks are necessary to be done before releasing. Follow the steps carefully to avoid issues. Most of the docs related tasks are not part of the CI. With each step finished successfully, the next step can be started. Sometimes, due to last minute changes, steps need to be redone!</description>
+    </item>
+    <item>
       <title>Document CLI Commands</title>
       <link>https://owncloud.dev/services/general-info/document-cli-commands/</link>
       <pubDate>Thu, 09 Jan 2025 00:00:00 +0000</pubDate>
@@ -350,20 +378,6 @@
       <pubDate>Thu, 22 Aug 2024 15:41:00 +0100</pubDate>
       <guid>https://owncloud.dev/ocis/development/envvars/</guid>
       <description>Environment variables are an essential part of configuring services.&#xA;If you are going to create new ones or deprecate existing ones, you must read the Envvar Naming Scope and the Deprecating Variables documentation for more details first before doing so.</description>
-    </item>
-    <item>
-      <title>Envvar Deprecation</title>
-      <link>https://owncloud.dev/services/general-info/deprecating-variables/</link>
-      <pubDate>Thu, 22 Aug 2024 15:41:00 +0100</pubDate>
-      <guid>https://owncloud.dev/services/general-info/deprecating-variables/</guid>
-      <description>Deprecating Environment Variables Example What Happens Next? Deprecating Environment Variables Sometimes it is necessary to deprecate an environment variable to align the naming with conventions or remove it completely. We therefore added annotations to automate the documentation process.&#xA;The relevant annotations in the envvar struct tag are:&#xA;deprecationVersion&#xA;The release an envvar is announced for deprecation. removalVersion&#xA;The version it is finally going to be removed is defined via the mandatory placeholder %%NEXT_PRODUCTION_VERSION%%, not an actual version number.</description>
-    </item>
-    <item>
-      <title>Added Services per Release</title>
-      <link>https://owncloud.dev/services/general-info/added-services/</link>
-      <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://owncloud.dev/services/general-info/added-services/</guid>
-      <description>Over time, services get added with new releases published. This page gives an overview of which services exist and which have been added per release.&#xA;Added Services The following table gives an overview about releases and their services. Note that v6.x were rolling releases only and not mentioned therefore. Any changes from v6.x were incorporated in v7.&#xA;3.0 4.0 5.0 7.0 Rolling activitylog activitylog antivirus antivirus antivirus antivirus antivirus app-provider app-provider app-provider app-provider app-provider app-registry app-registry app-registry app-registry app-registry audit audit audit audit audit auth-app auth-basic auth-basic auth-basic auth-basic auth-basic auth-bearer auth-bearer auth-bearer auth-bearer auth-bearer auth-machine auth-machine auth-machine auth-machine auth-machine eventhistory eventhistory auth-service auth-service auth-service clientlog clientlog clientlog collaboration collaboration eventhistory eventhistory eventhistory frontend frontend frontend frontend frontend gateway gateway gateway gateway gateway graph graph graph graph graph groups groups groups groups groups idm idm idm idm idm idp idp idp idp idp invitations invitations invitations invitations invitations nats nats nats nats nats notifications notifications notifications notifications notifications ocdav ocdav ocdav ocdav ocdav ocm ocm ocm ocs ocs ocs ocs ocs policies policies policies policies policies postprocessing postprocessing postprocessing postprocessing postprocessing proxy proxy proxy proxy proxy search search search search search settings settings settings settings settings sharing sharing sharing sharing sharing sse sse sse store store store store store storage-publiclink storage-publiclink storage-publiclink storage-publiclink storage-publiclink storage-shares storage-shares storage-shares storage-shares storage-shares storage-system storage-system storage-system storage-system storage-system storage-users storage-users storage-users storage-users storage-users thumbnails thumbnails thumbnails thumbnails thumbnails userlog userlog userlog userlog userlog users users users users users web web web web web webdav webdav webdav webdav webdav webfinger webfinger webfinger webfinger webfinger </description>
     </item>
     <item>
       <title>Add Translations</title>
@@ -385,13 +399,6 @@
       <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
       <guid>https://owncloud.dev/ocis/identity-provider/ldap-active-directory/</guid>
       <description> Overview oCIS can be configured using Active Directory as identity provider.&#xA;Configuration Example This configuration is an example for using Samba4 AD as well as a Windows Server 2022 as the LDAP backend for oCIS. It is intended as guideline and first starting point.&#xA;OCIS_LDAP_URI=ldaps://xxxxxxxxx OCIS_LDAP_INSECURE=&amp;#34;true&amp;#34; OCIS_LDAP_BIND_DN=&amp;#34;cn=administrator,cn=users,xxxxxxxxxx&amp;#34; OCIS_LDAP_BIND_PASSWORD=xxxxxxx OCIS_LDAP_DISABLE_USER_MECHANISM=&amp;#34;none&amp;#34; OCIS_LDAP_GROUP_BASE_DN=&amp;#34;dc=owncloud,dc=test&amp;#34; OCIS_LDAP_GROUP_OBJECTCLASS=&amp;#34;group&amp;#34; OCIS_LDAP_GROUP_SCHEMA_ID=&amp;#34;objectGUID&amp;#34; OCIS_LDAP_GROUP_SCHEMA_ID_IS_OCTETSTRING=&amp;#34;true&amp;#34; OCIS_LDAP_GROUP_SCHEMA_GROUPNAME=&amp;#34;cn&amp;#34; OCIS_LDAP_USER_BASE_DN=&amp;#34;dc=owncloud,dc=test&amp;#34; OCIS_LDAP_USER_OBJECTCLASS=&amp;#34;user&amp;#34; OCIS_LDAP_USER_SCHEMA_ID=&amp;#34;objectGUID&amp;#34; OCIS_LDAP_USER_SCHEMA_ID_IS_OCTETSTRING=&amp;#34;true&amp;#34; OCIS_LDAP_USER_SCHEMA_USERNAME=&amp;#34;sAMAccountName&amp;#34; OCIS_LDAP_LOGIN_ATTRIBUTES=&amp;#34;sAMAccountName&amp;#34; IDP_LDAP_LOGIN_ATTRIBUTE=&amp;#34;sAMAccountName&amp;#34; IDP_LDAP_UUID_ATTRIBUTE=&amp;#34;objectGUID&amp;#34; IDP_LDAP_UUID_ATTRIBUTE_TYPE=binary GRAPH_LDAP_SERVER_WRITE_ENABLED=&amp;#34;false&amp;#34; OCIS_EXCLUDE_RUN_SERVICES=idm OCIS_ADMIN_USER_ID=&amp;#34;&amp;lt;objectGUID-value-of-the-default-admin-user&amp;gt;&amp;#34; </description>
-    </item>
-    <item>
-      <title>Envvar Naming Scopes</title>
-      <link>https://owncloud.dev/services/general-info/envvar-scopes/</link>
-      <pubDate>Thu, 23 Mar 2023 00:00:00 +0000</pubDate>
-      <guid>https://owncloud.dev/services/general-info/envvar-scopes/</guid>
-      <description>Envvar Definition Naming Scope Local Envvars Global Envvars Lifecycle of Envvars Introduce new Envvars Adding Envvars to Existing Ones Deprecate Existing Envvars Separating Multiple Envvars The scope of an environment variable can be derived from its name. Therefore, it is important to follow the correct naming scheme to enable easy and proper identification. This is important when either:&#xA;a new local envvar is introduced. a new global envvar is added to an existing local envvar.</description>
     </item>
     <item>
       <title>New Service Checklist</title>
@@ -1110,84 +1117,84 @@
     <item>
       <title>ocis.messages.eventhistory.v0</title>
       <link>https://owncloud.dev/apis/grpc_apis/ocis_messages_eventhistory_v0/</link>
-      <pubDate>Thu, 10 Jul 2025 14:24:49 +0000</pubDate>
+      <pubDate>Thu, 10 Jul 2025 15:08:43 +0000</pubDate>
       <guid>https://owncloud.dev/apis/grpc_apis/ocis_messages_eventhistory_v0/</guid>
       <description>ocis/messages/eventhistory/v0/eventhistory.proto Event Scalar Value Types ocis/messages/eventhistory/v0/eventhistory.proto Event Field Type Label Description type string REQUIRED. id string REQUIRED. event bytes REQUIRED Scalar Value Types .proto Type Notes C++ Java double double double float float float int32 Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead. int32 int int64 Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</description>
     </item>
     <item>
       <title>ocis.messages.policies.v0</title>
       <link>https://owncloud.dev/apis/grpc_apis/ocis_messages_policies_v0/</link>
-      <pubDate>Thu, 10 Jul 2025 14:24:49 +0000</pubDate>
+      <pubDate>Thu, 10 Jul 2025 15:08:43 +0000</pubDate>
       <guid>https://owncloud.dev/apis/grpc_apis/ocis_messages_policies_v0/</guid>
       <description>ocis/messages/policies/v0/policies.proto Environment Request Resource Resource.ID User User.ID Stage Scalar Value Types ocis/messages/policies/v0/policies.proto Environment Field Type Label Description stage Stage user User request Request resource Resource Request Field Type Label Description method string path string Resource Field Type Label Description id Resource.ID name string size uint64 url string Resource.ID Field Type Label Description storage_id string opaque_id string space_id string User Field Type Label Description id User.ID username string mail string display_name string groups string repeated User.</description>
     </item>
     <item>
       <title>ocis.messages.search.v0</title>
       <link>https://owncloud.dev/apis/grpc_apis/ocis_messages_search_v0/</link>
-      <pubDate>Thu, 10 Jul 2025 14:24:49 +0000</pubDate>
+      <pubDate>Thu, 10 Jul 2025 15:08:43 +0000</pubDate>
       <guid>https://owncloud.dev/apis/grpc_apis/ocis_messages_search_v0/</guid>
       <description>ocis/messages/search/v0/search.proto Audio Entity GeoCoordinates Image Match Photo Reference ResourceID Scalar Value Types ocis/messages/search/v0/search.proto Audio Field Type Label Description album string optional albumArtist string optional artist string optional bitrate int64 optional composers string optional copyright string optional disc int32 optional discCount int32 optional duration int64 optional genre string optional hasDrm bool optional isVariableBitrate bool optional title string optional track int32 optional trackCount int32 optional year int32 optional Entity Field Type Label Description ref Reference id ResourceID name string etag string size uint64 last_modified_time google.</description>
     </item>
     <item>
       <title>ocis.messages.settings.v0</title>
       <link>https://owncloud.dev/apis/grpc_apis/ocis_messages_settings_v0/</link>
-      <pubDate>Thu, 10 Jul 2025 14:24:49 +0000</pubDate>
+      <pubDate>Thu, 10 Jul 2025 15:08:43 +0000</pubDate>
       <guid>https://owncloud.dev/apis/grpc_apis/ocis_messages_settings_v0/</guid>
       <description>ocis/messages/settings/v0/settings.proto Bool Bundle CollectionOption CollectionValue Identifier Int ListOption ListOptionValue ListValue MultiChoiceCollection MultiChoiceCollectionOption MultiChoiceCollectionOptionValue MultiChoiceList Permission Resource Setting SingleChoiceList String UserRoleAssignment UserRoleAssignmentFilter Value ValueWithIdentifier Bundle.Type Permission.Constraint Permission.Operation Resource.Type UserRoleAssignmentFilter.Type Scalar Value Types ocis/messages/settings/v0/settings.proto Bool Field Type Label Description default bool @gotags: yaml:&amp;ldquo;default&amp;rdquo; label string @gotags: yaml:&amp;ldquo;label&amp;rdquo; Bundle Field Type Label Description id string @gotags: yaml:&amp;ldquo;id&amp;rdquo; name string @gotags: yaml:&amp;ldquo;name&amp;rdquo; type Bundle.Type @gotags: yaml:&amp;ldquo;type&amp;rdquo; extension string @gotags: yaml:&amp;ldquo;extension&amp;rdquo; display_name string @gotags: yaml:&amp;ldquo;display_name&amp;rdquo; settings Setting repeated @gotags: yaml:&amp;ldquo;settings&amp;rdquo; resource Resource @gotags: yaml:&amp;ldquo;resource&amp;rdquo; CollectionOption Field Type Label Description key string required</description>
     </item>
     <item>
       <title>ocis.messages.store.v0</title>
       <link>https://owncloud.dev/apis/grpc_apis/ocis_messages_store_v0/</link>
-      <pubDate>Thu, 10 Jul 2025 14:24:49 +0000</pubDate>
+      <pubDate>Thu, 10 Jul 2025 15:08:43 +0000</pubDate>
       <guid>https://owncloud.dev/apis/grpc_apis/ocis_messages_store_v0/</guid>
       <description>ocis/messages/store/v0/store.proto DeleteOptions Field ListOptions ReadOptions ReadOptions.WhereEntry Record Record.MetadataEntry WriteOptions Scalar Value Types ocis/messages/store/v0/store.proto DeleteOptions Field Type Label Description database string table string Field Field Type Label Description type string type of value e.g string, int, int64, bool, float64 value string the actual value ListOptions Field Type Label Description database string table string prefix string suffix string limit uint64 offset uint64 ReadOptions Field Type Label Description database string table string prefix bool suffix bool limit uint64 offset uint64 where ReadOptions.</description>
     </item>
     <item>
       <title>ocis.messages.thumbnails.v0</title>
       <link>https://owncloud.dev/apis/grpc_apis/ocis_messages_thumbnails_v0/</link>
-      <pubDate>Thu, 10 Jul 2025 14:24:49 +0000</pubDate>
+      <pubDate>Thu, 10 Jul 2025 15:08:43 +0000</pubDate>
       <guid>https://owncloud.dev/apis/grpc_apis/ocis_messages_thumbnails_v0/</guid>
       <description>ocis/messages/thumbnails/v0/thumbnails.proto CS3Source WebdavSource ThumbnailType Scalar Value Types ocis/messages/thumbnails/v0/thumbnails.proto CS3Source Field Type Label Description path string authorization string WebdavSource Field Type Label Description url string REQUIRED. is_public_link bool REQUIRED. webdav_authorization string OPTIONAL. reva_authorization string OPTIONAL. public_link_token string OPTIONAL. ThumbnailType The file types to which the thumbnail can be encoded to.&#xA;Name Number Description PNG 0 Represents PNG type JPG 1 Represents JPG type GIF 2 Represents GIF type Scalar Value Types .</description>
     </item>
     <item>
       <title>ocis.services.eventhistory.v0</title>
       <link>https://owncloud.dev/apis/grpc_apis/ocis_services_eventhistory_v0/</link>
-      <pubDate>Thu, 10 Jul 2025 14:24:49 +0000</pubDate>
+      <pubDate>Thu, 10 Jul 2025 15:08:43 +0000</pubDate>
       <guid>https://owncloud.dev/apis/grpc_apis/ocis_services_eventhistory_v0/</guid>
       <description>ocis/services/eventhistory/v0/eventhistory.proto GetEventsForUserRequest GetEventsRequest GetEventsResponse EventHistoryService Scalar Value Types ocis/services/eventhistory/v0/eventhistory.proto GetEventsForUserRequest A request to retrieve events belonging to a userID&#xA;Field Type Label Description userID string the userID of the events we want to get GetEventsRequest A request to retrieve events&#xA;Field Type Label Description ids string repeated the ids of the events we want to get GetEventsResponse The service response&#xA;Field Type Label Description events ocis.messages.eventhistory.v0.Event repeated EventHistoryService A Service for storing events</description>
     </item>
     <item>
       <title>ocis.services.policies.v0</title>
       <link>https://owncloud.dev/apis/grpc_apis/ocis_services_policies_v0/</link>
-      <pubDate>Thu, 10 Jul 2025 14:24:49 +0000</pubDate>
+      <pubDate>Thu, 10 Jul 2025 15:08:43 +0000</pubDate>
       <guid>https://owncloud.dev/apis/grpc_apis/ocis_services_policies_v0/</guid>
       <description>ocis/services/policies/v0/policies.proto EvaluateRequest EvaluateResponse policiesProvider Scalar Value Types ocis/services/policies/v0/policies.proto EvaluateRequest Field Type Label Description query string environment ocis.messages.policies.v0.Environment EvaluateResponse Field Type Label Description result bool policiesProvider Method Name Request Type Response Type Description Evaluate EvaluateRequest EvaluateResponse Scalar Value Types .proto Type Notes C++ Java double double double float float float int32 Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</description>
     </item>
     <item>
       <title>ocis.services.search.v0</title>
       <link>https://owncloud.dev/apis/grpc_apis/ocis_services_search_v0/</link>
-      <pubDate>Thu, 10 Jul 2025 14:24:49 +0000</pubDate>
+      <pubDate>Thu, 10 Jul 2025 15:08:43 +0000</pubDate>
       <guid>https://owncloud.dev/apis/grpc_apis/ocis_services_search_v0/</guid>
       <description>ocis/services/search/v0/search.proto IndexSpaceRequest IndexSpaceResponse SearchIndexRequest SearchIndexResponse SearchRequest SearchResponse IndexProvider SearchProvider Scalar Value Types ocis/services/search/v0/search.proto IndexSpaceRequest Field Type Label Description space_id string user_id string IndexSpaceResponse SearchIndexRequest Field Type Label Description page_size int32 Optional. The maximum number of entries to return in the response page_token string Optional. A pagination token returned from a previous call to Get&#xA;that indicates from where search should continue query string ref ocis.messages.search.v0.Reference SearchIndexResponse Field Type Label Description matches ocis.</description>
     </item>
     <item>
       <title>ocis.services.settings.v0</title>
       <link>https://owncloud.dev/apis/grpc_apis/ocis_services_settings_v0/</link>
-      <pubDate>Thu, 10 Jul 2025 14:24:49 +0000</pubDate>
+      <pubDate>Thu, 10 Jul 2025 15:08:43 +0000</pubDate>
       <guid>https://owncloud.dev/apis/grpc_apis/ocis_services_settings_v0/</guid>
       <description>ocis/services/settings/v0/settings.proto AddSettingToBundleRequest AddSettingToBundleResponse AssignRoleToUserRequest AssignRoleToUserResponse GetBundleRequest GetBundleResponse GetPermissionByIDRequest GetPermissionByIDResponse GetValueByUniqueIdentifiersRequest GetValueRequest GetValueResponse ListBundlesRequest ListBundlesResponse ListPermissionsByResourceRequest ListPermissionsByResourceResponse ListPermissionsRequest ListPermissionsResponse ListRoleAssignmentsFilteredRequest ListRoleAssignmentsRequest ListRoleAssignmentsResponse ListValuesRequest ListValuesResponse RemoveRoleFromUserRequest RemoveSettingFromBundleRequest SaveBundleRequest requests and responses for settings bundles SaveBundleResponse SaveValueRequest SaveValueResponse BundleService PermissionService RoleService ValueService Scalar Value Types ocis/services/settings/v0/settings.proto AddSettingToBundleRequest Field Type Label Description bundle_id string setting ocis.messages.settings.v0.Setting AddSettingToBundleResponse Field Type Label Description setting ocis.messages.settings.v0.Setting AssignRoleToUserRequest Field Type Label Description account_uuid string role_id string the role_id is a bundle_id internally AssignRoleToUserResponse Field Type Label Description assignment ocis.</description>
     </item>
     <item>
       <title>ocis.services.store.v0</title>
       <link>https://owncloud.dev/apis/grpc_apis/ocis_services_store_v0/</link>
-      <pubDate>Thu, 10 Jul 2025 14:24:49 +0000</pubDate>
+      <pubDate>Thu, 10 Jul 2025 15:08:43 +0000</pubDate>
       <guid>https://owncloud.dev/apis/grpc_apis/ocis_services_store_v0/</guid>
       <description>ocis/services/store/v0/store.proto DatabasesRequest DatabasesResponse DeleteRequest DeleteResponse ListRequest ListResponse ReadRequest ReadResponse TablesRequest TablesResponse WriteRequest WriteResponse Store Scalar Value Types ocis/services/store/v0/store.proto DatabasesRequest DatabasesResponse Field Type Label Description databases string repeated DeleteRequest Field Type Label Description key string options ocis.messages.store.v0.DeleteOptions DeleteResponse ListRequest Field Type Label Description options ocis.messages.store.v0.ListOptions ListResponse Field Type Label Description keys string repeated ReadRequest Field Type Label Description key string options ocis.messages.store.v0.ReadOptions ReadResponse Field Type Label Description records ocis.messages.store.v0.Record repeated TablesRequest Field Type Label Description database string TablesResponse Field Type Label Description tables string repeated WriteRequest Field Type Label Description record ocis.</description>
     </item>
     <item>
       <title>ocis.services.thumbnails.v0</title>
       <link>https://owncloud.dev/apis/grpc_apis/ocis_services_thumbnails_v0/</link>
-      <pubDate>Thu, 10 Jul 2025 14:24:49 +0000</pubDate>
+      <pubDate>Thu, 10 Jul 2025 15:08:43 +0000</pubDate>
       <guid>https://owncloud.dev/apis/grpc_apis/ocis_services_thumbnails_v0/</guid>
       <description>ocis/services/thumbnails/v0/thumbnails.proto GetThumbnailRequest GetThumbnailResponse ThumbnailService Scalar Value Types ocis/services/thumbnails/v0/thumbnails.proto GetThumbnailRequest A request to retrieve a thumbnail&#xA;Field Type Label Description filepath string The path to the source image thumbnail_type ocis.messages.thumbnails.v0.ThumbnailType The type to which the thumbnail should get encoded to. width int32 The width of the thumbnail height int32 The height of the thumbnail processor string Indicates which image processor to use webdav_source ocis.messages.thumbnails.v0.WebdavSource cs3_source ocis.messages.thumbnails.v0.CS3Source GetThumbnailResponse The service response</description>
     </item>
@@ -1407,6 +1414,83 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://owncloud.dev/services/_includes/activitylog_configvars/</guid>
       <description>Environment Variables Name Type Default Value Description OCIS_TRACING_ENABLEDACTIVITYLOG_TRACING_ENABLED bool false Activates tracing. OCIS_TRACING_TYPEACTIVITYLOG_TRACING_TYPE string The type of tracing. Defaults to &amp;lsquo;&amp;rsquo;, which is the same as &amp;lsquo;jaeger&amp;rsquo;. Allowed tracing types are &amp;lsquo;jaeger&amp;rsquo; and &amp;rsquo;&amp;rsquo; as of now. OCIS_TRACING_ENDPOINTACTIVITYLOG_TRACING_ENDPOINT string The endpoint of the tracing agent. OCIS_TRACING_COLLECTORACTIVITYLOG_TRACING_COLLECTOR string The HTTP endpoint for sending spans directly to a collector, i.e. http://jaeger-collector:14268/api/traces. Only used if the tracing endpoint is unset. OCIS_LOG_LEVELACTIVITYLOG_LOG_LEVEL string The log level.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://owncloud.dev/services/_includes/adoc/env-var-deltas/4.0.0-5.0.0-added/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://owncloud.dev/services/_includes/adoc/env-var-deltas/4.0.0-5.0.0-added/</guid>
+      <description>Added Variables between oCIS 4.0.0 and oCIS 5.0.0 File Variable Description Default ocis-pkg/shared/shared_types.go OCIS_CACHE_DISABLE_PERSISTENCE Disables persistence of the cache. Only applies when store type &amp;rsquo;nats-js-kv&amp;rsquo; is configured. false ocis-pkg/registry/registry.go MICRO_REGISTRY (important change) The Go micro registry type to use. Supported types are: &amp;lsquo;memory&amp;rsquo;, &amp;rsquo;nats-js-kv&amp;rsquo; (default) and &amp;lsquo;kubernetes&amp;rsquo;. Note that &amp;rsquo;nats&amp;rsquo;, &amp;rsquo;etcd&amp;rsquo;, &amp;lsquo;consul&amp;rsquo; and &amp;lsquo;mdns&amp;rsquo; are deprecated and will be removed in a later version. Only change on supervision of ownCloud Support.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://owncloud.dev/services/_includes/adoc/env-var-deltas/4.0.0-5.0.0-removed/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://owncloud.dev/services/_includes/adoc/env-var-deltas/4.0.0-5.0.0-removed/</guid>
+      <description>Removed Variables between oCIS 4.0.0 and oCIS 5.0.0 File Variable Replacement Description services/auth-basic/pkg/config/config.go LDAP_BIND_PASSWORD OCIS_LDAP_BIND_PASSWORD Password to use for authenticating the &amp;lsquo;bind_dn&amp;rsquo;. services/graph/pkg/config/config.go LDAP_BIND_PASSWORD OCIS_LDAP_BIND_PASSWORD Password to use for authenticating the &amp;lsquo;bind_dn&amp;rsquo;. services/groups/pkg/config/config.go LDAP_BIND_PASSWORD OCIS_LDAP_BIND_PASSWORD Password to use for authenticating the &amp;lsquo;bind_dn&amp;rsquo;. services/idp/pkg/config/config.go LDAP_BIND_PASSWORD OCIS_LDAP_BIND_PASSWORD Password to use for authenticating the &amp;lsquo;bind_dn&amp;rsquo;. services/sharing/pkg/config/config.go SHARING_EVENTS_TLS_ROOT_CA_CERT SHARING_EVENTS_TLS_ROOT_CA_CERTIFICATE The root CA certificate used to validate the server&amp;rsquo;s TLS certificate. If provided SHARING_EVENTS_TLS_INSECURE will be seen as false.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://owncloud.dev/services/_includes/adoc/env-var-deltas/5.0.0-7.0.0-added/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://owncloud.dev/services/_includes/adoc/env-var-deltas/5.0.0-7.0.0-added/</guid>
+      <description>Note that the links provided in the service column are non functional when clicked.&#xA;Service Variable Description Default Special Scope Envvars OCIS_ASSET_THEMES_PATH Serve ownCloud themes from a path on the filesystem instead of the builtin assets. If not defined, the root directory derives from $OCIS_BASE_DATA_PATH/web/assets/themes /var/lib/ocis/web/assets/themes OCIS_DISABLE_VERSIONING Disables versioning of files. When set to true, new uploads with the same filename will overwrite existing files instead of creating a new version.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://owncloud.dev/services/_includes/adoc/env-var-deltas/5.0.0-7.0.0-deprecated/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://owncloud.dev/services/_includes/adoc/env-var-deltas/5.0.0-7.0.0-deprecated/</guid>
+      <description>Note that the links provided in the service column are non functional when clicked.&#xA;Service Variable Description Removal Version Deprecation Info Clientlog CLIENTLOG_REVA_GATEWAY CS3 gateway used to look up user metadata %%NEXT_PRODUCTION_VERSION%% CLIENTLOG_REVA_GATEWAY removed for simplicity. Frontend FRONTEND_OCS_ADDITIONAL_INFO_ATTRIBUTE Additional information attribute for the user like {{.Mail}}. %%NEXT_PRODUCTION_VERSION%% The OCS API is deprecated FRONTEND_OCS_ENABLE_DENIALS EXPERIMENTAL: enable the feature to deny access on folders. %%NEXT_PRODUCTION_VERSION%% The OCS API is deprecated FRONTEND_OCS_INCLUDE_OCM_SHAREES Include OCM sharees when listing sharees.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://owncloud.dev/services/_includes/adoc/env-var-deltas/5.0.0-7.0.0-removed/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://owncloud.dev/services/_includes/adoc/env-var-deltas/5.0.0-7.0.0-removed/</guid>
+      <description>Note that the links provided in the service column are non functional when clicked.&#xA;Service Variable Description Default Special Scope Envvars OCIS_CACHE_SIZE The maximum quantity of items in the user info cache. Only applies when store type &amp;lsquo;ocmem&amp;rsquo; is configured. Defaults to 512 which is derived from the ocmem package though not exclicitly set as default. 0 OCIS_DECOMPOSEDFS_METADATA_BACKEND The backend to use for storing metadata. Supported values are &amp;lsquo;messagepack&amp;rsquo; and &amp;lsquo;xattrs&amp;rsquo;.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://owncloud.dev/services/_includes/adoc/env-var-deltas/7.0.0-7.1.0-added/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://owncloud.dev/services/_includes/adoc/env-var-deltas/7.0.0-7.1.0-added/</guid>
+      <description>Note that the links provided in the service column are non functional when clicked.&#xA;Service Variable Description Default Fontend FRONTEND_CONFIGURABLE_NOTIFICATIONS Allow configuring notifications via web client. false Notifications NOTIFICATIONS_STORE The type of the store. Supported values are: &amp;lsquo;memory&amp;rsquo;, &amp;rsquo;nats-js-kv&amp;rsquo;, &amp;lsquo;redis-sentinel&amp;rsquo;, &amp;rsquo;noop&amp;rsquo;. See the text description for details. nats-js-kv NOTIFICATIONS_STORE_AUTH_PASSWORD The password to authenticate with the store. Only applies when store type &amp;rsquo;nats-js-kv&amp;rsquo; is configured. NOTIFICATIONS_STORE_AUTH_USERNAME The username to authenticate with the store.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://owncloud.dev/services/_includes/adoc/env-var-deltas/7.0.0-7.1.0-deprecated/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://owncloud.dev/services/_includes/adoc/env-var-deltas/7.0.0-7.1.0-deprecated/</guid>
+      <description>Note that the links provided in the service column are non functional when clicked.&#xA;Note that these environment variables were listed for deprecation in 7.0.0 already. Removal has been delayed for an upcoming production version. They are listed here for consistency.&#xA;Service Variable Description Removal Version Deprecation Info Clientlog CLIENTLOG_REVA_GATEWAY CS3 gateway used to look up user metadata %%NEXT_PRODUCTION_VERSION%% CLIENTLOG_REVA_GATEWAY removed for simplicity. Frontend FRONTEND_OCS_ADDITIONAL_INFO_ATTRIBUTE Additional information attribute for the user like {{.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://owncloud.dev/services/_includes/adoc/env-var-deltas/7.0.0-7.1.0-removed/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://owncloud.dev/services/_includes/adoc/env-var-deltas/7.0.0-7.1.0-removed/</guid>
+      <description>Note that the links provided in the service column are non functional when clicked.&#xA;Service Variable Description Default </description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://owncloud.dev/services/_includes/adoc/env-var-deltas/7.1.0-7.2.0-added/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://owncloud.dev/services/_includes/adoc/env-var-deltas/7.1.0-7.2.0-added/</guid>
+      <description>Note that the links provided in the service column are non functional when clicked.&#xA;Service Variable Description Default Special Scope Envvars OCIS_CLAIM_MANAGED_SPACES_CLAIMNAME The name of the claim used to manage Spaces. OCIS_CLAIM_MANAGED_SPACES_ENABLED Enables Space management through OIDC claims. See the text description for more details. false OCIS_CLAIM_MANAGED_SPACES_MAPPING (Optional) Mapping of OIDC roles to ocis Space roles. Example: &amp;lsquo;oidcroleA:viewer,oidcroleB:manager&amp;rsquo; [] OCIS_CLAIM_MANAGED_SPACES_REGEXP The regular expression that extracts Space IDs and roles from a claim.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://owncloud.dev/services/_includes/adoc/env-var-deltas/7.1.0-7.2.0-deprecated/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://owncloud.dev/services/_includes/adoc/env-var-deltas/7.1.0-7.2.0-deprecated/</guid>
+      <description>Note that the links provided in the service column are non functional when clicked.&#xA;Service Variable Description Removal Version Deprecation Info </description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://owncloud.dev/services/_includes/adoc/env-var-deltas/7.1.0-7.2.0-removed/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://owncloud.dev/services/_includes/adoc/env-var-deltas/7.1.0-7.2.0-removed/</guid>
+      <description>Note that the links provided in the service column are non functional when clicked.&#xA;Service Variable Description Default clientlog CLIENTLOG_REVA_GATEWAY CS3 gateway used to look up user metadata com.owncloud.api.gateway frontend FRONTEND_OCS_ADDITIONAL_INFO_ATTRIBUTE Additional information attribute for the user like {{.Mail}}. {{.Mail}} FRONTEND_OCS_ENABLE_DENIALS EXPERIMENTAL: enable the feature to deny access on folders. false FRONTEND_OCS_INCLUDE_OCM_SHAREES Include OCM sharees when listing sharees. false FRONTEND_OCS_LIST_OCM_SHARES Include OCM shares when listing shares. See the OCM service documentation for more details.</description>
     </item>
     <item>
       <title></title>
@@ -1697,17 +1781,80 @@
     </item>
     <item>
       <title></title>
-      <link>https://owncloud.dev/services/general-info/env-var-deltas/4.0.0-5.0.0-added/</link>
+      <link>https://owncloud.dev/services/general-info/envvars/env-var-deltas/4.0.0-5.0.0-added/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://owncloud.dev/services/general-info/env-var-deltas/4.0.0-5.0.0-added/</guid>
+      <guid>https://owncloud.dev/services/general-info/envvars/env-var-deltas/4.0.0-5.0.0-added/</guid>
       <description>Added Variables between oCIS 4.0.0 and oCIS 5.0.0 File Variable Description Default ocis-pkg/shared/shared_types.go OCIS_CACHE_DISABLE_PERSISTENCE Disables persistence of the cache. Only applies when store type &amp;rsquo;nats-js-kv&amp;rsquo; is configured. false ocis-pkg/registry/registry.go MICRO_REGISTRY (important change) The Go micro registry type to use. Supported types are: &amp;lsquo;memory&amp;rsquo;, &amp;rsquo;nats-js-kv&amp;rsquo; (default) and &amp;lsquo;kubernetes&amp;rsquo;. Note that &amp;rsquo;nats&amp;rsquo;, &amp;rsquo;etcd&amp;rsquo;, &amp;lsquo;consul&amp;rsquo; and &amp;lsquo;mdns&amp;rsquo; are deprecated and will be removed in a later version. Only change on supervision of ownCloud Support.</description>
     </item>
     <item>
       <title></title>
-      <link>https://owncloud.dev/services/general-info/env-var-deltas/4.0.0-5.0.0-removed/</link>
+      <link>https://owncloud.dev/services/general-info/envvars/env-var-deltas/4.0.0-5.0.0-removed/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://owncloud.dev/services/general-info/env-var-deltas/4.0.0-5.0.0-removed/</guid>
+      <guid>https://owncloud.dev/services/general-info/envvars/env-var-deltas/4.0.0-5.0.0-removed/</guid>
       <description>Removed Variables between oCIS 4.0.0 and oCIS 5.0.0 File Variable Replacement Description services/auth-basic/pkg/config/config.go LDAP_BIND_PASSWORD OCIS_LDAP_BIND_PASSWORD Password to use for authenticating the &amp;lsquo;bind_dn&amp;rsquo;. services/graph/pkg/config/config.go LDAP_BIND_PASSWORD OCIS_LDAP_BIND_PASSWORD Password to use for authenticating the &amp;lsquo;bind_dn&amp;rsquo;. services/groups/pkg/config/config.go LDAP_BIND_PASSWORD OCIS_LDAP_BIND_PASSWORD Password to use for authenticating the &amp;lsquo;bind_dn&amp;rsquo;. services/idp/pkg/config/config.go LDAP_BIND_PASSWORD OCIS_LDAP_BIND_PASSWORD Password to use for authenticating the &amp;lsquo;bind_dn&amp;rsquo;. services/sharing/pkg/config/config.go SHARING_EVENTS_TLS_ROOT_CA_CERT SHARING_EVENTS_TLS_ROOT_CA_CERTIFICATE The root CA certificate used to validate the server&amp;rsquo;s TLS certificate. If provided SHARING_EVENTS_TLS_INSECURE will be seen as false.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://owncloud.dev/services/general-info/envvars/env-var-deltas/5.0.0-7.0.0-added/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://owncloud.dev/services/general-info/envvars/env-var-deltas/5.0.0-7.0.0-added/</guid>
+      <description>Note that the links provided in the service column are non functional when clicked.&#xA;Service Variable Description Default Special Scope Envvars OCIS_ASSET_THEMES_PATH Serve ownCloud themes from a path on the filesystem instead of the builtin assets. If not defined, the root directory derives from $OCIS_BASE_DATA_PATH/web/assets/themes /var/lib/ocis/web/assets/themes OCIS_DISABLE_VERSIONING Disables versioning of files. When set to true, new uploads with the same filename will overwrite existing files instead of creating a new version.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://owncloud.dev/services/general-info/envvars/env-var-deltas/5.0.0-7.0.0-deprecated/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://owncloud.dev/services/general-info/envvars/env-var-deltas/5.0.0-7.0.0-deprecated/</guid>
+      <description>Note that the links provided in the service column are non functional when clicked.&#xA;Service Variable Description Removal Version Deprecation Info Clientlog CLIENTLOG_REVA_GATEWAY CS3 gateway used to look up user metadata %%NEXT_PRODUCTION_VERSION%% CLIENTLOG_REVA_GATEWAY removed for simplicity. Frontend FRONTEND_OCS_ADDITIONAL_INFO_ATTRIBUTE Additional information attribute for the user like {{.Mail}}. %%NEXT_PRODUCTION_VERSION%% The OCS API is deprecated FRONTEND_OCS_ENABLE_DENIALS EXPERIMENTAL: enable the feature to deny access on folders. %%NEXT_PRODUCTION_VERSION%% The OCS API is deprecated FRONTEND_OCS_INCLUDE_OCM_SHAREES Include OCM sharees when listing sharees.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://owncloud.dev/services/general-info/envvars/env-var-deltas/5.0.0-7.0.0-removed/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://owncloud.dev/services/general-info/envvars/env-var-deltas/5.0.0-7.0.0-removed/</guid>
+      <description>Note that the links provided in the service column are non functional when clicked.&#xA;Service Variable Description Default Special Scope Envvars OCIS_CACHE_SIZE The maximum quantity of items in the user info cache. Only applies when store type &amp;lsquo;ocmem&amp;rsquo; is configured. Defaults to 512 which is derived from the ocmem package though not exclicitly set as default. 0 OCIS_DECOMPOSEDFS_METADATA_BACKEND The backend to use for storing metadata. Supported values are &amp;lsquo;messagepack&amp;rsquo; and &amp;lsquo;xattrs&amp;rsquo;.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://owncloud.dev/services/general-info/envvars/env-var-deltas/7.0.0-7.1.0-added/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://owncloud.dev/services/general-info/envvars/env-var-deltas/7.0.0-7.1.0-added/</guid>
+      <description>Note that the links provided in the service column are non functional when clicked.&#xA;Service Variable Description Default Fontend FRONTEND_CONFIGURABLE_NOTIFICATIONS Allow configuring notifications via web client. false Notifications NOTIFICATIONS_STORE The type of the store. Supported values are: &amp;lsquo;memory&amp;rsquo;, &amp;rsquo;nats-js-kv&amp;rsquo;, &amp;lsquo;redis-sentinel&amp;rsquo;, &amp;rsquo;noop&amp;rsquo;. See the text description for details. nats-js-kv NOTIFICATIONS_STORE_AUTH_PASSWORD The password to authenticate with the store. Only applies when store type &amp;rsquo;nats-js-kv&amp;rsquo; is configured. NOTIFICATIONS_STORE_AUTH_USERNAME The username to authenticate with the store.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://owncloud.dev/services/general-info/envvars/env-var-deltas/7.0.0-7.1.0-deprecated/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://owncloud.dev/services/general-info/envvars/env-var-deltas/7.0.0-7.1.0-deprecated/</guid>
+      <description>Note that the links provided in the service column are non functional when clicked.&#xA;Note that these environment variables were listed for deprecation in 7.0.0 already. Removal has been delayed for an upcoming production version. They are listed here for consistency.&#xA;Service Variable Description Removal Version Deprecation Info Clientlog CLIENTLOG_REVA_GATEWAY CS3 gateway used to look up user metadata %%NEXT_PRODUCTION_VERSION%% CLIENTLOG_REVA_GATEWAY removed for simplicity. Frontend FRONTEND_OCS_ADDITIONAL_INFO_ATTRIBUTE Additional information attribute for the user like {{.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://owncloud.dev/services/general-info/envvars/env-var-deltas/7.0.0-7.1.0-removed/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://owncloud.dev/services/general-info/envvars/env-var-deltas/7.0.0-7.1.0-removed/</guid>
+      <description>Note that the links provided in the service column are non functional when clicked.&#xA;Service Variable Description Default </description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://owncloud.dev/services/general-info/envvars/env-var-deltas/7.1.0-7.2.0-added/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://owncloud.dev/services/general-info/envvars/env-var-deltas/7.1.0-7.2.0-added/</guid>
+      <description>Note that the links provided in the service column are non functional when clicked.&#xA;Service Variable Description Default Special Scope Envvars OCIS_CLAIM_MANAGED_SPACES_CLAIMNAME The name of the claim used to manage Spaces. OCIS_CLAIM_MANAGED_SPACES_ENABLED Enables Space management through OIDC claims. See the text description for more details. false OCIS_CLAIM_MANAGED_SPACES_MAPPING (Optional) Mapping of OIDC roles to ocis Space roles. Example: &amp;lsquo;oidcroleA:viewer,oidcroleB:manager&amp;rsquo; [] OCIS_CLAIM_MANAGED_SPACES_REGEXP The regular expression that extracts Space IDs and roles from a claim.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://owncloud.dev/services/general-info/envvars/env-var-deltas/7.1.0-7.2.0-deprecated/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://owncloud.dev/services/general-info/envvars/env-var-deltas/7.1.0-7.2.0-deprecated/</guid>
+      <description>Note that the links provided in the service column are non functional when clicked.&#xA;Service Variable Description Removal Version Deprecation Info </description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://owncloud.dev/services/general-info/envvars/env-var-deltas/7.1.0-7.2.0-removed/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://owncloud.dev/services/general-info/envvars/env-var-deltas/7.1.0-7.2.0-removed/</guid>
+      <description>Note that the links provided in the service column are non functional when clicked.&#xA;Service Variable Description Default clientlog CLIENTLOG_REVA_GATEWAY CS3 gateway used to look up user metadata com.owncloud.api.gateway frontend FRONTEND_OCS_ADDITIONAL_INFO_ATTRIBUTE Additional information attribute for the user like {{.Mail}}. {{.Mail}} FRONTEND_OCS_ENABLE_DENIALS EXPERIMENTAL: enable the feature to deny access on folders. false FRONTEND_OCS_INCLUDE_OCM_SHAREES Include OCM sharees when listing sharees. false FRONTEND_OCS_LIST_OCM_SHARES Include OCM shares when listing shares. See the OCM service documentation for more details.</description>
     </item>
   </channel>
 </rss>
