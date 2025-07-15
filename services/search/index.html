@@ -45,11 +45,11 @@ Metadata: all data that describes the file like Name, Size, MimeType, Tags and M
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2025-07-15T00:39:54+00:00"
+      content="2025-07-15T07:21:12+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2025-07-15T00:39:54+00:00"
+      content="2025-07-15T07:21:12+00:00"
     />
 
 
@@ -68,7 +68,7 @@ Metadata: all data that describes the file like Name, Size, MimeType, Tags and M
       "url" : "https://owncloud.dev/services/search/",
       "headline": "Search",
       "description": "Abstract The search service is responsible for metadata and content extraction, stores that data as index and makes it searchable. The following clarifies the extraction terms metadata and content:\nMetadata: all data that describes the file like Name, Size, MimeType, Tags and Mtime. Content: all data that relates to content of the file like words, geo data, exif data etc. Table of Contents General Considerations Scaling Search Engines Query language Extraction Engines Content Extraction Basic Extractor Tika Extractor Search Functionality Indexing Search State Changes which Trigger Indexing Resource Trashed Resource Deleted Resource Restored Resource Moved Folder Created File Created File Version Restored Resource Tag Added Resource Tag Removed File Uploaded - Synchronous File Uploaded - Asynchronous Manually Trigger Re-Indexing a Space Notes Example Yaml Config General Considerations To use the search service, an event system needs to be configured for all services like NATS, which is shipped and preconfigured.",
-      "wordCount" : "2366",
+      "wordCount" : "2474",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ Metadata: all data that describes the file like Name, Size, MimeType, Tags and M
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2025",
-      "dateCreated": "2025-07-15T00:39:54.79Z",
-      "datePublished": "2025-07-15T00:39:54.79Z",
-      "dateModified": "2025-07-15T00:39:54.79Z",
+      "dateCreated": "2025-07-15T07:21:12.81Z",
+      "datePublished": "2025-07-15T07:21:12.81Z",
+      "dateModified": "2025-07-15T07:21:12.81Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -19943,6 +19943,10 @@ When using the Tika extractor, make sure to also set this enironment variable in
     </a>
 </div>
 <p>Every time a resource changes its state, a corresponding event is triggered. Based on the event, the search service processes the file and adds the result to its index. There are a few more steps between accepting the file and updating the index.</p>
+<p><strong>IMPORTANT</strong></p>
+<ul>
+<li>When using the Tika Extractor, text and other data, such as EXIF data from images, are extracted from documents and written to the bleve index. Currently, this extra data cannot be searched. See the next section for more information.</li>
+</ul>
 <div class="flex align-center gdoc-page__anchorwrap">
     <h3 id="search"
     >
@@ -19953,6 +19957,11 @@ When using the Tika extractor, make sure to also set this enironment variable in
     </a>
 </div>
 <p>A query via the search service will return results based on the index created.</p>
+<p><strong>IMPORTANT</strong></p>
+<ul>
+<li>Though EXIF data can be present in the bleve index, currently, only text-related data can be extracted. Code must be written to make this type of extraction available to users.</li>
+<li>Currently, there is no ocis shell command or similar mechanism to view or browse the bleve index. This capability would be highly beneficial for developers and administrators to determine the type of data contained in the index.</li>
+</ul>
 <div class="flex align-center gdoc-page__anchorwrap">
     <h3 id="state-changes-which-trigger-indexing"
     >
