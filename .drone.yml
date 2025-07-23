@@ -10,44 +10,44 @@ concurrency:
   limit: 1
 
 steps:
-# - name: purge-content
-#   image: docker.io/owncloudci/alpine
-#   commands:
-#   - make clean
+- name: purge-content
+  image: docker.io/owncloudci/alpine
+  commands:
+  - make clean
 
-# - name: assets
-#   image: docker.io/owncloudci/alpine
-#   commands:
-#   - make theme
+- name: assets
+  image: docker.io/owncloudci/alpine
+  commands:
+  - make theme
 
-# - name: sync
-#   image: quay.io/thegeeklab/git-batch
-#   commands:
-#   - git-batch -vv
+- name: sync
+  image: quay.io/thegeeklab/git-batch
+  commands:
+  - git-batch -vv
 
-# - name: build
-#   # matching images and/or versions in:
-#   # - the Makefile of this repo
-#   # - repo web: in .drone.star and
-#   # - repo ocis: cat .bingo/Variables.mk | grep HUGO
-#   image: hugomods/hugo:base-0.129.0
-#   commands:
-#   - hugo
+- name: build
+  # matching images and/or versions in:
+  # - the Makefile of this repo
+  # - repo web: in .drone.star and
+  # - repo ocis: cat .bingo/Variables.mk | grep HUGO
+  image: hugomods/hugo:base-0.129.0
+  commands:
+  - hugo
 
-# - name: publish
-#   image: docker.io/plugins/gh-pages
-#   settings:
-#     pages_directory: public/
-#     copy_contents: true
-#     password:
-#       from_secret: github_token
-#     target_branch: gh-pages
-#     username:
-#       from_secret: github_username
-#     delete: true
-#   when:
-#     ref:
-#     - refs/heads/main
+- name: publish
+  image: docker.io/plugins/gh-pages
+  settings:
+    pages_directory: public/
+    copy_contents: true
+    password:
+      from_secret: github_token
+    target_branch: gh-pages
+    username:
+      from_secret: github_username
+    delete: true
+  when:
+    ref:
+    - refs/heads/main
 
 - name: notification
   image: docker.io/owncloudci/alpine
@@ -56,12 +56,11 @@ steps:
       from_secret: matrix_token
   commands:
     - "wget https://raw.githubusercontent.com/${DRONE_REPO}/${DRONE_COMMIT_SHA}/config/drone/notification.sh"
-    # - bash /drone/src/config/drone/notification.sh
-  # when:
-  #   cron:
-  #     - hourly
-  #   status:
-  #     - failure
+  when:
+    cron:
+      - hourly
+    status:
+      - failure
 
 trigger:
   ref:
