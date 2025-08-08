@@ -45,11 +45,11 @@ Table of Contents Sequence Diagram Users and Groups API LDAP Configuration Read-
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2025-08-08T09:01:40+00:00"
+      content="2025-08-08T14:14:52+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2025-08-08T09:01:40+00:00"
+      content="2025-08-08T14:14:52+00:00"
     />
 
 
@@ -68,7 +68,7 @@ Table of Contents Sequence Diagram Users and Groups API LDAP Configuration Read-
       "url" : "https://owncloud.dev/services/graph/",
       "headline": "Graph",
       "description": "Abstract The graph service provides the Graph API which is a RESTful web API used to access Infinite Scale resources. It is inspired by the Microsoft Graph API and can be used by clients or other services or extensions. Visit the Libre Graph API for a detailed specification of the API implemented by the graph service.\nTable of Contents Sequence Diagram Users and Groups API LDAP Configuration Read-Only Access to Existing LDAP Servers Using a Write Enabled LDAP Server Query Filters Provided by the Graph API Caching Keycloak Configuration For The Personal Data Export Keycloak Client Configuration Translations Translation Rules Default Language Unified Role Management Create Unified Roles Example Yaml Config Sequence Diagram The following image gives an overview of the scenario when a client requests to list available spaces the user has access to.",
-      "wordCount" : "4102",
+      "wordCount" : "4291",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -77,9 +77,9 @@ Table of Contents Sequence Diagram Users and Groups API LDAP Configuration Read-
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2025",
-      "dateCreated": "2025-08-08T09:01:40.21Z",
-      "datePublished": "2025-08-08T09:01:40.21Z",
-      "dateModified": "2025-08-08T09:01:40.21Z",
+      "dateCreated": "2025-08-08T14:14:52.98Z",
+      "datePublished": "2025-08-08T14:14:52.98Z",
+      "dateModified": "2025-08-08T14:14:52.98Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -20520,6 +20520,8 @@ which is the source of the texts provided by the code.</li>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis graph list-unified-roles
 </span></span></code></pre></div><p>The output of this command includes the following information for each role:</p>
 <ul>
+<li><code>LABEL</code><br>
+The Label of the role.</li>
 <li><code>UID</code><br>
 The unique identifier of the role.</li>
 <li><code>Enabled</code><br>
@@ -20530,17 +20532,32 @@ A short description of the role.</li>
 <li><code>Allowed resource actions</code></li>
 </ul>
 <p><strong>Example output (shortned)</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">+--------------------------------------+----------+--------------------------------+--------------------------------+------------------------------------------+
-</span></span><span class="line"><span class="cl"><span class="p">|</span>                 UID                  <span class="p">|</span> ENABLED  <span class="p">|</span>          DESCRIPTION           <span class="p">|</span>           CONDITION            <span class="p">|</span>         ALLOWED RESOURCE ACTIONS         <span class="p">|</span>
-</span></span><span class="line"><span class="cl">+--------------------------------------+----------+--------------------------------+--------------------------------+------------------------------------------+
-</span></span><span class="line"><span class="cl"><span class="p">|</span> a8d5fe5e-96e3-418d-825b-534dbdf22b99 <span class="p">|</span> enabled  <span class="p">|</span> View and download.             <span class="p">|</span> exists @Resource.Root          <span class="p">|</span> libre.graph/driveItem/path/read          <span class="p">|</span>
-</span></span><span class="line"><span class="cl"><span class="p">|</span>                                      <span class="p">|</span>          <span class="p">|</span>                                <span class="p">|</span>                                <span class="p">|</span> libre.graph/driveItem/quota/read         <span class="p">|</span>
-</span></span><span class="line"><span class="cl"><span class="p">|</span>                                      <span class="p">|</span>          <span class="p">|</span>                                <span class="p">|</span>                                <span class="p">|</span> libre.graph/driveItem/content/read       <span class="p">|</span>
-</span></span><span class="line"><span class="cl"><span class="p">|</span>                                      <span class="p">|</span>          <span class="p">|</span>                                <span class="p">|</span>                                <span class="p">|</span> libre.graph/driveItem/permissions/read   <span class="p">|</span>
-</span></span><span class="line"><span class="cl"><span class="p">|</span>                                      <span class="p">|</span>          <span class="p">|</span>                                <span class="p">|</span>                                <span class="p">|</span> libre.graph/driveItem/children/read      <span class="p">|</span>
-</span></span><span class="line"><span class="cl"><span class="p">|</span>                                      <span class="p">|</span>          <span class="p">|</span>                                <span class="p">|</span>                                <span class="p">|</span> libre.graph/driveItem/deleted/read       <span class="p">|</span>
-</span></span><span class="line"><span class="cl"><span class="p">|</span>                                      <span class="p">|</span>          <span class="p">|</span>                                <span class="p">|</span>                                <span class="p">|</span> libre.graph/driveItem/basic/read         <span class="p">|</span>
-</span></span><span class="line"><span class="cl">+--------------------------------------+----------+--------------------------------+--------------------------------+------------------------------------------+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">+----+--------------------------------+--------------------------------------+----------+--------------------------------+--------------------------------+------------------------------------------+
+</span></span><span class="line"><span class="cl"><span class="p">|</span>  <span class="c1"># |            LABEL               |                UID                   | ENABLED  |          DESCRIPTION           |           CONDITION            |         ALLOWED RESOURCE ACTIONS         |</span>
+</span></span><span class="line"><span class="cl">+----+--------------------------------+--------------------------------------+----------+--------------------------------+--------------------------------+------------------------------------------+
+</span></span><span class="line"><span class="cl"><span class="p">|</span>  <span class="m">1</span> <span class="p">|</span> View                           <span class="p">|</span> a8d5fe5e-96e3-418d-825b-534dbdf22b99 <span class="p">|</span> enabled  <span class="p">|</span> View and download.             <span class="p">|</span> exists @Resource.Root          <span class="p">|</span> libre.graph/driveItem/path/read          <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>    <span class="p">|</span>                                <span class="p">|</span>                                      <span class="p">|</span>          <span class="p">|</span>                                <span class="p">|</span>                                <span class="p">|</span> libre.graph/driveItem/quota/read         <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>    <span class="p">|</span>                                <span class="p">|</span>                                      <span class="p">|</span>          <span class="p">|</span>                                <span class="p">|</span>                                <span class="p">|</span> libre.graph/driveItem/content/read       <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>    <span class="p">|</span>                                <span class="p">|</span>                                      <span class="p">|</span>          <span class="p">|</span>                                <span class="p">|</span>                                <span class="p">|</span> libre.graph/driveItem/permissions/read   <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>    <span class="p">|</span>                                <span class="p">|</span>                                      <span class="p">|</span>          <span class="p">|</span>                                <span class="p">|</span>                                <span class="p">|</span> libre.graph/driveItem/children/read      <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>    <span class="p">|</span>                                <span class="p">|</span>                                      <span class="p">|</span>          <span class="p">|</span>                                <span class="p">|</span>                                <span class="p">|</span> libre.graph/driveItem/deleted/read       <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>    <span class="p">|</span>                                <span class="p">|</span>                                      <span class="p">|</span>          <span class="p">|</span>                                <span class="p">|</span>                                <span class="p">|</span> libre.graph/driveItem/basic/read         <span class="p">|</span>
+</span></span><span class="line"><span class="cl">+----+--------------------------------+--------------------------------------+----------+--------------------------------+--------------------------------+------------------------------------------+
+</span></span></code></pre></div><p>Render the table as Markdown:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis graph list-unified-roles -o md
+</span></span></code></pre></div><p><strong>Example output (shortned)</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="p">|</span> <span class="c1">#  |              LABEL               |                 UID                  | ENABLED  |                                     DESCRIPTION                                      |                         CONDITION                         |         ALLOWED RESOURCE ACTIONS         |</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>:--:<span class="p">|</span>:--------------------------------:<span class="p">|</span>:------------------------------------:<span class="p">|</span>:--------:<span class="p">|</span>:------------------------------------------------------------------------------------:<span class="p">|</span>:---------------------------------------------------------:<span class="p">|</span>:----------------------------------------:<span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="m">1</span>  <span class="p">|</span>              Viewer              <span class="p">|</span> b1e2218d-eef8-4d4c-b82d-0f1a1b48f3b5 <span class="p">|</span> enabled  <span class="p">|</span>                                  View and download.                                  <span class="p">|</span>                   exists @Resource.File                   <span class="p">|</span>     libre.graph/driveItem/path/read      <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>    <span class="p">|</span>                                  <span class="p">|</span>                                      <span class="p">|</span>          <span class="p">|</span>                                                                                      <span class="p">|</span>                  exists @Resource.Folder                  <span class="p">|</span>     libre.graph/driveItem/quota/read     <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>    <span class="p">|</span>                                  <span class="p">|</span>                                      <span class="p">|</span>          <span class="p">|</span>                                                                                      <span class="p">|</span>  exists @Resource.File <span class="o">&amp;&amp;</span> @Subject.UserType<span class="o">==</span><span class="s2">&#34;Federated&#34;</span>  <span class="p">|</span>    libre.graph/driveItem/content/read    <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>    <span class="p">|</span>                                  <span class="p">|</span>                                      <span class="p">|</span>          <span class="p">|</span>                                                                                      <span class="p">|</span> exists @Resource.Folder <span class="o">&amp;&amp;</span> @Subject.UserType<span class="o">==</span><span class="s2">&#34;Federated&#34;</span> <span class="p">|</span>   libre.graph/driveItem/children/read    <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>    <span class="p">|</span>                                  <span class="p">|</span>                                      <span class="p">|</span>          <span class="p">|</span>                                                                                      <span class="p">|</span>                                                           <span class="p">|</span>    libre.graph/driveItem/deleted/read    <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>    <span class="p">|</span>                                  <span class="p">|</span>                                      <span class="p">|</span>          <span class="p">|</span>                                                                                      <span class="p">|</span>                                                           <span class="p">|</span>     libre.graph/driveItem/basic/read     <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="m">2</span>  <span class="p">|</span>         ViewerListGrants         <span class="p">|</span> d5041006-ebb3-4b4a-b6a4-7c180ecfb17d <span class="p">|</span> disabled <span class="p">|</span>                     View, download and show all invited people.                      <span class="p">|</span>                   exists @Resource.File                   <span class="p">|</span>     libre.graph/driveItem/path/read      <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>    <span class="p">|</span>                                  <span class="p">|</span>                                      <span class="p">|</span>          <span class="p">|</span>                                                                                      <span class="p">|</span>                  exists @Resource.Folder                  <span class="p">|</span>     libre.graph/driveItem/quota/read     <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>    <span class="p">|</span>                                  <span class="p">|</span>                                      <span class="p">|</span>          <span class="p">|</span>                                                                                      <span class="p">|</span>  exists @Resource.File <span class="o">&amp;&amp;</span> @Subject.UserType<span class="o">==</span><span class="s2">&#34;Federated&#34;</span>  <span class="p">|</span>    libre.graph/driveItem/content/read    <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>    <span class="p">|</span>                                  <span class="p">|</span>                                      <span class="p">|</span>          <span class="p">|</span>                                                                                      <span class="p">|</span> exists @Resource.Folder <span class="o">&amp;&amp;</span> @Subject.UserType<span class="o">==</span><span class="s2">&#34;Federated&#34;</span> <span class="p">|</span>  libre.graph/driveItem/permissions/read  <span class="p">|</span>
 </span></span></code></pre></div><div class="flex align-center gdoc-page__anchorwrap">
     <h3 id="create-unified-roles"
     >
