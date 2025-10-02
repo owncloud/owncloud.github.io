@@ -13,7 +13,7 @@
 
 
   <meta name="description" content="Abstract Purpose and description to be added
-Table of Contents Graceful Shutdown CLI Commands Manage Unfinished Uploads Sessions command Command Examples Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Graceful Shutdown Starting with Infinite Scale version 3.1, you can define a graceful shutdown period for the storage-users service.
+Table of Contents Graceful Shutdown CLI Commands Manage Unfinished Uploads Sessions command Command Examples Manage Spaces Purge (delete permanently) Disabled Spaces Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Graceful Shutdown Starting with Infinite Scale version 3.1, you can define a graceful shutdown period for the storage-users service.
 IMPORTANT: The graceful shutdown period is only applicable if the storage-users service runs as standalone service." />
 
     <title>Storage-Users | ownCloud</title>
@@ -39,7 +39,7 @@ IMPORTANT: The graceful shutdown period is only applicable if the storage-users 
   />
   <meta property="og:site_name" content="ownCloud" />
   <meta property="og:description" content="Abstract Purpose and description to be added
-Table of Contents Graceful Shutdown CLI Commands Manage Unfinished Uploads Sessions command Command Examples Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Graceful Shutdown Starting with Infinite Scale version 3.1, you can define a graceful shutdown period for the storage-users service.
+Table of Contents Graceful Shutdown CLI Commands Manage Unfinished Uploads Sessions command Command Examples Manage Spaces Purge (delete permanently) Disabled Spaces Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Graceful Shutdown Starting with Infinite Scale version 3.1, you can define a graceful shutdown period for the storage-users service.
 IMPORTANT: The graceful shutdown period is only applicable if the storage-users service runs as standalone service." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/storage-users/" />
@@ -47,18 +47,18 @@ IMPORTANT: The graceful shutdown period is only applicable if the storage-users 
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2025-10-02T00:04:28+00:00"
+      content="2025-10-02T07:29:01+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2025-10-02T00:04:28+00:00"
+      content="2025-10-02T07:29:01+00:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Storage-Users" />
   <meta name="twitter:description" content="Abstract Purpose and description to be added
-Table of Contents Graceful Shutdown CLI Commands Manage Unfinished Uploads Sessions command Command Examples Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Graceful Shutdown Starting with Infinite Scale version 3.1, you can define a graceful shutdown period for the storage-users service.
+Table of Contents Graceful Shutdown CLI Commands Manage Unfinished Uploads Sessions command Command Examples Manage Spaces Purge (delete permanently) Disabled Spaces Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Graceful Shutdown Starting with Infinite Scale version 3.1, you can define a graceful shutdown period for the storage-users service.
 IMPORTANT: The graceful shutdown period is only applicable if the storage-users service runs as standalone service." />
 
 
@@ -70,8 +70,8 @@ IMPORTANT: The graceful shutdown period is only applicable if the storage-users 
       "name": "Storage-Users",
       "url" : "https://owncloud.dev/services/storage-users/",
       "headline": "Storage-Users",
-      "description": "Abstract Purpose and description to be added\nTable of Contents Graceful Shutdown CLI Commands Manage Unfinished Uploads Sessions command Command Examples Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Graceful Shutdown Starting with Infinite Scale version 3.1, you can define a graceful shutdown period for the storage-users service.\nIMPORTANT: The graceful shutdown period is only applicable if the storage-users service runs as standalone service.",
-      "wordCount" : "5096",
+      "description": "Abstract Purpose and description to be added\nTable of Contents Graceful Shutdown CLI Commands Manage Unfinished Uploads Sessions command Command Examples Manage Spaces Purge (delete permanently) Disabled Spaces Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Graceful Shutdown Starting with Infinite Scale version 3.1, you can define a graceful shutdown period for the storage-users service.\nIMPORTANT: The graceful shutdown period is only applicable if the storage-users service runs as standalone service.",
+      "wordCount" : "5327",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -80,9 +80,9 @@ IMPORTANT: The graceful shutdown period is only applicable if the storage-users 
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2025",
-      "dateCreated": "2025-10-02T00:04:28.18Z",
-      "datePublished": "2025-10-02T00:04:28.18Z",
-      "dateModified": "2025-10-02T00:04:28.18Z",
+      "dateCreated": "2025-10-02T07:29:01.70Z",
+      "datePublished": "2025-10-02T07:29:01.70Z",
+      "dateModified": "2025-10-02T07:29:01.70Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -19903,6 +19903,17 @@ Copyright 2022 Fonticons, Inc.
 </li>
 <li><a
   class="gdoc-markdown__link"
+  href="#manage-spaces"
+>Manage Spaces</a>
+<ul>
+<li><a
+  class="gdoc-markdown__link"
+  href="#purge-%28delete-permanently%29-disabled-spaces"
+>Purge (delete permanently) Disabled Spaces</a></li>
+</ul>
+</li>
+<li><a
+  class="gdoc-markdown__link"
   href="#manage-trash-bin-items"
 >Manage Trash-Bin Items</a>
 <ul>
@@ -20084,6 +20095,56 @@ Note: It is recommended to run to command first without the <code>--clean</code>
 </span></span><span class="line"><span class="cl"><span class="c1"># resumes all uploads that are processing and are not virus infected</span>
 </span></span><span class="line"><span class="cl">ocis storage-users uploads sessions --processing<span class="o">=</span><span class="nb">true</span> --has-virus<span class="o">=</span><span class="nb">false</span> --resume
 </span></span></code></pre></div><div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="manage-spaces"
+    >
+        Manage Spaces
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/services/storage-users/#manage-spaces" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Manage Spaces" aria-label="Anchor to: Manage Spaces" href="#manage-spaces">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>This command set provides commands to manage spaces, including purging disabled spaces that exceed the retention period.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users spaces &lt;command&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">COMMANDS:
+</span></span><span class="line"><span class="cl">   purge  Purge disabled spaces that exceed the retention period
+</span></span></code></pre></div><div class="flex align-center gdoc-page__anchorwrap">
+    <h4 id="purge-delete-permanently-disabled-spaces"
+    >
+        Purge (delete permanently) Disabled Spaces
+    </h4>
+    <a data-clipboard-text="https://owncloud.dev/services/storage-users/#purge-delete-permanently-disabled-spaces" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Purge (delete permanently) Disabled Spaces" aria-label="Anchor to: Purge (delete permanently) Disabled Spaces" href="#purge-delete-permanently-disabled-spaces">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>Purge disabled spaces of a specific type that have exceeded the retention period. This command helps delete permanently the spaces that have been disabled and are no longer needed.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users spaces purge <span class="o">[</span><span class="nb">command</span> options<span class="o">]</span>
+</span></span></code></pre></div><p><strong>Options:</strong></p>
+<ul>
+<li><code>--dry-run, -d</code> - Only show what would be purged without actually purging (default: true)</li>
+<li><code>--type, -t</code> - Type of spaces to purge: &lsquo;personal&rsquo; or &lsquo;project&rsquo; (required)</li>
+<li><code>--space-id, -s</code> - Specific space ID to purge (optional, omit to process all spaces)</li>
+<li><code>--retention-period, -r</code> - Retention period for disabled spaces (default: &lsquo;336h&rsquo;, e.g., &lsquo;14d&rsquo;, &lsquo;720h&rsquo;)</li>
+<li><code>--verbose, -v</code> - Enable verbose logging (default: false)</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Dry run to see what would be purged (recommended first step)</span>
+</span></span><span class="line"><span class="cl">ocis storage-users spaces purge --type<span class="o">=</span>personal
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Purge all disabled personal spaces older than 14 days</span>
+</span></span><span class="line"><span class="cl">ocis storage-users spaces purge --type<span class="o">=</span>personal --retention-period<span class="o">=</span>14d --dry-run<span class="o">=</span><span class="nb">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Purge a specific project space</span>
+</span></span><span class="line"><span class="cl">ocis storage-users spaces purge --type<span class="o">=</span>project --space-id<span class="o">=</span><span class="s1">&#39;f46bae39-b2e4-48c7-a1bc-26169b1ffc2e$2d274464-0d11-4334-9f66-391cbe38c8a5!2d274464-0d11-4334-9f66-391cbe38c8a5&#39;</span> --dry-run<span class="o">=</span><span class="nb">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Purge with verbose logging</span>
+</span></span><span class="line"><span class="cl">ocis storage-users spaces purge --type<span class="o">=</span>personal --verbose --dry-run<span class="o">=</span><span class="nb">false</span>
+</span></span></code></pre></div><p><strong>Important Notes:</strong></p>
+<ul>
+<li>Only processes spaces that are in &rsquo;trashed&rsquo; state</li>
+<li>The <code>--dry-run</code> flag defaults to <code>true</code> to prevent accidental purging</li>
+<li>Retention period supports human-readable formats (e.g., &lsquo;336h&rsquo;, &lsquo;14d&rsquo;, &lsquo;720h&rsquo;)</li>
+</ul>
+<div class="flex align-center gdoc-page__anchorwrap">
     <h3 id="manage-trash-bin-items"
     >
         Manage Trash-Bin Items
