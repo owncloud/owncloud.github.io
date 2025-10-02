@@ -13,7 +13,7 @@
 
 
   <meta name="description" content="Abstract Purpose and description to be added
-Table of Contents Graceful Shutdown CLI Commands Manage Unfinished Uploads Sessions command Command Examples Manage Spaces Purge (delete permanently) Disabled Spaces Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Graceful Shutdown Starting with Infinite Scale version 3.1, you can define a graceful shutdown period for the storage-users service.
+Table of Contents Graceful Shutdown CLI Commands Manage Unfinished Uploads Sessions command Command Examples Delete Stale Nodes command Command Examples Manage Spaces Purge (delete permanently) Disabled Spaces Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Graceful Shutdown Starting with Infinite Scale version 3.1, you can define a graceful shutdown period for the storage-users service.
 IMPORTANT: The graceful shutdown period is only applicable if the storage-users service runs as standalone service." />
 
     <title>Storage-Users | ownCloud</title>
@@ -39,7 +39,7 @@ IMPORTANT: The graceful shutdown period is only applicable if the storage-users 
   />
   <meta property="og:site_name" content="ownCloud" />
   <meta property="og:description" content="Abstract Purpose and description to be added
-Table of Contents Graceful Shutdown CLI Commands Manage Unfinished Uploads Sessions command Command Examples Manage Spaces Purge (delete permanently) Disabled Spaces Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Graceful Shutdown Starting with Infinite Scale version 3.1, you can define a graceful shutdown period for the storage-users service.
+Table of Contents Graceful Shutdown CLI Commands Manage Unfinished Uploads Sessions command Command Examples Delete Stale Nodes command Command Examples Manage Spaces Purge (delete permanently) Disabled Spaces Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Graceful Shutdown Starting with Infinite Scale version 3.1, you can define a graceful shutdown period for the storage-users service.
 IMPORTANT: The graceful shutdown period is only applicable if the storage-users service runs as standalone service." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/services/storage-users/" />
@@ -47,18 +47,18 @@ IMPORTANT: The graceful shutdown period is only applicable if the storage-users 
 <meta property="article:section" content="Services" />
     <meta
       property="article:published_time"
-      content="2025-10-02T09:04:36+00:00"
+      content="2025-10-02T12:30:38+00:00"
     />
     <meta
       property="article:modified_time"
-      content="2025-10-02T09:04:36+00:00"
+      content="2025-10-02T12:30:38+00:00"
     />
 
 
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Storage-Users" />
   <meta name="twitter:description" content="Abstract Purpose and description to be added
-Table of Contents Graceful Shutdown CLI Commands Manage Unfinished Uploads Sessions command Command Examples Manage Spaces Purge (delete permanently) Disabled Spaces Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Graceful Shutdown Starting with Infinite Scale version 3.1, you can define a graceful shutdown period for the storage-users service.
+Table of Contents Graceful Shutdown CLI Commands Manage Unfinished Uploads Sessions command Command Examples Delete Stale Nodes command Command Examples Manage Spaces Purge (delete permanently) Disabled Spaces Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Graceful Shutdown Starting with Infinite Scale version 3.1, you can define a graceful shutdown period for the storage-users service.
 IMPORTANT: The graceful shutdown period is only applicable if the storage-users service runs as standalone service." />
 
 
@@ -70,8 +70,8 @@ IMPORTANT: The graceful shutdown period is only applicable if the storage-users 
       "name": "Storage-Users",
       "url" : "https://owncloud.dev/services/storage-users/",
       "headline": "Storage-Users",
-      "description": "Abstract Purpose and description to be added\nTable of Contents Graceful Shutdown CLI Commands Manage Unfinished Uploads Sessions command Command Examples Manage Spaces Purge (delete permanently) Disabled Spaces Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Graceful Shutdown Starting with Infinite Scale version 3.1, you can define a graceful shutdown period for the storage-users service.\nIMPORTANT: The graceful shutdown period is only applicable if the storage-users service runs as standalone service.",
-      "wordCount" : "5327",
+      "description": "Abstract Purpose and description to be added\nTable of Contents Graceful Shutdown CLI Commands Manage Unfinished Uploads Sessions command Command Examples Delete Stale Nodes command Command Examples Manage Spaces Purge (delete permanently) Disabled Spaces Manage Trash-Bin Items Purge Expired List and Restore Trash-Bins Items Caching Example Yaml Config Graceful Shutdown Starting with Infinite Scale version 3.1, you can define a graceful shutdown period for the storage-users service.\nIMPORTANT: The graceful shutdown period is only applicable if the storage-users service runs as standalone service.",
+      "wordCount" : "5519",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -80,9 +80,9 @@ IMPORTANT: The graceful shutdown period is only applicable if the storage-users 
       },
       "copyrightHolder" : "ownCloud",
       "copyrightYear" : "2025",
-      "dateCreated": "2025-10-02T09:04:36.22Z",
-      "datePublished": "2025-10-02T09:04:36.22Z",
-      "dateModified": "2025-10-02T09:04:36.22Z",
+      "dateCreated": "2025-10-02T12:30:38.43Z",
+      "datePublished": "2025-10-02T12:30:38.43Z",
+      "dateModified": "2025-10-02T12:30:38.43Z",
       "publisher":{
           "@type":"Organization",
           "name": "ownCloud",
@@ -19899,6 +19899,14 @@ Copyright 2022 Fonticons, Inc.
   class="gdoc-markdown__link"
   href="#command-examples"
 >Command Examples</a></li>
+<li><a
+  class="gdoc-markdown__link"
+  href="#delete-stale-nodes-command"
+>Delete Stale Nodes command</a></li>
+<li><a
+  class="gdoc-markdown__link"
+  href="#command-examples"
+>Command Examples</a></li>
 </ul>
 </li>
 <li><a
@@ -20094,6 +20102,44 @@ Note: It is recommended to run to command first without the <code>--clean</code>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># resumes all uploads that are processing and are not virus infected</span>
 </span></span><span class="line"><span class="cl">ocis storage-users uploads sessions --processing<span class="o">=</span><span class="nb">true</span> --has-virus<span class="o">=</span><span class="nb">false</span> --resume
+</span></span></code></pre></div><div class="flex align-center gdoc-page__anchorwrap">
+    <h4 id="delete-stale-nodes-command"
+    >
+        Delete Stale Nodes command
+    </h4>
+    <a data-clipboard-text="https://owncloud.dev/services/storage-users/#delete-stale-nodes-command" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Delete Stale Nodes command" aria-label="Anchor to: Delete Stale Nodes command" href="#delete-stale-nodes-command">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>This command allows to remove (or revert) nodes that are stale, meaning they are in postprocessing but their upload session is gone.
+It will check all nodes that are in postprocessing and find those without an upload session. Then it will delete the node if there are no other versions. If there are other versions, it will instead revert the node to the previous version.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">    ~/ocis storage-users uploads delete-stale-nodes &lt;commandoptions&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">NAME</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">   <span class="n">ocis</span> <span class="n">storage</span><span class="o">-</span><span class="n">users</span> <span class="n">uploads</span> <span class="n">delete</span><span class="o">-</span><span class="n">stale</span><span class="o">-</span><span class="n">nodes</span> <span class="o">-</span> <span class="n">Delete</span> <span class="p">(</span><span class="ow">or</span> <span class="n">revert</span><span class="p">)</span> <span class="n">all</span> <span class="n">nodes</span> <span class="ow">in</span> <span class="n">processing</span> <span class="n">state</span> <span class="n">that</span> <span class="n">are</span> <span class="ow">not</span> <span class="n">referenced</span> <span class="n">by</span> <span class="n">any</span> <span class="n">upload</span> <span class="n">session</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">USAGE</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">   <span class="n">ocis</span> <span class="n">storage</span><span class="o">-</span><span class="n">users</span> <span class="n">uploads</span> <span class="n">delete</span><span class="o">-</span><span class="n">stale</span><span class="o">-</span><span class="n">nodes</span> <span class="p">[</span><span class="n">command</span> <span class="n">options</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">OPTIONS</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">   <span class="o">--</span><span class="n">spaceid</span> <span class="n">value</span>  <span class="n">Space</span> <span class="n">ID</span> <span class="n">to</span> <span class="n">check</span> <span class="k">for</span> <span class="n">processing</span> <span class="n">nodes</span> <span class="p">(</span><span class="n">omit</span> <span class="n">to</span> <span class="n">check</span> <span class="n">all</span> <span class="n">spaces</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="o">--</span><span class="n">dry</span><span class="o">-</span><span class="n">run</span>        <span class="n">Only</span> <span class="n">show</span> <span class="n">what</span> <span class="n">would</span> <span class="n">be</span> <span class="n">deleted</span> <span class="n">without</span> <span class="n">actually</span> <span class="n">deleting</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="bp">true</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="o">--</span><span class="n">verbose</span>        <span class="n">Enable</span> <span class="n">verbose</span> <span class="n">logging</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="bp">false</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="o">--</span><span class="n">help</span><span class="p">,</span> <span class="o">-</span><span class="n">h</span>       <span class="n">show</span> <span class="n">help</span>
+</span></span></code></pre></div><div class="flex align-center gdoc-page__anchorwrap">
+    <h4 id="command-examples-1"
+    >
+        Command Examples
+    </h4>
+    <a data-clipboard-text="https://owncloud.dev/services/storage-users/#command-examples-1" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Command Examples" aria-label="Anchor to: Command Examples" href="#command-examples-1">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>Dry run to see what would be deleted (recommended first step)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users uploads delete-stale-nodes
+</span></span></code></pre></div><p>Set <code>--dry-run=false</code> to actually delete the stale nodes</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users uploads delete-stale-nodes --dry-run<span class="o">=</span><span class="nb">false</span>
+</span></span></code></pre></div><p>Use <code>--verbose</code> to get more information about what is happening</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis storage-users uploads delete-stale-nodes --dry-run<span class="o">=</span><span class="nb">false</span> --verbose
 </span></span></code></pre></div><div class="flex align-center gdoc-page__anchorwrap">
     <h3 id="manage-spaces"
     >
