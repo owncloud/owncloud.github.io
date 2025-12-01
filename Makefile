@@ -1,5 +1,5 @@
 # renovate: datasource=github-releases depName=thegeeklab/hugo-geekdoc
-THEME_VERSION ?= v0.47.0
+THEME_VERSION ?= v2.0.0
 HUGO_IMAGE = hugomods/hugo:base-0.129.0
 
 # note that we cannot run docker as plain command because make uses sh and the path variable might not have it included.
