@@ -13,9 +13,8 @@
 
 
   <meta name="description" content="This document describes ocis CLI commands that are service independent.
-Common Parameters List of CLI Commands Backup CLI Cleanup Orphaned Shares List Unified Roles Revisions CLI Service Health Trash CLI For service dependent CLI commands, see the following services:
-Auth-App Graph Postprocessing Storage-Users Common Parameters The ocis package offers a variety of CLI commands for monitoring or repairing ocis installations. Most of these commands have common parameters such as:
---help (or -h)" />
+Common Parameters List of CLI Commands Backup CLI Cleanup Orphaned Grants Cleanup Orphaned Shares List Unified Roles Move Stuck Uploads Revisions CLI Service Health Trash CLI For service dependent CLI commands, see the following services:
+Auth-App Graph Postprocessing Storage-Users Common Parameters The ocis package offers a variety of CLI commands for monitoring or repairing ocis installations. Most of these commands have common parameters such as:" />
 
     <title>Service Independent CLI | ownCloud</title>
 
@@ -40,9 +39,8 @@ Auth-App Graph Postprocessing Storage-Users Common Parameters The ocis package o
   />
   <meta property="og:site_name" content="ownCloud" />
   <meta property="og:description" content="This document describes ocis CLI commands that are service independent.
-Common Parameters List of CLI Commands Backup CLI Cleanup Orphaned Shares List Unified Roles Revisions CLI Service Health Trash CLI For service dependent CLI commands, see the following services:
-Auth-App Graph Postprocessing Storage-Users Common Parameters The ocis package offers a variety of CLI commands for monitoring or repairing ocis installations. Most of these commands have common parameters such as:
---help (or -h)" />
+Common Parameters List of CLI Commands Backup CLI Cleanup Orphaned Grants Cleanup Orphaned Shares List Unified Roles Move Stuck Uploads Revisions CLI Service Health Trash CLI For service dependent CLI commands, see the following services:
+Auth-App Graph Postprocessing Storage-Users Common Parameters The ocis package offers a variety of CLI commands for monitoring or repairing ocis installations. Most of these commands have common parameters such as:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://owncloud.dev/cli-commands/service_independent_cli/" />
 
@@ -60,9 +58,8 @@ Auth-App Graph Postprocessing Storage-Users Common Parameters The ocis package o
   <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Service Independent CLI" />
   <meta name="twitter:description" content="This document describes ocis CLI commands that are service independent.
-Common Parameters List of CLI Commands Backup CLI Cleanup Orphaned Shares List Unified Roles Revisions CLI Service Health Trash CLI For service dependent CLI commands, see the following services:
-Auth-App Graph Postprocessing Storage-Users Common Parameters The ocis package offers a variety of CLI commands for monitoring or repairing ocis installations. Most of these commands have common parameters such as:
---help (or -h)" />
+Common Parameters List of CLI Commands Backup CLI Cleanup Orphaned Grants Cleanup Orphaned Shares List Unified Roles Move Stuck Uploads Revisions CLI Service Health Trash CLI For service dependent CLI commands, see the following services:
+Auth-App Graph Postprocessing Storage-Users Common Parameters The ocis package offers a variety of CLI commands for monitoring or repairing ocis installations. Most of these commands have common parameters such as:" />
 
 
   <script type="application/ld+json">
@@ -73,8 +70,8 @@ Auth-App Graph Postprocessing Storage-Users Common Parameters The ocis package o
       "name": "Service Independent CLI",
       "url" : "https://owncloud.dev/cli-commands/service_independent_cli/",
       "headline": "Service Independent CLI",
-      "description": "This document describes ocis CLI commands that are service independent.\nCommon Parameters List of CLI Commands Backup CLI Cleanup Orphaned Shares List Unified Roles Revisions CLI Service Health Trash CLI For service dependent CLI commands, see the following services:\nAuth-App Graph Postprocessing Storage-Users Common Parameters The ocis package offers a variety of CLI commands for monitoring or repairing ocis installations. Most of these commands have common parameters such as:\n--help (or -h)",
-      "wordCount" : "843",
+      "description": "This document describes ocis CLI commands that are service independent.\nCommon Parameters List of CLI Commands Backup CLI Cleanup Orphaned Grants Cleanup Orphaned Shares List Unified Roles Move Stuck Uploads Revisions CLI Service Health Trash CLI For service dependent CLI commands, see the following services:\nAuth-App Graph Postprocessing Storage-Users Common Parameters The ocis package offers a variety of CLI commands for monitoring or repairing ocis installations. Most of these commands have common parameters such as:",
+      "wordCount" : "1174",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -19495,8 +19492,10 @@ Copyright 2022 Fonticons, Inc.
         <li><a href="#list-of-cli-commands">List of CLI Commands</a>
           <ul>
             <li><a href="#backup-cli">Backup CLI</a></li>
+            <li><a href="#cleanup-orphaned-grants">Cleanup Orphaned Grants</a></li>
             <li><a href="#cleanup-orphaned-shares">Cleanup Orphaned Shares</a></li>
             <li><a href="#list-unified-roles">List Unified Roles</a></li>
+            <li><a href="#move-stuck-uploads">Move Stuck Uploads</a></li>
             <li><a href="#revisions-cli">Revisions CLI</a></li>
             <li><a href="#service-health">Service Health</a></li>
             <li><a href="#trash-cli">Trash CLI</a></li>
@@ -19596,6 +19595,46 @@ A node that doesn&rsquo;t have any (or malformed) metadata.</li>
 Allows specifying the blobstore to use. Defaults to <code>ocis</code>. Empty blobs will not be checked. Can also be switched to <code>s3ng</code>, but needs addtional envvar configuration (see the <code>storage-users</code> service for more details).</li>
 <li><code>--fail</code><br>
 Exits with non-zero exit code if inconsistencies are found. Useful for automation.</li>
+</ul>
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="cleanup-orphaned-grants"
+    >
+        Cleanup Orphaned Grants
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/cli-commands/service_independent_cli/#cleanup-orphaned-grants" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Cleanup Orphaned Grants" aria-label="Anchor to: Cleanup Orphaned Grants" href="#cleanup-orphaned-grants">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>Detect and optionally delete storage grants that have no corresponding share-manager entry.</p>
+<p>Sharing in ocis relies on two truths. The share manager and the grants. When a share is created, ocis will</p>
+<ol>
+<li>
+<p>Create a grant for the specific file or folder.<br>
+This grant is <em>checked when access to the file is requested</em>.</p>
+</li>
+<li>
+<p>Create an entry in the <code>created.json</code>/<code>received.json</code> files of the specific user.<br>
+These files are <em>checked whenever shares are listed</em>.</p>
+</li>
+</ol>
+<p>The process for creating a share is as follows: first, ocis creates the grant, and then adds the share entry. The reverse order is followed when deleting a share. This means that if the second step fails, the grant will still be present. This can be visually confirmed in the webUI. The webUI details of the &ldquo;share&rdquo; section will show an error fetching information for orphan grants.</p>
+<p>The following command fixes the problem of orhaned grants.</p>
+<p>Usage:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis shares clean-orphaned-grants <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --service-account-id <span class="s2">&#34;&lt;id&gt;&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --service-account-secret <span class="s2">&#34;&lt;secret&gt;&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="o">[</span>--force<span class="o">]</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="o">[</span>--space-id <span class="s2">&#34;&lt;space-opaque-id&gt;&#34;</span><span class="o">]</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="o">[</span>--dry-run<span class="o">=</span>false<span class="o">]</span>
+</span></span></code></pre></div><p>Notes:</p>
+<ul>
+<li><code>--dry-run</code><br>
+Defaults to <code>true</code> (no deletions). Set to <code>false</code> to remove orphaned grants.</li>
+<li><code>--space-id</code><br>
+Limit the scan to a specific storage space (opaque ID).</li>
+<li><code>--force</code><br>
+Force removal of suspected orphans even when listing shares fails.</li>
+<li>Public links are not touched.</li>
 </ul>
 <div class="flex align-center gdoc-page__anchorwrap">
     <h3 id="cleanup-orphaned-shares"
@@ -19711,24 +19750,29 @@ A short description of the role.</li>
 </tr>
 </tbody>
 </table> </div>
-<!--
-### Move Stuck Uploads
-
-In some cases of saturated disk usage, Infinite Scale metadata may become stuck. This can occur when file metadata is being moved to its final destination after file operations. This issue was primarily seen with shares, where uploaded files could not be accessed. The required filename parameter aligns with Infinite Scale's internal processes and is used to complete the formerly stuck move action.
-
-```bash
-ocis shares move-stuck-upload-blobs [--dry-run=false] -p /base/path/storage/users
-```
-
-This command provides additional options:
-
-* `--dry-run` (default: `true`)\
-Only print found files stuck in transition.\
-Note: This is a safety measure. You must specify `--dry-run=false` for the command to be effective.
-
-* `--filename` value (default: "received.json")\
-File to move from `uploads/` to share manager metadata `blobs/`
--->
+<div class="flex align-center gdoc-page__anchorwrap">
+    <h3 id="move-stuck-uploads"
+    >
+        Move Stuck Uploads
+    </h3>
+    <a data-clipboard-text="https://owncloud.dev/cli-commands/service_independent_cli/#move-stuck-uploads" class="gdoc-page__anchor clip flex align-center" title="Anchor to: Move Stuck Uploads" aria-label="Anchor to: Move Stuck Uploads" href="#move-stuck-uploads">
+        <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+    </a>
+</div>
+<p>In some cases of saturated disk usage, Infinite Scale metadata may become stuck. This can occur when file metadata is being moved to its final destination after file operations. This issue was primarily seen with shares, where uploaded files could not be accessed. The required filename parameter aligns with Infinite Scale&rsquo;s internal processes and is used to complete the formerly stuck move action.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ocis shares move-stuck-upload-blobs <span class="o">[</span>--dry-run<span class="o">=</span>false<span class="o">]</span> -p /base/path/storage/users
+</span></span></code></pre></div><p>This command provides additional options:</p>
+<ul>
+<li>
+<p><code>--dry-run</code> (default: <code>true</code>)<br>
+Only print found files stuck in transition.<br>
+Note: This is a safety measure. You must specify <code>--dry-run=false</code> for the command to be effective.</p>
+</li>
+<li>
+<p><code>--filename</code> value (default: &ldquo;received.json&rdquo;)<br>
+File to move from <code>uploads/</code> to share manager metadata <code>blobs/</code></p>
+</li>
+</ul>
 <div class="flex align-center gdoc-page__anchorwrap">
     <h3 id="revisions-cli"
     >
