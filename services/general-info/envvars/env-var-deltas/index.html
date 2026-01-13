@@ -68,7 +68,7 @@ When creating a new release, this step should be completed before the new stable
       "url" : "https://owncloud.dev/services/general-info/envvars/env-var-deltas/",
       "headline": "Deltas Between Versions",
       "description": "General Information This section provides information about added, removed and deprecated environment variables between two major\/minor versions.\nWhen creating a new release, this step should be completed before the new stable-x.y branch is created. Then, all changes will go cleanly into this stable branch. If the changes required are not part of the stable branch created for the release process, you must backport all added, removed and deprecated files created from the described process below into the stable branch.",
-      "wordCount" : "398",
+      "wordCount" : "475",
       "inLanguage": "en",
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
@@ -14490,6 +14490,114 @@ Copyright 2022 Fonticons, Inc.
           </li>
         
       
+        
+          
+          
+          
+          
+          
+          
+
+
+          <li>
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              
+                <span class="flex">
+                  <a
+                    href="/services/general-info/envvars/env-var-deltas/7.3.0-8.0.0-added/"
+                    class="gdoc-nav__entry"
+                  >
+                    7.3.0 8.0.0 Added
+                  </a>
+                </span>
+              
+              
+            </label>
+
+            
+          </li>
+        
+      
+        
+          
+          
+          
+          
+          
+          
+
+
+          <li>
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              
+                <span class="flex">
+                  <a
+                    href="/services/general-info/envvars/env-var-deltas/7.3.0-8.0.0-deprecated/"
+                    class="gdoc-nav__entry"
+                  >
+                    7.3.0 8.0.0 Deprecated
+                  </a>
+                </span>
+              
+              
+            </label>
+
+            
+          </li>
+        
+      
+        
+          
+          
+          
+          
+          
+          
+
+
+          <li>
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              
+                <span class="flex">
+                  <a
+                    href="/services/general-info/envvars/env-var-deltas/7.3.0-8.0.0-removed/"
+                    class="gdoc-nav__entry"
+                  >
+                    7.3.0 8.0.0 Removed
+                  </a>
+                </span>
+              
+              
+            </label>
+
+            
+          </li>
+        
+      
     
   </ul>
 
@@ -19529,7 +19637,7 @@ Copyright 2022 Fonticons, Inc.
 This is only required when converting adoc to markdown tables but it is highly recommended to show them in the dev docs too!</p>
 </li>
 <li>
-<p>Run <code>make docs-generate</code> from the ocis root.<br>
+<p>Run <code>make docs-local</code> from the ocis root.<br>
 Usually, a file named <code>env_vars.yaml</code> gets changed. Check for validity. If issues are found, fix them in the service sources first which need to be merged before you rerun make. For details how to do so, see <a
   class="gdoc-markdown__link"
   href="https://owncloud.dev/services/general-info/envvars/new-release-process/#maintain-the-env_varsyaml-file"
@@ -19541,14 +19649,13 @@ Note that you <strong>must</strong> use semver and not code names!</p>
 </li>
 <li>
 <p>Run the python script from the ocis root such as <code>python3 docs/helpers/changed_envvars.py</code>.<br>
-Note that the script pulls data from the master branch as base reference, therefore the <code>env_vars.yaml</code> file MUST be up to date.<br>
-adoc tables will be generated which are used for the admin docs and are the basis for markdown.</p>
+Note that the script pulls data from the master branch as a base reference, therefore the <code>env_vars.yaml</code> file must be kept up to date. The adoc tables generated are used for the admin documentation and form the basis for Markdown.</p>
 </li>
 <li>
-<p>Because the script can not determine the link target in the <code>Service</code> column, you must manually adapt them in the generated adoc files with respect to the name and target. Only one entry per identical service block is required, delete the cell content for the rest for ease of readability. See existing files for an example.</p>
+<p>As the script cannot determine the link target (xref:) in the <code>Service</code> column, you must adapt these manually in the generated adoc files according to the file name and printed name. Envvars starting with <code>OCIS_</code> are displayed differently in the <code>Service</code> column because the file name and printed name cannot be easily identified and must be resolved differently. You have to check where they are defined, unlike the others where the name provides a clue. The final xref path must be corrected manually in all cases. Only one entry per identical service is required to generate an easy block view. Delete the cell content except for the pipe symbol (<code>|</code>) to make it easier to read. See existing files for an example.</p>
 </li>
 <li>
-<p>Run <code>npx downdoc &lt;filename.adoc&gt;</code> for each of the newly generated <code>added</code>, <code>removed</code> and <code>deprecated</code> files. This will generate markdown files for the dev docs.</p>
+<p>Change into the directory that contains the generated adoc files and run <code>npx downdoc &lt;filename.adoc&gt;</code> for each of the newly generated <code>added</code>, <code>removed</code> and <code>deprecated</code> files. This will generate markdown files for the dev docs.</p>
 </li>
 <li>
 <p>Add in each markdown file on top the following sentence:<br>
@@ -24942,6 +25049,78 @@ adoc tables will be generated which are used for the admin docs and are the basi
             
             
           
+        
+
+        
+
+        
+          
+        
+
+        
+        
+      
+    
+      
+      
+
+      
+        
+        
+        
+        
+
+        
+        
+
+        
+
+        
+
+        
+          
+        
+
+        
+        
+      
+    
+      
+      
+
+      
+        
+        
+        
+        
+
+        
+        
+
+        
+
+        
+
+        
+          
+        
+
+        
+        
+      
+    
+      
+      
+
+      
+        
+        
+        
+        
+
+        
+        
+
         
 
         
