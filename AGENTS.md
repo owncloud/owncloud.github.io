@@ -1,4 +1,4 @@
-# agents.md -- ownCloud Developer Documentation
+# AGENTS.md -- ownCloud Developer Documentation
 
 ## Repository Overview
 
